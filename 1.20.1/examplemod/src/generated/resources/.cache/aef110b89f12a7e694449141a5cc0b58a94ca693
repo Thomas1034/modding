@@ -1,4 +1,4 @@
-// 1.20.1	2023-12-27T20:47:39.7724858	Item Models: zirconmod
+// 1.20.1	2023-12-27T21:24:12.0392002	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 d0d1e17606558f8284ad60b3aeaeda24a788b287 assets/zirconmod/models/item/citrine_boots.json
@@ -7,6 +7,7 @@ d0d1e17606558f8284ad60b3aeaeda24a788b287 assets/zirconmod/models/item/citrine_bo
 89684d63ed18a58ccf0f5f14c5c28feb68cf8d10 assets/zirconmod/models/item/citrine_helmet.json
 6303f13f3878b09426991d7c8779e2088d148b87 assets/zirconmod/models/item/citrine_lantern.json
 104bde9daf8187a5db20cb905974b5f6fee9e9f8 assets/zirconmod/models/item/citrine_leggings.json
+5996e3e9ede9efb3ed2637d876ba155f85f1193f assets/zirconmod/models/item/citrine_shard.json
 0aba6d10a51b6a429a24f14eb051d5c16b86b798 assets/zirconmod/models/item/copper_axe.json
 b7c1cd312b3654cf2b2ac978decf31b4a7a8c826 assets/zirconmod/models/item/copper_boots.json
 4d1b4441b306214b033eb64c657f30f06d050fa5 assets/zirconmod/models/item/copper_chestplate.json

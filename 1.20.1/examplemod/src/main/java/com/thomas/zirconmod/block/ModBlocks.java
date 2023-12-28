@@ -321,7 +321,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CITRINE_LANTERN = registerBlock("citrine_lantern",
 			() -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
 
-	// Amethyst bracket
+	// Citrine bracket
 	public static final RegistryObject<Block> CITRINE_BRACKET = BLOCKS.register("citrine_bracket",
 			() -> new GemBracketBlock(
 					BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((p_50755_) -> {

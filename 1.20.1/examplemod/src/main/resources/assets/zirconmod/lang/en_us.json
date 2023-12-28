@@ -17,7 +17,8 @@
 	"item.zirconmod.mole_spawn_egg": "Mole Spawn Egg",
 	"item.zirconmod.nimbula_spawn_egg": "Nimbula Spawn Egg",
 	"item.zirconmod.nimbula_gel": "Nimbula Gel",
-	"item.zirconmod.cut_amethyst": "Cut Amethyst",
+	"item.zirconmod.cut_citrine": "Cut Citrine",
+	"item.zirconmod.citrine_shard": "Citrine Shard",
 	"item.zirconmod.feather_wings": "Feather Wings",
 	
 	"item.zirconmod.copper_sword": "Copper Sword",
@@ -40,10 +41,14 @@
 	"item.zirconmod.zirconium_hoe": "Zirconium Hoe",
 	"item.zirconmod.zirconium_shovel": "Zirconium Shovel",
 	
-	"item.zirconmod.amethyst_helmet": "Amethyst Helmet",
-	"item.zirconmod.amethyst_chestplate": "Amethyst Chestplate",
-	"item.zirconmod.amethyst_leggings": "Amethyst Leggings",
-	"item.zirconmod.amethyst_boots": "Amethyst Boots",
+	"item.zirconmod.citrine_helmet": "Citrine Helmet",
+	"item.zirconmod.citrine_chestplate": "Citrine Chestplate",
+	"item.zirconmod.citrine_leggings": "Citrine Leggings",
+	"item.zirconmod.citrine_boots": "Citrine Boots",
+	
+	
+	"item.zirconmod.citrine_bracket": "Citrine Bracket",
+	"item.zirconmod.citrine_lantern": "Citrine Lantern",
 	
 	
 	"block.zirconmod.zircon_block": "Zircon Block",
@@ -61,6 +66,8 @@
 	"block.zirconmod.blueberry_bush": "Blueberry Bush",
 	"block.zirconmod.potted_illuminated_torchflower": "Potted Illuminated Torchflower",
 	"block.zirconmod.illuminated_torchflower": "Illuminated Torchflower",
+	"block.zirconmod.citrine_bracket": "Citrine Bracket",
+	"block.zirconmod.citrine_wall_bracket": "Citrine Wall Bracket",
 	
 	
 	"block.zirconmod.palm_log": "Palm Log",
@@ -85,8 +92,6 @@
 	"block.zirconmod.nimbula_polyp": "Nimbula Polyp",
 	"block.zirconmod.carpentry_table": "Carpentry Table",
 	
-	
-	
 	"item.minecraft.smithing_template.zirconium_upgrade.additions_slot_description": "Add Zirconium Ingot",
 	"item.minecraft.smithing_template.zirconium_upgrade.applies_to": "Iron Equipment",
 	"item.minecraft.smithing_template.zirconium_upgrade.base_slot_description": "Add iron armor, weapon, or tool",
@@ -104,7 +109,7 @@
 	"entity.minecraft.villager.zirconmod.forester": "Forester",
 	"entity.minecraft.villager.zirconmod.gem_smith": "Gem Smith",
 	
-	"effect.zirconmod.amethyst_glow": "Amethyst Glow",
+	"effect.zirconmod.citrine_glow": "Citrine Glow",
 	"effect.zirconmod.flight_exhaustion": "Flight Exhaustion",
 	
 	"creativetab.zirconmod_items": "Zircon Mod Items",
