@@ -132,6 +132,7 @@ public class WispEntity extends AbstractVillager {
 		return false;
 	}
 
+	@SuppressWarnings("resource")
 	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
 		ItemStack itemstack = p_35856_.getItemInHand(p_35857_);
 		if (!itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
@@ -271,6 +272,7 @@ public class WispEntity extends AbstractVillager {
 		return SoundEvents.WANDERING_TRADER_YES;
 	}
 
+	@SuppressWarnings("resource")
 	public void aiStep() {
 		super.aiStep();
 		if (!this.level().isClientSide) {

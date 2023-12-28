@@ -37,6 +37,7 @@ public class PineconeItem extends FuelItem {
 					return ModItems.FLAMING_PINE_CONE.get();
 				}
 
+				@SuppressWarnings("unused")
 				private ParticleOptions getParticle() {
 					ItemStack itemstack = this.getItemRaw();
 					return (ParticleOptions) (itemstack.isEmpty()
@@ -51,6 +52,7 @@ public class PineconeItem extends FuelItem {
 				}
 
 				// Lights the location it hits on fire.
+				@SuppressWarnings("resource")
 				protected void onHit(HitResult hitResult) {
 					super.onHit(hitResult);
 					if (!this.level().isClientSide) {

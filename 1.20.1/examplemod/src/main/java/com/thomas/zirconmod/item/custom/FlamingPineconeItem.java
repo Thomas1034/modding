@@ -13,7 +13,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Item;
@@ -43,6 +42,7 @@ public class FlamingPineconeItem extends FuelItem {
 					return ModItems.PINE_CONE.get();
 				}
 
+				@SuppressWarnings("unused")
 				private ParticleOptions getParticle() {
 					ItemStack itemstack = this.getItemRaw();
 					return (ParticleOptions) (itemstack.isEmpty() ? ParticleTypes.FLAME
@@ -61,6 +61,7 @@ public class FlamingPineconeItem extends FuelItem {
 				}
 
 				// Lights the location it hits on fire.
+				@SuppressWarnings("resource")
 				protected void onHit(HitResult hitResult) {
 					super.onHit(hitResult);
 					if (!this.level().isClientSide) {

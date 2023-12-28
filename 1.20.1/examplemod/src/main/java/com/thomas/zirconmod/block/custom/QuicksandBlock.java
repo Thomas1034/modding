@@ -4,7 +4,6 @@ import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +37,6 @@ public class QuicksandBlock extends PowderSnowBlock {
 		if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this)) {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.9F, 1.5D, (double) 0.9F));
 			if (level.isClientSide) {
-				RandomSource randomsource = level.getRandom();
 				boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
 				// Spawn in destroy particles if the entity is moving.
 				if (flag)

@@ -8,7 +8,6 @@ import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.client.gui.font.providers.UnihexProvider.Dimensions;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -16,8 +15,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.WorldDimensions;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -59,15 +56,21 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.CITRINE_BLOCK.get());
 		this.dropSelf(ModBlocks.CITRINE_LANTERN.get());
 		this.dropOther(ModBlocks.CITRINE_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.dropOther(ModBlocks.CITRINE_WALL_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.add(ModBlocks.PALM_SLAB.get(), block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 		this.add(ModBlocks.PALM_DOOR.get(), block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
 
+		this.dropOther(ModBlocks.BUDDING_CITRINE.get(), Items.AIR);
 		this.add(ModBlocks.CLOUD.get(), block -> createSilkTouchDrop(ModBlocks.CLOUD.get(), Items.AIR));
 		this.add(ModBlocks.THUNDER_CLOUD.get(), block -> createSilkTouchDrop(ModBlocks.THUNDER_CLOUD.get(), Items.AIR));
+		this.add(ModBlocks.CITRINE_CLUSTER.get(), block -> createOreDrops(ModBlocks.CITRINE_CLUSTER.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 5)));
 		
+		this.add(ModBlocks.LARGE_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.LARGE_CITRINE_BUD.get(), Items.AIR));
+		this.add(ModBlocks.MEDIUM_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.MEDIUM_CITRINE_BUD.get(), Items.AIR));
+		this.add(ModBlocks.SMALL_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.SMALL_CITRINE_BUD.get(), Items.AIR));
 		
 		this.add(ModBlocks.ZIRCON_ORE.get(),
 				block -> createOreDrops(ModBlocks.ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5)));

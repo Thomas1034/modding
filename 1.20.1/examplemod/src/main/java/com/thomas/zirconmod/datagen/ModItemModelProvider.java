@@ -42,6 +42,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CITRINE_SHARD);
 		simpleBlockItem(ModBlocks.CITRINE_LANTERN);
 		simpleBlockItemBlockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER);
+		simpleBlockItem(ModBlocks.CITRINE_CLUSTER);
+		simpleBlockItem(ModBlocks.LARGE_CITRINE_BUD);
+		simpleBlockItem(ModBlocks.MEDIUM_CITRINE_BUD);
+		simpleBlockItem(ModBlocks.SMALL_CITRINE_BUD);
 
 		simpleBlockItem(ModBlocks.PALM_DOOR);
 		simpleBlockModel(ModBlocks.ZIRCON_LAMP);

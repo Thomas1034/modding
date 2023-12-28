@@ -66,8 +66,15 @@
 	"block.zirconmod.blueberry_bush": "Blueberry Bush",
 	"block.zirconmod.potted_illuminated_torchflower": "Potted Illuminated Torchflower",
 	"block.zirconmod.illuminated_torchflower": "Illuminated Torchflower",
+	"block.zirconmod.citrine_block": "Citrine Block",
+	"block.zirconmod.budding_citrine": "Budding Citrine",
+	"block.zirconmod.citrine_cluster": "Citrine Cluster",
+	"block.zirconmod.large_citrine_bud": "Large Citrine Bud",
+	"block.zirconmod.medium_citrine_bud": "Medium Citrine Bud",
+	"block.zirconmod.small_citrine_bud": "Small Citrine Bud",
 	"block.zirconmod.citrine_bracket": "Citrine Bracket",
 	"block.zirconmod.citrine_wall_bracket": "Citrine Wall Bracket",
+	"block.zirconmod.citrine_lantern": "Citrine Lantern",
 	
 	
 	"block.zirconmod.palm_log": "Palm Log",

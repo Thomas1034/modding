@@ -2,6 +2,11 @@
   "values": [
     "zirconmod:zircon_block",
     "zirconmod:zircon_ore",
-    "zirconmod:deepslate_zircon_ore"
+    "zirconmod:deepslate_zircon_ore",
+    "zirconmod:citrine_block",
+    "zirconmod:citrine_cluster",
+    "zirconmod:large_citrine_bud",
+    "zirconmod:medium_citrine_bud",
+    "zirconmod:small_citrine_bud"
   ]
 }

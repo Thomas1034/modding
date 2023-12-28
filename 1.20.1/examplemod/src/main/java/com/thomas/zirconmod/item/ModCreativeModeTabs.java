@@ -66,6 +66,14 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
 						pOutput.accept(ModBlocks.PALM_PRESSURE_PLATE.get());
 						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
+						pOutput.accept(ModBlocks.CITRINE_BLOCK.get());
+						pOutput.accept(ModBlocks.BUDDING_CITRINE.get());
+						pOutput.accept(ModBlocks.CITRINE_CLUSTER.get());
+						pOutput.accept(ModBlocks.LARGE_CITRINE_BUD.get());
+						pOutput.accept(ModBlocks.MEDIUM_CITRINE_BUD.get());
+						pOutput.accept(ModBlocks.SMALL_CITRINE_BUD.get());
+						pOutput.accept(ModItems.CITRINE_BRACKET.get());
+						pOutput.accept(ModBlocks.CITRINE_LANTERN.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("zirconmod_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))

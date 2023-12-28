@@ -10,6 +10,7 @@ import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CropBlock;
@@ -79,10 +80,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PALM_TRAPDOOR.get()), modLoc("block/palm_trapdoor"),
 				true, "cutout");
 
-		// Amethyst furniture
+		// Citrine blocks
+		blockWithItem(ModBlocks.CITRINE_BLOCK);
+		blockWithItem(ModBlocks.BUDDING_CITRINE);
 		lanternBlock(ModBlocks.CITRINE_LANTERN.get(), "citrine_lantern");
 		torchBlock((TorchBlock) ModBlocks.CITRINE_BRACKET.get(), "citrine_bracket", "citrine_bracket");
-		wallTorchBlock((WallTorchBlock) ModBlocks.CITRINE_WALL_BRACKET.get(), "citrine_wall_bracket", "citrine_bracket");
+		wallTorchBlock((WallTorchBlock) ModBlocks.CITRINE_WALL_BRACKET.get(), "citrine_wall_bracket",
+				"citrine_bracket");
+		clusterBlock((AmethystClusterBlock) ModBlocks.CITRINE_CLUSTER.get());
+		clusterBlock((AmethystClusterBlock) ModBlocks.LARGE_CITRINE_BUD.get());
+		clusterBlock((AmethystClusterBlock) ModBlocks.MEDIUM_CITRINE_BUD.get());
+		clusterBlock((AmethystClusterBlock) ModBlocks.SMALL_CITRINE_BUD.get());
 
 		// Blueberry crop
 		makeBlueberryCrop((CropBlock) ModBlocks.BLUEBERRY_CROP.get(), "blueberry_stage", "blueberry_stage");
@@ -202,7 +210,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			int yRot = ((int) facing.toYRot()) + 90;
 			ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch_wall"))
 					.renderType("cutout").texture("torch", modLoc("block/" + texture));
-			
+
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		});
 	}
@@ -215,5 +223,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			return ConfiguredModel.builder().modelFile(model).build();
 		});
 
+	}
+
+	private void clusterBlock(AmethystClusterBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(AmethystClusterBlock.FACING);
+			int yRot = (((int) facing.toYRot()) + 180) % 360;
+			int xRot = 90;
+			ModelFile model = models().withExistingParent(blockTexture(block).toString(), mcLoc("block/cross"))
+					.renderType("cutout").texture("cross", blockTexture(block));
+			if (facing == Direction.UP) {
+				xRot = 0;
+			} else if (facing == Direction.DOWN) {
+				xRot = 180;
+			}
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).rotationX(xRot).build();
+		});
 	}
 }

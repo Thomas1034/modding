@@ -1,9 +1,10 @@
-// 1.20.1	2023-12-27T21:24:12.0392002	Item Models: zirconmod
+// 1.20.1	2023-12-27T23:09:37.1904044	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 d0d1e17606558f8284ad60b3aeaeda24a788b287 assets/zirconmod/models/item/citrine_boots.json
 4c504fa793f4958ab31e48447a5ab726d9859ae1 assets/zirconmod/models/item/citrine_bracket.json
 5f57a7ff9ad37b9135bb58249294091e163b92d6 assets/zirconmod/models/item/citrine_chestplate.json
+11076ae906cceb7fdb9d88efdb729bf53f314f85 assets/zirconmod/models/item/citrine_cluster.json
 89684d63ed18a58ccf0f5f14c5c28feb68cf8d10 assets/zirconmod/models/item/citrine_helmet.json
 6303f13f3878b09426991d7c8779e2088d148b87 assets/zirconmod/models/item/citrine_lantern.json
 104bde9daf8187a5db20cb905974b5f6fee9e9f8 assets/zirconmod/models/item/citrine_leggings.json
@@ -23,6 +24,8 @@ b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wi
 5e7f372b75d19eea8a062fa75628c6ee97211cf5 assets/zirconmod/models/item/flaming_arrow.json
 267e05816b27217d8a81aedd426edaae6f9f3bc4 assets/zirconmod/models/item/flaming_pine_cone.json
 53b4f350ed4b1b58ce6be8ccc9fbf089d00b617f assets/zirconmod/models/item/illuminated_torchflower.json
+5933d796a13764855ace3d26d62201fa0aa7fea6 assets/zirconmod/models/item/large_citrine_bud.json
+ffa51bf2846c50a0d0fc49d1508689568809e3a0 assets/zirconmod/models/item/medium_citrine_bud.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/mole_spawn_egg.json
 b584e4860cb0e9fc9e99f4a47deb801123fafe90 assets/zirconmod/models/item/nimbula_gel.json
 8e863d54c11ee873d09eccf4f115d59c84e194d3 assets/zirconmod/models/item/nimbula_polyp.json
@@ -40,6 +43,7 @@ efbd81eabe901c0ea562c24fafe930345e26b09b assets/zirconmod/models/item/palm_trapd
 d1b92134b016966ec4af9b37e14512f50ac04729 assets/zirconmod/models/item/pine_cone.json
 ac368fb522d9ff63b51527aad4f6a75d6b5d280c assets/zirconmod/models/item/quicksand_bucket.json
 387f9e8cdd7b073cef25c12a72195591eeb470ed assets/zirconmod/models/item/raw_zirconium.json
+67b221f74c58d0d4bc2c1ebb510a81d15decdef0 assets/zirconmod/models/item/small_citrine_bud.json
 e69eab47f92142d6d119915875175b7044fdf3e3 assets/zirconmod/models/item/stripped_palm_log.json
 53227c967bb4f9dc5dae61d99ee430e688cf84c7 assets/zirconmod/models/item/stripped_palm_wood.json
 ca8b179ad01ab095d4433d8d9de96021b907c6ba assets/zirconmod/models/item/totem_of_returning.json

@@ -187,6 +187,7 @@ public class WoodGolemEntity extends AbstractGolem {
 		return SoundEvents.WOOD_BREAK;
 	}
 
+	@SuppressWarnings("resource")
 	protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
 		ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
 		if (itemstack.getTags().filter(tag -> tag == Tags.Items.FENCES_WOODEN).count() == 0) {

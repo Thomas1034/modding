@@ -22,13 +22,14 @@ public class ClearWeatherTotemItem extends Item {
 		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
 			// Sets the level's weather to clear if it's raining.
 			ServerLevel sl = (ServerLevel) level;
-			sl.setWeatherParameters(sl.RAIN_DELAY.sample(sl.getRandom()), 0, false, false);
+			sl.setWeatherParameters(ServerLevel.RAIN_DELAY.sample(sl.getRandom()), 0, false, false);
 			player.getCooldowns().addCooldown(this, 60);
 		}
 
 		return super.use(level, player, hand);
 	}
 
+	@SuppressWarnings("unused")
 	private static int getDuration(CommandSourceStack p_265382_, int p_265171_, IntProvider p_265122_) {
 		return p_265171_ == -1 ? p_265122_.sample(p_265382_.getLevel().getRandom()) : p_265171_;
 	}

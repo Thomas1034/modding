@@ -1,6 +1,5 @@
 package com.thomas.zirconmod.util;
 
-import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.entity.ModEntities;
 import com.thomas.zirconmod.entity.custom.WoodGolemEntity;
 import com.thomas.zirconmod.entity.variant.WoodGolemVariant;

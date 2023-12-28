@@ -21,6 +21,7 @@ public class CopperArmorItem extends ArmorItem {
 			oxidize(stack, level, holder);
 	}
 	
+	@SuppressWarnings("removal")
 	@Override
 	public void onArmorTick(ItemStack stack, Level level, Player player)
 	{

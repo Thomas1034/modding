@@ -19,7 +19,6 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 
 public class MoleModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart mole;
@@ -30,6 +29,7 @@ public class MoleModel<T extends Entity> extends HierarchicalModel<T> {
 		this.head = mole.getChild("head");
 	}
 
+	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

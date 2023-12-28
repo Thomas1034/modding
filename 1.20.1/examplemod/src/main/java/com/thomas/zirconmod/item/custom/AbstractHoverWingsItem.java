@@ -1,8 +1,5 @@
 package com.thomas.zirconmod.item.custom;
 
-import com.thomas.zirconmod.util.Utilities;
-
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;

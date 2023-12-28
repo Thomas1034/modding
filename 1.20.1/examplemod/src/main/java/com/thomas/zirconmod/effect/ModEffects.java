@@ -14,7 +14,7 @@ public class ModEffects {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,
 			ZirconMod.MOD_ID);
 
-	public static final RegistryObject<MobEffect> CITRINE_GLOW = MOB_EFFECTS.register("amethyst_glow",
+	public static final RegistryObject<MobEffect> CITRINE_GLOW = MOB_EFFECTS.register("citrine_glow",
 			() -> new CitrineGlowEffect(MobEffectCategory.NEUTRAL, 0xc48ef3));
 	public static final RegistryObject<MobEffect> FLIGHT_EXHAUSTION = MOB_EFFECTS.register("flight_exhaustion",
 			() -> new FlightExhaustionEffect(MobEffectCategory.HARMFUL, 0xcccccc));

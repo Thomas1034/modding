@@ -29,6 +29,7 @@ public class WoodGolemModel<T extends Entity> extends HierarchicalModel<T> {
 		this.head = wood_golem.getChild("head");
 	}
 
+	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

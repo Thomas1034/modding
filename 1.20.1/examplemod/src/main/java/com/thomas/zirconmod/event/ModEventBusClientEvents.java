@@ -30,7 +30,7 @@ public class ModEventBusClientEvents {
     // Credit for this goes to LocusAzzurro
     // Source at: https://github.com/LocusAzzurro/IcarusWings/blob/1.19.4/src/main/java/org/mineplugin/locusazzurro/icaruswings/event/ModClientRenderEventHandler.java
     // Copied almost directly with changes to some class names.
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked", "resource"})
     @SubscribeEvent
     public static void addWingsLayer(EntityRenderersEvent.AddLayers event){
 

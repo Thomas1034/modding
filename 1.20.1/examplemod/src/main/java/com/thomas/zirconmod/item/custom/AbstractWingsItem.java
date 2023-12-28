@@ -32,6 +32,7 @@ public abstract class AbstractWingsItem extends ElytraItem {
 		return ElytraItem.isFlyEnabled(stack);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
 		if (!entity.level().isClientSide) {

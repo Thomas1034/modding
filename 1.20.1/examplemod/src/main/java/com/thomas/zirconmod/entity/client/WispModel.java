@@ -3,7 +3,6 @@ package com.thomas.zirconmod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thomas.zirconmod.entity.animations.ModAnimationDefinitions;
-import com.thomas.zirconmod.entity.custom.WispEntity;
 
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,6 +24,7 @@ public class WispModel<T extends Entity> extends HierarchicalModel<T> {
 		this.head = wisp.getChild("head");
 	}
 
+	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

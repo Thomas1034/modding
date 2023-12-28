@@ -7,6 +7,12 @@
     "zirconmod:raw_zirconium_block",
     "zirconmod:thirsty_mud_bricks",
     "zirconmod:thirsty_packed_mud",
-    "zirconmod:zirconium_block"
+    "zirconmod:zirconium_block",
+    "zirconmod:citrine_block",
+    "zirconmod:citrine_lantern",
+    "zirconmod:citrine_cluster",
+    "zirconmod:large_citrine_bud",
+    "zirconmod:medium_citrine_bud",
+    "zirconmod:small_citrine_bud"
   ]
 }

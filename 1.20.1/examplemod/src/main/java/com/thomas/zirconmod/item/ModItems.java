@@ -3,7 +3,7 @@ package com.thomas.zirconmod.item;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.entity.ModEntities;
-import com.thomas.zirconmod.item.custom.AmethystArmorItem;
+import com.thomas.zirconmod.item.custom.CitrineArmorItem;
 import com.thomas.zirconmod.item.custom.ClearWeatherTotemItem;
 import com.thomas.zirconmod.item.custom.CopperArmorItem;
 import com.thomas.zirconmod.item.custom.CopperAxeItem;
@@ -36,7 +36,6 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SolidBucketItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -144,13 +143,13 @@ public class ModItems {
 			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 	public static final RegistryObject<Item> CITRINE_HELMET = ITEMS.register("citrine_helmet",
-			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.HELMET, new Item.Properties()));
+			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.HELMET, new Item.Properties()));
 	public static final RegistryObject<Item> CITRINE_CHESTPLATE = ITEMS.register("citrine_chestplate",
-			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
 	public static final RegistryObject<Item> CITRINE_LEGGINGS = ITEMS.register("citrine_leggings",
-			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 	public static final RegistryObject<Item> CITRINE_BOOTS = ITEMS.register("citrine_boots",
-			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
+			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 	// Misc
 	public static final RegistryObject<Item> QUICKSAND_BUCKET = ITEMS.register("quicksand_bucket",

@@ -24,7 +24,8 @@ public class ModSounds {
     //        ModSounds.SOUND_BLOCK_HIT, ModSounds.SOUND_BLOCK_FALL);
 
 
-    private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
+    @SuppressWarnings("unused")
+	private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ZirconMod.MOD_ID, name)));
     }
 

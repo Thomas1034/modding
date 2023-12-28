@@ -25,6 +25,7 @@ public class NimbulaModel<T extends Entity> extends HierarchicalModel<T> {
 		this.head = nimbula.getChild("head");
 	}
 
+	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

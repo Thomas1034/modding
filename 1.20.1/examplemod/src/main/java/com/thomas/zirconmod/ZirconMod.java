@@ -99,6 +99,7 @@ public class ZirconMod {
 	}
 
 	// Add the example block item to the building blocks tab
+	@SuppressWarnings("unused")
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
 			;

@@ -99,6 +99,7 @@ public class NimbulaPolypBlock extends Block {
 	}
 
 	// Checks if the polyp can survive.
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		return super.canSurvive(state, level, pos)
@@ -107,6 +108,7 @@ public class NimbulaPolypBlock extends Block {
 	}
 
 	// Kills the polyp if it cannot survive.
+	@SuppressWarnings("deprecation")
 	public BlockState updateShape(BlockState state, Direction dir, BlockState state2, LevelAccessor level, BlockPos pos,
 			BlockPos pos2) {
 		return dir == Direction.DOWN && !this.canSurvive(state, level, pos) ? Blocks.AIR.defaultBlockState()

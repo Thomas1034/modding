@@ -29,8 +29,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// Mineables
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.ZIRCON_BLOCK.get(), ModBlocks.ZIRCON_ORE.get(),
 				ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModBlocks.ECHO_BLOCK.get(), ModBlocks.RAW_ZIRCONIUM_BLOCK.get(),
-				ModBlocks.THIRSTY_MUD_BRICKS.get(), ModBlocks.THIRSTY_PACKED_MUD.get(),
-				ModBlocks.ZIRCONIUM_BLOCK.get());
+				ModBlocks.THIRSTY_MUD_BRICKS.get(), ModBlocks.THIRSTY_PACKED_MUD.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
+				ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_LANTERN.get(), ModBlocks.CITRINE_CLUSTER.get(),
+				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
+				ModBlocks.SMALL_CITRINE_BUD.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -44,7 +46,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
 
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ZIRCON_BLOCK.get(), ModBlocks.ZIRCON_ORE.get(),
-				ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+				ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_CLUSTER.get(),
+				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
+				ModBlocks.SMALL_CITRINE_BUD.get());
 
 		// this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL).add(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
 
@@ -53,7 +57,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// Other block tags
 		this.tag(BlockTags.LOGS).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
-		
+
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.PALM_TRAPDOOR.get());
 		this.tag(BlockTags.TRAPDOORS).add(ModBlocks.PALM_TRAPDOOR.get());
 		this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.PALM_DOOR.get());
@@ -70,7 +74,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.FENCES).add(ModBlocks.PALM_FENCE.get());
 		this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALM_FENCE_GATE.get());
 		this.tag(BlockTags.PLANKS).add(ModBlocks.PALM_PLANKS.get());
-		
+
 		this.tag(ModTags.Blocks.PALM_LOGS).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
 

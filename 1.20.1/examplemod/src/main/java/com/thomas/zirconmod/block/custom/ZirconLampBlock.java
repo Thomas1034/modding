@@ -25,6 +25,7 @@ public class ZirconLampBlock extends Block {
 		builder.add(LIT);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
 			BlockHitResult result) {

@@ -1,10 +1,7 @@
 package com.thomas.zirconmod.item.custom;
 
-import com.thomas.zirconmod.item.ModItems;
-
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -14,7 +11,6 @@ public class CopperAxeItem extends AxeItem {
 
 	public CopperAxeItem(Tier p_40521_, float p_40522_, float p_40523_, Properties p_40524_) {
 		super(p_40521_, p_40522_, p_40523_, p_40524_);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

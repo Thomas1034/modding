@@ -67,6 +67,7 @@ public class BlueberryCropBlock extends CropBlock {
 		return p_57284_.getValue(AGE) < MAX_AGE;
 	}
 
+	@SuppressWarnings("deprecation")
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
 			InteractionHand hand, BlockHitResult blockHitResult) {
 		int i = state.getValue(AGE);

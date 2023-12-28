@@ -1,11 +1,7 @@
 package com.thomas.zirconmod.item.custom;
 
-import com.thomas.zirconmod.item.ModItems;
-
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;

@@ -12,18 +12,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-public class AmethystArmorItem extends ArmorItem {
+public class CitrineArmorItem extends ArmorItem {
 
-	public AmethystArmorItem(ArmorMaterial p_40386_, Type p_266831_, Properties p_40388_) {
+	public CitrineArmorItem(ArmorMaterial p_40386_, Type p_266831_, Properties p_40388_) {
 		super(p_40386_, p_266831_, p_40388_);
 	}
 
+	@SuppressWarnings("removal")
 	@Override
 	public void onArmorTick(ItemStack stack, Level level, Player player) {
 		super.onArmorTick(stack, level, player);
 		// Removes all effects from the player that can be removed by drinking milk, and gives amethyst glow.
 		player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
-		player.addEffect(new MobEffectInstance(ModEffects.CITRINE_GLOW.get(), 10, 0, false, false));
+		player.addEffect(new MobEffectInstance(ModEffects.CITRINE_GLOW.get(), 10, 10, false, false));
 	}
 
 	@Override
@@ -32,7 +33,7 @@ public class AmethystArmorItem extends ArmorItem {
 				&& !damageSource.is(DamageTypeTags.WITCH_RESISTANT_TO);
 	}
 
-	// Amethysts can't be enchanted.
+	// Citrines can't be enchanted.
 	@Override
 	public boolean isEnchantable(ItemStack p_41456_) {
 		return false;
