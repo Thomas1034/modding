@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "zirconmod:forester_poi",
+      "required": false
+    },
+    {
+      "id": "zirconmod:gemsmith_poi",
+      "required": false
+    }
+  ]
+}

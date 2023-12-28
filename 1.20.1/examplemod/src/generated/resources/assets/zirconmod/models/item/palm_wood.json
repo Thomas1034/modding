@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "zirconmod:block/palm_wood_top",
+    "side": "zirconmod:block/palm_wood"
+  }
+}

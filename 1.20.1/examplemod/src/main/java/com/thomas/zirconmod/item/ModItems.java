@@ -1,0 +1,198 @@
+package com.thomas.zirconmod.item;
+
+import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.item.custom.AmethystArmorItem;
+import com.thomas.zirconmod.item.custom.ClearWeatherTotemItem;
+import com.thomas.zirconmod.item.custom.CopperArmorItem;
+import com.thomas.zirconmod.item.custom.CopperAxeItem;
+import com.thomas.zirconmod.item.custom.CopperHoeItem;
+import com.thomas.zirconmod.item.custom.CopperPickaxeItem;
+import com.thomas.zirconmod.item.custom.CopperShovelItem;
+import com.thomas.zirconmod.item.custom.CopperSwordItem;
+import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
+import com.thomas.zirconmod.item.custom.FeatherWingsItem;
+import com.thomas.zirconmod.item.custom.FlamingArrowItem;
+import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
+import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
+import com.thomas.zirconmod.item.custom.PineconeItem;
+import com.thomas.zirconmod.item.custom.ReturningTotemItem;
+import com.thomas.zirconmod.item.custom.SeaWingsItem;
+import com.thomas.zirconmod.item.custom.VigilEyeItem;
+
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SolidBucketItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModItems {
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ZirconMod.MOD_ID);
+
+	// Zircon and zircon shard
+	public static final RegistryObject<Item> ZIRCON = ITEMS.register("zircon", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> ZIRCON_SHARD = ITEMS.register("zircon_shard",
+			() -> new Item(new Item.Properties()));
+
+	// Zirconium items, tools, armor, and weapons
+	// Zirconium items and armor
+	public static final RegistryObject<Item> ZIRCONIUM_INGOT = ITEMS.register("zirconium_ingot",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+
+	public static final RegistryObject<Item> RAW_ZIRCONIUM = ITEMS.register("raw_zirconium",
+			() -> new Item(new Item.Properties().stacksTo(64).fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register(
+			"zirconium_upgrade_smithing_template", () -> ModSmithingTemplateItem.createZirconiumUpgradeTemplate());
+
+	public static final RegistryObject<Item> ZIRCONIUM_HELMET = ITEMS.register("zirconium_helmet",
+			() -> new ArmorItem(ModArmorMaterials.ZIRCONIUM, ArmorItem.Type.HELMET,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_CHESTPLATE = ITEMS.register("zirconium_chestplate",
+			() -> new ArmorItem(ModArmorMaterials.ZIRCONIUM, ArmorItem.Type.CHESTPLATE,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_LEGGINGS = ITEMS.register("zirconium_leggings",
+			() -> new ArmorItem(ModArmorMaterials.ZIRCONIUM, ArmorItem.Type.LEGGINGS,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_BOOTS = ITEMS.register("zirconium_boots",
+			() -> new ArmorItem(ModArmorMaterials.ZIRCONIUM, ArmorItem.Type.BOOTS,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_SWORD = ITEMS.register("zirconium_sword",
+			() -> new SwordItem(ModToolTiers.ZIRCONIUM, 3, -2.4F, new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_PICKAXE = ITEMS.register("zirconium_pickaxe",
+			() -> new PickaxeItem(ModToolTiers.ZIRCONIUM, 1, -1.0F, new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_AXE = ITEMS.register("zirconium_axe",
+			() -> new AxeItem(ModToolTiers.ZIRCONIUM, 6, -3.4F, new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_SHOVEL = ITEMS.register("zirconium_shovel",
+			() -> new ShovelItem(ModToolTiers.ZIRCONIUM, 1, -1.0F, new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> ZIRCONIUM_HOE = ITEMS.register("zirconium_hoe",
+			() -> new HoeItem(ModToolTiers.ZIRCONIUM, 0, -1.0F, new Item.Properties().fireResistant()));
+
+	// Sculk items
+	public static final RegistryObject<Item> VIGIL_EYE = ITEMS.register("vigil_eye",
+			() -> new VigilEyeItem(new Item.Properties().stacksTo(16)));
+
+	public static final RegistryObject<Item> ECHO_POWDER = ITEMS.register("echo_powder",
+			() -> new Item(new Item.Properties()));
+
+	// Pine cone items
+	public static final RegistryObject<Item> PINE_CONE = ITEMS.register("pine_cone",
+			() -> new PineconeItem(new Item.Properties(), 50));
+
+	public static final RegistryObject<Item> FLAMING_PINE_CONE = ITEMS.register("flaming_pine_cone",
+			() -> new FlamingPineconeItem(new Item.Properties(), 50));
+
+	public static final RegistryObject<Item> FLAMING_ARROW = ITEMS.register("flaming_arrow",
+			() -> new FlamingArrowItem(new Item.Properties()));
+
+	// Totems
+	public static final RegistryObject<Item> TOTEM_OF_RETURNING = ITEMS.register("totem_of_returning",
+			() -> new ReturningTotemItem(new Item.Properties().stacksTo(1)));
+
+	public static final RegistryObject<Item> CLEAR_WEATHER_TOTEM = ITEMS.register("clear_weather_totem",
+			() -> new ClearWeatherTotemItem(new Item.Properties()));
+
+	// Copper tools, armor, and weapons
+	public static final RegistryObject<Item> COPPER_SWORD = ITEMS.register("copper_sword",
+			() -> new CopperSwordItem(ModToolTiers.COPPER, 3, -2.4F, new Item.Properties()));
+
+	public static final RegistryObject<Item> COPPER_SHOVEL = ITEMS.register("copper_shovel",
+			() -> new CopperShovelItem(ModToolTiers.COPPER, 1.2F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> COPPER_PICKAXE = ITEMS.register("copper_pickaxe",
+			() -> new CopperPickaxeItem(ModToolTiers.COPPER, 1, -2.8F, new Item.Properties()));
+
+	public static final RegistryObject<Item> COPPER_AXE = ITEMS.register("copper_axe",
+			() -> new CopperAxeItem(ModToolTiers.COPPER, 5.0F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> COPPER_HOE = ITEMS.register("copper_hoe",
+			() -> new CopperHoeItem(ModToolTiers.COPPER, -2, -1.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("copper_helmet",
+			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate",
+			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+	public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings",
+			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+	public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("copper_boots",
+			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_HELMET = ITEMS.register("citrine_helmet",
+			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.HELMET, new Item.Properties()));
+	public static final RegistryObject<Item> CITRINE_CHESTPLATE = ITEMS.register("citrine_chestplate",
+			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+	public static final RegistryObject<Item> CITRINE_LEGGINGS = ITEMS.register("citrine_leggings",
+			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+	public static final RegistryObject<Item> CITRINE_BOOTS = ITEMS.register("citrine_boots",
+			() -> new AmethystArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+	// Misc
+	public static final RegistryObject<Item> QUICKSAND_BUCKET = ITEMS.register("quicksand_bucket",
+			() -> new SolidBucketItem(ModBlocks.QUICKSAND.get(), SoundEvents.BUCKET_EMPTY_POWDER_SNOW,
+					(new Item.Properties()).stacksTo(1)));
+
+	public static final RegistryObject<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds",
+			() -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_CROP.get(), new Item.Properties().stacksTo(64)));
+
+	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
+			() -> new Item(new Item.Properties().stacksTo(64)
+					.food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
+
+	public static final RegistryObject<Item> NIMBULA_GEL = ITEMS.register("nimbula_gel",
+			() -> new Item(new Item.Properties().stacksTo(64)
+					.food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.1F)
+							.effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 0), 0.8F).meat().build())));
+
+	public static final RegistryObject<Item> MOLE_SPAWN_EGG = ITEMS.register("mole_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntities.MOLE_ENTITY, 0x062e37, 0xa2af86, new Item.Properties()));
+
+	public static final RegistryObject<Item> NIMBULA_SPAWN_EGG = ITEMS.register("nimbula_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntities.NIMBULA_ENTITY, 0xffffff, 0x0092d6, new Item.Properties()));
+
+	public static final RegistryObject<Item> CUT_CITRINE = ITEMS.register("cut_citrine",
+			() -> new Item(new Item.Properties()));
+	
+	public static final RegistryObject<Item> CITRINE_SHARD = ITEMS.register("citrine_shard",
+			() -> new Item(new Item.Properties()));
+	
+	public static final RegistryObject<Item> CITRINE_BRACKET = ITEMS.register("citrine_bracket",
+			() -> new StandingAndWallBlockItem(ModBlocks.CITRINE_BRACKET.get(), ModBlocks.CITRINE_WALL_BRACKET.get(), new Item.Properties(), Direction.DOWN));
+	
+	public static final RegistryObject<Item> FEATHER_WINGS = ITEMS.register("feather_wings",
+			() -> new FeatherWingsItem(new Item.Properties().durability(108)));
+	public static final RegistryObject<Item> SEA_WINGS = ITEMS.register("sea_wings",
+			() -> new SeaWingsItem(new Item.Properties().durability(1000)));
+	public static final RegistryObject<Item> DRAGONFLY_WINGS = ITEMS.register("dragonfly_wings",
+			() -> new DragonflyWingsItem(new Item.Properties().durability(1000)));
+
+	// Boilerplate
+	public static void register(IEventBus eventBus) {
+		ITEMS.register(eventBus);
+	}
+}

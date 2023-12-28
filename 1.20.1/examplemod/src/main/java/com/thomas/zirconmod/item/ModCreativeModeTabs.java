@@ -1,0 +1,107 @@
+package com.thomas.zirconmod.item;
+
+import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.ModBlocks;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModCreativeModeTabs {
+	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
+			.create(Registries.CREATIVE_MODE_TAB, ZirconMod.MOD_ID);
+
+	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_ITEMS = CREATIVE_MODE_TABS.register("zirconmod_items",
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ZIRCON.get()))
+					.title(Component.translatable("creativetab.zirconmod_items"))
+					.displayItems((pParameters, pOutput) -> {
+						pOutput.accept(ModItems.ZIRCON.get());
+						pOutput.accept(ModItems.ZIRCON_SHARD.get());
+						pOutput.accept(ModItems.ZIRCONIUM_INGOT.get());
+						pOutput.accept(ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get());
+						pOutput.accept(ModItems.RAW_ZIRCONIUM.get());
+						pOutput.accept(ModItems.ECHO_POWDER.get());
+						pOutput.accept(ModItems.VIGIL_EYE.get());
+						pOutput.accept(ModItems.PINE_CONE.get());
+						pOutput.accept(ModItems.FLAMING_PINE_CONE.get());
+						pOutput.accept(ModItems.FLAMING_ARROW.get());
+						pOutput.accept(ModItems.TOTEM_OF_RETURNING.get());
+						//pOutput.accept(ModItems.CLEAR_WEATHER_TOTEM.get());
+						pOutput.accept(ModItems.BLUEBERRY.get());
+						pOutput.accept(ModItems.BLUEBERRY_SEEDS.get());
+						pOutput.accept(ModItems.NIMBULA_GEL.get());
+						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
+						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
+						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
+					}).build());
+	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_BLOCKS = CREATIVE_MODE_TABS.register(
+			"zirconmod_blocks",
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.ZIRCON_BLOCK.get()))
+					.title(Component.translatable("creativetab.zirconmod_blocks"))
+					.displayItems((pParameters, pOutput) -> {
+						pOutput.accept(ModBlocks.ZIRCON_BLOCK.get());
+						pOutput.accept(ModBlocks.ZIRCON_ORE.get());
+						pOutput.accept(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+						pOutput.accept(ModBlocks.ZIRCONIUM_BLOCK.get());
+						pOutput.accept(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+						pOutput.accept(ModBlocks.ZIRCON_LAMP.get());
+						pOutput.accept(ModBlocks.ECHO_BLOCK.get());
+						pOutput.accept(ModBlocks.CLOUD.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD.get());
+						pOutput.accept(ModBlocks.PALM_LOG.get());
+						pOutput.accept(ModBlocks.PALM_WOOD.get());
+						pOutput.accept(ModBlocks.STRIPPED_PALM_LOG.get());
+						pOutput.accept(ModBlocks.STRIPPED_PALM_WOOD.get());
+						pOutput.accept(ModBlocks.PALM_PLANKS.get());
+						pOutput.accept(ModBlocks.PALM_BUTTON.get());
+						pOutput.accept(ModBlocks.PALM_TRAPDOOR.get());
+						pOutput.accept(ModBlocks.PALM_DOOR.get());
+						pOutput.accept(ModBlocks.PALM_SLAB.get());
+						pOutput.accept(ModBlocks.PALM_STAIRS.get());
+						pOutput.accept(ModBlocks.PALM_FENCE.get());
+						pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
+						pOutput.accept(ModBlocks.PALM_PRESSURE_PLATE.get());
+						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
+					}).build());
+	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("zirconmod_tools",
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))
+					.title(Component.translatable("creativetab.zirconmod_tools"))
+					.displayItems((pParameters, pOutput) -> {
+						pOutput.accept(ModItems.COPPER_PICKAXE.get());
+						pOutput.accept(ModItems.COPPER_AXE.get());
+						pOutput.accept(ModItems.COPPER_SHOVEL.get());
+						pOutput.accept(ModItems.COPPER_HOE.get());
+						pOutput.accept(ModItems.ZIRCONIUM_PICKAXE.get());
+						pOutput.accept(ModItems.ZIRCONIUM_AXE.get());
+						pOutput.accept(ModItems.ZIRCONIUM_SHOVEL.get());
+						pOutput.accept(ModItems.ZIRCONIUM_HOE.get());
+						pOutput.accept(ModItems.FEATHER_WINGS.get());
+					}).build());
+	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_COMBAT = CREATIVE_MODE_TABS.register(
+			"zirconmod_combat",
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_SWORD.get()))
+					.title(Component.translatable("creativetab.zirconmod_combat"))
+					.displayItems((pParameters, pOutput) -> {
+						pOutput.accept(ModItems.COPPER_SWORD.get());
+						pOutput.accept(ModItems.COPPER_AXE.get());
+						pOutput.accept(ModItems.COPPER_HELMET.get());
+						pOutput.accept(ModItems.COPPER_CHESTPLATE.get());
+						pOutput.accept(ModItems.COPPER_LEGGINGS.get());
+						pOutput.accept(ModItems.COPPER_BOOTS.get());
+						pOutput.accept(ModItems.ZIRCONIUM_SWORD.get());
+						pOutput.accept(ModItems.ZIRCONIUM_AXE.get());
+						pOutput.accept(ModItems.ZIRCONIUM_HELMET.get());
+						pOutput.accept(ModItems.ZIRCONIUM_CHESTPLATE.get());
+						pOutput.accept(ModItems.ZIRCONIUM_LEGGINGS.get());
+						pOutput.accept(ModItems.ZIRCONIUM_BOOTS.get());
+						pOutput.accept(ModItems.FEATHER_WINGS.get());
+					}).build());
+
+	public static void register(IEventBus eventBus) {
+		CREATIVE_MODE_TABS.register(eventBus);
+	}
+}

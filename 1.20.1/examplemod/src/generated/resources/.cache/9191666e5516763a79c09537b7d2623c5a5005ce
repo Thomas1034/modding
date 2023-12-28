@@ -1,0 +1,27 @@
+// 1.20.1	2023-12-20T18:44:50.4772544	Tags for minecraft:block mod id zirconmod
+1f19b12fd46f2e4f3771f9b5242031f6b5082888 data/minecraft/tags/blocks/buttons.json
+114a1b80450086de3dff00e765d2de4ecaa22da6 data/minecraft/tags/blocks/doors.json
+7e78a0dbff6e38fd8841f9b57b47d42a3c0e1f21 data/minecraft/tags/blocks/fences.json
+fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/minecraft/tags/blocks/fence_gates.json
+4b409e8cb3fce3f56a56f0eb4cc8de2dfac00416 data/minecraft/tags/blocks/logs.json
+abcd425c75052f885ea62fa8d9a61e34d92b55b8 data/minecraft/tags/blocks/mineable/axe.json
+cc000776cc99f7e43def5681500eebda7cbe4949 data/minecraft/tags/blocks/mineable/pickaxe.json
+046eb2ebbe80a7fc929c916c056fa936ec96ed8d data/minecraft/tags/blocks/needs_iron_tool.json
+e5aa244909f86890fd136cce41fe645633cb1623 data/minecraft/tags/blocks/needs_stone_tool.json
+96b416662c85bd8565dd30783b0c30f139952517 data/minecraft/tags/blocks/planks.json
+d40b1c1c2258d3f97efa94e3781ce9c82760ac04 data/minecraft/tags/blocks/pressure_plates.json
+9e3eddcb49ce345dfdaf0d23952877e969d5021b data/minecraft/tags/blocks/slabs.json
+67657c70ab56331fbcaa9355fa143a9bffd94e7e data/minecraft/tags/blocks/stairs.json
+f00f8250ce5fcba6ccff243fdb61a38a61278267 data/minecraft/tags/blocks/trapdoors.json
+1f19b12fd46f2e4f3771f9b5242031f6b5082888 data/minecraft/tags/blocks/wooden_buttons.json
+114a1b80450086de3dff00e765d2de4ecaa22da6 data/minecraft/tags/blocks/wooden_doors.json
+7e78a0dbff6e38fd8841f9b57b47d42a3c0e1f21 data/minecraft/tags/blocks/wooden_fences.json
+d40b1c1c2258d3f97efa94e3781ce9c82760ac04 data/minecraft/tags/blocks/wooden_pressure_plates.json
+9e3eddcb49ce345dfdaf0d23952877e969d5021b data/minecraft/tags/blocks/wooden_slabs.json
+67657c70ab56331fbcaa9355fa143a9bffd94e7e data/minecraft/tags/blocks/wooden_stairs.json
+f00f8250ce5fcba6ccff243fdb61a38a61278267 data/minecraft/tags/blocks/wooden_trapdoors.json
+0afd96dc05c601e3be78c4efbb6a152dffa774be data/zirconmod/tags/blocks/cloud_solidifying_blocks.json
+c70d5c83fb16712c33237b00b3dd42357c033c48 data/zirconmod/tags/blocks/medium_cloud_solidifying_blocks.json
+4b409e8cb3fce3f56a56f0eb4cc8de2dfac00416 data/zirconmod/tags/blocks/palm_logs.json
+999a668e822d04688681ac051c53f00ccb21d8ac data/zirconmod/tags/blocks/strong_cloud_solidifying_blocks.json
+829c9b877146b472778113a6ddfffa587aeca734 data/zirconmod/tags/blocks/weak_cloud_solidifying_blocks.json

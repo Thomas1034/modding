@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "zirconmod:zirconium_ingot"
+  },
+  "base": {
+    "item": "minecraft:iron_sword"
+  },
+  "result": {
+    "item": "zirconmod:zirconium_sword"
+  },
+  "template": {
+    "item": "zirconmod:zirconium_upgrade_smithing_template"
+  }
+}

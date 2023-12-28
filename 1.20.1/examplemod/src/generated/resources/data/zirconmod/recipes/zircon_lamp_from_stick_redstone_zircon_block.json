@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "zirconmod:zircon_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "R#R",
+    "SSS"
+  ],
+  "result": {
+    "item": "zirconmod:zircon_lamp"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "zirconmod:block/carpentry_table_down",
+    "east": "zirconmod:block/carpentry_table_east",
+    "north": "zirconmod:block/carpentry_table_north",
+    "particle": "zirconmod:block/carpentry_table_up",
+    "south": "zirconmod:block/carpentry_table_south",
+    "up": "zirconmod:block/carpentry_table_up",
+    "west": "zirconmod:block/carpentry_table_west"
+  }
+}

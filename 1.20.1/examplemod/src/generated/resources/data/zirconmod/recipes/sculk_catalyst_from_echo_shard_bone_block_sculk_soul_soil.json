@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:echo_shard"
+    },
+    "2": {
+      "item": "minecraft:bone_block"
+    },
+    "3": {
+      "item": "minecraft:sculk"
+    },
+    "4": {
+      "item": "minecraft:soul_soil"
+    }
+  },
+  "pattern": [
+    "111",
+    "333",
+    "242"
+  ],
+  "result": {
+    "item": "minecraft:sculk_catalyst"
+  },
+  "show_notification": true
+}

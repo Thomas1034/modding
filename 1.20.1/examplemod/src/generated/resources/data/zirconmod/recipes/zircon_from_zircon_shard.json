@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "Z": {
+      "item": "zirconmod:zircon_shard"
+    }
+  },
+  "pattern": [
+    "ZZ",
+    "ZZ"
+  ],
+  "result": {
+    "item": "zirconmod:zircon"
+  },
+  "show_notification": true
+}

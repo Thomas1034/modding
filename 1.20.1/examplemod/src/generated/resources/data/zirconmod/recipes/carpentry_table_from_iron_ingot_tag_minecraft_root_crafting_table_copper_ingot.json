@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:crafting_table"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    " C ",
+    "L#L",
+    "LIL"
+  ],
+  "result": {
+    "count": 2,
+    "item": "zirconmod:carpentry_table"
+  },
+  "show_notification": true
+}

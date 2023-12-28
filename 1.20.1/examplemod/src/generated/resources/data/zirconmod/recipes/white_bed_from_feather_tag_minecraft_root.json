@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "FFF",
+    "PPP"
+  ],
+  "result": {
+    "item": "minecraft:white_bed"
+  },
+  "show_notification": true
+}

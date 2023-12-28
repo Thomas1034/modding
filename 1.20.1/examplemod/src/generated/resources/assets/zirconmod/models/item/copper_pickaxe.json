@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "zirconmod:item/copper_pickaxe"
+  }
+}

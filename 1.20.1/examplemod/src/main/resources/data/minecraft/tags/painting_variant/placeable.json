@@ -1,0 +1,32 @@
+{
+	"values": [
+		"minecraft:earth",
+		"minecraft:water",
+		"minecraft:wind",
+		"zirconmod:vulture",
+		"zirconmod:osprey",
+		"zirconmod:gull",
+		"zirconmod:butterfly",
+		"zirconmod:mockingbird",
+		"zirconmod:flowers",
+		"zirconmod:yellow_flowers",
+		"zirconmod:purple_flowers",
+		"zirconmod:hibiscus",
+		"zirconmod:guam",
+		"zirconmod:egret",
+		"zirconmod:deer",
+		"zirconmod:buck",
+		"zirconmod:bobcat",
+		"zirconmod:lighthouse",
+		"zirconmod:pasture",
+		"zirconmod:spider",
+		"zirconmod:tombstone",
+		"zirconmod:heron",
+		"zirconmod:gator",
+		"zirconmod:sunset",
+		"zirconmod:orange_butterfly",
+		"zirconmod:pouncer",
+		"zirconmod:bloom",
+		"zirconmod:meadow"
+	]
+}
