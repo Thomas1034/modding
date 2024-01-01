@@ -38,8 +38,6 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.PALM_SEEDS.get());
 						pOutput.accept(ModItems.NIMBULA_GEL.get());
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
-						pOutput.accept(ModItems.PALM_BOAT.get());
-						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
 						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
 						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
 					}).build());

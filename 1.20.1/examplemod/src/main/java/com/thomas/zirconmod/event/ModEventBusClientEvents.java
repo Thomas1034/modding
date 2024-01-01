@@ -9,8 +9,6 @@ import com.thomas.zirconmod.entity.client.WispModel;
 import com.thomas.zirconmod.entity.client.WoodGolemModel;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
@@ -27,9 +25,6 @@ public class ModEventBusClientEvents {
 		event.registerLayerDefinition(ModModelLayers.WOOD_GOLEM_LAYER, WoodGolemModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.NIMBULA_LAYER, NimbulaModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.WISP_LAYER, WispModel::createBodyLayer);
-		event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
-		event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
-
 	}
 
 	// Credit for this goes to LocusAzzurro

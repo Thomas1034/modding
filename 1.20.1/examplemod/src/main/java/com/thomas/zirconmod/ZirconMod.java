@@ -8,7 +8,6 @@ import com.thomas.zirconmod.datagen.loot.ModLootModifiers;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
 import com.thomas.zirconmod.entity.ModEntities;
-import com.thomas.zirconmod.entity.client.ModBoatRenderer;
 import com.thomas.zirconmod.entity.client.MoleRenderer;
 import com.thomas.zirconmod.entity.client.NimbulaRenderer;
 import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
@@ -122,20 +121,8 @@ public class ZirconMod {
 			EntityRenderers.register(ModEntities.MOLE_ENTITY.get(), MoleRenderer::new);
 			EntityRenderers.register(ModEntities.WOOD_GOLEM_ENTITY.get(), WoodGolemRenderer::new);
 			EntityRenderers.register(ModEntities.NIMBULA_ENTITY.get(), NimbulaRenderer::new);
-			EntityRenderers.register(ModEntities.MOD_BOAT.get(), context -> getModBoatRenderer(context));
-			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> getModChestBoatRenderer(context));
-
+			
 		}
 	}
 	
-	private static ModBoatRenderer getModBoatRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context context) {
-		ModBoatRenderer renderer = new ModBoatRenderer(context, false);
-		System.out.println("		The normal boat renderer is: " + renderer);
-		return renderer;
-	}
-	private static ModBoatRenderer getModChestBoatRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context context) {
-		ModBoatRenderer renderer = new ModBoatRenderer(context, true);
-		System.out.println("		The chest boat renderer is: " + renderer);
-		return renderer;
-	}
 }
