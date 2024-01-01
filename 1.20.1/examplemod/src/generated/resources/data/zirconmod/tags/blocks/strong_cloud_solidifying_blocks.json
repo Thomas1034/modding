@@ -2,6 +2,12 @@
   "values": [
     "minecraft:budding_amethyst",
     "minecraft:amethyst_cluster",
-    "minecraft:large_amethyst_bud"
+    "minecraft:large_amethyst_bud",
+    "zirconmod:citrine_lantern",
+    "zirconmod:citrine_bracket",
+    "zirconmod:amethyst_wall_bracket",
+    "zirconmod:budding_citrine",
+    "zirconmod:citrine_cluster",
+    "zirconmod:large_citrine_bud"
   ]
 }

@@ -32,6 +32,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		this.dropOther(ModBlocks.WEATHER_PASSAGE_BLOCK.get(), Items.AIR);
+		this.dropOther(ModBlocks.SEALED_CLOUD_BRICKS.get(), Items.AIR);
+		this.dropOther(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS.get(), Items.AIR);
+
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
 		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
 		this.dropSelf(ModBlocks.ZIRCONIUM_BLOCK.get());
@@ -54,24 +58,45 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
 		this.dropSelf(ModBlocks.PALM_STAIRS.get());
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
+		this.dropSelf(ModBlocks.CLOUD.get());
+		this.dropSelf(ModBlocks.THUNDER_CLOUD.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.CLOUD_BRICK_STAIRS.get());
+		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
+		this.dropSelf(ModBlocks.CLOUD_BRICK_WALL.get());
+		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
+		this.dropSelf(ModBlocks.CLOUD_BRICK_PILLAR.get());
+		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
+		this.dropSelf(ModBlocks.CHISELED_CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CITRINE_BLOCK.get());
 		this.dropSelf(ModBlocks.CITRINE_LANTERN.get());
+		this.dropSelf(ModBlocks.PALM_TRUNK.get());
+		this.dropSelf(ModBlocks.PALM_FROND.get());
+		this.dropOther(ModBlocks.PALM_FLOOR_FROND.get(), ModBlocks.PALM_FROND.get());
+		this.add(ModBlocks.PALM_FRUIT.get(),
+				block -> createOreDrops(ModBlocks.PALM_FRUIT.get(), ModItems.PALM_SEEDS.get(), List.of(3, 5)));
+
 		this.dropOther(ModBlocks.CITRINE_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.dropOther(ModBlocks.CITRINE_WALL_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.add(ModBlocks.PALM_SLAB.get(), block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 		this.add(ModBlocks.PALM_DOOR.get(), block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
+		this.add(ModBlocks.CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.CLOUD_BRICK_SLAB.get()));
+		this.add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()));
 
 		this.dropOther(ModBlocks.BUDDING_CITRINE.get(), Items.AIR);
-		this.add(ModBlocks.CLOUD.get(), block -> createSilkTouchDrop(ModBlocks.CLOUD.get(), Items.AIR));
-		this.add(ModBlocks.THUNDER_CLOUD.get(), block -> createSilkTouchDrop(ModBlocks.THUNDER_CLOUD.get(), Items.AIR));
-		this.add(ModBlocks.CITRINE_CLUSTER.get(), block -> createOreDrops(ModBlocks.CITRINE_CLUSTER.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 5)));
-		
-		this.add(ModBlocks.LARGE_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.LARGE_CITRINE_BUD.get(), Items.AIR));
-		this.add(ModBlocks.MEDIUM_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.MEDIUM_CITRINE_BUD.get(), Items.AIR));
-		this.add(ModBlocks.SMALL_CITRINE_BUD.get(), block -> createSilkTouchDrop(ModBlocks.SMALL_CITRINE_BUD.get(), Items.AIR));
-		
+		this.add(ModBlocks.CITRINE_CLUSTER.get(),
+				block -> createOreDrops(ModBlocks.CITRINE_CLUSTER.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 5)));
+
+		this.add(ModBlocks.LARGE_CITRINE_BUD.get(),
+				block -> createSilkTouchDrop(ModBlocks.LARGE_CITRINE_BUD.get(), Items.AIR));
+		this.add(ModBlocks.MEDIUM_CITRINE_BUD.get(),
+				block -> createSilkTouchDrop(ModBlocks.MEDIUM_CITRINE_BUD.get(), Items.AIR));
+		this.add(ModBlocks.SMALL_CITRINE_BUD.get(),
+				block -> createSilkTouchDrop(ModBlocks.SMALL_CITRINE_BUD.get(), Items.AIR));
+
 		this.add(ModBlocks.ZIRCON_ORE.get(),
 				block -> createOreDrops(ModBlocks.ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5)));
 		this.add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), block -> createOreDrops(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(),
@@ -84,18 +109,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 		this.add(ModBlocks.BLUEBERRY_CROP.get(), createCropDrops(ModBlocks.BLUEBERRY_CROP.get(),
 				ModItems.BLUEBERRY.get(), ModItems.BLUEBERRY_SEEDS.get(), lootitemcondition$builder));
-		
-		
+
 		// Torchflower stuff
 		this.dropSelf(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
-        this.add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(), createPotFlowerItemTable(ModBlocks.ILLUMINATED_TORCHFLOWER.get()));
-        
-        // Villager workstations
+		this.add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
+				createPotFlowerItemTable(ModBlocks.ILLUMINATED_TORCHFLOWER.get()));
+
+		// Villager workstations
 		this.dropSelf(ModBlocks.CARPENTRY_TABLE.get());
-		this.dropSelf(ModBlocks.UNOBTAINIUM_GEM.get());
+		this.dropSelf(ModBlocks.ARCHITECT_WORKSITE.get());
+		this.dropSelf(ModBlocks.BOTANIST_WORKSITE.get());
+		this.dropSelf(ModBlocks.CHIEF_WORKSITE.get());
+		this.dropSelf(ModBlocks.GEMSMITH_WORKSITE.get());
+		this.dropSelf(ModBlocks.SCHOLAR_WORKSITE.get());
+		this.dropSelf(ModBlocks.TINKERER_WORKSITE.get());
 
 		// NimbulaPolyp
-		this.add(ModBlocks.NIMBULA_POLYP.get(), block -> createSilkTouchDrop(ModBlocks.NIMBULA_POLYP.get(), ModBlocks.CLOUD.get().asItem()));
+		this.add(ModBlocks.NIMBULA_POLYP.get(),
+				block -> createSilkTouchDrop(ModBlocks.NIMBULA_POLYP.get(), ModBlocks.CLOUD.get().asItem()));
 
 	}
 

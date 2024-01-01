@@ -1,0 +1,7 @@
+{
+  "parent": "zirconmod:block/template_palm_fruit",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fruit": "zirconmod:block/palm_fruit_age1"
+  }
+}

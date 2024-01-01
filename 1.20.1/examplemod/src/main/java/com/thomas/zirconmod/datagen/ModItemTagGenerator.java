@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.item.ModItems;
+import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -50,12 +51,23 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.SHOVELS).add(ModItems.ZIRCONIUM_SHOVEL.get());
 		this.tag(ItemTags.SWORDS).add(ModItems.ZIRCONIUM_SWORD.get());
 		
-		// Adds in the amethyst armor as trimmable.
+		// Adds in the citrine armor as trimmable.
 		this.tag(ItemTags.TRIMMABLE_ARMOR)
         .add(ModItems.CITRINE_HELMET.get(),
                 ModItems.CITRINE_CHESTPLATE.get(),
                 ModItems.CITRINE_LEGGINGS.get(),
                 ModItems.CITRINE_BOOTS.get());
+		// Adds in citrine tools and weapons.
+		this.tag(ItemTags.PICKAXES).add(ModItems.CITRINE_PICKAXE.get());
+		this.tag(ItemTags.HOES).add(ModItems.CITRINE_HOE.get());
+		this.tag(ItemTags.AXES).add(ModItems.CITRINE_AXE.get());
+		this.tag(ItemTags.SHOVELS).add(ModItems.CITRINE_SHOVEL.get());
+		this.tag(ItemTags.SWORDS).add(ModItems.CITRINE_SWORD.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_PICKAXE.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_HOE.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_AXE.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_SHOVEL.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_SWORD.get());
 		
 		// Marks the flaming arrow as an arrow.
 		this.tag(ItemTags.ARROWS).add(ModItems.FLAMING_ARROW.get());

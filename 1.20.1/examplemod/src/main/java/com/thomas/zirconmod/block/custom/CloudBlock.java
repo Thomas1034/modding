@@ -13,7 +13,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -44,10 +47,6 @@ public class CloudBlock extends Block {
 		super(properties);
 	}
 
-	public boolean skipRendering(BlockState p_154268_, BlockState p_154269_, Direction p_154270_) {
-		return false;
-	}
-
 	@Override
 	public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType pathType) {
 		/*
@@ -55,9 +54,17 @@ public class CloudBlock extends Block {
 		 * switch (pathType) { case LAND: return !isSolid; case WATER: return !isSolid;
 		 * case AIR: return !isSolid; default: return false; }
 		 */
-		return false;
+		return pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
 	}
 
+	@Override
+	public VoxelShape getVisualShape(BlockState p_48735_, BlockGetter p_48736_, BlockPos p_48737_,
+			CollisionContext p_48738_) {
+		return Shapes.empty();
+	}
+
+
+	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		if (context instanceof EntityCollisionContext entitycollisioncontext) {
 			Entity entity = entitycollisioncontext.getEntity();
@@ -91,14 +98,12 @@ public class CloudBlock extends Block {
 		}
 	}
 
-	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		updateDistance(state, level, pos);
-	}
-
+	@Override
 	public void tick(BlockState p_221369_, ServerLevel p_221370_, BlockPos p_221371_, RandomSource p_221372_) {
 		p_221370_.setBlock(p_221371_, updateDistance(p_221369_, p_221370_, p_221371_), 3);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
 		int i = getDistanceAt(otherState) + 1;
@@ -109,35 +114,44 @@ public class CloudBlock extends Block {
 		return state;
 	}
 
-	public int getLightBlock(BlockState p_54460_, BlockGetter p_54461_, BlockPos p_54462_) {
-		return 1;
+	@Override
+	public boolean canHarvestBlock(BlockState state, BlockGetter level, BlockPos pos, Player player) {
+		ItemStack stack = player.getMainHandItem();
+		boolean hasSilkTouchEnchantment = stack.getEnchantmentLevel(Enchantments.SILK_TOUCH) > 0;
+		return (player.getMainHandItem().is(ModTags.Items.CLOUD_HARVEST_ITEMS) || hasSilkTouchEnchantment)
+				&& super.canHarvestBlock(state, level, pos, player);
+	}
+
+	@Override
+	public boolean propagatesSkylightDown(BlockState p_49928_, BlockGetter p_49929_, BlockPos p_49930_) {
+		return p_49928_.getFluidState().isEmpty();
 	}
 
 	private static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
-		int i = MAX_DISTANCE;
+		int dist = MAX_DISTANCE;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
+		// Should be less laggy, but doesn't count corners.
 		for (Direction direction : Direction.values()) {
 			blockpos$mutableblockpos.setWithOffset(pos, direction);
-			i = Math.min(i, getDistanceAt(level.getBlockState(blockpos$mutableblockpos)) + 1);
-			if (i == 1) {
+			dist = Math.min(dist, getDistanceAt(level.getBlockState(blockpos$mutableblockpos)) + 1);
+			if (dist == 1) {
 				break;
 			}
 		}
 
-		return state.setValue(SOLIDIFIER_DISTANCE, Integer.valueOf(i));
+		return state.setValue(SOLIDIFIER_DISTANCE, Integer.valueOf(dist));
 	}
 
-	private static int getDistanceAt(BlockState state) {
+	protected static int getDistanceAt(BlockState state) {
 		return getOptionalDistanceAt(state).orElse(MAX_DISTANCE);
 	}
 
-	public static OptionalInt getOptionalDistanceAt(BlockState state) {
+	private static OptionalInt getOptionalDistanceAt(BlockState state) {
 		if (state.is(ModTags.Blocks.CLOUD_SOLIDIFYING_BLOCKS)) {
 			int s = Math.max(MAX_DISTANCE - getSolidifyingStrength(state), 0);
 			return OptionalInt.of(s);
 		} else {
-			// System.out.println("Not a solidifier!" + state.getBlock());
 			return state.hasProperty(SOLIDIFIER_DISTANCE) ? OptionalInt.of(state.getValue(SOLIDIFIER_DISTANCE))
 					: OptionalInt.empty();
 		}
@@ -157,6 +171,7 @@ public class CloudBlock extends Block {
 		return MAX_DISTANCE;
 	}
 
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext p_54424_) {
 		BlockState blockstate = this.defaultBlockState().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE);
 		return updateDistance(blockstate, p_54424_.getLevel(), p_54424_.getClickedPos());
@@ -169,6 +184,7 @@ public class CloudBlock extends Block {
 	}
 
 	// Very important!
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
 		p_54447_.add(SOLIDIFIER_DISTANCE);
 	}

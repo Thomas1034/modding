@@ -21,6 +21,8 @@ public class ModCreativeModeTabs {
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.ZIRCON.get());
 						pOutput.accept(ModItems.ZIRCON_SHARD.get());
+						pOutput.accept(ModItems.CITRINE_SHARD.get());
+						pOutput.accept(ModItems.CUT_CITRINE.get());
 						pOutput.accept(ModItems.ZIRCONIUM_INGOT.get());
 						pOutput.accept(ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get());
 						pOutput.accept(ModItems.RAW_ZIRCONIUM.get());
@@ -30,11 +32,14 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.FLAMING_PINE_CONE.get());
 						pOutput.accept(ModItems.FLAMING_ARROW.get());
 						pOutput.accept(ModItems.TOTEM_OF_RETURNING.get());
-						//pOutput.accept(ModItems.CLEAR_WEATHER_TOTEM.get());
+						// pOutput.accept(ModItems.CLEAR_WEATHER_TOTEM.get());
 						pOutput.accept(ModItems.BLUEBERRY.get());
 						pOutput.accept(ModItems.BLUEBERRY_SEEDS.get());
+						pOutput.accept(ModItems.PALM_SEEDS.get());
 						pOutput.accept(ModItems.NIMBULA_GEL.get());
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
+						pOutput.accept(ModItems.PALM_BOAT.get());
+						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
 						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
 						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
 					}).build());
@@ -46,12 +51,14 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ZIRCON_BLOCK.get());
 						pOutput.accept(ModBlocks.ZIRCON_ORE.get());
 						pOutput.accept(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+						pOutput.accept(ModBlocks.ZIRCON_LAMP.get());
 						pOutput.accept(ModBlocks.ZIRCONIUM_BLOCK.get());
 						pOutput.accept(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
-						pOutput.accept(ModBlocks.ZIRCON_LAMP.get());
 						pOutput.accept(ModBlocks.ECHO_BLOCK.get());
-						pOutput.accept(ModBlocks.CLOUD.get());
-						pOutput.accept(ModBlocks.THUNDER_CLOUD.get());
+						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
+						pOutput.accept(ModBlocks.PALM_TRUNK.get());
+						pOutput.accept(ModBlocks.PALM_FROND.get());
+						pOutput.accept(ModBlocks.PALM_FRUIT.get());
 						pOutput.accept(ModBlocks.PALM_LOG.get());
 						pOutput.accept(ModBlocks.PALM_WOOD.get());
 						pOutput.accept(ModBlocks.STRIPPED_PALM_LOG.get());
@@ -65,7 +72,6 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.PALM_FENCE.get());
 						pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
 						pOutput.accept(ModBlocks.PALM_PRESSURE_PLATE.get());
-						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
 						pOutput.accept(ModBlocks.CITRINE_BLOCK.get());
 						pOutput.accept(ModBlocks.BUDDING_CITRINE.get());
 						pOutput.accept(ModBlocks.CITRINE_CLUSTER.get());
@@ -74,6 +80,20 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.SMALL_CITRINE_BUD.get());
 						pOutput.accept(ModItems.CITRINE_BRACKET.get());
 						pOutput.accept(ModBlocks.CITRINE_LANTERN.get());
+						pOutput.accept(ModBlocks.CLOUD.get());
+						pOutput.accept(ModBlocks.CLOUD_BRICKS.get());
+						pOutput.accept(ModBlocks.CLOUD_BRICK_SLAB.get());
+						pOutput.accept(ModBlocks.CLOUD_BRICK_STAIRS.get());
+						pOutput.accept(ModBlocks.CLOUD_BRICK_WALL.get());
+						pOutput.accept(ModBlocks.CLOUD_BRICK_PILLAR.get());
+						pOutput.accept(ModBlocks.CHISELED_CLOUD_BRICKS.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICKS.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
+						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
+						pOutput.accept(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("zirconmod_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))
@@ -87,6 +107,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.ZIRCONIUM_AXE.get());
 						pOutput.accept(ModItems.ZIRCONIUM_SHOVEL.get());
 						pOutput.accept(ModItems.ZIRCONIUM_HOE.get());
+						pOutput.accept(ModItems.CITRINE_PICKAXE.get());
+						pOutput.accept(ModItems.CITRINE_AXE.get());
+						pOutput.accept(ModItems.CITRINE_SHOVEL.get());
+						pOutput.accept(ModItems.CITRINE_HOE.get());
 						pOutput.accept(ModItems.FEATHER_WINGS.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_COMBAT = CREATIVE_MODE_TABS.register(
@@ -106,6 +130,12 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.ZIRCONIUM_CHESTPLATE.get());
 						pOutput.accept(ModItems.ZIRCONIUM_LEGGINGS.get());
 						pOutput.accept(ModItems.ZIRCONIUM_BOOTS.get());
+						pOutput.accept(ModItems.CITRINE_SWORD.get());
+						pOutput.accept(ModItems.CITRINE_AXE.get());
+						pOutput.accept(ModItems.CITRINE_HELMET.get());
+						pOutput.accept(ModItems.CITRINE_CHESTPLATE.get());
+						pOutput.accept(ModItems.CITRINE_LEGGINGS.get());
+						pOutput.accept(ModItems.CITRINE_BOOTS.get());
 						pOutput.accept(ModItems.FEATHER_WINGS.get());
 					}).build());
 

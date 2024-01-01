@@ -5,6 +5,15 @@
     "minecraft:large_amethyst_bud",
     "minecraft:medium_amethyst_bud",
     "minecraft:small_amethyst_bud",
-    "minecraft:amethyst_block"
+    "minecraft:amethyst_block",
+    "zirconmod:citrine_lantern",
+    "zirconmod:citrine_bracket",
+    "zirconmod:amethyst_wall_bracket",
+    "zirconmod:budding_citrine",
+    "zirconmod:citrine_cluster",
+    "zirconmod:large_citrine_bud",
+    "zirconmod:medium_citrine_bud",
+    "zirconmod:small_citrine_bud",
+    "zirconmod:citrine_block"
   ]
 }

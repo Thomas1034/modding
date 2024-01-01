@@ -1,0 +1,29 @@
+{
+	"texture_size": [32, 32],
+	"textures": {
+		"trunk": "zirconmod:block/palm_trunk",
+		"particle": "#trunk"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 16, 12],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 8], "texture": "#trunk"},
+				"east": {"uv": [4, 0, 8, 8], "texture": "#trunk"},
+				"south": {"uv": [0, 8, 4, 16], "texture": "#trunk"},
+				"west": {"uv": [8, 0, 12, 8], "texture": "#trunk"},
+				"up": {"uv": [8, 12, 4, 8], "texture": "#trunk"},
+				"down": {"uv": [12, 8, 8, 12], "texture": "#trunk"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

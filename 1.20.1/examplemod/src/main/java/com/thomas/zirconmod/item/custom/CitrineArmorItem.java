@@ -33,10 +33,4 @@ public class CitrineArmorItem extends ArmorItem {
 				&& !damageSource.is(DamageTypeTags.WITCH_RESISTANT_TO);
 	}
 
-	// Citrines can't be enchanted.
-	@Override
-	public boolean isEnchantable(ItemStack p_41456_) {
-		return false;
-	}
-
 }

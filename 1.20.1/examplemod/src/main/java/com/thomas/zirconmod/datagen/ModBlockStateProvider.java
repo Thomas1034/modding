@@ -4,7 +4,11 @@ import com.google.common.base.Function;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
+import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
+import com.thomas.zirconmod.block.custom.FrondBlock;
+import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
+import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 
 import net.minecraft.core.Direction;
@@ -14,6 +18,7 @@ import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -24,6 +29,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -39,6 +45,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
+
 		// Register simple blocks with the same texture on all sides
 		blockWithItem(ModBlocks.CLOUD);
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
@@ -52,18 +59,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.ZIRCON_ORE);
 		blockWithItem(ModBlocks.ZIRCONIUM_BLOCK);
 		blockWithItem(ModBlocks.PALM_PLANKS);
-		blockWithItem(ModBlocks.UNOBTAINIUM_GEM);
-		blockWithItem(ModBlocks.CLOUD_BRICKS);
-		blockWithItem(ModBlocks.THUNDER_CLOUD_BRICKS);
+		blockWithItem(ModBlocks.ARCHITECT_WORKSITE);
+		blockWithItem(ModBlocks.BOTANIST_WORKSITE);
+		blockWithItem(ModBlocks.CHIEF_WORKSITE);
+		blockWithItem(ModBlocks.GEMSMITH_WORKSITE);
+		blockWithItem(ModBlocks.SCHOLAR_WORKSITE);
+		blockWithItem(ModBlocks.TINKERER_WORKSITE);
+		blockWithItem(ModBlocks.SEALED_CLOUD_BRICKS);
+		blockWithItem(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS);
+
 		// Register logs
-		logBlock((RotatedPillarBlock) ModBlocks.PALM_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_PALM_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.PALM_WOOD.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_PALM_WOOD.get());
 
 		// Register special blocks
 		makeZirconLamp(ModBlocks.ZIRCON_LAMP.get(), "zircon_lamp", "zircon_lamp");
 
+		// Palm furniture
+		palmFruitBlock((PalmFruitBlock) ModBlocks.PALM_FRUIT.get());
+		frondBlock((FrondBlock) ModBlocks.PALM_FROND.get());
+		floorFrondBlock((FloorFrondBlock) ModBlocks.PALM_FLOOR_FROND.get());
+		simpleBlockWithItem(ModBlocks.PALM_TRUNK.get(), models().singleTexture("palm_trunk",
+				modLoc("template_palm_trunk"), "trunk", blockTexture(ModBlocks.PALM_TRUNK.get())));
+		logBlock((RotatedPillarBlock) ModBlocks.PALM_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_PALM_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.PALM_WOOD.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_PALM_WOOD.get());
 		stairsBlock(((StairBlock) ModBlocks.PALM_STAIRS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 		slabBlock(((SlabBlock) ModBlocks.PALM_SLAB.get()), blockTexture(ModBlocks.PALM_PLANKS.get()),
 				blockTexture(ModBlocks.PALM_PLANKS.get()));
@@ -79,6 +98,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				modLoc("block/palm_door_top"), "cutout");
 		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PALM_TRAPDOOR.get()), modLoc("block/palm_trapdoor"),
 				true, "cutout");
+
+		// Cloud brick blocks.
+		blockWithItem(ModBlocks.CLOUD_BRICKS);
+		blockWithItem(ModBlocks.THUNDER_CLOUD_BRICKS);
+		blockWithItem(ModBlocks.CHISELED_CLOUD_BRICKS);
+		blockWithItem(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS);
+		stairsBlock(((StairBlock) ModBlocks.CLOUD_BRICK_STAIRS.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()));
+		slabBlock(((SlabBlock) ModBlocks.CLOUD_BRICK_SLAB.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()),
+				blockTexture(ModBlocks.CLOUD_BRICKS.get()));
+		wallBlock(((WallBlock) ModBlocks.CLOUD_BRICK_WALL.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()));
+		stairsBlock(((StairBlock) ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get()),
+				blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()));
+		slabBlock(((SlabBlock) ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()),
+				blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()), blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()));
+		wallBlock(((WallBlock) ModBlocks.THUNDER_CLOUD_BRICK_WALL.get()),
+				blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()));
+		logBlock((RotatedPillarBlock) ModBlocks.CLOUD_BRICK_PILLAR.get());
+		logBlock((RotatedPillarBlock) ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
+
+		directionalPassageBlock((DirectionalPassageBlock) ModBlocks.WEATHER_PASSAGE_BLOCK.get(), "translucent");
 
 		// Citrine blocks
 		blockWithItem(ModBlocks.CITRINE_BLOCK);
@@ -100,8 +139,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				models().cross(blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get()).getPath(),
 						blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get())).renderType("cutout"));
 		simpleBlockWithItem(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
-				models().singleTexture("potted_catmint", new ResourceLocation("flower_pot_cross"), "plant",
-						blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get())).renderType("cutout"));
+				models().singleTexture("potted_illuminated_torchflower", new ResourceLocation("flower_pot_cross"),
+						"plant", blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get())).renderType("cutout"));
 
 		// Carpentry table
 		cubeBlockWithItem(ModBlocks.CARPENTRY_TABLE, "carpentry_table");
@@ -127,7 +166,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	private ConfiguredModel[] zirconLampStates(BlockState state, ZirconLampBlock block, String modelName,
 			String textureName) {
 		ConfiguredModel[] models = new ConfiguredModel[1];
-		models[0] = new ConfiguredModel(models().cubeAll(modelName + state.getValue((block).getLitProperty()),
+		models[0] = new ConfiguredModel(models().cubeAll(
+				modelName + "_" + (state.getValue((block).getLitProperty()) ? "lit" : "unlit"),
 				new ResourceLocation(ZirconMod.MOD_ID,
 						"block/" + textureName + "_" + (state.getValue((block).getLitProperty()) ? "lit" : "unlit"))));
 		return models;
@@ -140,6 +180,57 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				models().withExistingParent(modelName + state.getValue(block.getAgeProperty()), new ResourceLocation(
 						ZirconMod.MOD_ID, "block/" + parentName + "_" + (state.getValue((block).getAgeProperty())))));
 		return models;
+	}
+
+	private void frondBlock(FrondBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(FrondBlock.getFacingProperty());
+			int count = state.getValue(FrondBlock.getCountProperty());
+
+			int yRot = (((int) facing.toYRot()) + 180) % 360;
+
+			ModelFile model;
+
+			model = models()
+					.withExistingParent(blockTexture(block).toString() + "_count" + count,
+							new ResourceLocation(ZirconMod.MOD_ID,
+									"block/" + "template_frond_count"
+											+ (state.getValue(FrondBlock.getCountProperty()))))
+					.renderType("cutout").texture("frond", blockTexture(block).toString());
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+	}
+
+	private void floorFrondBlock(FloorFrondBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			ModelFile model;
+
+			model = models()
+					.withExistingParent(blockTexture(block).toString(),
+							new ResourceLocation(ZirconMod.MOD_ID, "block/" + "template_floor_frond"))
+					.renderType("cutout").texture("frond", blockTexture(block).toString());
+
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+	}
+
+	private void palmFruitBlock(PalmFruitBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(PalmFruitBlock.FACING);
+			int age = state.getValue(PalmFruitBlock.AGE);
+
+			int yRot = ((int) facing.toYRot()) % 360;
+
+			ModelFile model;
+
+			model = models()
+					.withExistingParent(blockTexture(block).toString() + "_age" + age,
+							new ResourceLocation(ZirconMod.MOD_ID, "block/" + "template_palm_fruit"))
+					.renderType("cutout").texture("fruit", blockTexture(block).toString() + "_age" + age);
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
 	}
 
 	protected ConfiguredModel[] lanternStates(BlockState state, LanternBlock block, String modelName) {
@@ -240,5 +331,80 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).rotationX(xRot).build();
 		});
+	}
+
+	@SuppressWarnings("unused")
+	private void directionalBlock(DirectionalBlock block, String renderType) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(DirectionalBlock.FACING);
+			int yRot = (((int) facing.toYRot()) + 180) % 360;
+			int xRot = 90;
+			ModelFile model;
+			if (facing == Direction.UP) {
+				xRot = 0;
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + "_up", mcLoc("block/orientable_vertical"))
+						.renderType(renderType).texture("front", blockTexture(block) + "_front")
+						.texture("side", blockTexture(block) + "_side");
+			} else if (facing == Direction.DOWN) {
+				xRot = 180;
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + "_down",
+								mcLoc("block/orientable_vertical"))
+						.renderType(renderType).texture("front", blockTexture(block) + "_front")
+						.texture("side", blockTexture(block) + "_side");
+			} else {
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + "_horizontal", mcLoc("block/orientable"))
+						.renderType(renderType).texture("front", blockTexture(block) + "_front")
+						.texture("side", blockTexture(block) + "_side").texture("top", blockTexture(block) + "_top");
+			}
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).rotationX(xRot).build();
+		});
+	}
+
+	private void directionalPassageBlock(DirectionalPassageBlock block, String renderType) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(DirectionalBlock.FACING);
+			int yRot = (((int) facing.toYRot()) + 180) % 360;
+			int xRot = 0;
+			String isSolid = state.getValue(DirectionalPassageBlock.SOLID) ? "_solid" : "_walkable";
+
+			ModelFile model;
+			if (facing == Direction.UP) {
+				xRot = 0;
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + isSolid + "_up",
+								mcLoc("block/orientable_vertical"))
+						.renderType(renderType).texture("front", blockTexture(block) + isSolid + "_front")
+						.texture("side", blockTexture(block) + isSolid + "_side");
+			} else if (facing == Direction.DOWN) {
+				xRot = 180;
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + isSolid + "_down",
+								mcLoc("block/orientable_vertical"))
+						.renderType(renderType).texture("front", blockTexture(block) + isSolid + "_front")
+						.texture("side", blockTexture(block) + isSolid + "_side");
+			} else {
+				model = models()
+						.withExistingParent(blockTexture(block).toString() + isSolid + "_horizontal",
+								mcLoc("block/orientable"))
+						.renderType(renderType).texture("front", blockTexture(block) + isSolid + "_front")
+						.texture("side", blockTexture(block) + isSolid + "_side")
+						.texture("top", blockTexture(block) + isSolid + "_top");
+			}
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).rotationX(xRot).build();
+		});
+		simpleBlockItem(block,
+				models().withExistingParent(blockTexture(block).toString() + "_horizontal", mcLoc("block/orientable"))
+						.renderType(renderType).texture("front", blockTexture(block) + "_solid_front")
+						.texture("side", blockTexture(block) + "_solid_side")
+						.texture("top", blockTexture(block) + "_solid_top"));
+	}
+
+	protected void crossBlock(Block block, String modelName) {
+		simpleBlock(block, models().cross(modelName, blockTexture(block)));
 	}
 }

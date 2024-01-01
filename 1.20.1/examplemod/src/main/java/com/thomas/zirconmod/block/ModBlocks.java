@@ -8,9 +8,14 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.BuddingCitrineBlock;
 import com.thomas.zirconmod.block.custom.CloudBlock;
+import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
+import com.thomas.zirconmod.block.custom.FrondBlock;
+import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.GemBracketBlock;
 import com.thomas.zirconmod.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
+import com.thomas.zirconmod.block.custom.PalmFruitBlock;
+import com.thomas.zirconmod.block.custom.PalmTrunkBlock;
 import com.thomas.zirconmod.block.custom.QuicksandBlock;
 import com.thomas.zirconmod.block.custom.ThirstyBlock;
 import com.thomas.zirconmod.block.custom.ThunderCloudBlock;
@@ -25,11 +30,14 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
@@ -42,10 +50,12 @@ import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -59,6 +69,29 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			ZirconMod.MOD_ID);
+
+	// Villager workstation blocks
+	public static final RegistryObject<Block> CARPENTRY_TABLE = registerBlock("carpentry_table",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
+	// Unobtainable blocks, to be used for villager workstations that shouldn't
+	// exist.
+	public static final RegistryObject<Block> GEMSMITH_WORKSITE = registerBlock("gemsmith_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block> BOTANIST_WORKSITE = registerBlock("botanist_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block> ARCHITECT_WORKSITE = registerBlock("architect_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block> TINKERER_WORKSITE = registerBlock("tinkerer_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block> SCHOLAR_WORKSITE = registerBlock("scholar_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block> CHIEF_WORKSITE = registerBlock("chief_worksite",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+
+	// Blueberry crop
+	public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
+			() -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
 	// Citrine blocks
 	public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
@@ -134,19 +167,117 @@ public class ModBlocks {
 	// Basic cloud block
 	public static final RegistryObject<Block> CLOUD = registerBlock("cloud",
 			() -> new CloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
-					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion()));
+					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion().sound(SoundType.EMPTY)));
 
 	// Basic thundercloud block
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
 			() -> new ThunderCloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
-					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion()));
+					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion().sound(SoundType.EMPTY)));
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
 
 	public static final RegistryObject<Block> THUNDER_CLOUD_BRICKS = registerBlock("thunder_cloud_bricks",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	public static final RegistryObject<Block> CLOUD_BRICK_SLAB = registerBlock("cloud_brick_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_SLAB = registerBlock("thunder_cloud_brick_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (level.isThundering() && !entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	public static final RegistryObject<Block> CLOUD_BRICK_STAIRS = registerBlock("cloud_brick_stairs",
+			() -> new StairBlock(() -> ModBlocks.CLOUD_BRICKS.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_STAIRS = registerBlock("thunder_cloud_brick_stairs",
+			() -> new StairBlock(() -> ModBlocks.THUNDER_CLOUD_BRICKS.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (level.isThundering() && !entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	public static final RegistryObject<Block> CLOUD_BRICK_WALL = registerBlock("cloud_brick_wall",
+			() -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_WALL = registerBlock("thunder_cloud_brick_wall",
+			() -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (level.isThundering() && !entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	public static final RegistryObject<Block> CLOUD_BRICK_PILLAR = registerBlock("cloud_brick_pillar",
+			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_PILLAR = registerBlock("thunder_cloud_brick_pillar",
+			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	// Cloud bricks
+	public static final RegistryObject<Block> CHISELED_CLOUD_BRICKS = registerBlock("chiseled_cloud_bricks",
+			() -> new Block(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.EMPTY)));
+
+	public static final RegistryObject<Block> CHISELED_THUNDER_CLOUD_BRICKS = registerBlock(
+			"chiseled_thunder_cloud_bricks", () -> new Block(
+					BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get()).sound(SoundType.EMPTY)) {
+				// Damage all entities that step on the block
+				public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+					if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+						entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+					}
+					super.stepOn(level, pos, state, entity);
+				}
+			});
+
+	// Palm components
+	public static final RegistryObject<Block> PALM_FROND = registerFuelBlock("palm_frond",
+			() -> new FrondBlock(
+					BlockBehaviour.Properties.of().randomTicks().sound(SoundType.GRASS).destroyTime(1f)),
+			BurnTimes.BUTTON);
+
+	public static final RegistryObject<Block> PALM_FLOOR_FROND = BLOCKS.register("palm_floor_frond",
+			() -> new FloorFrondBlock(BlockBehaviour.Properties.of().randomTicks().sound(SoundType.GRASS).destroyTime(1f)));
+
+	public static final RegistryObject<Block> PALM_TRUNK = registerFuelBlock("palm_trunk",
+			() -> new PalmTrunkBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)), BurnTimes.LOG);
+
+	public static final RegistryObject<Block> PALM_FRUIT = registerBlock("palm_fruit",
+			() -> new PalmFruitBlock(BlockBehaviour.Properties.copy(Blocks.COCOA).randomTicks().strength(0.2F, 3.0F)
+					.sound(SoundType.WOOD).noOcclusion().noCollission()));
 
 	// Palm logs
 	public static final RegistryObject<Block> PALM_LOG = registerFuelBlock("palm_log",
@@ -332,10 +463,6 @@ public class ModBlocks {
 				}
 			}, BurnTimes.TRAPDOOR);
 
-	// Blueberry crop
-	public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
-			() -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
-
 	// Modded Torchflower
 	public static final RegistryObject<Block> ILLUMINATED_TORCHFLOWER = registerBlock("illuminated_torchflower",
 			() -> new FlowerBlock(() -> MobEffects.GLOWING, 5,
@@ -366,19 +493,22 @@ public class ModBlocks {
 					}).sound(SoundType.WOOD).lootFrom(() -> CITRINE_BRACKET.get()).pushReaction(PushReaction.DESTROY),
 					new BlockParticleOption(ParticleTypes.FALLING_DUST, Blocks.AIR.defaultBlockState())));
 
-	// Villager workstation blocks
-	public static final RegistryObject<Block> CARPENTRY_TABLE = registerBlock("carpentry_table",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
-
 	// Nimbula Polyp
 	public static final RegistryObject<Block> NIMBULA_POLYP = registerBlock("nimbula_polyp",
 			() -> new NimbulaPolypBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.POWDER_SNOW)
 					.randomTicks().noOcclusion()));
 
-	// Unobtainable blocks, to be used for villager workstations that shouldn't
-	// exist.
-	// For the gemsmith
-	public static final RegistryObject<Block> UNOBTAINIUM_GEM = registerBlock("unobtainium_gem",
+	// Sealed door block
+	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
+			() -> new DirectionalPassageBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
+					.pushReaction(PushReaction.BLOCK).randomTicks(), (level, pos) -> !level.isRaining()));
+
+	// Sealed bricks
+	public static final RegistryObject<Block> SEALED_CLOUD_BRICKS = registerBlock("sealed_cloud_bricks",
+			() -> new Block(
+					BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS).lightLevel(state -> 2)));
+
+	public static final RegistryObject<Block> SEALED_THUNDER_CLOUD_BRICKS = registerBlock("sealed_thunder_cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
 
 	// Boilerplate from here on.

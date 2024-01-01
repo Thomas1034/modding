@@ -23,6 +23,11 @@ public class ModPoiTypeTagsProvider extends PoiTypeTagsProvider {
 	protected void addTags(HolderLookup.Provider pProvider) {
 		tag(PoiTypeTags.ACQUIRABLE_JOB_SITE)
 				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "forester_poi"))
-				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "gemsmith_poi"));
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "architect_poi"))
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "botanist_poi"))
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "chief_poi"))
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "gemsmith_poi"))
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "scholar_poi"))
+				.addOptional(new ResourceLocation(ZirconMod.MOD_ID, "tinkerer_poi"));
 	}
 }

@@ -9,6 +9,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
@@ -22,7 +23,7 @@ public class ModTags {
 		public static final TagKey<Block> NEEDS_COPPER_TOOL = tag("needs_copper_tool");
 		public static final TagKey<Block> NEEDS_ZIRCONIUM_TOOL = tag("needs_zirconium_tool");
 		public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
-		
+
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));
 		}
@@ -41,12 +42,13 @@ public class ModTags {
 	public static class Items {
 		public static final TagKey<Item> SCULK_AWAKENING_ITEMS = tag("sculk_awakening_items");
 		public static final TagKey<Item> CLOUD_WALKABLE_ITEMS = tag("cloud_walkable_items");
-		
+		public static final TagKey<Item> CLOUD_HARVEST_ITEMS = tag("cloud_harvest_items");
+
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));
 		}
 	}
-	
+
 	public static class EntityTypes {
 		public static final TagKey<EntityType<?>> CLOUD_WALKABLE_MOBS = tag("cloud_walkable_mobs");
 

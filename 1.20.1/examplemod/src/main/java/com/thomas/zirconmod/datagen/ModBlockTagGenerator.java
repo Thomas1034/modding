@@ -32,13 +32,18 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.THIRSTY_MUD_BRICKS.get(), ModBlocks.THIRSTY_PACKED_MUD.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
 				ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_LANTERN.get(), ModBlocks.CITRINE_CLUSTER.get(),
 				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
-				ModBlocks.SMALL_CITRINE_BUD.get());
+				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD_BRICKS.get(),
+				ModBlocks.CLOUD_BRICK_WALL.get(), ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(),
+				ModBlocks.CLOUD_BRICK_STAIRS.get(), ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(),
+				ModBlocks.CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
+				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(),
+				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
 				ModBlocks.PALM_DOOR.get(), ModBlocks.PALM_FENCE.get(), ModBlocks.PALM_FENCE_GATE.get(),
 				ModBlocks.PALM_PLANKS.get(), ModBlocks.PALM_PRESSURE_PLATE.get(), ModBlocks.PALM_SLAB.get(),
-				ModBlocks.PALM_TRAPDOOR.get(), ModBlocks.CARPENTRY_TABLE.get());
+				ModBlocks.PALM_TRAPDOOR.get(), ModBlocks.CARPENTRY_TABLE.get(), ModBlocks.PALM_TRUNK.get());
 
 		// Tool tiers
 		this.tag(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.ECHO_BLOCK.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
@@ -55,9 +60,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(ModTags.Blocks.NEEDS_SAPPHIRE_TOOL).add(ModBlocks.SOUND_BLOCK.get());
 
 		// Other block tags
-		this.tag(BlockTags.LOGS).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
-				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
 
+		// Palm furniture
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.PALM_TRAPDOOR.get());
 		this.tag(BlockTags.TRAPDOORS).add(ModBlocks.PALM_TRAPDOOR.get());
 		this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.PALM_DOOR.get());
@@ -74,9 +78,19 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.FENCES).add(ModBlocks.PALM_FENCE.get());
 		this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALM_FENCE_GATE.get());
 		this.tag(BlockTags.PLANKS).add(ModBlocks.PALM_PLANKS.get());
-
-		this.tag(ModTags.Blocks.PALM_LOGS).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
+		this.tag(ModTags.Blocks.PALM_LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
+		this.tag(BlockTags.LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
+				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
+		
+		
+		// Cloud furniture
+		this.tag(BlockTags.WALLS).add(ModBlocks.CLOUD_BRICK_WALL.get());
+		this.tag(BlockTags.WALLS).add(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
+		this.tag(BlockTags.STAIRS).add(ModBlocks.CLOUD_BRICK_STAIRS.get());
+		this.tag(BlockTags.STAIRS).add(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.CLOUD_BRICK_SLAB.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get());
 
 		// Functions
 		addStrongCloudSolidifier(Blocks.BUDDING_AMETHYST);
@@ -85,10 +99,18 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		addMediumCloudSolidifier(Blocks.MEDIUM_AMETHYST_BUD);
 		addWeakCloudSolidifier(Blocks.SMALL_AMETHYST_BUD);
 		addWeakCloudSolidifier(Blocks.AMETHYST_BLOCK);
+		addStrongCloudSolidifier(ModBlocks.CITRINE_LANTERN.get());
+		addStrongCloudSolidifier(ModBlocks.CITRINE_BRACKET.get());
+		addStrongCloudSolidifier(ModBlocks.CITRINE_WALL_BRACKET.get());
+		addStrongCloudSolidifier(ModBlocks.BUDDING_CITRINE.get());
+		addStrongCloudSolidifier(ModBlocks.CITRINE_CLUSTER.get());
+		addStrongCloudSolidifier(ModBlocks.LARGE_CITRINE_BUD.get());
+		addMediumCloudSolidifier(ModBlocks.MEDIUM_CITRINE_BUD.get());
+		addWeakCloudSolidifier(ModBlocks.SMALL_CITRINE_BUD.get());
+		addWeakCloudSolidifier(ModBlocks.CITRINE_BLOCK.get());
 
 		// this.tag(BlockTags.FENCES).add(ModBlocks.SAPPHIRE_FENCE.get());
 		// this.tag(BlockTags.FENCE_GATES).add(ModBlocks.SAPPHIRE_FENCE_GATE.get());
-		// this.tag(BlockTags.WALLS).add(ModBlocks.SAPPHIRE_WALL.get());
 
 	}
 

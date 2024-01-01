@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "zirconmod:block/cloud_bricks",
+    "side": "zirconmod:block/cloud_bricks",
+    "top": "zirconmod:block/cloud_bricks"
+  }
+}

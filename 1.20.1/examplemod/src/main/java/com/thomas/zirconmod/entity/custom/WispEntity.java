@@ -5,12 +5,17 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
+import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.villager.ModVillagers;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -49,13 +54,16 @@ import net.minecraft.world.phys.Vec3;
 public class WispEntity extends AbstractVillager {
 	@Nullable
 	private BlockPos wanderTarget;
-	private int wispType = 0;
-	private int skillLevel = 1;
 	private int soldOutTrades = 0;
 	private static final int MAX_SKILL = 5;
+	public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WispEntity.class,
+			EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> SKILL_LEVEL = SynchedEntityData.defineId(WispEntity.class,
+			EntityDataSerializers.INT);
 
-	private static Map<Integer, VillagerProfession> WISP_PROFESSIONS = Map.of(0, ModVillagers.GEMSMITH.get(), 1,
-			VillagerProfession.FARMER);
+	private static final Map<Integer, VillagerProfession> WISP_PROFESSIONS = Map.of(0, ModVillagers.GEMSMITH.get(), 1,
+			ModVillagers.ARCHITECT.get(), 2, ModVillagers.BOTANIST.get(), 3, ModVillagers.CHIEF.get(), 4,
+			ModVillagers.SCHOLAR.get(), 5, ModVillagers.TINKERER.get());
 
 	public WispEntity(EntityType<? extends AbstractVillager> p_35267_, Level p_35268_) {
 		super(p_35267_, p_35268_);
@@ -74,9 +82,10 @@ public class WispEntity extends AbstractVillager {
 
 	@Override
 	public void tick() {
+
 		super.tick();
-		// Restock if the time (mod day length) is zero.
-		if (this.level().getDayTime() % 24000 == 0) {
+		// Restocks six times a day.
+		if (this.level().getDayTime() % 8000 == 0) {
 			this.restock();
 		}
 	}
@@ -84,19 +93,19 @@ public class WispEntity extends AbstractVillager {
 	// Restocks the Wisp.
 	// If enough trades have been sold out, levels up the Wisp.
 	private void restock() {
+		int level = this.getSkillLevel();
 		for (MerchantOffer merchantOffer : this.getOffers()) {
 			if (merchantOffer.isOutOfStock()) {
 				soldOutTrades++;
 			}
 			merchantOffer.resetUses();
 		}
-		if (soldOutTrades > (this.skillLevel) && this.skillLevel < MAX_SKILL)
-		{
-			//System.out.println("Updating skill!");
-			this.skillLevel++;
+		if (soldOutTrades > (level) && level < MAX_SKILL) {
+			// System.out.println("Updating skill!");
+			this.setSkillLevel(level + 1);
 			this.updateTrades();
-			//System.out.println("New skill level: " + this.getSkillLevel());
-			this.soldOutTrades -= this.skillLevel + 1;
+			// System.out.println("New skill level: " + this.getSkillLevel());
+			this.soldOutTrades -= level + 1;
 		}
 	}
 
@@ -158,13 +167,15 @@ public class WispEntity extends AbstractVillager {
 	protected void updateTrades() {
 
 		VillagerProfession profession = this.getProfession();
+
 		int skill = this.getSkillLevel();
-		//System.out.println("Updating trades for skill level " + this.getSkillLevel());
+		System.out.println("Updating trades for skill level " + this.getSkillLevel());
 		Int2ObjectMap<VillagerTrades.ItemListing[]> professionTrades = VillagerTrades.TRADES.get(profession);
 
 		if (professionTrades != null) {
 			VillagerTrades.ItemListing[] levelTrades = professionTrades.get(skill);
-			//System.out.println("New trades are: " + levelTrades + ", there are " + levelTrades.length + " of them.");
+			// System.out.println("New trades are: " + levelTrades + ", there are " +
+			// levelTrades.length + " of them.");
 			if (levelTrades != null) {
 				MerchantOffers merchantoffers = this.getOffers();
 				this.addOffersFromItemListings(merchantoffers, levelTrades, 2);
@@ -174,15 +185,13 @@ public class WispEntity extends AbstractVillager {
 
 	public void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		tag.putInt("Type", this.wispType);
-		tag.putInt("Skill", this.skillLevel);
+		tag.putInt("Type", this.getTypeVariant());
+		tag.putInt("Skill", this.getSkillLevel());
 		tag.putInt("SoldOutTrades", this.soldOutTrades);
-		
+
 		if (this.wanderTarget != null) {
 			tag.put("WanderTarget", NbtUtils.writeBlockPos(this.wanderTarget));
 		}
-		
-		
 
 	}
 
@@ -193,18 +202,10 @@ public class WispEntity extends AbstractVillager {
 			this.wanderTarget = NbtUtils.readBlockPos(tag.getCompound("WanderTarget"));
 		}
 
-		if (tag.contains("Type")) {
-			this.setWispType(tag.getInt("Type"));
-		} else {
-			this.setWispType(0);
-		}
-		
-		if (tag.contains("Skill")) {
-			this.setSkillLevel(tag.getInt("Skill"));
-		} else {
-			this.setSkillLevel(1);
-		}
-		
+		this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Type"));
+
+		this.entityData.set(SKILL_LEVEL, tag.getInt("Skill"));
+
 		if (tag.contains("SoldOutTrades")) {
 			this.soldOutTrades = tag.getInt("SoldOutTrades");
 		} else {
@@ -212,14 +213,6 @@ public class WispEntity extends AbstractVillager {
 		}
 
 		this.setAge(Math.max(0, this.getAge()));
-	}
-
-	public int getWispType() {
-		return this.wispType;
-	}
-
-	public void setWispType(int wispType) {
-		this.wispType = wispType;
 	}
 
 	public static VillagerProfession typeToProfession(int type) {
@@ -231,7 +224,7 @@ public class WispEntity extends AbstractVillager {
 	}
 
 	public VillagerProfession getProfession() {
-		return typeToProfession(this.getWispType());
+		return typeToProfession(this.getTypeVariant());
 	}
 
 	public boolean removeWhenFarAway(double p_35886_) {
@@ -290,11 +283,33 @@ public class WispEntity extends AbstractVillager {
 	}
 
 	public int getSkillLevel() {
-		return skillLevel;
+		int level = this.entityData.get(SKILL_LEVEL);
+		if (level < 1)
+		{
+			this.setSkillLevel(1);
+			return 1;
+		}
+		
+		return level;
 	}
 
 	public void setSkillLevel(int skillLevel) {
-		this.skillLevel = skillLevel;
+		this.entityData.set(SKILL_LEVEL, Utilities.max(skillLevel, 1));
+	}
+
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+		this.entityData.define(SKILL_LEVEL, 1);
+	}
+
+	public int getTypeVariant() {
+		return this.entityData.get(DATA_ID_TYPE_VARIANT);
+	}
+
+	public void setTypeVariant(WoodGolemVariant variant) {
+		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
 	}
 
 	class WanderToPositionGoal extends Goal {

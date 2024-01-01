@@ -8,9 +8,9 @@ import com.thomas.zirconmod.datagen.loot.ModLootModifiers;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
 import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.client.ModBoatRenderer;
 import com.thomas.zirconmod.entity.client.MoleRenderer;
 import com.thomas.zirconmod.entity.client.NimbulaRenderer;
-import com.thomas.zirconmod.entity.client.WispRenderer;
 import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
 import com.thomas.zirconmod.item.ModItems;
@@ -59,22 +59,19 @@ public class ZirconMod {
 		ModPaintings.register(modEventBus);
 		ModEnchantments.register(modEventBus);
 		ModEffects.register(modEventBus);
-		
+
 		ModLootModifiers.register(modEventBus);
 		ModVillagers.register(modEventBus);
 
 		ModSounds.register(modEventBus);
 		ModEntities.register(modEventBus);
-		
-		
+
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);
 
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
 
-		// Register the item to a creative tab
-		// modEventBus.addListener(this::addCreative);
 
 		// Register our mod's ForgeConfigSpec so that Forge can create and load the
 		// config file for us
@@ -125,7 +122,20 @@ public class ZirconMod {
 			EntityRenderers.register(ModEntities.MOLE_ENTITY.get(), MoleRenderer::new);
 			EntityRenderers.register(ModEntities.WOOD_GOLEM_ENTITY.get(), WoodGolemRenderer::new);
 			EntityRenderers.register(ModEntities.NIMBULA_ENTITY.get(), NimbulaRenderer::new);
-			EntityRenderers.register(ModEntities.WISP_ENTITY.get(), WispRenderer::new);
+			EntityRenderers.register(ModEntities.MOD_BOAT.get(), context -> getModBoatRenderer(context));
+			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> getModChestBoatRenderer(context));
+
 		}
+	}
+	
+	private static ModBoatRenderer getModBoatRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context context) {
+		ModBoatRenderer renderer = new ModBoatRenderer(context, false);
+		System.out.println("		The normal boat renderer is: " + renderer);
+		return renderer;
+	}
+	private static ModBoatRenderer getModChestBoatRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context context) {
+		ModBoatRenderer renderer = new ModBoatRenderer(context, true);
+		System.out.println("		The chest boat renderer is: " + renderer);
+		return renderer;
 	}
 }

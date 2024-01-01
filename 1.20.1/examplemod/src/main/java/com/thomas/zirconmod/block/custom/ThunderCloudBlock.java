@@ -7,6 +7,7 @@ import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -22,7 +23,15 @@ public class ThunderCloudBlock extends CloudBlock {
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (level.isThundering())
 			entity.hurt(entity.damageSources().lightningBolt(), 3f);
-	}	
+	}
+
+	// Damage all entities that step on the block
+	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+		if (level.isThundering() && !entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+			entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
+		}
+		super.stepOn(level, pos, state, entity);
+	}
 
 	// Display lighting particles.
 	@Override

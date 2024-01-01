@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "front": "zirconmod:block/weather_passage_block_solid_front",
+    "side": "zirconmod:block/weather_passage_block_solid_side"
+  }
+}

@@ -12,88 +12,85 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 
 public class ReturningTotemItem extends Item {
-	
+
 	public ReturningTotemItem(Properties properties) {
 		super(properties);
 	}
-	
+
 	// Implements custom behavior.
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND)
-		{
-			if (player instanceof ServerPlayer)
-			{
+		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
+			
+			if (player instanceof ServerPlayer sp && level instanceof ServerLevel sl) {
 				// In a try-catch in case any of the following are null.
 				try {
-				// Gets all requisite information.
-				ServerPlayer sp = (ServerPlayer) player;
-				BlockPos pos = sp.getRespawnPosition();
-				float angle = sp.getRespawnAngle();
-				ResourceKey<Level> dimkey = sp.getRespawnDimension();
-				ServerLevel dim = sp.server.getLevel(dimkey);
-				// Respawns the player.
-				// Chooses a location near the respawn point that is a valid
-				// spawn point.
-				BlockPos npos = getNearbyRespawn(dim, pos, 3);
-				
-				sp.teleportTo(dim, npos.getX() + 0.5, npos.getY(), npos.getZ() + 0.5, angle, 0);
-				}
-				catch (NullPointerException e)
-				{
-					// Do nothing if the player has no available respawn point.
+					// Gets all requisite information.
+					BlockPos pos = sp.getRespawnPosition();
+					float angle = sp.getRespawnAngle();
+					ResourceKey<Level> dimkey = sp.getRespawnDimension();
+					ServerLevel dim = sp.server.getLevel(dimkey);
+					// Disables if the player is in the end and there is a live dragon.
+					boolean isInEnd = sl.dimensionTypeRegistration().is(BuiltinDimensionTypes.END_EFFECTS);
+					boolean isLiveDragon = sl.getDragons().size() == 0;
+					if (isInEnd && isLiveDragon) {
+						return super.use(level, player, hand);
+					}
+
+					// Respawns the player.
+					// Chooses a location near the respawn point that is a valid
+					// spawn point.
+					BlockPos npos = getNearbyRespawn(dim, pos, 3);
+
+					sp.teleportTo(dim, npos.getX() + 0.5, npos.getY(), npos.getZ() + 0.5, angle, 0);
+				} catch (NullPointerException e) {
+					// Send a chat message if the player does not have a valid respawn point.
 				}
 			}
-			
+			// Adds a cooldown to the item.
 			player.getCooldowns().addCooldown(this, 40);
 		}
-		
-		return super.use(level,  player, hand);
+		// Calls super.use, to handle other behaviors.
+		return super.use(level, player, hand);
 	}
-	
+
 	// Checks if a block position is a valid respawn point.
-	private static boolean isValidRespawn(Level level, BlockPos pos) throws NullPointerException
-	{
+	private static boolean isValidRespawn(Level level, BlockPos pos) throws NullPointerException {
 
 		BlockState above = level.getBlockState(pos.above());
 		BlockState at = level.getBlockState(pos);
 		BlockState below = level.getBlockState(pos.below());
-		//System.out.println("Column is: " + below.getBlock() + " " + at.getBlock() + " " + above.getBlock());
+		// System.out.println("Column is: " + below.getBlock() + " " + at.getBlock() + "
+		// " + above.getBlock());
 
 		boolean isBottomSolid = below.isFaceSturdy(level, pos, Direction.UP);
 		boolean isEmpty = at.canBeReplaced() && above.canBeReplaced();
-		
-		//System.out.println("Is the bottom solid? " + isBottomSolid);
-		//System.out.println("Is it empty? " + isEmpty);
+
+		// System.out.println("Is the bottom solid? " + isBottomSolid);
+		// System.out.println("Is it empty? " + isEmpty);
 		return isBottomSolid && isEmpty;
 	}
-	
+
 	// Gets a nearby respawn point that will be valid.
 	// If there are no valid respawn points, returns null.
-	public static BlockPos getNearbyRespawn(Level level, BlockPos start, int maxDistance)
-	{
+	public static BlockPos getNearbyRespawn(Level level, BlockPos start, int maxDistance) {
 		BlockPos npos = null;
-		for (int i = -1 * maxDistance; i < maxDistance; i++)
-		{
-			for (int j = -1 * maxDistance; j < maxDistance; j++)
-			{
-				for (int k = -1 * maxDistance; k < maxDistance; k++)
-				{
+		for (int i = -1 * maxDistance; i < maxDistance; i++) {
+			for (int j = -1 * maxDistance; j < maxDistance; j++) {
+				for (int k = -1 * maxDistance; k < maxDistance; k++) {
 					npos = start.offset(j, i, k);
-					if (isValidRespawn(level, npos))
-					{
+					if (isValidRespawn(level, npos)) {
 						return npos;
-					}
-					else
-					{
+					} else {
 						npos = null;
 					}
 				}
 			}
 		}
-		
+
 		return null;
 	}
 }

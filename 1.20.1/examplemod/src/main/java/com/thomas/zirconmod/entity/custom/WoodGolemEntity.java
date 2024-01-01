@@ -48,9 +48,8 @@ import net.minecraftforge.common.Tags;
 public class WoodGolemEntity extends AbstractGolem {
 	public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData
 			.defineId(WoodGolemEntity.class, EntityDataSerializers.INT);
-	public static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(MoleEntity.class,
+	public static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(WoodGolemEntity.class,
 			EntityDataSerializers.BOOLEAN);
-
 	
 	public final AnimationState attackAnimationState = new AnimationState();
 	public int attackAnimationTimeout = 0;

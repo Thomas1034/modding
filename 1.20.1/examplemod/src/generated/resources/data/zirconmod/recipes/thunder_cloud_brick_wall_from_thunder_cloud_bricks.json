@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "zirconmod:thunder_cloud_bricks"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 3,
+    "item": "zirconmod:thunder_cloud_brick_wall"
+  },
+  "show_notification": true
+}

@@ -22,6 +22,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+
+		
+		simpleItem(ModItems.SPEEDOMETER);
 		simpleItem(ModItems.ZIRCON);
 		simpleItem(ModItems.ZIRCON_SHARD);
 		simpleItem(ModItems.RAW_ZIRCONIUM);
@@ -36,10 +39,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE);
 		simpleItem(ModItems.BLUEBERRY);
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
+		simpleItem(ModItems.PALM_SEEDS);
 		simpleItem(ModItems.CUT_CITRINE);
 		simpleItem(ModItems.FEATHER_WINGS);
 		simpleItem(ModItems.CITRINE_BRACKET);
 		simpleItem(ModItems.CITRINE_SHARD);
+		simpleItem(ModItems.PALM_BOAT);
+		simpleItem(ModItems.PALM_CHEST_BOAT);
 		simpleBlockItem(ModBlocks.CITRINE_LANTERN);
 		simpleBlockItemBlockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER);
 		simpleBlockItem(ModBlocks.CITRINE_CLUSTER);
@@ -53,6 +59,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleLogModel(ModBlocks.PALM_WOOD);
 		simpleLogModel(ModBlocks.STRIPPED_PALM_LOG);
 		simpleLogModel(ModBlocks.STRIPPED_PALM_WOOD);
+		simpleBlockItem(ModBlocks.PALM_TRUNK);
+		simpleBlockItem(ModBlocks.PALM_FRUIT);
+		simpleBlockItem(ModBlocks.PALM_FROND);
 
 		fenceItem(ModBlocks.PALM_FENCE, ModBlocks.PALM_PLANKS);
 		buttonItem(ModBlocks.PALM_BUTTON, ModBlocks.PALM_PLANKS);
@@ -85,11 +94,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ZIRCONIUM_CHESTPLATE);
 		simpleItem(ModItems.ZIRCONIUM_LEGGINGS);
 		simpleItem(ModItems.ZIRCONIUM_BOOTS);
+		
+		handheldItem(ModItems.CITRINE_SWORD);
+		handheldItem(ModItems.CITRINE_PICKAXE);
+		handheldItem(ModItems.CITRINE_AXE);
+		handheldItem(ModItems.CITRINE_SHOVEL);
+		handheldItem(ModItems.CITRINE_HOE);
 
 		simpleItem(ModItems.CITRINE_HELMET);
 		simpleItem(ModItems.CITRINE_CHESTPLATE);
 		simpleItem(ModItems.CITRINE_LEGGINGS);
 		simpleItem(ModItems.CITRINE_BOOTS);
+		
 
 		withExistingParent(ModItems.MOLE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.NIMBULA_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -97,6 +113,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));
 
 		simpleItem(ModItems.NIMBULA_GEL);
+		
+		wallItem(ModBlocks.CLOUD_BRICK_WALL, ModBlocks.CLOUD_BRICKS);
+		wallItem(ModBlocks.THUNDER_CLOUD_BRICK_WALL, ModBlocks.THUNDER_CLOUD_BRICKS);
+		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_STAIRS);
+		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_SLAB);
+		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS);
+		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_SLAB);
+		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_PILLAR);
+		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

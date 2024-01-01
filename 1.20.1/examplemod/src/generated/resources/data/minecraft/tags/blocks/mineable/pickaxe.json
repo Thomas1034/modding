@@ -13,6 +13,18 @@
     "zirconmod:citrine_cluster",
     "zirconmod:large_citrine_bud",
     "zirconmod:medium_citrine_bud",
-    "zirconmod:small_citrine_bud"
+    "zirconmod:small_citrine_bud",
+    "zirconmod:cloud_bricks",
+    "zirconmod:thunder_cloud_bricks",
+    "zirconmod:cloud_brick_wall",
+    "zirconmod:thunder_cloud_brick_wall",
+    "zirconmod:cloud_brick_stairs",
+    "zirconmod:thunder_cloud_brick_stairs",
+    "zirconmod:cloud_brick_slab",
+    "zirconmod:thunder_cloud_brick_slab",
+    "zirconmod:cloud_brick_pillar",
+    "zirconmod:thunder_cloud_brick_pillar",
+    "zirconmod:chiseled_cloud_bricks",
+    "zirconmod:chiseled_thunder_cloud_bricks"
   ]
 }

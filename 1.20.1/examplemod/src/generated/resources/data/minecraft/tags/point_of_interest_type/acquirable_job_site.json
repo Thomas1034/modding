@@ -5,7 +5,27 @@
       "required": false
     },
     {
+      "id": "zirconmod:architect_poi",
+      "required": false
+    },
+    {
+      "id": "zirconmod:botanist_poi",
+      "required": false
+    },
+    {
+      "id": "zirconmod:chief_poi",
+      "required": false
+    },
+    {
       "id": "zirconmod:gemsmith_poi",
+      "required": false
+    },
+    {
+      "id": "zirconmod:scholar_poi",
+      "required": false
+    },
+    {
+      "id": "zirconmod:tinkerer_poi",
       "required": false
     }
   ]

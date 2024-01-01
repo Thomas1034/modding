@@ -2,6 +2,7 @@ package com.thomas.zirconmod.util;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -42,6 +43,12 @@ public class Utilities {
 		Vec3 endPos = Matrix.matToVec(Matrix.multiplyMatrix(rotationMatrix, Matrix.vecToMat(offset)));
 
 		return at.add(endPos);
+	}
+	
+	// Returns a vector representing a player's motion
+	public static Vec3 deltaMotion(Player player)
+	{
+		return new Vec3(player.getX() - player.xOld, player.getY() - player.yOld, player.getZ() - player.zOld);
 	}
 
 	// Written by ChatGPT
@@ -106,5 +113,38 @@ public class Utilities {
 		}
 
 	}
+	
 
+
+	public static byte max(byte a, byte b) {
+		return a > b ? a : b;
+	}
+	
+	public static byte min(byte a, byte b) {
+		return a < b ? a : b;
+	}
+
+	public static int max(int a, int b) {
+		return a > b ? a : b;
+	}
+	
+	public static int min(int a, int b) {
+		return a < b ? a : b;
+	}
+	
+	public static float max(float a, float b) {
+		return a > b ? a : b;
+	}
+	
+	public static float min(float a, float b) {
+		return a < b ? a : b;
+	}
+	
+	public static double max(double a, double b) {
+		return a > b ? a : b;
+	}
+	
+	public static double min(double a, double b) {
+		return a < b ? a : b;
+	}
 }

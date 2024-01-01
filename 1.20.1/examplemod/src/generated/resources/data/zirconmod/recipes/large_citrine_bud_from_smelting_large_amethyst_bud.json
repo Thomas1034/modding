@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "large_citrine_bud",
+  "ingredient": {
+    "item": "minecraft:large_amethyst_bud"
+  },
+  "result": "zirconmod:large_citrine_bud"
+}

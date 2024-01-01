@@ -212,15 +212,73 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shapeless(pWriter, List.of(Blocks.TORCHFLOWER, Items.GLOW_INK_SAC), List.of(1, 1), RecipeCategory.DECORATIONS,
 				ModBlocks.ILLUMINATED_TORCHFLOWER.get(), 1);
 
+		// Obsidian.
+		shapeless(pWriter, List.of(Items.WATER_BUCKET, Items.LAVA_BUCKET), List.of(1, 1), RecipeCategory.DECORATIONS,
+				Blocks.OBSIDIAN, 1);
+
 		// Carpentry table
 		shaped(pWriter, List.of(" C ", "L#L", "LIL"), List.of('I', 'L', '#', 'C'),
-				List.of(Items.IRON_INGOT, ItemTags.LOGS, Items.CRAFTING_TABLE, Items.COPPER_INGOT), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.CARPENTRY_TABLE.get(), 2);
-		
+				List.of(Items.IRON_INGOT, ItemTags.LOGS, Items.CRAFTING_TABLE, Items.COPPER_INGOT),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CARPENTRY_TABLE.get(), 1);
+
 		// Feather wings
 		shaped(pWriter, List.of("FBF", "PEP", "FBF"), List.of('F', 'B', 'P', 'E'),
 				List.of(Items.FEATHER, Items.HONEYCOMB, ItemTags.PLANKS, Items.ELYTRA), RecipeCategory.TRANSPORTATION,
-				ModBlocks.CARPENTRY_TABLE.get(), 2);
+				ModBlocks.CARPENTRY_TABLE.get(), 1);
+
+		// Palm furniture
+		shaped(pWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_DOOR.get(), 3);
+		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_TRAPDOOR.get(), 2);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_STAIRS.get(), 4);
+		shapeless(pWriter, List.of(ModBlocks.PALM_PLANKS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.PALM_BUTTON.get(), 1);
+		shaped(pWriter, List.of("PSP", "PSP"), List.of('P', 'S'), List.of(ModBlocks.PALM_PLANKS.get(), Items.STICK),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE.get(), 3);
+		shaped(pWriter, List.of("SPS", "SPS"), List.of('P', 'S'), List.of(ModBlocks.PALM_PLANKS.get(), Items.STICK),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE_GATE.get(), 1);
+		shaped(pWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PRESSURE_PLATE.get(), 1);
+
+		// Cloud brick furniture
+		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
+				List.of(ModBlocks.CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CLOUD_BRICKS.get(), 4);
+		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
+				List.of(ModBlocks.THUNDER_CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.THUNDER_CLOUD_BRICKS.get(), 4);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_STAIRS.get(), 4);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_SLAB.get(), 6);
+		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_WALL.get(), 3);
+
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.THUNDER_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(), 4);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.THUNDER_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(), 6);
+		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.THUNDER_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(), 3);
+
+		// Smelting amethyst blocks to citrine
+		oreSmelting(pWriter, List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CITRINE_BLOCK.get(), 0.25f, 200, "citrine_block");
+		oreSmelting(pWriter, List.of(Blocks.AMETHYST_CLUSTER), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CITRINE_CLUSTER.get(), 0.25f, 200, "citrine_cluster");
+		oreSmelting(pWriter, List.of(Blocks.LARGE_AMETHYST_BUD), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.LARGE_CITRINE_BUD.get(), 0.25f, 200, "large_citrine_bud");
+		oreSmelting(pWriter, List.of(Blocks.MEDIUM_AMETHYST_BUD), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.MEDIUM_CITRINE_BUD.get(), 0.25f, 200, "medium_citrine_bud");
+		oreSmelting(pWriter, List.of(Blocks.SMALL_AMETHYST_BUD), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.SMALL_CITRINE_BUD.get(), 0.25f, 200, "small_citrine_bud");
+		oreSmelting(pWriter, List.of(Items.AMETHYST_SHARD), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.CITRINE_SHARD.get(), 0.25f, 200, "citrine_shard");
+		oreSmelting(pWriter, List.of(Items.BUDDING_AMETHYST), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.BUDDING_CITRINE.get(), 0.25f, 200, "budding_citrine");
+
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

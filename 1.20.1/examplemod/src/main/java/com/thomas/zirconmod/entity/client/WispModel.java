@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
@@ -20,6 +21,7 @@ public class WispModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart head;
 
 	public WispModel(ModelPart root) {
+		super(RenderType::entityTranslucentEmissive);
 		this.wisp = root.getChild("wisp");
 		this.head = wisp.getChild("head");
 	}

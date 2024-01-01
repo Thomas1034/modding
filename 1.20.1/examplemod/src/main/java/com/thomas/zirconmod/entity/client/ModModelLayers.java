@@ -17,4 +17,9 @@ public class ModModelLayers {
 	public static final ModelLayerLocation NIMBULA_OUTER_LAYER = new ModelLayerLocation(
 			new ResourceLocation(ZirconMod.MOD_ID, "nimbula_outer"), "main");
 	
+    public static final ModelLayerLocation PALM_BOAT_LAYER = new ModelLayerLocation(
+            new ResourceLocation(ZirconMod.MOD_ID, "boat/palm"), "main");
+    public static final ModelLayerLocation PALM_CHEST_BOAT_LAYER = new ModelLayerLocation(
+            new ResourceLocation(ZirconMod.MOD_ID, "chest_boat/palm"), "main");
+
 }

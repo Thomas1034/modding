@@ -12,6 +12,7 @@
     "zirconmod:palm_pressure_plate",
     "zirconmod:palm_slab",
     "zirconmod:palm_trapdoor",
-    "zirconmod:carpentry_table"
+    "zirconmod:carpentry_table",
+    "zirconmod:palm_trunk"
   ]
 }

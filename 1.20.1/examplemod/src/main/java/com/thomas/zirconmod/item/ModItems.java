@@ -3,6 +3,7 @@ package com.thomas.zirconmod.item;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.item.custom.CitrineArmorItem;
 import com.thomas.zirconmod.item.custom.ClearWeatherTotemItem;
 import com.thomas.zirconmod.item.custom.CopperArmorItem;
@@ -15,10 +16,12 @@ import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
 import com.thomas.zirconmod.item.custom.FeatherWingsItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
+import com.thomas.zirconmod.item.custom.ModBoatItem;
 import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
 import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SeaWingsItem;
+import com.thomas.zirconmod.item.custom.SpeedometerItem;
 import com.thomas.zirconmod.item.custom.VigilEyeItem;
 
 import net.minecraft.core.Direction;
@@ -36,6 +39,7 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SolidBucketItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -135,21 +139,42 @@ public class ModItems {
 
 	public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("copper_helmet",
 			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, new Item.Properties()));
+
 	public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate",
 			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
 	public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings",
 			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
 	public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("copper_boots",
 			() -> new CopperArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 	public static final RegistryObject<Item> CITRINE_HELMET = ITEMS.register("citrine_helmet",
 			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.HELMET, new Item.Properties()));
+
 	public static final RegistryObject<Item> CITRINE_CHESTPLATE = ITEMS.register("citrine_chestplate",
 			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
 	public static final RegistryObject<Item> CITRINE_LEGGINGS = ITEMS.register("citrine_leggings",
 			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
 	public static final RegistryObject<Item> CITRINE_BOOTS = ITEMS.register("citrine_boots",
 			() -> new CitrineArmorItem(ModArmorMaterials.CITRINE, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_SWORD = ITEMS.register("citrine_sword",
+			() -> new SwordItem(Tiers.DIAMOND, 3, -2.4F, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_PICKAXE = ITEMS.register("citrine_pickaxe",
+			() -> new PickaxeItem(Tiers.DIAMOND, 1, -2.8F, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_AXE = ITEMS.register("citrine_axe",
+			() -> new AxeItem(Tiers.DIAMOND, 5.0F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_SHOVEL = ITEMS.register("citrine_shovel",
+			() -> new ShovelItem(Tiers.DIAMOND, 1.5F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> CITRINE_HOE = ITEMS.register("citrine_hoe",
+			() -> new HoeItem(Tiers.DIAMOND, -3, 0.0F, new Item.Properties()));
 
 	// Misc
 	public static final RegistryObject<Item> QUICKSAND_BUCKET = ITEMS.register("quicksand_bucket",
@@ -163,10 +188,14 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(64)
 					.food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
 
+	public static final RegistryObject<Item> PALM_SEEDS = ITEMS.register("palm_seeds",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+
 	public static final RegistryObject<Item> NIMBULA_GEL = ITEMS.register("nimbula_gel",
 			() -> new Item(new Item.Properties().stacksTo(64)
 					.food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.1F)
-							.effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 0), 0.8F).meat().build())));
+							.effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 0), 0.8F).meat()
+							.build())));
 
 	public static final RegistryObject<Item> MOLE_SPAWN_EGG = ITEMS.register("mole_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.MOLE_ENTITY, 0x062e37, 0xa2af86, new Item.Properties()));
@@ -176,19 +205,28 @@ public class ModItems {
 
 	public static final RegistryObject<Item> CUT_CITRINE = ITEMS.register("cut_citrine",
 			() -> new Item(new Item.Properties()));
-	
+
 	public static final RegistryObject<Item> CITRINE_SHARD = ITEMS.register("citrine_shard",
 			() -> new Item(new Item.Properties()));
-	
+
 	public static final RegistryObject<Item> CITRINE_BRACKET = ITEMS.register("citrine_bracket",
-			() -> new StandingAndWallBlockItem(ModBlocks.CITRINE_BRACKET.get(), ModBlocks.CITRINE_WALL_BRACKET.get(), new Item.Properties(), Direction.DOWN));
-	
+			() -> new StandingAndWallBlockItem(ModBlocks.CITRINE_BRACKET.get(), ModBlocks.CITRINE_WALL_BRACKET.get(),
+					new Item.Properties(), Direction.DOWN));
+
 	public static final RegistryObject<Item> FEATHER_WINGS = ITEMS.register("feather_wings",
 			() -> new FeatherWingsItem(new Item.Properties().durability(108)));
 	public static final RegistryObject<Item> SEA_WINGS = ITEMS.register("sea_wings",
 			() -> new SeaWingsItem(new Item.Properties().durability(1000)));
 	public static final RegistryObject<Item> DRAGONFLY_WINGS = ITEMS.register("dragonfly_wings",
 			() -> new DragonflyWingsItem(new Item.Properties().durability(1000)));
+	
+    public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties()));
+    public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties()));
+	
+	public static final RegistryObject<Item> SPEEDOMETER = ITEMS.register("speedometer",
+			() -> new SpeedometerItem(new Item.Properties()));
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

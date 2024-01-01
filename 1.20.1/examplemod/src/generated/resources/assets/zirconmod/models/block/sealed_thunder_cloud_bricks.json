@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "zirconmod:block/sealed_thunder_cloud_bricks"
+  }
+}
