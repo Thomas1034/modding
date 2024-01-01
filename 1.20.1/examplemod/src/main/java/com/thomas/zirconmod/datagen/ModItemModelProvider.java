@@ -44,6 +44,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.FEATHER_WINGS);
 		simpleItem(ModItems.CITRINE_BRACKET);
 		simpleItem(ModItems.CITRINE_SHARD);
+		simpleItem(ModItems.PALM_BOAT);
+		simpleItem(ModItems.PALM_CHEST_BOAT);
 		simpleBlockItem(ModBlocks.CITRINE_LANTERN);
 		simpleBlockItemBlockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER);
 		simpleBlockItem(ModBlocks.CITRINE_CLUSTER);

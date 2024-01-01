@@ -8,8 +8,10 @@ import com.thomas.zirconmod.datagen.loot.ModLootModifiers;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
 import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.client.ModBoatRenderer;
 import com.thomas.zirconmod.entity.client.MoleRenderer;
 import com.thomas.zirconmod.entity.client.NimbulaRenderer;
+import com.thomas.zirconmod.entity.client.WispRenderer;
 import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
 import com.thomas.zirconmod.item.ModItems;
@@ -121,7 +123,10 @@ public class ZirconMod {
 			EntityRenderers.register(ModEntities.MOLE_ENTITY.get(), MoleRenderer::new);
 			EntityRenderers.register(ModEntities.WOOD_GOLEM_ENTITY.get(), WoodGolemRenderer::new);
 			EntityRenderers.register(ModEntities.NIMBULA_ENTITY.get(), NimbulaRenderer::new);
-			
+			EntityRenderers.register(ModEntities.WISP_ENTITY.get(), WispRenderer::new);
+			EntityRenderers.register(ModEntities.MOD_BOAT.get(), context -> new ModBoatRenderer(context, false));
+			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
+
 		}
 	}
 	

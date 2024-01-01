@@ -40,6 +40,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
 						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
+						pOutput.accept(ModItems.PALM_BOAT.get());
+						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_BLOCKS = CREATIVE_MODE_TABS.register(
 			"zirconmod_blocks",

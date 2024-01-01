@@ -7,7 +7,9 @@ import com.thomas.zirconmod.entity.custom.WispEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
 public class WispRenderer extends MobRenderer<WispEntity, WispModel<WispEntity>> {
 
@@ -31,6 +33,12 @@ public class WispRenderer extends MobRenderer<WispEntity, WispModel<WispEntity>>
 		String profession = wisp.getProfession().toString();
 
 		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wisp/" + profession + ".png");
+	}
+	
+	@Override
+	protected int getBlockLightLevel(WispEntity entity, BlockPos pos)
+	{
+		return 15;
 	}
 
 

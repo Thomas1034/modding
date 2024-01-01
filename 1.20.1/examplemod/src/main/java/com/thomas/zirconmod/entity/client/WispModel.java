@@ -21,7 +21,7 @@ public class WispModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart head;
 
 	public WispModel(ModelPart root) {
-		super(RenderType::entityTranslucentEmissive);
+		super(RenderType::entityTranslucent);
 		this.wisp = root.getChild("wisp");
 		this.head = wisp.getChild("head");
 	}

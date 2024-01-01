@@ -13,6 +13,7 @@
 	"item.zirconmod.totem_of_returning": "Totem of Returning",
 	"item.zirconmod.quicksand_bucket": "Bucket of Quicksand",
 	"item.zirconmod.blueberry_seeds": "Blueberry Seeds",
+	"item.zirconmod.palm_seeds": "Palm Seeds",
 	"item.zirconmod.blueberry": "Blueberry",
 	"item.zirconmod.mole_spawn_egg": "Mole Spawn Egg",
 	"item.zirconmod.nimbula_spawn_egg": "Nimbula Spawn Egg",
@@ -148,7 +149,7 @@
 	"entity.zirconmod.mod_chest_boat": "Boat with Chest",
 	
 	"entity.minecraft.villager.zirconmod.forester": "Forester",
-	"entity.minecraft.villager.zirconmod.gem_smith": "Gem Smith",
+	"entity.minecraft.villager.zirconmod.gemsmith": "Gem Smith",
 	
 	"effect.zirconmod.citrine_glow": "Citrine Glow",
 	"effect.zirconmod.flight_exhaustion": "Flight Exhaustion",

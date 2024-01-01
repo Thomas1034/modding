@@ -3,6 +3,7 @@ package com.thomas.zirconmod.item;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.item.custom.CitrineArmorItem;
 import com.thomas.zirconmod.item.custom.ClearWeatherTotemItem;
 import com.thomas.zirconmod.item.custom.CopperArmorItem;
@@ -15,6 +16,7 @@ import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
 import com.thomas.zirconmod.item.custom.FeatherWingsItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
+import com.thomas.zirconmod.item.custom.ModBoatItem;
 import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
 import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
@@ -217,6 +219,11 @@ public class ModItems {
 			() -> new SeaWingsItem(new Item.Properties().durability(1000)));
 	public static final RegistryObject<Item> DRAGONFLY_WINGS = ITEMS.register("dragonfly_wings",
 			() -> new DragonflyWingsItem(new Item.Properties().durability(1000)));
+
+    public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties()));
+    public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties()));
 	
 	public static final RegistryObject<Item> SPEEDOMETER = ITEMS.register("speedometer",
 			() -> new SpeedometerItem(new Item.Properties()));
