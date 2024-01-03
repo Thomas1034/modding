@@ -9,10 +9,14 @@ import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.BuddingCitrineBlock;
 import com.thomas.zirconmod.block.custom.CloudBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
-import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
+import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.GemBracketBlock;
 import com.thomas.zirconmod.block.custom.ModFlammableRotatedPillarBlock;
+import com.thomas.zirconmod.block.custom.ModHangingSignBlock;
+import com.thomas.zirconmod.block.custom.ModStandingSignBlock;
+import com.thomas.zirconmod.block.custom.ModWallHangingSignBlock;
+import com.thomas.zirconmod.block.custom.ModWallSignBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
 import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.block.custom.PalmTrunkBlock;
@@ -20,15 +24,19 @@ import com.thomas.zirconmod.block.custom.QuicksandBlock;
 import com.thomas.zirconmod.block.custom.ThirstyBlock;
 import com.thomas.zirconmod.block.custom.ThunderCloudBlock;
 import com.thomas.zirconmod.block.custom.WallGemBracketBlock;
+import com.thomas.zirconmod.block.custom.WispBedBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.BurnTimes;
+import com.thomas.zirconmod.util.ModWoodTypes;
+import com.thomas.zirconmod.worldgen.tree.PalmTreeGrower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,6 +59,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -264,13 +273,22 @@ public class ModBlocks {
 			});
 
 	// Palm components
+
+	public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
+			() -> new SaplingBlock(new PalmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)) {
+				protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+					return state.is(BlockTags.DIRT) || state.is(Blocks.FARMLAND) || state.is(BlockTags.SAND);
+				}
+			});
+
 	public static final RegistryObject<Block> PALM_FROND = registerFuelBlock("palm_frond",
 			() -> new FrondBlock(
-					BlockBehaviour.Properties.of().randomTicks().sound(SoundType.GRASS).destroyTime(1f)),
+					BlockBehaviour.Properties.of().noOcclusion().randomTicks().sound(SoundType.GRASS).destroyTime(1f)),
 			BurnTimes.BUTTON);
 
 	public static final RegistryObject<Block> PALM_FLOOR_FROND = BLOCKS.register("palm_floor_frond",
-			() -> new FloorFrondBlock(BlockBehaviour.Properties.of().randomTicks().sound(SoundType.GRASS).destroyTime(1f)));
+			() -> new FloorFrondBlock(
+					BlockBehaviour.Properties.of().noOcclusion().randomTicks().sound(SoundType.GRASS).destroyTime(1f)));
 
 	public static final RegistryObject<Block> PALM_TRUNK = registerFuelBlock("palm_trunk",
 			() -> new PalmTrunkBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)), BurnTimes.LOG);
@@ -463,6 +481,17 @@ public class ModBlocks {
 				}
 			}, BurnTimes.TRAPDOOR);
 
+	public static final RegistryObject<Block> PALM_SIGN = BLOCKS.register("palm_sign",
+			() -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.PALM));
+	public static final RegistryObject<Block> PALM_WALL_SIGN = BLOCKS.register("palm_wall_sign",
+			() -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.PALM));
+
+	public static final RegistryObject<Block> PALM_HANGING_SIGN = BLOCKS.register("palm_hanging_sign",
+			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), ModWoodTypes.PALM));
+	public static final RegistryObject<Block> PALM_WALL_HANGING_SIGN = BLOCKS.register("palm_wall_hanging_sign",
+			() -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
+					ModWoodTypes.PALM));
+
 	// Modded Torchflower
 	public static final RegistryObject<Block> ILLUMINATED_TORCHFLOWER = registerBlock("illuminated_torchflower",
 			() -> new FlowerBlock(() -> MobEffects.GLOWING, 5,
@@ -501,7 +530,7 @@ public class ModBlocks {
 	// Sealed door block
 	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
 			() -> new DirectionalPassageBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
-					.pushReaction(PushReaction.BLOCK).randomTicks(), (level, pos) -> !level.isRaining()));
+					.pushReaction(PushReaction.BLOCK).randomTicks().lightLevel(state -> 12), (level, pos) -> !level.isRaining()));
 
 	// Sealed bricks
 	public static final RegistryObject<Block> SEALED_CLOUD_BRICKS = registerBlock("sealed_cloud_bricks",
@@ -510,6 +539,10 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> SEALED_THUNDER_CLOUD_BRICKS = registerBlock("sealed_thunder_cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
+
+	// Wisp nest block
+	public static final RegistryObject<Block> WISP_BED = registerBlock("wisp_bed",
+			() -> new WispBedBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.WOOL)));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

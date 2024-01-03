@@ -8,6 +8,7 @@ import com.thomas.zirconmod.item.ModItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -17,12 +18,22 @@ import net.minecraft.world.level.block.Blocks;
 
 public class ModVillagerTrades {
 
-	public static final Block[] GLASS_TYPES = { Blocks.BLACK_STAINED_GLASS, Blocks.BLUE_STAINED_GLASS,
+	public static final Block[] STAINED_GLASS_TYPES = { Blocks.BLACK_STAINED_GLASS, Blocks.BLUE_STAINED_GLASS,
 			Blocks.BROWN_STAINED_GLASS, Blocks.CYAN_STAINED_GLASS, Blocks.GRAY_STAINED_GLASS,
 			Blocks.GREEN_STAINED_GLASS, Blocks.LIGHT_BLUE_STAINED_GLASS, Blocks.LIGHT_GRAY_STAINED_GLASS,
 			Blocks.LIME_STAINED_GLASS, Blocks.MAGENTA_STAINED_GLASS, Blocks.ORANGE_STAINED_GLASS,
 			Blocks.PINK_STAINED_GLASS, Blocks.PURPLE_STAINED_GLASS, Blocks.RED_STAINED_GLASS,
 			Blocks.WHITE_STAINED_GLASS, Blocks.YELLOW_STAINED_GLASS };
+
+	public static final Item[] TRIM_SMITHING_TEMPLATE_ITEMS = { Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE, Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE, Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE, Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE, Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE, Items.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE, Items.WARD_ARMOR_TRIM_SMITHING_TEMPLATE,
+			Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE, Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE };
 
 	public static void addFarmerTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
 		// Level 1
@@ -234,13 +245,12 @@ public class ModVillagerTrades {
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
 				new ItemStack(ModBlocks.CITRINE_LANTERN.get(), 2 + rand.nextInt(2)), 3, 6, 0.04f));
 		// Buying stained glass
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(getGlassColor(rand), 6),
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(getStainedGlassColor(rand), 6),
 				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 6, 6, 0.04f));
 		// Selling scaffolding
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
 				new ItemStack(Blocks.SCAFFOLDING, 8), 3, 6, 0.04f));
-		
-		
+
 		// Level 4 trades start here.
 		villagerLevel = 4;
 		trades.get(villagerLevel)
@@ -256,6 +266,8 @@ public class ModVillagerTrades {
 		// Level 5 trades start here.
 		villagerLevel = 5;
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Items.OBSIDIAN, 4), new ItemStack(Items.CRYING_OBSIDIAN, 4), 3, 6, 0.04f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
 				new ItemStack(ModBlocks.CLOUD_BRICK_PILLAR.get(), 4 + rand.nextInt(2)), 6, 6, 0.04f));
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
 				new ItemStack(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(), 4 + rand.nextInt(2)), 6, 6, 0.04f));
@@ -263,7 +275,7 @@ public class ModVillagerTrades {
 				new ItemStack(ModBlocks.CHISELED_CLOUD_BRICKS.get(), 4 + rand.nextInt(2)), 6, 6, 0.04f));
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
 				new ItemStack(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(), 4 + rand.nextInt(2)), 6, 6, 0.04f));
-		
+
 	}
 
 	public static void addBotanistTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
@@ -280,116 +292,114 @@ public class ModVillagerTrades {
 		// priceMultiplier
 		villagerLevel = 1;
 
-		// TODO
+		// Sell
+
+		// Buys common plants
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(4) + 8),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.FERN, rand.nextInt(2) + 4),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.FLOWER_POT, 3),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.GLOW_LICHEN, rand.nextInt(2) + 4),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_BLOCK.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(3) + 1),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.GRASS_BLOCK, rand.nextInt(4) + 16),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(8) + 16),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.PODZOL, rand.nextInt(2) + 12),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.AMETHYST_BLOCK, rand.nextInt(2) + 4),
-						new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(7) + 1),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.SEAGRASS, rand.nextInt(2) + 8),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.BROWN_MUSHROOM, rand.nextInt(2) + 4),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.RED_MUSHROOM, rand.nextInt(2) + 4),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.CACTUS, rand.nextInt(2) + 8),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 
 		// Level 2 trades start here.
 		villagerLevel = 2;
-		// Fancy citrine trades, for clusters and copper
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_CLUSTER.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, rand.nextInt(4) + 16),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 2, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.STICK, rand.nextInt(8) + 24),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
+		// Sells vines and moss and bamboo - things that could grow in the clouds.
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Blocks.MOSS_CARPET, 4), 3, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Blocks.VINE, 6), 3, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Items.BAMBOO, 6), 3, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Items.SPORE_BLOSSOM, 1), 3, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Items.SMALL_DRIPLEAF, 1), 3, 3, 0.02f));
 
 		// Level 3 trades start here.
 		villagerLevel = 3;
-		// Use citrine to buy various gem-like items
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
-				new ItemStack(Items.OBSIDIAN, 3), new ItemStack(Items.CRYING_OBSIDIAN, 3), 3, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.CRYING_OBSIDIAN, 2), new ItemStack(Items.OBSIDIAN, 2), 3, 6, 0.04f));
+		// Buys nether "plants"
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(3)),
-						new ItemStack(Items.BLUE_ICE, 1 + rand.nextInt(2)), 4, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.NETHER_SPROUTS, rand.nextInt(2) + 12),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(2)),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), 6 + rand.nextInt(3)), 6, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.PACKED_ICE, 2 + rand.nextInt(2)), 8, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.ICE, 8 + rand.nextInt(3)), 16, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.SNOW, 8 + rand.nextInt(3)), 16, 6, 0.04f));
-
-		// Use citrine to buy citrine furniture items.
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.CRIMSON_ROOTS, rand.nextInt(2) + 12),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.LARGE_CITRINE_BUD.get(), 2 + rand.nextInt(1)), 2, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.WARPED_ROOTS, rand.nextInt(2) + 12),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.MEDIUM_CITRINE_BUD.get(), 3 + rand.nextInt(2)), 3, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.CRIMSON_FUNGUS, rand.nextInt(2) + 6),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 4, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.WARPED_FUNGUS, rand.nextInt(2) + 6),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 5, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.TWISTING_VINES, rand.nextInt(4) + 16),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.WEEPING_VINES, rand.nextInt(4) + 16),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.SHROOMLIGHT, rand.nextInt(2) + 4),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 
 		// Level 4 trades start here.
 		villagerLevel = 4;
+		// Buys and sells rare plants
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Items.LILY_PAD, 2), 3, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 4),
+				new ItemStack(Items.GOLDEN_APPLE, 1), 3, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 4),
-						new ItemStack(ModItems.CITRINE_BOOTS.get(), 1), 2, 12, 0.08f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.CHORUS_FLOWER, rand.nextInt(2) + 3),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 8),
-						new ItemStack(ModItems.CITRINE_CHESTPLATE.get(), 1), 2, 12, 0.08f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.POISONOUS_POTATO, rand.nextInt(3) + 12),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 5),
-						new ItemStack(ModItems.CITRINE_HELMET.get(), 1), 2, 12, 0.08f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.HANGING_ROOTS, rand.nextInt(2) + 3),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 7),
-						new ItemStack(ModItems.CITRINE_LEGGINGS.get(), 1), 2, 12, 0.08f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.SEA_PICKLE, rand.nextInt(2) + 3),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 
 		// Level 5 trades start here.
 		villagerLevel = 5;
-		// Enchanted diamond armor trades.
-		List<Integer> diamondArmorEnchantRange = List.of(20, 25);
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 6),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_BOOTS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 14),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 8),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 12),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_HELMET, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
+		// Extremely rare trades
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.WITHER_ROSE, 1),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 16), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.TORCHFLOWER, 1),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 4), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.PITCHER_PLANT, 1),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 4), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 32),
+				new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 3, 3, 0.02f));
+
 	}
 
 	public static void addChiefTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
+		// TODO
 
 		// The level of the villager, will be updated as the function goes on.
 		int villagerLevel = 0;
@@ -561,10 +571,6 @@ public class ModVillagerTrades {
 		// Level 3 trades start here.
 		villagerLevel = 3;
 		// Use citrine to buy various gem-like items
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
-				new ItemStack(Items.OBSIDIAN, 3), new ItemStack(Items.CRYING_OBSIDIAN, 3), 3, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.CRYING_OBSIDIAN, 2), new ItemStack(Items.OBSIDIAN, 2), 3, 6, 0.04f));
 		trades.get(villagerLevel)
 				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(3)),
 						new ItemStack(Items.BLUE_ICE, 1 + rand.nextInt(2)), 4, 6, 0.04f));
@@ -645,113 +651,81 @@ public class ModVillagerTrades {
 		// priceMultiplier
 		villagerLevel = 1;
 
-		// Citrine conversion trades
+		// Buys books and leather.
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.LEATHER, 8),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.BOOK, 7),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.DECORATED_POT, 1),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(4) + 8),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.BAKED_POTATO, 8 + rand.nextInt(4)),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_BLOCK.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(3) + 1),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(8) + 16),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.AMETHYST_BLOCK, rand.nextInt(2) + 4),
-						new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(7) + 1),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.RABBIT_HIDE, 6 + rand.nextInt(4)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 2), 6, 3, 0.02f));
 
 		// Level 2 trades start here.
 		villagerLevel = 2;
-		// Fancy citrine trades, for clusters and copper
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_CLUSTER.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.INK_SAC, 6 + rand.nextInt(3)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, rand.nextInt(4) + 16),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 2, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.GLOW_INK_SAC, 6 + rand.nextInt(3)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.STICK, rand.nextInt(8) + 24),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.FEATHER, 24 + rand.nextInt(8)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 6, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.GLASS_BOTTLE, 6 + rand.nextInt(2)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 6, 3, 0.02f));
+		trades.get(villagerLevel)
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 4 + rand.nextInt(2)),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 6, 3, 0.02f));
 
 		// Level 3 trades start here.
 		villagerLevel = 3;
-		// Use citrine to buy various gem-like items
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
-				new ItemStack(Items.OBSIDIAN, 3), new ItemStack(Items.CRYING_OBSIDIAN, 3), 3, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.CRYING_OBSIDIAN, 2), new ItemStack(Items.OBSIDIAN, 2), 3, 6, 0.04f));
+		// Sells enchanted books.
+		final List<Integer> l3BookEnchantRange = List.of(10, 20);
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(3)),
-						new ItemStack(Items.BLUE_ICE, 1 + rand.nextInt(2)), 4, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 8),
+						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.BOOK, 1),
+								rand.nextInt(l3BookEnchantRange.get(0), l3BookEnchantRange.get(1)), true),
+						2, 3, 0.08f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(2)),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), 6 + rand.nextInt(3)), 6, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.PACKED_ICE, 2 + rand.nextInt(2)), 8, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.ICE, 8 + rand.nextInt(3)), 16, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.SNOW, 8 + rand.nextInt(3)), 16, 6, 0.04f));
-
-		// Use citrine to buy citrine furniture items.
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.LARGE_CITRINE_BUD.get(), 2 + rand.nextInt(1)), 2, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.MEDIUM_CITRINE_BUD.get(), 3 + rand.nextInt(2)), 3, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 4, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 5, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 8),
+						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.BOOK, 1),
+								rand.nextInt(l3BookEnchantRange.get(0), l3BookEnchantRange.get(1)), true),
+						2, 3, 0.08f));
 
 		// Level 4 trades start here.
 		villagerLevel = 4;
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 4),
-						new ItemStack(ModItems.CITRINE_BOOTS.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 8),
-						new ItemStack(ModItems.CITRINE_CHESTPLATE.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 5),
-						new ItemStack(ModItems.CITRINE_HELMET.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 7),
-						new ItemStack(ModItems.CITRINE_LEGGINGS.get(), 1), 2, 12, 0.08f));
-
+		// Sells smithing templates.
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 12),
+				new ItemStack(getTrimSmithingTemplate(rand), 1), 2, 6, 0.04f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 12),
+				new ItemStack(getTrimSmithingTemplate(rand), 1), 2, 6, 0.04f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 24),
+				new ItemStack(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1), 1, 6, 0.04f));
+		
 		// Level 5 trades start here.
 		villagerLevel = 5;
-		// Enchanted diamond armor trades.
-		List<Integer> diamondArmorEnchantRange = List.of(20, 25);
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 6),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_BOOTS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
+		// Sells enchanted books.
+		final List<Integer> l5BookEnchantRange = List.of(25, 30);
+
 		trades.get(villagerLevel)
 				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 14),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 8),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
+						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(6) + 14),
+						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.BOOK, 1),
+								rand.nextInt(l5BookEnchantRange.get(0), l5BookEnchantRange.get(1)), true),
+						2, 3, 0.08f));
 		trades.get(villagerLevel)
 				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 12),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_HELMET, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
+						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(6) + 14),
+						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.BOOK, 1),
+								rand.nextInt(l5BookEnchantRange.get(0), l5BookEnchantRange.get(1)), true),
+						2, 3, 0.08f));
+
 	}
 
 	public static void addTinkererTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
@@ -768,117 +742,77 @@ public class ModVillagerTrades {
 		// priceMultiplier
 		villagerLevel = 1;
 
-		// Citrine conversion trades
+		// Buys redstone
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(4) + 8),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.REDSTONE, rand.nextInt(4) + 8),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_BLOCK.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), rand.nextInt(3) + 1),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.STONE, rand.nextInt(6) + 12),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(8) + 16),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.QUARTZ, rand.nextInt(8) + 24),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.AMETHYST_BLOCK, rand.nextInt(2) + 4),
-						new ItemStack(Items.AMETHYST_SHARD, rand.nextInt(7) + 1),
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.REDSTONE_TORCH, rand.nextInt(2) + 4),
 						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 
 		// Level 2 trades start here.
 		villagerLevel = 2;
-		// Fancy citrine trades, for clusters and copper
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModBlocks.CITRINE_CLUSTER.get(), rand.nextInt(2) + 2),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, rand.nextInt(4) + 16),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 2, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.STICK, rand.nextInt(8) + 24),
-						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 3, 6, 0.04f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.REPEATER, 3), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.COMPARATOR, 3), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.OBSERVER, 2), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.DAYLIGHT_DETECTOR, 2), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.DISPENSER, 2), 4, 3, 0.02f));
 
 		// Level 3 trades start here.
 		villagerLevel = 3;
-		// Use citrine to buy various gem-like items
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
-				new ItemStack(Items.OBSIDIAN, 3), new ItemStack(Items.CRYING_OBSIDIAN, 3), 3, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.CRYING_OBSIDIAN, 2), new ItemStack(Items.OBSIDIAN, 2), 3, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(3)),
-						new ItemStack(Items.BLUE_ICE, 1 + rand.nextInt(2)), 4, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1 + rand.nextInt(2)),
-						new ItemStack(ModItems.CITRINE_SHARD.get(), 6 + rand.nextInt(3)), 6, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.PACKED_ICE, 2 + rand.nextInt(2)), 8, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.ICE, 8 + rand.nextInt(3)), 16, 6, 0.04f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
-				new ItemStack(Items.SNOW, 8 + rand.nextInt(3)), 16, 6, 0.04f));
 
-		// Use citrine to buy citrine furniture items.
 		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.LARGE_CITRINE_BUD.get(), 2 + rand.nextInt(1)), 2, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.MEDIUM_CITRINE_BUD.get(), 3 + rand.nextInt(2)), 3, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 4, 6, 0.04f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2 + rand.nextInt(1)),
-						new ItemStack(ModBlocks.SMALL_CITRINE_BUD.get(), 4 + rand.nextInt(3)), 5, 6, 0.04f));
+				.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, rand.nextInt(8) + 20),
+						new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.LIGHTNING_ROD, 4), 4, 3, 0.02f));
 
 		// Level 4 trades start here.
 		villagerLevel = 4;
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 4),
-						new ItemStack(ModItems.CITRINE_BOOTS.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 8),
-						new ItemStack(ModItems.CITRINE_CHESTPLATE.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 5),
-						new ItemStack(ModItems.CITRINE_HELMET.get(), 1), 2, 12, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(2) + 7),
-						new ItemStack(ModItems.CITRINE_LEGGINGS.get(), 1), 2, 12, 0.08f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Blocks.REDSTONE_ORE, 3),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Blocks.REDSTONE_LAMP, 4), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 2),
+				new ItemStack(Blocks.REDSTONE_LAMP, 4), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Blocks.TNT, 3), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.IRON_DOOR, 2),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.IRON_TRAPDOOR, 1),
+				new ItemStack(ModItems.CUT_CITRINE.get(), 1), 4, 3, 0.02f));
 
 		// Level 5 trades start here.
 		villagerLevel = 5;
-		// Enchanted diamond armor trades.
-		List<Integer> diamondArmorEnchantRange = List.of(20, 25);
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 6),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_BOOTS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 14),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 8),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
-		trades.get(villagerLevel)
-				.add((trader, rand) -> new MerchantOffer(
-						new ItemStack(ModItems.CUT_CITRINE.get(), rand.nextInt(4) + 12),
-						EnchantmentHelper.enchantItem(rand, new ItemStack(Items.DIAMOND_HELMET, 1),
-								rand.nextInt(diamondArmorEnchantRange.get(0), diamondArmorEnchantRange.get(1)), true),
-						1, 3, 0.08f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Items.RAIL, 12 + rand.nextInt(4)), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Items.ACTIVATOR_RAIL, 4 + rand.nextInt(2)), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Items.POWERED_RAIL, 4 + rand.nextInt(2)), 4, 3, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(ModItems.CUT_CITRINE.get(), 1),
+				new ItemStack(Items.DETECTOR_RAIL, 4 + rand.nextInt(2)), 4, 3, 0.02f));
+
 	}
 
 	// Returns a random type of glass
-	public static Block getGlassColor(RandomSource rand) {
-		return GLASS_TYPES[rand.nextInt(GLASS_TYPES.length)];
+	public static Block getStainedGlassColor(RandomSource rand) {
+		return STAINED_GLASS_TYPES[rand.nextInt(STAINED_GLASS_TYPES.length)];
+	}
+
+	// Returns a random armor template
+	public static Item getTrimSmithingTemplate(RandomSource rand) {
+		return TRIM_SMITHING_TEMPLATE_ITEMS[rand.nextInt(TRIM_SMITHING_TEMPLATE_ITEMS.length)];
 	}
 }

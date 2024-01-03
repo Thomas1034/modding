@@ -22,7 +22,8 @@ import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SeaWingsItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
-import com.thomas.zirconmod.item.custom.VigilEyeItem;
+import com.thomas.zirconmod.util.ModTags;
+import com.thomas.zirconmod.item.custom.SearchEyeItem;
 
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -31,11 +32,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SolidBucketItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SwordItem;
@@ -99,7 +102,7 @@ public class ModItems {
 
 	// Sculk items
 	public static final RegistryObject<Item> VIGIL_EYE = ITEMS.register("vigil_eye",
-			() -> new VigilEyeItem(new Item.Properties().stacksTo(16)));
+			() -> new SearchEyeItem(new Item.Properties().stacksTo(16), ModTags.Structures.VIGIL_EYE_LOCATED));
 
 	public static final RegistryObject<Item> ECHO_POWDER = ITEMS.register("echo_powder",
 			() -> new Item(new Item.Properties()));
@@ -203,6 +206,9 @@ public class ModItems {
 	public static final RegistryObject<Item> NIMBULA_SPAWN_EGG = ITEMS.register("nimbula_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.NIMBULA_ENTITY, 0xffffff, 0x0092d6, new Item.Properties()));
 
+	public static final RegistryObject<Item> WISP_SPAWN_EGG = ITEMS.register("wisp_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntities.WISP_ENTITY, 0xffffff, 0x3333cc, new Item.Properties()));
+
 	public static final RegistryObject<Item> CUT_CITRINE = ITEMS.register("cut_citrine",
 			() -> new Item(new Item.Properties()));
 
@@ -220,13 +226,20 @@ public class ModItems {
 	public static final RegistryObject<Item> DRAGONFLY_WINGS = ITEMS.register("dragonfly_wings",
 			() -> new DragonflyWingsItem(new Item.Properties().durability(1000)));
 
-    public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
-            () -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties()));
-    public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
-            () -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties()));
-	
+	public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
+			() -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties()));
+	public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
+			() -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties()));
+
 	public static final RegistryObject<Item> SPEEDOMETER = ITEMS.register("speedometer",
 			() -> new SpeedometerItem(new Item.Properties()));
+
+	public static final RegistryObject<Item> PALM_SIGN = ITEMS.register("palm_sign",
+			() -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.PALM_SIGN.get(),
+					ModBlocks.PALM_WALL_SIGN.get()));
+	public static final RegistryObject<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
+			() -> new HangingSignItem(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
+					new Item.Properties().stacksTo(16)));
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

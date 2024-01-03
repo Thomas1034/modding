@@ -40,7 +40,9 @@ public abstract class AbstractWingsItem extends ElytraItem {
 			if (nextFlightTick % 10 == 0) {
 				if (nextFlightTick % 20 == 0) {
 					decreaseDurability(stack, entity);
+					entity.level().playSound(entity, entity.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, null, 1, 1);
 				}
+				
 				entity.gameEvent(net.minecraft.world.level.gameevent.GameEvent.ELYTRA_GLIDE);
 			}
 		}

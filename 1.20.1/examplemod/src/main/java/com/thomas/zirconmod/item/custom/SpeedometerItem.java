@@ -24,6 +24,8 @@ public class SpeedometerItem extends Item {
 		{
 			Vec3 vel = Utilities.deltaMotion(player);
 			player.sendSystemMessage(Component.literal("Velocity: " + vel.x + " " + vel.y + " " + vel.z));
+			player.sendSystemMessage(Component.literal("Speed: " + vel.length()));
+			
 		}
 		
 		return super.use(level,  player, hand);

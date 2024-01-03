@@ -5,8 +5,8 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
-import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
+import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
 import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
@@ -27,15 +27,18 @@ import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -47,6 +50,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 
 		// Register simple blocks with the same texture on all sides
+		blockWithItem(ModBlocks.WISP_BED);
 		blockWithItem(ModBlocks.CLOUD);
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
 		blockWithItem(ModBlocks.ZIRCON_BLOCK);
@@ -146,6 +150,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		cubeBlockWithItem(ModBlocks.CARPENTRY_TABLE, "carpentry_table");
 		// Nimbula Polyp
 		makeNimbulaPolyp(ModBlocks.NIMBULA_POLYP.get(), "nimbula_polyp", "nimbula_polyp_stage");
+
+		signBlock(((StandingSignBlock) ModBlocks.PALM_SIGN.get()), ((WallSignBlock) ModBlocks.PALM_WALL_SIGN.get()),
+				blockTexture(ModBlocks.PALM_PLANKS.get()));
+
+		hangingSignBlock(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
+				blockTexture(ModBlocks.PALM_PLANKS.get()));
+		
+		// Palm Sapling
+		simpleBlockWithItem(ModBlocks.PALM_SAPLING.get(),
+				models().cross(blockTexture(ModBlocks.PALM_SAPLING.get()).getPath(),
+						blockTexture(ModBlocks.PALM_SAPLING.get())).renderType("cutout"));
+		
+	}
+
+	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+		ModelFile sign = models().sign(name(signBlock), texture);
+		hangingSignBlock(signBlock, wallSignBlock, sign);
+	}
+
+	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
+		simpleBlock(signBlock, sign);
+		simpleBlock(wallSignBlock, sign);
+	}
+
+	private String name(Block block) {
+		return key(block).getPath();
+	}
+
+	private ResourceLocation key(Block block) {
+		return ForgeRegistries.BLOCKS.getKey(block);
 	}
 
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject) {

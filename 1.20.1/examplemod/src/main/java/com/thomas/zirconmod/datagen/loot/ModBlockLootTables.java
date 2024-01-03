@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
+import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -35,7 +36,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropOther(ModBlocks.WEATHER_PASSAGE_BLOCK.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_CLOUD_BRICKS.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS.get(), Items.AIR);
-
+		this.dropSelf(ModBlocks.WISP_BED.get());
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
 		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
 		this.dropSelf(ModBlocks.ZIRCONIUM_BLOCK.get());
@@ -74,10 +75,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.CITRINE_LANTERN.get());
 		this.dropSelf(ModBlocks.PALM_TRUNK.get());
 		this.dropSelf(ModBlocks.PALM_FROND.get());
+		this.dropSelf(ModBlocks.PALM_SAPLING.get());
 		this.dropOther(ModBlocks.PALM_FLOOR_FROND.get(), ModBlocks.PALM_FROND.get());
-		this.add(ModBlocks.PALM_FRUIT.get(),
-				block -> createOreDrops(ModBlocks.PALM_FRUIT.get(), ModItems.PALM_SEEDS.get(), List.of(3, 5)));
+		
+		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.PALM_FRUIT.get()).setProperties(StatePropertiesPredicate.Builder
+						.properties().hasProperty(PalmFruitBlock.AGE, PalmFruitBlock.MAX_AGE));
 
+		this.add(ModBlocks.PALM_FRUIT.get(), createCropDrops(ModBlocks.PALM_FRUIT.get(),
+				Items.AIR, ModItems.PALM_SEEDS.get(), palmFruitLootBuilder));
+
+		
 		this.dropOther(ModBlocks.CITRINE_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.dropOther(ModBlocks.CITRINE_WALL_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.add(ModBlocks.PALM_SLAB.get(), block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
@@ -85,6 +93,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.CLOUD_BRICK_SLAB.get()));
 		this.add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				block -> createSlabItemTable(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()));
+
+		this.add(ModBlocks.PALM_SIGN.get(), block -> createSingleItemTable(ModItems.PALM_SIGN.get()));
+		this.add(ModBlocks.PALM_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.PALM_SIGN.get()));
+		this.add(ModBlocks.PALM_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
+		this.add(ModBlocks.PALM_WALL_HANGING_SIGN.get(),
+				block -> createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
 
 		this.dropOther(ModBlocks.BUDDING_CITRINE.get(), Items.AIR);
 		this.add(ModBlocks.CITRINE_CLUSTER.get(),
@@ -103,12 +117,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 				ModItems.ZIRCON_SHARD.get(), List.of(3, 5)));
 
 		// Blueberry crop block
-		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
+		LootItemCondition.Builder blueberryLootBuilder = LootItemBlockStatePropertyCondition
 				.hasBlockStateProperties(ModBlocks.BLUEBERRY_CROP.get()).setProperties(StatePropertiesPredicate.Builder
 						.properties().hasProperty(BlueberryCropBlock.AGE, BlueberryCropBlock.MAX_AGE));
 
 		this.add(ModBlocks.BLUEBERRY_CROP.get(), createCropDrops(ModBlocks.BLUEBERRY_CROP.get(),
-				ModItems.BLUEBERRY.get(), ModItems.BLUEBERRY_SEEDS.get(), lootitemcondition$builder));
+				ModItems.BLUEBERRY.get(), ModItems.BLUEBERRY_SEEDS.get(), blueberryLootBuilder));
 
 		// Torchflower stuff
 		this.dropSelf(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
@@ -130,13 +144,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 	}
 
-	protected LootTable.Builder createOreDrops(Block pBlock, Item item, List<Integer> range) {
-		return createSilkTouchDispatchTable(pBlock,
-				this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)
+	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {
+		return createSilkTouchDispatchTable(block,
+				this.applyExplosionDecay(block, LootItem.lootTableItem(item)
 						.apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1))))
 						.apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
+	//
 	protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {
 		return createSilkTouchDispatchTable(pBlock, this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
 	}

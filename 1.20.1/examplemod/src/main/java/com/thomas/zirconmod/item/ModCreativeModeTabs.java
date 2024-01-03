@@ -40,6 +40,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
 						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
+						pOutput.accept(ModItems.WISP_SPAWN_EGG.get());
 						pOutput.accept(ModItems.PALM_BOAT.get());
 						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
 					}).build());
@@ -59,6 +60,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.PALM_TRUNK.get());
 						pOutput.accept(ModBlocks.PALM_FROND.get());
 						pOutput.accept(ModBlocks.PALM_FRUIT.get());
+						pOutput.accept(ModBlocks.PALM_SAPLING.get());
 						pOutput.accept(ModBlocks.PALM_LOG.get());
 						pOutput.accept(ModBlocks.PALM_WOOD.get());
 						pOutput.accept(ModBlocks.STRIPPED_PALM_LOG.get());
@@ -72,6 +74,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.PALM_FENCE.get());
 						pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
 						pOutput.accept(ModBlocks.PALM_PRESSURE_PLATE.get());
+						pOutput.accept(ModItems.PALM_SIGN.get());
+						pOutput.accept(ModItems.PALM_HANGING_SIGN.get());
 						pOutput.accept(ModBlocks.CITRINE_BLOCK.get());
 						pOutput.accept(ModBlocks.BUDDING_CITRINE.get());
 						pOutput.accept(ModBlocks.CITRINE_CLUSTER.get());

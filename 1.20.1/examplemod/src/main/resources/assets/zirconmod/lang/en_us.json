@@ -17,12 +17,14 @@
 	"item.zirconmod.blueberry": "Blueberry",
 	"item.zirconmod.mole_spawn_egg": "Mole Spawn Egg",
 	"item.zirconmod.nimbula_spawn_egg": "Nimbula Spawn Egg",
+	"item.zirconmod.wisp_spawn_egg": "Wisp Spawn Egg",
 	"item.zirconmod.nimbula_gel": "Nimbula Gel",
 	"item.zirconmod.cut_citrine": "Cut Citrine",
 	"item.zirconmod.citrine_shard": "Citrine Shard",
 	"item.zirconmod.feather_wings": "Feather Wings",
 	"item.zirconmod.palm_boat": "Palm Boat",
 	"item.zirconmod.palm_chest_boat": "Palm Boat with Chest",
+	"item.zirconmod.quest_eye": "Eye of Questing",
 	
 	"item.zirconmod.copper_sword": "Copper Sword",
 	"item.zirconmod.copper_pickaxe": "Copper Pickaxe",
@@ -98,6 +100,7 @@
 	"block.zirconmod.cloud_brick_pillar": "Cloud Brick Pillar",
 	"block.zirconmod.chiseled_thunder_cloud_bricks": "Chiseled Thunder Cloud Bricks",
 	"block.zirconmod.thunder_cloud_brick_pillar": "Thunder Cloud Brick Pillar",
+	"block.zirconmod.wisp_bed": "Wisp Bed",
 	
 	
 	"block.zirconmod.palm_trunk": "Palm Trunk",
@@ -123,6 +126,10 @@
 	"block.zirconmod.palm_trapdoor": "Palm Trapdoor",
 	"block.zirconmod.palm_pressure_plate": "Palm Pressure Plate",
 	"block.zirconmod.palm_button": "Palm Button",
+	"block.zirconmod.palm_hanging_sign": "Palm Hanging Sign",
+	"block.zirconmod.palm_sign": "Palm Sign",
+	
+	
 	"block.zirconmod.nimbula_polyp": "Nimbula Polyp",
 	"block.zirconmod.carpentry_table": "Carpentry Table",
 	"block.zirconmod.architect_worksite": "Architect Worksite",

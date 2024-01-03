@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-01T12:00:57.1984009	Item Models: zirconmod
+// 1.20.1	2024-01-01T20:18:36.1483113	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 1478198d944fe5cede2e678f28847d8b1e791707 assets/zirconmod/models/item/citrine_axe.json
@@ -47,9 +47,12 @@ b240aa1aedfbe71e8acc7678bfe50f0a5d600193 assets/zirconmod/models/item/palm_door.
 d9e634eba0bd99f9606c9bad7968eb50465a2cd2 assets/zirconmod/models/item/palm_fence_gate.json
 71820d0d437156507923137e14e1f1f7c70aa2ba assets/zirconmod/models/item/palm_frond.json
 fd0b355932eec8cf5ea1aab44082b260185f3f33 assets/zirconmod/models/item/palm_fruit.json
+60f2a51daf48e40800e15cf2637d1ddb7ce212ea assets/zirconmod/models/item/palm_hanging_sign.json
 2c57e5f394b64d42cc49ed2acef5359c0ca775e1 assets/zirconmod/models/item/palm_log.json
 a950ddbd3f3814cab94982f309050e6392dc2ae2 assets/zirconmod/models/item/palm_pressure_plate.json
+5afc7f67b1e4097b6cbcaf55860dc70a4c0b77b9 assets/zirconmod/models/item/palm_sapling.json
 7408f520df3b8da8cc791604252eaa77b1de21ef assets/zirconmod/models/item/palm_seeds.json
+45125f348fb3d1967827a0cbca8e5d0130487b53 assets/zirconmod/models/item/palm_sign.json
 29adecbe501f9e3ef2a93b7d0dd05a6d7c803050 assets/zirconmod/models/item/palm_slab.json
 e32d10280c52eaf758a22e2862b6123f2aca5048 assets/zirconmod/models/item/palm_stairs.json
 efbd81eabe901c0ea562c24fafe930345e26b09b assets/zirconmod/models/item/palm_trapdoor.json
@@ -68,6 +71,7 @@ a8d08b5ad623fbd138be468271b321ec062e4d42 assets/zirconmod/models/item/thunder_cl
 f70ea27f9b7a47ba7e48ee8cc8b91be92b8e2a65 assets/zirconmod/models/item/thunder_cloud_brick_wall.json
 ca8b179ad01ab095d4433d8d9de96021b907c6ba assets/zirconmod/models/item/totem_of_returning.json
 4ddfbe1a7085a6c39544792980924c99efa04cb9 assets/zirconmod/models/item/vigil_eye.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/wisp_spawn_egg.json
 9966e89a7f0f8c37fd93a7fc136f9337c7f6b589 assets/zirconmod/models/item/zircon.json
 bdedd45d8ef51b0875dd0a690e8668886322eb8b assets/zirconmod/models/item/zirconium_axe.json
 d0fe99e9c266aeef06ed45452aff39dbd2cdbc7c assets/zirconmod/models/item/zirconium_boots.json

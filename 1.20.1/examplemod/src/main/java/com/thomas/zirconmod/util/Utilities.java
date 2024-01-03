@@ -1,9 +1,11 @@
 package com.thomas.zirconmod.util;
 
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
@@ -13,6 +15,10 @@ public class Utilities {
 
 	public static void addParticlesAroundEntity(Entity entity, ParticleOptions particle, double boxSize) {
 		Level level = entity.level();
+		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
+	}
+	
+	public static void addParticlesAroundEntity(ServerLevel level, Entity entity, ParticleOptions particle, double boxSize) {
 		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
 	}
 
@@ -44,10 +50,9 @@ public class Utilities {
 
 		return at.add(endPos);
 	}
-	
+
 	// Returns a vector representing a player's motion
-	public static Vec3 deltaMotion(Player player)
-	{
+	public static Vec3 deltaMotion(Player player) {
 		return new Vec3(player.getX() - player.xOld, player.getY() - player.yOld, player.getZ() - player.zOld);
 	}
 
@@ -113,13 +118,11 @@ public class Utilities {
 		}
 
 	}
-	
-
 
 	public static byte max(byte a, byte b) {
 		return a > b ? a : b;
 	}
-	
+
 	public static byte min(byte a, byte b) {
 		return a < b ? a : b;
 	}
@@ -127,24 +130,31 @@ public class Utilities {
 	public static int max(int a, int b) {
 		return a > b ? a : b;
 	}
-	
+
 	public static int min(int a, int b) {
 		return a < b ? a : b;
 	}
-	
+
 	public static float max(float a, float b) {
 		return a > b ? a : b;
 	}
-	
+
 	public static float min(float a, float b) {
 		return a < b ? a : b;
 	}
-	
+
 	public static double max(double a, double b) {
 		return a > b ? a : b;
 	}
-	
+
 	public static double min(double a, double b) {
 		return a < b ? a : b;
+	}
+
+	public static boolean checkEqualStates(BlockState blockstate, BlockState target) {
+		boolean isCorrectBlock = target.is(blockstate.getBlock());
+		boolean doAllMatch = blockstate.getProperties().stream().map((property) -> target.hasProperty(property)
+				&& target.getValue(property).equals(blockstate.getValue(property))).allMatch((bool) -> bool);
+		return isCorrectBlock && doAllMatch;
 	}
 }

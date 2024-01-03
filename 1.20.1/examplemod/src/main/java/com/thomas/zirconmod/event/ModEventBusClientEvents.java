@@ -1,6 +1,7 @@
 package com.thomas.zirconmod.event;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.entity.client.ModModelLayers;
 import com.thomas.zirconmod.entity.client.MoleModel;
 import com.thomas.zirconmod.entity.client.NimbulaModel;
@@ -11,6 +12,8 @@ import com.thomas.zirconmod.entity.client.WoodGolemModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
@@ -30,6 +33,12 @@ public class ModEventBusClientEvents {
 		event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
 		event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
+	}
+
+	@SubscribeEvent
+	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+		event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
 	}
 
 	// Credit for this goes to LocusAzzurro

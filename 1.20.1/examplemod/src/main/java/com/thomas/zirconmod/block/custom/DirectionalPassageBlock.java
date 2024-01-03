@@ -30,6 +30,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class DirectionalPassageBlock extends DirectionalBlock {
 
 	public static final BooleanProperty SOLID = BooleanProperty.create("solid");
+	private static final double EPSILON = Math.pow(2, -4);
 
 	private BiFunction<Level, BlockPos, Boolean> isSolid;
 
@@ -43,6 +44,12 @@ public class DirectionalPassageBlock extends DirectionalBlock {
 		return false;
 	}
 
+	@Override
+	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+		return Shapes.empty();
+	}
+
+	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		if (context instanceof EntityCollisionContext entityCollisionContext) {
 			Entity entity = entityCollisionContext.getEntity();
@@ -56,24 +63,26 @@ public class DirectionalPassageBlock extends DirectionalBlock {
 				Vec3 entityPos = entity.position();
 
 				Vec3 blockCenter = Vec3.atCenterOf(pos);
+				Vec3 facingCenter = blockCenter.subtract(new Vec3(facing.step()));
 
-				Vec3 distFromCenter = blockCenter.subtract(entityPos);
-
+				Vec3 distFromCenter = facingCenter.subtract(entityPos);
 				boolean canPass = !state.getValue(SOLID);
-
 				if (facingAxis == Axis.X) {
-					if (distFromCenter.x < 0 && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.x > 0 && facing.getAxisDirection() == AxisDirection.POSITIVE) {
+					if (distFromCenter.x < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
+							|| distFromCenter.x > -(1 + EPSILON)
+									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
 						canPass = true;
 					}
 				} else if (facingAxis == Axis.Y) {
-					if (distFromCenter.y < 0 && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.y > 0 && facing.getAxisDirection() == AxisDirection.POSITIVE) {
+					if (distFromCenter.y < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
+							|| distFromCenter.y > -(1 + EPSILON)
+									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
 						canPass = true;
 					}
 				} else if (facingAxis == Axis.Z) {
-					if (distFromCenter.z < 0 && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.z > 0 && facing.getAxisDirection() == AxisDirection.POSITIVE) {
+					if (distFromCenter.z < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
+							|| distFromCenter.z > -(1 + EPSILON)
+									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
 						canPass = true;
 					}
 				} else {

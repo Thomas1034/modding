@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.thomas.zirconmod.effect.ModEffects;
+import com.thomas.zirconmod.entity.ai.WispFindHomeGoal;
+import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.villager.ModVillagers;
@@ -20,29 +23,33 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.InteractGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal;
-import net.minecraft.world.entity.ai.goal.TradeWithPlayerGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -67,21 +74,55 @@ public class WispEntity extends AbstractVillager {
 
 	public WispEntity(EntityType<? extends AbstractVillager> p_35267_, Level p_35268_) {
 		super(p_35267_, p_35268_);
+		this.moveControl = new FlyingMoveControl(this, 20, true);
+		this.setNoGravity(true);
 	}
+	/*
+	 * protected void registerGoals() { this.goalSelector.addGoal(0, new
+	 * FloatGoal(this)); this.goalSelector.addGoal(1, new
+	 * TradeWithPlayerGoal(this)); this.goalSelector.addGoal(1, new
+	 * LookAtTradingPlayerGoal(this)); this.goalSelector.addGoal(2, new
+	 * WispEntity.WanderToPositionGoal(this, 2.0D, 0.35D));
+	 * this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
+	 * this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 0.35D));
+	 * this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F,
+	 * 1.0F)); this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class,
+	 * 8.0F)); }
+	 */
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
-		this.goalSelector.addGoal(2, new WispEntity.WanderToPositionGoal(this, 2.0D, 0.35D));
-		this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
-		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 0.35D));
-		this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		
+		//this.goalSelector.addGoal(2, new WispGoHomeWhenThunderingGoal(this, 1.2));
+		this.goalSelector.addGoal(3, new WispFindHomeGoal(this, 1.5));
+		this.goalSelector.addGoal(4, new WithinBoundsFlyingGoal(this, 1.0, -48));
+
 	}
 
 	@Override
+	protected PathNavigation createNavigation(Level p_218342_) {
+		FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, p_218342_);
+		flyingpathnavigation.setCanOpenDoors(false);
+		flyingpathnavigation.setCanFloat(true);
+		flyingpathnavigation.setCanPassDoors(true);
+		return flyingpathnavigation;
+	}
+
+	@SuppressWarnings("resource")
+	@Override
 	public void tick() {
+
+		// Regenerates health.
+		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0) {
+			this.heal(1.0F);
+		}
+
+		// If below the world limit, add levitation!
+		if (this.getEyePosition().y < this.level().getMinBuildHeight() + 8) {
+			this.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 5, 15));
+		}
 
 		super.tick();
 		// Restocks six times a day.
@@ -123,8 +164,55 @@ public class WispEntity extends AbstractVillager {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Animal.createLivingAttributes().add(Attributes.MAX_HEALTH, 20D).add(Attributes.FOLLOW_RANGE, 24D)
-				.add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.ARMOR_TOUGHNESS, 0.1f)
+				.add(Attributes.FLYING_SPEED, 0.25D).add(Attributes.ARMOR_TOUGHNESS, 0.1f)
 				.add(Attributes.ATTACK_KNOCKBACK, 0.5f).add(Attributes.ATTACK_DAMAGE, 2f);
+	}
+
+	@Override
+	public boolean hurt(DamageSource damageSource, float f) {
+		Entity entity = damageSource.getDirectEntity();
+		// Wisps are immune to projectiles, unless certain conditions are true.
+		if (entity instanceof Projectile) {
+			// Not immune to spectral arrows.
+			if (entity instanceof SpectralArrow)
+				return super.hurt(damageSource, f);
+			// Not immune if it has amethyst glow.
+			else if (this.hasEffect(ModEffects.CITRINE_GLOW.get()))
+				return super.hurt(damageSource, f);
+			// Otherwise, it is immune
+			else
+				return false;
+		}
+		// If it isn't an arrow, is susceptible.
+		return super.hurt(damageSource, f);
+	}
+
+//	@Override
+//	public void onRemovedFromWorld() {
+//		super.onRemovedFromWorld();
+//		// Sets the home to being unoccupied
+//		BlockPos homePos = this.getHome();
+//		// Is the home position set?
+//		if (homePos == null) {
+//			return;
+//		}
+//		
+//		// Is there a bed there?
+//		Level level = this.level();
+//		if (level.getBlockState(homePos).is(ModBlocks.WISP_BED.get())) {
+//			// Sets the bed to unoccupied.
+//			level.setBlockAndUpdate(homePos, ModBlocks.WISP_BED.get().defaultBlockState());
+//		}
+//	}
+
+	@Override
+	public boolean isInvulnerableTo(DamageSource d) {
+		return super.isInvulnerableTo(d) || d.is(DamageTypeTags.IS_FALL);
+	}
+
+	@Override
+	protected float getStandingEyeHeight(Pose pose, EntityDimensions dims) {
+		return this.isBaby() ? 0.25F : 0.5F;
 	}
 
 	@Nullable
@@ -144,7 +232,10 @@ public class WispEntity extends AbstractVillager {
 	@SuppressWarnings("resource")
 	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
 		ItemStack itemstack = p_35856_.getItemInHand(p_35857_);
-		if (!itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+		//System.out.println("This wisp's home is: " + this.getHome());
+		
+		// The villager will not trade if it is thundering.
+		if (!this.level().isThundering() && itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
 			if (p_35857_ == InteractionHand.MAIN_HAND) {
 				p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
@@ -169,7 +260,8 @@ public class WispEntity extends AbstractVillager {
 		VillagerProfession profession = this.getProfession();
 
 		int skill = this.getSkillLevel();
-		System.out.println("Updating trades for skill level " + this.getSkillLevel());
+		// System.out.println("Updating trades for skill level " +
+		// this.getSkillLevel());
 		Int2ObjectMap<VillagerTrades.ItemListing[]> professionTrades = VillagerTrades.TRADES.get(profession);
 
 		if (professionTrades != null) {
@@ -188,6 +280,9 @@ public class WispEntity extends AbstractVillager {
 		tag.putInt("Type", this.getTypeVariant());
 		tag.putInt("Skill", this.getSkillLevel());
 		tag.putInt("SoldOutTrades", this.soldOutTrades);
+		
+
+		//tag.putInt("HomeX", this.getHomePos());
 
 		if (this.wanderTarget != null) {
 			tag.put("WanderTarget", NbtUtils.writeBlockPos(this.wanderTarget));
@@ -205,12 +300,15 @@ public class WispEntity extends AbstractVillager {
 		this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Type"));
 
 		this.entityData.set(SKILL_LEVEL, tag.getInt("Skill"));
-
+		
+		
 		if (tag.contains("SoldOutTrades")) {
 			this.soldOutTrades = tag.getInt("SoldOutTrades");
 		} else {
 			this.soldOutTrades = 0;
 		}
+		
+
 
 		this.setAge(Math.max(0, this.getAge()));
 	}
@@ -244,12 +342,16 @@ public class WispEntity extends AbstractVillager {
 		return this.isTrading() ? SoundEvents.WANDERING_TRADER_TRADE : SoundEvents.WANDERING_TRADER_AMBIENT;
 	}
 
-	protected SoundEvent getHurtSound(DamageSource p_35870_) {
-		return SoundEvents.WANDERING_TRADER_HURT;
+	protected SoundEvent getHurtSound(DamageSource p_218369_) {
+		return SoundEvents.ALLAY_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.WANDERING_TRADER_DEATH;
+		return SoundEvents.ALLAY_DEATH;
+	}
+
+	protected float getSoundVolume() {
+		return 0.4F;
 	}
 
 	protected SoundEvent getDrinkingSound(ItemStack p_35865_) {
@@ -284,12 +386,11 @@ public class WispEntity extends AbstractVillager {
 
 	public int getSkillLevel() {
 		int level = this.entityData.get(SKILL_LEVEL);
-		if (level < 1)
-		{
+		if (level < 1) {
 			this.setSkillLevel(1);
 			return 1;
 		}
-		
+
 		return level;
 	}
 

@@ -29,10 +29,10 @@ public class ModEntities {
 					.sized(1.0f, 2.0f).build(new ResourceLocation(ZirconMod.MOD_ID, "wood_golem").toString()));
 
 	public static final RegistryObject<EntityType<NimbulaEntity>> NIMBULA_ENTITY = ENTITY_TYPES.register("nimbula",
-			() -> EntityType.Builder.of(NimbulaEntity::new, MobCategory.CREATURE).sized(1.5f, 2.0f).build("nimbula"));
+			() -> EntityType.Builder.of(NimbulaEntity::new, MobCategory.CREATURE).sized(1.0f, 1.5f).build("nimbula"));
 
 	public static final RegistryObject<EntityType<WispEntity>> WISP_ENTITY = ENTITY_TYPES.register("wisp",
-			() -> EntityType.Builder.of(WispEntity::new, MobCategory.CREATURE).sized(1.5f, 2.0f).build("wisp"));
+			() -> EntityType.Builder.of(WispEntity::new, MobCategory.CREATURE).sized(0.9f, 0.9f).build("wisp"));
 
 	public static final RegistryObject<EntityType<ModBoatEntity>> MOD_BOAT = ENTITY_TYPES.register("mod_boat",
 			() -> EntityType.Builder.<ModBoatEntity>of(ModBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f)

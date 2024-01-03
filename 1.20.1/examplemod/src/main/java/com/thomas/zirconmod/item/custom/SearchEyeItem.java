@@ -1,7 +1,5 @@
 package com.thomas.zirconmod.item.custom;
 
-import com.thomas.zirconmod.util.ModTags;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -9,6 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -17,12 +16,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
-public class VigilEyeItem extends Item {
-
-	public VigilEyeItem(Properties p_41383_) {
+public class SearchEyeItem extends Item {
+	
+	private TagKey<Structure> located;
+	
+	public SearchEyeItem(Properties p_41383_, TagKey<Structure> located) {
 		super(p_41383_);
-		
+		this.located = located;
 	}
 	
 	
@@ -33,7 +35,7 @@ public class VigilEyeItem extends Item {
 
 		if (level instanceof ServerLevel) {
 			ServerLevel serverlevel = (ServerLevel)level;
-			BlockPos blockpos = serverlevel.findNearestMapStructure(ModTags.Structures.VIGIL_EYE_LOCATED, player.blockPosition(), 100, false);
+			BlockPos blockpos = serverlevel.findNearestMapStructure(this.located, player.blockPosition(), 100, false);
 
 			if (blockpos != null) {
 				EyeOfEnder eyeofender = new EyeOfEnder(level, player.getX(), player.getY(0.5D), player.getZ());

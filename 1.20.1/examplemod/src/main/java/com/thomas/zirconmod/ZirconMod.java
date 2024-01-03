@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.datagen.loot.ModLootModifiers;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
@@ -19,6 +20,8 @@ import com.thomas.zirconmod.painting.ModPaintings;
 import com.thomas.zirconmod.sound.ModSounds;
 import com.thomas.zirconmod.util.WoodGolemPlacer;
 import com.thomas.zirconmod.villager.ModVillagers;
+import com.thomas.zirconmod.worldgen.tree.ModFoliagePlacers;
+import com.thomas.zirconmod.worldgen.tree.ModTrunkPlacerTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -61,8 +64,13 @@ public class ZirconMod {
 		ModEnchantments.register(modEventBus);
 		ModEffects.register(modEventBus);
 
+        ModBlockEntities.register(modEventBus);
+
 		ModLootModifiers.register(modEventBus);
 		ModVillagers.register(modEventBus);
+
+        ModTrunkPlacerTypes.register(modEventBus);
+        ModFoliagePlacers.register(modEventBus);
 
 		ModSounds.register(modEventBus);
 		ModEntities.register(modEventBus);

@@ -1,0 +1,85 @@
+package com.thomas.zirconmod.worldgen;
+
+import java.util.List;
+
+import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.worldgen.tree.custom.PalmFoliagePlacer;
+import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.GeodeBlockSettings;
+import net.minecraft.world.level.levelgen.GeodeCrackSettings;
+import net.minecraft.world.level.levelgen.GeodeLayerSettings;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+
+public class ModConfiguredFeatures {
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_ZIRCON_ORE_KEY = registerKey("zircon_ore");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_CITRINE_GEODE_KEY = registerKey("citrine_geode");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_KEY = registerKey("palm");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_JUNGLE_KEY = registerKey("palm_jungle");
+
+	
+	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+		RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+		List<OreConfiguration.TargetBlockState> overworldZirconOres = List.of(
+				OreConfiguration.target(stoneReplaceable, ModBlocks.ZIRCON_ORE.get().defaultBlockState()),
+				OreConfiguration.target(deepslateReplaceables,
+						ModBlocks.DEEPSLATE_ZIRCON_ORE.get().defaultBlockState()));
+
+		register(context, OVERWORLD_ZIRCON_ORE_KEY, Feature.ORE, new OreConfiguration(overworldZirconOres, 12));
+		register(context, OVERWORLD_CITRINE_GEODE_KEY, Feature.GEODE, new GeodeConfiguration(
+				new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
+						BlockStateProvider.simple(ModBlocks.CITRINE_BLOCK.get()),
+						BlockStateProvider.simple(ModBlocks.BUDDING_CITRINE.get()),
+						BlockStateProvider.simple(Blocks.CALCITE), BlockStateProvider.simple(Blocks.SMOOTH_BASALT),
+						List.of(ModBlocks.SMALL_CITRINE_BUD.get().defaultBlockState(),
+								ModBlocks.MEDIUM_CITRINE_BUD.get().defaultBlockState(),
+								ModBlocks.LARGE_CITRINE_BUD.get().defaultBlockState(),
+								ModBlocks.CITRINE_CLUSTER.get().defaultBlockState()),
+						BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
+				new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D,
+				true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1));
+
+		register(context, PALM_KEY, Feature.TREE,
+				new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.PALM_TRUNK.get()),
+						new PalmTrunkPlacer(3, 1, 1), BlockStateProvider.simple(ModBlocks.PALM_FROND.get()),
+						new PalmFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+						new TwoLayersFeatureSize(1, 0, 2)).build());
+		
+		register(context, PALM_JUNGLE_KEY, Feature.TREE,
+				new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.PALM_TRUNK.get()),
+						new PalmTrunkPlacer(5, 1, 1), BlockStateProvider.simple(ModBlocks.PALM_FROND.get()),
+						new PalmFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+						new TwoLayersFeatureSize(1, 0, 2)).build());
+	}
+
+	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(ZirconMod.MOD_ID, name));
+	}
+
+	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(
+			BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature,
+			FC configuration) {
+		context.register(key, new ConfiguredFeature<>(feature, configuration));
+	}
+}

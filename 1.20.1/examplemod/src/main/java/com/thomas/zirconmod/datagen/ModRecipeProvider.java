@@ -241,7 +241,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE_GATE.get(), 1);
 		shaped(pWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PRESSURE_PLATE.get(), 1);
-
+		shaped(pWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'), List.of(ModBlocks.PALM_PLANKS.get(), Items.STICK),
+				RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_SIGN.get(), 3);
+		shaped(pWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'), List.of(ModBlocks.STRIPPED_PALM_LOG.get(), Items.CHAIN),
+				RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_HANGING_SIGN.get(), 2);
+		
+		
 		// Cloud brick furniture
 		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
 				List.of(ModBlocks.CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,

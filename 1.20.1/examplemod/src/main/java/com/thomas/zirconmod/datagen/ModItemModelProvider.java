@@ -22,7 +22,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-
 		
 		simpleItem(ModItems.SPEEDOMETER);
 		simpleItem(ModItems.ZIRCON);
@@ -46,13 +45,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CITRINE_SHARD);
 		simpleItem(ModItems.PALM_BOAT);
 		simpleItem(ModItems.PALM_CHEST_BOAT);
+		simpleBlockItem(ModBlocks.PALM_SAPLING);
 		simpleBlockItem(ModBlocks.CITRINE_LANTERN);
 		simpleBlockItemBlockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER);
 		simpleBlockItem(ModBlocks.CITRINE_CLUSTER);
 		simpleBlockItem(ModBlocks.LARGE_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.MEDIUM_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.SMALL_CITRINE_BUD);
+		
 
+        simpleItem(ModItems.PALM_SIGN);
+        simpleItem(ModItems.PALM_HANGING_SIGN);
 		simpleBlockItem(ModBlocks.PALM_DOOR);
 		simpleBlockModel(ModBlocks.ZIRCON_LAMP);
 		simpleLogModel(ModBlocks.PALM_LOG);
@@ -109,7 +112,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		withExistingParent(ModItems.MOLE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.NIMBULA_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
-
+		withExistingParent(ModItems.WISP_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));
 
 		simpleItem(ModItems.NIMBULA_GEL);

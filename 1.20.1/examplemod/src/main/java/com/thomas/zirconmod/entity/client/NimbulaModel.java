@@ -31,7 +31,7 @@ public class NimbulaModel<T extends Entity> extends HierarchicalModel<T> {
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition nimbula = partdefinition.addOrReplaceChild("nimbula", CubeListBuilder.create(),
-				PartPose.offset(0.0F, 24.0F, 0.0F));
+				PartPose.offset(0.0F, 20.0F, 0.0F));
 
 		PartDefinition head = nimbula.addOrReplaceChild("head", CubeListBuilder.create().texOffs(56, 2).addBox(-1.0F,
 				-13.0F, 10.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -9.0F, -11.0F));

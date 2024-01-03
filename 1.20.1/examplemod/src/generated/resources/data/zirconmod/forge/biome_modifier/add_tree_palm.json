@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_beach",
+  "features": "zirconmod:palm_placed",
+  "step": "vegetal_decoration"
+}

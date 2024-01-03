@@ -8,10 +8,10 @@ import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
 import net.minecraft.world.entity.ai.util.HoverRandomPos;
 import net.minecraft.world.phys.Vec3;
 
-public class NimbulaWithinBoundsFlyingGoal extends WaterAvoidingRandomFlyingGoal {
+public class WithinBoundsFlyingGoal extends WaterAvoidingRandomFlyingGoal {
 
 	private int lowerBound = 0;
-	public NimbulaWithinBoundsFlyingGoal(PathfinderMob p_25981_, double p_25982_, int lowerBound) {
+	public WithinBoundsFlyingGoal(PathfinderMob p_25981_, double p_25982_, int lowerBound) {
 		super(p_25981_, p_25982_);
 		this.lowerBound = lowerBound;
 	}

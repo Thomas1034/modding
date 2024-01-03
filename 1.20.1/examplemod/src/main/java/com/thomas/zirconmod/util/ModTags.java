@@ -31,6 +31,7 @@ public class ModTags {
 
 	public static class Structures {
 		public static final TagKey<Structure> VIGIL_EYE_LOCATED = tag("vigil_eye_located");
+		public static final TagKey<Structure> QUEST_EYE_LOCATED = tag("quest_eye_located");
 
 		private static TagKey<Structure> tag(String name) {
 			TagKey<Structure> tag = TagKey.create(Registries.STRUCTURE, new ResourceLocation(ZirconMod.MOD_ID, name));

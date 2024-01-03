@@ -57,12 +57,6 @@ public class CloudBlock extends Block {
 		return pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
 	}
 
-	@Override
-	public VoxelShape getVisualShape(BlockState p_48735_, BlockGetter p_48736_, BlockPos p_48737_,
-			CollisionContext p_48738_) {
-		return Shapes.empty();
-	}
-
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

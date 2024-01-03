@@ -6,7 +6,7 @@ import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.entity.ModEntities;
 import com.thomas.zirconmod.entity.ai.NimbulaStayWithinBoundsGoal;
-import com.thomas.zirconmod.entity.ai.NimbulaWithinBoundsFlyingGoal;
+import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +19,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -45,7 +46,6 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 		super(pEntityType, pLevel);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
-
 	}
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -94,7 +94,7 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 
-		this.goalSelector.addGoal(4, new NimbulaWithinBoundsFlyingGoal(this, 1D, -48));
+		this.goalSelector.addGoal(4, new WithinBoundsFlyingGoal(this, 1D, -48));
 	}
 
 	protected PathNavigation createNavigation(Level p_218342_) {
@@ -166,6 +166,11 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 	@Override
 	public boolean isInvulnerableTo(DamageSource d) {
 		return super.isInvulnerableTo(d) || d.is(DamageTypeTags.IS_FALL);
+	}
+
+	@Override
+	protected float getStandingEyeHeight(Pose pose, EntityDimensions dims) {
+		return this.isBaby() ? 0.5F : 1.0F;
 	}
 
 	@Nullable
