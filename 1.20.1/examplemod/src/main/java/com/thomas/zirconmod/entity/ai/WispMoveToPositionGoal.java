@@ -23,7 +23,7 @@ public class WispMoveToPositionGoal extends Goal {
 	}
 
 	public void stop() {
-		this.wisp.setWanderTarget((BlockPos) null);
+		this.wisp.setHomeTarget((BlockPos) null);
 		this.wisp.getNavigation().stop();
 	}
 

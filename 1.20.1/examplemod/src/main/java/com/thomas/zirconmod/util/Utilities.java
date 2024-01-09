@@ -1,14 +1,82 @@
 package com.thomas.zirconmod.util;
 
+import java.util.function.BiFunction;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
+
+	// Checks if a block position is a valid respawn point.
+	private static boolean isValidRespawn(Level level, BlockPos pos) throws NullPointerException {
+
+		BlockState above = level.getBlockState(pos.above());
+		BlockState at = level.getBlockState(pos);
+		BlockState below = level.getBlockState(pos.below());
+		// System.out.println("Column is: " + below.getBlock() + " " + at.getBlock() + "
+		// " + above.getBlock());
+
+		boolean isBottomSolid = below.isFaceSturdy(level, pos, Direction.UP);
+		boolean isEmpty = at.canBeReplaced() && above.canBeReplaced();
+
+		// System.out.println("Is the bottom solid? " + isBottomSolid);
+		// System.out.println("Is it empty? " + isEmpty);
+		return isBottomSolid && isEmpty;
+	}
+
+	// Gets a nearby respawn point that will be valid.
+	// If there are no valid respawn points, returns null.
+	// Searches from the inside out.
+	public static BlockPos getNearbyRespawn(Level level, BlockPos start, int maxDistance) {
+
+		BlockPos npos = null;
+		for (int i = 0; i < maxDistance; i++) {
+			npos = iterateCubeSurfaceForRespawn(i, start, level);
+			if (npos != null) {
+				return start.offset(npos.getX(), npos.getY(), npos.getZ());
+			}
+		}
+
+		return null;
+	}
+
+	public static BlockPos iterateCubeSurfaceForRespawn(int n, BlockPos start, Level level) {
+		
+		for (int i = -n; i <= n; i++) {
+			for (int j = -n; j <= n; j++) {
+
+				if (isValidRespawn(level, start, i, -n, j)) {
+					return new BlockPos(i, j, -n);
+				} else if (isValidRespawn(level, start, i, n, j)) {
+					return new BlockPos(i, n, j);
+				} else if (isValidRespawn(level, start, -n, i, j)) {
+					return new BlockPos(-n, i, j);
+				} else if (isValidRespawn(level, start, n, i, j)) {
+					return new BlockPos(n, i, j);
+				} else if (isValidRespawn(level, start, i, j, -n)) {
+					return new BlockPos(i, j, -n);
+				} else if (isValidRespawn(level, start, i, j, n)) {
+					return new BlockPos(i, j, n);
+				}
+			}
+		}
+
+		return null;
+
+	}
+
+	private static boolean isValidRespawn(Level level, BlockPos start, int i, int j, int k) {
+		return isValidRespawn(level, new BlockPos(start.getX() + i, start.getY() + j, start.getZ() + k));
+	}
+
 	public static void addParticlesAroundEntity(Entity entity, ParticleOptions particle) {
 		addParticlesAroundEntity(entity, particle, 1.0);
 	}
@@ -17,8 +85,9 @@ public class Utilities {
 		Level level = entity.level();
 		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
 	}
-	
-	public static void addParticlesAroundEntity(ServerLevel level, Entity entity, ParticleOptions particle, double boxSize) {
+
+	public static void addParticlesAroundEntity(ServerLevel level, Entity entity, ParticleOptions particle,
+			double boxSize) {
 		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
 	}
 

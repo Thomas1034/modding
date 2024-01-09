@@ -11,8 +11,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -176,6 +178,12 @@ public class CloudBlock extends Block {
 		blockstate = updateDistance(blockstate, level, pos);
 		level.setBlockAndUpdate(pos, blockstate);
 	}
+	
+	@Override 
+    public boolean isValidSpawn(BlockState state, BlockGetter level, BlockPos pos, SpawnPlacements.Type type, EntityType<?> entityType)
+    {
+        return state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE;
+    }
 
 	// Very important!
 	@Override

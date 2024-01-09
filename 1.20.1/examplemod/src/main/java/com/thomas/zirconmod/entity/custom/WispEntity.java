@@ -1,12 +1,12 @@
 package com.thomas.zirconmod.entity.custom;
 
-import java.util.EnumSet;
 import java.util.Map;
 
 import javax.annotation.Nullable;
 
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.entity.ai.WispFindHomeGoal;
+import com.thomas.zirconmod.entity.ai.WispGoHomeWhenThunderingGoal;
 import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
 import com.thomas.zirconmod.util.Utilities;
@@ -39,7 +39,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -60,8 +59,9 @@ import net.minecraft.world.phys.Vec3;
 
 public class WispEntity extends AbstractVillager {
 	@Nullable
-	private BlockPos wanderTarget;
+	private BlockPos homeTarget;
 	private int soldOutTrades = 0;
+	private static final double TELEPORT_HOME_DISTANCE = 48;
 	private static final int MAX_SKILL = 5;
 	public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(WispEntity.class,
 			EntityDataSerializers.INT);
@@ -77,6 +77,7 @@ public class WispEntity extends AbstractVillager {
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
 	}
+
 	/*
 	 * protected void registerGoals() { this.goalSelector.addGoal(0, new
 	 * FloatGoal(this)); this.goalSelector.addGoal(1, new
@@ -92,27 +93,48 @@ public class WispEntity extends AbstractVillager {
 
 	@Override
 	protected void registerGoals() {
+		
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
-		
-		//this.goalSelector.addGoal(2, new WispGoHomeWhenThunderingGoal(this, 1.2));
-		this.goalSelector.addGoal(3, new WispFindHomeGoal(this, 1.5));
-		this.goalSelector.addGoal(4, new WithinBoundsFlyingGoal(this, 1.0, -48));
 
+		this.goalSelector.addGoal(2, new WispFindHomeGoal(this, 1.5));
+		this.goalSelector.addGoal(3, new WispGoHomeWhenThunderingGoal(this, 2, 1));
+		this.goalSelector.addGoal(4, new WithinBoundsFlyingGoal(this, 1.0, -48));
+	}
+
+	@Override
+	protected float getJumpPower() {
+		return 0;//0.42F * this.getBlockJumpFactor() + this.getJumpBoostPower();
 	}
 
 	@Override
 	protected PathNavigation createNavigation(Level p_218342_) {
-		FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, p_218342_);
-		flyingpathnavigation.setCanOpenDoors(false);
-		flyingpathnavigation.setCanFloat(true);
-		flyingpathnavigation.setCanPassDoors(true);
-		return flyingpathnavigation;
+		FlyingPathNavigation navigation = new FlyingPathNavigation(this, p_218342_);
+		navigation.setCanOpenDoors(false);
+		navigation.setCanFloat(true);
+		navigation.setCanPassDoors(true);
+		return navigation;
 	}
 
 	@SuppressWarnings("resource")
 	@Override
 	public void tick() {
+		
+		// Keeps movement from exceeding a certain value.
+		if (this.getDeltaMovement().length() > this.getFlyingSpeed() * 2)
+		{
+			this.setDeltaMovement(this.getDeltaMovement().normalize().scale(this.getFlyingSpeed() * 2));
+		}
+
+		// Teleports home if too far away.
+		if (this.getHomeTarget() != null && this
+				.distanceToSqr(this.getHomeTarget().getCenter()) > TELEPORT_HOME_DISTANCE * TELEPORT_HOME_DISTANCE) {
+
+			Vec3 teleportPos = Utilities.getNearbyRespawn(this.level(), this.getHomeTarget(), 8).getCenter();
+
+			this.teleportTo(teleportPos.x, teleportPos.y, teleportPos.z);
+
+		}
 
 		// Regenerates health.
 		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0) {
@@ -232,10 +254,11 @@ public class WispEntity extends AbstractVillager {
 	@SuppressWarnings("resource")
 	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
 		ItemStack itemstack = p_35856_.getItemInHand(p_35857_);
-		//System.out.println("This wisp's home is: " + this.getHome());
-		
+		// System.out.println("This wisp's home is: " + this.getHome());
+
 		// The villager will not trade if it is thundering.
-		if (!this.level().isThundering() && itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+		if (!this.level().isThundering() && itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive()
+				&& !this.isTrading() && !this.isBaby()) {
 			if (p_35857_ == InteractionHand.MAIN_HAND) {
 				p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
@@ -244,6 +267,9 @@ public class WispEntity extends AbstractVillager {
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			} else {
 				if (!this.level().isClientSide) {
+					// Sets the wisp's price differential.
+					// merchantOffer.setSpecialPriceDiff(level);
+					// Opens trading.
 					this.setTradingPlayer(p_35856_);
 					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
 				}
@@ -280,12 +306,11 @@ public class WispEntity extends AbstractVillager {
 		tag.putInt("Type", this.getTypeVariant());
 		tag.putInt("Skill", this.getSkillLevel());
 		tag.putInt("SoldOutTrades", this.soldOutTrades);
-		
 
-		//tag.putInt("HomeX", this.getHomePos());
+		// tag.putInt("HomeX", this.getHomePos());
 
-		if (this.wanderTarget != null) {
-			tag.put("WanderTarget", NbtUtils.writeBlockPos(this.wanderTarget));
+		if (this.homeTarget != null) {
+			tag.put("WanderTarget", NbtUtils.writeBlockPos(this.homeTarget));
 		}
 
 	}
@@ -294,21 +319,18 @@ public class WispEntity extends AbstractVillager {
 		super.readAdditionalSaveData(tag);
 
 		if (tag.contains("WanderTarget")) {
-			this.wanderTarget = NbtUtils.readBlockPos(tag.getCompound("WanderTarget"));
+			this.homeTarget = NbtUtils.readBlockPos(tag.getCompound("WanderTarget"));
 		}
 
 		this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Type"));
 
 		this.entityData.set(SKILL_LEVEL, tag.getInt("Skill"));
-		
-		
+
 		if (tag.contains("SoldOutTrades")) {
 			this.soldOutTrades = tag.getInt("SoldOutTrades");
 		} else {
 			this.soldOutTrades = 0;
 		}
-		
-
 
 		this.setAge(Math.max(0, this.getAge()));
 	}
@@ -375,13 +397,13 @@ public class WispEntity extends AbstractVillager {
 		}
 	}
 
-	public void setWanderTarget(@Nullable BlockPos p_35884_) {
-		this.wanderTarget = p_35884_;
+	public void setHomeTarget(@Nullable BlockPos p_35884_) {
+		this.homeTarget = p_35884_;
 	}
 
 	@Nullable
-	BlockPos getWanderTarget() {
-		return this.wanderTarget;
+	public BlockPos getHomeTarget() {
+		return this.homeTarget;
 	}
 
 	public int getSkillLevel() {
@@ -411,50 +433,6 @@ public class WispEntity extends AbstractVillager {
 
 	public void setTypeVariant(WoodGolemVariant variant) {
 		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
-	}
-
-	class WanderToPositionGoal extends Goal {
-		final WispEntity trader;
-		final double stopDistance;
-		final double speedModifier;
-
-		WanderToPositionGoal(WispEntity p_35899_, double p_35900_, double p_35901_) {
-			this.trader = p_35899_;
-			this.stopDistance = p_35900_;
-			this.speedModifier = p_35901_;
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-		}
-
-		public void stop() {
-			this.trader.setWanderTarget((BlockPos) null);
-			WispEntity.this.navigation.stop();
-		}
-
-		public boolean canUse() {
-			BlockPos blockpos = this.trader.getWanderTarget();
-			return blockpos != null && this.isTooFarAway(blockpos, this.stopDistance);
-		}
-
-		public void tick() {
-			BlockPos blockpos = this.trader.getWanderTarget();
-			if (blockpos != null && WispEntity.this.navigation.isDone()) {
-				if (this.isTooFarAway(blockpos, 10.0D)) {
-					Vec3 vec3 = (new Vec3((double) blockpos.getX() - this.trader.getX(),
-							(double) blockpos.getY() - this.trader.getY(),
-							(double) blockpos.getZ() - this.trader.getZ())).normalize();
-					Vec3 vec31 = vec3.scale(10.0D).add(this.trader.getX(), this.trader.getY(), this.trader.getZ());
-					WispEntity.this.navigation.moveTo(vec31.x, vec31.y, vec31.z, this.speedModifier);
-				} else {
-					WispEntity.this.navigation.moveTo((double) blockpos.getX(), (double) blockpos.getY(),
-							(double) blockpos.getZ(), this.speedModifier);
-				}
-			}
-
-		}
-
-		private boolean isTooFarAway(BlockPos p_35904_, double p_35905_) {
-			return !p_35904_.closerToCenterThan(this.trader.position(), p_35905_);
-		}
 	}
 
 }
