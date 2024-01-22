@@ -25,6 +25,8 @@
     "zirconmod:cloud_brick_pillar",
     "zirconmod:thunder_cloud_brick_pillar",
     "zirconmod:chiseled_cloud_bricks",
-    "zirconmod:chiseled_thunder_cloud_bricks"
+    "zirconmod:chiseled_thunder_cloud_bricks",
+    "zirconmod:petrified_log",
+    "zirconmod:resonator"
   ]
 }

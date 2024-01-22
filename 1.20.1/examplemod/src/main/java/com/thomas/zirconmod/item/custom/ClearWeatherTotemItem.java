@@ -24,6 +24,7 @@ public class ClearWeatherTotemItem extends Item {
 			ServerLevel sl = (ServerLevel) level;
 			sl.setWeatherParameters(ServerLevel.RAIN_DELAY.sample(sl.getRandom()), 0, false, false);
 			player.getCooldowns().addCooldown(this, 60);
+            return InteractionResultHolder.consume(player.getItemInHand(hand));
 		}
 
 		return super.use(level, player, hand);

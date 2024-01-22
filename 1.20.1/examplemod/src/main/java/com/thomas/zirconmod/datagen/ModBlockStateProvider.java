@@ -9,6 +9,8 @@ import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
 import com.thomas.zirconmod.block.custom.PalmFruitBlock;
+import com.thomas.zirconmod.block.custom.ResonatorBlock;
+import com.thomas.zirconmod.block.custom.SculkRootBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 
 import net.minecraft.core.Direction;
@@ -50,6 +52,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 
 		// Register simple blocks with the same texture on all sides
+		blockWithItem(ModBlocks.LIGHTNING_BLOCK, "cutout");
+		blockWithItem(ModBlocks.UNSTABLE_LIGHTNING_BLOCK, "cutout");
 		blockWithItem(ModBlocks.WISP_BED);
 		blockWithItem(ModBlocks.CLOUD);
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
@@ -73,6 +77,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS);
 
 		// Register logs
+		logBlock((RotatedPillarBlock) ModBlocks.PETRIFIED_LOG.get());
 
 		// Register special blocks
 		makeZirconLamp(ModBlocks.ZIRCON_LAMP.get(), "zircon_lamp", "zircon_lamp");
@@ -148,6 +153,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Carpentry table
 		cubeBlockWithItem(ModBlocks.CARPENTRY_TABLE, "carpentry_table");
+		// Sculk jaw
+		cubeBlockWithItem(ModBlocks.SCULK_JAW, "sculk_jaw");
+
 		// Nimbula Polyp
 		makeNimbulaPolyp(ModBlocks.NIMBULA_POLYP.get(), "nimbula_polyp", "nimbula_polyp_stage");
 
@@ -156,12 +164,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		hangingSignBlock(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
 				blockTexture(ModBlocks.PALM_PLANKS.get()));
-		
+
 		// Palm Sapling
-		simpleBlockWithItem(ModBlocks.PALM_SAPLING.get(),
-				models().cross(blockTexture(ModBlocks.PALM_SAPLING.get()).getPath(),
-						blockTexture(ModBlocks.PALM_SAPLING.get())).renderType("cutout"));
-		
+		simpleBlockWithItem(ModBlocks.PALM_SAPLING.get(), models()
+				.cross(blockTexture(ModBlocks.PALM_SAPLING.get()).getPath(), blockTexture(ModBlocks.PALM_SAPLING.get()))
+				.renderType("cutout"));
+
+		// Sculk root
+		sculkRootBlock((SculkRootBlock) ModBlocks.SCULK_ROOTS.get(), "cutout");
+
+		// Resonator block
+		resonatorBlock((ResonatorBlock) ModBlocks.RESONATOR_BLOCK.get(), "resonator", "resonator");
+
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -184,6 +198,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject) {
 		simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+	}
+	
+	protected void blockWithItem(RegistryObject<Block> blockRegistryObject, String renderType) {
+		Block block = blockRegistryObject.get();
+		ModelFile model = models().cubeAll(blockTexture(block).toString(), blockTexture(block)).renderType(renderType);
+		simpleBlock(block, model);
+        simpleBlockItem(block, model);
 	}
 
 	private ConfiguredModel[] blueberryStates(BlockState state, CropBlock block, String modelName, String textureName) {
@@ -340,6 +361,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		});
 	}
 
+	public void resonatorBlock(ResonatorBlock block, String modelName, String texture) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(ResonatorBlock.FACING);
+			int charge = state.getValue(ResonatorBlock.CHARGE);
+			int yRot = ((int) facing.toYRot()) + 180;
+			ModelFile model = models().cube(modelName + "_" + charge, modLoc("block/" + texture + "_down"),
+					modLoc("block/" + texture + "_up"), modLoc("block/" + texture + "_front"),
+					modLoc("block/" + texture + "_side_" + charge), modLoc("block/" + texture + "_side_" + charge),
+					modLoc("block/" + texture + "_side_" + charge)).texture("particle", modLoc("block/" + texture + "_front"));
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+		simpleBlockItem(block,
+				models().cube(modelName, modLoc("block/" + texture + "_down"), modLoc("block/" + texture + "_up"),
+						modLoc("block/" + texture + "_front"), modLoc("block/" + texture + "_side_" + 0),
+						modLoc("block/" + texture + "_side_" + 0), modLoc("block/" + texture + "_side_" + 0)));
+	}
+
 	public void torchBlock(TorchBlock block, String modelName, String texture) {
 		getVariantBuilder(block).forAllStates(state -> {
 			ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch")).renderType("cutout")
@@ -436,6 +475,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
 						.renderType(renderType).texture("front", blockTexture(block) + "_solid_front")
 						.texture("side", blockTexture(block) + "_solid_side")
 						.texture("top", blockTexture(block) + "_solid_top"));
+	}
+
+	private void sculkRootBlock(SculkRootBlock block, String renderType) {
+		getVariantBuilder(block).forAllStates(state -> {
+			int stage = state.getValue(SculkRootBlock.STAGE);
+			ModelFile model;
+			model = models()
+					.cross(blockTexture(block).toString() + "_stage" + stage,
+							new ResourceLocation(blockTexture(block).toString() + "_stage" + stage))
+					.renderType(renderType);
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
 	}
 
 	protected void crossBlock(Block block, String modelName) {

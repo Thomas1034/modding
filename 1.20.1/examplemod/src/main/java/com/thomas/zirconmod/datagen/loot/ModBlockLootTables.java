@@ -14,6 +14,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -34,8 +35,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected void generate() {
 
 		this.dropOther(ModBlocks.WEATHER_PASSAGE_BLOCK.get(), Items.AIR);
+		this.dropOther(ModBlocks.LIGHTNING_BLOCK.get(), Items.AIR);
+		this.dropOther(ModBlocks.UNSTABLE_LIGHTNING_BLOCK.get(), Items.AIR);
+		this.dropOther(ModBlocks.SCULK_JAW.get(), Blocks.BONE_BLOCK);
 		this.dropOther(ModBlocks.SEALED_CLOUD_BRICKS.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS.get(), Items.AIR);
+		this.dropSelf(ModBlocks.PETRIFIED_LOG.get());
 		this.dropSelf(ModBlocks.WISP_BED.get());
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
 		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
@@ -77,11 +82,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_FROND.get());
 		this.dropSelf(ModBlocks.PALM_SAPLING.get());
 		this.dropOther(ModBlocks.PALM_FLOOR_FROND.get(), ModBlocks.PALM_FROND.get());
+		this.dropSelf(ModBlocks.RESONATOR_BLOCK.get());
+		
 		
 		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition
 				.hasBlockStateProperties(ModBlocks.PALM_FRUIT.get()).setProperties(StatePropertiesPredicate.Builder
 						.properties().hasProperty(PalmFruitBlock.AGE, PalmFruitBlock.MAX_AGE));
-
 		this.add(ModBlocks.PALM_FRUIT.get(), createCropDrops(ModBlocks.PALM_FRUIT.get(),
 				Items.AIR, ModItems.PALM_SEEDS.get(), palmFruitLootBuilder));
 
@@ -101,20 +107,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 				block -> createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
 
 		this.dropOther(ModBlocks.BUDDING_CITRINE.get(), Items.AIR);
-		this.add(ModBlocks.CITRINE_CLUSTER.get(),
-				block -> createOreDrops(ModBlocks.CITRINE_CLUSTER.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 5)));
-
-		this.add(ModBlocks.LARGE_CITRINE_BUD.get(),
-				block -> createSilkTouchDrop(ModBlocks.LARGE_CITRINE_BUD.get(), Items.AIR));
-		this.add(ModBlocks.MEDIUM_CITRINE_BUD.get(),
-				block -> createSilkTouchDrop(ModBlocks.MEDIUM_CITRINE_BUD.get(), Items.AIR));
-		this.add(ModBlocks.SMALL_CITRINE_BUD.get(),
-				block -> createSilkTouchDrop(ModBlocks.SMALL_CITRINE_BUD.get(), Items.AIR));
-
-		this.add(ModBlocks.ZIRCON_ORE.get(),
-				block -> createOreDrops(ModBlocks.ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5)));
-		this.add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), block -> createOreDrops(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(),
-				ModItems.ZIRCON_SHARD.get(), List.of(3, 5)));
+		this.requireSilkTouch(ModBlocks.CITRINE_CLUSTER.get(), ModItems.CITRINE_SHARD.get(), List.of(3, 5));
+		this.requireSilkTouch(ModBlocks.LARGE_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 3));
+		this.requireSilkTouch(ModBlocks.MEDIUM_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get(), List.of(1, 1));
+		this.requireSilkTouch(ModBlocks.SMALL_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get());
+		
+		
+		this.requireSilkTouch(ModBlocks.ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5));
+		this.requireSilkTouch(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5));
 
 		// Blueberry crop block
 		LootItemCondition.Builder blueberryLootBuilder = LootItemBlockStatePropertyCondition
@@ -141,7 +141,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		// NimbulaPolyp
 		this.add(ModBlocks.NIMBULA_POLYP.get(),
 				block -> createSilkTouchDrop(ModBlocks.NIMBULA_POLYP.get(), ModBlocks.CLOUD.get().asItem()));
-
+		
+		// Sculk root
+		this.requireSilkTouch(ModBlocks.SCULK_ROOTS.get(), Items.SCULK_VEIN);
+		
+		
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {
@@ -151,7 +155,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 						.apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
-	//
 	protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {
 		return createSilkTouchDispatchTable(pBlock, this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
 	}
@@ -160,4 +163,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected Iterable<Block> getKnownBlocks() {
 		return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
+	
+	protected void requireSilkTouch(Block base, ItemLike withoutSilk) {
+		this.add(base,
+				block -> createSilkTouchDrop(base, withoutSilk.asItem()));
+	}
+	
+	protected void requireSilkTouch(Block base, ItemLike withoutSilk, List<Integer> range) {
+		this.add(base,
+				block -> createOreDrops(base, withoutSilk.asItem(), range));
+	}
+	
 }

@@ -1,19 +1,172 @@
 package com.thomas.zirconmod.util;
 
-import java.util.function.BiFunction;
+import java.awt.geom.CubicCurve2D;
+import java.util.ArrayList;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
+
+	public static boolean setSafe(LevelAccessor level, BlockPos pos, BlockState state) {
+		if (pos == null) {
+			return false;
+		}
+		if (Utilities.canReplaceBlockAt(level, pos)) {
+			level.setBlock(pos, state, 3);
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean setSafeNoFluid(LevelAccessor level, BlockPos pos, BlockState state) {
+		if (pos == null) {
+			return false;
+		}
+		if (Utilities.canReplaceBlockNoFluidAt(level, pos)) {
+			level.setBlock(pos, state, 3);
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean setSculkSafe(LevelAccessor level, BlockPos pos, BlockState state) {
+		if (pos == null) {
+			return false;
+		}
+		if (Utilities.sculkReplacableAt(level, pos)) {
+			level.setBlock(pos, state, 3);
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean setSculk(LevelAccessor level, BlockPos pos) {
+		return setSculkSafe(level, pos, Blocks.SCULK.defaultBlockState());
+	}
+
+	// Function to get enclosed grid points
+	public static ArrayList<BlockPos> getEnclosedGridPoints(BlockPos p1, BlockPos p2, BlockPos p3) {
+		// Create a cubic spline interpolation (closed curve)
+		int x1 = p1.getX();
+		int x2 = p2.getX();
+		int x3 = p3.getX();
+		int z1 = p1.getZ();
+		int z2 = p2.getZ();
+		int z3 = p3.getZ();
+		CubicCurve2D.Double cubicCurve = new CubicCurve2D.Double(x1, z1, x2, z2, x3, z3, x1, z1);
+
+		// Define the bounding box for the grid
+		int minX = Math.min(x1, Math.min(x2, x3));
+		int minZ = Math.min(z1, Math.min(z2, z3));
+		int maxX = Math.max(x1, Math.max(x2, x3));
+		int maxZ = Math.max(z1, Math.max(z2, z3));
+
+		// Get the enclosed grid points
+		ArrayList<BlockPos> enclosedPoints = new ArrayList<>();
+
+		for (int x = minX; x <= maxX; x += 1.0) {
+			for (int z = minZ; z <= maxZ; z += 1.0) {
+				if (cubicCurve.contains(x, z)) {
+					enclosedPoints.add(new BlockPos(x, 0, z));
+				}
+			}
+		}
+
+		return enclosedPoints;
+	}
+
+	public static BlockPos findSurface(LevelAccessor level, BlockPos pos) {
+
+		if (level.getBlockState(pos).isAir()) {
+			return sink(level, pos);
+		} else {
+			return rise(level, pos);
+		}
+
+	}
+
+	public static BlockPos findSurface(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
+
+		if (level.getBlockState(pos).isAir()) {
+			return sink(level, pos, range);
+		} else {
+			return rise(level, pos, range);
+		}
+
+	}
+
+	public static ArrayList<int[]> getCoordinatesInRadius(int radius) {
+		ArrayList<int[]> coordinatesList = new ArrayList<>();
+
+		for (int x = -radius; x <= radius; x++) {
+			for (int y = -radius; y <= radius; y++) {
+				if (isWithinRadius(x, y, radius)) {
+					int[] coordinates = { x, y };
+					coordinatesList.add(coordinates);
+				}
+			}
+		}
+
+		return coordinatesList;
+	}
+
+	private static boolean isWithinRadius(int x, int y, int radius) {
+		return (x * x) + (y * y) <= (radius * radius);
+	}
+
+	// Converts rgb to hex
+	public static int toHexColor(int r, int g, int b) {
+		r = r & 255;
+		g = g & 255;
+		b = b & 255;
+
+		return (r << 16) | (g << 8) | (b);
+
+	}
+
+	// Returns a random horizontal direction.
+	public static Direction randomHorizontalDirection(RandomSource rand) {
+
+		Direction[] dirs = { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST };
+		return dirs[rand.nextInt(4)];
+	}
+
+	// Returns a block position within the given radius at a random position.
+	// The block position will have y=0 and x^2 + z^2 <= radius^2.
+	public static BlockPos withinCircle(RandomSource rand, double radius) {
+		// Ensure radius is positive.
+		radius = Math.abs(radius);
+
+		double placementRadius = radius * rand.nextDouble();
+		double angle = 2 * Math.PI * rand.nextDouble();
+
+		return new BlockPos((int) Math.round(Math.cos(angle) * placementRadius), 0,
+				(int) Math.round(Math.sin(angle) * placementRadius));
+	}
+
+	public static BlockPos withinCircle(RandomSource rand, double minRadius, double maxRadius) {
+		// Ensure radius is positive.
+		minRadius = Math.abs(minRadius);
+		maxRadius = Math.abs(maxRadius);
+
+		double placementRadius = Math.abs(maxRadius - minRadius) * rand.nextDouble() + Math.min(minRadius, maxRadius);
+		double angle = 2 * Math.PI * rand.nextDouble();
+
+		return new BlockPos((int) Math.round(Math.cos(angle) * placementRadius), 0,
+				(int) Math.round(Math.sin(angle) * placementRadius));
+	}
 
 	// Checks if a block position is a valid respawn point.
 	private static boolean isValidRespawn(Level level, BlockPos pos) throws NullPointerException {
@@ -49,7 +202,7 @@ public class Utilities {
 	}
 
 	public static BlockPos iterateCubeSurfaceForRespawn(int n, BlockPos start, Level level) {
-		
+
 		for (int i = -n; i <= n; i++) {
 			for (int j = -n; j <= n; j++) {
 
@@ -225,5 +378,91 @@ public class Utilities {
 		boolean doAllMatch = blockstate.getProperties().stream().map((property) -> target.hasProperty(property)
 				&& target.getValue(property).equals(blockstate.getValue(property))).allMatch((bool) -> bool);
 		return isCorrectBlock && doAllMatch;
+	}
+
+	public static boolean canReplaceBlock(BlockState state) {
+		return !state.is(BlockTags.FEATURES_CANNOT_REPLACE);
+	}
+	
+	public static boolean canReplaceBlockNoFluid(BlockState state) {
+		return !state.is(BlockTags.FEATURES_CANNOT_REPLACE) && state.getFluidState().isEmpty();
+	}
+
+	public static boolean sculkReplacable(BlockState state) {
+		return state.is(BlockTags.SCULK_REPLACEABLE_WORLD_GEN);
+	}
+
+	public static boolean sculkReplacableAt(LevelAccessor level, BlockPos pos) {
+		return sculkReplacable(level.getBlockState(pos));
+	}
+
+	public static boolean canReplaceBlockAt(LevelAccessor level, BlockPos pos) {
+		return canReplaceBlock(level.getBlockState(pos));
+	}
+	
+	public static boolean canReplaceBlockNoFluidAt(LevelAccessor level, BlockPos pos) {
+		return canReplaceBlockNoFluid(level.getBlockState(pos));
+	}
+
+	// Moves the given position downward to above a solid block.
+	public static BlockPos sink(LevelAccessor level, BlockPos pos) {
+
+		BlockState state = level.getBlockState(pos);
+
+		while (!state.isSolid()) {
+			pos = pos.below();
+			state = level.getBlockState(pos);
+		}
+
+		return pos.above();
+	}
+
+	// Moves the given position downward to above a solid block.
+	public static BlockPos sink(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
+
+		BlockState state = level.getBlockState(pos);
+		int tries = 0;
+		while (!state.isSolid() && tries < range) {
+			pos = pos.below();
+			state = level.getBlockState(pos);
+			tries++;
+		}
+		if (tries == range) {
+			throw new SurfaceNotFoundException("Failed to find surface within " + range + " blocks.");
+		}
+
+		return pos.above();
+	}
+
+	// Iterates upward to find an air block, and returns that position.
+	public static BlockPos rise(LevelAccessor level, BlockPos pos) {
+
+		BlockState state = level.getBlockState(pos);
+
+		while (state.isSolid()) {
+			pos = pos.above();
+			state = level.getBlockState(pos);
+
+		}
+
+		return pos;
+	}
+
+	// Iterates upward to find an air block, and returns that position.
+	public static BlockPos rise(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
+
+		BlockState state = level.getBlockState(pos);
+		int tries = 0;
+		while (state.isSolid() && tries < range) {
+			pos = pos.above();
+			state = level.getBlockState(pos);
+			tries++;
+
+		}
+		if (tries == range) {
+			throw new SurfaceNotFoundException("Failed to find surface within " + range + " blocks.");
+		}
+
+		return pos;
 	}
 }

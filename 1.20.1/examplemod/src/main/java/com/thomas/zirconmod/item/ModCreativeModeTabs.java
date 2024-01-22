@@ -28,6 +28,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.RAW_ZIRCONIUM.get());
 						pOutput.accept(ModItems.ECHO_POWDER.get());
 						pOutput.accept(ModItems.VIGIL_EYE.get());
+						pOutput.accept(ModItems.HAILSTONE.get());
 						pOutput.accept(ModItems.PINE_CONE.get());
 						pOutput.accept(ModItems.FLAMING_PINE_CONE.get());
 						pOutput.accept(ModItems.FLAMING_ARROW.get());
@@ -55,8 +56,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ZIRCON_LAMP.get());
 						pOutput.accept(ModBlocks.ZIRCONIUM_BLOCK.get());
 						pOutput.accept(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+						pOutput.accept(ModBlocks.SCULK_JAW.get());
 						pOutput.accept(ModBlocks.ECHO_BLOCK.get());
 						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
+						pOutput.accept(ModBlocks.PETRIFIED_LOG.get());
 						pOutput.accept(ModBlocks.PALM_TRUNK.get());
 						pOutput.accept(ModBlocks.PALM_FROND.get());
 						pOutput.accept(ModBlocks.PALM_FRUIT.get());
@@ -84,6 +87,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.SMALL_CITRINE_BUD.get());
 						pOutput.accept(ModItems.CITRINE_BRACKET.get());
 						pOutput.accept(ModBlocks.CITRINE_LANTERN.get());
+						pOutput.accept(ModBlocks.LIGHTNING_BLOCK.get());
+						pOutput.accept(ModBlocks.UNSTABLE_LIGHTNING_BLOCK.get());
 						pOutput.accept(ModBlocks.CLOUD.get());
 						pOutput.accept(ModBlocks.CLOUD_BRICKS.get());
 						pOutput.accept(ModBlocks.CLOUD_BRICK_SLAB.get());
@@ -141,6 +146,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.CITRINE_LEGGINGS.get());
 						pOutput.accept(ModItems.CITRINE_BOOTS.get());
 						pOutput.accept(ModItems.FEATHER_WINGS.get());
+						pOutput.accept(ModItems.HAILSTONE.get());
 					}).build());
 
 	public static void register(IEventBus eventBus) {

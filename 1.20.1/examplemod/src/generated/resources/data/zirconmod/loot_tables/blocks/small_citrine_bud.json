@@ -33,7 +33,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:air"
+              "name": "zirconmod:citrine_shard"
             }
           ]
         }

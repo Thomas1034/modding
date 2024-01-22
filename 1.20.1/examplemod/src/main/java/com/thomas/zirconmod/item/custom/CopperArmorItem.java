@@ -26,7 +26,7 @@ public class CopperArmorItem extends ArmorItem {
 	public void onArmorTick(ItemStack stack, Level level, Player player)
 	{
 		super.onArmorTick(stack, level, player);
-		oxidize(stack, level, player);
+		if(!player.getAbilities().instabuild) oxidize(stack, level, player);
 	}
 
 	// Override the inventory tick function. It will now decay over time.

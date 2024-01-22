@@ -13,6 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -37,7 +38,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.CLOUD_BRICK_STAIRS.get(), ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(),
 				ModBlocks.CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(),
-				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
+				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(),
+				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -53,7 +55,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ZIRCON_BLOCK.get(), ModBlocks.ZIRCON_ORE.get(),
 				ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_CLUSTER.get(),
 				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
-				ModBlocks.SMALL_CITRINE_BUD.get());
+				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.PETRIFIED_LOG.get());
+
+		this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(ModBlocks.PETRIFIED_LOG.get());
 
 		// this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL).add(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
 
@@ -78,12 +82,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.FENCES).add(ModBlocks.PALM_FENCE.get());
 		this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALM_FENCE_GATE.get());
 		this.tag(BlockTags.PLANKS).add(ModBlocks.PALM_PLANKS.get());
-		this.tag(ModTags.Blocks.PALM_LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
-				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
+		this.tag(ModTags.Blocks.PALM_LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(),
+				ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
 		this.tag(BlockTags.LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
-		
-		
+
 		// Cloud furniture
 		this.tag(BlockTags.WALLS).add(ModBlocks.CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
@@ -91,6 +94,24 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.STAIRS).add(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.CLOUD_BRICK_SLAB.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get());
+		
+		// Forge
+		this.tag(Tags.Blocks.FENCE_GATES).add(ModBlocks.PALM_FENCE_GATE.get());
+		this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(ModBlocks.PALM_FENCE_GATE.get());
+		this.tag(Tags.Blocks.ORE_RATES_DENSE).add(ModBlocks.ZIRCON_ORE.get());
+		this.tag(Tags.Blocks.ORE_RATES_DENSE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+		this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCON_BLOCK.get());
+		this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCONIUM_BLOCK.get());
+		this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+		this.tag(Tags.Blocks.ORES).add(ModBlocks.ZIRCON_ORE.get());
+		this.tag(Tags.Blocks.ORES).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+		this.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ModBlocks.ZIRCON_ORE.get());
+		this.tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
+		
+
+
+
+
 
 		// Functions
 		addStrongCloudSolidifier(Blocks.BUDDING_AMETHYST);

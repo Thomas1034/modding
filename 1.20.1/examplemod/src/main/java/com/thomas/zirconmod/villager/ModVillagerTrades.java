@@ -43,6 +43,19 @@ public class ModVillagerTrades {
 		trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(new ItemStack(Items.EMERALD, 4),
 				new ItemStack(ModItems.BLUEBERRY_SEEDS.get(), 3), 16, 2, 0.02f));
 	}
+	
+	public static void addButcherTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
+		// Level 1
+		// Adds meat buying trades
+		trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(new ItemStack(Items.CHICKEN, 8+pRandom.nextInt(12)),
+				new ItemStack(Items.EMERALD, 1), 16, 2, 0.02f));
+		trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(new ItemStack(Items.BEEF, 8+pRandom.nextInt(12)),
+				new ItemStack(Items.EMERALD, 1), 16, 2, 0.02f));
+		trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(new ItemStack(Items.MUTTON, 8+pRandom.nextInt(12)),
+				new ItemStack(Items.EMERALD, 1), 16, 2, 0.02f));
+		trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(new ItemStack(Items.PORKCHOP, 8+pRandom.nextInt(12)),
+				new ItemStack(Items.EMERALD, 1), 16, 2, 0.02f));
+	}
 
 	public static void addForesterTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades) {
 

@@ -30,6 +30,12 @@ public class ModEvents {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 			ModVillagerTrades.addFarmerTrades(trades);
 		}
+		
+		else if (event.getType() == VillagerProfession.BUTCHER) {
+			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+			ModVillagerTrades.addButcherTrades(trades);
+		}
+
 
 		else if (event.getType() == ModVillagers.FORESTER.get()) {
 			// Gets the list of trades.

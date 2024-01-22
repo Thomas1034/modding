@@ -12,6 +12,7 @@ import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.GemBracketBlock;
+import com.thomas.zirconmod.block.custom.LightningBlock;
 import com.thomas.zirconmod.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.zirconmod.block.custom.ModHangingSignBlock;
 import com.thomas.zirconmod.block.custom.ModStandingSignBlock;
@@ -21,8 +22,12 @@ import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
 import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.block.custom.PalmTrunkBlock;
 import com.thomas.zirconmod.block.custom.QuicksandBlock;
+import com.thomas.zirconmod.block.custom.ResonatorBlock;
+import com.thomas.zirconmod.block.custom.SculkJawBlock;
+import com.thomas.zirconmod.block.custom.SculkRootBlock;
 import com.thomas.zirconmod.block.custom.ThirstyBlock;
 import com.thomas.zirconmod.block.custom.ThunderCloudBlock;
+import com.thomas.zirconmod.block.custom.UnstableLightningBlock;
 import com.thomas.zirconmod.block.custom.WallGemBracketBlock;
 import com.thomas.zirconmod.block.custom.WispBedBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
@@ -135,8 +140,8 @@ public class ModBlocks {
 					.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 5)));
 
 	// Zircon ore
-	public static final RegistryObject<Block> ZIRCON_ORE = registerBlock("zircon_ore", () -> new Block(
-			BlockBehaviour.Properties.copy(Blocks.IRON_ORE).sound(SoundType.STONE).lightLevel(state -> 1)));
+	public static final RegistryObject<Block> ZIRCON_ORE = registerBlock("zircon_ore",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE).sound(SoundType.STONE)));
 
 	// Zirconium block
 	public static final RegistryObject<Block> ZIRCONIUM_BLOCK = registerFireproofBlock("zirconium_block",
@@ -150,12 +155,15 @@ public class ModBlocks {
 
 	// Deepslate zircon ore
 	public static final RegistryObject<Block> DEEPSLATE_ZIRCON_ORE = registerBlock("deepslate_zircon_ore",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).sound(SoundType.DEEPSLATE)
-					.lightLevel(state -> 1)));
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).sound(SoundType.DEEPSLATE)));
 
 	// Echo block
 	public static final RegistryObject<Block> ECHO_BLOCK = registerBlock("echo_block",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).sound(SoundType.METAL)));
+
+	// Resonator block
+	public static final RegistryObject<Block> RESONATOR_BLOCK = registerBlock("resonator",
+			() -> new ResonatorBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).sound(SoundType.METAL)));
 
 	// Zircon lamp block
 	public static final RegistryObject<Block> ZIRCON_LAMP = registerBlock("zircon_lamp",
@@ -182,6 +190,16 @@ public class ModBlocks {
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
 			() -> new ThunderCloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
 					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion().sound(SoundType.EMPTY)));
+
+	// Lighting block
+	public static final RegistryObject<Block> LIGHTNING_BLOCK = registerBlock("lightning_block",
+			() -> new LightningBlock(BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY)
+					.noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
+					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
+	public static final RegistryObject<Block> UNSTABLE_LIGHTNING_BLOCK = registerBlock("unstable_lightning_block",
+			() -> new UnstableLightningBlock(BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY)
+					.randomTicks().noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
+					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
@@ -272,11 +290,15 @@ public class ModBlocks {
 				}
 			});
 
+	// Petrified log
+	public static final RegistryObject<Block> PETRIFIED_LOG = registerBlock("petrified_log",
+			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
 	// Palm components
 
 	public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
 			() -> new SaplingBlock(new PalmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)) {
-				protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+				public boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
 					return state.is(BlockTags.DIRT) || state.is(Blocks.FARMLAND) || state.is(BlockTags.SAND);
 				}
 			});
@@ -529,8 +551,10 @@ public class ModBlocks {
 
 	// Sealed door block
 	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
-			() -> new DirectionalPassageBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
-					.pushReaction(PushReaction.BLOCK).randomTicks().lightLevel(state -> 12), (level, pos) -> !level.isRaining()));
+			() -> new DirectionalPassageBlock(
+					BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
+							.pushReaction(PushReaction.BLOCK).randomTicks().lightLevel(state -> 12),
+					(level, pos) -> !level.isRaining()));
 
 	// Sealed bricks
 	public static final RegistryObject<Block> SEALED_CLOUD_BRICKS = registerBlock("sealed_cloud_bricks",
@@ -543,6 +567,16 @@ public class ModBlocks {
 	// Wisp nest block
 	public static final RegistryObject<Block> WISP_BED = registerBlock("wisp_bed",
 			() -> new WispBedBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.WOOL)));
+
+	// Sculk jaw block
+	public static final RegistryObject<Block> SCULK_JAW = registerBlock("sculk_jaw",
+			() -> new SculkJawBlock(BlockBehaviour.Properties.copy(Blocks.BONE_BLOCK).speedFactor(0.75f)
+					.jumpFactor(0.5f).explosionResistance(6f).sound(SoundType.SCULK)));
+
+	public static final RegistryObject<Block> SCULK_ROOTS = registerBlock("sculk_roots",
+			() -> new SculkRootBlock(BlockBehaviour.Properties.copy(Blocks.SCULK_VEIN).speedFactor(0.5f)
+					.jumpFactor(0.5f).lightLevel(state -> state.getValue(SculkRootBlock.STAGE) * 3)
+					.explosionResistance(0.1f).sound(SoundType.SCULK).randomTicks()));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

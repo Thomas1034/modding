@@ -9,6 +9,7 @@ import com.thomas.zirconmod.entity.ai.WispFindHomeGoal;
 import com.thomas.zirconmod.entity.ai.WispGoHomeWhenThunderingGoal;
 import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
+import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.villager.ModVillagers;
 
@@ -93,7 +94,7 @@ public class WispEntity extends AbstractVillager {
 
 	@Override
 	protected void registerGoals() {
-		
+
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
 
@@ -104,7 +105,7 @@ public class WispEntity extends AbstractVillager {
 
 	@Override
 	protected float getJumpPower() {
-		return 0;//0.42F * this.getBlockJumpFactor() + this.getJumpBoostPower();
+		return 0;// 0.42F * this.getBlockJumpFactor() + this.getJumpBoostPower();
 	}
 
 	@Override
@@ -119,10 +120,9 @@ public class WispEntity extends AbstractVillager {
 	@SuppressWarnings("resource")
 	@Override
 	public void tick() {
-		
+
 		// Keeps movement from exceeding a certain value.
-		if (this.getDeltaMovement().length() > this.getFlyingSpeed() * 2)
-		{
+		if (this.getDeltaMovement().length() > this.getFlyingSpeed() * 2) {
 			this.setDeltaMovement(this.getDeltaMovement().normalize().scale(this.getFlyingSpeed() * 2));
 		}
 
@@ -257,8 +257,7 @@ public class WispEntity extends AbstractVillager {
 		// System.out.println("This wisp's home is: " + this.getHome());
 
 		// The villager will not trade if it is thundering.
-		if (!this.level().isThundering() && itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive()
-				&& !this.isTrading() && !this.isBaby()) {
+		if (!this.level().isThundering() && !itemstack.is(ModItems.WISP_SPAWN_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
 			if (p_35857_ == InteractionHand.MAIN_HAND) {
 				p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}

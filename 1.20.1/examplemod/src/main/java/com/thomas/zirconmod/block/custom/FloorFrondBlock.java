@@ -60,13 +60,18 @@ public class FloorFrondBlock extends Block {
 
 	@Override
 	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+
+		if (random.nextInt(100) < 50) {
+			return;
+		}
+
 		double d0 = (double) pos.getX() + 0.5D + random.nextDouble() * 4D - 2D;
 		double d1 = (double) pos.getY() + 0.7D + random.nextDouble() * 4D - 2D;
 		double d2 = (double) pos.getZ() + 0.5D + random.nextDouble() * 4D - 2D;
-		
+
 		ParticleOptions particle = ParticleTypes.SPORE_BLOSSOM_AIR;
-		level.addParticle(particle, d0, d1, d2, random.nextDouble() * 0.2D - 0.1D,
-				random.nextDouble() * 0.2D - 0.1D, random.nextDouble() * 0.2D - 0.1D);
+		level.addParticle(particle, d0, d1, d2, random.nextDouble() * 0.2D - 0.1D, random.nextDouble() * 0.2D - 0.1D,
+				random.nextDouble() * 0.2D - 0.1D);
 	}
 
 }

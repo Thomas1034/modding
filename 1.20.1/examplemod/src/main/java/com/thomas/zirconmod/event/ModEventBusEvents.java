@@ -4,6 +4,7 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.entity.ModEntities;
 import com.thomas.zirconmod.entity.custom.MoleEntity;
 import com.thomas.zirconmod.entity.custom.NimbulaEntity;
+import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WispEntity;
 import com.thomas.zirconmod.entity.custom.WoodGolemEntity;
 
@@ -20,6 +21,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.WOOD_GOLEM_ENTITY.get(), WoodGolemEntity.createAttributes().build());
         event.put(ModEntities.NIMBULA_ENTITY.get(), NimbulaEntity.createAttributes().build());
         event.put(ModEntities.WISP_ENTITY.get(), WispEntity.createAttributes().build());
-
+        event.put(ModEntities.TEMPEST_ENTITY.get(), TempestEntity.createAttributes().build());
+        
     }
 }

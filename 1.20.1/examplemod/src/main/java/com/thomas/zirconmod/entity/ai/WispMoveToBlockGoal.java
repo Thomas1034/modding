@@ -9,18 +9,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WispMoveToBlockGoal extends MoveToBlockGoal {
-	private final WispEntity wisp;
 	private final Block target;
 
 	public WispMoveToBlockGoal(WispEntity wisp, double speedModifier, Block target) {
 		super(wisp, speedModifier, 8);
-		this.wisp = wisp;
 		this.target = target;
 	}
 
 	public WispMoveToBlockGoal(WispEntity wisp, double speedModifier, int range, Block target) {
 		super(wisp, speedModifier, range);
-		this.wisp = wisp;
 		this.target = target;
 	}
 

@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-01T20:18:36.1483113	Item Models: zirconmod
+// 1.20.1	2024-01-20T16:09:43.995725	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 1478198d944fe5cede2e678f28847d8b1e791707 assets/zirconmod/models/item/citrine_axe.json
@@ -32,6 +32,7 @@ ad02fe9efebad97e717a7a151684eef9b3f07587 assets/zirconmod/models/item/echo_powde
 b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wings.json
 5e7f372b75d19eea8a062fa75628c6ee97211cf5 assets/zirconmod/models/item/flaming_arrow.json
 267e05816b27217d8a81aedd426edaae6f9f3bc4 assets/zirconmod/models/item/flaming_pine_cone.json
+423498747b414a755efd3c772e65f2a425d565c3 assets/zirconmod/models/item/hailstone.json
 53b4f350ed4b1b58ce6be8ccc9fbf089d00b617f assets/zirconmod/models/item/illuminated_torchflower.json
 5933d796a13764855ace3d26d62201fa0aa7fea6 assets/zirconmod/models/item/large_citrine_bud.json
 ffa51bf2846c50a0d0fc49d1508689568809e3a0 assets/zirconmod/models/item/medium_citrine_bud.json
@@ -58,9 +59,11 @@ e32d10280c52eaf758a22e2862b6123f2aca5048 assets/zirconmod/models/item/palm_stair
 efbd81eabe901c0ea562c24fafe930345e26b09b assets/zirconmod/models/item/palm_trapdoor.json
 c5f5b7f65a1ca628fcbf7f309c063035bc489230 assets/zirconmod/models/item/palm_trunk.json
 72d1102778281a720569ad7924dda2655f376b5a assets/zirconmod/models/item/palm_wood.json
+1dd9d25ea4c447806cca7f43963a8b6f6509cb86 assets/zirconmod/models/item/petrified_log.json
 d1b92134b016966ec4af9b37e14512f50ac04729 assets/zirconmod/models/item/pine_cone.json
 ac368fb522d9ff63b51527aad4f6a75d6b5d280c assets/zirconmod/models/item/quicksand_bucket.json
 387f9e8cdd7b073cef25c12a72195591eeb470ed assets/zirconmod/models/item/raw_zirconium.json
+137366fadc2520163192773e2ffdf3984fba6f5d assets/zirconmod/models/item/sculk_roots.json
 67b221f74c58d0d4bc2c1ebb510a81d15decdef0 assets/zirconmod/models/item/small_citrine_bud.json
 86106b1dce4d0e12efee97a36fd7f48565057d90 assets/zirconmod/models/item/speedometer.json
 e69eab47f92142d6d119915875175b7044fdf3e3 assets/zirconmod/models/item/stripped_palm_log.json

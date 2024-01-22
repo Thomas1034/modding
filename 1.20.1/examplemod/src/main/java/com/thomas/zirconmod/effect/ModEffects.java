@@ -18,7 +18,10 @@ public class ModEffects {
 			() -> new CitrineGlowEffect(MobEffectCategory.NEUTRAL, 0xc48ef3));
 	public static final RegistryObject<MobEffect> FLIGHT_EXHAUSTION = MOB_EFFECTS.register("flight_exhaustion",
 			() -> new FlightExhaustionEffect(MobEffectCategory.HARMFUL, 0xcccccc));
-
+	public static final RegistryObject<MobEffect> FREEZING = MOB_EFFECTS.register("freezing",
+			() -> new FreezeEffect(MobEffectCategory.HARMFUL, 0xffffff));
+	
+	
 	public static void register(IEventBus eventBus) {
 		MOB_EFFECTS.register(eventBus);
 	}

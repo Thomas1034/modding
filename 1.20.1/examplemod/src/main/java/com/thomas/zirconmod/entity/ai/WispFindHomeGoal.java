@@ -13,28 +13,19 @@ public class WispFindHomeGoal extends WispMoveToBlockStateGoal {
 		super(wisp, speedModifier, 32,
 				ModBlocks.WISP_BED.get().defaultBlockState().setValue(WispBedBlock.IS_UNOCCUPIED, true));
 	}
-	
-	
-//	@Override
-//	public void start() {
-//		System.out.println("Starting to find home!");
-//	}
 
 	@Override
 	public boolean canUse() {
 		
-		return super.canUse() && this.wisp.getHomeTarget() == null; // && !wisp.getHasHome();
+		return super.canUse() && this.wisp.getHomeTarget() == null;
 	}
 
 	// Sets the bed as occupied.
 	@Override
-	protected void onArrival() {
+	public void onArrival() {
 		BlockPos pos = this.blockPos;
 		Level level = this.wisp.level();
 		this.wisp.setHomeTarget(pos);
-		System.out.println("Setting home target to: " + pos);
-		// this.wisp.setHomePos(pos);
-		// this.wisp.setHasHome(true);
 		level.setBlockAndUpdate(pos,
 				ModBlocks.WISP_BED.get().defaultBlockState().setValue(WispBedBlock.IS_UNOCCUPIED, false));
 	}

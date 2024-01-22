@@ -24,6 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		
 		simpleItem(ModItems.SPEEDOMETER);
+		simpleItem(ModItems.HAILSTONE);
 		simpleItem(ModItems.ZIRCON);
 		simpleItem(ModItems.ZIRCON_SHARD);
 		simpleItem(ModItems.RAW_ZIRCONIUM);
@@ -52,8 +53,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(ModBlocks.LARGE_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.MEDIUM_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.SMALL_CITRINE_BUD);
+		simpleBlockItem(ModBlocks.SCULK_ROOTS);
 		
-
         simpleItem(ModItems.PALM_SIGN);
         simpleItem(ModItems.PALM_HANGING_SIGN);
 		simpleBlockItem(ModBlocks.PALM_DOOR);
@@ -62,6 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleLogModel(ModBlocks.PALM_WOOD);
 		simpleLogModel(ModBlocks.STRIPPED_PALM_LOG);
 		simpleLogModel(ModBlocks.STRIPPED_PALM_WOOD);
+		simpleLogModel(ModBlocks.PETRIFIED_LOG);
 		simpleBlockItem(ModBlocks.PALM_TRUNK);
 		simpleBlockItem(ModBlocks.PALM_FRUIT);
 		simpleBlockItem(ModBlocks.PALM_FROND);

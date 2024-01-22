@@ -16,14 +16,15 @@ import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
 import com.thomas.zirconmod.item.custom.FeatherWingsItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
+import com.thomas.zirconmod.item.custom.HailstoneItem;
 import com.thomas.zirconmod.item.custom.ModBoatItem;
 import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
 import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SeaWingsItem;
+import com.thomas.zirconmod.item.custom.SearchEyeItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
 import com.thomas.zirconmod.util.ModTags;
-import com.thomas.zirconmod.item.custom.SearchEyeItem;
 
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -107,6 +108,7 @@ public class ModItems {
 	public static final RegistryObject<Item> ECHO_POWDER = ITEMS.register("echo_powder",
 			() -> new Item(new Item.Properties()));
 
+	
 	// Pine cone items
 	public static final RegistryObject<Item> PINE_CONE = ITEMS.register("pine_cone",
 			() -> new PineconeItem(new Item.Properties(), 50));
@@ -240,6 +242,11 @@ public class ModItems {
 	public static final RegistryObject<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
 			() -> new HangingSignItem(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
 					new Item.Properties().stacksTo(16)));
+	
+	public static final RegistryObject<Item> HAILSTONE = ITEMS.register("hailstone",
+			() -> new HailstoneItem(new Item.Properties()));
+	
+
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

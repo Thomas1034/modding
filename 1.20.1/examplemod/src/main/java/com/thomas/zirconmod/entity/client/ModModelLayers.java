@@ -14,8 +14,8 @@ public class ModModelLayers {
 			new ResourceLocation(ZirconMod.MOD_ID, "nimbula"), "main");
 	public static final ModelLayerLocation WISP_LAYER = new ModelLayerLocation(
 			new ResourceLocation(ZirconMod.MOD_ID, "wisp"), "main");
-	public static final ModelLayerLocation NIMBULA_OUTER_LAYER = new ModelLayerLocation(
-			new ResourceLocation(ZirconMod.MOD_ID, "nimbula_outer"), "main");
+	public static final ModelLayerLocation TEMPEST_LAYER = new ModelLayerLocation(
+			new ResourceLocation(ZirconMod.MOD_ID, "tempest"), "main");
 	
     public static final ModelLayerLocation PALM_BOAT_LAYER = new ModelLayerLocation(
             new ResourceLocation(ZirconMod.MOD_ID, "boat/palm"), "main");

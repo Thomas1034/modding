@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "zirconmod:block/sculk_jaw_down",
+    "east": "zirconmod:block/sculk_jaw_east",
+    "north": "zirconmod:block/sculk_jaw_north",
+    "particle": "zirconmod:block/sculk_jaw_up",
+    "south": "zirconmod:block/sculk_jaw_south",
+    "up": "zirconmod:block/sculk_jaw_up",
+    "west": "zirconmod:block/sculk_jaw_west"
+  }
+}

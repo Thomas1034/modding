@@ -23,7 +23,13 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("mod_hanging_sign", () ->
                     BlockEntityType.Builder.of(ModHangingSignBlockEntity::new,
                             ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<ResonatorBlockEntity>> RESONATOR =
+            BLOCK_ENTITIES.register("resonator", () ->
+                    BlockEntityType.Builder.of(ResonatorBlockEntity::new,
+                            ModBlocks.RESONATOR_BLOCK.get()).build(null));
 
+    
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

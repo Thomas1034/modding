@@ -46,7 +46,8 @@ public class PalmTrunkPlacer extends TrunkPlacer {
 
 		// Gets the height of the tree.
 		int heightBonus = getHeightBonus(level, startPos.below());
-		int height = heightBonus + this.baseHeight + rand.nextInt(heightRandA, heightRandA + 3) + rand.nextInt(heightRandB - 1, heightRandB + 1);
+		int height = heightBonus + this.baseHeight + rand.nextIntBetweenInclusive(heightRandA, heightRandA + 3)
+				+ rand.nextIntBetweenInclusive(heightRandB - 1, heightRandB + 1);
 
 		// Places the trunk.
 		for (int i = 0; i <= height; i++) {

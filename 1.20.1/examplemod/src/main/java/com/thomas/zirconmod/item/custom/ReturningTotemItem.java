@@ -52,6 +52,7 @@ public class ReturningTotemItem extends Item {
 			}
 			// Adds a cooldown to the item.
 			player.getCooldowns().addCooldown(this, 40);
+			
 		}
 		// Calls super.use, to handle other behaviors.
 		return super.use(level, player, hand);

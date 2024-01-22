@@ -2,6 +2,7 @@ package com.thomas.zirconmod.item.custom;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tier;
@@ -14,11 +15,16 @@ public class CopperShovelItem extends ShovelItem {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity holder, int iInt, boolean isHeld) {
-		if (isHeld)
-			oxidize(stack, level, holder);
+		if (isHeld) {
+			if (holder instanceof Player player && !player.getAbilities().instabuild) {
+				oxidize(stack, level, holder);
+			}
+			if (!(holder instanceof Player)) {
+				oxidize(stack, level, holder);
+			}
+		}
 	}
 
 	// Override the inventory tick function. It will now decay over time.

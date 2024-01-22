@@ -1,4 +1,22 @@
-// 1.20.1	2023-12-29T23:46:01.4254716	Tags for minecraft:item mod id zirconmod
+// 1.20.1	2024-01-19T16:39:52.8295805	Tags for minecraft:item mod id zirconmod
+7b43ed80dd4546faa4018d950bc25c66beff2006 data/forge/tags/items/armors.json
+23773e870deefbdccba4138fb53ae968b869f39e data/forge/tags/items/armors/boots.json
+78f0b4e6475b91ccf83eb832082de6789a9a3b19 data/forge/tags/items/armors/chestplates.json
+263d3d471d0eaed039ce6c557c53ee779ae4b3d8 data/forge/tags/items/armors/helmets.json
+d4c16923ee78de35c3b357be7d196a0ec904339d data/forge/tags/items/armors/leggings.json
+31148f2305bee81725aad7684b503666f5c658e8 data/forge/tags/items/crops.json
+96935dcee86f86d9f1e5e8e1b4d2d712cd4eba5f data/forge/tags/items/dusts.json
+fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/forge/tags/items/fence_gates.json
+fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/forge/tags/items/fence_gates/wooden.json
+4c4196b3d6a0fc4861d94cd0cd85ce31369fba00 data/forge/tags/items/gems.json
+d2208c115dd13fc7b49b1abf8320f724c341ed18 data/forge/tags/items/ingots.json
+bcdeb74626981beb11e18262592d21211d5dcd27 data/forge/tags/items/ores.json
+cbb26f8aaaa25ea2570b41873e6d926d7880a94a data/forge/tags/items/ores_in_ground/deepslate.json
+4f490af3e4c42ea47bb9900f7bc9a6130aa03676 data/forge/tags/items/ores_in_ground/stone.json
+bcdeb74626981beb11e18262592d21211d5dcd27 data/forge/tags/items/ore_rates/dense.json
+1edf6af38cc62b6a69a4b3083cdf49799e9d423f data/forge/tags/items/raw_materials.json
+006fc1b4910ef690f9ded10e8ff5a1c8ca69f5c6 data/forge/tags/items/storage_blocks.json
+60f15ac9a1c027654e3a450550f2fbff3e55d164 data/forge/tags/items/tools.json
 1a00acbeada9340acfbe61acaa951d57ddb963c1 data/minecraft/tags/items/arrows.json
 df3e6c3e2798b0fa02b58c8dd5f77d60732d2ec3 data/minecraft/tags/items/axes.json
 1f19b12fd46f2e4f3771f9b5242031f6b5082888 data/minecraft/tags/items/buttons.json
@@ -25,3 +43,4 @@ d40b1c1c2258d3f97efa94e3781ce9c82760ac04 data/minecraft/tags/items/wooden_pressu
 67657c70ab56331fbcaa9355fa143a9bffd94e7e data/minecraft/tags/items/wooden_stairs.json
 f00f8250ce5fcba6ccff243fdb61a38a61278267 data/minecraft/tags/items/wooden_trapdoors.json
 1f1d612350e853565e26a74d21fa8e6577a9ca3e data/zirconmod/tags/items/cloud_harvest_items.json
+96935dcee86f86d9f1e5e8e1b4d2d712cd4eba5f data/zirconmod/tags/items/sculk_awakening_items.json

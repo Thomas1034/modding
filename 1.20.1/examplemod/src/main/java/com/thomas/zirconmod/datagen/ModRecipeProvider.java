@@ -283,7 +283,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.CITRINE_SHARD.get(), 0.25f, 200, "citrine_shard");
 		oreSmelting(pWriter, List.of(Items.BUDDING_AMETHYST), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.BUDDING_CITRINE.get(), 0.25f, 200, "budding_citrine");
-
+		
+		// Resonator
+		shaped(pWriter, List.of("SSS", "QER", "SSS"), List.of('S', 'E', 'Q', 'R'),
+				List.of(Items.DEEPSLATE_BRICKS, ModBlocks.ECHO_BLOCK.get(), Items.QUARTZ, Items.REDSTONE), RecipeCategory.MISC,
+				ModBlocks.RESONATOR_BLOCK.get(), 1);
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

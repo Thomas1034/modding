@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.worldgen.custom.OasisFeature;
+import com.thomas.zirconmod.worldgen.custom.PatchFeature;
+import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
+import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmFoliagePlacer;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
 
@@ -22,6 +26,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
@@ -35,6 +40,15 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_KEY = registerKey("palm");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_JUNGLE_KEY = registerKey("palm_jungle");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OASIS_KEY = registerKey("oasis");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_TREE_KEY = registerKey("petrified_tree");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_PATCH_KEY = registerKey("stone_patch");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
+	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SCULK_HOSTILES_KEY = registerKey("sculk_hostiles");
 
 	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -65,12 +79,23 @@ public class ModConfiguredFeatures {
 						new PalmTrunkPlacer(3, 1, 1), BlockStateProvider.simple(ModBlocks.PALM_FROND.get()),
 						new PalmFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
 						new TwoLayersFeatureSize(1, 0, 2)).build());
-		
+
 		register(context, PALM_JUNGLE_KEY, Feature.TREE,
 				new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.PALM_TRUNK.get()),
 						new PalmTrunkPlacer(5, 1, 1), BlockStateProvider.simple(ModBlocks.PALM_FROND.get()),
 						new PalmFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
 						new TwoLayersFeatureSize(1, 0, 2)).build());
+
+		register(context, OASIS_KEY, (OasisFeature) ModFeature.OASIS.get(), new NoneFeatureConfiguration());
+		register(context, PETRIFIED_TREE_KEY, (PetrifiedTreeFeature) ModFeature.PETRIFIED_TREE.get(),
+				new NoneFeatureConfiguration());
+		register(context, STONE_PATCH_KEY, (PatchFeature) ModFeature.STONE_PATCH.get(), new NoneFeatureConfiguration());
+		register(context, COARSE_DIRT_PATCH_KEY, (PatchFeature) ModFeature.COARSE_DIRT_PATCH.get(),
+				new NoneFeatureConfiguration());
+		
+		register(context, SCULK_HOSTILES_KEY, (SculkHostilesFeature) ModFeature.SCULK_DECORATION.get(), new NoneFeatureConfiguration());
+		
+		
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

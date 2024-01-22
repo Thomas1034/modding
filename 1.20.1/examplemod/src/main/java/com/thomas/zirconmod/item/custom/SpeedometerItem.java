@@ -16,19 +16,21 @@ public class SpeedometerItem extends Item {
 	public SpeedometerItem(Properties properties) {
 		super(properties);
 	}
-	
+
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-	    System.out.println(player.getClass());
-		if (level.isClientSide() && hand == InteractionHand.MAIN_HAND)
-		{
+		System.out.println(player.getClass());
+		if (level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
 			Vec3 vel = Utilities.deltaMotion(player);
 			player.sendSystemMessage(Component.literal("Velocity: " + vel.x + " " + vel.y + " " + vel.z));
 			player.sendSystemMessage(Component.literal("Speed: " + vel.length()));
-			
+
 		}
-		
-		return super.use(level,  player, hand);
+		else if (!level.isClientSide()) {
+			//PetrifiedTreeFeature.placePetrifiedTree(level, player.blockPosition());
+		}
+
+		return super.use(level, player, hand);
 	}
 
 }

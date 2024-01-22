@@ -1,10 +1,12 @@
 package com.thomas.zirconmod.entity;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.entity.custom.HailstoneEntity;
 import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.entity.custom.ModChestBoatEntity;
 import com.thomas.zirconmod.entity.custom.MoleEntity;
 import com.thomas.zirconmod.entity.custom.NimbulaEntity;
+import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WispEntity;
 import com.thomas.zirconmod.entity.custom.WoodGolemEntity;
 
@@ -31,6 +33,9 @@ public class ModEntities {
 	public static final RegistryObject<EntityType<NimbulaEntity>> NIMBULA_ENTITY = ENTITY_TYPES.register("nimbula",
 			() -> EntityType.Builder.of(NimbulaEntity::new, MobCategory.CREATURE).sized(1.0f, 1.5f).build("nimbula"));
 
+	public static final RegistryObject<EntityType<TempestEntity>> TEMPEST_ENTITY = ENTITY_TYPES.register("tempest",
+			() -> EntityType.Builder.of(TempestEntity::new, MobCategory.CREATURE).sized(4.0f, 6.0f).build("tempest"));
+
 	public static final RegistryObject<EntityType<WispEntity>> WISP_ENTITY = ENTITY_TYPES.register("wisp",
 			() -> EntityType.Builder.of(WispEntity::new, MobCategory.CREATURE).sized(0.9f, 0.9f).build("wisp"));
 
@@ -41,6 +46,10 @@ public class ModEntities {
 			"mod_chest_boat", () -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
 					.sized(1.375f, 0.5625f).build("mod_chest_boat"));
 
+	public static final RegistryObject<EntityType<HailstoneEntity>> HAILSTONE_ENTITY = ENTITY_TYPES.register("hailstone",
+			() -> EntityType.Builder.<HailstoneEntity>of(HailstoneEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+					.clientTrackingRange(4).updateInterval(10).build("hailstone"));
+	
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}

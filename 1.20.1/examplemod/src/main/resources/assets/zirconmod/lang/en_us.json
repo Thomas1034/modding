@@ -56,6 +56,7 @@
 	"item.zirconmod.citrine_hoe": "Citrine Hoe",
 	"item.zirconmod.citrine_shovel": "Citrine Shovel",
 	
+	"item.zirconmod.hailstone": "Hailstone",
 	
 	"item.zirconmod.citrine_bracket": "Citrine Bracket",
 	"item.zirconmod.citrine_lantern": "Citrine Lantern",
@@ -101,6 +102,13 @@
 	"block.zirconmod.chiseled_thunder_cloud_bricks": "Chiseled Thunder Cloud Bricks",
 	"block.zirconmod.thunder_cloud_brick_pillar": "Thunder Cloud Brick Pillar",
 	"block.zirconmod.wisp_bed": "Wisp Bed",
+	"block.zirconmod.petrified_log": "Petrified Log",
+	"block.zirconmod.sculk_jaw": "Sculk Jaw",
+	"block.zirconmod.sculk_roots": "Sculk Roots",
+	"block.zirconmod.resonator": "Resonator",
+	"block.zirconmod.lightning_block": "Lightning Block",
+	"block.zirconmod.unstable_lightning_block": "Unstable Lightning Block",
+	
 	
 	
 	"block.zirconmod.palm_trunk": "Palm Trunk",
@@ -149,9 +157,11 @@
 	"enchantment.zirconmod.updraft": "Updraft",
 	
 	"entity.zirconmod.nimbula": "Nimbula",
+	"entity.zirconmod.hailstone": "Hailstone",
 	"entity.zirconmod.mole": "Mole",
 	"entity.zirconmod.wood_golem": "Wood Golem",
 	"entity.zirconmod.wisp": "Wisp",
+	"entity.zirconmod.tempest": "Tempest",
 	"entity.zirconmod.mod_boat": "Boat",
 	"entity.zirconmod.mod_chest_boat": "Boat with Chest",
 	
@@ -160,6 +170,7 @@
 	
 	"effect.zirconmod.citrine_glow": "Citrine Glow",
 	"effect.zirconmod.flight_exhaustion": "Flight Exhaustion",
+	"effect.zirconmod.freezing": "Freezing",
 	
 	"creativetab.zirconmod_items": "Zircon Mod Items",
 	"creativetab.zirconmod_blocks": "Zircon Mod Blocks",

@@ -22,16 +22,13 @@ public class WispGoHomeWhenThunderingGoal extends Goal {
 
 	@Override
 	public void stop() {
+
 		// this.trader.setWanderTarget((BlockPos) null);
 		this.trader.getNavigation().stop();
 		// If the home was removed, then set the wisp to be homeless.
-		if (!this.trader.level().getBlockState(this.trader.getHomeTarget()).is(ModBlocks.WISP_BED.get()))
-		{
-			System.out.println("Setting the wisp to be homeless");
+		if (!this.trader.level().getBlockState(this.trader.getHomeTarget()).is(ModBlocks.WISP_BED.get())) {
 			this.trader.setHomeTarget(null);
 		}
-		// Removes the wisp's velocity.
-		// this.trader.setDeltaMovement(new Vec3(0, 0, 0));
 	}
 
 //	@Override
@@ -48,28 +45,13 @@ public class WispGoHomeWhenThunderingGoal extends Goal {
 
 	@Override
 	public void tick() {
-		
+
 		BlockPos blockpos = this.trader.getHomeTarget();
 		if (blockpos != null && this.trader.getNavigation().isDone()) {
 			this.trader.getNavigation().moveTo((double) blockpos.getX(), (double) blockpos.getY(),
 					(double) blockpos.getZ(), this.speedModifier);
 		}
 	}
-
-	/*
-	 * public void tick() { BlockPos blockpos = this.trader.getWanderTarget(); if
-	 * (blockpos != null && this.trader.getNavigation().isDone()) { if
-	 * (this.isTooFarAway(blockpos, this.stopDistance)) { Vec3 vec3 = (new
-	 * Vec3((double) blockpos.getX() - this.trader.getX(), (double) blockpos.getY()
-	 * - this.trader.getY(), (double) blockpos.getZ() -
-	 * this.trader.getZ())).normalize(); Vec3 vec31 =
-	 * vec3.scale(10.0D).add(this.trader.getX(), this.trader.getY(),
-	 * this.trader.getZ()); this.trader.getNavigation().moveTo(vec31.x, vec31.y,
-	 * vec31.z, this.speedModifier); } else {
-	 * this.trader.getNavigation().moveTo((double) blockpos.getX(), (double)
-	 * blockpos.getY(), (double) blockpos.getZ(), this.speedModifier); } } }
-	 */
-
 	private boolean isTooFarAway(BlockPos p_35904_, double p_35905_) {
 		return !p_35904_.closerToCenterThan(this.trader.position(), p_35905_);
 	}

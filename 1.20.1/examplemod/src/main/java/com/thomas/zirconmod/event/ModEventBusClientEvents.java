@@ -5,6 +5,7 @@ import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.entity.client.ModModelLayers;
 import com.thomas.zirconmod.entity.client.MoleModel;
 import com.thomas.zirconmod.entity.client.NimbulaModel;
+import com.thomas.zirconmod.entity.client.TempestModel;
 import com.thomas.zirconmod.entity.client.WingsLayer;
 import com.thomas.zirconmod.entity.client.WispModel;
 import com.thomas.zirconmod.entity.client.WoodGolemModel;
@@ -29,6 +30,7 @@ public class ModEventBusClientEvents {
 		event.registerLayerDefinition(ModModelLayers.MOLE_LAYER, MoleModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.WOOD_GOLEM_LAYER, WoodGolemModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.NIMBULA_LAYER, NimbulaModel::createBodyLayer);
+		event.registerLayerDefinition(ModModelLayers.TEMPEST_LAYER, TempestModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.WISP_LAYER, WispModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
 		event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
@@ -39,6 +41,7 @@ public class ModEventBusClientEvents {
 	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
 		event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
+		
 	}
 
 	// Credit for this goes to LocusAzzurro

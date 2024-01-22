@@ -12,6 +12,7 @@ import com.thomas.zirconmod.entity.ModEntities;
 import com.thomas.zirconmod.entity.client.ModBoatRenderer;
 import com.thomas.zirconmod.entity.client.MoleRenderer;
 import com.thomas.zirconmod.entity.client.NimbulaRenderer;
+import com.thomas.zirconmod.entity.client.TempestRenderer;
 import com.thomas.zirconmod.entity.client.WispRenderer;
 import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
@@ -20,11 +21,15 @@ import com.thomas.zirconmod.painting.ModPaintings;
 import com.thomas.zirconmod.sound.ModSounds;
 import com.thomas.zirconmod.util.WoodGolemPlacer;
 import com.thomas.zirconmod.villager.ModVillagers;
+import com.thomas.zirconmod.worldgen.ModFeature;
+import com.thomas.zirconmod.worldgen.biome.ModTerraBlender;
+import com.thomas.zirconmod.worldgen.biome.surface.ModSurfaceRules;
 import com.thomas.zirconmod.worldgen.tree.ModFoliagePlacers;
 import com.thomas.zirconmod.worldgen.tree.ModTrunkPlacerTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.LevelAccessor;
@@ -44,6 +49,16 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import terrablender.api.SurfaceRuleManager;
+
+// To do:
+// Add painting titles in lang file.
+// Add sounds for all the entities.
+// Add JEI compatibility
+// 
+// 
+// 
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ZirconMod.MOD_ID)
@@ -64,23 +79,26 @@ public class ZirconMod {
 		ModEnchantments.register(modEventBus);
 		ModEffects.register(modEventBus);
 
-        ModBlockEntities.register(modEventBus);
+		ModBlockEntities.register(modEventBus);
 
 		ModLootModifiers.register(modEventBus);
 		ModVillagers.register(modEventBus);
 
-        ModTrunkPlacerTypes.register(modEventBus);
-        ModFoliagePlacers.register(modEventBus);
+		ModTrunkPlacerTypes.register(modEventBus);
+		ModFoliagePlacers.register(modEventBus);
 
 		ModSounds.register(modEventBus);
 		ModEntities.register(modEventBus);
+
+		ModFeature.register(modEventBus);
+		
+		ModTerraBlender.registerBiomes();
 
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);
 
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
-
 
 		// Register our mod's ForgeConfigSpec so that Forge can create and load the
 		// config file for us
@@ -92,6 +110,10 @@ public class ZirconMod {
 		event.enqueueWork(() -> {
 			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ILLUMINATED_TORCHFLOWER.getId(),
 					ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER);
+
+			SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID,
+					ModSurfaceRules.makeRules());
+
 		});
 	}
 
@@ -134,8 +156,10 @@ public class ZirconMod {
 			EntityRenderers.register(ModEntities.WISP_ENTITY.get(), WispRenderer::new);
 			EntityRenderers.register(ModEntities.MOD_BOAT.get(), context -> new ModBoatRenderer(context, false));
 			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
-
+			EntityRenderers.register(ModEntities.TEMPEST_ENTITY.get(), TempestRenderer::new);
+			EntityRenderers.register(ModEntities.HAILSTONE_ENTITY.get(), ThrownItemRenderer::new);
+			
 		}
 	}
-	
+
 }

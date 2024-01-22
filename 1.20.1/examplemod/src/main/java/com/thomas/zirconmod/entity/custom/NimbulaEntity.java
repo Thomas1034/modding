@@ -42,14 +42,15 @@ import net.minecraft.world.level.Level;
 
 public class NimbulaEntity extends Animal implements FlyingAnimal {
 
+	public final AnimationState idleAnimationState = new AnimationState();
+	private int idleAnimationTimeout = 0;
+	
 	public NimbulaEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
 	}
 
-	public final AnimationState idleAnimationState = new AnimationState();
-	private int idleAnimationTimeout = 0;
 
 	@Override
 	public void tick() {

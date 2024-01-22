@@ -28,10 +28,8 @@ public class FlamingArrowItem extends ArrowItem {
 				Direction moving = res.getDirection();
 				// Gets the position of the hit.
 				BlockPos pos = res.getBlockPos().relative(moving);
-				System.out.println(pos);
 				// Get the block state at the position of the arrow.
 				BlockState at = this.level().getBlockState(pos);
-				System.out.println(at);
 				// Set the block on fire if it's air
 				if (at.isAir())
 					this.level().setBlockAndUpdate(pos, BaseFireBlock.getState(level, pos));
