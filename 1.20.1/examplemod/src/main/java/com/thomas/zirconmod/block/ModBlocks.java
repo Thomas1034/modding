@@ -84,7 +84,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			ZirconMod.MOD_ID);
-	
+
 	// Villager workstation blocks
 	public static final RegistryObject<Block> CARPENTRY_TABLE = registerBlock("carpentry_table",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
@@ -198,9 +198,10 @@ public class ModBlocks {
 					.noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
 					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 	public static final RegistryObject<Block> UNSTABLE_LIGHTNING_BLOCK = registerBlock("unstable_lightning_block",
-			() -> new UnstableLightningBlock(BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY)
-					.randomTicks().noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
-					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
+			() -> new UnstableLightningBlock(
+					BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY).randomTicks()
+							.noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
+							.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
@@ -292,18 +293,14 @@ public class ModBlocks {
 			});
 
 	// Cloud converter block, converts redstone signal to cloud strength
-	// Cloud bricks
-		public static final RegistryObject<Block> CLOUD_CONVERTER = registerBlock("cloud_converter",
-				() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
+	public static final RegistryObject<Block> CLOUD_CONVERTER = registerBlock("cloud_converter",
+			() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
 
-	
-	
 	// Petrified log
 	public static final RegistryObject<Block> PETRIFIED_LOG = registerBlock("petrified_log",
 			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
 	// Palm components
-
 	public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
 			() -> new SaplingBlock(new PalmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)) {
 				public boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {

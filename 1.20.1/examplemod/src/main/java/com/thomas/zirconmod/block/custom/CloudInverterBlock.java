@@ -14,9 +14,9 @@ import net.minecraft.world.level.block.ObserverBlock;
 import net.minecraft.world.level.block.RepeaterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class CloudConverterBlock extends CloudBlock {
+public class CloudInverterBlock extends CloudBlock {
 
-	public CloudConverterBlock(Properties properties) {
+	public CloudInverterBlock(Properties properties) {
 		super(properties);
 	}
 
@@ -49,12 +49,12 @@ public class CloudConverterBlock extends CloudBlock {
 
 	// Sets the distance based on the block's redstone power.
 	protected static int getDistanceAt(LevelAccessor level, BlockPos pos, BlockState state) {
-		return 15 - level.getDirectSignalTo(pos);
+		return level.getDirectSignalTo(pos);
 		
 	}
 	
 	public static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
-		int dist = 15 - level.getDirectSignalTo(pos);
+		int dist = level.getDirectSignalTo(pos);
 		return state.setValue(SOLIDIFIER_DISTANCE, Integer.valueOf(dist));
 	}
 

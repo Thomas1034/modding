@@ -117,7 +117,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, Blocks.ROOTED_DIRT, 1);
 
 		// Elytra
-		shaped(pWriter, List.of("MDM", "MHM", "M M"), List.of('M', 'D', 'H'),
+		shaped(pWriter, List.of("MHM", "MDM", "M M"), List.of('M', 'D', 'H'),
 				List.of(Items.PHANTOM_MEMBRANE, Items.DIAMOND, ModItems.HEART_OF_THE_SKY.get()),
 				RecipeCategory.TRANSPORTATION, Items.ELYTRA, 1);
 
@@ -284,6 +284,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(), 6);
 		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.THUNDER_CLOUD_BRICKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(), 3);
+
+		// Cloud converter
+		shaped(pWriter, List.of("CRC", "RTR", "CRC"), List.of('C', 'T'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_CONVERTER.get(), 2);
 
 		// Smelting amethyst blocks to citrine
 		oreSmelting(pWriter, List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,

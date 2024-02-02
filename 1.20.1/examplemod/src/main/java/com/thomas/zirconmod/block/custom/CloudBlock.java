@@ -104,7 +104,7 @@ public class CloudBlock extends Block {
 	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
-		int i = getDistanceAt(otherState) + 1;
+		int i = getDistanceAt(level, otherPos, otherState) + 1;
 		if (i != 1 || state.getValue(SOLIDIFIER_DISTANCE) != i) {
 			level.scheduleTick(pos, this, 1);
 		}
@@ -125,14 +125,14 @@ public class CloudBlock extends Block {
 		return p_49928_.getFluidState().isEmpty();
 	}
 
-	private static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
+	public static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
 		int dist = MAX_DISTANCE;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 		// Should be less laggy, but doesn't count corners.
 		for (Direction direction : Direction.values()) {
 			blockpos$mutableblockpos.setWithOffset(pos, direction);
-			dist = Math.min(dist, getDistanceAt(level.getBlockState(blockpos$mutableblockpos)) + 1);
+			dist = Math.min(dist, getDistanceAt(level, blockpos$mutableblockpos, level.getBlockState(blockpos$mutableblockpos)) + 1);
 			if (dist == 1) {
 				break;
 			}
@@ -141,7 +141,7 @@ public class CloudBlock extends Block {
 		return state.setValue(SOLIDIFIER_DISTANCE, Integer.valueOf(dist));
 	}
 
-	protected static int getDistanceAt(BlockState state) {
+	protected static int getDistanceAt(LevelAccessor level, BlockPos pos, BlockState state) {
 		return getOptionalDistanceAt(state).orElse(MAX_DISTANCE);
 	}
 
