@@ -25,6 +25,11 @@ public class TempestModel<T extends Entity> extends HierarchicalModel<T> {
 		this.tempest = root.getChild("tempest");
 		this.head = tempest.getChild("head");
 	}
+	
+	public static LayerDefinition createPowerLayer() {
+		LayerDefinition bodyLayer = createBodyLayer();
+		return bodyLayer;
+	}
 
 	@SuppressWarnings("unused")
 	public static LayerDefinition createBodyLayer() {

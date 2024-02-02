@@ -24,6 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		
 		simpleItem(ModItems.SPEEDOMETER);
+		simpleItem(ModItems.HEART_OF_THE_SKY);
 		simpleItem(ModItems.HAILSTONE);
 		simpleItem(ModItems.ZIRCON);
 		simpleItem(ModItems.ZIRCON_SHARD);
@@ -114,6 +115,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		withExistingParent(ModItems.MOLE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.NIMBULA_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(ModItems.TEMPEST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.WISP_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));

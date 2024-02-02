@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_carpentry_table": {
+    "has_diamond": {
       "conditions": {
         "items": [
           {
             "items": [
-              "zirconmod:carpentry_table"
+              "minecraft:diamond"
             ]
           }
         ]
@@ -25,35 +25,25 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_feather": {
+    "has_heart_of_the_sky": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:feather"
+              "zirconmod:heart_of_the_sky"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_honeycomb": {
+    "has_phantom_membrane": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:honeycomb"
+              "minecraft:phantom_membrane"
             ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_minecraft_root": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "minecraft:planks"
           }
         ]
       },
@@ -61,24 +51,23 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "zirconmod:carpentry_table_from_feather_honeycomb_tag_minecraft_root_elytra"
+        "recipe": "zirconmod:elytra_from_phantom_membrane_diamond_heart_of_the_sky"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_feather",
-      "has_honeycomb",
-      "has_minecraft_root",
+      "has_phantom_membrane",
+      "has_diamond",
+      "has_heart_of_the_sky",
       "has_elytra",
-      "has_carpentry_table",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "zirconmod:carpentry_table_from_feather_honeycomb_tag_minecraft_root_elytra"
+      "zirconmod:elytra_from_phantom_membrane_diamond_heart_of_the_sky"
     ]
   },
   "sends_telemetry_event": false

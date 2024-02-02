@@ -85,12 +85,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModItems.FLAMING_PINE_CONE.get(), Items.ARROW, Items.STRING), RecipeCategory.COMBAT,
 				ModItems.FLAMING_ARROW.get(), 1);
 
+		// Hailstones from ice (4x)
+		shapeless(pWriter, List.of(Blocks.ICE), List.of(1), RecipeCategory.COMBAT, ModItems.HAILSTONE.get(), 4);
+
+		// Hailstones from snowballs and ice (8x)
+		shaped(pWriter, List.of("SSS", "SIS", "SSS"), List.of('S', 'I'), List.of(Items.SNOWBALL, Blocks.ICE),
+				RecipeCategory.COMBAT, ModItems.HAILSTONE.get(), 1);
+
 		// String from wool
 		shapeless(pWriter, List.of(Blocks.WHITE_WOOL), List.of(1), RecipeCategory.MISC, Items.STRING, 3);
 
 		// Spruce sapling from pine cones.
 		shaped(pWriter, List.of("PP", "PP"), List.of('P'), List.of(ModItems.PINE_CONE.get()), RecipeCategory.MISC,
 				Items.SPRUCE_SAPLING, 1);
+
+		// Palm sapling from palm seeds.
+		shaped(pWriter, List.of("PP", "PP"), List.of('P'), List.of(ModItems.PALM_SEEDS.get()), RecipeCategory.MISC,
+				ModBlocks.PALM_SAPLING.get(), 1);
 
 		// Sculk catalyst.
 		shaped(pWriter, List.of("111", "333", "242"), List.of('1', '2', '3', '4'),
@@ -105,7 +116,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(pWriter, List.of("DR", "RD"), List.of('R', 'D'), List.of(Items.HANGING_ROOTS, Items.DIRT),
 				RecipeCategory.BUILDING_BLOCKS, Blocks.ROOTED_DIRT, 1);
 
-		// Trident.
+		// Elytra
+		shaped(pWriter, List.of("MDM", "MHM", "M M"), List.of('M', 'D', 'H'),
+				List.of(Items.PHANTOM_MEMBRANE, Items.DIAMOND, ModItems.HEART_OF_THE_SKY.get()),
+				RecipeCategory.TRANSPORTATION, Items.ELYTRA, 1);
+
+		// Trident
 		shaped(pWriter, List.of(" SD", " HS", "T  "), List.of('S', 'D', 'H', 'T'),
 				List.of(Items.PRISMARINE_SHARD, Items.DIAMOND, Items.HEART_OF_THE_SEA, Items.STICK),
 				RecipeCategory.COMBAT, Items.TRIDENT, 1);
@@ -224,7 +240,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Feather wings
 		shaped(pWriter, List.of("FBF", "PEP", "FBF"), List.of('F', 'B', 'P', 'E'),
 				List.of(Items.FEATHER, Items.HONEYCOMB, ItemTags.PLANKS, Items.ELYTRA), RecipeCategory.TRANSPORTATION,
-				ModBlocks.CARPENTRY_TABLE.get(), 1);
+				ModItems.FEATHER_WINGS.get(), 1);
 
 		// Palm furniture
 		shaped(pWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
@@ -241,12 +257,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE_GATE.get(), 1);
 		shaped(pWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PRESSURE_PLATE.get(), 1);
-		shaped(pWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'), List.of(ModBlocks.PALM_PLANKS.get(), Items.STICK),
-				RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_SIGN.get(), 3);
-		shaped(pWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'), List.of(ModBlocks.STRIPPED_PALM_LOG.get(), Items.CHAIN),
-				RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_HANGING_SIGN.get(), 2);
-		
-		
+		shaped(pWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
+				List.of(ModBlocks.PALM_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.PALM_SIGN.get(), 3);
+		shaped(pWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
+				List.of(ModBlocks.STRIPPED_PALM_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.PALM_HANGING_SIGN.get(), 2);
+
 		// Cloud brick furniture
 		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
 				List.of(ModBlocks.CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
@@ -283,11 +300,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.CITRINE_SHARD.get(), 0.25f, 200, "citrine_shard");
 		oreSmelting(pWriter, List.of(Items.BUDDING_AMETHYST), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.BUDDING_CITRINE.get(), 0.25f, 200, "budding_citrine");
-		
+
 		// Resonator
 		shaped(pWriter, List.of("SSS", "QER", "SSS"), List.of('S', 'E', 'Q', 'R'),
-				List.of(Items.DEEPSLATE_BRICKS, ModBlocks.ECHO_BLOCK.get(), Items.QUARTZ, Items.REDSTONE), RecipeCategory.MISC,
-				ModBlocks.RESONATOR_BLOCK.get(), 1);
+				List.of(Items.DEEPSLATE_BRICKS, ModBlocks.ECHO_BLOCK.get(), Items.QUARTZ, Items.REDSTONE),
+				RecipeCategory.MISC, ModBlocks.RESONATOR_BLOCK.get(), 1);
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

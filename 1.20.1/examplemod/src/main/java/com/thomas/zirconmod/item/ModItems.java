@@ -38,6 +38,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SolidBucketItem;
@@ -108,7 +109,6 @@ public class ModItems {
 	public static final RegistryObject<Item> ECHO_POWDER = ITEMS.register("echo_powder",
 			() -> new Item(new Item.Properties()));
 
-	
 	// Pine cone items
 	public static final RegistryObject<Item> PINE_CONE = ITEMS.register("pine_cone",
 			() -> new PineconeItem(new Item.Properties(), 50));
@@ -208,6 +208,10 @@ public class ModItems {
 	public static final RegistryObject<Item> NIMBULA_SPAWN_EGG = ITEMS.register("nimbula_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.NIMBULA_ENTITY, 0xffffff, 0x0092d6, new Item.Properties()));
 
+	public static final RegistryObject<Item> TEMPEST_SPAWN_EGG = ITEMS.register("tempest_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntities.TEMPEST_ENTITY, 0x292C33, 0x82eefd, new Item.Properties()));
+
+	
 	public static final RegistryObject<Item> WISP_SPAWN_EGG = ITEMS.register("wisp_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.WISP_ENTITY, 0xffffff, 0x3333cc, new Item.Properties()));
 
@@ -222,7 +226,7 @@ public class ModItems {
 					new Item.Properties(), Direction.DOWN));
 
 	public static final RegistryObject<Item> FEATHER_WINGS = ITEMS.register("feather_wings",
-			() -> new FeatherWingsItem(new Item.Properties().durability(108)));
+			() -> new FeatherWingsItem(new Item.Properties().durability(108).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> SEA_WINGS = ITEMS.register("sea_wings",
 			() -> new SeaWingsItem(new Item.Properties().durability(1000)));
 	public static final RegistryObject<Item> DRAGONFLY_WINGS = ITEMS.register("dragonfly_wings",
@@ -242,11 +246,12 @@ public class ModItems {
 	public static final RegistryObject<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
 			() -> new HangingSignItem(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
 					new Item.Properties().stacksTo(16)));
-	
+
 	public static final RegistryObject<Item> HAILSTONE = ITEMS.register("hailstone",
 			() -> new HailstoneItem(new Item.Properties()));
-	
 
+	public static final RegistryObject<Item> HEART_OF_THE_SKY = ITEMS.register("heart_of_the_sky",
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

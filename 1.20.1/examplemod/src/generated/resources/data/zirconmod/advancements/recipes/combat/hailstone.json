@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hailstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:hailstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ice"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "zirconmod:hailstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ice",
+      "has_hailstone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "zirconmod:hailstone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -90,7 +91,7 @@ public class SculkRootBlock extends Block {
 		AABB shape = TOUCH_SHAPE[stage].move(pos);
 
 		// Get all the entities inside the collision shape.
-		List<Entity> entities = level.getEntitiesOfClass(Entity.class, shape);
+		List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, shape);
 		// System.out.println("Entities: " + entities);
 
 		// See if there are any entities there at all.

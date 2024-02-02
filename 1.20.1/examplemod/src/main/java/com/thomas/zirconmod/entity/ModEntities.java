@@ -1,6 +1,7 @@
 package com.thomas.zirconmod.entity;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.entity.custom.BallLightningEntity;
 import com.thomas.zirconmod.entity.custom.HailstoneEntity;
 import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.entity.custom.ModChestBoatEntity;
@@ -49,6 +50,10 @@ public class ModEntities {
 	public static final RegistryObject<EntityType<HailstoneEntity>> HAILSTONE_ENTITY = ENTITY_TYPES.register("hailstone",
 			() -> EntityType.Builder.<HailstoneEntity>of(HailstoneEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
 					.clientTrackingRange(4).updateInterval(10).build("hailstone"));
+
+	public static final RegistryObject<EntityType<BallLightningEntity>> BALL_LIGHTNING_ENTITY = ENTITY_TYPES.register("ball_lightning",
+			() -> EntityType.Builder.<BallLightningEntity>of(BallLightningEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+					.clientTrackingRange(4).updateInterval(10).build("ball_lightning"));
 	
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);

@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-20T16:09:43.995725	Item Models: zirconmod
+// 1.20.1	2024-02-01T22:38:10.8239718	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 1478198d944fe5cede2e678f28847d8b1e791707 assets/zirconmod/models/item/citrine_axe.json
@@ -33,6 +33,7 @@ b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wi
 5e7f372b75d19eea8a062fa75628c6ee97211cf5 assets/zirconmod/models/item/flaming_arrow.json
 267e05816b27217d8a81aedd426edaae6f9f3bc4 assets/zirconmod/models/item/flaming_pine_cone.json
 423498747b414a755efd3c772e65f2a425d565c3 assets/zirconmod/models/item/hailstone.json
+56600b5d405397927274538de3f20d86c321e4d5 assets/zirconmod/models/item/heart_of_the_sky.json
 53b4f350ed4b1b58ce6be8ccc9fbf089d00b617f assets/zirconmod/models/item/illuminated_torchflower.json
 5933d796a13764855ace3d26d62201fa0aa7fea6 assets/zirconmod/models/item/large_citrine_bud.json
 ffa51bf2846c50a0d0fc49d1508689568809e3a0 assets/zirconmod/models/item/medium_citrine_bud.json
@@ -68,6 +69,7 @@ ac368fb522d9ff63b51527aad4f6a75d6b5d280c assets/zirconmod/models/item/quicksand_
 86106b1dce4d0e12efee97a36fd7f48565057d90 assets/zirconmod/models/item/speedometer.json
 e69eab47f92142d6d119915875175b7044fdf3e3 assets/zirconmod/models/item/stripped_palm_log.json
 53227c967bb4f9dc5dae61d99ee430e688cf84c7 assets/zirconmod/models/item/stripped_palm_wood.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/tempest_spawn_egg.json
 5346609bfdf235b820443d21557f329478ba0ad2 assets/zirconmod/models/item/thunder_cloud_brick_pillar.json
 a8d08b5ad623fbd138be468271b321ec062e4d42 assets/zirconmod/models/item/thunder_cloud_brick_slab.json
 3d20fdc74d8a385abf0701c49b869a27b49f232d assets/zirconmod/models/item/thunder_cloud_brick_stairs.json

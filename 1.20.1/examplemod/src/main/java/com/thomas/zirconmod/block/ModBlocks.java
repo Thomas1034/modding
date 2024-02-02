@@ -8,6 +8,7 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.BuddingCitrineBlock;
 import com.thomas.zirconmod.block.custom.CloudBlock;
+import com.thomas.zirconmod.block.custom.CloudConverterBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
@@ -83,7 +84,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			ZirconMod.MOD_ID);
-
+	
 	// Villager workstation blocks
 	public static final RegistryObject<Block> CARPENTRY_TABLE = registerBlock("carpentry_table",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
@@ -136,7 +137,7 @@ public class ModBlocks {
 
 	// Zircon block
 	public static final RegistryObject<Block> ZIRCON_BLOCK = registerBlock("zircon_block",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)
 					.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 5)));
 
 	// Zircon ore
@@ -290,6 +291,13 @@ public class ModBlocks {
 				}
 			});
 
+	// Cloud converter block, converts redstone signal to cloud strength
+	// Cloud bricks
+		public static final RegistryObject<Block> CLOUD_CONVERTER = registerBlock("cloud_converter",
+				() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
+
+	
+	
 	// Petrified log
 	public static final RegistryObject<Block> PETRIFIED_LOG = registerBlock("petrified_log",
 			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));

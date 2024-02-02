@@ -76,6 +76,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
 		this.dropSelf(ModBlocks.CHISELED_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.CLOUD_CONVERTER.get());
 		this.dropSelf(ModBlocks.CITRINE_BLOCK.get());
 		this.dropSelf(ModBlocks.CITRINE_LANTERN.get());
 		this.dropSelf(ModBlocks.PALM_TRUNK.get());

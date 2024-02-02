@@ -23,12 +23,13 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.ZIRCON_SHARD.get());
 						pOutput.accept(ModItems.CITRINE_SHARD.get());
 						pOutput.accept(ModItems.CUT_CITRINE.get());
+						pOutput.accept(ModItems.HAILSTONE.get());
+						pOutput.accept(ModItems.HEART_OF_THE_SKY.get());
 						pOutput.accept(ModItems.ZIRCONIUM_INGOT.get());
 						pOutput.accept(ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get());
 						pOutput.accept(ModItems.RAW_ZIRCONIUM.get());
 						pOutput.accept(ModItems.ECHO_POWDER.get());
 						pOutput.accept(ModItems.VIGIL_EYE.get());
-						pOutput.accept(ModItems.HAILSTONE.get());
 						pOutput.accept(ModItems.PINE_CONE.get());
 						pOutput.accept(ModItems.FLAMING_PINE_CONE.get());
 						pOutput.accept(ModItems.FLAMING_ARROW.get());
@@ -41,6 +42,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 						pOutput.accept(ModItems.MOLE_SPAWN_EGG.get());
 						pOutput.accept(ModItems.NIMBULA_SPAWN_EGG.get());
+						pOutput.accept(ModItems.TEMPEST_SPAWN_EGG.get());
 						pOutput.accept(ModItems.WISP_SPAWN_EGG.get());
 						pOutput.accept(ModItems.PALM_BOAT.get());
 						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
@@ -57,7 +59,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ZIRCONIUM_BLOCK.get());
 						pOutput.accept(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
 						pOutput.accept(ModBlocks.SCULK_JAW.get());
+						pOutput.accept(ModBlocks.SCULK_ROOTS.get());
 						pOutput.accept(ModBlocks.ECHO_BLOCK.get());
+						pOutput.accept(ModBlocks.RESONATOR_BLOCK.get());
 						pOutput.accept(ModBlocks.CARPENTRY_TABLE.get());
 						pOutput.accept(ModBlocks.PETRIFIED_LOG.get());
 						pOutput.accept(ModBlocks.PALM_TRUNK.get());

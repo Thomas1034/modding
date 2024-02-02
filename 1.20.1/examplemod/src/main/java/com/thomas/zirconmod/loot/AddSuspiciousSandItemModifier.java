@@ -1,4 +1,4 @@
-package com.thomas.zirconmod.datagen.loot;
+package com.thomas.zirconmod.loot;
 
 import java.util.function.Supplier;
 
@@ -17,13 +17,16 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class AddItemModifier extends LootModifier {
-	public static final Supplier<Codec<AddItemModifier>> CODEC = Suppliers.memoize(() -> RecordCodecBuilder.create(
-			inst -> codecStart(inst).and(ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter(m -> m.item))
-					.apply(inst, AddItemModifier::new)));
+// From Kaupenjoe
+public class AddSuspiciousSandItemModifier extends LootModifier {
+	public static final Supplier<Codec<AddSuspiciousSandItemModifier>> CODEC = Suppliers
+			.memoize(() -> RecordCodecBuilder.create(inst -> codecStart(inst)
+					.and(ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter(m -> m.item))
+					.apply(inst, AddSuspiciousSandItemModifier::new)));
 	private final Item item;
+	private static final float CHANCE = 0.5f; // 50% WAY TOO HIGH!
 
-	public AddItemModifier(LootItemCondition[] conditionsIn, Item item) {
+	public AddSuspiciousSandItemModifier(LootItemCondition[] conditionsIn, Item item) {
 		super(conditionsIn);
 		this.item = item;
 	}
@@ -37,7 +40,10 @@ public class AddItemModifier extends LootModifier {
 			}
 		}
 
-		generatedLoot.add(new ItemStack(this.item));
+		if (context.getRandom().nextFloat() < CHANCE) {
+			generatedLoot.clear();
+			generatedLoot.add(new ItemStack(this.item));
+		}
 
 		return generatedLoot;
 	}

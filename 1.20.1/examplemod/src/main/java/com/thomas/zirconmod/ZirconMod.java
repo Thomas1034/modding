@@ -5,11 +5,11 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.entity.ModBlockEntities;
-import com.thomas.zirconmod.datagen.loot.ModLootModifiers;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
 import com.thomas.zirconmod.entity.ModEntities;
 import com.thomas.zirconmod.entity.client.ModBoatRenderer;
+import com.thomas.zirconmod.entity.client.ModThrownItemRenderer;
 import com.thomas.zirconmod.entity.client.MoleRenderer;
 import com.thomas.zirconmod.entity.client.NimbulaRenderer;
 import com.thomas.zirconmod.entity.client.TempestRenderer;
@@ -17,6 +17,7 @@ import com.thomas.zirconmod.entity.client.WispRenderer;
 import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
 import com.thomas.zirconmod.item.ModItems;
+import com.thomas.zirconmod.loot.ModLootModifiers;
 import com.thomas.zirconmod.painting.ModPaintings;
 import com.thomas.zirconmod.sound.ModSounds;
 import com.thomas.zirconmod.util.WoodGolemPlacer;
@@ -158,6 +159,7 @@ public class ZirconMod {
 			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
 			EntityRenderers.register(ModEntities.TEMPEST_ENTITY.get(), TempestRenderer::new);
 			EntityRenderers.register(ModEntities.HAILSTONE_ENTITY.get(), ThrownItemRenderer::new);
+			EntityRenderers.register(ModEntities.BALL_LIGHTNING_ENTITY.get(), ModThrownItemRenderer::BallLightningRenderer);
 			
 		}
 	}

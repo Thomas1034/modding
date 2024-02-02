@@ -35,6 +35,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.SpectralArrow;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -118,9 +119,9 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 		// Nimbulas are immune to projectiles, unless certain conditions are true.
 		if (entity instanceof Projectile) {
 			// Not immune to spectral arrows.
-			if (entity instanceof SpectralArrow)
+			if (entity instanceof SpectralArrow || entity instanceof ThrownTrident)
 				return super.hurt(damageSource, f);
-			// Not immune if it has amethyst glow.
+			// Not immune if it has citrine glow.
 			else if (this.hasEffect(ModEffects.CITRINE_GLOW.get()))
 				return super.hurt(damageSource, f);
 			// Otherwise, it is immune

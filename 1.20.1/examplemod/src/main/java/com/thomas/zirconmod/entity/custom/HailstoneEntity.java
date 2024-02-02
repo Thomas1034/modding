@@ -90,6 +90,7 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 		int i = entity instanceof Blaze ? 12 : 5;
 		if (entity instanceof LivingEntity le) {
 			le.addEffect(new MobEffectInstance(ModEffects.FREEZING.get(), 80), this.getOwner());
+			this.discard();
 		}
 		entity.hurt(this.damageSources().thrown(this, this.getOwner()), (float) i);
 	}
@@ -100,8 +101,8 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 
 		if (!this.level().isClientSide) {
 			this.level().broadcastEntityEvent(this, (byte) 3);
-			this.discard();
 			if (hitResult instanceof BlockHitResult blockHit) {
+				this.discard();
 				BlockPos pos = blockHit.getBlockPos();
 				boolean canFreeze = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(),
 						this.getOwner());
@@ -120,7 +121,7 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 	// Mostly just from the super implementation. Just needed a few tweaks.
 	@Override
 	public void tick() {
-		super.tick();
+		//super.tick();
 		HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
 		boolean flag = false;
 		if (hitresult.getType() == HitResult.Type.BLOCK) {
@@ -155,7 +156,6 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 		float f;
 		if (this.isInWater()) {
 			for (int i = 0; i < 4; ++i) {
-				float f1 = 0.25F;
 				this.level().addParticle(ParticleTypes.BUBBLE, d2 - vec3.x * 0.25D, d0 - vec3.y * 0.25D,
 						d1 - vec3.z * 0.25D, vec3.x, vec3.y, vec3.z);
 			}
@@ -170,6 +170,12 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 		if (!this.isNoGravity()) {
 			Vec3 vec31 = this.getDeltaMovement();
 			this.setDeltaMovement(vec31.x, vec31.y - (double) this.getGravity(), vec31.z);
+		}
+		
+		// If it is standing still, die.
+		if (this.getDeltaMovement().length() < 0.01) {
+			this.discard();
+			return;
 		}
 
 		this.setPos(d2, d0, d1);

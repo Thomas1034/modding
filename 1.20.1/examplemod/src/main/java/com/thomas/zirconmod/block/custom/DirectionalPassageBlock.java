@@ -37,6 +37,28 @@ public class DirectionalPassageBlock extends DirectionalBlock {
 	public DirectionalPassageBlock(Properties properties, BiFunction<Level, BlockPos, Boolean> isSolid) {
 		super(properties);
 		this.isSolid = isSolid;
+
+	}
+
+	@Override
+	public VoxelShape getVisualShape(BlockState p_48735_, BlockGetter p_48736_, BlockPos p_48737_,
+			CollisionContext p_48738_) {
+		return Shapes.empty();
+	}
+
+	@Override
+	public float getShadeBrightness(BlockState p_48731_, BlockGetter p_48732_, BlockPos p_48733_) {
+		return 1.0F;
+	}
+
+	@Override
+	public boolean propagatesSkylightDown(BlockState p_48740_, BlockGetter p_48741_, BlockPos p_48742_) {
+		return true;
+	}
+
+	@Override
+	public boolean skipRendering(BlockState p_53972_, BlockState p_53973_, Direction p_53974_) {
+		return p_53973_.is(this) ? true : super.skipRendering(p_53972_, p_53973_, p_53974_);
 	}
 
 	@Override

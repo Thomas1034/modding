@@ -1,0 +1,4 @@
+// 1.20.1	2024-02-01T21:03:51.1485219	Global Loot Modifiers : zirconmod
+1d9eb10be76f883aadd2ab5a93e15fb411c3ad84 data/forge/loot_modifiers/global_loot_modifiers.json
+6f791d8b8075ba7e6748c962b37b45a18631293a data/zirconmod/loot_modifiers/citrine_from_jungle_temples.json
+6225f33f5d6bb9a5ac79edea0ea1d34808b7b602 data/zirconmod/loot_modifiers/pine_cone_from_spruce_leaves.json

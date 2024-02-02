@@ -19,6 +19,28 @@ import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
 
+	// By ChatGPT
+	public static int pickNumberWithProbability(RandomSource random, int[] probabilities) {
+		int totalWeight = 0;
+
+		for (int weight : probabilities) {
+			totalWeight += weight;
+		}
+
+		int randomNumber = random.nextInt(totalWeight);
+		int cumulativeWeight = 0;
+
+		for (int i = 0; i < probabilities.length; i++) {
+			cumulativeWeight += probabilities[i];
+			if (randomNumber < cumulativeWeight) {
+				return i;
+			}
+		}
+
+		// This should not happen, but just in case
+		return probabilities.length - 1;
+	}
+
 	public static boolean setSafe(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
 			return false;
@@ -29,7 +51,7 @@ public class Utilities {
 		}
 		return false;
 	}
-	
+
 	public static boolean setSafeNoFluid(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
 			return false;
@@ -383,7 +405,7 @@ public class Utilities {
 	public static boolean canReplaceBlock(BlockState state) {
 		return !state.is(BlockTags.FEATURES_CANNOT_REPLACE);
 	}
-	
+
 	public static boolean canReplaceBlockNoFluid(BlockState state) {
 		return !state.is(BlockTags.FEATURES_CANNOT_REPLACE) && state.getFluidState().isEmpty();
 	}
@@ -399,7 +421,7 @@ public class Utilities {
 	public static boolean canReplaceBlockAt(LevelAccessor level, BlockPos pos) {
 		return canReplaceBlock(level.getBlockState(pos));
 	}
-	
+
 	public static boolean canReplaceBlockNoFluidAt(LevelAccessor level, BlockPos pos) {
 		return canReplaceBlockNoFluid(level.getBlockState(pos));
 	}

@@ -4,6 +4,7 @@ import java.util.OptionalInt;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.effect.ModEffects;
+import com.thomas.zirconmod.entity.ModMobTypes;
 import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -58,7 +60,7 @@ public class CloudBlock extends Block {
 		 */
 		return pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
 	}
-
+	
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -67,7 +69,7 @@ public class CloudBlock extends Block {
 			// if (entity.fallDistance > 2.5F) {
 			// return FALLING_COLLISION_SHAPE;
 			// }
-
+			
 			boolean isSolid = state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE;
 
 			if (isSolid || canEntityWalkOnCloud(entity)) {
@@ -83,7 +85,7 @@ public class CloudBlock extends Block {
 			return false;
 		}
 
-		if (entity.getType().is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS)) {
+		if (entity.getType().is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS) || entity instanceof ItemEntity) {
 			return true;
 
 		} else {
@@ -182,7 +184,7 @@ public class CloudBlock extends Block {
 	@Override 
     public boolean isValidSpawn(BlockState state, BlockGetter level, BlockPos pos, SpawnPlacements.Type type, EntityType<?> entityType)
     {
-        return state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE;
+        return (state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE) || entityType.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS) || entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
     }
 
 	// Very important!

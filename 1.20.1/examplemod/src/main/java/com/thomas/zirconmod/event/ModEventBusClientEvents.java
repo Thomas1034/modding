@@ -31,6 +31,8 @@ public class ModEventBusClientEvents {
 		event.registerLayerDefinition(ModModelLayers.WOOD_GOLEM_LAYER, WoodGolemModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.NIMBULA_LAYER, NimbulaModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.TEMPEST_LAYER, TempestModel::createBodyLayer);
+		event.registerLayerDefinition(ModModelLayers.TEMPEST_POWER_LAYER, TempestModel::createPowerLayer);
+		
 		event.registerLayerDefinition(ModModelLayers.WISP_LAYER, WispModel::createBodyLayer);
 		event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
 		event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
