@@ -40,6 +40,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropOther(ModBlocks.SCULK_JAW.get(), Blocks.BONE_BLOCK);
 		this.dropOther(ModBlocks.SEALED_CLOUD_BRICKS.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS.get(), Items.AIR);
+		this.dropOther(ModBlocks.SEALED_CLOUD.get(), Items.AIR);
 		this.dropSelf(ModBlocks.PETRIFIED_LOG.get());
 		this.dropSelf(ModBlocks.WISP_BED.get());
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
@@ -77,6 +78,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.CHISELED_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CLOUD_CONVERTER.get());
+		this.dropSelf(ModBlocks.CLOUD_INVERTER.get());
+		this.dropSelf(ModBlocks.CLOUD_DETECTOR.get());
 		this.dropSelf(ModBlocks.CITRINE_BLOCK.get());
 		this.dropSelf(ModBlocks.CITRINE_LANTERN.get());
 		this.dropSelf(ModBlocks.PALM_TRUNK.get());

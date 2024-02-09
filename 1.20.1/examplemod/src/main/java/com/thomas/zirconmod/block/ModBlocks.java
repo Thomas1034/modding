@@ -9,6 +9,8 @@ import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.BuddingCitrineBlock;
 import com.thomas.zirconmod.block.custom.CloudBlock;
 import com.thomas.zirconmod.block.custom.CloudConverterBlock;
+import com.thomas.zirconmod.block.custom.CloudDetectorBlock;
+import com.thomas.zirconmod.block.custom.CloudInverterBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
@@ -185,23 +187,25 @@ public class ModBlocks {
 	// Basic cloud block
 	public static final RegistryObject<Block> CLOUD = registerBlock("cloud",
 			() -> new CloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
-					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion().sound(SoundType.EMPTY)));
+					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos)->true).randomTicks().sound(SoundType.EMPTY)));
+
+	// Sealed cloud block
+	public static final RegistryObject<Block> SEALED_CLOUD = registerBlock("sealed_cloud",
+			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).randomTicks().sound(SoundType.EMPTY)
+					.emissiveRendering((state, level, pos) -> true).isViewBlocking((state, level, pos)->true).lightLevel(state -> 3)));
 
 	// Basic thundercloud block
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
-			() -> new ThunderCloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
-					.pushReaction(PushReaction.DESTROY).randomTicks().noOcclusion().sound(SoundType.EMPTY)));
+			() -> new ThunderCloudBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).isViewBlocking((state, level, pos)->true)));
 
 	// Lighting block
 	public static final RegistryObject<Block> LIGHTNING_BLOCK = registerBlock("lightning_block",
 			() -> new LightningBlock(BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY)
-					.noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
+					.noOcclusion().isViewBlocking((state, level, pos)->true).noCollission().lightLevel((state) -> 3).instabreak()
 					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 	public static final RegistryObject<Block> UNSTABLE_LIGHTNING_BLOCK = registerBlock("unstable_lightning_block",
 			() -> new UnstableLightningBlock(
-					BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY).randomTicks()
-							.noOcclusion().noCollission().lightLevel((state) -> 3).instabreak()
-							.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
+					BlockBehaviour.Properties.copy(ModBlocks.LIGHTNING_BLOCK.get())));
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
@@ -294,7 +298,16 @@ public class ModBlocks {
 
 	// Cloud converter block, converts redstone signal to cloud strength
 	public static final RegistryObject<Block> CLOUD_CONVERTER = registerBlock("cloud_converter",
-			() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
+			() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get())));
+
+	// Cloud inverter block, converts redstone signal to cloud strength in reverse
+	// order.
+	public static final RegistryObject<Block> CLOUD_INVERTER = registerBlock("cloud_inverter",
+			() -> new CloudInverterBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get())));
+
+	// Cloud detector block, converts cloud strength to redstone signal
+	public static final RegistryObject<Block> CLOUD_DETECTOR = registerBlock("cloud_detector",
+			() -> new CloudDetectorBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get())));
 
 	// Petrified log
 	public static final RegistryObject<Block> PETRIFIED_LOG = registerBlock("petrified_log",
@@ -558,7 +571,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
 			() -> new DirectionalPassageBlock(
 					BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
-							.pushReaction(PushReaction.BLOCK).randomTicks().lightLevel(state -> 12),
+							.pushReaction(PushReaction.BLOCK).isViewBlocking((state, level, pos)->false).randomTicks().lightLevel(state -> 12),
 					(level, pos) -> !level.isRaining()));
 
 	// Sealed bricks

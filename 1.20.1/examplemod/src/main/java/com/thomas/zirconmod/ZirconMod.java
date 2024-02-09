@@ -60,7 +60,6 @@ import terrablender.api.SurfaceRuleManager;
 // 
 // 
 
-
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ZirconMod.MOD_ID)
 public class ZirconMod {
@@ -107,8 +106,8 @@ public class ZirconMod {
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
-		// Add the right click to add to flowerpot event.
 		event.enqueueWork(() -> {
+			// Add the right click to add to flowerpot event.
 			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ILLUMINATED_TORCHFLOWER.getId(),
 					ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER);
 

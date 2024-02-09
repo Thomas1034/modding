@@ -3,6 +3,7 @@ package com.thomas.zirconmod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thomas.zirconmod.entity.animations.ModAnimationDefinitions;
+import com.thomas.zirconmod.entity.custom.WispEntity;
 
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -76,6 +77,7 @@ public class WispModel<T extends Entity> extends HierarchicalModel<T> {
 		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
 		this.animateWalk(ModAnimationDefinitions.WISP_FLAP, limbSwing, limbSwingAmount, 2f, 2.5f);
+		this.animate(((WispEntity) entity).idleAnimationState, ModAnimationDefinitions.WISP_IDLE, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

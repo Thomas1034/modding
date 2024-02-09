@@ -9,15 +9,20 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ObserverBlock;
-import net.minecraft.world.level.block.RepeaterBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CloudInverterBlock extends CloudBlock {
 
 	public CloudInverterBlock(Properties properties) {
 		super(properties);
+	}
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return Shapes.block();
 	}
 
 	@Override
@@ -50,7 +55,6 @@ public class CloudInverterBlock extends CloudBlock {
 	// Sets the distance based on the block's redstone power.
 	protected static int getDistanceAt(LevelAccessor level, BlockPos pos, BlockState state) {
 		return level.getDirectSignalTo(pos);
-		
 	}
 	
 	public static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {

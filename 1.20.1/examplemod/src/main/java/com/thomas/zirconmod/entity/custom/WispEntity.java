@@ -31,6 +31,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -68,6 +69,9 @@ public class WispEntity extends AbstractVillager {
 			EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> SKILL_LEVEL = SynchedEntityData.defineId(WispEntity.class,
 			EntityDataSerializers.INT);
+
+	public final AnimationState idleAnimationState = new AnimationState();
+	private int idleAnimationTimeout = 0;
 
 	private static final Map<Integer, VillagerProfession> WISP_PROFESSIONS = Map.of(0, ModVillagers.GEMSMITH.get(), 1,
 			ModVillagers.ARCHITECT.get(), 2, ModVillagers.BOTANIST.get(), 3, ModVillagers.CHIEF.get(), 4,
@@ -120,6 +124,7 @@ public class WispEntity extends AbstractVillager {
 	@SuppressWarnings("resource")
 	@Override
 	public void tick() {
+		super.tick();
 
 		// Keeps movement from exceeding a certain value.
 		if (this.getDeltaMovement().length() > this.getFlyingSpeed() * 2) {
@@ -146,10 +151,14 @@ public class WispEntity extends AbstractVillager {
 			this.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 5, 15));
 		}
 
-		super.tick();
 		// Restocks six times a day.
 		if (this.level().getDayTime() % 8000 == 0) {
 			this.restock();
+		}
+		
+		// Handles animations
+		if (this.level().isClientSide()) {
+			setupAnimationStates();
 		}
 	}
 
@@ -182,6 +191,15 @@ public class WispEntity extends AbstractVillager {
 		}
 
 		this.walkAnimation.update(f, 0.2f);
+	}
+
+	private void setupAnimationStates() {
+		if (this.idleAnimationTimeout <= 0) {
+			this.idleAnimationTimeout = this.random.nextInt(40) + 80;
+			this.idleAnimationState.start(this.tickCount);
+		} else {
+			--this.idleAnimationTimeout;
+		}
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -257,7 +275,8 @@ public class WispEntity extends AbstractVillager {
 		// System.out.println("This wisp's home is: " + this.getHome());
 
 		// The villager will not trade if it is thundering.
-		if (!this.level().isThundering() && !itemstack.is(ModItems.WISP_SPAWN_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+		if (!this.level().isThundering() && !itemstack.is(ModItems.WISP_SPAWN_EGG.get()) && this.isAlive()
+				&& !this.isTrading() && !this.isBaby()) {
 			if (p_35857_ == InteractionHand.MAIN_HAND) {
 				p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
@@ -360,7 +379,7 @@ public class WispEntity extends AbstractVillager {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return this.isTrading() ? SoundEvents.WANDERING_TRADER_TRADE : SoundEvents.WANDERING_TRADER_AMBIENT;
+		return this.isTrading() ? SoundEvents.NOTE_BLOCK_BELL.get() : SoundEvents.NOTE_BLOCK_CHIME.get();
 	}
 
 	protected SoundEvent getHurtSound(DamageSource p_218369_) {
@@ -381,11 +400,11 @@ public class WispEntity extends AbstractVillager {
 	}
 
 	protected SoundEvent getTradeUpdatedSound(boolean p_35890_) {
-		return p_35890_ ? SoundEvents.WANDERING_TRADER_YES : SoundEvents.WANDERING_TRADER_NO;
+		return p_35890_ ? SoundEvents.ALLAY_ITEM_GIVEN : SoundEvents.ALLAY_ITEM_TAKEN;
 	}
 
 	public SoundEvent getNotifyTradeSound() {
-		return SoundEvents.WANDERING_TRADER_YES;
+		return SoundEvents.NOTE_BLOCK_CHIME.get();
 	}
 
 	@SuppressWarnings("resource")

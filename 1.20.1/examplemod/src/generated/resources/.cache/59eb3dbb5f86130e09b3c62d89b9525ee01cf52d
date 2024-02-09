@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-01T23:21:28.511029	Loot Tables
+// 1.20.1	2024-02-02T20:42:49.8400137	Loot Tables
 674b14ad9c1544e271a87fad9e831ec2b82df8ab data/zirconmod/loot_tables/blocks/architect_worksite.json
 5a3e4cd9c914c278ec5e2649067e7b0ae1985ad3 data/zirconmod/loot_tables/blocks/blueberry_crop.json
 850941336ae90f900cc66796ad417f0476132800 data/zirconmod/loot_tables/blocks/botanist_worksite.json
@@ -18,6 +18,8 @@ cb60778d8101c1423b5ee7119e5161ceac291910 data/zirconmod/loot_tables/blocks/cloud
 881895e15f340015c060c34425c1ddadf702cf66 data/zirconmod/loot_tables/blocks/cloud_brick_stairs.json
 5f07e2f0b362a1c55c3191ab8e2f509a5baf756c data/zirconmod/loot_tables/blocks/cloud_brick_wall.json
 53029e267f48a0ec2afbfe411b87d709e991b100 data/zirconmod/loot_tables/blocks/cloud_converter.json
+495566b12257f2c13c8365e65d8805dcc1c51a15 data/zirconmod/loot_tables/blocks/cloud_detector.json
+8efd849baa1e74e1d53d4804586f9674058b5f42 data/zirconmod/loot_tables/blocks/cloud_inverter.json
 52487fc44947bf0092e73ced9fd555dbfaa48fb1 data/zirconmod/loot_tables/blocks/deepslate_zircon_ore.json
 8543208499308bb897d91c2448a35897c6d37ab5 data/zirconmod/loot_tables/blocks/echo_block.json
 5fa918fb60e18b46fbf12cf3254c2e8fa4c9f525 data/zirconmod/loot_tables/blocks/gemsmith_worksite.json
@@ -54,6 +56,7 @@ ab34375a70e88211cd1910521914cf2398952784 data/zirconmod/loot_tables/blocks/raw_z
 47f7c3d9a44e14c9d586b941ff299508816d8ea7 data/zirconmod/loot_tables/blocks/scholar_worksite.json
 5cc093da50720b46314a2e1f5243a52f04657b7b data/zirconmod/loot_tables/blocks/sculk_jaw.json
 0fecfba92d2f9f461c52bee32b0f2fae2b9e0342 data/zirconmod/loot_tables/blocks/sculk_roots.json
+5408e126e42fafcdf67b76a92f2102021c479eb2 data/zirconmod/loot_tables/blocks/sealed_cloud.json
 691d13805ce649f0b5ec6318188f4f3df2717b01 data/zirconmod/loot_tables/blocks/sealed_cloud_bricks.json
 c9aba48f1fa5bfa0bf2234a4b546d1b8a4605d02 data/zirconmod/loot_tables/blocks/sealed_thunder_cloud_bricks.json
 20d98bd6a4e942eec5aa82090dbd3b5ce241172e data/zirconmod/loot_tables/blocks/small_citrine_bud.json

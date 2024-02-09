@@ -6,7 +6,6 @@ import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.LightningBlock;
 import com.thomas.zirconmod.block.custom.UnstableLightningBlock;
 import com.thomas.zirconmod.entity.ModEntities;
-import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +14,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;

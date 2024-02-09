@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cloud_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:cloud_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cloud_inverter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:cloud_inverter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cut_citrine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:cut_citrine"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_redstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cloud_bricks",
+      "has_cut_citrine",
+      "has_redstone",
+      "has_cloud_inverter",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone"
+    ]
+  },
+  "sends_telemetry_event": false
+}

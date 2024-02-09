@@ -35,8 +35,7 @@
     ],
     [
       "minecraft:amethyst_geode",
-      "zirconmod:stone_patch_placed",
-      "zirconmod:coarse_dirt_patch_placed"
+      "zirconmod:stone_patch_placed"
     ],
     [
       "minecraft:fossil_upper",

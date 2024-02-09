@@ -107,6 +107,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
 						pOutput.accept(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
 						pOutput.accept(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
+						pOutput.accept(ModBlocks.CLOUD_CONVERTER.get());
+						pOutput.accept(ModBlocks.CLOUD_INVERTER.get());
+						pOutput.accept(ModBlocks.CLOUD_DETECTOR.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("zirconmod_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))

@@ -57,7 +57,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.WISP_BED);
 		blockWithItem(ModBlocks.CLOUD);
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
+		blockWithItem(ModBlocks.SEALED_CLOUD);
 		blockWithItem(ModBlocks.CLOUD_CONVERTER);
+		blockWithItem(ModBlocks.CLOUD_INVERTER);
+		blockWithItem(ModBlocks.CLOUD_DETECTOR);
 		blockWithItem(ModBlocks.ZIRCON_BLOCK);
 		blockWithItem(ModBlocks.DEEPSLATE_ZIRCON_ORE);
 		blockWithItem(ModBlocks.ECHO_BLOCK);

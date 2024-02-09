@@ -4,11 +4,12 @@ import java.util.OptionalInt;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.effect.ModEffects;
-import com.thomas.zirconmod.entity.ModMobTypes;
 import com.thomas.zirconmod.util.ModTags;
+import com.thomas.zirconmod.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -49,6 +50,13 @@ public class CloudBlock extends Block {
 
 	public CloudBlock(Properties properties) {
 		super(properties);
+		this.registerDefaultState(this.stateDefinition.any().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE));
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public boolean skipRendering(BlockState p_53972_, BlockState p_53973_, Direction p_53974_) {
+		return p_53973_.is(this) ? true : super.skipRendering(p_53972_, p_53973_, p_53974_);
 	}
 
 	@Override
@@ -60,7 +68,13 @@ public class CloudBlock extends Block {
 		 */
 		return pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
 	}
-	
+
+	// Causes no fall damage when landed on.
+	@Override
+	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float distance) {
+		// Creates particles instead of doing fall damage.
+		Utilities.addParticlesAroundPosition(level, entity.position(), ParticleTypes.CLOUD, 1.0f);
+	}
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -132,7 +146,8 @@ public class CloudBlock extends Block {
 		// Should be less laggy, but doesn't count corners.
 		for (Direction direction : Direction.values()) {
 			blockpos$mutableblockpos.setWithOffset(pos, direction);
-			dist = Math.min(dist, getDistanceAt(level, blockpos$mutableblockpos, level.getBlockState(blockpos$mutableblockpos)) + 1);
+			dist = Math.min(dist,
+					getDistanceAt(level, blockpos$mutableblockpos, level.getBlockState(blockpos$mutableblockpos)) + 1);
 			if (dist == 1) {
 				break;
 			}
@@ -175,17 +190,21 @@ public class CloudBlock extends Block {
 		return updateDistance(blockstate, p_54424_.getLevel(), p_54424_.getClickedPos());
 	}
 
-	public static void placeCloud(Level level, BlockPos pos) {
+	public static boolean placeCloud(LevelAccessor level, BlockPos pos) {
+		if (!level.getBlockState(pos).isAir()) return false;
 		BlockState blockstate = ModBlocks.CLOUD.get().defaultBlockState().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE);
 		blockstate = updateDistance(blockstate, level, pos);
-		level.setBlockAndUpdate(pos, blockstate);
+		level.setBlock(pos, blockstate, 3);
+		return true;
 	}
-	
-	@Override 
-    public boolean isValidSpawn(BlockState state, BlockGetter level, BlockPos pos, SpawnPlacements.Type type, EntityType<?> entityType)
-    {
-        return (state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE) || entityType.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS) || entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
-    }
+
+	@Override
+	public boolean isValidSpawn(BlockState state, BlockGetter level, BlockPos pos, SpawnPlacements.Type type,
+			EntityType<?> entityType) {
+		return (state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE)
+				|| entityType.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)
+				|| entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
+	}
 
 	// Very important!
 	@Override

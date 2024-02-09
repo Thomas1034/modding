@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.thomas.zirconmod.util.Utilities;
 
-import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

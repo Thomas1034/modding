@@ -56,6 +56,7 @@ public class DirectionalPassageBlock extends DirectionalBlock {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean skipRendering(BlockState p_53972_, BlockState p_53973_, Direction p_53974_) {
 		return p_53973_.is(this) ? true : super.skipRendering(p_53972_, p_53973_, p_53974_);

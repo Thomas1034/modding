@@ -69,6 +69,7 @@ public class ModBoatEntity extends Boat {
 
 		private final String name;
 		private final Block planks;
+		@SuppressWarnings("deprecation")
 		public static final StringRepresentable.EnumCodec<ModBoatEntity.Type> CODEC = StringRepresentable
 				.fromEnum(ModBoatEntity.Type::values);
 		private static final IntFunction<ModBoatEntity.Type> BY_ID = ByIdMap.continuous(Enum::ordinal, values(),
@@ -102,6 +103,7 @@ public class ModBoatEntity extends Boat {
 			return BY_ID.apply(pId);
 		}
 
+		@SuppressWarnings("deprecation")
 		public static ModBoatEntity.Type byName(String pName) {
 			return CODEC.byName(pName, PALM);
 		}

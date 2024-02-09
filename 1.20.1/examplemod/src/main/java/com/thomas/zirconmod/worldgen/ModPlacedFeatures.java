@@ -30,13 +30,17 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> OASIS_PLACED_KEY = registerKey("oasis_placed");
 
 	public static final ResourceKey<PlacedFeature> PETRIFIED_TREE_PLACED_KEY = registerKey("petrified_tree_placed");
-	
+
 	public static final ResourceKey<PlacedFeature> STONE_PATCH_PLACED_KEY = registerKey("stone_patch_placed");
-	public static final ResourceKey<PlacedFeature> COARSE_DIRT_PATCH_PLACED_KEY = registerKey("coarse_dirt_patch_placed");
+	public static final ResourceKey<PlacedFeature> COARSE_DIRT_PATCH_PLACED_KEY = registerKey(
+			"coarse_dirt_patch_placed");
 
 	public static final ResourceKey<PlacedFeature> SCULK_HOSTILES_PLACED_KEY = registerKey("sculk_hostiles_placed");
-	
-	
+
+	public static final ResourceKey<PlacedFeature> SMALL_CLOUD_PLACED_KEY = registerKey("small_cloud_placed");
+
+	public static final ResourceKey<PlacedFeature> LARGE_CLOUD_PLACED_KEY = registerKey("large_cloud_placed");
+
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -56,21 +60,29 @@ public class ModPlacedFeatures {
 		register(context, PALM_PLACED_JUNGLE_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PALM_JUNGLE_KEY),
 				VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
 						ModBlocks.PALM_SAPLING.get()));
-		
+
 		register(context, OASIS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OASIS_KEY),
 				ModPlacement.rareSurfacePlacement(75));
-		
-		register(context, PETRIFIED_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PETRIFIED_TREE_KEY),
+
+		register(context, PETRIFIED_TREE_PLACED_KEY,
+				configuredFeatures.getOrThrow(ModConfiguredFeatures.PETRIFIED_TREE_KEY),
 				ModPlacement.rareSurfacePlacement(2));
-		
+
 		register(context, STONE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STONE_PATCH_KEY),
 				ModPlacement.rareSurfacePlacement(4));
 
-		register(context, COARSE_DIRT_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.COARSE_DIRT_PATCH_KEY),
+		register(context, COARSE_DIRT_PATCH_PLACED_KEY,
+				configuredFeatures.getOrThrow(ModConfiguredFeatures.COARSE_DIRT_PATCH_KEY),
 				ModPlacement.rareSurfacePlacement(4));
-		
-		register(context, SCULK_HOSTILES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SCULK_HOSTILES_KEY),
-				ModPlacement.cavePlacement(4));
+
+		register(context, SCULK_HOSTILES_PLACED_KEY,
+				configuredFeatures.getOrThrow(ModConfiguredFeatures.SCULK_HOSTILES_KEY), ModPlacement.rareCavePlacement(4));
+
+		register(context, SMALL_CLOUD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_CLOUD_KEY),
+				ModPlacement.rareAboveBottomRangePlacement(0, 256, 8));
+
+		register(context, LARGE_CLOUD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LARGE_CLOUD_KEY),
+				ModPlacement.rareAboveBottomRangePlacement(0, 256, 128));
 
 	}
 

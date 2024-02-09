@@ -1,6 +1,8 @@
 package com.thomas.zirconmod.util;
 
-import java.awt.geom.CubicCurve2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import net.minecraft.core.BlockPos;
@@ -19,6 +21,20 @@ import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
 
+	// By ChatGPT. For accessing private static constants needed for world generation.
+	// Uses reflection. This is usually considered an extremely bad idea, but desperate times
+	// call for desperate measures (although they do not always justify them).
+	public static Object getPrivateStaticField(Class<?> clazz, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        // Get the Field object for the specified field name
+        Field field = clazz.getDeclaredField(fieldName);
+
+        // Override access restrictions for private fields
+        field.setAccessible(true);
+
+        // Return the value of the static field (null for static fields)
+        return field.get(null);
+    }
+	
 	// By ChatGPT
 	public static int pickNumberWithProbability(RandomSource random, int[] probabilities) {
 		int totalWeight = 0;
@@ -81,27 +97,52 @@ public class Utilities {
 	// Function to get enclosed grid points
 	public static ArrayList<BlockPos> getEnclosedGridPoints(BlockPos p1, BlockPos p2, BlockPos p3) {
 		// Create a cubic spline interpolation (closed curve)
+		
+		Path2D path = new Path2D.Double();
 		int x1 = p1.getX();
 		int x2 = p2.getX();
 		int x3 = p3.getX();
 		int z1 = p1.getZ();
 		int z2 = p2.getZ();
 		int z3 = p3.getZ();
-		CubicCurve2D.Double cubicCurve = new CubicCurve2D.Double(x1, z1, x2, z2, x3, z3, x1, z1);
-
+		int y = (p1.getY() + p2.getY() + p3.getY()) / 3;
+		
+		// Gets the center.
+		int centx = (x1+x2+x3)/3;
+		int centz = (z1+z2+z3)/3;
+		
+		// Connect the first two points with a smooth curve.
+		// Gets the control point. 
+		int ctrlx1 = 2*(x1 + x2) - 3*centx;
+		int ctrlz1 = 2*(z1 + z2) - 3*centz;
+		path.moveTo(x1, z1);
+		path.quadTo(ctrlx1, ctrlz1, x2, z2);
+		
+		// Connect the next two points.
+		int ctrlx2 = 2*(x2 + x3) - 3*centx;
+		int ctrlz2 = 2*(z2 + z3) - 3*centz;
+		path.quadTo(ctrlx2, ctrlz2, x3, z3);
+		
+		// Full blob.
+		int ctrlx3 = 2*(x3 + x1) - 3*centx;
+		int ctrlz3 = 2*(z3 + z1) - 3*centz;
+		path.quadTo(ctrlx3, ctrlz3, x1, z1);
+		path.closePath();
+		
+		Rectangle2D bounds = path.getBounds2D();
 		// Define the bounding box for the grid
-		int minX = Math.min(x1, Math.min(x2, x3));
-		int minZ = Math.min(z1, Math.min(z2, z3));
-		int maxX = Math.max(x1, Math.max(x2, x3));
-		int maxZ = Math.max(z1, Math.max(z2, z3));
+		int minX = (int) bounds.getMinX();
+		int minZ = (int) bounds.getMinY();
+		int maxX = (int) bounds.getMaxX();
+		int maxZ = (int) bounds.getMaxY();
 
 		// Get the enclosed grid points
 		ArrayList<BlockPos> enclosedPoints = new ArrayList<>();
 
 		for (int x = minX; x <= maxX; x += 1.0) {
 			for (int z = minZ; z <= maxZ; z += 1.0) {
-				if (cubicCurve.contains(x, z)) {
-					enclosedPoints.add(new BlockPos(x, 0, z));
+				if (path.contains(x, z)) {
+					enclosedPoints.add(new BlockPos(x, y, z));
 				}
 			}
 		}
@@ -122,6 +163,16 @@ public class Utilities {
 	public static BlockPos findSurface(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
 
 		if (level.getBlockState(pos).isAir()) {
+			return sink(level, pos, range);
+		} else {
+			return rise(level, pos, range);
+		}
+
+	}
+	
+	public static BlockPos findSurfaceForWorldgen(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
+
+		if (!level.getBlockState(pos).is(BlockTags.OVERWORLD_CARVER_REPLACEABLES)) {
 			return sink(level, pos, range);
 		} else {
 			return rise(level, pos, range);

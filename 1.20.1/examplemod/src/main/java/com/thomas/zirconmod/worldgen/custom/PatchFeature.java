@@ -66,7 +66,7 @@ public class PatchFeature extends Feature<NoneFeatureConfiguration> {
 		BlockPos p2 = (Utilities.withinCircle(level.getRandom(), radius - 3, radius + 2));
 		BlockPos p3 = (Utilities.withinCircle(level.getRandom(), radius - 3, radius + 2));
 		
-		// Iterates over a circle with the given radius.
+		// Iterates over a blob enclosing these points.
 		ArrayList<BlockPos> locations = Utilities.getEnclosedGridPoints(p1, p2, p3);
 		
 		for (BlockPos location : locations) {
@@ -115,7 +115,7 @@ public class PatchFeature extends Feature<NoneFeatureConfiguration> {
 			// Find the ground surface at that location.
 			BlockPos placePos;
 			try {
-				placePos = Utilities.findSurface(level, pos.offset(location), 5).below();
+				placePos = Utilities.findSurfaceForWorldgen(level, pos.offset(location), 5).below();
 			} catch (SurfaceNotFoundException e) {
 				continue;
 			}

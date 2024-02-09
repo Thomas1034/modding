@@ -17,7 +17,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -27,10 +26,8 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.phys.AABB;
 
+@SuppressWarnings("deprecation")
 public class OasisFeature extends Feature<NoneFeatureConfiguration> {
-	private static final BlockStatePredicate IS_SAND = BlockStatePredicate.forBlock(Blocks.SAND);
-	private final static BlockState SAND = Blocks.SAND.defaultBlockState();
-	private final static BlockState SAND_SLAB = Blocks.SANDSTONE_SLAB.defaultBlockState();
 	private final static BlockState SANDSTONE = Blocks.SANDSTONE.defaultBlockState();
 	private final static BlockState WATER = Blocks.WATER.defaultBlockState();
 	private final static LakeFeature.Configuration LAKE_CONFIG = new LakeFeature.Configuration(
@@ -47,7 +44,7 @@ public class OasisFeature extends Feature<NoneFeatureConfiguration> {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
 		ChunkGenerator chunks = context.chunkGenerator();
-		System.out.println("placing oasis at: " + pos);
+		//System.out.println("placing oasis at: " + pos);
 		int type = level.getRandom().nextInt(0, 10);
 
 		if (type < 0) {
@@ -170,7 +167,7 @@ public class OasisFeature extends Feature<NoneFeatureConfiguration> {
 
 		// First, check if the tree can survive. If not, return.
 		if (!(stateBelow.is(BlockTags.DIRT) || stateBelow.is(Blocks.FARMLAND) || stateBelow.is(BlockTags.SAND))) {
-			System.out.println("returning early since no good dirt, " + stateBelow + " at " + pos);
+			//System.out.println("returning early since no good dirt, " + stateBelow + " at " + pos);
 			return;
 		}
 
@@ -185,7 +182,7 @@ public class OasisFeature extends Feature<NoneFeatureConfiguration> {
 
 		// If the maximum height is less than 3, return.
 		if (maxHeight < 3) {
-			System.out.println("returning early due to too short.");
+			//System.out.println("returning early due to too short.");
 			return;
 		}
 
@@ -228,7 +225,7 @@ public class OasisFeature extends Feature<NoneFeatureConfiguration> {
 			}
 		}
 
-		System.out.println("succeeded placing tree at " + pos);
+		//System.out.println("succeeded placing tree at " + pos);
 
 	}
 

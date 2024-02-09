@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -88,7 +89,7 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 		super.onHitEntity(hitResult);
 		Entity entity = hitResult.getEntity();
 		int i = entity instanceof Blaze ? 12 : 5;
-		if (entity instanceof LivingEntity le) {
+		if (entity instanceof LivingEntity le && le.level() instanceof ServerLevel) {
 			le.addEffect(new MobEffectInstance(ModEffects.FREEZING.get(), 80), this.getOwner());
 			this.discard();
 		}

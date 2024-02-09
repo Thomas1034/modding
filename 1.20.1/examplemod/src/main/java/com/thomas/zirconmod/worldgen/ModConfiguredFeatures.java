@@ -8,6 +8,7 @@ import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
+import com.thomas.zirconmod.worldgen.custom.CloudFeature;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmFoliagePlacer;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
 
@@ -50,6 +51,10 @@ public class ModConfiguredFeatures {
 	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCULK_HOSTILES_KEY = registerKey("sculk_hostiles");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CLOUD_KEY = registerKey("small_cloud");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_CLOUD_KEY = registerKey("large_cloud");
+	
 	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -95,6 +100,9 @@ public class ModConfiguredFeatures {
 		
 		register(context, SCULK_HOSTILES_KEY, (SculkHostilesFeature) ModFeature.SCULK_DECORATION.get(), new NoneFeatureConfiguration());
 		
+		register(context, SMALL_CLOUD_KEY, (CloudFeature) ModFeature.SMALL_CLOUD.get(), new NoneFeatureConfiguration());
+
+		register(context, LARGE_CLOUD_KEY, (CloudFeature) ModFeature.LARGE_CLOUD.get(), new NoneFeatureConfiguration());
 		
 	}
 

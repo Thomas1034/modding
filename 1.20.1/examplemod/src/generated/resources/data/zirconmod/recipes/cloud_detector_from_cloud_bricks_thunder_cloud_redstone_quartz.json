@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "zirconmod:cloud_bricks"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "zirconmod:thunder_cloud"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "QTQ",
+    "RCR"
+  ],
+  "result": {
+    "item": "zirconmod:cloud_detector"
+  },
+  "show_notification": true
+}

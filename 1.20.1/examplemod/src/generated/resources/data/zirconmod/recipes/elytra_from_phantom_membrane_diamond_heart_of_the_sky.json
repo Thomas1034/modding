@@ -13,8 +13,8 @@
     }
   },
   "pattern": [
-    "MDM",
     "MHM",
+    "MDM",
     "M M"
   ],
   "result": {

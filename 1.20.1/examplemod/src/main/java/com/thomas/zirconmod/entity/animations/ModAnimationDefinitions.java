@@ -1020,6 +1020,40 @@ public class ModAnimationDefinitions {
 									AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
 	
+	public static final AnimationDefinition WISP_IDLE = AnimationDefinition.Builder.withLength(2f).looping()
+			.addAnimation("left_wing",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(1f, KeyframeAnimations.degreeVec(0f, 20f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM)))
+			.addAnimation("right_wing",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(1f, KeyframeAnimations.degreeVec(0f, -20f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM)))
+			.addAnimation("right_arm",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.375f, KeyframeAnimations.degreeVec(-3f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(1.875f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM)))
+			.addAnimation("left_arm",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.5f, KeyframeAnimations.degreeVec(-3f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM)))
+			.build();
 	
 	public static final AnimationDefinition TEMPEST_WALK = AnimationDefinition.Builder.withLength(1f).looping()
 			.addAnimation("ar", new AnimationChannel(AnimationChannel.Targets.ROTATION,

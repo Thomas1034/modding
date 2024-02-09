@@ -7,6 +7,7 @@ import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
+import com.thomas.zirconmod.worldgen.custom.CloudFeature;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -30,7 +31,11 @@ public class ModFeature {
 			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.COARSE_DIRT, Blocks.COARSE_DIRT, 16));
 	public static final RegistryObject<Feature<?>> SCULK_DECORATION = register("sculk_decoration",
 			() -> new SculkHostilesFeature(NoneFeatureConfiguration.CODEC));
-
+	public static final RegistryObject<Feature<?>> SMALL_CLOUD = register("small_cloud",
+			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 7));
+	public static final RegistryObject<Feature<?>> LARGE_CLOUD = register("large_cloud",
+			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 20));
+	
 	
 	private static <T extends Feature<?>> RegistryObject<T> register(String name, Supplier<T> feature) {
 		return FEATURES.register(name, feature);

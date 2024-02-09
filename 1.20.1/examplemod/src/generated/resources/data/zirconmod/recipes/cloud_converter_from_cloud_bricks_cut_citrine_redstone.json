@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "zirconmod:cloud_bricks"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "zirconmod:cut_citrine"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "CTC",
+    "RCR"
+  ],
+  "result": {
+    "count": 2,
+    "item": "zirconmod:cloud_converter"
+  },
+  "show_notification": true
+}

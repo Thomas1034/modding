@@ -3,7 +3,6 @@ package com.thomas.zirconmod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thomas.zirconmod.entity.animations.ModAnimationDefinitions;
-import com.thomas.zirconmod.entity.custom.MoleEntity;
 import com.thomas.zirconmod.entity.custom.TempestEntity;
 
 import net.minecraft.client.model.HierarchicalModel;

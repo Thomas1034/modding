@@ -286,9 +286,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(), 3);
 
 		// Cloud converter
-		shaped(pWriter, List.of("CRC", "RTR", "CRC"), List.of('C', 'T'),
+		shaped(pWriter, List.of("RCR", "CTC", "RCR"), List.of('C', 'T', 'R'),
 				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_CONVERTER.get(), 2);
+
+		// Cloud inverter
+		shaped(pWriter, List.of("CRC", "RTR", "CRC"), List.of('C', 'T', 'R'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_INVERTER.get(), 2);
+
+		// Cloud detector
+		shaped(pWriter, List.of("RCR", "QTQ", "RCR"), List.of('C', 'T', 'R', 'Q'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_DETECTOR.get(), 1);
 
 		// Smelting amethyst blocks to citrine
 		oreSmelting(pWriter, List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,

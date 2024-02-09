@@ -67,11 +67,13 @@ public class LightningBlock extends Block {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean skipRendering(BlockState p_53972_, BlockState p_53973_, Direction p_53974_) {
 		return p_53973_.is(this) ? true : super.skipRendering(p_53972_, p_53973_, p_53974_);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState otherState, boolean bool) {
 

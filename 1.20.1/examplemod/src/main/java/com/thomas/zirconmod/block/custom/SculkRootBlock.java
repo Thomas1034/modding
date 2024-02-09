@@ -50,6 +50,7 @@ public class SculkRootBlock extends Block {
 		return SHAPE[p_56620_.getValue(STAGE)];
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState p_49329_, Direction p_49330_, BlockState p_49331_, LevelAccessor p_49332_,
 			BlockPos p_49333_, BlockPos p_49334_) {
@@ -133,6 +134,7 @@ public class SculkRootBlock extends Block {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState p_49319_, Level p_49320_, BlockPos p_49321_, BlockState p_49322_,
 			boolean p_49323_) {
