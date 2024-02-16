@@ -36,8 +36,9 @@ public class CloudFeature extends Feature<NoneFeatureConfiguration> {
 		// Find an offset point within 16 blocks of the position, horizontally.
 		pos = pos.offset(level.getRandom().nextInt(16), 0, level.getRandom().nextInt(16));
 
+		
 		placeMultiLayer(level, pos, size, level.getRandom().nextDouble() < 0.0078125 ? THUNDER_CLOUD : CLOUD);
-
+		
 		return true;
 		
 	}

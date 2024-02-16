@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import com.thomas.zirconmod.effect.FlightExhaustionEffect;
 import com.thomas.zirconmod.effect.ModEffects;
+import com.thomas.zirconmod.network.ModPacketHandler;
+import com.thomas.zirconmod.network.WingFlapPacket;
 import com.thomas.zirconmod.util.Utilities;
 
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -36,30 +38,20 @@ public abstract class AbstractFlappingWingsItem extends AbstractWingsItem {
 	@Override
 	public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
 		super.elytraFlightTick(stack, entity, flightTicks);
-
 		// Check if the entity is trying to flap and can.
+		// Yes, this is handled on the client.
+		// That is because motion can only be handled on the client.
+		// All server-side work is sent over there via a packet.
 		if (entity.isShiftKeyDown() && canFlap(entity)) {
-			if (entity.level() instanceof ServerLevel sl) {
-				// Applies flight exhaustion.
-				entity.addEffect(new MobEffectInstance(ModEffects.FLIGHT_EXHAUSTION.get(), (int) (this.exhaustion * 20),
-						0, false, false));
-				// Adds flapping particles.
-				Utilities.addParticlesAroundEntity(sl, entity, ParticleTypes.CLOUD, 3.0);
-				Utilities.addParticlesAroundEntity(sl, entity, ParticleTypes.CLOUD, 2.0);
-				Utilities.addParticlesAroundEntity(sl, entity, ParticleTypes.CLOUD, 3.0);
-				Utilities.addParticlesAroundEntity(sl, entity, ParticleTypes.CLOUD, 2.0);
-
-				// Wears down the wings.
-				decreaseDurability(stack, entity);
-				// Plays a sound.
-				sl.playSound(null, entity.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0f,
-						1.0f);
-			} else if (entity.level() instanceof ClientLevel acl) {
+			if (entity.level() instanceof ClientLevel acl) {
+				
 				// Boosts the entity's vertical and lateral velocity.
 				Vec3 velocity = entity.getDeltaMovement();
 				velocity = velocity
 						.add(entity.getLookAngle().normalize().multiply(this.push, 0, this.push).add(0, this.lift, 0));
 				entity.setDeltaMovement(velocity);
+				// Send the packet to do server-side work.
+				ModPacketHandler.sendToServer(new WingFlapPacket(this.exhaustion));
 
 			}
 		}
@@ -75,4 +67,9 @@ public abstract class AbstractFlappingWingsItem extends AbstractWingsItem {
 		}
 		return true;
 	}
+	
+	public float getExhaustion() {
+		return this.exhaustion;
+	}
+	
 }

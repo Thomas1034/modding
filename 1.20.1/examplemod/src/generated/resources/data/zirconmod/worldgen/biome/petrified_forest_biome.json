@@ -35,6 +35,7 @@
     ],
     [
       "minecraft:amethyst_geode",
+      "zirconmod:coarse_dirt_patch_placed",
       "zirconmod:stone_patch_placed"
     ],
     [

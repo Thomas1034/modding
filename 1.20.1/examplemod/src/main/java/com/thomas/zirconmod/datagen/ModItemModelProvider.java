@@ -130,6 +130,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_SLAB);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_PILLAR);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR);
+
+		handheldItem(ModItems.GRAVITY_GUN);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

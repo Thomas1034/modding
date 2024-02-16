@@ -63,6 +63,7 @@
 	"item.zirconmod.citrine_bracket": "Citrine Bracket",
 	"item.zirconmod.citrine_lantern": "Citrine Lantern",
 	
+	"item.zirconmod.gravity_gun": "Gravity Gun",
 	
 	"block.zirconmod.zircon_block": "Zircon Block",
 	"block.zirconmod.zircon_ore": "Zircon Ore",
@@ -115,8 +116,6 @@
 	"block.zirconmod.lightning_block": "Lightning Block",
 	"block.zirconmod.unstable_lightning_block": "Unstable Lightning Block",
 	
-	
-	
 	"block.zirconmod.palm_trunk": "Palm Trunk",
 	"block.zirconmod.palm_fruit": "Palm Fruit",
 	"block.zirconmod.palm_floor_frond": "Palm Floor Frond",
@@ -143,7 +142,6 @@
 	"block.zirconmod.palm_hanging_sign": "Palm Hanging Sign",
 	"block.zirconmod.palm_sign": "Palm Sign",
 	
-	
 	"block.zirconmod.nimbula_polyp": "Nimbula Polyp",
 	"block.zirconmod.carpentry_table": "Carpentry Table",
 	"block.zirconmod.architect_worksite": "Architect Worksite",
@@ -158,7 +156,6 @@
 	"item.minecraft.smithing_template.zirconium_upgrade.base_slot_description": "Add iron armor, weapon, or tool",
 	"item.minecraft.smithing_template.zirconium_upgrade.ingredients": "Zirconium Ingot",
 	"upgrade.minecraft.zirconium_upgrade": "Zirconium Upgrade",
-	
 	
 	"enchantment.zirconmod.updraft": "Updraft",
 	

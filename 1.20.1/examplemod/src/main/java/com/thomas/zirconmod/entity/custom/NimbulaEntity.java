@@ -10,6 +10,7 @@ import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -40,18 +42,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class NimbulaEntity extends Animal implements FlyingAnimal {
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
-	
+
 	public NimbulaEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
 		super(pEntityType, pLevel);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
 	}
-
 
 	@Override
 	public void tick() {
@@ -163,6 +165,19 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 				level.setBlock(pos, ModBlocks.NIMBULA_POLYP.get().defaultBlockState(), 2);
 			}
 		}
+	}
+
+	@Override
+	public void thunderHit(ServerLevel level, LightningBolt bolt) {
+		TempestEntity tempest = new TempestEntity(ModEntities.TEMPEST_ENTITY.get(), level);
+        if (tempest != null) {
+        	this.remove(RemovalReason.DISCARDED);
+        	tempest.moveTo(this.position());
+        	tempest.setDeltaMovement(this.getDeltaMovement());
+        	tempest.setXRot(this.getXRot());
+        	tempest.setYRot(this.getYRot());
+        	level.addFreshEntity(tempest);
+        }
 	}
 
 	@Override

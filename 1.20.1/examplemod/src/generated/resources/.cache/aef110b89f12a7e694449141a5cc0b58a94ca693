@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-01T22:38:10.8239718	Item Models: zirconmod
+// 1.20.1	2024-02-11T20:53:57.8348807	Item Models: zirconmod
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
 1478198d944fe5cede2e678f28847d8b1e791707 assets/zirconmod/models/item/citrine_axe.json
@@ -32,6 +32,7 @@ ad02fe9efebad97e717a7a151684eef9b3f07587 assets/zirconmod/models/item/echo_powde
 b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wings.json
 5e7f372b75d19eea8a062fa75628c6ee97211cf5 assets/zirconmod/models/item/flaming_arrow.json
 267e05816b27217d8a81aedd426edaae6f9f3bc4 assets/zirconmod/models/item/flaming_pine_cone.json
+0402cbbd00147057cdfe40053eacae26081445c2 assets/zirconmod/models/item/gravity_gun.json
 423498747b414a755efd3c772e65f2a425d565c3 assets/zirconmod/models/item/hailstone.json
 56600b5d405397927274538de3f20d86c321e4d5 assets/zirconmod/models/item/heart_of_the_sky.json
 53b4f350ed4b1b58ce6be8ccc9fbf089d00b617f assets/zirconmod/models/item/illuminated_torchflower.json

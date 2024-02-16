@@ -1,6 +1,9 @@
 package com.thomas.zirconmod.block.custom;
 
+import java.util.Optional;
+
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LightningRodBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -26,20 +30,11 @@ public class LightningBlock extends Block {
 
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		if (level instanceof ServerLevel) {
+		if (level instanceof ServerLevel sl) {
 			level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 			// Summon lightning bolt if can see sky.
-			if (level.canSeeSky(pos.above())) {
-				LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(level);
-				if (lightningbolt != null) {
-					lightningbolt.moveTo(Vec3.atBottomCenterOf(pos));
-					level.addFreshEntity(lightningbolt);
-					level.playSound(null, pos, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.BLOCKS, 1.0f, 1.0f);
-				}
-				entity.hurt(entity.damageSources().lightningBolt(), 10.0f);
-			} else {
-				entity.hurt(entity.damageSources().lightningBolt(), 7.0f);
-			}
+			LightningBlock.addLightningBoltAtChecked(sl, pos);
+			entity.hurt(entity.damageSources().lightningBolt(), 7.0f);
 		}
 	}
 
@@ -48,17 +43,34 @@ public class LightningBlock extends Block {
 		level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 		LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(level);
 		if (lightningbolt != null) {
+			
 			lightningbolt.moveTo(Vec3.atBottomCenterOf(pos));
 			level.addFreshEntity(lightningbolt);
 			level.playSound(null, pos, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.BLOCKS, 1.0f, 1.0f);
 		}
-
 	}
 
 	// Only adds lightning bolt if there is sky access.
+	// Will also deflect to nearby lightning rod.
 	public static void addLightningBoltAtChecked(ServerLevel level, BlockPos pos) {
-		if (level.canSeeSky(pos.above())) {
+
+		// First, check for a lightning rod nearby
+		Optional<BlockPos> lightningRod = Utilities.findLightningRod(level, pos);
+		
+		if (lightningRod.isEmpty()) {
+			if (level.canSeeSky(pos.above())) {
+				addLightningBoltAt(level, pos);
+			}
+		}
+		else {
+			pos = lightningRod.get();
+			BlockPos rodPos = pos.below();
+			BlockState rodState = level.getBlockState(rodPos);
+			// Trigger the lightning rod.
+			((LightningRodBlock) Blocks.LIGHTNING_ROD).onLightningStrike(rodState, level, rodPos);
+			// Add lightning
 			addLightningBoltAt(level, pos);
+			
 		}
 	}
 
@@ -77,14 +89,9 @@ public class LightningBlock extends Block {
 	@Override
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState otherState, boolean bool) {
 
-		if (level instanceof ServerLevel && level.canSeeSky(pos.above())) {
+		if (level instanceof ServerLevel sl && level.canSeeSky(pos.above())) {
 			level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-			LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(level);
-			if (lightningbolt != null) {
-				lightningbolt.moveTo(Vec3.atBottomCenterOf(pos));
-				level.addFreshEntity(lightningbolt);
-				level.playSound(null, pos, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.BLOCKS, 1.0f, 1.0f);
-			}
+			LightningBlock.addLightningBoltAtChecked(sl, pos);
 		}
 
 		super.onRemove(state, level, pos, otherState, bool);

@@ -26,9 +26,9 @@ public class ModFeature {
 	public static final RegistryObject<Feature<?>> PETRIFIED_TREE = register("petrified_tree",
 			() -> new PetrifiedTreeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>> STONE_PATCH = register("stone_patch",
-			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.STONE, Blocks.GRAVEL, 16));
+			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.STONE, 8));
 	public static final RegistryObject<Feature<?>> COARSE_DIRT_PATCH = register("coarse_dirt_patch",
-			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.COARSE_DIRT, Blocks.COARSE_DIRT, 16));
+			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.COARSE_DIRT, 8));
 	public static final RegistryObject<Feature<?>> SCULK_DECORATION = register("sculk_decoration",
 			() -> new SculkHostilesFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>> SMALL_CLOUD = register("small_cloud",

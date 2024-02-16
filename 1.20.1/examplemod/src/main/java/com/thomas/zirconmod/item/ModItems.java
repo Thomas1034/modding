@@ -16,6 +16,7 @@ import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
 import com.thomas.zirconmod.item.custom.FeatherWingsItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
+import com.thomas.zirconmod.item.custom.GravityGunItem;
 import com.thomas.zirconmod.item.custom.HailstoneItem;
 import com.thomas.zirconmod.item.custom.ModBoatItem;
 import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
@@ -252,7 +253,12 @@ public class ModItems {
 
 	public static final RegistryObject<Item> HEART_OF_THE_SKY = ITEMS.register("heart_of_the_sky",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
-
+	
+	// Dev items
+	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
+			() -> new GravityGunItem(new Item.Properties().rarity(Rarity.EPIC), 32));
+	
+	
 	// Boilerplate
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);

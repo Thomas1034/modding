@@ -10,7 +10,7 @@ import net.minecraft.world.item.Items;
 public class FeatherWingsItem extends AbstractFlappingWingsItem {
 
 	public FeatherWingsItem(Properties properties) {
-		super(properties, 0.3f, 0.3f, 0.5f);
+		super(properties, 0.3f, 0.3f, 1.5f);
 	}
 	
 	@Override

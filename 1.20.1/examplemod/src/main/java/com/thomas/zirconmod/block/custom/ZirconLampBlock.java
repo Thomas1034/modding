@@ -29,15 +29,19 @@ public class ZirconLampBlock extends Block {
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
 			BlockHitResult result) {
-		if (!level.isClientSide && hand == InteractionHand.MAIN_HAND && !player.isCrouching()) {
-			level.setBlock(pos, state.cycle(LIT), 3);
+		if (hand == InteractionHand.MAIN_HAND && !player.isCrouching()) {
+			if (!level.isClientSide) {
+				level.setBlock(pos, state.cycle(LIT), 3);
+				return InteractionResult.CONSUME;
+			} else {
+				return InteractionResult.SUCCESS;
+			}
 		}
 
 		return super.use(state, level, pos, player, hand, result);
 	}
-	
-	public BooleanProperty getLitProperty()
-	{
+
+	public BooleanProperty getLitProperty() {
 		return LIT;
 	}
 

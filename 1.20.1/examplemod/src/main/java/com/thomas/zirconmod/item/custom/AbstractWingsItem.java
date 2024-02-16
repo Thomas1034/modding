@@ -54,6 +54,10 @@ public abstract class AbstractWingsItem extends ElytraItem {
 	}
 
 	protected void decreaseDurability(ItemStack thisStack, LivingEntity wearer) {
+		decreaseDurabilityPublic(thisStack, wearer);
+	}
+
+	public static void decreaseDurabilityPublic(ItemStack thisStack, LivingEntity wearer) {
 		thisStack.hurtAndBreak(1, wearer, e -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.CHEST));
 
 	}

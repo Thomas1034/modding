@@ -1,9 +1,13 @@
 package com.thomas.zirconmod.effect;
 
+import java.util.UUID;
+
 import com.thomas.zirconmod.ZirconMod;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,6 +24,8 @@ public class ModEffects {
 			() -> new FlightExhaustionEffect(MobEffectCategory.HARMFUL, 0xcccccc));
 	public static final RegistryObject<MobEffect> FREEZING = MOB_EFFECTS.register("freezing",
 			() -> new FreezeEffect(MobEffectCategory.HARMFUL, 0xffffff));
+	public static final RegistryObject<MobEffect> WEIGHTLESS = MOB_EFFECTS.register("weightless",
+			() -> new WeightlessEffect(MobEffectCategory.NEUTRAL, 0xc0c0c0).addAttributeModifier(ForgeMod.ENTITY_GRAVITY.get(), UUID.randomUUID().toString(), -0.8, Operation.MULTIPLY_BASE));
 	
 	
 	public static void register(IEventBus eventBus) {

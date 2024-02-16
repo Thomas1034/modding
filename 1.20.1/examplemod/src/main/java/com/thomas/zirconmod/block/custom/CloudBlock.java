@@ -191,7 +191,7 @@ public class CloudBlock extends Block {
 	}
 
 	public static boolean placeCloud(LevelAccessor level, BlockPos pos) {
-		if (!level.getBlockState(pos).isAir()) return false;
+		if (!level.getBlockState(pos).isAir() || !level.isAreaLoaded(pos, 4)) return false;
 		BlockState blockstate = ModBlocks.CLOUD.get().defaultBlockState().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE);
 		blockstate = updateDistance(blockstate, level, pos);
 		level.setBlock(pos, blockstate, 3);

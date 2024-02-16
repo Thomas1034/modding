@@ -42,10 +42,12 @@ public class PetrifiedForestBiome {
 		BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
 		BiomeDefaultFeatures.addBadlandExtraVegetation(biomeBuilder);
 
-		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-				ModPlacedFeatures.PETRIFIED_TREE_PLACED_KEY);
+		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
+				ModPlacedFeatures.COARSE_DIRT_PATCH_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
 				ModPlacedFeatures.STONE_PATCH_PLACED_KEY);
+		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+				ModPlacedFeatures.PETRIFIED_TREE_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatures.ZIRCON_ORE_PLACED_KEY);
 
 		int skyColor = Utilities.toHexColor(110, 177, 255);

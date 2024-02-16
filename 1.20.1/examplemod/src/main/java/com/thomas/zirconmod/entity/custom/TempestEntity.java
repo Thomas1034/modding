@@ -66,6 +66,9 @@ public class TempestEntity extends Ghast implements PowerableMob {
 	@Override
 	public void tick() {
 		super.tick();
+		
+		// Putting out fires.
+		this.setRemainingFireTicks(0);
 
 		// If below the world limit, add levitation!
 		if (this.getEyePosition().y < this.level().getMinBuildHeight() + 8) {

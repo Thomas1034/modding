@@ -65,7 +65,9 @@ public class TempestShootLightningGoal extends Goal {
 		LivingEntity target = this.tempest.getTarget();
 		if (target != null && target.level() instanceof ServerLevel level) {
 			// Increased range to 256, from 64
-			if (target.distanceToSqr(this.tempest) < 65536.0D && this.tempest.hasLineOfSight(target)) {
+			//
+			int range = 128;
+			if (target.distanceToSqr(this.tempest) < (range * range) && this.tempest.hasLineOfSight(target)) {
 				// Increment the charge time.
 				++this.chargeTime;
 

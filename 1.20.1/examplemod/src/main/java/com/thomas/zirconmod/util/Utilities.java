@@ -4,37 +4,195 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
 
-	// By ChatGPT. For accessing private static constants needed for world generation.
-	// Uses reflection. This is usually considered an extremely bad idea, but desperate times
+	// Copied from ServerLevel, finds a lightning rod near the given position.
+	public static Optional<BlockPos> findLightningRod(ServerLevel level, BlockPos pos) {
+		Optional<BlockPos> optional = level.getPoiManager().findClosest((p_215059_) -> {
+			return p_215059_.is(PoiTypes.LIGHTNING_ROD);
+		}, (p_184055_) -> {
+			return p_184055_
+					.getY() == level.getHeight(Heightmap.Types.WORLD_SURFACE, p_184055_.getX(), p_184055_.getZ()) - 1;
+		}, pos, 128, PoiManager.Occupancy.ANY);
+		return optional.map((p_184053_) -> {
+			return p_184053_.above(1);
+		});
+	}
+
+	public static List<Entity> entitiesWithinDistance(Entity notThis, double dist) {
+		Vec3 pos = notThis.getEyePosition();
+		AABB box = AABB.ofSize(pos, dist, dist, dist);
+		return notThis.level().getEntities(notThis, box);
+	}
+
+	// Returns true if the line defined by the given position and vector
+	// intersects the box, and false otherwise.
+	public static boolean checkIntersect(Vec3 pointOnLine, Vec3 directionVector, AABB box) {
+		double tMin = (box.minX - pointOnLine.x);
+		double tMax = (box.maxX - pointOnLine.x);
+
+		// Check if the range of the line on the X-axis intersects with the box on the
+		// X-axis
+		if (tMax < 0 || tMin > directionVector.x) {
+			return false; // No intersection on the X-axis
+		}
+
+		tMin = (box.minY - pointOnLine.y);
+		tMax = (box.maxY - pointOnLine.y);
+
+		// Check if the range of the line on the Y-axis intersects with the box on the
+		// Y-axis
+		if (tMax < 0 || tMin > directionVector.y) {
+			return false; // No intersection on the Y-axis
+		}
+
+		tMin = (box.minZ - pointOnLine.z);
+		tMax = (box.maxZ - pointOnLine.z);
+
+		// Check if the range of the line on the Z-axis intersects with the box on the
+		// Z-axis
+		return !(tMax < 0 || tMin > directionVector.z);
+	}
+
+	// Returns true if the line defined by the given position and vector
+	// intersects the box in the direction the vector is pointing, and false
+	// otherwise. (NOT YET IMPLEMENTED)
+	public static boolean checkDirectionalIntersect(Vec3 pointOnLine, Vec3 directionVector, AABB box) {
+		double tMin = (box.minX - pointOnLine.x);
+		double tMax = (box.maxX - pointOnLine.x);
+		System.out.println("tmin:" + tMin + " and tmax" + tMax);
+
+		// Check if the range of the line on the X-axis intersects with the box on the
+		// X-axis
+		if (tMax < 0 || tMin > directionVector.x) {
+			return false; // No intersection on the X-axis
+		}
+
+		tMin = (box.minY - pointOnLine.y);
+		tMax = (box.maxY - pointOnLine.y);
+		System.out.println("tmin:" + tMin + " and tmax" + tMax);
+
+		// Check if the range of the line on the Y-axis intersects with the box on the
+		// Y-axis
+		if (tMax < 0 || tMin > directionVector.y) {
+			return false; // No intersection on the Y-axis
+		}
+
+		tMin = (box.minZ - pointOnLine.z);
+		tMax = (box.maxZ - pointOnLine.z);
+		System.out.println("tmin:" + tMin + " and tmax" + tMax);
+
+		// Check if the range of the line on the Z-axis intersects with the box on the
+		// Z-axis
+		return !(tMax < 0 || tMin > directionVector.z);
+	}
+
+	public static Entity getLookedAt(Entity looker, double range) {
+
+		// Get entities in distance.
+		List<Entity> withinDist = entitiesWithinDistance(looker, range);
+		System.out.println(withinDist);
+		// Filter by whether they're looked at.
+		withinDist = withinDist.stream().filter((entity) -> checkDirectionalIntersect(looker.getEyePosition(),
+				looker.getLookAngle(), entity.getBoundingBox())).toList();
+		System.out.println(withinDist);
+		// Find the closest entity from the list.
+		Entity closest = null;
+		double closestSqr = range * range;
+
+		for (Entity entity : withinDist) {
+
+			double calcDist = entity.distanceToSqr(looker);
+			if (calcDist < closestSqr) {
+				closestSqr = calcDist;
+				closest = entity;
+			}
+
+		}
+
+		return closest;
+	}
+
+	public static Entity closestEntityWithinLookAngle(Entity looker, double dist, double theta) {
+
+		// Entities to pick from
+		List<Entity> entities = entitiesWithinLookAngle(looker, dist, theta);
+
+		Entity toReturn = null;
+		double closestSqr = dist * dist;
+
+		for (Entity entity : entities) {
+
+			double calcDist = entity.distanceToSqr(looker);
+			if (calcDist < closestSqr) {
+				closestSqr = calcDist;
+				toReturn = entity;
+			}
+
+		}
+
+		return toReturn;
+	}
+
+	// theta in radians
+	public static List<Entity> entitiesWithinLookAngle(Entity looker, double dist, double theta) {
+
+		// Get entities in distance.
+		List<Entity> withinDist = entitiesWithinDistance(looker, dist);
+
+		// Check if within a certain angle of the entity's center.
+		List<Entity> withinTheta = withinDist.stream().filter((entity) -> angle(looker.getLookAngle(),
+				entity.getEyePosition().subtract(looker.getEyePosition())) <= theta
+				|| angle(looker.getLookAngle(), entity.getPosition(1).subtract(looker.getEyePosition())) <= theta)
+				.toList();
+		return withinTheta;
+	}
+
+	public static double angle(Vec3 v, Vec3 u) {
+		double retval = Math.acos(v.dot(u) / (v.length() * u.length()));
+		return retval;
+	}
+
+	// By ChatGPT. For accessing private static constants needed for world
+	// generation.
+	// Uses reflection. This is usually considered an extremely bad idea, but
+	// desperate times
 	// call for desperate measures (although they do not always justify them).
-	public static Object getPrivateStaticField(Class<?> clazz, String fieldName) throws NoSuchFieldException, IllegalAccessException {
-        // Get the Field object for the specified field name
-        Field field = clazz.getDeclaredField(fieldName);
+	public static Object getPrivateStaticField(Class<?> clazz, String fieldName)
+			throws NoSuchFieldException, IllegalAccessException {
+		// Get the Field object for the specified field name
+		Field field = clazz.getDeclaredField(fieldName);
 
-        // Override access restrictions for private fields
-        field.setAccessible(true);
+		// Override access restrictions for private fields
+		field.setAccessible(true);
 
-        // Return the value of the static field (null for static fields)
-        return field.get(null);
-    }
-	
+		// Return the value of the static field (null for static fields)
+		return field.get(null);
+	}
+
 	// By ChatGPT
 	public static int pickNumberWithProbability(RandomSource random, int[] probabilities) {
 		int totalWeight = 0;
@@ -61,7 +219,7 @@ public class Utilities {
 		if (pos == null) {
 			return false;
 		}
-		if (Utilities.canReplaceBlockAt(level, pos)) {
+		if (level.isAreaLoaded(pos, 1) && Utilities.canReplaceBlockAt(level, pos)) {
 			level.setBlock(pos, state, 3);
 			return true;
 		}
@@ -72,7 +230,7 @@ public class Utilities {
 		if (pos == null) {
 			return false;
 		}
-		if (Utilities.canReplaceBlockNoFluidAt(level, pos)) {
+		if (level.isAreaLoaded(pos, 1) && Utilities.canReplaceBlockNoFluidAt(level, pos)) {
 			level.setBlock(pos, state, 3);
 			return true;
 		}
@@ -83,7 +241,7 @@ public class Utilities {
 		if (pos == null) {
 			return false;
 		}
-		if (Utilities.sculkReplacableAt(level, pos)) {
+		if (level.isAreaLoaded(pos, 1) && Utilities.sculkReplacableAt(level, pos)) {
 			level.setBlock(pos, state, 3);
 			return true;
 		}
@@ -97,7 +255,7 @@ public class Utilities {
 	// Function to get enclosed grid points
 	public static ArrayList<BlockPos> getEnclosedGridPoints(BlockPos p1, BlockPos p2, BlockPos p3) {
 		// Create a cubic spline interpolation (closed curve)
-		
+
 		Path2D path = new Path2D.Double();
 		int x1 = p1.getX();
 		int x2 = p2.getX();
@@ -106,29 +264,29 @@ public class Utilities {
 		int z2 = p2.getZ();
 		int z3 = p3.getZ();
 		int y = (p1.getY() + p2.getY() + p3.getY()) / 3;
-		
+
 		// Gets the center.
-		int centx = (x1+x2+x3)/3;
-		int centz = (z1+z2+z3)/3;
-		
+		int centx = (x1 + x2 + x3) / 3;
+		int centz = (z1 + z2 + z3) / 3;
+
 		// Connect the first two points with a smooth curve.
-		// Gets the control point. 
-		int ctrlx1 = 2*(x1 + x2) - 3*centx;
-		int ctrlz1 = 2*(z1 + z2) - 3*centz;
+		// Gets the control point.
+		int ctrlx1 = 2 * (x1 + x2) - 3 * centx;
+		int ctrlz1 = 2 * (z1 + z2) - 3 * centz;
 		path.moveTo(x1, z1);
 		path.quadTo(ctrlx1, ctrlz1, x2, z2);
-		
+
 		// Connect the next two points.
-		int ctrlx2 = 2*(x2 + x3) - 3*centx;
-		int ctrlz2 = 2*(z2 + z3) - 3*centz;
+		int ctrlx2 = 2 * (x2 + x3) - 3 * centx;
+		int ctrlz2 = 2 * (z2 + z3) - 3 * centz;
 		path.quadTo(ctrlx2, ctrlz2, x3, z3);
-		
+
 		// Full blob.
-		int ctrlx3 = 2*(x3 + x1) - 3*centx;
-		int ctrlz3 = 2*(z3 + z1) - 3*centz;
+		int ctrlx3 = 2 * (x3 + x1) - 3 * centx;
+		int ctrlz3 = 2 * (z3 + z1) - 3 * centz;
 		path.quadTo(ctrlx3, ctrlz3, x1, z1);
 		path.closePath();
-		
+
 		Rectangle2D bounds = path.getBounds2D();
 		// Define the bounding box for the grid
 		int minX = (int) bounds.getMinX();
@@ -169,8 +327,9 @@ public class Utilities {
 		}
 
 	}
-	
-	public static BlockPos findSurfaceForWorldgen(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
+
+	public static BlockPos findSurfaceForWorldgen(LevelAccessor level, BlockPos pos, int range)
+			throws SurfaceNotFoundException {
 
 		if (!level.getBlockState(pos).is(BlockTags.OVERWORLD_CARVER_REPLACEABLES)) {
 			return sink(level, pos, range);
@@ -327,6 +486,37 @@ public class Utilities {
 			double y = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.y;
 			double z = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.z;
 			level.addParticle(particle, x, y, z, dx, dy, dz);
+		}
+	}
+
+	public static void addParticlesAroundPositionClient(ClientLevel level, Vec3 position, ParticleOptions particle,
+			double boxSize) {
+		for (int i = 0; i < 5; ++i) {
+			double dx = level.random.nextGaussian() * 0.02D;
+			double dy = level.random.nextGaussian() * 0.02D;
+			double dz = level.random.nextGaussian() * 0.02D;
+			double x = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.x;
+			double y = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.y;
+			double z = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.z;
+			level.addParticle(particle, x, y, z, dx, dy, dz);
+		}
+	}
+
+	public static void addParticlesAroundPositionServer(ServerLevel level, Vec3 position, ParticleOptions particle,
+			double boxSize, int count) {
+		// Send to all players. Their clients can decide to render or not.
+		List<ServerPlayer> players = level.getPlayers((player) -> true);
+
+		double dx = boxSize * 2;
+		double dy = boxSize * 2;
+		double dz = boxSize * 2;
+		double x = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.x;
+		double y = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.y;
+		double z = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.z;
+		double maxSpeed = 0;
+		boolean overrideLimit = true;
+		for (ServerPlayer player : players) {
+			level.sendParticles(player, particle, overrideLimit, x, y, z, count, dx, dy, dz, maxSpeed);
 		}
 	}
 

@@ -18,6 +18,7 @@ import com.thomas.zirconmod.entity.client.WoodGolemRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.loot.ModLootModifiers;
+import com.thomas.zirconmod.network.ModPacketHandler;
 import com.thomas.zirconmod.painting.ModPaintings;
 import com.thomas.zirconmod.sound.ModSounds;
 import com.thomas.zirconmod.util.WoodGolemPlacer;
@@ -93,6 +94,8 @@ public class ZirconMod {
 		ModFeature.register(modEventBus);
 		
 		ModTerraBlender.registerBiomes();
+		
+		ModPacketHandler.register();
 
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);

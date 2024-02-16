@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-06T17:05:54.6822051	Registries
+// 1.20.1	2024-02-11T18:09:21.7048022	Registries
 8822851f450701f7a49b70540e7432e47b3281bd data/zirconmod/dimension/sky_dim.json
 ee5794d9afacc7836e39bcab6872093dfb168b4c data/zirconmod/dimension_type/sky_type.json
 d68d42768703fbf7012d6b150278127dbb807f41 data/zirconmod/forge/biome_modifier/add_citrine_geode.json
@@ -9,7 +9,7 @@ f51139d6bd72e56d58790d67419c5d6095df12ac data/zirconmod/forge/biome_modifier/add
 60dda8f73c41b8b3eac6034d91091e4d101f7252 data/zirconmod/forge/biome_modifier/add_tree_palm_jungle.json
 c1e30482f6bab4c4b1e167f08ab1d7ff453555e5 data/zirconmod/forge/biome_modifier/add_zircon_ore.json
 331c172757bf98e315dc68bd1c6cb74d068ff819 data/zirconmod/worldgen/biome/clear_sky_biome.json
-32b6e3a8315f1261c14004bfed8eb490a595a566 data/zirconmod/worldgen/biome/petrified_forest_biome.json
+f8a6f5198c90e8a228569c2059a6692ea17c6cc1 data/zirconmod/worldgen/biome/petrified_forest_biome.json
 3975152af3567917509d7c397aac5231d66f8b70 data/zirconmod/worldgen/configured_feature/citrine_geode.json
 cf5f39105f72303347cfa369e07ad3a9fe111e9f data/zirconmod/worldgen/configured_feature/coarse_dirt_patch.json
 6c21c87367da7cc91b609c709239192e41fdab20 data/zirconmod/worldgen/configured_feature/large_cloud.json
