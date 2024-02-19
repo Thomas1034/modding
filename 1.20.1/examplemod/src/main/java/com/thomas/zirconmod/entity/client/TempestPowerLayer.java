@@ -1,6 +1,7 @@
 package com.thomas.zirconmod.entity.client;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.entity.client.model.TempestModel;
 import com.thomas.zirconmod.entity.custom.TempestEntity;
 
 import net.minecraft.client.model.EntityModel;

@@ -23,7 +23,7 @@ import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-//Credit for this goes to LocusAzzurro
+// Credit for this goes to LocusAzzurro
 // Source at: https://github.com/LocusAzzurro/IcarusWings/blob/1.19.4/src/main/java/org/mineplugin/locusazzurro/icaruswings/event/ModClientRenderEventHandler.java
 // Changes were made to adapt the code to this project, mainly by removing superfluous code.
 public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extends ElytraLayer<T, M> {

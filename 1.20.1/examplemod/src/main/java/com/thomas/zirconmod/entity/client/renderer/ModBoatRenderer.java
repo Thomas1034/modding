@@ -1,4 +1,4 @@
-package com.thomas.zirconmod.entity.client;
+package com.thomas.zirconmod.entity.client.renderer;
 
 import java.util.Map;
 import java.util.stream.Stream;

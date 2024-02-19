@@ -3,12 +3,12 @@ package com.thomas.zirconmod.event;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.entity.client.ModModelLayers;
-import com.thomas.zirconmod.entity.client.MoleModel;
-import com.thomas.zirconmod.entity.client.NimbulaModel;
-import com.thomas.zirconmod.entity.client.TempestModel;
 import com.thomas.zirconmod.entity.client.WingsLayer;
-import com.thomas.zirconmod.entity.client.WispModel;
-import com.thomas.zirconmod.entity.client.WoodGolemModel;
+import com.thomas.zirconmod.entity.client.model.MoleModel;
+import com.thomas.zirconmod.entity.client.model.NimbulaModel;
+import com.thomas.zirconmod.entity.client.model.TempestModel;
+import com.thomas.zirconmod.entity.client.model.WispModel;
+import com.thomas.zirconmod.entity.client.model.WoodGolemModel;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;

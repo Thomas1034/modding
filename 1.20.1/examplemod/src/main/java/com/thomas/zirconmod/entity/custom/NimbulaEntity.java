@@ -10,10 +10,10 @@ import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,6 +35,7 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
@@ -42,7 +43,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 public class NimbulaEntity extends Animal implements FlyingAnimal {
 
@@ -95,6 +95,8 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 		this.goalSelector.addGoal(1, new NimbulaStayWithinBoundsGoal(this, 0.5, -48));
 		this.goalSelector.addGoal(1, new BreedGoal(this, 1.15D));
 		this.goalSelector.addGoal(2, new TemptGoal(this, 1.2D, Ingredient.of(Items.POTION), false));
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1.2D, Ingredient.of(Items.WATER_BUCKET), false));
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1.2D, Ingredient.of(Items.WET_SPONGE), false));
 
 		this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
 
@@ -170,14 +172,14 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 	@Override
 	public void thunderHit(ServerLevel level, LightningBolt bolt) {
 		TempestEntity tempest = new TempestEntity(ModEntities.TEMPEST_ENTITY.get(), level);
-        if (tempest != null) {
-        	this.remove(RemovalReason.DISCARDED);
-        	tempest.moveTo(this.position());
-        	tempest.setDeltaMovement(this.getDeltaMovement());
-        	tempest.setXRot(this.getXRot());
-        	tempest.setYRot(this.getYRot());
-        	level.addFreshEntity(tempest);
-        }
+		if (tempest != null) {
+			this.remove(RemovalReason.DISCARDED);
+			tempest.moveTo(this.position());
+			tempest.setDeltaMovement(this.getDeltaMovement());
+			tempest.setXRot(this.getXRot());
+			tempest.setYRot(this.getYRot());
+			level.addFreshEntity(tempest);
+		}
 	}
 
 	@Override
@@ -199,7 +201,27 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 
 	@Override
 	public boolean isFood(ItemStack pStack) {
-		return pStack.is(Items.POTION);
+		return pStack.is(Items.POTION) || pStack.is(Items.WATER_BUCKET) || pStack.is(Items.WET_SPONGE);
+	}
+
+	@Override
+	// Overridden so feeding a potion item doesn't take the bottle too.
+	protected void usePlayerItem(Player player, InteractionHand hand, ItemStack stack) {
+		ItemStack toGive = new ItemStack(Items.AIR);
+		if (stack.is(Items.POTION)) {
+			toGive = (new ItemStack(Items.GLASS_BOTTLE));
+		}
+		if (stack.is(Items.WATER_BUCKET)) {
+			toGive = (new ItemStack(Items.BUCKET));
+		}
+		if (stack.is(Items.WET_SPONGE)) {
+			toGive = (new ItemStack(Items.SPONGE));
+		}
+		
+		if (!player.getAbilities().instabuild) {
+			stack.shrink(1);
+			player.addItem(toGive);
+		}
 	}
 
 	@Nullable

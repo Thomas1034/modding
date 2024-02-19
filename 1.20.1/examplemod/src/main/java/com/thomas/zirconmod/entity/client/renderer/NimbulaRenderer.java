@@ -1,7 +1,9 @@
-package com.thomas.zirconmod.entity.client;
+package com.thomas.zirconmod.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.entity.client.ModModelLayers;
+import com.thomas.zirconmod.entity.client.model.NimbulaModel;
 import com.thomas.zirconmod.entity.custom.NimbulaEntity;
 
 import net.minecraft.client.renderer.MultiBufferSource;

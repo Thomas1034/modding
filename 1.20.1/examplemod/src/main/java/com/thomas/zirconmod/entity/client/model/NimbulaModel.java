@@ -1,4 +1,4 @@
-package com.thomas.zirconmod.entity.client;
+package com.thomas.zirconmod.entity.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

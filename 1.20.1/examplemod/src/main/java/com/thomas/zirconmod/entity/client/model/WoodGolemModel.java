@@ -1,4 +1,4 @@
-package com.thomas.zirconmod.entity.client;
+package com.thomas.zirconmod.entity.client.model;
 
 // Made with Blockbench 4.9.1
 // Exported for Minecraft version 1.17 or later with Mojang mappings

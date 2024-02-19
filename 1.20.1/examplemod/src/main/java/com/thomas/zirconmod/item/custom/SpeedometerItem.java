@@ -4,7 +4,7 @@ import java.util.Stack;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.util.Utilities;
-import com.thomas.zirconmod.worldgen.custom.CloudFeature;
+import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -35,13 +36,12 @@ public class SpeedometerItem extends Item {
 
 		else if (!level.isClientSide()) {
 			if (!player.isShiftKeyDown()) {
-				CloudFeature.placeMultiLayer(level, player.blockPosition(), 8, ModBlocks.CLOUD.get().defaultBlockState());
+				CloudFloorFeature.placeMultiLayer(level, player.blockPosition(), 3, ModBlocks.CLOUD.get().defaultBlockState(), Biomes.RIVER);
 			} else {
 				HitResult result = player.pick(5.0, 1.0f, false);
 				if (result instanceof BlockHitResult bres) {
 					// Erase cloud.
 					eraseCloudAt(level, bres.getBlockPos());
-
 				}
 			}
 		}

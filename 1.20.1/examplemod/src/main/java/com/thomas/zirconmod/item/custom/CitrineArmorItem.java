@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public class CitrineArmorItem extends ArmorItem {
@@ -22,8 +21,8 @@ public class CitrineArmorItem extends ArmorItem {
 	@Override
 	public void onArmorTick(ItemStack stack, Level level, Player player) {
 		super.onArmorTick(stack, level, player);
-		// Removes all effects from the player that can be removed by drinking milk, and gives amethyst glow.
-		player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
+		// Removes all effects from the player, and gives amethyst glow.
+		player.removeAllEffects();
 		player.addEffect(new MobEffectInstance(ModEffects.CITRINE_GLOW.get(), 10, 10, false, false));
 	}
 

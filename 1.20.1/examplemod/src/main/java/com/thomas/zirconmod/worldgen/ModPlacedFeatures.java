@@ -21,7 +21,9 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 public class ModPlacedFeatures {
+		
 	public static final ResourceKey<PlacedFeature> ZIRCON_ORE_PLACED_KEY = registerKey("zircon_ore_placed");
+	
 	public static final ResourceKey<PlacedFeature> CITRINE_GEODE_PLACED_KEY = registerKey("citrine_geode_placed");
 
 	public static final ResourceKey<PlacedFeature> PALM_PLACED_KEY = registerKey("palm_placed");
@@ -92,6 +94,8 @@ public class ModPlacedFeatures {
 
 	private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,
 			Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
-		context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+		
+		PlacedFeature feature = new PlacedFeature(configuration, List.copyOf(modifiers));
+		context.register(key, feature);
 	}
 }

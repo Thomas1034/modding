@@ -1,4 +1,4 @@
-package com.thomas.zirconmod.entity.client;
+package com.thomas.zirconmod.entity.client.renderer;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
