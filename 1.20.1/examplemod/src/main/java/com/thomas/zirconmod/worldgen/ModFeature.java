@@ -3,11 +3,14 @@ package com.thomas.zirconmod.worldgen;
 import java.util.function.Supplier;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.worldgen.biome.ModBiomes;
+import com.thomas.zirconmod.worldgen.custom.CloudFeature;
+import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
 import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
-import com.thomas.zirconmod.worldgen.custom.CloudFeature;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -35,6 +38,8 @@ public class ModFeature {
 			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 7));
 	public static final RegistryObject<Feature<?>> LARGE_CLOUD = register("large_cloud",
 			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 20));
+	public static final RegistryObject<Feature<?>> THICK_CLOUD_CEILING = register("thick_cloud_ceiling",
+			() -> new CloudFloorFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CLOUDY_SKY_BIOME, ModBlocks.CLOUD.get().defaultBlockState()));
 	
 	
 	private static <T extends Feature<?>> RegistryObject<T> register(String name, Supplier<T> feature) {

@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.worldgen.custom.CloudFeature;
+import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
 import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
-import com.thomas.zirconmod.worldgen.custom.CloudFeature;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmFoliagePlacer;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
 
@@ -55,6 +56,7 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_CLOUD_KEY = registerKey("large_cloud");
 	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_KEY = registerKey("thick_cloud_ceiling");
 	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -103,6 +105,8 @@ public class ModConfiguredFeatures {
 		register(context, SMALL_CLOUD_KEY, (CloudFeature) ModFeature.SMALL_CLOUD.get(), new NoneFeatureConfiguration());
 
 		register(context, LARGE_CLOUD_KEY, (CloudFeature) ModFeature.LARGE_CLOUD.get(), new NoneFeatureConfiguration());
+		
+		register(context, THICK_CLOUD_CEILING_KEY, (CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING.get(), new NoneFeatureConfiguration());
 		
 	}
 

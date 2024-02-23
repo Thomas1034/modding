@@ -9,10 +9,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public class CitrineArmorItem extends ArmorItem {
 
+	private static final ItemStack MILK = new ItemStack(Items.MILK_BUCKET);
+	
 	public CitrineArmorItem(ArmorMaterial p_40386_, Type p_266831_, Properties p_40388_) {
 		super(p_40386_, p_266831_, p_40388_);
 	}
@@ -23,6 +26,7 @@ public class CitrineArmorItem extends ArmorItem {
 		super.onArmorTick(stack, level, player);
 		// Removes all effects from the player, and gives amethyst glow.
 		player.removeAllEffects();
+		player.curePotionEffects(MILK);
 		player.addEffect(new MobEffectInstance(ModEffects.CITRINE_GLOW.get(), 10, 10, false, false));
 	}
 

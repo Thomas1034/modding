@@ -35,8 +35,7 @@ public class CloudFloorFeature extends Feature<NoneFeatureConfiguration> {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
 		ChunkGenerator chunks = context.chunkGenerator();
-		
-		placeMultiLayer(level, pos, 5, this.state, this.filter);
+		placeMultiLayer(level, pos, 8, this.state, this.filter);
 		
 		return true;
 		
@@ -45,16 +44,23 @@ public class CloudFloorFeature extends Feature<NoneFeatureConfiguration> {
 	// Places a solid layer of cloud, if the biome at that position has the specified feature.
 	public static void placeLayer(LevelAccessor level, BlockPos determinator, BlockState state, ResourceKey biome) {
 		
+		// If there is no chunk here, skip it.
+		if (!level.hasChunkAt(determinator)) {
+			System.out.println("Skipping " + determinator.getX() + " " + determinator.getY() + " " + determinator.getZ() + " ");
+			return;
+		}
+		
 		ChunkPos thisChunk = level.getChunk(determinator).getPos();
 		BlockPos corner = new BlockPos(thisChunk.x, determinator.getY(), thisChunk.z);
 		
 		// Iterate over the chunk, checking the biome and placing each time.
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				BlockPos here = determinator.offset(i, 0, j);
+				BlockPos here = thisChunk.getBlockAt(i, determinator.getY(), j);
 				// Check the biome.
 				boolean isCorrectBiome = level.getBiome(here).is(biome);
 				if (isCorrectBiome) {
+					
 					Utilities.setSafe(level, here, state);
 				}
 			}

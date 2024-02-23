@@ -205,7 +205,7 @@ public class ModBlocks {
 					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 	public static final RegistryObject<Block> UNSTABLE_LIGHTNING_BLOCK = registerBlock("unstable_lightning_block",
 			() -> new UnstableLightningBlock(
-					BlockBehaviour.Properties.copy(ModBlocks.LIGHTNING_BLOCK.get())));
+					BlockBehaviour.Properties.copy(ModBlocks.LIGHTNING_BLOCK.get()).randomTicks()));
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
