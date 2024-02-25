@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "quantumcircuit:block/quantum_channel"
+    }
+  }
+}

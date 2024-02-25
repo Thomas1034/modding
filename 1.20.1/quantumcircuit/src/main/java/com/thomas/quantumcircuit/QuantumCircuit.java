@@ -50,7 +50,7 @@ public class QuantumCircuit {
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
 		// Used for testing currently.
-		QuantumCircuitTests.run();
+		
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call

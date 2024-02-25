@@ -3,6 +3,7 @@ package com.thomas.quantumcircuit.item;
 import java.util.function.Supplier;
 
 import com.thomas.quantumcircuit.QuantumCircuit;
+import com.thomas.quantumcircuit.item.custom.DebugItem;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,7 +15,7 @@ public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			QuantumCircuit.MOD_ID);
 			
-			
+	public static final RegistryObject<Item> DEBUGGER = ITEMS.register("debugger", () -> new DebugItem(new Item.Properties()));
 	
 	// Boilerplate
 	public static RegistryObject<Item> register(String name, Supplier<Item> supplier) {

@@ -1,6 +1,7 @@
 package com.thomas.quantumcircuit.datagen;
 
 import com.thomas.quantumcircuit.QuantumCircuit;
+import com.thomas.quantumcircuit.item.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		
+		handheldItem(ModItems.DEBUGGER);
 		
 	}
 

@@ -28,6 +28,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Register simple blocks with the same texture on all sides
 		
 		blockWithItem(ModBlocks.ZIRCON_BLOCK);
+		blockWithItem(ModBlocks.QUANTUM_CHANNEL);
 
 	}
 
@@ -76,6 +77,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		simpleBlockWithItem(blockRegistryObject.get(), cubeModel);
 	}
+	
 	public void wallTorchBlock(WallTorchBlock block, String modelName, String texture) {
 		getVariantBuilder(block).forAllStates(state -> {
 			Direction facing = state.getValue(WallTorchBlock.FACING);

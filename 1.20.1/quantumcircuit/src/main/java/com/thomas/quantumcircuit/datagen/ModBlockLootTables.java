@@ -27,7 +27,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected void generate() {
 
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
-		
+		this.dropSelf(ModBlocks.QUANTUM_CHANNEL.get());
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {
@@ -45,15 +45,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected Iterable<Block> getKnownBlocks() {
 		return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
-	
+
 	protected void requireSilkTouch(Block base, ItemLike withoutSilk) {
-		this.add(base,
-				block -> createSilkTouchDrop(base, withoutSilk.asItem()));
+		this.add(base, block -> createSilkTouchDrop(base, withoutSilk.asItem()));
 	}
-	
+
 	protected void requireSilkTouch(Block base, ItemLike withoutSilk, List<Integer> range) {
-		this.add(base,
-				block -> createOreDrops(base, withoutSilk.asItem(), range));
+		this.add(base, block -> createOreDrops(base, withoutSilk.asItem(), range));
 	}
-	
+
 }

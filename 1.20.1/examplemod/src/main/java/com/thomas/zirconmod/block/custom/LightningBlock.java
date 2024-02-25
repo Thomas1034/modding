@@ -95,7 +95,6 @@ public class LightningBlock extends Block {
 		}
 
 		super.onRemove(state, level, pos, otherState, bool);
-
 	}
 
 	public static void place(Level level, BlockPos pos) {
