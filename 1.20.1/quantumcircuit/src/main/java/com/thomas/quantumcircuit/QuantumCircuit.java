@@ -6,6 +6,7 @@ import com.mojang.logging.LogUtils;
 import com.thomas.quantumcircuit.block.ModBlocks;
 import com.thomas.quantumcircuit.item.ModCreativeModeTabs;
 import com.thomas.quantumcircuit.item.ModItems;
+import com.thomas.quantumcircuit.qsim.test.QuantumCircuitTests;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -48,15 +49,14 @@ public class QuantumCircuit {
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
-		// Some common setup code
-		LOGGER.info("HELLO FROM COMMON SETUP");
+		// Used for testing currently.
+		QuantumCircuitTests.run();
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
-		// Do something when the server starts
-		LOGGER.info("HELLO from server starting");
+		
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
@@ -66,7 +66,7 @@ public class QuantumCircuit {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 			// Some client setup code
-			LOGGER.info("HELLO FROM CLIENT SETUP");
+			LOGGER.info("CLIENT SETUP:");
 			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 		}
 	}

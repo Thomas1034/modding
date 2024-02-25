@@ -8,6 +8,9 @@ public class ComplexNumber {
 
 	private final double real;
 	private final double imag;
+	public static final ComplexNumber ZERO = new ComplexNumber(0, 0);
+	public static final ComplexNumber ONE = new ComplexNumber(1, 0);
+	public static final ComplexNumber I = new ComplexNumber(0, 1);
 
 	/**
 	 * Constructs a complex number with given real and imaginary parts.
@@ -19,7 +22,7 @@ public class ComplexNumber {
 		this.real = real;
 		this.imag = imag;
 	}
-	
+
 	/**
 	 * Constructs a duplicate complex number.
 	 * 
@@ -28,7 +31,6 @@ public class ComplexNumber {
 	public ComplexNumber(ComplexNumber comp) {
 		this(comp.real, comp.imag);
 	}
-	
 
 	/**
 	 * Gets the real part of the complex number.
@@ -202,6 +204,7 @@ public class ComplexNumber {
 		double imag = magnitude * Math.sin(phase);
 		return new ComplexNumber(real, imag);
 	}
+	
 
 	/**
 	 * Checks if two complex numbers are approximately equal.
@@ -228,7 +231,14 @@ public class ComplexNumber {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%f + %fi", this.real, this.imag);
+		return String.format("%.4f + %.4fi", this.real, this.imag);
 	}
 
+	/**
+	 * Returns the negation of this complex number.
+	 * @return The negation of this complex number.
+	 */
+	public ComplexNumber neg() {
+		return new ComplexNumber(-this.real, -this.imag);
+	}
 }

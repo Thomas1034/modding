@@ -1,31 +1,31 @@
 package com.thomas.quantumcircuit.qsim.circuit;
 
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.Arrays;
-import java.util.Random;
 
+import com.google.common.math.BigIntegerMath;
 import com.thomas.quantumcircuit.qsim.complex.ComplexMatrix;
 import com.thomas.quantumcircuit.qsim.complex.ComplexNumber;
 
-import net.minecraft.util.RandomSource;
-
 public class StateVector {
 
-	private int size;
+	private int numBits;
 	private ComplexMatrix amplitudes;
 
 	/**
 	 * Private constructor used by the static factory method.
 	 */
 	private StateVector(int size, ComplexNumber[] amplitudes) {
-		this.setSize(size);
+		this.numBits = size;
 		this.amplitudes = convertToColumnVector(Arrays.copyOf(amplitudes, amplitudes.length));
 	}
-	
+
 	/**
 	 * Private constructor used by the static factory method.
 	 */
 	private StateVector(int size, ComplexMatrix matrix) {
-		this.setSize(size);
+		this.numBits = size;
 		this.amplitudes = matrix.add(new ComplexNumber(0, 0));
 	}
 
@@ -38,7 +38,8 @@ public class StateVector {
 	 *         amplitudes.
 	 */
 	public static StateVector initialize(ComplexMatrix amps) {
-		int size = log2(amps.getRows());
+		BigInteger rows = amps.getRows();
+		int size = BigIntegerMath.log2(rows, RoundingMode.UNNECESSARY);
 		return new StateVector(size, amps);
 	}
 
@@ -46,8 +47,8 @@ public class StateVector {
 	 * Static Factory Method: Initializes a state vector with the provided
 	 * amplitudes.
 	 *
-	 * @param size The number of qubits in the system.
-	 * @param amps The desired amplitudes to initialize the state vector.
+	 * @param numBits The number of qubits in the system.
+	 * @param amps    The desired amplitudes to initialize the state vector.
 	 * @return A new instance of StateVector initialized with the specified
 	 *         amplitudes.
 	 */
@@ -59,12 +60,24 @@ public class StateVector {
 	 * Constructor: Creates an instance of the StateVector class, initializing it to
 	 * represent the state |0⟩.
 	 *
-	 * @param size The number of qubits in the system.
+	 * @param numBits The number of qubits in the system.
 	 * @return A new instance of StateVector representing the state |0⟩.
 	 */
 	public static StateVector createZeroState(int size) {
 		ComplexNumber[] zeroAmplitudes = new ComplexNumber[1 << size];
 		zeroAmplitudes[0] = new ComplexNumber(1, 0); // Probability amplitude of |0⟩ is 1, others are 0
+		return new StateVector(size, zeroAmplitudes);
+	}
+
+	/**
+	 * Constructor: Creates an instance of the StateVector class, initializing it to
+	 * have amplitudes of zero.
+	 *
+	 * @param numBits The number of qubits in the system.
+	 * @return A new instance of StateVector with amplitudes of zero.
+	 */
+	public static StateVector empty(int size) {
+		ComplexNumber[] zeroAmplitudes = new ComplexNumber[1 << size];
 		return new StateVector(size, zeroAmplitudes);
 	}
 
@@ -91,87 +104,186 @@ public class StateVector {
 	 * @param basisState The binary representation of the basis state.
 	 * @return The probability amplitude for the specified basis state.
 	 */
-	public ComplexNumber getAmplitude(int basisState) {
-		if (basisState < 0 || basisState >= amplitudes.getRows()) {
+	public ComplexNumber getAmplitude(BigInteger basisState) {
+		if (basisState.compareTo(BigInteger.ZERO) < 0 || basisState.compareTo(amplitudes.getRows()) >= 0) {
 			throw new IllegalArgumentException("Invalid basis state index");
 		}
-		return amplitudes.get(basisState, 0);
+		return amplitudes.get(basisState, BigInteger.ZERO);
 	}
 
 	/**
-	 * Chooses and returns a random state (as an integer) based on a random number
-	 * from the specified random source.
-	 *
-	 * @param rand The random number generator.
-	 * @return A randomly chosen state represented as an integer.
-	 */
-	public int choose(Random rand) {
-		double randValue = rand.nextDouble();
-		return this.chooseFromValue(randValue);
-	}
-
-	/**
-	 * Chooses and returns a random state (as an integer) based on a random number
-	 * from the specified random source.
+	 * Returns a projection matrix for the specified qubit q (with state s) in an
+	 * n-qubit system.
 	 * 
-	 * Uses the Minecraft utility object, RandomSource, for compatibility with the
-	 * QuantumCircuit mod.
-	 *
-	 * @param rand The random number generator.
-	 * @return A randomly chosen state represented as an integer.
+	 * @param n The number of qubits in the system.
+	 * @param q The qubit to project onto.
+	 * @param s The qubit state to project onto.
+	 * @return A projection matrix for the desired state.
 	 */
-	public int choose(RandomSource rand) {
-		double randValue = rand.nextDouble();
-		return this.chooseFromValue(randValue);
-	}
+	public static ComplexMatrix projector(int n, int q, boolean s) {
 
-	/**
-	 * Chooses and returns a state (as an integer) based on the given number.
-	 *
-	 * @param val The number to choose the state from.
-	 * @return A chosen state represented as an integer.
-	 */
-	private int chooseFromValue(double val) {
-		double cumulativeProbability = 0;
-		for (int i = 0; i < amplitudes.getRows(); i++) {
-			double mag = amplitudes.get(i, 0).mag();
-			cumulativeProbability += mag * mag;
-			if (val <= cumulativeProbability) {
-				return i;
-			}
+		if (q >= n) {
+			throw new IllegalArgumentException("Invalid qubit index");
 		}
 
-		// This should not happen if the amplitudes are properly normalized
-		throw new IllegalStateException("Unable to choose a random state. Check the state vector normalization.");
+		ComplexMatrix retval = ComplexMatrix.zero(2);
+		if (!s) {
+			retval.set(0, 0, ComplexNumber.ONE);
+		} else {
+			retval.set(1, 1, ComplexNumber.ONE);
+		}
+
+		if (n == 1) {
+			return retval;
+		}
+
+		if (n != q - 1) {
+			retval = ComplexMatrix.ident(1 << (n - q - 1)).tensor(retval);
+
+		}
+
+		if (q != 0) {
+			retval = retval.tensor(ComplexMatrix.ident(1 << q));
+		}
+
+		return retval;
 	}
 
 	/**
-	 * Applies the given matrix to this state, returning a new state with the resulting value.
+	 * Calculates the inner product with the given state vector.
+	 * 
+	 * @param that The state vector to take the inner product with.
+	 * @return The inner product.
+	 */
+	public ComplexNumber inner(StateVector that) {
+
+		ComplexNumber prod = ComplexNumber.ZERO;
+
+		for (BigInteger i = BigInteger.ZERO; i.compareTo(this.amplitudes.getRows()) < 0; i = i.add(BigInteger.ONE)) {
+			prod = prod
+					.add(that.amplitudes.get(i, BigInteger.ZERO).conj().mult(this.amplitudes.get(i, BigInteger.ZERO)));
+		}
+
+		return prod;
+	}
+
+	/**
+	 * Returns a normalized version of this vector.
+	 * 
+	 * @return A normalized version of this vector.
+	 */
+	public StateVector norm() {
+
+		StateVector sv = StateVector.empty(this.numBits);
+
+		double amplitude = Math.sqrt(this.inner(this).real());
+
+		for (BigInteger i = BigInteger.ZERO; i.compareTo(sv.amplitudes.getRows()) < 0; i = i.add(BigInteger.ONE)) {
+			sv.amplitudes.set(i, BigInteger.ZERO, this.amplitudes.get(i, BigInteger.ZERO).div(amplitude));
+		}
+		return sv;
+	}
+
+	/**
+	 * Applies the given matrix to this state, returning a new state with the
+	 * resulting value.
 	 * 
 	 * @param matrix The matrix to apply to this state.
 	 * @return The result of the multiplication.
 	 */
 	public StateVector applyMatrix(ComplexMatrix matrix) {
-		return new StateVector(this.size, matrix.mult(this.amplitudes));
+
+		return new StateVector(this.numBits, matrix.mult(this.amplitudes));
 	}
 
 	/**
-	 * @return the size
+	 * Returns the normalized projection of the state vector onto the specified
+	 * qubit state. Returns null if the state vector is orthogonal to the specified
+	 * state.
+	 * 
+	 * @param n The number of qubits in the system.
+	 * @param q The qubit to project onto.
+	 * @param s The qubit state to project onto.
+	 * @return The result of the projection.
 	 */
-	public int getSize() {
-		return size;
+	public StateVector project(int q, boolean s) {
+
+		StateVector unnormed = this.projectUnnormed(q, s);
+		if (unnormed.inner(unnormed).equals(ComplexNumber.ZERO)) {
+			return null;
+		}
+		return unnormed.norm();
 	}
 
 	/**
-	 * @param size the size to set
+	 * Returns the normalized projection of the state vector onto the specified
+	 * qubit state. Returns null if the state vector is orthogonal to the specified
+	 * state.
+	 * 
+	 * @param n The number of qubits in the system.
+	 * @param q The qubit to project onto.
+	 * @param s The qubit state to project onto.
+	 * @return The result of the projection.
 	 */
-	public void setSize(int size) {
-		this.size = size;
+	private StateVector projectUnnormed(int q, boolean s) {
+		return this.applyMatrix(StateVector.projector(this.numBits, q, s));
 	}
 
-	public static int log2(int bits) {
-		if (bits == 0)
-			return 0; // or throw an exception
-		return 31 - Integer.numberOfLeadingZeros(bits);
+	/**
+	 * Measures the specified qubit q with the number x as the random value,
+	 * returning the resulting state. This collapses the state.
+	 * 
+	 * @return The collapsed state.
+	 */
+	public StateVector measure(int q, double x) {
+		// Get the projections of the state.
+		StateVector ifTrue = projectUnnormed(q, true);
+		StateVector ifFalse = projectUnnormed(q, false);
+
+		// Get the probabilities of the states.
+		double chanceOfTrue = ifTrue.inner(ifTrue).real();
+
+		// If this is larger than x, collapse to the measurement of true.
+		// If not, collapse to the measurement of false.
+		if (chanceOfTrue > x) {
+			return ifTrue.norm();
+		} else {
+			return ifFalse.norm();
+		}
 	}
+
+	/**
+	 * Checks whether the specified qubit is true, false, or not yet measured.
+	 * 
+	 * @return true if the specified qubit is true, false if it is false, or null if
+	 *         it is unmeasured.
+	 */
+	public Boolean getMeasurement(int q) {
+
+		// Get the projections of the state.
+		StateVector ifTrue = projectUnnormed(q, true);
+
+		// Get the probabilities of the states.
+		ComplexNumber chanceOfTrue = ifTrue.inner(ifTrue);
+
+		if (chanceOfTrue.equals(ComplexNumber.ONE)) {
+			return true;
+		} else if (chanceOfTrue.equals(ComplexNumber.ZERO)) {
+			return false;
+		} else {
+			// It hasn't been measured yet.
+			return null;
+		}
+	}
+
+	/**
+	 * Returns a human-readable string representation of the state vector.
+	 *
+	 * @return The string representation of the state vector.
+	 */
+	@Override
+	public String toString() {
+		return this.amplitudes.toString();
+	}
+
 }
