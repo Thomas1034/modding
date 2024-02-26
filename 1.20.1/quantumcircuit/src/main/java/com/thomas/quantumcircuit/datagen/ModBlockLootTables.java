@@ -27,7 +27,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected void generate() {
 
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
-		this.dropSelf(ModBlocks.QUANTUM_CHANNEL.get());
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {

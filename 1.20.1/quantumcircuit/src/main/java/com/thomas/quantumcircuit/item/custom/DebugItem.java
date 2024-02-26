@@ -1,7 +1,5 @@
 package com.thomas.quantumcircuit.item.custom;
 
-import com.thomas.quantumcircuit.util.CircuitBuilder;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -31,7 +29,7 @@ public class DebugItem extends Item {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-		System.out.println(context.getClickedPos() + " goes back to " + CircuitBuilder.findDirectBeginPos(context.getLevel(), context.getClickedPos()));
+		//System.out.println(context.getClickedPos() + " goes back to " + CircuitBuilder.findDirectBeginPos(context.getLevel(), context.getClickedPos()));
 		return super.useOn(context);
 	}
 

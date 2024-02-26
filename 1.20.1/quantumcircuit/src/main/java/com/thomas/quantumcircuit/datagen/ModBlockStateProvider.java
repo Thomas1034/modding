@@ -28,7 +28,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Register simple blocks with the same texture on all sides
 		
 		blockWithItem(ModBlocks.ZIRCON_BLOCK);
-		blockWithItem(ModBlocks.QUANTUM_CHANNEL);
 
 	}
 
