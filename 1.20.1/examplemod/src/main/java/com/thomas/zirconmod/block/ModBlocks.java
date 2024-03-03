@@ -186,23 +186,26 @@ public class ModBlocks {
 
 	// Basic cloud block
 	public static final RegistryObject<Block> CLOUD = registerBlock("cloud",
-			() -> new CloudBlock(BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F)
-					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos)->true).randomTicks().sound(SoundType.EMPTY)));
+			() -> new CloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
+					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos) -> true)
+					.isSuffocating((state, level, pos) -> false).randomTicks().sound(SoundType.EMPTY)));
 
 	// Sealed cloud block
 	public static final RegistryObject<Block> SEALED_CLOUD = registerBlock("sealed_cloud",
 			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).randomTicks().sound(SoundType.EMPTY)
-					.emissiveRendering((state, level, pos) -> true).isViewBlocking((state, level, pos)->true).lightLevel(state -> 3)));
+					.emissiveRendering((state, level, pos) -> true).isViewBlocking((state, level, pos) -> true)
+					.lightLevel(state -> 3)));
 
 	// Basic thundercloud block
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
-			() -> new ThunderCloudBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).isViewBlocking((state, level, pos)->true)));
+			() -> new ThunderCloudBlock(
+					BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).isViewBlocking((state, level, pos) -> true)));
 
 	// Lighting block
 	public static final RegistryObject<Block> LIGHTNING_BLOCK = registerBlock("lightning_block",
 			() -> new LightningBlock(BlockBehaviour.Properties.of().strength(0.1F).pushReaction(PushReaction.DESTROY)
-					.noOcclusion().isViewBlocking((state, level, pos)->true).noCollission().lightLevel((state) -> 3).instabreak()
-					.emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
+					.noOcclusion().isViewBlocking((state, level, pos) -> true).noCollission().lightLevel((state) -> 3)
+					.instabreak().emissiveRendering((state, level, pos) -> true).sound(SoundType.EMPTY)));
 	public static final RegistryObject<Block> UNSTABLE_LIGHTNING_BLOCK = registerBlock("unstable_lightning_block",
 			() -> new UnstableLightningBlock(
 					BlockBehaviour.Properties.copy(ModBlocks.LIGHTNING_BLOCK.get()).randomTicks()));
@@ -569,10 +572,9 @@ public class ModBlocks {
 
 	// Sealed door block
 	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
-			() -> new DirectionalPassageBlock(
-					BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
-							.pushReaction(PushReaction.BLOCK).isViewBlocking((state, level, pos)->false).randomTicks().lightLevel(state -> 12),
-					(level, pos) -> !level.isRaining()));
+			() -> new DirectionalPassageBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
+					.pushReaction(PushReaction.BLOCK).isViewBlocking((state, level, pos) -> false).randomTicks()
+					.lightLevel(state -> 12), (level, pos) -> !level.isRaining()));
 
 	// Sealed bricks
 	public static final RegistryObject<Block> SEALED_CLOUD_BRICKS = registerBlock("sealed_cloud_bricks",

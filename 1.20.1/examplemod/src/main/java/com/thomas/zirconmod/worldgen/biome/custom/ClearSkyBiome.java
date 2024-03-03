@@ -30,6 +30,8 @@ public class ClearSkyBiome {
 				ModPlacedFeatures.SMALL_CLOUD_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
 				ModPlacedFeatures.LARGE_CLOUD_PLACED_KEY);
+		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
+				ModPlacedFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY);
 
 		int skyColor = Utilities.toHexColor(110, 177, 255);
 		int fogColor = Utilities.toHexColor(110, 177, 255);

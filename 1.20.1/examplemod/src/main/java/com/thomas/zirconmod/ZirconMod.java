@@ -142,6 +142,7 @@ public class ZirconMod {
 	public void onServerStarting(ServerStartingEvent event) {
 		// Do something when the server starts
 		LOGGER.info("Server is starting...");
+		
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods

@@ -36,20 +36,21 @@ public class CloudFeature extends Feature<NoneFeatureConfiguration> {
 		// Find an offset point within 16 blocks of the position, horizontally.
 		pos = pos.offset(level.getRandom().nextInt(16), 0, level.getRandom().nextInt(16));
 
-		
 		placeMultiLayer(level, pos, size, level.getRandom().nextDouble() < 0.0078125 ? THUNDER_CLOUD : CLOUD);
-		
+
 		return true;
-		
+
 	}
 
 	// Places a layer of a small cloud around the specified anchor points.
-	public static void placeLayer(LevelAccessor level, BlockPos anchor1, BlockPos anchor2, BlockPos anchor3, BlockState state) {
+	public static void placeLayer(LevelAccessor level, BlockPos anchor1, BlockPos anchor2, BlockPos anchor3,
+			BlockState state) {
 
 		ArrayList<BlockPos> locations = Utilities.getEnclosedGridPoints(anchor1, anchor2, anchor3);
 		for (BlockPos location : locations) {
 			// Fill the block.
-			if (level.getBlockState(location).isAir()) level.setBlock(location, state, 3);
+			if (level.getBlockState(location).isAir())
+				Utilities.setSafe(level, location, state);
 		}
 
 	}

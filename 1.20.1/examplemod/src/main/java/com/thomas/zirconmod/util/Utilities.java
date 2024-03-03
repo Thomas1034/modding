@@ -28,7 +28,17 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
-
+	
+	// Maps a value from the range 0 to 1 to the range a to b.
+	public static double map(double x, double a, double b) {
+		return x * (b - a) + a;
+	}
+	
+	// Maps a value from the range a to b to the range 0 to 1.
+	public static double unmap(double x, double a, double b) {
+		return (x - a) / (b - a);
+	}
+	
 	// Copied from ServerLevel, finds a lightning rod near the given position.
 	public static Optional<BlockPos> findLightningRod(ServerLevel level, BlockPos pos) {
 		Optional<BlockPos> optional = level.getPoiManager().findClosest((p_215059_) -> {

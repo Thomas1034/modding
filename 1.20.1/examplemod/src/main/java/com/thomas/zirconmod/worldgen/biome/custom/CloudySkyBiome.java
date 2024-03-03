@@ -29,7 +29,7 @@ public class CloudySkyBiome {
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
 				ModPlacedFeatures.SMALL_CLOUD_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
-				ModPlacedFeatures.THICK_CLOUD_CEILING_PLACED_KEY);
+				ModPlacedFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY);
 
 		int skyColor = Utilities.toHexColor(110, 177, 255);
 		int fogColor = Utilities.toHexColor(110, 177, 255);

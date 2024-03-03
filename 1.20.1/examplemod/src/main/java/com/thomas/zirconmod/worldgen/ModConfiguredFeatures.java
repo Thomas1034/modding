@@ -56,7 +56,7 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_CLOUD_KEY = registerKey("large_cloud");
 	
-	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_KEY = registerKey("thick_cloud_ceiling");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY = registerKey("thick_cloud_ceiling");
 	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -106,7 +106,7 @@ public class ModConfiguredFeatures {
 
 		register(context, LARGE_CLOUD_KEY, (CloudFeature) ModFeature.LARGE_CLOUD.get(), new NoneFeatureConfiguration());
 		
-		register(context, THICK_CLOUD_CEILING_KEY, (CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING.get(), new NoneFeatureConfiguration());
+		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY, (CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(), new NoneFeatureConfiguration());
 		
 	}
 

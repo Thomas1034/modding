@@ -38,7 +38,7 @@ public class ModFeature {
 			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 7));
 	public static final RegistryObject<Feature<?>> LARGE_CLOUD = register("large_cloud",
 			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 20));
-	public static final RegistryObject<Feature<?>> THICK_CLOUD_CEILING = register("thick_cloud_ceiling",
+	public static final RegistryObject<Feature<?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY = register("thick_cloud_ceiling",
 			() -> new CloudFloorFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CLOUDY_SKY_BIOME, ModBlocks.CLOUD.get().defaultBlockState()));
 	
 	

@@ -2,6 +2,7 @@ package com.thomas.zirconmod.worldgen.custom;
 
 import com.mojang.serialization.Codec;
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.util.CloudNoise;
 import com.thomas.zirconmod.util.Utilities;
 
 import net.minecraft.core.BlockPos;
@@ -29,30 +30,32 @@ public class CloudFloorFeature extends Feature<NoneFeatureConfiguration> {
 		this.state = state;
 	}
 
-	// Places a small cloud.
+	// Places a cloud layer.
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
 		ChunkGenerator chunks = context.chunkGenerator();
-		placeMultiLayer(level, pos, 8, this.state, this.filter);
-		
+		placeNoiseLayer(level.getSeed(), level, pos, 16, this.state, this.filter);
+
 		return true;
-		
+
 	}
 
-	// Places a solid layer of cloud, if the biome at that position has the specified feature.
+	// Places a solid layer of cloud, if the biome at that position has the
+	// specified feature.
 	public static void placeLayer(LevelAccessor level, BlockPos determinator, BlockState state, ResourceKey biome) {
-		
+
 		// If there is no chunk here, skip it.
 		if (!level.hasChunkAt(determinator)) {
-			System.out.println("Skipping " + determinator.getX() + " " + determinator.getY() + " " + determinator.getZ() + " ");
+			System.out.println(
+					"Skipping " + determinator.getX() + " " + determinator.getY() + " " + determinator.getZ() + " ");
 			return;
 		}
-		
+
 		ChunkPos thisChunk = level.getChunk(determinator).getPos();
 		BlockPos corner = new BlockPos(thisChunk.x, determinator.getY(), thisChunk.z);
-		
+
 		// Iterate over the chunk, checking the biome and placing each time.
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
@@ -60,23 +63,66 @@ public class CloudFloorFeature extends Feature<NoneFeatureConfiguration> {
 				// Check the biome.
 				boolean isCorrectBiome = level.getBiome(here).is(biome);
 				if (isCorrectBiome) {
-					
+
 					Utilities.setSafe(level, here, state);
 				}
 			}
 		}
-		
-	
+
 	}
 
-	// Creates a layer of clouds covering the entire chunk containing the BlockPos, with the BlockPos as the highest point.
-	// Will only place a block at a position if the biome there supports the specified feature.
-	public static void placeMultiLayer(LevelAccessor level, BlockPos determinator, int thickness, BlockState state, ResourceKey<Biome> biome) {
-		int halfThick = thickness >> 1;
-		for (int i = -halfThick; i < halfThick; i++) {
-			placeLayer(level, determinator, state, biome);
+	// Places a noise-based layer of cloud, if the biome at that position has the
+	// specified feature.
+	public static void placeNoiseLayer(long seed, LevelAccessor level, BlockPos determinator, int thickness,
+			BlockState state, ResourceKey<Biome> biome) {
+
+		// If there is no chunk here, skip it.
+		if (!level.hasChunkAt(determinator)) {
+			System.out.println("Skipping " + determinator.getX() + " " + determinator.getY() + " " + determinator.getZ()
+					+ " since it has not been generated yet.");
+			return;
 		}
-		
+
+		ChunkPos thisChunk = level.getChunk(determinator).getPos();
+		BlockPos corner = new BlockPos(thisChunk.x, determinator.getY(), thisChunk.z);
+
+		// Iterate over the chunk, checking the biome and placing each time.
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 16; j++) {
+
+				BlockPos here = thisChunk.getBlockAt(i, determinator.getY(), j);
+				// For above the middle point
+				int aboveRange = CloudNoise.at(seed, here, thickness);
+				// For below the middle point.
+				// The rotate just gets a different value that's hard to figure out by simple
+				// observation.
+				int belowRange = CloudNoise.at(Long.rotateRight(seed, 27), here, thickness);
+
+				// Iterate over the vertical range.
+				for (int k = -belowRange; k < aboveRange; k++) {
+					BlockPos verticalPos = here.above(k);
+					// Check the biome.
+					boolean isCorrectBiome = level.getBiome(verticalPos).is(biome);
+					if (isCorrectBiome) {
+
+						Utilities.setSafe(level, verticalPos, state);
+					}
+				}
+			}
+		}
+	}
+
+	// Creates a layer of clouds covering the entire chunk containing the BlockPos,
+	// with the BlockPos as the highest point.
+	// Will only place a block at a position if the biome there supports the
+	// specified feature.
+	public static void placeMultiLayer(LevelAccessor level, BlockPos determinator, int thickness, BlockState state,
+			ResourceKey<Biome> biome) {
+		int halfThick = thickness >> 1 + (thickness & 1);
+		for (int i = -halfThick + (thickness & 1); i < halfThick; i++) {
+			placeLayer(level, determinator.above(i), state, biome);
+		}
+
 	}
 
 }
