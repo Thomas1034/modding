@@ -7,9 +7,14 @@ import java.util.Stack;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import squire.circuit.QuantumGate;
 
 public class CircuitBuilder {
-
+	
+	public static void test() {
+		QuantumGate q;
+	}
+	
 	// Parses blocks into a quantum circuit.
 	public static Stack<BlockPos> findBeginnings(Level level, BlockPos pos) throws CycleDetectedException {
 

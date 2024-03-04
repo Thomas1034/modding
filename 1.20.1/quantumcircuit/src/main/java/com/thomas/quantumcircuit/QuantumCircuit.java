@@ -6,7 +6,6 @@ import com.mojang.logging.LogUtils;
 import com.thomas.quantumcircuit.block.ModBlocks;
 import com.thomas.quantumcircuit.item.ModCreativeModeTabs;
 import com.thomas.quantumcircuit.item.ModItems;
-import com.thomas.quantumcircuit.qsim.test.QuantumCircuitTests;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;

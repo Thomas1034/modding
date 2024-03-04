@@ -1,41 +1,41 @@
-[03Mar2024 20:29:20.381] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, zirconmod, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\main\resources]
-[03Mar2024 20:29:20.389] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
-[03Mar2024 20:29:20.602] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[03Mar2024 20:29:20.689] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/thoma/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[03Mar2024 20:29:21.284] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.0\7f9181f85acc66547685a72020713fc8cbde98\javafmllanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[03Mar2024 20:29:21.288] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.0\7872f5205685fdd26fae39b1be79b0e60ca5b7bd\lowcodelanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[03Mar2024 20:29:21.291] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.0\d501d161cabed08b3c139a2c6217b02a39f3c3e9\mclanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[03Mar2024 20:29:21.295] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.0\ffd3c6debac0a388c9e33ac43c9f5eafb91cb466\fmlcore-1.20.1-47.2.0.jar is missing mods.toml file
-[03Mar2024 20:29:21.444] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[03Mar2024 20:29:24.332] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[03Mar2024 20:29:24.337] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, zirconmod, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\main\resources]
-[03Mar2024 20:29:24.941] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\build\createSrgToMcp\output.srg
-[03Mar2024 20:29:24.944] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\build\createSrgToMcp\output.srg
-[03Mar2024 20:29:25.889] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [zirconmod]
-[03Mar2024 20:29:33.689] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.0, for MC 1.20.1 with MCP 20230612.114412
-[03Mar2024 20:29:33.698] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.0 Initialized
-[03Mar2024 20:29:33.892] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:overworld to index 0 for type OVERWORLD
-[03Mar2024 20:29:33.893] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:nether to index 0 for type NETHER
-[03Mar2024 20:29:33.893] [modloading-worker-0/INFO] [terrablender/]: Registered region zirconmod:overworld to index 1 for type OVERWORLD
-[03Mar2024 20:29:34.590] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[03Mar2024 20:29:34.591] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[03Mar2024 20:29:35.153] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[03Mar2024 20:29:35.287] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 133 ms
-[03Mar2024 20:29:35.288] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[03Mar2024 20:29:35.416] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 128 ms
-[03Mar2024 20:29:35.416] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: zirconmod
-[03Mar2024 20:29:36.094] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: zirconmod finished after 677 ms
-[03Mar2024 20:29:36.094] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: zirconmod
-[03Mar2024 20:29:36.231] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: zirconmod finished after 137 ms
-[03Mar2024 20:29:36.231] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id zirconmod
-[03Mar2024 20:29:36.254] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id zirconmod finished after 22 ms
-[03Mar2024 20:29:36.254] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id zirconmod
-[03Mar2024 20:29:36.269] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id zirconmod finished after 14 ms
-[03Mar2024 20:29:36.269] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:point_of_interest_type mod id zirconmod
-[03Mar2024 20:29:36.272] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:point_of_interest_type mod id zirconmod finished after 3 ms
-[03Mar2024 20:29:36.273] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
-[03Mar2024 20:29:36.318] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 46 ms
-[03Mar2024 20:29:36.320] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : zirconmod
-[03Mar2024 20:29:36.326] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : zirconmod finished after 7 ms
-[03Mar2024 20:29:36.327] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1174 ms
-[03Mar2024 20:29:36.394] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 743, old count: 742, new count: 744, removed stale: 0, written: 4
+[04Mar2024 17:31:58.229] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, zirconmod, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\main\resources]
+[04Mar2024 17:31:58.261] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[04Mar2024 17:31:58.560] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[04Mar2024 17:31:58.637] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/thoma/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[04Mar2024 17:31:59.252] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.0\7f9181f85acc66547685a72020713fc8cbde98\javafmllanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[04Mar2024 17:31:59.259] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.0\7872f5205685fdd26fae39b1be79b0e60ca5b7bd\lowcodelanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[04Mar2024 17:31:59.263] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.0\d501d161cabed08b3c139a2c6217b02a39f3c3e9\mclanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[04Mar2024 17:31:59.269] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.0\ffd3c6debac0a388c9e33ac43c9f5eafb91cb466\fmlcore-1.20.1-47.2.0.jar is missing mods.toml file
+[04Mar2024 17:31:59.540] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[04Mar2024 17:32:02.419] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[04Mar2024 17:32:02.424] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, zirconmod, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\src\main\resources]
+[04Mar2024 17:32:03.388] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\build\createSrgToMcp\output.srg
+[04Mar2024 17:32:03.391] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\examplemod\build\createSrgToMcp\output.srg
+[04Mar2024 17:32:05.099] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [zirconmod]
+[04Mar2024 17:32:17.770] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.0, for MC 1.20.1 with MCP 20230612.114412
+[04Mar2024 17:32:17.783] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.0 Initialized
+[04Mar2024 17:32:18.114] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:overworld to index 0 for type OVERWORLD
+[04Mar2024 17:32:18.115] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:nether to index 0 for type NETHER
+[04Mar2024 17:32:18.116] [modloading-worker-0/INFO] [terrablender/]: Registered region zirconmod:overworld to index 1 for type OVERWORLD
+[04Mar2024 17:32:19.340] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[04Mar2024 17:32:19.343] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[04Mar2024 17:32:19.997] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[04Mar2024 17:32:20.291] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 293 ms
+[04Mar2024 17:32:20.293] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[04Mar2024 17:32:20.568] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 275 ms
+[04Mar2024 17:32:20.569] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: zirconmod
+[04Mar2024 17:32:21.422] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: zirconmod finished after 852 ms
+[04Mar2024 17:32:21.422] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: zirconmod
+[04Mar2024 17:32:21.554] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: zirconmod finished after 132 ms
+[04Mar2024 17:32:21.555] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id zirconmod
+[04Mar2024 17:32:21.613] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id zirconmod finished after 57 ms
+[04Mar2024 17:32:21.613] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id zirconmod
+[04Mar2024 17:32:21.634] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id zirconmod finished after 20 ms
+[04Mar2024 17:32:21.635] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:point_of_interest_type mod id zirconmod
+[04Mar2024 17:32:21.638] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:point_of_interest_type mod id zirconmod finished after 3 ms
+[04Mar2024 17:32:21.639] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[04Mar2024 17:32:21.716] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 77 ms
+[04Mar2024 17:32:21.717] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : zirconmod
+[04Mar2024 17:32:21.730] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : zirconmod finished after 12 ms
+[04Mar2024 17:32:21.730] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1734 ms
+[04Mar2024 17:32:21.837] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 743, old count: 746, new count: 744, removed stale: 0, written: 0

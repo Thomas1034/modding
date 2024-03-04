@@ -8,7 +8,6 @@ import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.entity.ai.WispFindHomeGoal;
 import com.thomas.zirconmod.entity.ai.WispGoHomeWhenThunderingGoal;
 import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
-import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.villager.ModVillagers;
@@ -81,6 +80,7 @@ public class WispEntity extends AbstractVillager {
 		super(p_35267_, p_35268_);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
+
 	}
 
 	/*
@@ -155,11 +155,21 @@ public class WispEntity extends AbstractVillager {
 		if (this.level().getDayTime() % 8000 == 0) {
 			this.restock();
 		}
-		
+
 		// Handles animations
 		if (this.level().isClientSide()) {
 			setupAnimationStates();
 		}
+	}
+
+	// Randomize the profession.
+	@Override
+	public void onAddedToWorld() {
+		super.onAddedToWorld();
+		// Picks a random type.
+		int type = this.random.nextInt(WISP_PROFESSIONS.size() - 1);
+		System.out.println("type: " + type + ", " + WISP_PROFESSIONS.get(type));
+		this.setTypeVariant(type);
 	}
 
 	// Restocks the Wisp.
@@ -449,8 +459,26 @@ public class WispEntity extends AbstractVillager {
 		return this.entityData.get(DATA_ID_TYPE_VARIANT);
 	}
 
-	public void setTypeVariant(WoodGolemVariant variant) {
-		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+	public void setTypeVariant(VillagerProfession variant) {
+		if (WISP_PROFESSIONS.containsValue(variant)) {
+			for (Map.Entry<Integer, VillagerProfession> entry : WISP_PROFESSIONS.entrySet()) {
+		        if (entry.getValue().equals(variant)) {
+		        	this.entityData.set(DATA_ID_TYPE_VARIANT, entry.getKey() & 255);					            
+		        }
+		    }
+		}
+		else {
+			this.entityData.set(DATA_ID_TYPE_VARIANT, 0);
+		}
+	}
+	
+	public void setTypeVariant(int variant) {
+		if (WISP_PROFESSIONS.containsKey(variant)) {
+			this.entityData.set(DATA_ID_TYPE_VARIANT, variant);
+		}
+		else {
+			this.entityData.set(DATA_ID_TYPE_VARIANT, 0);
+		}
 	}
 
 }
