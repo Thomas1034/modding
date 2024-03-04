@@ -27,7 +27,7 @@ public class CloudySkyBiome {
 				context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
 
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
-				ModPlacedFeatures.SMALL_CLOUD_PLACED_KEY);
+				ModPlacedFeatures.LARGE_CLOUD_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS,
 				ModPlacedFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY);
 

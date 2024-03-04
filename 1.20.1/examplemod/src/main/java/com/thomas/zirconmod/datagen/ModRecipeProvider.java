@@ -46,7 +46,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		oreBlasting(pWriter, List.of(ModBlocks.ZIRCON_BLOCK.get()), RecipeCategory.MISC, ModItems.RAW_ZIRCONIUM.get(),
 				0.25f, 100, "raw_zirconium");
 
-		// Charcoal from palm loglike things.
+		// Charcoal from palm loggish things.
 		charcoalSmelting(pWriter, ModBlocks.PALM_LOG.get());
 		charcoalSmelting(pWriter, ModBlocks.STRIPPED_PALM_LOG.get());
 		charcoalSmelting(pWriter, ModBlocks.PALM_WOOD.get());
@@ -65,6 +65,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Zircon from zircon shard.
 		shaped(pWriter, List.of("ZZ", "ZZ"), List.of('Z'), List.of(ModItems.ZIRCON_SHARD.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModItems.ZIRCON.get(), 1);
+
+		// Red sand from sand and zircon shard.
+		shaped(pWriter, List.of("ZS", "SZ"), List.of('Z', 'S'), List.of(ModItems.ZIRCON_SHARD.get(), Items.SAND),
+				RecipeCategory.BUILDING_BLOCKS, Items.RED_SAND, 2);
+
+		// Blast furnace from furnace and zirconium.
+		shaped(pWriter, List.of(" Z ", "SFS", " S "), List.of('Z', 'F', 'S'),
+				List.of(ModItems.ZIRCONIUM_INGOT.get(), Items.FURNACE, Items.SMOOTH_STONE),
+				RecipeCategory.BUILDING_BLOCKS, Items.BLAST_FURNACE, 2);
 
 		// Zircon lamp.
 		shaped(pWriter, List.of("SSS", "R#R", "SSS"), List.of('S', 'R', '#'),

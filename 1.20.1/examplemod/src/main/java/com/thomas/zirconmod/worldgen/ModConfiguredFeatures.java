@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
-import com.thomas.zirconmod.worldgen.custom.CloudFeature;
 import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
 import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
+import com.thomas.zirconmod.worldgen.custom.SimplexCloudFeature;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmFoliagePlacer;
 import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
 
@@ -49,15 +49,14 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STONE_PATCH_KEY = registerKey("stone_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
-	
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCULK_HOSTILES_KEY = registerKey("sculk_hostiles");
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_CLOUD_KEY = registerKey("small_cloud");
-
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_CLOUD_KEY = registerKey("large_cloud");
-	
-	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY = registerKey("thick_cloud_ceiling");
-	
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY = registerKey(
+			"thick_cloud_ceiling");
+
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 		RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
@@ -99,15 +98,17 @@ public class ModConfiguredFeatures {
 		register(context, STONE_PATCH_KEY, (PatchFeature) ModFeature.STONE_PATCH.get(), new NoneFeatureConfiguration());
 		register(context, COARSE_DIRT_PATCH_KEY, (PatchFeature) ModFeature.COARSE_DIRT_PATCH.get(),
 				new NoneFeatureConfiguration());
-		
-		register(context, SCULK_HOSTILES_KEY, (SculkHostilesFeature) ModFeature.SCULK_DECORATION.get(), new NoneFeatureConfiguration());
-		
-		register(context, SMALL_CLOUD_KEY, (CloudFeature) ModFeature.SMALL_CLOUD.get(), new NoneFeatureConfiguration());
 
-		register(context, LARGE_CLOUD_KEY, (CloudFeature) ModFeature.LARGE_CLOUD.get(), new NoneFeatureConfiguration());
-		
-		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY, (CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(), new NoneFeatureConfiguration());
-		
+		register(context, SCULK_HOSTILES_KEY, (SculkHostilesFeature) ModFeature.SCULK_DECORATION.get(),
+				new NoneFeatureConfiguration());
+
+		register(context, LARGE_CLOUD_KEY, (SimplexCloudFeature) ModFeature.LARGE_CLOUD.get(),
+				new NoneFeatureConfiguration());
+
+		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY,
+				(CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(),
+				new NoneFeatureConfiguration());
+
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

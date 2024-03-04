@@ -11,6 +11,7 @@ import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
 import com.thomas.zirconmod.worldgen.custom.PetrifiedTreeFeature;
 import com.thomas.zirconmod.worldgen.custom.SculkHostilesFeature;
+import com.thomas.zirconmod.worldgen.custom.SimplexCloudFeature;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -34,14 +35,12 @@ public class ModFeature {
 			() -> new PatchFeature(NoneFeatureConfiguration.CODEC, Blocks.COARSE_DIRT, 8));
 	public static final RegistryObject<Feature<?>> SCULK_DECORATION = register("sculk_decoration",
 			() -> new SculkHostilesFeature(NoneFeatureConfiguration.CODEC));
-	public static final RegistryObject<Feature<?>> SMALL_CLOUD = register("small_cloud",
-			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 7));
 	public static final RegistryObject<Feature<?>> LARGE_CLOUD = register("large_cloud",
-			() -> new CloudFeature(NoneFeatureConfiguration.CODEC, 20));
+			() -> new SimplexCloudFeature(NoneFeatureConfiguration.CODEC, 0.7, 9223372036854775807L));
 	public static final RegistryObject<Feature<?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY = register("thick_cloud_ceiling",
-			() -> new CloudFloorFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CLOUDY_SKY_BIOME, ModBlocks.CLOUD.get().defaultBlockState()));
-	
-	
+			() -> new CloudFloorFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CLOUDY_SKY_BIOME,
+					ModBlocks.CLOUD.get().defaultBlockState()));
+
 	private static <T extends Feature<?>> RegistryObject<T> register(String name, Supplier<T> feature) {
 		return FEATURES.register(name, feature);
 	}

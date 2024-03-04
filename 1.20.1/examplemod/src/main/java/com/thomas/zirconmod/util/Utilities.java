@@ -225,6 +225,7 @@ public class Utilities {
 		return probabilities.length - 1;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean setSafe(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
 			return false;
@@ -236,6 +237,7 @@ public class Utilities {
 		return false;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean setSafeNoFluid(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
 			return false;
@@ -247,6 +249,7 @@ public class Utilities {
 		return false;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean setSculkSafe(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
 			return false;
@@ -678,6 +681,7 @@ public class Utilities {
 	}
 
 	// Moves the given position downward to above a solid block.
+	@SuppressWarnings("deprecation")
 	public static BlockPos sink(LevelAccessor level, BlockPos pos) {
 
 		BlockState state = level.getBlockState(pos);
@@ -691,6 +695,7 @@ public class Utilities {
 	}
 
 	// Moves the given position downward to above a solid block.
+	@SuppressWarnings("deprecation")
 	public static BlockPos sink(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
 
 		BlockState state = level.getBlockState(pos);
@@ -708,6 +713,7 @@ public class Utilities {
 	}
 
 	// Iterates upward to find an air block, and returns that position.
+	@SuppressWarnings("deprecation")
 	public static BlockPos rise(LevelAccessor level, BlockPos pos) {
 
 		BlockState state = level.getBlockState(pos);
@@ -722,6 +728,7 @@ public class Utilities {
 	}
 
 	// Iterates upward to find an air block, and returns that position.
+	@SuppressWarnings("deprecation")
 	public static BlockPos rise(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
 
 		BlockState state = level.getBlockState(pos);

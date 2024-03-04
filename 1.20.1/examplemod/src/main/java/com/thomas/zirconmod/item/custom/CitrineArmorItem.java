@@ -24,8 +24,7 @@ public class CitrineArmorItem extends ArmorItem {
 	@Override
 	public void onArmorTick(ItemStack stack, Level level, Player player) {
 		super.onArmorTick(stack, level, player);
-		// Removes all effects from the player, and gives amethyst glow.
-		player.removeAllEffects();
+		// Cures all effects from the player, and gives amethyst glow.
 		player.curePotionEffects(MILK);
 		player.addEffect(new MobEffectInstance(ModEffects.CITRINE_GLOW.get(), 10, 10, false, false));
 	}

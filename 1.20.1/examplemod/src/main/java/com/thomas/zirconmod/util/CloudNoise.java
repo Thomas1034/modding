@@ -12,6 +12,8 @@ public class CloudNoise {
 		int y = pos.getY();
 		int z = pos.getZ();
 		
+		
+		
 		// Split the seed to get a part for each x, y, and z, plus a leftover.
 		// This depends on a long being at least 4 times the size of an integer.
 		// The split seeds will be used as the offset for the oscillator.

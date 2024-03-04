@@ -2,20 +2,13 @@
   "feature": "zirconmod:large_cloud",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 64
+      "type": "minecraft:count",
+      "count": 1
     },
     {
       "type": "minecraft:height_range",
       "height": {
-        "type": "minecraft:biased_to_bottom",
-        "inner": 32,
-        "max_inclusive": {
-          "above_bottom": 128
-        },
-        "min_inclusive": {
-          "above_bottom": 0
-        }
+        "above_bottom": 64
       }
     },
     {

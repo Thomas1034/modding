@@ -39,8 +39,6 @@ public class ModPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> SCULK_HOSTILES_PLACED_KEY = registerKey("sculk_hostiles_placed");
 
-	public static final ResourceKey<PlacedFeature> SMALL_CLOUD_PLACED_KEY = registerKey("small_cloud_placed");
-
 	public static final ResourceKey<PlacedFeature> LARGE_CLOUD_PLACED_KEY = registerKey("large_cloud_placed");
 
 	public static final ResourceKey<PlacedFeature> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY = registerKey("thick_cloud_ceiling_placed");
@@ -83,11 +81,8 @@ public class ModPlacedFeatures {
 		register(context, SCULK_HOSTILES_PLACED_KEY,
 				configuredFeatures.getOrThrow(ModConfiguredFeatures.SCULK_HOSTILES_KEY), ModPlacement.rareCavePlacement(4));
 
-		register(context, SMALL_CLOUD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_CLOUD_KEY),
-				ModPlacement.rareAboveBottomRangePlacement(0, 128, 8));
-
 		register(context, LARGE_CLOUD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LARGE_CLOUD_KEY),
-				ModPlacement.rareAboveBottomRangePlacement(0, 128, 64));
+				ModPlacement.commonAboveBottomPlacement(64, 1));
 		
 		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY),
 				ModPlacement.commonAboveBottomPlacement(192, 1));
