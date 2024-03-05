@@ -166,10 +166,13 @@ public class WispEntity extends AbstractVillager {
 	@Override
 	public void onAddedToWorld() {
 		super.onAddedToWorld();
-		// Picks a random type.
-		int type = this.random.nextInt(WISP_PROFESSIONS.size() - 1);
-		System.out.println("type: " + type + ", " + WISP_PROFESSIONS.get(type));
-		this.setTypeVariant(type);
+		// If the type has not yet been assigned.
+		if (this.getTypeVariant() == -1 && !this.isClientSide()) {
+			// Picks a random type.
+			int type = this.random.nextInt(WISP_PROFESSIONS.size() - 1);
+			System.out.println("type: " + type + ", " + WISP_PROFESSIONS.get(type));
+			this.setTypeVariant(type);
+		}
 	}
 
 	// Restocks the Wisp.
@@ -451,7 +454,7 @@ public class WispEntity extends AbstractVillager {
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+		this.entityData.define(DATA_ID_TYPE_VARIANT, -1);
 		this.entityData.define(SKILL_LEVEL, 1);
 	}
 
@@ -462,21 +465,19 @@ public class WispEntity extends AbstractVillager {
 	public void setTypeVariant(VillagerProfession variant) {
 		if (WISP_PROFESSIONS.containsValue(variant)) {
 			for (Map.Entry<Integer, VillagerProfession> entry : WISP_PROFESSIONS.entrySet()) {
-		        if (entry.getValue().equals(variant)) {
-		        	this.entityData.set(DATA_ID_TYPE_VARIANT, entry.getKey() & 255);					            
-		        }
-		    }
+				if (entry.getValue().equals(variant)) {
+					this.entityData.set(DATA_ID_TYPE_VARIANT, entry.getKey() & 255);
+					return;
+				}
+			}
 		}
-		else {
-			this.entityData.set(DATA_ID_TYPE_VARIANT, 0);
-		}
+		this.entityData.set(DATA_ID_TYPE_VARIANT, 0);
 	}
-	
+
 	public void setTypeVariant(int variant) {
 		if (WISP_PROFESSIONS.containsKey(variant)) {
 			this.entityData.set(DATA_ID_TYPE_VARIANT, variant);
-		}
-		else {
+		} else {
 			this.entityData.set(DATA_ID_TYPE_VARIANT, 0);
 		}
 	}

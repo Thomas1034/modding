@@ -1,8 +1,9 @@
-// 1.20.1	2024-02-02T20:42:49.8329779	Block States: zirconmod
+// 1.20.1	2024-03-04T23:57:29.3731752	Block States: zirconmod
 c72004035ed55196f6523d91305a39418a82d464 assets/zirconmod/blockstates/amethyst_wall_bracket.json
 94d81d11245ec567dea23a080faed42ce95315de assets/zirconmod/blockstates/architect_worksite.json
 a27ab1e5cb9db20092e42bf2d0054bb91b60fa0b assets/zirconmod/blockstates/blueberry_crop.json
 c06ad6406c72325ef4e7a1dfe08d4b1d1693c79d assets/zirconmod/blockstates/botanist_worksite.json
+da9fc877f17683c8350763500e0a4673ddd52487 assets/zirconmod/blockstates/bubblefruit_crop.json
 e544ec397ae2b6963b7266466d4e90efa27d3767 assets/zirconmod/blockstates/budding_citrine.json
 c1b6175b3d77c15f8cf07c40da91ca431fc52df7 assets/zirconmod/blockstates/carpentry_table.json
 84cfb71aecbd0cad909db4a0a110e83729ab1b14 assets/zirconmod/blockstates/chief_worksite.json
@@ -87,6 +88,12 @@ d6030e89e24ee6578a97a0a6af4f0d1ec5484e94 assets/zirconmod/blockstates/zircon_lam
 bba6117f016bdfb437a47c48c0907057447424ae assets/zirconmod/models/block/blueberry_stage4.json
 cb75db568cf49b2ded9b07935632bb429e9bb47e assets/zirconmod/models/block/blueberry_stage5.json
 f3fbc740f936a1aa6157f00eea71cd4c75453a61 assets/zirconmod/models/block/botanist_worksite.json
+713e6c14ede3cce81d14e104f6376667a0bdf7c2 assets/zirconmod/models/block/bubblefruit_stage0.json
+585df52a58f981e8b0857bacea0d1fc806e44447 assets/zirconmod/models/block/bubblefruit_stage1.json
+ada9648e72f8bd334b7a0b68db7e9040f7d1b35e assets/zirconmod/models/block/bubblefruit_stage2.json
+e710fa599e0b2ba5510e83e4c9236d1d44af0e8b assets/zirconmod/models/block/bubblefruit_stage3.json
+a6db3155c5ca4178f8aa95d30612ebb5367dd6aa assets/zirconmod/models/block/bubblefruit_stage4.json
+673132956b74e143462750964174a42c6a015a8c assets/zirconmod/models/block/bubblefruit_stage5.json
 57e796ef8fa441e2e69f096e6d78231d777c2d73 assets/zirconmod/models/block/budding_citrine.json
 9f0247f2dccaac33dedfa9982262ebbb57741860 assets/zirconmod/models/block/carpentry_table.json
 59751fff06eea61bd416cca640d03841454f6a8d assets/zirconmod/models/block/chief_worksite.json

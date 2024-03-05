@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
+import com.thomas.zirconmod.block.custom.BubblefruitCropBlock;
 import com.thomas.zirconmod.block.custom.BuddingCitrineBlock;
 import com.thomas.zirconmod.block.custom.CloudBlock;
 import com.thomas.zirconmod.block.custom.CloudConverterBlock;
@@ -109,7 +110,12 @@ public class ModBlocks {
 	// Blueberry crop
 	public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
 			() -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
+	
+	// Cloudberry block
+	public static final RegistryObject<Block> BUBBLEFRUIT_CROP = BLOCKS.register("bubblefruit_crop",
+			() -> new BubblefruitCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
+	
 	// Citrine blocks
 	public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
 			() -> new AmethystBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));

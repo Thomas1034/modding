@@ -190,9 +190,14 @@ public class ModItems {
 	public static final RegistryObject<Item> BLUEBERRY_SEEDS = ITEMS.register("blueberry_seeds",
 			() -> new ItemNameBlockItem(ModBlocks.BLUEBERRY_CROP.get(), new Item.Properties().stacksTo(64)));
 
+	public static final RegistryObject<Item> BUBBLEFRUIT = ITEMS.register("bubblefruit",
+			() -> new ItemNameBlockItem(ModBlocks.BUBBLEFRUIT_CROP.get(),
+					new Item.Properties().stacksTo(64).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f)
+							.fast().effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.2F).build())));
+
 	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
 			() -> new Item(new Item.Properties().stacksTo(64)
-					.food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
+					.food(new FoodProperties.Builder().nutrition(2).fast().saturationMod(2f).build())));
 
 	public static final RegistryObject<Item> PALM_SEEDS = ITEMS.register("palm_seeds",
 			() -> new Item(new Item.Properties().stacksTo(64)));
@@ -212,7 +217,6 @@ public class ModItems {
 	public static final RegistryObject<Item> TEMPEST_SPAWN_EGG = ITEMS.register("tempest_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.TEMPEST_ENTITY, 0x292C33, 0x82eefd, new Item.Properties()));
 
-	
 	public static final RegistryObject<Item> WISP_SPAWN_EGG = ITEMS.register("wisp_spawn_egg",
 			() -> new ForgeSpawnEggItem(ModEntities.WISP_ENTITY, 0xffffff, 0x3333cc, new Item.Properties()));
 
@@ -253,12 +257,11 @@ public class ModItems {
 
 	public static final RegistryObject<Item> HEART_OF_THE_SKY = ITEMS.register("heart_of_the_sky",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
-	
+
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
 			() -> new GravityGunItem(new Item.Properties().rarity(Rarity.EPIC), 32));
-	
-	
+
 	// Boilerplate
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);

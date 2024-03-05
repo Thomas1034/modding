@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
+import com.thomas.zirconmod.block.custom.BubblefruitCropBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
@@ -147,6 +148,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Blueberry crop
 		makeBlueberryCrop((CropBlock) ModBlocks.BLUEBERRY_CROP.get(), "blueberry_stage", "blueberry_stage");
 
+		// Bubblefruit crop
+		makeBubblefruitCrop((CropBlock) ModBlocks.BUBBLEFRUIT_CROP.get(), "bubblefruit_stage", "bubblefruit_stage");
+
+		
 		// Torchflower
 		simpleBlockWithItem(ModBlocks.ILLUMINATED_TORCHFLOWER.get(),
 				models().cross(blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get()).getPath(),
@@ -217,6 +222,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				.crop(modelName + state.getValue(((BlueberryCropBlock) block).getAgeProperty()),
 						new ResourceLocation(ZirconMod.MOD_ID,
 								"block/" + textureName + state.getValue(((BlueberryCropBlock) block).getAgeProperty())))
+				.renderType("cutout"));
+
+		return models;
+	}
+	
+	private ConfiguredModel[] bubblefruitStates(BlockState state, CropBlock block, String modelName, String textureName) {
+		ConfiguredModel[] models = new ConfiguredModel[1];
+		models[0] = new ConfiguredModel(models()
+				.cross(modelName + state.getValue(((BubblefruitCropBlock) block).getAgeProperty()),
+						new ResourceLocation(ZirconMod.MOD_ID,
+								"block/" + textureName + state.getValue(((BubblefruitCropBlock) block).getAgeProperty())))
 				.renderType("cutout"));
 
 		return models;
@@ -312,6 +328,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	protected void makeBlueberryCrop(CropBlock block, String modelName, String textureName) {
 		Function<BlockState, ConfiguredModel[]> function = state -> blueberryStates(state, block, modelName,
+				textureName);
+
+		getVariantBuilder(block).forAllStates(function);
+	}
+	
+	protected void makeBubblefruitCrop(CropBlock block, String modelName, String textureName) {
+		Function<BlockState, ConfiguredModel[]> function = state -> bubblefruitStates(state, block, modelName,
 				textureName);
 
 		getVariantBuilder(block).forAllStates(function);

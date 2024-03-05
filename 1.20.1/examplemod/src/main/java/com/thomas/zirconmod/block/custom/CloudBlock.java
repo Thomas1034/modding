@@ -83,7 +83,7 @@ public class CloudBlock extends Block {
 			// if (entity.fallDistance > 2.5F) {
 			// return FALLING_COLLISION_SHAPE;
 			// }
-			
+
 			boolean isSolid = state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE;
 
 			if (isSolid || canEntityWalkOnCloud(entity)) {
@@ -191,7 +191,8 @@ public class CloudBlock extends Block {
 	}
 
 	public static boolean placeCloud(LevelAccessor level, BlockPos pos) {
-		if (!level.getBlockState(pos).isAir() || !level.isAreaLoaded(pos, 4)) return false;
+		if (!level.getBlockState(pos).isAir() || !level.isAreaLoaded(pos, 4))
+			return false;
 		BlockState blockstate = ModBlocks.CLOUD.get().defaultBlockState().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE);
 		blockstate = updateDistance(blockstate, level, pos);
 		level.setBlock(pos, blockstate, 3);
@@ -204,6 +205,12 @@ public class CloudBlock extends Block {
 		return (state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE)
 				|| entityType.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)
 				|| entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
+	}
+
+	@Override
+	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing,
+			net.minecraftforge.common.IPlantable plantable) {
+		return (facing == Direction.UP && plantable.getPlant(world, pos).is(ModBlocks.BUBBLEFRUIT_CROP.get())) || super.canSustainPlant(state, world, pos, facing, plantable);
 	}
 
 	// Very important!

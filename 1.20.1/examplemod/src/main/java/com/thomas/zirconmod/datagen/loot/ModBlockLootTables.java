@@ -87,6 +87,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_SAPLING.get());
 		this.dropOther(ModBlocks.PALM_FLOOR_FROND.get(), ModBlocks.PALM_FROND.get());
 		this.dropSelf(ModBlocks.RESONATOR_BLOCK.get());
+		this.dropOther(ModBlocks.BUBBLEFRUIT_CROP.get(), ModItems.BUBBLEFRUIT.get());
 		
 		
 		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition
@@ -124,10 +125,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		LootItemCondition.Builder blueberryLootBuilder = LootItemBlockStatePropertyCondition
 				.hasBlockStateProperties(ModBlocks.BLUEBERRY_CROP.get()).setProperties(StatePropertiesPredicate.Builder
 						.properties().hasProperty(BlueberryCropBlock.AGE, BlueberryCropBlock.MAX_AGE));
-
 		this.add(ModBlocks.BLUEBERRY_CROP.get(), createCropDrops(ModBlocks.BLUEBERRY_CROP.get(),
 				ModItems.BLUEBERRY.get(), ModItems.BLUEBERRY_SEEDS.get(), blueberryLootBuilder));
-
+		
 		// Torchflower stuff
 		this.dropSelf(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 		this.add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),

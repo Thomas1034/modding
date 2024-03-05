@@ -40,6 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE);
 		simpleItem(ModItems.BLUEBERRY);
 		simpleItem(ModItems.BLUEBERRY_SEEDS);
+		simpleItem(ModItems.BUBBLEFRUIT);
 		simpleItem(ModItems.PALM_SEEDS);
 		simpleItem(ModItems.CUT_CITRINE);
 		simpleItem(ModItems.FEATHER_WINGS);

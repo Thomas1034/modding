@@ -1,7 +1,8 @@
-// 1.20.1	2024-02-02T20:42:49.8400137	Loot Tables
+// 1.20.1	2024-03-04T23:46:42.7597832	Loot Tables
 674b14ad9c1544e271a87fad9e831ec2b82df8ab data/zirconmod/loot_tables/blocks/architect_worksite.json
 5a3e4cd9c914c278ec5e2649067e7b0ae1985ad3 data/zirconmod/loot_tables/blocks/blueberry_crop.json
 850941336ae90f900cc66796ad417f0476132800 data/zirconmod/loot_tables/blocks/botanist_worksite.json
+7dd8df6c81169dc6c8232c558ea255c5f7ae4e78 data/zirconmod/loot_tables/blocks/bubblefruit_crop.json
 f866d58817f400a28dc50730fc023a7246100501 data/zirconmod/loot_tables/blocks/budding_citrine.json
 a16ba37cfaa7cb2a80b75585f3a66f78ec2b8d49 data/zirconmod/loot_tables/blocks/carpentry_table.json
 78764949869e64f2229110836205cc4ddc8e0d61 data/zirconmod/loot_tables/blocks/chief_worksite.json
