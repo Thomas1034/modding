@@ -43,6 +43,7 @@ public class ModTags {
 		public static final TagKey<Item> SCULK_AWAKENING_ITEMS = tag("sculk_awakening_items");
 		public static final TagKey<Item> CLOUD_WALKABLE_ITEMS = tag("cloud_walkable_items");
 		public static final TagKey<Item> CLOUD_HARVEST_ITEMS = tag("cloud_harvest_items");
+		public static final TagKey<Item> BERRIES = tag("berries");
 
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));

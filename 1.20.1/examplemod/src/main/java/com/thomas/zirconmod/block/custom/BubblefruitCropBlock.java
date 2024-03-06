@@ -1,5 +1,6 @@
 package com.thomas.zirconmod.block.custom;
 
+import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -40,7 +41,7 @@ public class BubblefruitCropBlock extends CropBlock {
 
 	@Override
 	protected ItemLike getBaseSeedId() {
-		return ModItems.BLUEBERRY_SEEDS.get();
+		return ModItems.BUBBLEFRUIT.get();
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BubblefruitCropBlock extends CropBlock {
 
 	@Override
 	public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
-		return new ItemStack(ModItems.BLUEBERRY_SEEDS.get());
+		return new ItemStack(ModItems.BUBBLEFRUIT.get());
 	}
 
 	public VoxelShape getShape(BlockState p_57291_, BlockGetter p_57292_, BlockPos p_57293_,
@@ -68,8 +69,8 @@ public class BubblefruitCropBlock extends CropBlock {
 	}
 
 	@SuppressWarnings("deprecation")
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
-			InteractionHand hand, BlockHitResult blockHitResult) {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+			BlockHitResult blockHitResult) {
 		int i = state.getValue(AGE);
 		boolean flag = i == MAX_AGE;
 		if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
@@ -77,8 +78,8 @@ public class BubblefruitCropBlock extends CropBlock {
 		} else if (flag) {
 			int j = 1 + level.random.nextInt(4);
 			popResource(level, pos, new ItemStack(ModItems.BUBBLEFRUIT.get(), j + (flag ? 1 : 0)));
-			level.playSound((Player) null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS,
-					1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+			level.playSound((Player) null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F,
+					0.8F + level.random.nextFloat() * 0.4F);
 			BlockState blockstate = state.setValue(AGE, Integer.valueOf(2));
 			level.setBlock(pos, blockstate, 2);
 			level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockstate));
@@ -98,8 +99,7 @@ public class BubblefruitCropBlock extends CropBlock {
 		return true;
 	}
 
-	public void performBonemeal(ServerLevel p_222553_, RandomSource rand, BlockPos p_222555_,
-			BlockState p_222556_) {
+	public void performBonemeal(ServerLevel p_222553_, RandomSource rand, BlockPos p_222555_, BlockState p_222556_) {
 		int i = Math.min(MAX_AGE, p_222556_.getValue(AGE) + rand.nextIntBetweenInclusive(1, 3));
 		p_222553_.setBlock(p_222555_, p_222556_.setValue(AGE, Integer.valueOf(i)), 2);
 	}
@@ -107,6 +107,16 @@ public class BubblefruitCropBlock extends CropBlock {
 	@Override
 	public int getMaxAge() {
 		return MAX_AGE;
+	}
+
+	@Override
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		return state.is(ModBlocks.CLOUD.get());
+	}
+
+	@Override
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		return level.getBlockState(pos.below()).is(ModBlocks.CLOUD.get()) || super.canSurvive(state, level, pos);
 	}
 
 	@Override

@@ -88,6 +88,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropOther(ModBlocks.PALM_FLOOR_FROND.get(), ModBlocks.PALM_FROND.get());
 		this.dropSelf(ModBlocks.RESONATOR_BLOCK.get());
 		this.dropOther(ModBlocks.BUBBLEFRUIT_CROP.get(), ModItems.BUBBLEFRUIT.get());
+		this.dropOther(ModBlocks.BUBBLEFRUIT_CROP_PLACER.get(), ModItems.BUBBLEFRUIT.get());
 		
 		
 		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition

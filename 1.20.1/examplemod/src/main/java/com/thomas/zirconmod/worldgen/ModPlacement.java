@@ -31,6 +31,18 @@ public class ModPlacement {
 		return List.of(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, RarityFilter.onAverageOnceEvery(onceEvery), BiomeFilter.biome());
 	}
 	
+	public static List<PlacementModifier> commonSurfacePlacement(int howMany) {
+		return List.of(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(howMany), BiomeFilter.biome());
+	}
+	
+	public static List<PlacementModifier> rareSurfaceIncludingCloudPlacement(int onceEvery) {
+		return List.of(PlacementUtils.HEIGHTMAP, RarityFilter.onAverageOnceEvery(onceEvery), BiomeFilter.biome());
+	}
+	
+	public static List<PlacementModifier> commonSurfaceIncludingCloudPlacement(int howMany) {
+		return List.of(PlacementUtils.HEIGHTMAP, CountPlacement.of(howMany), BiomeFilter.biome());
+	}
+	
 	public static List<PlacementModifier> surfacePlacement(int howMany) {
 		return List.of(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountPlacement.of(howMany), BiomeFilter.biome());
 	}
@@ -61,7 +73,7 @@ public class ModPlacement {
 		return aboveBottomPlacement(y, RarityFilter.onAverageOnceEvery(onceEvery));
 	}
 	
-	public static List<PlacementModifier> commonAboveRangeBottomPlacement(int y1, int y2, int count) {
+	public static List<PlacementModifier> commonAboveBottomRangePlacement(int y1, int y2, int count) {
 		return aboveBottomRangePlacement(y1, y2, CountPlacement.of(count));
 	}
 	

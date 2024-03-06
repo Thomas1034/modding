@@ -13,6 +13,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -138,6 +139,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
 		// Blueberry crop
 		this.tag(Tags.Items.CROPS).add(ModItems.BLUEBERRY_SEEDS.get());
+
 		this.tag(Tags.Items.DUSTS).add(ModItems.ECHO_POWDER.get());
 		this.tag(Tags.Items.GEMS).add(ModItems.ZIRCON.get());
 		this.tag(Tags.Items.GEMS).add(ModItems.ZIRCON_SHARD.get());
@@ -156,5 +158,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		this.tag(Tags.Items.ORES).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get().asItem());
 		this.tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE).add(ModBlocks.ZIRCON_ORE.get().asItem());
 		this.tag(Tags.Items.ORES_IN_GROUND_STONE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get().asItem());
+
+		// Tag all the berries
+		this.tag(ModTags.Items.BERRIES).add(ModItems.BLUEBERRY.get());
+		this.tag(ModTags.Items.BERRIES).add(ModItems.BUBBLEFRUIT.get());
+		this.tag(ModTags.Items.BERRIES).add(Items.GLOW_BERRIES);
+		this.tag(ModTags.Items.BERRIES).add(Items.SWEET_BERRIES);
+
 	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -29,7 +30,17 @@ public class NimbulaRenderer extends MobRenderer<NimbulaEntity, NimbulaModel<Nim
 		super.render(pEntity, p_115977_, p_115978_, pMatrixStack, p_115980_, p_115981_);
 	}
 
-	public ResourceLocation getTextureLocation(NimbulaEntity p_115974_) {
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula.png");
+	public ResourceLocation getTextureLocation(NimbulaEntity nimbula) {
+		if (nimbula.level().isThundering()) {
+			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/black.png");
+		} else if (nimbula.level().isRaining()) {
+			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/grey.png");
+		} else {
+			if (nimbula.level().dimension() == Level.OVERWORLD) {
+				return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/green.png");
+			} else {
+				return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/blue.png");
+			}
+		}
 	}
 }

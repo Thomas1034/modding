@@ -210,7 +210,7 @@ public class CloudBlock extends Block {
 	@Override
 	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing,
 			net.minecraftforge.common.IPlantable plantable) {
-		return (facing == Direction.UP && plantable.getPlant(world, pos).is(ModBlocks.BUBBLEFRUIT_CROP.get())) || super.canSustainPlant(state, world, pos, facing, plantable);
+		return (facing == Direction.UP && plantable.getPlant(world, pos).is(ModBlocks.BUBBLEFRUIT_CROP.get()));
 	}
 
 	// Very important!

@@ -43,9 +43,9 @@ public class ModDimensions {
 				1.0, // coordinateScale
 				true, // bedWorks
 				false, // respawnAnchorWorks
-				-64, // minY
-				320, // height
-				320, // logicalHeight
+				0, // minY
+				512, // height
+				512, // logicalHeight
 				BlockTags.INFINIBURN_OVERWORLD, // infiniburn
 				BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
 				0.0f, // ambientLight

@@ -52,6 +52,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -110,12 +111,11 @@ public class ModBlocks {
 	// Blueberry crop
 	public static final RegistryObject<Block> BLUEBERRY_CROP = BLOCKS.register("blueberry_crop",
 			() -> new BlueberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
-	
+
 	// Cloudberry block
 	public static final RegistryObject<Block> BUBBLEFRUIT_CROP = BLOCKS.register("bubblefruit_crop",
 			() -> new BubblefruitCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
-	
 	// Citrine blocks
 	public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
 			() -> new AmethystBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));
@@ -603,6 +603,17 @@ public class ModBlocks {
 			() -> new SculkRootBlock(BlockBehaviour.Properties.copy(Blocks.SCULK_VEIN).speedFactor(0.5f)
 					.jumpFactor(0.5f).lightLevel(state -> state.getValue(SculkRootBlock.STAGE) * 3)
 					.explosionResistance(0.1f).sound(SoundType.SCULK).randomTicks()));
+
+	// Becomes a bubblefruit crop with a randomized growth on placement.
+	// For world generation, to get around the fact that bubblefruit can't be placed
+	// on clouds
+	public static final RegistryObject<Block> BUBBLEFRUIT_CROP_PLACER = registerBlock("bubblefruit_crop_placer",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.SWEET_BERRY_BUSH)) {
+				@Override
+				public BlockState getStateForPlacement(BlockPlaceContext context) {
+					return BUBBLEFRUIT_CROP.get().defaultBlockState();
+				}
+			});
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

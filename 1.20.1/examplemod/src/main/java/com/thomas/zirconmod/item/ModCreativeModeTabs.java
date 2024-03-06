@@ -37,6 +37,7 @@ public class ModCreativeModeTabs {
 						// pOutput.accept(ModItems.CLEAR_WEATHER_TOTEM.get());
 						pOutput.accept(ModItems.BLUEBERRY.get());
 						pOutput.accept(ModItems.BLUEBERRY_SEEDS.get());
+						pOutput.accept(ModItems.BUBBLEFRUIT.get());
 						pOutput.accept(ModItems.PALM_SEEDS.get());
 						pOutput.accept(ModItems.NIMBULA_GEL.get());
 						pOutput.accept(ModBlocks.ILLUMINATED_TORCHFLOWER.get());

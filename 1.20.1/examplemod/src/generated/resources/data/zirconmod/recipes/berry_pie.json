@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "zirconmod:berries"
+    },
+    {
+      "tag": "zirconmod:berries"
+    },
+    {
+      "tag": "zirconmod:berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "zirconmod:berry_pie"
+  }
+}

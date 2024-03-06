@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 
+@SuppressWarnings("rawtypes")
 public class ModThrownItemRenderer<T extends Entity & ItemSupplier> extends ThrownItemRenderer {
 
 	public ModThrownItemRenderer(EntityRendererProvider.Context context, float scale, boolean bright) {

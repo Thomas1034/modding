@@ -22,11 +22,20 @@
     "water_fog_color": 1182451
   },
   "features": [
-    [],
-    [],
     [
       "zirconmod:large_cloud_placed",
       "zirconmod:thick_cloud_ceiling_placed"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "zirconmod:bubblefruit_patch_placed"
     ]
   ],
   "has_precipitation": true,

@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.item.ModItems;
+import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -162,6 +163,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Deepslate to polished deepslate.
 		shaped(pWriter, List.of("DD", "DD"), List.of('D'), List.of(Blocks.DEEPSLATE), RecipeCategory.BUILDING_BLOCKS,
 				Blocks.POLISHED_DEEPSLATE, 4);
+		
+		// Berry pie
+		shapeless(pWriter, List.of(ModTags.Items.BERRIES, Items.SUGAR, Items.EGG), List.of(3, 1, 1), RecipeCategory.MISC,
+				ModItems.BERRY_PIE.get(), 1);
 
 		// Feather bed.
 		shaped(pWriter, List.of("FFF", "FFF", "PPP"), List.of('F', 'P'), List.of(Items.FEATHER, ItemTags.PLANKS),

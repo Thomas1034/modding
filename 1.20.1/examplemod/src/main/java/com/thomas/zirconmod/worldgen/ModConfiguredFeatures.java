@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.block.custom.BubblefruitCropBlock;
 import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
 import com.thomas.zirconmod.worldgen.custom.OasisFeature;
 import com.thomas.zirconmod.worldgen.custom.PatchFeature;
@@ -15,6 +16,7 @@ import com.thomas.zirconmod.worldgen.tree.custom.PalmTrunkPlacer;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -30,6 +32,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -56,6 +59,8 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY = registerKey(
 			"thick_cloud_ceiling");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BUBBLEFRUIT_PATCH_KEY = registerKey("bubblefruit");
 
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -109,6 +114,12 @@ public class ModConfiguredFeatures {
 				(CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(),
 				new NoneFeatureConfiguration());
 
+
+		register(context, BUBBLEFRUIT_PATCH_KEY, Feature.RANDOM_PATCH,
+				FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+						new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BUBBLEFRUIT_CROP.get()
+								.defaultBlockState().setValue(BubblefruitCropBlock.AGE, Integer.valueOf(3)))),
+						List.of(ModBlocks.CLOUD.get())));
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

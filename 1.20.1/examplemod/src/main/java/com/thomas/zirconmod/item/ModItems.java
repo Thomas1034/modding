@@ -32,6 +32,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HangingSignItem;
@@ -192,12 +193,15 @@ public class ModItems {
 
 	public static final RegistryObject<Item> BUBBLEFRUIT = ITEMS.register("bubblefruit",
 			() -> new ItemNameBlockItem(ModBlocks.BUBBLEFRUIT_CROP.get(),
-					new Item.Properties().stacksTo(64).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f)
-							.fast().effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.2F).build())));
+					new Item.Properties().stacksTo(64).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1f)
+							.fast().effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.9F).build())));
 
 	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
 			() -> new Item(new Item.Properties().stacksTo(64)
-					.food(new FoodProperties.Builder().nutrition(2).fast().saturationMod(2f).build())));
+					.food(Foods.SWEET_BERRIES)));
+
+	public static final RegistryObject<Item> BERRY_PIE = ITEMS.register("berry_pie",
+			() -> new Item(new Item.Properties().stacksTo(64).food(Foods.PUMPKIN_PIE)));
 
 	public static final RegistryObject<Item> PALM_SEEDS = ITEMS.register("palm_seeds",
 			() -> new Item(new Item.Properties().stacksTo(64)));
