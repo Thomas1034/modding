@@ -129,6 +129,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.CITRINE_SHOVEL.get());
 						pOutput.accept(ModItems.CITRINE_HOE.get());
 						pOutput.accept(ModItems.FEATHER_WINGS.get());
+						pOutput.accept(ModItems.GUST_BOTTLE.get());
+						pOutput.accept(ModItems.TEMPEST_BOTTLE.get());
+						pOutput.accept(ModItems.WIND_BAG.get());
+						pOutput.accept(ModItems.EMPTY_WIND_BAG.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_COMBAT = CREATIVE_MODE_TABS.register(
 			"zirconmod_combat",

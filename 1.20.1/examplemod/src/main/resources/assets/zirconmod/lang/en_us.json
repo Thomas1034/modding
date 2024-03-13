@@ -19,6 +19,8 @@
 	"item.zirconmod.nimbula_spawn_egg": "Nimbula Spawn Egg",
 	"item.zirconmod.tempest_spawn_egg": "Tempest Spawn Egg",
 	"item.zirconmod.wisp_spawn_egg": "Wisp Spawn Egg",
+	"item.zirconmod.gust_spawn_egg": "Gust Spawn Egg",
+	"item.zirconmod.wraith_spawn_egg": "Wraith Spawn Egg",
 	"item.zirconmod.nimbula_gel": "Nimbula Gel",
 	"item.zirconmod.cut_citrine": "Cut Citrine",
 	"item.zirconmod.citrine_shard": "Citrine Shard",
@@ -27,6 +29,10 @@
 	"item.zirconmod.palm_chest_boat": "Palm Boat with Chest",
 	"item.zirconmod.bubblefruit": "Bubble Berry",
 	"item.zirconmod.berry_pie": "Berry Pie",
+	"item.zirconmod.gust_bottle": "Gust in a Bottle",
+	"item.zirconmod.tempest_bottle": "Tempest in a Bottle",
+	"item.zirconmod.wind_bag": "Bag of Winds",
+	"item.zirconmod.empty_wind_bag": "Empty Bag of Winds",
 	
 	"item.zirconmod.copper_sword": "Copper Sword",
 	"item.zirconmod.copper_pickaxe": "Copper Pickaxe",
@@ -169,6 +175,7 @@
 	"entity.zirconmod.tempest": "Tempest",
 	"entity.zirconmod.mod_boat": "Boat",
 	"entity.zirconmod.mod_chest_boat": "Boat with Chest",
+	"entity.zirconmod.gust": "Gust",
 	
 	"entity.minecraft.villager.zirconmod.forester": "Forester",
 	"entity.minecraft.villager.zirconmod.gemsmith": "Gem Smith",

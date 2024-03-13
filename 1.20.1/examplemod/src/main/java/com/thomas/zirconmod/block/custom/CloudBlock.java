@@ -1,9 +1,12 @@
 package com.thomas.zirconmod.block.custom;
 
+import java.util.List;
 import java.util.OptionalInt;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.effect.ModEffects;
+import com.thomas.zirconmod.entity.ModEntityType;
+import com.thomas.zirconmod.entity.custom.GustEntity;
 import com.thomas.zirconmod.util.ModTags;
 import com.thomas.zirconmod.util.Utilities;
 
@@ -12,6 +15,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -23,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -30,6 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -190,6 +198,7 @@ public class CloudBlock extends Block {
 		return updateDistance(blockstate, p_54424_.getLevel(), p_54424_.getClickedPos());
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean placeCloud(LevelAccessor level, BlockPos pos) {
 		if (!level.getBlockState(pos).isAir() || !level.isAreaLoaded(pos, 4))
 			return false;
@@ -205,6 +214,27 @@ public class CloudBlock extends Block {
 		return (state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE)
 				|| entityType.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)
 				|| entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
+	}
+
+	// If the space above it is air, spawns a gust with a very small probability.
+	// Assuming the game rules don't specify otherwise.
+	@Override
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		Difficulty difficulty = level.getDifficulty();
+		boolean doSpawning = level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
+		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.isRaining() && level.getBlockState(pos.above()).isAir()) {
+			float chance = difficulty.getId() * 0.001f;
+			if (rand.nextFloat() < chance) {
+				List<GustEntity> entities = level.getEntitiesOfClass(GustEntity.class,
+						AABB.ofSize(pos.getCenter(), 16, 64, 16));
+				if (entities.size() < 1) {
+					GustEntity gust = new GustEntity(ModEntityType.GUST_ENTITY.get(), level);
+					gust.moveTo(pos.above().getCenter());
+					gust.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 1, 1));
+					level.addFreshEntity(gust);
+				}
+			}
+		}
 	}
 
 	@Override

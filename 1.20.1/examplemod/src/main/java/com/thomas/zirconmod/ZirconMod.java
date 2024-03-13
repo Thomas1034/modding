@@ -7,7 +7,8 @@ import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.enchantment.ModEnchantments;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
+import com.thomas.zirconmod.entity.client.renderer.GustRenderer;
 import com.thomas.zirconmod.entity.client.renderer.ModBoatRenderer;
 import com.thomas.zirconmod.entity.client.renderer.ModThrownItemRenderer;
 import com.thomas.zirconmod.entity.client.renderer.MoleRenderer;
@@ -15,6 +16,7 @@ import com.thomas.zirconmod.entity.client.renderer.NimbulaRenderer;
 import com.thomas.zirconmod.entity.client.renderer.TempestRenderer;
 import com.thomas.zirconmod.entity.client.renderer.WispRenderer;
 import com.thomas.zirconmod.entity.client.renderer.WoodGolemRenderer;
+import com.thomas.zirconmod.entity.client.renderer.WraithRenderer;
 import com.thomas.zirconmod.item.ModCreativeModeTabs;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.loot.ModLootModifiers;
@@ -89,7 +91,7 @@ public class ZirconMod {
 		ModFoliagePlacers.register(modEventBus);
 
 		ModSounds.register(modEventBus);
-		ModEntities.register(modEventBus);
+		ModEntityType.register(modEventBus);
 
 		ModFeature.register(modEventBus);
 		
@@ -154,16 +156,17 @@ public class ZirconMod {
 			// Some client setup code
 			LOGGER.info("CLIENT SETUP:");
 			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-			EntityRenderers.register(ModEntities.MOLE_ENTITY.get(), MoleRenderer::new);
-			EntityRenderers.register(ModEntities.WOOD_GOLEM_ENTITY.get(), WoodGolemRenderer::new);
-			EntityRenderers.register(ModEntities.NIMBULA_ENTITY.get(), NimbulaRenderer::new);
-			EntityRenderers.register(ModEntities.WISP_ENTITY.get(), WispRenderer::new);
-			EntityRenderers.register(ModEntities.MOD_BOAT.get(), context -> new ModBoatRenderer(context, false));
-			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
-			EntityRenderers.register(ModEntities.TEMPEST_ENTITY.get(), TempestRenderer::new);
-			EntityRenderers.register(ModEntities.HAILSTONE_ENTITY.get(), ThrownItemRenderer::new);
-			EntityRenderers.register(ModEntities.BALL_LIGHTNING_ENTITY.get(), ModThrownItemRenderer::BallLightningRenderer);
-			
+			EntityRenderers.register(ModEntityType.MOLE_ENTITY.get(), MoleRenderer::new);
+			EntityRenderers.register(ModEntityType.WOOD_GOLEM_ENTITY.get(), WoodGolemRenderer::new);
+			EntityRenderers.register(ModEntityType.NIMBULA_ENTITY.get(), NimbulaRenderer::new);
+			EntityRenderers.register(ModEntityType.WISP_ENTITY.get(), WispRenderer::new);
+			EntityRenderers.register(ModEntityType.MOD_BOAT.get(), context -> new ModBoatRenderer(context, false));
+			EntityRenderers.register(ModEntityType.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
+			EntityRenderers.register(ModEntityType.TEMPEST_ENTITY.get(), TempestRenderer::new);
+			EntityRenderers.register(ModEntityType.HAILSTONE_ENTITY.get(), ThrownItemRenderer::new);
+			EntityRenderers.register(ModEntityType.BALL_LIGHTNING_ENTITY.get(), ModThrownItemRenderer::BallLightningRenderer);
+			EntityRenderers.register(ModEntityType.GUST_ENTITY.get(), GustRenderer::new);
+			EntityRenderers.register(ModEntityType.WRAITH_ENTITY.get(), WraithRenderer::new);
 		}
 	}
 

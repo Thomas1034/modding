@@ -2,7 +2,7 @@ package com.thomas.zirconmod.item;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.item.custom.CitrineArmorItem;
 import com.thomas.zirconmod.item.custom.ClearWeatherTotemItem;
@@ -25,6 +25,7 @@ import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SeaWingsItem;
 import com.thomas.zirconmod.item.custom.SearchEyeItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
+import com.thomas.zirconmod.item.custom.WindBagItem;
 import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.core.Direction;
@@ -193,12 +194,13 @@ public class ModItems {
 
 	public static final RegistryObject<Item> BUBBLEFRUIT = ITEMS.register("bubblefruit",
 			() -> new ItemNameBlockItem(ModBlocks.BUBBLEFRUIT_CROP.get(),
-					new Item.Properties().stacksTo(64).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1f)
-							.fast().effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.9F).build())));
+					new Item.Properties().stacksTo(64)
+							.food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1f).fast()
+									.effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.9F)
+									.build())));
 
 	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
-			() -> new Item(new Item.Properties().stacksTo(64)
-					.food(Foods.SWEET_BERRIES)));
+			() -> new Item(new Item.Properties().stacksTo(64).food(Foods.SWEET_BERRIES)));
 
 	public static final RegistryObject<Item> BERRY_PIE = ITEMS.register("berry_pie",
 			() -> new Item(new Item.Properties().stacksTo(64).food(Foods.PUMPKIN_PIE)));
@@ -213,16 +215,22 @@ public class ModItems {
 							.build())));
 
 	public static final RegistryObject<Item> MOLE_SPAWN_EGG = ITEMS.register("mole_spawn_egg",
-			() -> new ForgeSpawnEggItem(ModEntities.MOLE_ENTITY, 0x062e37, 0xa2af86, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(ModEntityType.MOLE_ENTITY, 0x062e37, 0xa2af86, new Item.Properties()));
 
 	public static final RegistryObject<Item> NIMBULA_SPAWN_EGG = ITEMS.register("nimbula_spawn_egg",
-			() -> new ForgeSpawnEggItem(ModEntities.NIMBULA_ENTITY, 0xffffff, 0x0092d6, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(ModEntityType.NIMBULA_ENTITY, 0xffffff, 0x0092d6, new Item.Properties()));
 
 	public static final RegistryObject<Item> TEMPEST_SPAWN_EGG = ITEMS.register("tempest_spawn_egg",
-			() -> new ForgeSpawnEggItem(ModEntities.TEMPEST_ENTITY, 0x292C33, 0x82eefd, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(ModEntityType.TEMPEST_ENTITY, 0x292C33, 0x82eefd, new Item.Properties()));
 
 	public static final RegistryObject<Item> WISP_SPAWN_EGG = ITEMS.register("wisp_spawn_egg",
-			() -> new ForgeSpawnEggItem(ModEntities.WISP_ENTITY, 0xffffff, 0x3333cc, new Item.Properties()));
+			() -> new ForgeSpawnEggItem(ModEntityType.WISP_ENTITY, 0xffffff, 0x3333cc, new Item.Properties()));
+
+	public static final RegistryObject<Item> GUST_SPAWN_EGG = ITEMS.register("gust_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntityType.GUST_ENTITY, 0xb4fffc, 0xf4f4f4, new Item.Properties()));
+
+	public static final RegistryObject<Item> WRAITH_SPAWN_EGG = ITEMS.register("wraith_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntityType.WRAITH_ENTITY, 0xafb3b3, 0x88ff00, new Item.Properties()));
 
 	public static final RegistryObject<Item> CUT_CITRINE = ITEMS.register("cut_citrine",
 			() -> new Item(new Item.Properties()));
@@ -261,6 +269,18 @@ public class ModItems {
 
 	public static final RegistryObject<Item> HEART_OF_THE_SKY = ITEMS.register("heart_of_the_sky",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
+	public static final RegistryObject<Item> GUST_BOTTLE = ITEMS.register("gust_bottle",
+			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1));
+
+	public static final RegistryObject<Item> TEMPEST_BOTTLE = ITEMS.register("tempest_bottle",
+			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2));
+	
+	public static final RegistryObject<Item> EMPTY_WIND_BAG = ITEMS.register("empty_wind_bag",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+
+	public static final RegistryObject<Item> WIND_BAG = ITEMS.register("wind_bag",
+			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, EMPTY_WIND_BAG.get()));
 
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",

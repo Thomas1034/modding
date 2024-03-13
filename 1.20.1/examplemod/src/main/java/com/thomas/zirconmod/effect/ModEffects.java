@@ -21,6 +21,9 @@ public class ModEffects {
 			() -> new FlightExhaustionEffect(MobEffectCategory.HARMFUL, 0xcccccc));
 	public static final RegistryObject<MobEffect> FREEZING = MOB_EFFECTS.register("freezing",
 			() -> new FreezeEffect(MobEffectCategory.HARMFUL, 0xffffff));
+	public static final RegistryObject<MobEffect> PROPELLED = MOB_EFFECTS.register("propelled",
+			() -> new PropulsionEffect(MobEffectCategory.BENEFICIAL, 0x4f4f4f));
+
 
 	public static void register(IEventBus eventBus) {
 		MOB_EFFECTS.register(eventBus);

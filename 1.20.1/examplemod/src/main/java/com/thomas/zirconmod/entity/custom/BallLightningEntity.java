@@ -5,7 +5,7 @@ import java.util.List;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.LightningBlock;
 import com.thomas.zirconmod.block.custom.UnstableLightningBlock;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -29,7 +29,7 @@ public class BallLightningEntity extends Fireball {
 
 	public BallLightningEntity(Level level, LivingEntity owner, double x, double y, double z,
 			int power) {
-		super(ModEntities.BALL_LIGHTNING_ENTITY.get(), owner, x, y, z, level);
+		super(ModEntityType.BALL_LIGHTNING_ENTITY.get(), owner, x, y, z, level);
 		this.detectionRange = power;
 	}
 

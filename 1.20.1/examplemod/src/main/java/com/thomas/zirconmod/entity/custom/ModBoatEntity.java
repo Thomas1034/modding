@@ -3,7 +3,7 @@ package com.thomas.zirconmod.entity.custom;
 import java.util.function.IntFunction;
 
 import com.thomas.zirconmod.block.ModBlocks;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.nbt.CompoundTag;
@@ -27,7 +27,7 @@ public class ModBoatEntity extends Boat {
 	}
 
 	public ModBoatEntity(Level level, double pX, double pY, double pZ) {
-		this(ModEntities.MOD_BOAT.get(), level);
+		this(ModEntityType.MOD_BOAT.get(), level);
 		this.setPos(pX, pY, pZ);
 		this.xo = pX;
 		this.yo = pY;

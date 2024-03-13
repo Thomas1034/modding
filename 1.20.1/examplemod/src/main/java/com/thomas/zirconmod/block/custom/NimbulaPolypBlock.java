@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 import com.thomas.zirconmod.block.ModBlocks;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -66,7 +66,7 @@ public class NimbulaPolypBlock extends Block {
 		else if (age == MAX_AGE) {
 			int count = level.random.nextInt(3) + 2;
 			for (int i = 0; i < count; i++) {
-				AgeableMob ageablemob = ModEntities.NIMBULA_ENTITY.get().create(level);
+				AgeableMob ageablemob = ModEntityType.NIMBULA_ENTITY.get().create(level);
 				ageablemob.setBaby(true);
 				ageablemob.moveTo(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.0F,
 						(float) (level.random.nextFloat() * 6.28));

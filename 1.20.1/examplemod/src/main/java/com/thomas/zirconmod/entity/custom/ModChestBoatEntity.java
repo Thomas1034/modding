@@ -1,6 +1,6 @@
 package com.thomas.zirconmod.entity.custom;
 
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +22,7 @@ public class ModChestBoatEntity extends ChestBoat {
 	}
 
 	public ModChestBoatEntity(Level pLevel, double pX, double pY, double pZ) {
-		this(ModEntities.MOD_CHEST_BOAT.get(), pLevel);
+		this(ModEntityType.MOD_CHEST_BOAT.get(), pLevel);
 		this.setPos(pX, pY, pZ);
 		this.xo = pX;
 		this.yo = pY;

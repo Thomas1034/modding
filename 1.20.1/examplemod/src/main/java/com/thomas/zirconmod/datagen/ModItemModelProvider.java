@@ -57,6 +57,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(ModBlocks.MEDIUM_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.SMALL_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.SCULK_ROOTS);
+		simpleItem(ModItems.GUST_BOTTLE);
+		simpleItem(ModItems.TEMPEST_BOTTLE);
+		simpleItem(ModItems.WIND_BAG);
+		simpleItem(ModItems.EMPTY_WIND_BAG);
 		
         simpleItem(ModItems.PALM_SIGN);
         simpleItem(ModItems.PALM_HANGING_SIGN);
@@ -119,6 +123,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		withExistingParent(ModItems.NIMBULA_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.TEMPEST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.WISP_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(ModItems.GUST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(ModItems.WRAITH_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));
 

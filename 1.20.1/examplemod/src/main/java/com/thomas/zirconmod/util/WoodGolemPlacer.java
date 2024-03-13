@@ -1,6 +1,6 @@
 package com.thomas.zirconmod.util;
 
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.entity.custom.WoodGolemEntity;
 import com.thomas.zirconmod.entity.variant.WoodGolemVariant;
 
@@ -212,7 +212,7 @@ public abstract class WoodGolemPlacer {
 			}
 
 			// Places a wood golem.
-			WoodGolemEntity golem = ModEntities.WOOD_GOLEM_ENTITY.get().create((Level) levelAccessor);
+			WoodGolemEntity golem = ModEntityType.WOOD_GOLEM_ENTITY.get().create((Level) levelAccessor);
 			golem.absMoveTo(pos.getX() + 0.5, pos.getY() - 2, pos.getZ() + 0.5, 0.0f, 0.0f);
 
 			// Gets the type to set it to.

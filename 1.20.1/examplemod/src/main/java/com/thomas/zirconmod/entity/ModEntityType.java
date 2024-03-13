@@ -2,6 +2,7 @@ package com.thomas.zirconmod.entity;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.entity.custom.BallLightningEntity;
+import com.thomas.zirconmod.entity.custom.GustEntity;
 import com.thomas.zirconmod.entity.custom.HailstoneEntity;
 import com.thomas.zirconmod.entity.custom.ModBoatEntity;
 import com.thomas.zirconmod.entity.custom.ModChestBoatEntity;
@@ -10,6 +11,7 @@ import com.thomas.zirconmod.entity.custom.NimbulaEntity;
 import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WispEntity;
 import com.thomas.zirconmod.entity.custom.WoodGolemEntity;
+import com.thomas.zirconmod.entity.custom.WraithEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -19,7 +21,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModEntities {
+public class ModEntityType {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister
 			.create(ForgeRegistries.ENTITY_TYPES, ZirconMod.MOD_ID);
 
@@ -40,6 +42,12 @@ public class ModEntities {
 	public static final RegistryObject<EntityType<WispEntity>> WISP_ENTITY = ENTITY_TYPES.register("wisp",
 			() -> EntityType.Builder.of(WispEntity::new, MobCategory.CREATURE).sized(0.9f, 0.9f).build("wisp"));
 
+	public static final RegistryObject<EntityType<GustEntity>> GUST_ENTITY = ENTITY_TYPES.register("gust",
+			() -> EntityType.Builder.of(GustEntity::new, MobCategory.MONSTER).sized(1.5f, 1.5f).build("gust"));;
+
+	public static final RegistryObject<EntityType<WraithEntity>> WRAITH_ENTITY = ENTITY_TYPES.register("wraith",
+			() -> EntityType.Builder.of(WraithEntity::new, MobCategory.MONSTER).sized(0.9F, 0.5F).clientTrackingRange(8).build("wraith"));;
+
 	public static final RegistryObject<EntityType<ModBoatEntity>> MOD_BOAT = ENTITY_TYPES.register("mod_boat",
 			() -> EntityType.Builder.<ModBoatEntity>of(ModBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f)
 					.build("mod_boat"));
@@ -47,14 +55,15 @@ public class ModEntities {
 			"mod_chest_boat", () -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
 					.sized(1.375f, 0.5625f).build("mod_chest_boat"));
 
-	public static final RegistryObject<EntityType<HailstoneEntity>> HAILSTONE_ENTITY = ENTITY_TYPES.register("hailstone",
-			() -> EntityType.Builder.<HailstoneEntity>of(HailstoneEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
-					.clientTrackingRange(4).updateInterval(10).build("hailstone"));
+	public static final RegistryObject<EntityType<HailstoneEntity>> HAILSTONE_ENTITY = ENTITY_TYPES
+			.register("hailstone", () -> EntityType.Builder.<HailstoneEntity>of(HailstoneEntity::new, MobCategory.MISC)
+					.sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("hailstone"));
 
-	public static final RegistryObject<EntityType<BallLightningEntity>> BALL_LIGHTNING_ENTITY = ENTITY_TYPES.register("ball_lightning",
-			() -> EntityType.Builder.<BallLightningEntity>of(BallLightningEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
-					.clientTrackingRange(4).updateInterval(10).build("ball_lightning"));
-	
+	public static final RegistryObject<EntityType<BallLightningEntity>> BALL_LIGHTNING_ENTITY = ENTITY_TYPES.register(
+			"ball_lightning",
+			() -> EntityType.Builder.<BallLightningEntity>of(BallLightningEntity::new, MobCategory.MISC)
+					.sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("ball_lightning"));
+
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}

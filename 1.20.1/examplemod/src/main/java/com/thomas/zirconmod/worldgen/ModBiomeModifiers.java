@@ -1,7 +1,7 @@
 package com.thomas.zirconmod.worldgen;
 
 import com.thomas.zirconmod.ZirconMod;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -65,7 +65,7 @@ public class ModBiomeModifiers {
 
 		context.register(ADD_MOLE,
 				ForgeBiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(biomes.getOrThrow(BiomeTags.HAS_ANCIENT_CITY),
-						new MobSpawnSettings.SpawnerData(ModEntities.MOLE_ENTITY.get(), 1, 3, 4)));
+						new MobSpawnSettings.SpawnerData(ModEntityType.MOLE_ENTITY.get(), 1, 3, 4)));
 	}
 
 	private static ResourceKey<BiomeModifier> registerKey(String name) {

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "zirconmod:empty_wind_bag"
+    },
+    "G": {
+      "item": "zirconmod:gust_bottle"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GBG",
+    " G "
+  ],
+  "result": {
+    "item": "zirconmod:wind_bag"
+  },
+  "show_notification": true
+}

@@ -163,10 +163,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Deepslate to polished deepslate.
 		shaped(pWriter, List.of("DD", "DD"), List.of('D'), List.of(Blocks.DEEPSLATE), RecipeCategory.BUILDING_BLOCKS,
 				Blocks.POLISHED_DEEPSLATE, 4);
-		
+
 		// Berry pie
-		shapeless(pWriter, List.of(ModTags.Items.BERRIES, Items.SUGAR, Items.EGG), List.of(3, 1, 1), RecipeCategory.MISC,
-				ModItems.BERRY_PIE.get(), 1);
+		shapeless(pWriter, List.of(ModTags.Items.BERRIES, Items.SUGAR, Items.EGG), List.of(3, 1, 1),
+				RecipeCategory.MISC, ModItems.BERRY_PIE.get(), 1);
 
 		// Feather bed.
 		shaped(pWriter, List.of("FFF", "FFF", "PPP"), List.of('F', 'P'), List.of(Items.FEATHER, ItemTags.PLANKS),
@@ -255,6 +255,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(pWriter, List.of("FBF", "PEP", "FBF"), List.of('F', 'B', 'P', 'E'),
 				List.of(Items.FEATHER, Items.HONEYCOMB, ItemTags.PLANKS, Items.ELYTRA), RecipeCategory.TRANSPORTATION,
 				ModItems.FEATHER_WINGS.get(), 1);
+
+		// Tempest bottle
+		shapeless(pWriter, List.of(ModItems.GUST_BOTTLE.get(), ModItems.HEART_OF_THE_SKY.get()), List.of(2, 1),
+				RecipeCategory.TOOLS, ModItems.TEMPEST_BOTTLE.get(), 1);
+
+		// Empty wind bag
+		shaped(pWriter, List.of("GRG", "R R", "RRR"), List.of('G', 'R'), List.of(Items.GOLD_INGOT, Items.RABBIT_HIDE),
+				RecipeCategory.TOOLS, ModItems.EMPTY_WIND_BAG.get(), 1);
+
+		// Filled wind bag
+		shaped(pWriter, List.of(" G ", "GBG", " G "), List.of('G', 'B'),
+				List.of(ModItems.GUST_BOTTLE.get(), ModItems.EMPTY_WIND_BAG.get()), RecipeCategory.TOOLS,
+				ModItems.WIND_BAG.get(), 1);
 
 		// Palm furniture
 		shaped(pWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.PALM_PLANKS.get()),

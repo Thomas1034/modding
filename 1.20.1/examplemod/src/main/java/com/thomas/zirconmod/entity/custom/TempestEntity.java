@@ -66,7 +66,7 @@ public class TempestEntity extends Ghast implements PowerableMob {
 	@Override
 	public void tick() {
 		super.tick();
-		
+
 		// Putting out fires.
 		this.setRemainingFireTicks(0);
 
@@ -116,8 +116,13 @@ public class TempestEntity extends Ghast implements PowerableMob {
 
 	@Override
 	public boolean isInvulnerableTo(DamageSource d) {
-		return super.isInvulnerableTo(d) || d.is(DamageTypeTags.IS_FALL) || d.is(DamageTypeTags.IS_LIGHTNING)
-				|| d.is(DamageTypeTags.IS_FIRE);
+		return super.isInvulnerableTo(d) || d.is(DamageTypeTags.IS_FALL) || d.is(DamageTypeTags.IS_LIGHTNING);
+	}
+
+	// Fireproof
+	@Override
+	public boolean fireImmune() {
+		return true;
 	}
 
 	@Override

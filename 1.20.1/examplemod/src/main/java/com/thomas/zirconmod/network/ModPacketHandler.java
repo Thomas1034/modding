@@ -24,6 +24,8 @@ public class ModPacketHandler {
 		INSTANCE.messageBuilder(WingFlapPacket.class, NetworkDirection.PLAY_TO_SERVER.ordinal())
 				.encoder(WingFlapPacket::encode).decoder(WingFlapPacket::decode)
 				.consumerMainThread(WingFlapPacket::handle).add();
+		INSTANCE.messageBuilder(PlayerAddVelocityPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
+		.encoder(PlayerAddVelocityPacket::encode).decoder(PlayerAddVelocityPacket::decode).consumerNetworkThread(PlayerAddVelocityPacket::handle).add();
 	}
 
 	public static void sendToServer(Object msg) {

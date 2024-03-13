@@ -4,6 +4,7 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.entity.client.ModModelLayers;
 import com.thomas.zirconmod.entity.client.WingsLayer;
+import com.thomas.zirconmod.entity.client.model.GustModel;
 import com.thomas.zirconmod.entity.client.model.MoleModel;
 import com.thomas.zirconmod.entity.client.model.NimbulaModel;
 import com.thomas.zirconmod.entity.client.model.TempestModel;
@@ -34,6 +35,9 @@ public class ModEventBusClientEvents {
 		event.registerLayerDefinition(ModModelLayers.TEMPEST_POWER_LAYER, TempestModel::createPowerLayer);
 		
 		event.registerLayerDefinition(ModModelLayers.WISP_LAYER, WispModel::createBodyLayer);
+
+		event.registerLayerDefinition(ModModelLayers.GUST_LAYER, GustModel::createBodyLayer);
+		
 		event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
 		event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 

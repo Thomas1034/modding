@@ -52,7 +52,6 @@ public abstract class AbstractFlappingWingsItem extends AbstractWingsItem {
 				entity.setDeltaMovement(velocity);
 				// Send the packet to do server-side work.
 				ModPacketHandler.sendToServer(new WingFlapPacket(this.exhaustion));
-
 			}
 		}
 		return true;

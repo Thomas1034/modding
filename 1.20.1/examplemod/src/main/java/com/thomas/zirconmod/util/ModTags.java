@@ -53,7 +53,6 @@ public class ModTags {
 	public static class EntityTypes {
 		public static final TagKey<EntityType<?>> CLOUD_WALKABLE_MOBS = tag("cloud_walkable_mobs");
 		public static final TagKey<EntityType<?>> CLOUD_SPAWNABLE_MOBS = tag("cloud_spawnable_mobs");
-
 		
 		private static TagKey<EntityType<?>> tag(String name) {
 			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ZirconMod.MOD_ID, name));

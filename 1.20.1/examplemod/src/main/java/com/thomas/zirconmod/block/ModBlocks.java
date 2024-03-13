@@ -37,6 +37,7 @@ import com.thomas.zirconmod.block.custom.WispBedBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.BurnTimes;
+import com.thomas.zirconmod.util.ModTags;
 import com.thomas.zirconmod.util.ModWoodTypes;
 import com.thomas.zirconmod.worldgen.tree.PalmTreeGrower;
 
@@ -194,7 +195,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CLOUD = registerBlock("cloud",
 			() -> new CloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
 					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos) -> true)
-					.isSuffocating((state, level, pos) -> false).randomTicks().sound(SoundType.EMPTY)));
+					.isSuffocating((state, level, pos) -> false).isValidSpawn((state, level, pos, type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE || type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS))).randomTicks().sound(SoundType.EMPTY)));
 
 	// Sealed cloud block
 	public static final RegistryObject<Block> SEALED_CLOUD = registerBlock("sealed_cloud",
@@ -205,7 +206,7 @@ public class ModBlocks {
 	// Basic thundercloud block
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
 			() -> new ThunderCloudBlock(
-					BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).isViewBlocking((state, level, pos) -> true)));
+					BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).randomTicks().isViewBlocking((state, level, pos) -> true)));
 
 	// Lighting block
 	public static final RegistryObject<Block> LIGHTNING_BLOCK = registerBlock("lightning_block",

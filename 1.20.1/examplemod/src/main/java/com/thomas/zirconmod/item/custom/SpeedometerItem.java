@@ -21,6 +21,8 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class SpeedometerItem extends Item {
+	
+	public static int skin = 0;
 
 	public SpeedometerItem(Properties properties) {
 		super(properties);
@@ -35,7 +37,7 @@ public class SpeedometerItem extends Item {
 		}
 
 		else if (!level.isClientSide()) {
-			if (!player.isShiftKeyDown()) {
+			/*if (!player.isShiftKeyDown()) {
 				CloudFloorFeature.placeMultiLayer(level, player.blockPosition(), 3, ModBlocks.CLOUD.get().defaultBlockState(), Biomes.RIVER);
 			} else {
 				HitResult result = player.pick(5.0, 1.0f, false);
@@ -43,7 +45,14 @@ public class SpeedometerItem extends Item {
 					// Erase cloud.
 					eraseCloudAt(level, bres.getBlockPos());
 				}
+			}*/
+			
+			if (!player.isShiftKeyDown()) {
+				skin = 0;
+			} else {
+				skin = 1;
 			}
+			System.out.println(skin);
 		}
 
 		return super.use(level, player, hand);

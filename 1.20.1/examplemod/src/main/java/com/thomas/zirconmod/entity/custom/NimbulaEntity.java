@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.effect.ModEffects;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.entity.ai.NimbulaStayWithinBoundsGoal;
 import com.thomas.zirconmod.entity.ai.WithinBoundsFlyingGoal;
 
@@ -171,7 +171,7 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 
 	@Override
 	public void thunderHit(ServerLevel level, LightningBolt bolt) {
-		TempestEntity tempest = new TempestEntity(ModEntities.TEMPEST_ENTITY.get(), level);
+		TempestEntity tempest = new TempestEntity(ModEntityType.TEMPEST_ENTITY.get(), level);
 		if (tempest != null) {
 			this.remove(RemovalReason.DISCARDED);
 			tempest.moveTo(this.position());
@@ -195,7 +195,7 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-		return ModEntities.NIMBULA_ENTITY.get().create(pLevel);
+		return ModEntityType.NIMBULA_ENTITY.get().create(pLevel);
 
 	}
 

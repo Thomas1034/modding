@@ -80,7 +80,6 @@ public class WispEntity extends AbstractVillager {
 		super(p_35267_, p_35268_);
 		this.moveControl = new FlyingMoveControl(this, 20, true);
 		this.setNoGravity(true);
-
 	}
 
 	/*

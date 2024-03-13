@@ -1,7 +1,7 @@
 package com.thomas.zirconmod.entity.custom;
 
 import com.thomas.zirconmod.effect.ModEffects;
-import com.thomas.zirconmod.entity.ModEntities;
+import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.item.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -45,21 +45,21 @@ public class HailstoneEntity extends ThrowableItemProjectile {
 	}
 
 	public HailstoneEntity(Level level) {
-		super(ModEntities.HAILSTONE_ENTITY.get(), level);
+		super(ModEntityType.HAILSTONE_ENTITY.get(), level);
 	}
 
 	public HailstoneEntity(double x, double y, double z, Level level) {
-		this(ModEntities.HAILSTONE_ENTITY.get(), level);
+		this(ModEntityType.HAILSTONE_ENTITY.get(), level);
 		this.setPos(x, y, z);
 	}
 
 	public HailstoneEntity(LivingEntity owner, Level level) {
-		this(ModEntities.HAILSTONE_ENTITY.get(), owner.getX(), owner.getEyeY() - (double) 0.1F, owner.getZ(), level);
+		this(ModEntityType.HAILSTONE_ENTITY.get(), owner.getX(), owner.getEyeY() - (double) 0.1F, owner.getZ(), level);
 		this.setOwner(owner);
 	}
 
 	public HailstoneEntity(Level level, LivingEntity owner) {
-		this(ModEntities.HAILSTONE_ENTITY.get(), owner.getX(), owner.getEyeY() - (double) 0.1F, owner.getZ(), level);
+		this(ModEntityType.HAILSTONE_ENTITY.get(), owner.getX(), owner.getEyeY() - (double) 0.1F, owner.getZ(), level);
 		this.setOwner(owner);
 	}
 

@@ -1,5 +1,7 @@
 package com.thomas.zirconmod.worldgen.biome.custom;
 
+import com.thomas.zirconmod.entity.ModEntityType;
+
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -10,13 +12,16 @@ public class ModBiomeFeatures {
 
 	public static void commonSkySpawns(MobSpawnSettings.Builder builder) {
 		skySpawns(builder);
-		BiomeDefaultFeatures.monsters(builder, 95, 5, 100, false);
+		BiomeDefaultFeatures.monsters(builder, 100, 0, 100, false);
 	}
 
 	public static void skySpawns(Builder builder) {
-		builder.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 10, 8, 8));
+		builder.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 10, 2, 8));
 		builder.addSpawn(MobCategory.MONSTER,
-				new MobSpawnSettings.SpawnerData(EntityType.PHANTOM, 10, 4, 6));
+				new MobSpawnSettings.SpawnerData(ModEntityType.WRAITH_ENTITY.get(), 100, 1, 2));
+		builder.addSpawn(MobCategory.MONSTER,
+				new MobSpawnSettings.SpawnerData(ModEntityType.TEMPEST_ENTITY.get(), 1, 1, 2));
+		
 	}
 
 }

@@ -5,10 +5,12 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public abstract class AbstractWingsItem extends ElytraItem {
@@ -59,7 +61,9 @@ public abstract class AbstractWingsItem extends ElytraItem {
 
 	public static void decreaseDurabilityPublic(ItemStack thisStack, LivingEntity wearer) {
 		thisStack.hurtAndBreak(1, wearer, e -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.CHEST));
-
+		if (!AbstractWingsItem.isFlyEnabled(thisStack)) {
+			wearer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.ELYTRA));
+		}
 	}
 
 	public abstract ResourceLocation getTexture();

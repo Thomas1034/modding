@@ -1019,7 +1019,6 @@ public class ModAnimationDefinitions {
 							new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
 									AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
-	
 	public static final AnimationDefinition WISP_IDLE = AnimationDefinition.Builder.withLength(2f).looping()
 			.addAnimation("left_wing",
 					new AnimationChannel(AnimationChannel.Targets.ROTATION,
@@ -1105,7 +1104,6 @@ public class ModAnimationDefinitions {
 							new Keyframe(1f, KeyframeAnimations.scaleVec(1f, 1f, 1f),
 									AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
-
 	public static final AnimationDefinition TEMPEST_IDLE = AnimationDefinition.Builder.withLength(4f).looping()
 			.addAnimation("ar",
 					new AnimationChannel(AnimationChannel.Targets.ROTATION,
@@ -1549,5 +1547,26 @@ public class ModAnimationDefinitions {
 									AnimationChannel.Interpolations.CATMULLROM),
 							new Keyframe(4f, KeyframeAnimations.scaleVec(1f, 1.5f, 1f),
 									AnimationChannel.Interpolations.CATMULLROM)))
+			.build();
+	
+	public static final AnimationDefinition GUST_IDLE = AnimationDefinition.Builder.withLength(2.0F).looping()
+			.addAnimation("outer", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
+				new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(0.25F, KeyframeAnimations.degreeVec(15.0F, -45.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, -90.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(0.75F, KeyframeAnimations.degreeVec(-15.0F, -135.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, -180.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(1.25F, KeyframeAnimations.degreeVec(15.0F, -225.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(1.5F, KeyframeAnimations.degreeVec(0.0F, -270.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(1.75F, KeyframeAnimations.degreeVec(-15.0F, -315.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+				new Keyframe(2.0F, KeyframeAnimations.degreeVec(0.0F, -360.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			))
+			.addAnimation("outer", new AnimationChannel(AnimationChannel.Targets.POSITION, 
+				new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+				new Keyframe(0.5F, KeyframeAnimations.posVec(0.0F, 4.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+				new Keyframe(1.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+				new Keyframe(1.5F, KeyframeAnimations.posVec(0.0F, -4.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+				new Keyframe(2.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
+			))
 			.build();
 }

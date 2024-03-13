@@ -43,13 +43,13 @@ public class ModDimensions {
 				1.0, // coordinateScale
 				true, // bedWorks
 				false, // respawnAnchorWorks
-				320, // minY
+				0, // minY
 				512, // height
 				512, // logicalHeight
 				BlockTags.INFINIBURN_OVERWORLD, // infiniburn
 				BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
 				0.0f, // ambientLight
-				new DimensionType.MonsterSettings(false, true, UniformInt.of(0, 7), 0)));
+				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 0)));
 	}
 
 	public static void bootstrapStem(BootstapContext<LevelStem> context) {
