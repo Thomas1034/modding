@@ -271,16 +271,16 @@ public class ModItems {
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> GUST_BOTTLE = ITEMS.register("gust_bottle",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1.2, 60));
 
 	public static final RegistryObject<Item> TEMPEST_BOTTLE = ITEMS.register("tempest_bottle",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2, 200));
 	
 	public static final RegistryObject<Item> EMPTY_WIND_BAG = ITEMS.register("empty_wind_bag",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 
 	public static final RegistryObject<Item> WIND_BAG = ITEMS.register("wind_bag",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, EMPTY_WIND_BAG.get()));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, 20, EMPTY_WIND_BAG.get()));
 
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
