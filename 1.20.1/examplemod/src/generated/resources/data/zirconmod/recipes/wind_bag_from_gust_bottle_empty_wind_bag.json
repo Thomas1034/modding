@@ -10,9 +10,9 @@
     }
   },
   "pattern": [
-    " G ",
+    "GGG",
     "GBG",
-    " G "
+    "GGG"
   ],
   "result": {
     "item": "zirconmod:wind_bag"

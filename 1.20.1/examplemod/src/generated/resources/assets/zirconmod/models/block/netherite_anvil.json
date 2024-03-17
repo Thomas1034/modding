@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "body": "zirconmod:block/netherite_anvil",
+    "particle": "zirconmod:block/netherite_anvil",
+    "top": "zirconmod:block/netherite_anvil_top"
+  }
+}

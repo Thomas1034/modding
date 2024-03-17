@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-17T22:47:15.3571939	Tags for minecraft:block mod id zirconmod
+// 1.20.1	2024-03-16T22:36:30.8377301	Tags for minecraft:block mod id zirconmod
 fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/forge/tags/blocks/fence_gates.json
 fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/forge/tags/blocks/fence_gates/wooden.json
 bcdeb74626981beb11e18262592d21211d5dcd27 data/forge/tags/blocks/ores.json
@@ -6,13 +6,15 @@ cbb26f8aaaa25ea2570b41873e6d926d7880a94a data/forge/tags/blocks/ores_in_ground/d
 4f490af3e4c42ea47bb9900f7bc9a6130aa03676 data/forge/tags/blocks/ores_in_ground/stone.json
 bcdeb74626981beb11e18262592d21211d5dcd27 data/forge/tags/blocks/ore_rates/dense.json
 006fc1b4910ef690f9ded10e8ff5a1c8ca69f5c6 data/forge/tags/blocks/storage_blocks.json
+63ed5e3ed6aaea3cce022757f5e18c39f3003a60 data/minecraft/tags/blocks/anvil.json
 1f19b12fd46f2e4f3771f9b5242031f6b5082888 data/minecraft/tags/blocks/buttons.json
 114a1b80450086de3dff00e765d2de4ecaa22da6 data/minecraft/tags/blocks/doors.json
 7e78a0dbff6e38fd8841f9b57b47d42a3c0e1f21 data/minecraft/tags/blocks/fences.json
 fe4c14decb4898d6de229c0fe6ef746116f17bb3 data/minecraft/tags/blocks/fence_gates.json
 eaa01626ec74c32c033f7bab5fd0164fbb091bca data/minecraft/tags/blocks/logs.json
 9fc2ed6f872dec2c27b05be6432cc1ed857aae0d data/minecraft/tags/blocks/mineable/axe.json
-e7ddb0af02cd1ad194635f3422f60d57170dda57 data/minecraft/tags/blocks/mineable/pickaxe.json
+0b3ccfd822e9e5e38d7e140d1731192b07017c07 data/minecraft/tags/blocks/mineable/pickaxe.json
+63ed5e3ed6aaea3cce022757f5e18c39f3003a60 data/minecraft/tags/blocks/needs_diamond_tool.json
 046eb2ebbe80a7fc929c916c056fa936ec96ed8d data/minecraft/tags/blocks/needs_iron_tool.json
 595e3ca1bde61d4e7a4f6b2a756a61502618c8e8 data/minecraft/tags/blocks/needs_stone_tool.json
 96b416662c85bd8565dd30783b0c30f139952517 data/minecraft/tags/blocks/planks.json

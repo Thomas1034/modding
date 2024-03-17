@@ -24,7 +24,7 @@ public class PropulsionEffect extends MobEffect {
 		super.applyEffectTick(entity, amplifier);
 		if (entity instanceof Player player) {
 
-			if (player instanceof AbstractClientPlayer acp) {
+			if (player instanceof AbstractClientPlayer acp && acp.isFallFlying()) {
 				Vec3 curr = acp.getDeltaMovement();
 				Vec3 facing = acp.getLookAngle();
 				double dot = curr.dot(facing);

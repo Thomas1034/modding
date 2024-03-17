@@ -127,6 +127,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		withExistingParent(ModItems.WRAITH_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));
+		withExistingParent(ModBlocks.NETHERITE_ANVIL.getId().getPath(), modLoc("block/netherite_anvil"));
 
 		simpleItem(ModItems.NIMBULA_GEL);
 		

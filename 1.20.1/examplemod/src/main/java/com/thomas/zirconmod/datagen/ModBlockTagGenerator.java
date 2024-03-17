@@ -39,7 +39,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(),
 				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(),
-				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get());
+				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get(), ModBlocks.NETHERITE_ANVIL.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -50,7 +50,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// Tool tiers
 		this.tag(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.ECHO_BLOCK.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
 				ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
-		// this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
+
+		this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.NETHERITE_ANVIL.get());
 
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ZIRCON_BLOCK.get(), ModBlocks.ZIRCON_ORE.get(),
 				ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_CLUSTER.get(),
@@ -94,7 +95,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.STAIRS).add(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.CLOUD_BRICK_SLAB.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get());
-		
+
+		// Anvil
+		this.tag(BlockTags.ANVIL).add(ModBlocks.NETHERITE_ANVIL.get());
+
 		// Forge
 		this.tag(Tags.Blocks.FENCE_GATES).add(ModBlocks.PALM_FENCE_GATE.get());
 		this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(ModBlocks.PALM_FENCE_GATE.get());
@@ -107,11 +111,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(Tags.Blocks.ORES).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
 		this.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ModBlocks.ZIRCON_ORE.get());
 		this.tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
-		
-
-
-
-
 
 		// Functions
 		addStrongCloudSolidifier(Blocks.BUDDING_AMETHYST);

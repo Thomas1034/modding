@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-04T23:57:29.3731752	Block States: zirconmod
+// 1.20.1	2024-03-16T13:02:12.5971598	Block States: zirconmod
 c72004035ed55196f6523d91305a39418a82d464 assets/zirconmod/blockstates/amethyst_wall_bracket.json
 94d81d11245ec567dea23a080faed42ce95315de assets/zirconmod/blockstates/architect_worksite.json
 a27ab1e5cb9db20092e42bf2d0054bb91b60fa0b assets/zirconmod/blockstates/blueberry_crop.json
@@ -29,6 +29,7 @@ c5eee8e5fce87dd2e69d0007035e23039bc69b22 assets/zirconmod/blockstates/deepslate_
 a9f315173bac0ddef1cda060b43ce58cea25f485 assets/zirconmod/blockstates/large_citrine_bud.json
 c53cf1805940f242767e7ff56be099e23c9f19f6 assets/zirconmod/blockstates/lightning_block.json
 b474cae329a1f5c2f3e30d71dff0c43d8ee7dce2 assets/zirconmod/blockstates/medium_citrine_bud.json
+cdce7caaa3ec52b6f67b6ab9ed6f4540147652cd assets/zirconmod/blockstates/netherite_anvil.json
 97731c222ca09b3189e545aa3da582fe57db76e9 assets/zirconmod/blockstates/nimbula_polyp.json
 607f17f6e1bfed29a92e494666157ea757c29953 assets/zirconmod/blockstates/palm_button.json
 5a5c8315e780213b254cac650aa599bdd92150d5 assets/zirconmod/blockstates/palm_door.json
@@ -127,6 +128,7 @@ cb8350e6bf8270a14016350285cfb025c732fc4b assets/zirconmod/models/block/gemsmith_
 a59903343df8d117bc1805821c06788dfb6fa0ab assets/zirconmod/models/block/large_citrine_bud.json
 08a84cc1625b5bada7cf73abc628b530f79eaf01 assets/zirconmod/models/block/lightning_block.json
 14c8a1f2cf68e6ce5ce081bf943261063bc0f52c assets/zirconmod/models/block/medium_citrine_bud.json
+15be08d839db89dd4bcd7191cd2acf018a7ccd85 assets/zirconmod/models/block/netherite_anvil.json
 27779d383443bcb3961d8f5c510bcf40a068ae0d assets/zirconmod/models/block/nimbula_polyp0.json
 1904ea157fa5c5a9a6b8683d2e93a7c122f066bb assets/zirconmod/models/block/nimbula_polyp1.json
 b40024a170142091078cb65caf18c0c14c3edd37 assets/zirconmod/models/block/nimbula_polyp2.json

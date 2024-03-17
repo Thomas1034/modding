@@ -18,6 +18,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystClusterBlock;
+import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CropBlock;
@@ -86,7 +87,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Register special blocks
 		makeZirconLamp(ModBlocks.ZIRCON_LAMP.get(), "zircon_lamp", "zircon_lamp");
-
+		anvilBlock((AnvilBlock) ModBlocks.NETHERITE_ANVIL.get());
+		
+		
 		// Palm furniture
 		palmFruitBlock((PalmFruitBlock) ModBlocks.PALM_FRUIT.get());
 		frondBlock((FrondBlock) ModBlocks.PALM_FROND.get());
@@ -151,7 +154,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Bubblefruit crop
 		makeBubblefruitCrop((CropBlock) ModBlocks.BUBBLEFRUIT_CROP.get(), "bubblefruit_stage", "bubblefruit_stage");
 
-		
 		// Torchflower
 		simpleBlockWithItem(ModBlocks.ILLUMINATED_TORCHFLOWER.get(),
 				models().cross(blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get()).getPath(),
@@ -208,12 +210,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject) {
 		simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
 	}
-	
+
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject, String renderType) {
 		Block block = blockRegistryObject.get();
 		ModelFile model = models().cubeAll(blockTexture(block).toString(), blockTexture(block)).renderType(renderType);
 		simpleBlock(block, model);
-        simpleBlockItem(block, model);
+		simpleBlockItem(block, model);
 	}
 
 	private ConfiguredModel[] blueberryStates(BlockState state, CropBlock block, String modelName, String textureName) {
@@ -226,13 +228,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		return models;
 	}
-	
-	private ConfiguredModel[] bubblefruitStates(BlockState state, CropBlock block, String modelName, String textureName) {
+
+	private ConfiguredModel[] bubblefruitStates(BlockState state, CropBlock block, String modelName,
+			String textureName) {
 		ConfiguredModel[] models = new ConfiguredModel[1];
 		models[0] = new ConfiguredModel(models()
 				.cross(modelName + state.getValue(((BubblefruitCropBlock) block).getAgeProperty()),
 						new ResourceLocation(ZirconMod.MOD_ID,
-								"block/" + textureName + state.getValue(((BubblefruitCropBlock) block).getAgeProperty())))
+								"block/" + textureName
+										+ state.getValue(((BubblefruitCropBlock) block).getAgeProperty())))
 				.renderType("cutout"));
 
 		return models;
@@ -272,6 +276,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 									"block/" + "template_frond_count"
 											+ (state.getValue(FrondBlock.getCountProperty()))))
 					.renderType("cutout").texture("frond", blockTexture(block).toString());
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+	}
+
+	private void anvilBlock(AnvilBlock block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(AnvilBlock.FACING);
+
+			int yRot = (((int) facing.toYRot()) + 180) % 360;
+
+			ModelFile model;
+
+			model = models()
+					.withExistingParent(blockTexture(block).toString(), new ResourceLocation("block/template_anvil"))
+					.texture("particle", blockTexture(block).toString())
+					.texture("body", blockTexture(block).toString())
+					.texture("top", blockTexture(block).toString() + "_top");
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		});
@@ -332,7 +354,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		getVariantBuilder(block).forAllStates(function);
 	}
-	
+
 	protected void makeBubblefruitCrop(CropBlock block, String modelName, String textureName) {
 		Function<BlockState, ConfiguredModel[]> function = state -> bubblefruitStates(state, block, modelName,
 				textureName);
@@ -396,7 +418,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			ModelFile model = models().cube(modelName + "_" + charge, modLoc("block/" + texture + "_down"),
 					modLoc("block/" + texture + "_up"), modLoc("block/" + texture + "_front"),
 					modLoc("block/" + texture + "_side_" + charge), modLoc("block/" + texture + "_side_" + charge),
-					modLoc("block/" + texture + "_side_" + charge)).texture("particle", modLoc("block/" + texture + "_front"));
+					modLoc("block/" + texture + "_side_" + charge))
+					.texture("particle", modLoc("block/" + texture + "_front"));
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		});

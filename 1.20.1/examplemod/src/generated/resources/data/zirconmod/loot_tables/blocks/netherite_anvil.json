@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "zirconmod:bubblefruit"
+          "name": "zirconmod:netherite_anvil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "zirconmod:blocks/bubblefruit_crop_placer"
+  "random_sequence": "zirconmod:blocks/netherite_anvil"
 }

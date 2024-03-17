@@ -74,7 +74,7 @@ public class CloudBlock extends Block {
 		 * switch (pathType) { case LAND: return !isSolid; case WATER: return !isSolid;
 		 * case AIR: return !isSolid; default: return false; }
 		 */
-		return pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
+		return false;//pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
 	}
 
 	// Causes no fall damage when landed on.

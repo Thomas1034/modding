@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-12T21:39:39.3023734	Item Models: zirconmod
+// 1.20.1	2024-03-16T20:47:39.1811548	Item Models: zirconmod
 36091f7a54b07cf994141e26a7987915efaf18a9 assets/zirconmod/models/item/berry_pie.json
 e062562baae47f424bedd86268fa1afd9f304708 assets/zirconmod/models/item/blueberry.json
 861db56b71983d8264505ca89b5b8424c31a2db4 assets/zirconmod/models/item/blueberry_seeds.json
@@ -44,6 +44,7 @@ b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wi
 5933d796a13764855ace3d26d62201fa0aa7fea6 assets/zirconmod/models/item/large_citrine_bud.json
 ffa51bf2846c50a0d0fc49d1508689568809e3a0 assets/zirconmod/models/item/medium_citrine_bud.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/mole_spawn_egg.json
+e28309bdff2ed502cffb3b556c69f71ea2ad13f9 assets/zirconmod/models/item/netherite_anvil.json
 b584e4860cb0e9fc9e99f4a47deb801123fafe90 assets/zirconmod/models/item/nimbula_gel.json
 8e863d54c11ee873d09eccf4f115d59c84e194d3 assets/zirconmod/models/item/nimbula_polyp.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/nimbula_spawn_egg.json

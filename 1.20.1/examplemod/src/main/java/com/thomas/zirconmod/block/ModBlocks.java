@@ -22,6 +22,7 @@ import com.thomas.zirconmod.block.custom.ModHangingSignBlock;
 import com.thomas.zirconmod.block.custom.ModStandingSignBlock;
 import com.thomas.zirconmod.block.custom.ModWallHangingSignBlock;
 import com.thomas.zirconmod.block.custom.ModWallSignBlock;
+import com.thomas.zirconmod.block.custom.NetheriteAnvilBlock;
 import com.thomas.zirconmod.block.custom.NimbulaPolypBlock;
 import com.thomas.zirconmod.block.custom.PalmFruitBlock;
 import com.thomas.zirconmod.block.custom.PalmTrunkBlock;
@@ -53,7 +54,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -591,7 +591,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> SEALED_THUNDER_CLOUD_BRICKS = registerBlock("sealed_thunder_cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.GLASS)));
 
-	// Wisp nest block
+	// Wisp bed block
 	public static final RegistryObject<Block> WISP_BED = registerBlock("wisp_bed",
 			() -> new WispBedBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.WOOL)));
 
@@ -605,16 +605,11 @@ public class ModBlocks {
 					.jumpFactor(0.5f).lightLevel(state -> state.getValue(SculkRootBlock.STAGE) * 3)
 					.explosionResistance(0.1f).sound(SoundType.SCULK).randomTicks()));
 
-	// Becomes a bubblefruit crop with a randomized growth on placement.
-	// For world generation, to get around the fact that bubblefruit can't be placed
-	// on clouds
-	public static final RegistryObject<Block> BUBBLEFRUIT_CROP_PLACER = registerBlock("bubblefruit_crop_placer",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).sound(SoundType.SWEET_BERRY_BUSH)) {
-				@Override
-				public BlockState getStateForPlacement(BlockPlaceContext context) {
-					return BUBBLEFRUIT_CROP.get().defaultBlockState();
-				}
-			});
+	public static final RegistryObject<Block> NETHERITE_ANVIL = registerBlock("netherite_anvil",
+			() -> new NetheriteAnvilBlock(BlockBehaviour.Properties.copy(Blocks.ANVIL)));
+
+	
+	
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

@@ -40,6 +40,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
@@ -271,10 +272,10 @@ public class ModItems {
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> GUST_BOTTLE = ITEMS.register("gust_bottle",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1.2, 60));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1.8, 200, Items.GLASS_BOTTLE));
 
 	public static final RegistryObject<Item> TEMPEST_BOTTLE = ITEMS.register("tempest_bottle",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2, 200));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2.0, 200));
 	
 	public static final RegistryObject<Item> EMPTY_WIND_BAG = ITEMS.register("empty_wind_bag",
 			() -> new Item(new Item.Properties().stacksTo(64)));

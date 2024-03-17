@@ -204,6 +204,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_LEGGINGS.get());
 		smithingTransform(pWriter, ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get(), Items.IRON_BOOTS,
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_BOOTS.get());
+		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Items.ANVIL,
+				Items.NETHERITE_INGOT, RecipeCategory.MISC, ModBlocks.NETHERITE_ANVIL.get().asItem());
 
 		// Copper equipment
 		shaped(pWriter, List.of("CC", "CS", " S"), List.of('C', 'S'), List.of(Items.COPPER_INGOT, Items.STICK),
@@ -265,7 +267,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.TOOLS, ModItems.EMPTY_WIND_BAG.get(), 1);
 
 		// Filled wind bag
-		shaped(pWriter, List.of(" G ", "GBG", " G "), List.of('G', 'B'),
+		shaped(pWriter, List.of("GGG", "GBG", "GGG"), List.of('G', 'B'),
 				List.of(ModItems.GUST_BOTTLE.get(), ModItems.EMPTY_WIND_BAG.get()), RecipeCategory.TOOLS,
 				ModItems.WIND_BAG.get(), 1);
 

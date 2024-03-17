@@ -3,6 +3,7 @@ package com.thomas.zirconmod.event;
 import java.util.List;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.entity.menu.NetheriteAnvilMenu;
 import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.entity.custom.GustEntity;
 import com.thomas.zirconmod.entity.custom.TempestEntity;
@@ -20,11 +21,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck;
+import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
@@ -155,34 +159,52 @@ public class ModEvents {
 		// If a wraith spawns naturally in bright light...
 		// cancel. Unless it's thundering.
 		if (event.getEntityType().equals(ModEntityType.WRAITH_ENTITY.get())) {
-			//System.out.println("Attempting to spawn wraith.");
-			//System.out.println("Brightness is " + event.getLevel().getRawBrightness(event.getPos(), 0));
-			if (event.getLevel().getLevel().isThundering() || event.getLevel().getRawBrightness(event.getPos(), 0) > WraithEntity.getMaxLightLevel()) {
-				//System.out.println("Canceling spawn in " + event.getLevel().getRawBrightness(event.getPos(), 0));
+			// System.out.println("Attempting to spawn wraith.");
+			// System.out.println("Brightness is " +
+			// event.getLevel().getRawBrightness(event.getPos(), 0));
+			if (event.getLevel().getLevel().isThundering()
+					|| event.getLevel().getRawBrightness(event.getPos(), 0) > WraithEntity.getMaxLightLevel()) {
+				// System.out.println("Canceling spawn in " +
+				// event.getLevel().getRawBrightness(event.getPos(), 0));
 				event.setResult(Result.DENY);
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void tempestSpawnEvent(SpawnPlacementCheck event) {
 		// If a tempest spawns naturally...
 		// cancel. Unless it's thundering.
 		if (event.getEntityType().equals(ModEntityType.TEMPEST_ENTITY.get())) {
-			//System.out.println("Attempting to spawn tempest.");
-			//System.out.println("Brightness is " + event.getLevel().getRawBrightness(event.getPos(), 0));
+			// System.out.println("Attempting to spawn tempest.");
+			// System.out.println("Brightness is " +
+			// event.getLevel().getRawBrightness(event.getPos(), 0));
 			ServerLevelAccessor level = event.getLevel();
-			
-			// Ensure that it is thundering. 
+
+			// Ensure that it is thundering.
 			if (!level.getLevel().isThundering()) {
-				//System.out.println("Canceling spawn in " + event.getLevel().getRawBrightness(event.getPos(), 0));
+				// System.out.println("Canceling spawn in " +
+				// event.getLevel().getRawBrightness(event.getPos(), 0));
 				event.setResult(Result.DENY);
 			}
 			// Now check to see if there are more tempests than players. If so, cancel.
 			// This is to prevent being overwhelmed by tempests.
-			if (level.getEntitiesOfClass(TempestEntity.class, null).size() > level.getEntitiesOfClass(Player.class, null).size()) {
+			List<TempestEntity> entities = level.getEntitiesOfClass(TempestEntity.class,
+					AABB.ofSize(event.getPos().getCenter(), 256, 256, 256));
+			if (entities != null && entities.size() != 0) {
 				event.setResult(Result.DENY);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void dontBreakNetheriteAnvilEvent(AnvilRepairEvent event) {
+
+		Player player = event.getEntity();
+
+		AbstractContainerMenu menu = player.containerMenu;
+		if (menu instanceof NetheriteAnvilMenu) {
+			event.setBreakChance(0);
 		}
 	}
 }

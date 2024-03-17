@@ -1,8 +1,9 @@
 package com.thomas.zirconmod.item.custom;
 
 import com.thomas.zirconmod.effect.ModEffects;
+import com.thomas.zirconmod.network.ModPacketHandler;
+import com.thomas.zirconmod.network.PlayerAddVelocityPacket;
 
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -40,15 +41,17 @@ public class WindBagItem extends Item {
 		
 		player.awardStat(Stats.ITEM_USED.get(this));
 
-		if (!player.getAbilities().instabuild) {
-			itemstack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
-			if (!level.isClientSide && itemstack.getCount() == 0) {
-				player.addItem(new ItemStack(this.onUse));
-			}
-		}
-
 		if (player instanceof ServerPlayer sp) {
-
+			// Damage the item.
+			if (!player.getAbilities().instabuild) {
+				itemstack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
+				System.out.println(itemstack.getCount() + " durability left.");
+				if (itemstack.isEmpty()) {
+					System.out.println("Gifting.");
+					player.addItem(new ItemStack(this.onUse));
+				}
+			}
+			
 			// Refill air. Because why not.
 			sp.setAirSupply(sp.getMaxAirSupply());
 
@@ -57,18 +60,12 @@ public class WindBagItem extends Item {
 				sp.addEffect(new MobEffectInstance(ModEffects.PROPELLED.get(), this.duration, (int) this.power * 5));
 				// Set a cooldown.
 				player.getCooldowns().addCooldown(this, this.duration);
-			}
-
-		} else if (player instanceof AbstractClientPlayer acp) {
-
-			// Boost if not flying
-			if (!acp.isFallFlying()) {
-				Vec3 charge = acp.getLookAngle().scale(this.power).multiply(1, 1.5, 1);
-				acp.addDeltaMovement(charge);
+			} else if (!sp.isFallFlying()) {
+				Vec3 charge = sp.getLookAngle().scale(this.power).multiply(1, 1.5, 1);
+				ModPacketHandler.sendToPlayer(new PlayerAddVelocityPacket(charge), sp);
 				// Set a cooldown.
 				player.getCooldowns().addCooldown(this, (int) (this.power * 10));
 			}
-
 		}
 
 		return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
