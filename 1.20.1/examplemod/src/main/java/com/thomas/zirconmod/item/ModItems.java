@@ -23,6 +23,7 @@ import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SearchEyeItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
 import com.thomas.zirconmod.item.custom.WindBagItem;
+import com.thomas.zirconmod.item.custom.wings.AncientFeatherWingsItem;
 import com.thomas.zirconmod.item.custom.wings.ArmoredWingsItem;
 import com.thomas.zirconmod.item.custom.wings.CitrineArmoredWingsItem;
 import com.thomas.zirconmod.item.custom.wings.CopperArmoredWingsItem;
@@ -316,6 +317,9 @@ public class ModItems {
 	public static final RegistryObject<Item> COPPER_WINGS = ITEMS.register("copper_wings",
 			() -> new CopperArmoredWingsItem(ModArmorMaterials.COPPER, Type.CHESTPLATE,
 					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
+	
+	public static final RegistryObject<Item> ANCIENT_FEATHER_WINGS = ITEMS.register("ancient_feather_wings",
+			() -> new AncientFeatherWingsItem(new Item.Properties().durability(108).rarity(Rarity.UNCOMMON)));
 	
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",

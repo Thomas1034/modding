@@ -44,6 +44,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.BERRY_PIE);
 		simpleItem(ModItems.PALM_SEEDS);
 		simpleItem(ModItems.CUT_CITRINE);
+		simpleItem(ModItems.ANCIENT_FEATHER_WINGS);
 		simpleItem(ModItems.FEATHER_WINGS);
 		simpleItem(ModItems.LEATHER_WINGS);
 		simpleItem(ModItems.CHAINMAIL_WINGS);

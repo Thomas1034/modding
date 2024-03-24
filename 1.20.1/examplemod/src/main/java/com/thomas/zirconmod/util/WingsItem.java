@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -32,18 +33,23 @@ public interface WingsItem {
 	default void decreaseDurability(ItemStack thisStack, LivingEntity wearer, int amount) {
 		decreaseDurabilityPublic(thisStack, wearer, amount);
 	}
+	
+	default Item breaksInto() {
+		return Items.ELYTRA;
+	}
 
 	public static void decreaseDurabilityPublic(ItemStack thisStack, LivingEntity wearer) {
 		thisStack.hurtAndBreak(1, wearer, e -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.CHEST));
 		if (!AbstractWingsItem.isFlyEnabled(thisStack)) {
-			wearer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.ELYTRA));
+			wearer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(((WingsItem) thisStack.getItem()).breaksInto()));
 		}
 	}
 	
+
 	public static void decreaseDurabilityPublic(ItemStack thisStack, LivingEntity wearer, int amount) {
 		thisStack.hurtAndBreak(amount, wearer, e -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.CHEST));
 		if (!AbstractWingsItem.isFlyEnabled(thisStack)) {
-			wearer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.ELYTRA));
+			wearer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(((WingsItem) thisStack.getItem()).breaksInto()));
 		}
 	}
 }
