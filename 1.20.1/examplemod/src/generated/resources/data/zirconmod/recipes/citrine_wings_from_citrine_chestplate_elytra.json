@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "zirconmod:citrine_chestplate"
+    },
+    {
+      "item": "minecraft:elytra"
+    }
+  ],
+  "result": {
+    "item": "zirconmod:citrine_wings"
+  }
+}

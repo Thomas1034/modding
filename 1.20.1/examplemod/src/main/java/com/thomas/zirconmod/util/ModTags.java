@@ -9,6 +9,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
@@ -56,6 +57,14 @@ public class ModTags {
 		
 		private static TagKey<EntityType<?>> tag(String name) {
 			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ZirconMod.MOD_ID, name));
+		}
+	}
+	
+	public static class Biomes {
+		public static final TagKey<Biome> HAS_BEACH_PALMS = tag("has_beach_palms");
+		
+		private static TagKey<Biome> tag(String name) {
+			return TagKey.create(Registries.BIOME, new ResourceLocation(ZirconMod.MOD_ID, name));
 		}
 	}
 }

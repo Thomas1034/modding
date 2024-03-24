@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "minecraft:raw_iron"
+    }
+  },
+  "pattern": [
+    "PPP"
+  ],
+  "result": {
+    "item": "zirconmod:raw_iron_slab"
+  },
+  "show_notification": true
+}

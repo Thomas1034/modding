@@ -195,7 +195,28 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CLOUD = registerBlock("cloud",
 			() -> new CloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
 					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos) -> true)
-					.isSuffocating((state, level, pos) -> false).isValidSpawn((state, level, pos, type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE || type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS))).randomTicks().sound(SoundType.EMPTY)));
+					.isSuffocating((state, level, pos) -> false)
+					.isValidSpawn((state, level, pos,
+							type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+									|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+					.randomTicks().sound(SoundType.EMPTY)));
+
+	// Transparent cloud block
+	public static final RegistryObject<Block> MIST = registerBlock("mist",
+			() -> new CloudBlock(
+					BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F).pushReaction(PushReaction.DESTROY)
+							.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+							.isValidSpawn((state, level, pos,
+									type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+											|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
+	public static final RegistryObject<Block> SEALED_MIST = registerBlock("sealed_mist",
+			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
+					.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+					.isValidSpawn((state, level, pos,
+							type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+									|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+					.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
 
 	// Sealed cloud block
 	public static final RegistryObject<Block> SEALED_CLOUD = registerBlock("sealed_cloud",
@@ -205,8 +226,8 @@ public class ModBlocks {
 
 	// Basic thundercloud block
 	public static final RegistryObject<Block> THUNDER_CLOUD = registerBlock("thunder_cloud",
-			() -> new ThunderCloudBlock(
-					BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).randomTicks().isViewBlocking((state, level, pos) -> true)));
+			() -> new ThunderCloudBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get()).randomTicks()
+					.isViewBlocking((state, level, pos) -> true)));
 
 	// Lighting block
 	public static final RegistryObject<Block> LIGHTNING_BLOCK = registerBlock("lightning_block",
@@ -579,9 +600,11 @@ public class ModBlocks {
 
 	// Sealed door block
 	public static final RegistryObject<Block> WEATHER_PASSAGE_BLOCK = registerBlock("weather_passage_block",
-			() -> new DirectionalPassageBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
-					.pushReaction(PushReaction.BLOCK).isViewBlocking((state, level, pos) -> false).randomTicks()
-					.lightLevel(state -> 12), (level, pos) -> !level.isRaining()));
+			() -> new DirectionalPassageBlock(
+					BlockBehaviour.Properties.copy(Blocks.GLASS).strength(-1.0F, 3600000.0F)
+							.pushReaction(PushReaction.BLOCK).isViewBlocking((state, level, pos) -> false)
+							.isSuffocating((state, level, pos) -> false).randomTicks().lightLevel(state -> 12),
+					(level, pos) -> !level.isRaining()));
 
 	// Sealed bricks
 	public static final RegistryObject<Block> SEALED_CLOUD_BRICKS = registerBlock("sealed_cloud_bricks",
@@ -605,11 +628,211 @@ public class ModBlocks {
 					.jumpFactor(0.5f).lightLevel(state -> state.getValue(SculkRootBlock.STAGE) * 3)
 					.explosionResistance(0.1f).sound(SoundType.SCULK).randomTicks()));
 
+	// Netherite Anvil
 	public static final RegistryObject<Block> NETHERITE_ANVIL = registerBlock("netherite_anvil",
 			() -> new NetheriteAnvilBlock(BlockBehaviour.Properties.copy(Blocks.ANVIL)));
 
-	
-	
+	// Charcoal block
+	public static final RegistryObject<Block> CHARCOAL_BLOCK = registerFuelBlock("charcoal_block",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.COAL_BLOCK)) {
+				@Override
+				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return true;
+				}
+
+				@Override
+				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+
+				@Override
+				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+			}, BurnTimes.COAL * 9);
+
+	// Ore and material stairs
+	public static final RegistryObject<Block> CHARCOAL_STAIRS = registerFuelBlock("charcoal_stairs",
+			() -> new StairBlock(() -> ModBlocks.CHARCOAL_BLOCK.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.CHARCOAL_BLOCK.get())) {
+				@Override
+				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return true;
+				}
+
+				@Override
+				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+
+				@Override
+				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+			}, BurnTimes.COAL * 6);
+	public static final RegistryObject<Block> COAL_STAIRS = registerFuelBlock("coal_stairs",
+			() -> new StairBlock(() -> Blocks.COAL_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.COAL_BLOCK)) {
+				@Override
+				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return true;
+				}
+
+				@Override
+				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+
+				@Override
+				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+			}, BurnTimes.COAL * 6);
+	public static final RegistryObject<Block> RAW_IRON_STAIRS = registerBlock("raw_iron_stairs",
+			() -> new StairBlock(() -> Blocks.RAW_IRON_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
+	public static final RegistryObject<Block> IRON_STAIRS = registerBlock("iron_stairs",
+			() -> new StairBlock(() -> Blocks.IRON_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+	public static final RegistryObject<Block> RAW_COPPER_STAIRS = registerBlock("raw_copper_stairs",
+			() -> new StairBlock(() -> Blocks.RAW_COPPER_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)));
+	public static final RegistryObject<Block> RAW_GOLD_STAIRS = registerBlock("raw_gold_stairs",
+			() -> new StairBlock(() -> Blocks.RAW_GOLD_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)));
+	public static final RegistryObject<Block> GOLD_STAIRS = registerBlock("gold_stairs",
+			() -> new StairBlock(() -> Blocks.GOLD_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)));
+	public static final RegistryObject<Block> REDSTONE_STAIRS = registerBlock("redstone_stairs",
+			() -> new StairBlock(() -> Blocks.REDSTONE_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.REDSTONE_BLOCK)) {
+
+				@Override
+				public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 11;
+				}
+
+				@Override
+				public boolean isSignalSource(BlockState p_60571_) {
+					return true;
+				}
+
+			});
+	public static final RegistryObject<Block> LAPIS_STAIRS = registerBlock("lapis_stairs",
+			() -> new StairBlock(() -> Blocks.LAPIS_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.LAPIS_BLOCK)));
+	public static final RegistryObject<Block> EMERALD_STAIRS = registerBlock("emerald_stairs",
+			() -> new StairBlock(() -> Blocks.EMERALD_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK)));
+	public static final RegistryObject<Block> DIAMOND_STAIRS = registerBlock("diamond_stairs",
+			() -> new StairBlock(() -> Blocks.DIAMOND_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
+	public static final RegistryObject<Block> NETHERITE_STAIRS = registerBlock("netherite_stairs",
+			() -> new StairBlock(() -> Blocks.NETHERITE_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)));
+	public static final RegistryObject<Block> OBSIDIAN_STAIRS = registerBlock("obsidian_stairs",
+			() -> new StairBlock(() -> Blocks.OBSIDIAN.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)));
+	public static final RegistryObject<Block> CRYING_OBSIDIAN_STAIRS = registerBlock("crying_obsidian_stairs",
+			() -> new StairBlock(() -> Blocks.CRYING_OBSIDIAN.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.CRYING_OBSIDIAN)));
+	public static final RegistryObject<Block> AMETHYST_STAIRS = registerBlock("amethyst_stairs",
+			() -> new StairBlock(() -> Blocks.AMETHYST_BLOCK.defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));
+	public static final RegistryObject<Block> ZIRCON_STAIRS = registerBlock("zircon_stairs",
+			() -> new StairBlock(() -> ModBlocks.ZIRCON_BLOCK.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.ZIRCON_BLOCK.get())));
+	public static final RegistryObject<Block> RAW_ZIRCONIUM_STAIRS = registerBlock("raw_zirconium_stairs",
+			() -> new StairBlock(() -> ModBlocks.RAW_ZIRCONIUM_BLOCK.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.RAW_ZIRCONIUM_BLOCK.get())));
+	public static final RegistryObject<Block> ZIRCONIUM_STAIRS = registerBlock("zirconium_stairs",
+			() -> new StairBlock(() -> ModBlocks.ZIRCONIUM_BLOCK.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.ZIRCONIUM_BLOCK.get())));
+	public static final RegistryObject<Block> CITRINE_STAIRS = registerBlock("citrine_stairs",
+			() -> new StairBlock(() -> ModBlocks.CITRINE_BLOCK.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.CITRINE_BLOCK.get())));
+
+	// Ore and material slabs
+	public static final RegistryObject<Block> CHARCOAL_SLAB = registerFuelBlock("charcoal_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CHARCOAL_BLOCK.get())) {
+				@Override
+				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return true;
+				}
+
+				@Override
+				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+
+				@Override
+				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+			}, BurnTimes.COAL * 3);
+	public static final RegistryObject<Block> COAL_SLAB = registerFuelBlock("coal_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.COAL_BLOCK)) {
+				@Override
+				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return true;
+				}
+
+				@Override
+				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+
+				@Override
+				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 5;
+				}
+			}, BurnTimes.COAL * 3);
+	public static final RegistryObject<Block> RAW_IRON_SLAB = registerBlock("raw_iron_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
+	public static final RegistryObject<Block> IRON_SLAB = registerBlock("iron_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+	public static final RegistryObject<Block> RAW_COPPER_SLAB = registerBlock("raw_copper_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)));
+	public static final RegistryObject<Block> RAW_GOLD_SLAB = registerBlock("raw_gold_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK)));
+	public static final RegistryObject<Block> GOLD_SLAB = registerBlock("gold_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK)));
+	public static final RegistryObject<Block> REDSTONE_SLAB = registerBlock("redstone_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_BLOCK)) {
+
+				@Override
+				public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+					return 11;
+				}
+
+				@Override
+				public boolean isSignalSource(BlockState p_60571_) {
+					return true;
+				}
+
+			});
+	public static final RegistryObject<Block> LAPIS_SLAB = registerBlock("lapis_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.LAPIS_BLOCK)));
+	public static final RegistryObject<Block> EMERALD_SLAB = registerBlock("emerald_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK)));
+	public static final RegistryObject<Block> DIAMOND_SLAB = registerBlock("diamond_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)));
+	public static final RegistryObject<Block> NETHERITE_SLAB = registerBlock("netherite_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)));
+	public static final RegistryObject<Block> OBSIDIAN_SLAB = registerBlock("obsidian_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)));
+	public static final RegistryObject<Block> CRYING_OBSIDIAN_SLAB = registerBlock("crying_obsidian_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.CRYING_OBSIDIAN)));
+	public static final RegistryObject<Block> AMETHYST_SLAB = registerBlock("amethyst_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));
+	public static final RegistryObject<Block> ZIRCON_SLAB = registerBlock("zircon_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.ZIRCON_BLOCK.get())));
+	public static final RegistryObject<Block> RAW_ZIRCONIUM_SLAB = registerBlock("raw_zirconium_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.RAW_ZIRCONIUM_BLOCK.get())));
+	public static final RegistryObject<Block> ZIRCONIUM_SLAB = registerBlock("zirconium_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.ZIRCONIUM_BLOCK.get())));
+	public static final RegistryObject<Block> CITRINE_SLAB = registerBlock("citrine_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CITRINE_BLOCK.get())));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

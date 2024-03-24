@@ -12,8 +12,6 @@ import com.thomas.zirconmod.item.custom.CopperHoeItem;
 import com.thomas.zirconmod.item.custom.CopperPickaxeItem;
 import com.thomas.zirconmod.item.custom.CopperShovelItem;
 import com.thomas.zirconmod.item.custom.CopperSwordItem;
-import com.thomas.zirconmod.item.custom.DragonflyWingsItem;
-import com.thomas.zirconmod.item.custom.FeatherWingsItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
 import com.thomas.zirconmod.item.custom.GravityGunItem;
@@ -22,10 +20,15 @@ import com.thomas.zirconmod.item.custom.ModBoatItem;
 import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
 import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
-import com.thomas.zirconmod.item.custom.SeaWingsItem;
 import com.thomas.zirconmod.item.custom.SearchEyeItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
 import com.thomas.zirconmod.item.custom.WindBagItem;
+import com.thomas.zirconmod.item.custom.wings.ArmoredWingsItem;
+import com.thomas.zirconmod.item.custom.wings.CitrineArmoredWingsItem;
+import com.thomas.zirconmod.item.custom.wings.CopperArmoredWingsItem;
+import com.thomas.zirconmod.item.custom.wings.DragonflyWingsItem;
+import com.thomas.zirconmod.item.custom.wings.FeatherWingsItem;
+import com.thomas.zirconmod.item.custom.wings.SeaWingsItem;
 import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.core.Direction;
@@ -35,6 +38,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorItem.Type;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.HoeItem;
@@ -276,13 +281,42 @@ public class ModItems {
 
 	public static final RegistryObject<Item> TEMPEST_BOTTLE = ITEMS.register("tempest_bottle",
 			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2.0, 200));
-	
+
 	public static final RegistryObject<Item> EMPTY_WIND_BAG = ITEMS.register("empty_wind_bag",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 
 	public static final RegistryObject<Item> WIND_BAG = ITEMS.register("wind_bag",
 			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, 20, EMPTY_WIND_BAG.get()));
 
+	// Various wing armor tiers
+	public static final RegistryObject<Item> LEATHER_WINGS = ITEMS.register("leather_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.LEATHER, Type.CHESTPLATE,
+					new Item.Properties().durability(512).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> GOLDEN_WINGS = ITEMS.register("golden_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.GOLD, Type.CHESTPLATE,
+					new Item.Properties().durability(544).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> CHAINMAIL_WINGS = ITEMS.register("chainmail_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.CHAIN, Type.CHESTPLATE,
+					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> IRON_WINGS = ITEMS.register("iron_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.IRON, Type.CHESTPLATE,
+					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> DIAMOND_WINGS = ITEMS.register("diamond_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.DIAMOND, Type.CHESTPLATE,
+					new Item.Properties().durability(960).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> NETHERITE_WINGS = ITEMS.register("netherite_wings",
+			() -> new ArmoredWingsItem(ArmorMaterials.NETHERITE, Type.CHESTPLATE,
+					new Item.Properties().durability(1024).fireResistant().rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> ZIRCONIUM_WINGS = ITEMS.register("zirconium_wings",
+			() -> new ArmoredWingsItem(ModArmorMaterials.ZIRCONIUM, Type.CHESTPLATE,
+					new Item.Properties().durability(784).fireResistant().rarity(Rarity.UNCOMMON))); 
+	public static final RegistryObject<Item> CITRINE_WINGS = ITEMS.register("citrine_wings",
+			() -> new CitrineArmoredWingsItem(ModArmorMaterials.CITRINE, Type.CHESTPLATE,
+					new Item.Properties().durability(960).rarity(Rarity.UNCOMMON)));
+	public static final RegistryObject<Item> COPPER_WINGS = ITEMS.register("copper_wings",
+			() -> new CopperArmoredWingsItem(ModArmorMaterials.COPPER, Type.CHESTPLATE,
+					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
+	
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
 			() -> new GravityGunItem(new Item.Properties().rarity(Rarity.EPIC), 32));

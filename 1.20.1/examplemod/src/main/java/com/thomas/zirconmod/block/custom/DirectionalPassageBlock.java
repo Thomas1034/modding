@@ -1,12 +1,12 @@
 package com.thomas.zirconmod.block.custom;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
-import net.minecraft.core.Direction.AxisDirection;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -30,14 +30,22 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class DirectionalPassageBlock extends DirectionalBlock {
 
 	public static final BooleanProperty SOLID = BooleanProperty.create("solid");
-	private static final double EPSILON = Math.pow(2, -4);
+
+	private static final VoxelShape UP_AABB = Block.box(0.0D, 15.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape DOWN_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+	private static final VoxelShape WEST_AABB = Block.box(0.0D, 0.0D, 0.0D, 1.0D, 16.0D, 16.0D);
+	private static final VoxelShape EAST_AABB = Block.box(15.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	private static final VoxelShape NORTH_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 1.0D);
+	private static final VoxelShape SOUTH_AABB = Block.box(0.0D, 0.0D, 15.0D, 16.0D, 16.0D, 16.0D);
+	private static final Map<Direction, VoxelShape> SHAPES = Map.of(Direction.UP, UP_AABB, Direction.DOWN, DOWN_AABB,
+			Direction.WEST, WEST_AABB, Direction.EAST, EAST_AABB, Direction.NORTH, NORTH_AABB, Direction.SOUTH,
+			SOUTH_AABB);
 
 	private BiFunction<Level, BlockPos, Boolean> isSolid;
 
 	public DirectionalPassageBlock(Properties properties, BiFunction<Level, BlockPos, Boolean> isSolid) {
 		super(properties);
 		this.isSolid = isSolid;
-
 	}
 
 	@Override
@@ -77,45 +85,56 @@ public class DirectionalPassageBlock extends DirectionalBlock {
 		if (context instanceof EntityCollisionContext entityCollisionContext) {
 			Entity entity = entityCollisionContext.getEntity();
 
+			if (!state.getValue(SOLID)) {
+				return Shapes.empty();
+			}
+
 			if (entity != null) {
 
 				Direction facing = state.getValue(FACING);
-
-				Axis facingAxis = facing.getAxis();
+				Axis axis = facing.getAxis();
 
 				Vec3 entityPos = entity.position();
 
 				Vec3 blockCenter = Vec3.atCenterOf(pos);
-				Vec3 facingCenter = blockCenter.subtract(new Vec3(facing.step()));
-
-				Vec3 distFromCenter = facingCenter.subtract(entityPos);
-				boolean canPass = !state.getValue(SOLID);
-				if (facingAxis == Axis.X) {
-					if (distFromCenter.x < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.x > -(1 + EPSILON)
-									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
-						canPass = true;
+				Vec3 distFromCenter = blockCenter.subtract(entityPos);
+				double radiusSum = 0.5 + entity.getBbWidth() / 2;
+				// Check if the entity is inside the block. If so, return true.
+				if (axis.isHorizontal()) {
+					if (Math.abs(distFromCenter.x) < radiusSum && Math.abs(distFromCenter.z) < radiusSum) {
+						return Shapes.empty();
+					} else {
+						return SHAPES.get(facing);
 					}
-				} else if (facingAxis == Axis.Y) {
-					if (distFromCenter.y < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.y > -(1 + EPSILON)
-									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
-						canPass = true;
+				} else if (facing == Direction.UP) {
+					if (Math.abs(distFromCenter.x) < radiusSum && (distFromCenter.y > -0.5)
+							&& Math.abs(distFromCenter.z) < radiusSum) {
+						return Shapes.empty();
+					} else {
+						return SHAPES.get(facing);
 					}
-				} else if (facingAxis == Axis.Z) {
-					if (distFromCenter.z < 1 + EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE
-							|| distFromCenter.z > -(1 + EPSILON)
-									&& facing.getAxisDirection() == AxisDirection.POSITIVE) {
-						canPass = true;
+				} else if (facing == Direction.DOWN) {
+					if (Math.abs(distFromCenter.x) < radiusSum && (distFromCenter.y < (0.5 + entity.getBbHeight()))
+							&& Math.abs(distFromCenter.z) < radiusSum) {
+						return Shapes.empty();
+					} else {
+						return SHAPES.get(facing);
 					}
-				} else {
-					throw new IllegalStateException("Unrecognized axis: " + facingAxis);
 				}
 
-				if (canPass) {
-					return Shapes.empty();
-				}
-
+				/*
+				 * if (facingAxis == Axis.X) { if (distFromCenter.x < 1 + EPSILON &&
+				 * facing.getAxisDirection() == AxisDirection.NEGATIVE || distFromCenter.x > -(1
+				 * + EPSILON) && facing.getAxisDirection() == AxisDirection.POSITIVE) { canPass
+				 * = true; } } else if (facingAxis == Axis.Y) { if (distFromCenter.y < 1 +
+				 * EPSILON && facing.getAxisDirection() == AxisDirection.NEGATIVE ||
+				 * distFromCenter.y > -(1 + EPSILON) && facing.getAxisDirection() ==
+				 * AxisDirection.POSITIVE) { canPass = true; } } else if (facingAxis == Axis.Z)
+				 * { if (distFromCenter.z < 1 + EPSILON && facing.getAxisDirection() ==
+				 * AxisDirection.NEGATIVE || distFromCenter.z > -(1 + EPSILON) &&
+				 * facing.getAxisDirection() == AxisDirection.POSITIVE) { canPass = true; } }
+				 * else { throw new IllegalStateException("Unrecognized axis: " + facingAxis); }
+				 */
 			}
 
 		}

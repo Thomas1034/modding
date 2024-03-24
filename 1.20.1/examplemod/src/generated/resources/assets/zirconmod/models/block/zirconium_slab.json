@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "zirconmod:block/zirconium_block",
+    "side": "zirconmod:block/zirconium_block",
+    "top": "zirconmod:block/zirconium_block"
+  }
+}

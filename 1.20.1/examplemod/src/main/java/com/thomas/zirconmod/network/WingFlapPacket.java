@@ -3,9 +3,9 @@ package com.thomas.zirconmod.network;
 import java.util.function.Supplier;
 
 import com.thomas.zirconmod.effect.ModEffects;
-import com.thomas.zirconmod.item.custom.AbstractFlappingWingsItem;
-import com.thomas.zirconmod.item.custom.AbstractWingsItem;
+import com.thomas.zirconmod.item.custom.wings.AbstractFlappingWingsItem;
 import com.thomas.zirconmod.util.Utilities;
+import com.thomas.zirconmod.util.WingsItem;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -59,7 +59,7 @@ public class WingFlapPacket {
 				Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 2.0, 5);
 
 				// Wears down the wings.
-				AbstractWingsItem.decreaseDurabilityPublic(wings, player);
+				WingsItem.decreaseDurabilityPublic(wings, player);
 				// Plays a sound, assuming the chunk is loaded.
 				sl.playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0f,
 						1.0f);

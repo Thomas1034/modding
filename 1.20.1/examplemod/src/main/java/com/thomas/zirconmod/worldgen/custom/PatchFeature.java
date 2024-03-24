@@ -40,7 +40,6 @@ public class PatchFeature extends Feature<NoneFeatureConfiguration> {
 		BlockPos pos = Utilities.findSurface(level, context.origin());
 		ChunkGenerator chunks = context.chunkGenerator();
 		placePatch(level, pos, this.block, this.radius);
-		System.out.println();
 
 		return true;
 	}

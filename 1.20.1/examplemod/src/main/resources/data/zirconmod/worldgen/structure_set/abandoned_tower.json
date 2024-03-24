@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "zirconmod:abandoned_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 64,
+    "separation": 16,
+    "salt": 14428245793
+  }
+}

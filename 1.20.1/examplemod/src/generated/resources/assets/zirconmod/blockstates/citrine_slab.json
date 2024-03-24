@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "zirconmod:block/citrine_slab"
+    },
+    "type=double": {
+      "model": "zirconmod:block/citrine_block"
+    },
+    "type=top": {
+      "model": "zirconmod:block/citrine_slab_top"
+    }
+  }
+}

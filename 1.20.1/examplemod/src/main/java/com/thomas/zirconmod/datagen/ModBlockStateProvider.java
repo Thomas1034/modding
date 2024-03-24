@@ -20,6 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
@@ -58,6 +59,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.UNSTABLE_LIGHTNING_BLOCK, "cutout");
 		blockWithItem(ModBlocks.WISP_BED);
 		blockWithItem(ModBlocks.CLOUD);
+		blockWithItem(ModBlocks.MIST, "translucent");
+		blockWithItem(ModBlocks.SEALED_MIST, "translucent");
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
 		blockWithItem(ModBlocks.SEALED_CLOUD);
 		blockWithItem(ModBlocks.CLOUD_CONVERTER);
@@ -186,7 +189,53 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Resonator block
 		resonatorBlock((ResonatorBlock) ModBlocks.RESONATOR_BLOCK.get(), "resonator", "resonator");
-
+		
+		// Charcoal block
+		blockWithItem(ModBlocks.CHARCOAL_BLOCK);
+		
+		// Ore and material stairs
+		stairsBlock(((StairBlock) ModBlocks.COAL_STAIRS.get()), blockTexture(Blocks.COAL_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.CHARCOAL_STAIRS.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()));
+		stairsBlock(((StairBlock) ModBlocks.RAW_COPPER_STAIRS.get()), blockTexture(Blocks.RAW_COPPER_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.RAW_IRON_STAIRS.get()), blockTexture(Blocks.RAW_IRON_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.IRON_STAIRS.get()), blockTexture(Blocks.IRON_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.RAW_GOLD_STAIRS.get()), blockTexture(Blocks.RAW_GOLD_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.GOLD_STAIRS.get()), blockTexture(Blocks.GOLD_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.REDSTONE_STAIRS.get()), blockTexture(Blocks.REDSTONE_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.LAPIS_STAIRS.get()), blockTexture(Blocks.LAPIS_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.EMERALD_STAIRS.get()), blockTexture(Blocks.EMERALD_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.DIAMOND_STAIRS.get()), blockTexture(Blocks.DIAMOND_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.NETHERITE_STAIRS.get()), blockTexture(Blocks.NETHERITE_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.OBSIDIAN_STAIRS.get()), blockTexture(Blocks.OBSIDIAN));
+		stairsBlock(((StairBlock) ModBlocks.CRYING_OBSIDIAN_STAIRS.get()), blockTexture(Blocks.CRYING_OBSIDIAN));
+		stairsBlock(((StairBlock) ModBlocks.AMETHYST_STAIRS.get()), blockTexture(Blocks.AMETHYST_BLOCK));
+		stairsBlock(((StairBlock) ModBlocks.ZIRCON_STAIRS.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()));
+		stairsBlock(((StairBlock) ModBlocks.RAW_ZIRCONIUM_STAIRS.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
+		stairsBlock(((StairBlock) ModBlocks.ZIRCONIUM_STAIRS.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()));
+		stairsBlock(((StairBlock) ModBlocks.CITRINE_STAIRS.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()));
+		
+		// Ore and material slabs
+		slabBlock(((SlabBlock) ModBlocks.COAL_SLAB.get()), blockTexture(Blocks.COAL_BLOCK), blockTexture(Blocks.COAL_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.CHARCOAL_SLAB.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.AMETHYST_SLAB.get()), blockTexture(Blocks.AMETHYST_BLOCK), blockTexture(Blocks.AMETHYST_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_COPPER_SLAB.get()), blockTexture(Blocks.RAW_COPPER_BLOCK), blockTexture(Blocks.RAW_COPPER_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_IRON_SLAB.get()), blockTexture(Blocks.RAW_IRON_BLOCK), blockTexture(Blocks.RAW_IRON_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.IRON_SLAB.get()), blockTexture(Blocks.IRON_BLOCK), blockTexture(Blocks.IRON_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_GOLD_SLAB.get()), blockTexture(Blocks.RAW_GOLD_BLOCK), blockTexture(Blocks.RAW_GOLD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.GOLD_SLAB.get()), blockTexture(Blocks.GOLD_BLOCK), blockTexture(Blocks.GOLD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.REDSTONE_SLAB.get()), blockTexture(Blocks.REDSTONE_BLOCK), blockTexture(Blocks.REDSTONE_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.LAPIS_SLAB.get()), blockTexture(Blocks.LAPIS_BLOCK), blockTexture(Blocks.LAPIS_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.EMERALD_SLAB.get()), blockTexture(Blocks.EMERALD_BLOCK), blockTexture(Blocks.EMERALD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.DIAMOND_SLAB.get()), blockTexture(Blocks.DIAMOND_BLOCK), blockTexture(Blocks.DIAMOND_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.NETHERITE_SLAB.get()), blockTexture(Blocks.NETHERITE_BLOCK), blockTexture(Blocks.NETHERITE_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.OBSIDIAN_SLAB.get()), blockTexture(Blocks.OBSIDIAN), blockTexture(Blocks.OBSIDIAN));
+		slabBlock(((SlabBlock) ModBlocks.CRYING_OBSIDIAN_SLAB.get()), blockTexture(Blocks.CRYING_OBSIDIAN), blockTexture(Blocks.CRYING_OBSIDIAN));
+		slabBlock(((SlabBlock) ModBlocks.ZIRCON_SLAB.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.RAW_ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.CITRINE_SLAB.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()));
+		
+		
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {

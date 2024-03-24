@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_elytra": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:golden_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:golden_wings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "zirconmod:golden_wings_from_golden_chestplate_elytra"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_chestplate",
+      "has_elytra",
+      "has_golden_wings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "zirconmod:golden_wings_from_golden_chestplate_elytra"
+    ]
+  },
+  "sends_telemetry_event": false
+}

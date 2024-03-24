@@ -45,6 +45,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.PALM_SEEDS);
 		simpleItem(ModItems.CUT_CITRINE);
 		simpleItem(ModItems.FEATHER_WINGS);
+		simpleItem(ModItems.LEATHER_WINGS);
+		simpleItem(ModItems.CHAINMAIL_WINGS);
+		simpleItem(ModItems.COPPER_WINGS);
+		simpleItem(ModItems.GOLDEN_WINGS);
+		simpleItem(ModItems.IRON_WINGS);
+		simpleItem(ModItems.DIAMOND_WINGS);
+		simpleItem(ModItems.CITRINE_WINGS);
+		simpleItem(ModItems.ZIRCONIUM_WINGS);
+		simpleItem(ModItems.NETHERITE_WINGS);
 		simpleItem(ModItems.CITRINE_BRACKET);
 		simpleItem(ModItems.CITRINE_SHARD);
 		simpleItem(ModItems.PALM_BOAT);
@@ -131,6 +140,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		simpleItem(ModItems.NIMBULA_GEL);
 		
+		// Cloud blocks
 		wallItem(ModBlocks.CLOUD_BRICK_WALL, ModBlocks.CLOUD_BRICKS);
 		wallItem(ModBlocks.THUNDER_CLOUD_BRICK_WALL, ModBlocks.THUNDER_CLOUD_BRICKS);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_STAIRS);
@@ -139,6 +149,49 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_SLAB);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_PILLAR);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR);
+		
+		// Ore and material stairs
+		evenSimplerBlockItem(ModBlocks.COAL_STAIRS);
+		evenSimplerBlockItem(ModBlocks.CHARCOAL_STAIRS);
+		evenSimplerBlockItem(ModBlocks.RAW_COPPER_STAIRS);
+		evenSimplerBlockItem(ModBlocks.RAW_IRON_STAIRS);
+		evenSimplerBlockItem(ModBlocks.IRON_STAIRS);
+		evenSimplerBlockItem(ModBlocks.RAW_GOLD_STAIRS);
+		evenSimplerBlockItem(ModBlocks.GOLD_STAIRS);
+		evenSimplerBlockItem(ModBlocks.REDSTONE_STAIRS);
+		evenSimplerBlockItem(ModBlocks.LAPIS_STAIRS);
+		evenSimplerBlockItem(ModBlocks.EMERALD_STAIRS);
+		evenSimplerBlockItem(ModBlocks.DIAMOND_STAIRS);
+		evenSimplerBlockItem(ModBlocks.NETHERITE_STAIRS);
+		evenSimplerBlockItem(ModBlocks.AMETHYST_STAIRS);
+		evenSimplerBlockItem(ModBlocks.OBSIDIAN_STAIRS);
+		evenSimplerBlockItem(ModBlocks.CRYING_OBSIDIAN_STAIRS);
+		evenSimplerBlockItem(ModBlocks.ZIRCON_STAIRS);
+		evenSimplerBlockItem(ModBlocks.RAW_ZIRCONIUM_STAIRS);
+		evenSimplerBlockItem(ModBlocks.ZIRCONIUM_STAIRS);
+		evenSimplerBlockItem(ModBlocks.CITRINE_STAIRS);
+		
+
+		// Ore and material slabs
+		evenSimplerBlockItem(ModBlocks.COAL_SLAB);
+		evenSimplerBlockItem(ModBlocks.CHARCOAL_SLAB);
+		evenSimplerBlockItem(ModBlocks.RAW_COPPER_SLAB);
+		evenSimplerBlockItem(ModBlocks.RAW_IRON_SLAB);
+		evenSimplerBlockItem(ModBlocks.IRON_SLAB);
+		evenSimplerBlockItem(ModBlocks.RAW_GOLD_SLAB);
+		evenSimplerBlockItem(ModBlocks.GOLD_SLAB);
+		evenSimplerBlockItem(ModBlocks.REDSTONE_SLAB);
+		evenSimplerBlockItem(ModBlocks.LAPIS_SLAB);
+		evenSimplerBlockItem(ModBlocks.EMERALD_SLAB);
+		evenSimplerBlockItem(ModBlocks.DIAMOND_SLAB);
+		evenSimplerBlockItem(ModBlocks.NETHERITE_SLAB);
+		evenSimplerBlockItem(ModBlocks.AMETHYST_SLAB);
+		evenSimplerBlockItem(ModBlocks.OBSIDIAN_SLAB);
+		evenSimplerBlockItem(ModBlocks.CRYING_OBSIDIAN_SLAB);
+		evenSimplerBlockItem(ModBlocks.ZIRCON_SLAB);
+		evenSimplerBlockItem(ModBlocks.RAW_ZIRCONIUM_SLAB);
+		evenSimplerBlockItem(ModBlocks.ZIRCONIUM_SLAB);
+		evenSimplerBlockItem(ModBlocks.CITRINE_SLAB);
 
 		handheldItem(ModItems.GRAVITY_GUN);
 	}

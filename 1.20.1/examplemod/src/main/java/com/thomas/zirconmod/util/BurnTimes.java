@@ -12,6 +12,7 @@ public class BurnTimes {
 	public static final int TRAPDOOR = 300;
 	public static final int STAIRS = 300;
 	public static final int PRESSURE_PLATE = 300;
+	public static final int COAL = 1600;
 	
 	
 }

@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 public class ModPlacedFeatures {
-		
+	
 	public static final ResourceKey<PlacedFeature> ZIRCON_ORE_PLACED_KEY = registerKey("zircon_ore_placed");
 	
 	public static final ResourceKey<PlacedFeature> CITRINE_GEODE_PLACED_KEY = registerKey("citrine_geode_placed");
@@ -67,12 +67,12 @@ public class ModPlacedFeatures {
 						ModBlocks.PALM_SAPLING.get()));
 
 		register(context, OASIS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OASIS_KEY),
-				ModPlacement.rareSurfacePlacement(75));
+				ModPlacement.rareSurfacePlacement(300));
 
 		register(context, PETRIFIED_TREE_PLACED_KEY,
 				configuredFeatures.getOrThrow(ModConfiguredFeatures.PETRIFIED_TREE_KEY),
 				ModPlacement.rareSurfacePlacement(2));
-
+		
 		register(context, STONE_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STONE_PATCH_KEY),
 				ModPlacement.rareSurfacePlacement(4));
 

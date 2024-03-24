@@ -204,9 +204,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_LEGGINGS.get());
 		smithingTransform(pWriter, ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get(), Items.IRON_BOOTS,
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_BOOTS.get());
-		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Items.ANVIL,
-				Items.NETHERITE_INGOT, RecipeCategory.MISC, ModBlocks.NETHERITE_ANVIL.get().asItem());
-
+		
 		// Copper equipment
 		shaped(pWriter, List.of("CC", "CS", " S"), List.of('C', 'S'), List.of(Items.COPPER_INGOT, Items.STICK),
 				RecipeCategory.TOOLS, ModItems.COPPER_AXE.get(), 1);
@@ -226,7 +224,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.COPPER_LEGGINGS.get(), 1);
 		shaped(pWriter, List.of("C C", "C C"), List.of('C'), List.of(Items.COPPER_INGOT), RecipeCategory.COMBAT,
 				ModItems.COPPER_BOOTS.get(), 1);
+		
+		// Netherite Anvil
+		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Items.ANVIL,
+				Items.NETHERITE_INGOT, RecipeCategory.TOOLS, ModBlocks.NETHERITE_ANVIL.get().asItem());
+		// Repairing Anvil
+		smithingTransform(pWriter, Items.AIR, Items.DAMAGED_ANVIL, Items.IRON_BLOCK,
+				RecipeCategory.TOOLS, Items.CHIPPED_ANVIL);
+		smithingTransform(pWriter, Items.AIR, Items.CHIPPED_ANVIL, Items.IRON_BLOCK,
+				RecipeCategory.TOOLS, Items.ANVIL);
 
+		
 		// Horse armor
 		shaped(pWriter, List.of("B  ", "BBB", "B B"), List.of('B'), List.of(Items.IRON_BLOCK), RecipeCategory.COMBAT,
 				Items.IRON_HORSE_ARMOR, 1);
@@ -349,6 +357,173 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(pWriter, List.of("SSS", "QER", "SSS"), List.of('S', 'E', 'Q', 'R'),
 				List.of(Items.DEEPSLATE_BRICKS, ModBlocks.ECHO_BLOCK.get(), Items.QUARTZ, Items.REDSTONE),
 				RecipeCategory.MISC, ModBlocks.RESONATOR_BLOCK.get(), 1);
+
+		// Ore and material stairs
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.COAL), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.COAL_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.CHARCOAL),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHARCOAL_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Blocks.AMETHYST_BLOCK),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.AMETHYST_STAIRS.get(), 4);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.RAW_COPPER),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_COPPER_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.RAW_IRON),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_IRON_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.IRON_INGOT),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.IRON_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.RAW_GOLD),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_GOLD_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.GOLD_INGOT),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.GOLD_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.REDSTONE),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.REDSTONE_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.LAPIS_LAZULI),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.LAPIS_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.EMERALD),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.EMERALD_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.DIAMOND),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIAMOND_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Items.NETHERITE_INGOT),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.NETHERITE_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Blocks.OBSIDIAN),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBSIDIAN_STAIRS.get(), 4);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(Blocks.CRYING_OBSIDIAN),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYING_OBSIDIAN_STAIRS.get(), 4);
+
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModItems.RAW_ZIRCONIUM.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_ZIRCONIUM_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModItems.ZIRCONIUM_INGOT.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.ZIRCONIUM_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModItems.ZIRCON.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.ZIRCON_STAIRS.get(), 1);
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.CITRINE_BLOCK.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CITRINE_STAIRS.get(), 4);
+
+		// Uncrafting ore and material stairs
+		shapeless(pWriter, List.of(ModBlocks.COAL_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS, Items.COAL,
+				6);
+		shapeless(pWriter, List.of(ModBlocks.CHARCOAL_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.CHARCOAL, 6);
+		shapeless(pWriter, List.of(ModBlocks.RAW_COPPER_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_COPPER, 6);
+		shapeless(pWriter, List.of(ModBlocks.RAW_IRON_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_IRON, 6);
+		shapeless(pWriter, List.of(ModBlocks.IRON_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.IRON_INGOT, 6);
+		shapeless(pWriter, List.of(ModBlocks.RAW_GOLD_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_GOLD, 6);
+		shapeless(pWriter, List.of(ModBlocks.GOLD_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.GOLD_INGOT, 6);
+		shapeless(pWriter, List.of(ModBlocks.LAPIS_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.LAPIS_LAZULI, 6);
+		shapeless(pWriter, List.of(ModBlocks.REDSTONE_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.REDSTONE, 6);
+		shapeless(pWriter, List.of(ModBlocks.EMERALD_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.EMERALD, 6);
+		shapeless(pWriter, List.of(ModBlocks.DIAMOND_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.DIAMOND, 6);
+		shapeless(pWriter, List.of(ModBlocks.NETHERITE_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.NETHERITE_INGOT, 6);
+		shapeless(pWriter, List.of(ModBlocks.RAW_ZIRCONIUM_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.RAW_ZIRCONIUM.get(), 6);
+		shapeless(pWriter, List.of(ModBlocks.ZIRCONIUM_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.ZIRCONIUM_INGOT.get(), 6);
+		shapeless(pWriter, List.of(ModBlocks.ZIRCON_STAIRS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.ZIRCON.get(), 6);
+
+		// Ore and material slab
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.COAL), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.COAL_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.CHARCOAL), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CHARCOAL_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.AMETHYST_SLAB.get(), 6);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.RAW_COPPER), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.RAW_COPPER_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.RAW_IRON), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.RAW_IRON_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.IRON_INGOT), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.IRON_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.RAW_GOLD), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.RAW_GOLD_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.GOLD_INGOT), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.GOLD_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.REDSTONE), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.REDSTONE_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.LAPIS_LAZULI), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.LAPIS_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.EMERALD), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.EMERALD_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.DIAMOND), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.DIAMOND_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Items.NETHERITE_INGOT), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.NETHERITE_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Blocks.OBSIDIAN), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.OBSIDIAN_SLAB.get(), 6);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(Blocks.CRYING_OBSIDIAN), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CRYING_OBSIDIAN_SLAB.get(), 6);
+
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModItems.RAW_ZIRCONIUM.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_ZIRCONIUM_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModItems.ZIRCONIUM_INGOT.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.ZIRCONIUM_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModItems.ZIRCON.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.ZIRCON_SLAB.get(), 1);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.CITRINE_BLOCK.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CITRINE_SLAB.get(), 6);
+
+		// Uncrafting ore and material slab
+		shapeless(pWriter, List.of(ModBlocks.COAL_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS, Items.COAL,
+				3);
+		shapeless(pWriter, List.of(ModBlocks.CHARCOAL_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.CHARCOAL, 3);
+		shapeless(pWriter, List.of(ModBlocks.RAW_COPPER_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_COPPER, 3);
+		shapeless(pWriter, List.of(ModBlocks.RAW_IRON_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_IRON, 3);
+		shapeless(pWriter, List.of(ModBlocks.IRON_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.IRON_INGOT, 3);
+		shapeless(pWriter, List.of(ModBlocks.RAW_GOLD_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.RAW_GOLD, 3);
+		shapeless(pWriter, List.of(ModBlocks.GOLD_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.GOLD_INGOT, 3);
+		shapeless(pWriter, List.of(ModBlocks.LAPIS_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.LAPIS_LAZULI, 3);
+		shapeless(pWriter, List.of(ModBlocks.REDSTONE_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.REDSTONE, 3);
+		shapeless(pWriter, List.of(ModBlocks.EMERALD_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.EMERALD, 3);
+		shapeless(pWriter, List.of(ModBlocks.DIAMOND_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.DIAMOND, 3);
+		shapeless(pWriter, List.of(ModBlocks.NETHERITE_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				Items.NETHERITE_INGOT, 3);
+		shapeless(pWriter, List.of(ModBlocks.RAW_ZIRCONIUM_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.RAW_ZIRCONIUM.get(), 3);
+		shapeless(pWriter, List.of(ModBlocks.ZIRCONIUM_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.ZIRCONIUM_INGOT.get(), 3);
+		shapeless(pWriter, List.of(ModBlocks.ZIRCON_SLAB.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.ZIRCON.get(), 3);
+
+		// Armor Wings
+		shapeless(pWriter, List.of(Items.LEATHER_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.LEATHER_WINGS.get(), 1);
+		shapeless(pWriter, List.of(Items.CHAINMAIL_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.CHAINMAIL_WINGS.get(), 1);
+		shapeless(pWriter, List.of(Items.GOLDEN_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.GOLDEN_WINGS.get(), 1);
+		shapeless(pWriter, List.of(Items.IRON_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.IRON_WINGS.get(), 1);
+		shapeless(pWriter, List.of(Items.DIAMOND_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.DIAMOND_WINGS.get(), 1);
+		shapeless(pWriter, List.of(Items.NETHERITE_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.NETHERITE_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.COPPER_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.COPPER_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.ZIRCONIUM_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.ZIRCONIUM_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.CITRINE_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.CITRINE_WINGS.get(), 1);
+
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.
@@ -394,7 +569,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Saves the recipe.
 		System.out.println("Finished shapeless recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer);
+		recipe.save(pFinishedRecipeConsumer, recipeName);
 
 	}
 

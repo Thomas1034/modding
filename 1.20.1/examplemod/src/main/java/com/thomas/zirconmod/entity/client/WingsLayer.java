@@ -2,8 +2,8 @@ package com.thomas.zirconmod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.thomas.zirconmod.item.custom.AbstractWingsItem;
 import com.thomas.zirconmod.util.TranslucentWingsItem;
+import com.thomas.zirconmod.util.WingsItem;
 
 import net.minecraft.client.model.ElytraModel;
 import net.minecraft.client.model.EntityModel;
@@ -37,17 +37,17 @@ public class WingsLayer<T extends LivingEntity, M extends EntityModel<T>> extend
 
 	@Override
 	public boolean shouldRender(ItemStack stack, T entity) {
-		return (stack.getItem() instanceof AbstractWingsItem);
+		return (stack.getItem() instanceof WingsItem);
 	}
 
 	@Override
 	public ResourceLocation getElytraTexture(ItemStack stack, T entity) {
 		Item item = stack.getItem();
-		if (item instanceof AbstractWingsItem) {
-			return ((AbstractWingsItem) item).getTexture();
+		if (item instanceof WingsItem) {
+			return ((WingsItem) item).getTextureLocation();
 		}
 		// If the texture is not found, throw an exception.
-		throw new IllegalArgumentException("Item is not an instance of AbstractWingsItem");
+		throw new IllegalArgumentException("Item is not an instance of WingsItem");
 	}
 
 	@Override

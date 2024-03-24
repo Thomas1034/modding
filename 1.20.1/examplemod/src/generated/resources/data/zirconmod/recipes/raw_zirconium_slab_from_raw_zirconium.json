@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "zirconmod:raw_zirconium"
+    }
+  },
+  "pattern": [
+    "PPP"
+  ],
+  "result": {
+    "item": "zirconmod:raw_zirconium_slab"
+  },
+  "show_notification": true
+}

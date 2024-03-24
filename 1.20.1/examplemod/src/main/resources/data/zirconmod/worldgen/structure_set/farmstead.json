@@ -1,0 +1,30 @@
+{
+  "structures": [
+    {
+      "structure": "zirconmod:farmstead_plains",
+      "weight": 1
+    },
+    {
+      "structure": "zirconmod:farmstead_savanna",
+      "weight": 1
+    },
+    {
+      "structure": "zirconmod:farmstead_taiga",
+      "weight": 1
+    },
+    {
+      "structure": "zirconmod:farmstead_desert",
+      "weight": 1
+    },
+    {
+      "structure": "zirconmod:farmstead_snowy",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 207846382,
+    "spacing": 34,
+    "separation": 8
+  }
+}

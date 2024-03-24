@@ -41,6 +41,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropOther(ModBlocks.SEALED_CLOUD_BRICKS.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_THUNDER_CLOUD_BRICKS.get(), Items.AIR);
 		this.dropOther(ModBlocks.SEALED_CLOUD.get(), Items.AIR);
+		this.dropOther(ModBlocks.SEALED_MIST.get(), Items.AIR);
 		this.dropSelf(ModBlocks.PETRIFIED_LOG.get());
 		this.dropSelf(ModBlocks.WISP_BED.get());
 		this.dropSelf(ModBlocks.ZIRCON_BLOCK.get());
@@ -66,6 +67,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_STAIRS.get());
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
 		this.dropSelf(ModBlocks.CLOUD.get());
+		this.dropSelf(ModBlocks.MIST.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICKS.get());
@@ -89,6 +91,48 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.RESONATOR_BLOCK.get());
 		this.dropOther(ModBlocks.BUBBLEFRUIT_CROP.get(), ModItems.BUBBLEFRUIT.get());
 		this.dropSelf(ModBlocks.NETHERITE_ANVIL.get());
+		this.dropSelf(ModBlocks.CHARCOAL_BLOCK.get());
+		
+		this.dropSelf(ModBlocks.COAL_STAIRS.get());
+		this.dropSelf(ModBlocks.CHARCOAL_STAIRS.get());
+		this.dropSelf(ModBlocks.RAW_COPPER_STAIRS.get());
+		this.dropSelf(ModBlocks.RAW_IRON_STAIRS.get());
+		this.dropSelf(ModBlocks.IRON_STAIRS.get());
+		this.dropSelf(ModBlocks.RAW_GOLD_STAIRS.get());
+		this.dropSelf(ModBlocks.GOLD_STAIRS.get());
+		this.dropSelf(ModBlocks.REDSTONE_STAIRS.get());
+		this.dropSelf(ModBlocks.LAPIS_STAIRS.get());
+		this.dropSelf(ModBlocks.EMERALD_STAIRS.get());
+		this.dropSelf(ModBlocks.DIAMOND_STAIRS.get());
+		this.dropSelf(ModBlocks.NETHERITE_STAIRS.get());
+		this.dropSelf(ModBlocks.OBSIDIAN_STAIRS.get());
+		this.dropSelf(ModBlocks.CRYING_OBSIDIAN_STAIRS.get());
+		this.dropSelf(ModBlocks.AMETHYST_STAIRS.get());
+		this.dropSelf(ModBlocks.ZIRCON_STAIRS.get());
+		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_STAIRS.get());
+		this.dropSelf(ModBlocks.ZIRCONIUM_STAIRS.get());
+		this.dropSelf(ModBlocks.CITRINE_STAIRS.get());
+		
+
+		this.dropSelf(ModBlocks.COAL_SLAB.get());
+		this.dropSelf(ModBlocks.CHARCOAL_SLAB.get());
+		this.dropSelf(ModBlocks.RAW_COPPER_SLAB.get());
+		this.dropSelf(ModBlocks.RAW_IRON_SLAB.get());
+		this.dropSelf(ModBlocks.IRON_SLAB.get());
+		this.dropSelf(ModBlocks.RAW_GOLD_SLAB.get());
+		this.dropSelf(ModBlocks.GOLD_SLAB.get());
+		this.dropSelf(ModBlocks.REDSTONE_SLAB.get());
+		this.dropSelf(ModBlocks.LAPIS_SLAB.get());
+		this.dropSelf(ModBlocks.EMERALD_SLAB.get());
+		this.dropSelf(ModBlocks.DIAMOND_SLAB.get());
+		this.dropSelf(ModBlocks.NETHERITE_SLAB.get());
+		this.dropSelf(ModBlocks.OBSIDIAN_SLAB.get());
+		this.dropSelf(ModBlocks.CRYING_OBSIDIAN_SLAB.get());
+		this.dropSelf(ModBlocks.AMETHYST_SLAB.get());
+		this.dropSelf(ModBlocks.ZIRCON_SLAB.get());
+		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_SLAB.get());
+		this.dropSelf(ModBlocks.ZIRCONIUM_SLAB.get());
+		this.dropSelf(ModBlocks.CITRINE_SLAB.get());
 		
 		
 		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition

@@ -1,0 +1,15 @@
+{
+  "name": "zirconmod:desert_crossroad",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "zirconmod:desert_crossroad/green",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

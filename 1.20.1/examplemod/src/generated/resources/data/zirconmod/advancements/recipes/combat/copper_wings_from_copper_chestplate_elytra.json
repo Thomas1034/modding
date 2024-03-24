@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:copper_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_copper_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:copper_wings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_elytra": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "zirconmod:copper_wings_from_copper_chestplate_elytra"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_chestplate",
+      "has_elytra",
+      "has_copper_wings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "zirconmod:copper_wings_from_copper_chestplate_elytra"
+    ]
+  },
+  "sends_telemetry_event": false
+}

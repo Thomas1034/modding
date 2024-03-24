@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "zirconmod:zircon_stairs_from_zircon"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_zircon": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:zircon"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_zircon_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:zircon_stairs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_zircon",
+      "has_zircon_stairs",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "zirconmod:zircon_stairs_from_zircon"
+    ]
+  },
+  "sends_telemetry_event": false
+}

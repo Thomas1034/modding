@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_chestplate"
+    },
+    {
+      "item": "minecraft:elytra"
+    }
+  ],
+  "result": {
+    "item": "zirconmod:golden_wings"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "pattern": [
+    "PPP"
+  ],
+  "result": {
+    "item": "zirconmod:emerald_slab"
+  },
+  "show_notification": true
+}

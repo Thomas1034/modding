@@ -12,12 +12,16 @@ import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.villager.ModVillagerTrades;
 import com.thomas.zirconmod.villager.ModVillagers;
+import com.thomas.zirconmod.worldgen.dimension.ModDimensions;
+import com.thomas.zirconmod.worldgen.portal.ModTeleporter;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -25,8 +29,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
@@ -207,4 +214,45 @@ public class ModEvents {
 			event.setBreakChance(0);
 		}
 	}
+
+	@SubscribeEvent
+	public static void travelToAndFromSkyEvent(LivingTickEvent event) {
+
+		LivingEntity entity = event.getEntity();
+		Level level = entity.level();
+		if (level instanceof ServerLevel sl) {
+			// If going to the sky.
+			if (entity.level().dimension() == Level.OVERWORLD) {
+				if (entity.position().y > 512) {
+					
+					// Store some data.
+					Vec3 pos = entity.position();
+					
+					MinecraftServer server = sl.getServer();
+					ServerLevel sky_dim = server.getLevel(ModDimensions.SKY_DIM_LEVEL_KEY);
+					// Move to sky
+					entity.changeDimension(sky_dim, new ModTeleporter());
+					// Set the data again.
+					entity.teleportTo(pos.x, 0, pos.z);
+				}
+			}
+			
+			// If going to the overworld.
+			if (entity.level().dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
+				if (entity.position().y < -32) {
+					
+					// Store some data.
+					Vec3 pos = entity.position();
+					
+					MinecraftServer server = sl.getServer();
+					ServerLevel overworld = server.getLevel(Level.OVERWORLD);
+					// Move to overworld
+					entity.changeDimension(overworld, new ModTeleporter());
+					// Set the data again.
+					entity.teleportTo(pos.x, 480, pos.z);
+				}
+			}
+		}
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.thomas.zirconmod.worldgen;
 
 import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.entity.ModEntityType;
+import com.thomas.zirconmod.util.ModTags;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -42,9 +43,9 @@ public class ModBiomeModifiers {
 				new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(BiomeTags.IS_JUNGLE),
 						HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CITRINE_GEODE_PLACED_KEY)),
 						GenerationStep.Decoration.UNDERGROUND_ORES));
-
+		
 		context.register(ADD_TREE_PALM,
-				new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(BiomeTags.IS_BEACH),
+				new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(ModTags.Biomes.HAS_BEACH_PALMS),
 						HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PALM_PLACED_KEY)),
 						GenerationStep.Decoration.VEGETAL_DECORATION));
 
@@ -69,6 +70,7 @@ public class ModBiomeModifiers {
 	}
 
 	private static ResourceKey<BiomeModifier> registerKey(String name) {
+		
 		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ZirconMod.MOD_ID, name));
 	}
 }
