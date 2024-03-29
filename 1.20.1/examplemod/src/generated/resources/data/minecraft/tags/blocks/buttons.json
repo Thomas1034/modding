@@ -1,5 +1,9 @@
 {
   "values": [
+    "zirconmod:copper_button",
+    "zirconmod:exposed_copper_button",
+    "zirconmod:weathered_copper_button",
+    "zirconmod:oxidized_copper_button",
     "zirconmod:palm_button"
   ]
 }

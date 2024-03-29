@@ -34,6 +34,7 @@ import com.thomas.zirconmod.block.custom.ThirstyBlock;
 import com.thomas.zirconmod.block.custom.ThunderCloudBlock;
 import com.thomas.zirconmod.block.custom.UnstableLightningBlock;
 import com.thomas.zirconmod.block.custom.WallGemBracketBlock;
+import com.thomas.zirconmod.block.custom.WeatheringCopperButtonBlock;
 import com.thomas.zirconmod.block.custom.WispBedBlock;
 import com.thomas.zirconmod.block.custom.ZirconLampBlock;
 import com.thomas.zirconmod.item.ModItems;
@@ -76,6 +77,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -802,7 +804,7 @@ public class ModBlocks {
 
 				@Override
 				public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 11;
+					return 7;
 				}
 
 				@Override
@@ -834,6 +836,25 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CITRINE_SLAB = registerBlock("citrine_slab",
 			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CITRINE_BLOCK.get())));
 
+	// Copper buttons
+	public static final RegistryObject<Block> COPPER_BUTTON = registerBlock("copper_button",
+			() -> new WeatheringCopperButtonBlock(WeatherState.UNAFFECTED, 80, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+	public static final RegistryObject<Block> EXPOSED_COPPER_BUTTON = registerBlock("exposed_copper_button",
+			() -> new WeatheringCopperButtonBlock(WeatherState.EXPOSED, 40, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+	public static final RegistryObject<Block> WEATHERED_COPPER_BUTTON = registerBlock("weathered_copper_button",
+			() -> new WeatheringCopperButtonBlock(WeatherState.WEATHERED, 20, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+	public static final RegistryObject<Block> OXIDIZED_COPPER_BUTTON = registerBlock("oxidized_copper_button",
+			() -> new WeatheringCopperButtonBlock(WeatherState.OXIDIZED, 10, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+	public static final RegistryObject<Block> WAXED_COPPER_BUTTON = registerBlock("waxed_copper_button",
+			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 80, false));
+	public static final RegistryObject<Block> WAXED_EXPOSED_COPPER_BUTTON = registerBlock("waxed_exposed_copper_button",
+			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 40, false));
+	public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = registerBlock("waxed_weathered_copper_button",
+			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 20, false));
+	public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = registerBlock("waxed_oxidized_copper_button",
+			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 10, false));
+	
+	
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);

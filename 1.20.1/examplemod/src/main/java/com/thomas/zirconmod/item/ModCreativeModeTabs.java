@@ -113,6 +113,14 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.CLOUD_CONVERTER.get());
 						pOutput.accept(ModBlocks.CLOUD_INVERTER.get());
 						pOutput.accept(ModBlocks.CLOUD_DETECTOR.get());
+						pOutput.accept(ModBlocks.COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.EXPOSED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.WEATHERED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.OXIDIZED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.WAXED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get());
+						pOutput.accept(ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get());
 						pOutput.accept(ModBlocks.NETHERITE_ANVIL.get());
 						pOutput.accept(ModBlocks.COAL_STAIRS.get());
 						pOutput.accept(ModBlocks.COAL_SLAB.get());

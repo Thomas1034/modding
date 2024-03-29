@@ -8,6 +8,16 @@
     "zirconmod:large_citrine_bud",
     "zirconmod:medium_citrine_bud",
     "zirconmod:small_citrine_bud",
-    "zirconmod:petrified_log"
+    "zirconmod:petrified_log",
+    "zirconmod:raw_iron_slab",
+    "zirconmod:raw_iron_stairs",
+    "zirconmod:iron_slab",
+    "zirconmod:iron_stairs",
+    "zirconmod:zircon_slab",
+    "zirconmod:zircon_stairs",
+    "zirconmod:citrine_slab",
+    "zirconmod:citrine_stairs",
+    "zirconmod:amethyst_slab",
+    "zirconmod:amethyst_stairs"
   ]
 }

@@ -39,7 +39,20 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(),
 				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(),
-				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get(), ModBlocks.NETHERITE_ANVIL.get());
+				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get(), ModBlocks.NETHERITE_ANVIL.get(),
+				ModBlocks.GOLD_SLAB.get(), ModBlocks.GOLD_STAIRS.get(), ModBlocks.RAW_GOLD_SLAB.get(),
+				ModBlocks.RAW_GOLD_STAIRS.get(), ModBlocks.EMERALD_SLAB.get(), ModBlocks.EMERALD_STAIRS.get(),
+				ModBlocks.REDSTONE_SLAB.get(), ModBlocks.REDSTONE_STAIRS.get(), ModBlocks.LAPIS_SLAB.get(),
+				ModBlocks.LAPIS_STAIRS.get(), ModBlocks.DIAMOND_SLAB.get(), ModBlocks.DIAMOND_STAIRS.get(),
+				ModBlocks.ZIRCONIUM_SLAB.get(), ModBlocks.ZIRCONIUM_STAIRS.get(), ModBlocks.RAW_ZIRCONIUM_SLAB.get(),
+				ModBlocks.RAW_ZIRCONIUM_STAIRS.get(), ModBlocks.OBSIDIAN_SLAB.get(), ModBlocks.OBSIDIAN_STAIRS.get(),
+				ModBlocks.CRYING_OBSIDIAN_SLAB.get(), ModBlocks.CRYING_OBSIDIAN_STAIRS.get(),
+				ModBlocks.NETHERITE_SLAB.get(), ModBlocks.NETHERITE_STAIRS.get(), ModBlocks.RAW_IRON_SLAB.get(),
+				ModBlocks.RAW_IRON_STAIRS.get(), ModBlocks.IRON_SLAB.get(), ModBlocks.IRON_STAIRS.get(),
+				ModBlocks.ZIRCON_SLAB.get(), ModBlocks.ZIRCON_STAIRS.get(), ModBlocks.CITRINE_SLAB.get(),
+				ModBlocks.CITRINE_STAIRS.get(), ModBlocks.AMETHYST_SLAB.get(), ModBlocks.AMETHYST_STAIRS.get(),
+				ModBlocks.COAL_SLAB.get(), ModBlocks.COAL_STAIRS.get(), ModBlocks.COPPER_BUTTON.get(), ModBlocks.EXPOSED_COPPER_BUTTON.get(),
+				ModBlocks.WEATHERED_COPPER_BUTTON.get(), ModBlocks.OXIDIZED_COPPER_BUTTON.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -49,14 +62,25 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Tool tiers
 		this.tag(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.ECHO_BLOCK.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
-				ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+				ModBlocks.RAW_ZIRCONIUM_BLOCK.get(), ModBlocks.GOLD_SLAB.get(), ModBlocks.GOLD_STAIRS.get(),
+				ModBlocks.RAW_GOLD_SLAB.get(), ModBlocks.RAW_GOLD_STAIRS.get(), ModBlocks.EMERALD_SLAB.get(),
+				ModBlocks.EMERALD_STAIRS.get(), ModBlocks.REDSTONE_SLAB.get(), ModBlocks.REDSTONE_STAIRS.get(),
+				ModBlocks.LAPIS_SLAB.get(), ModBlocks.LAPIS_STAIRS.get(), ModBlocks.DIAMOND_SLAB.get(),
+				ModBlocks.DIAMOND_STAIRS.get(), ModBlocks.ZIRCONIUM_SLAB.get(), ModBlocks.ZIRCONIUM_STAIRS.get(),
+				ModBlocks.RAW_ZIRCONIUM_SLAB.get(), ModBlocks.RAW_ZIRCONIUM_STAIRS.get());
 
-		this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.NETHERITE_ANVIL.get());
+		this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModBlocks.NETHERITE_ANVIL.get(), ModBlocks.OBSIDIAN_SLAB.get(),
+				ModBlocks.OBSIDIAN_STAIRS.get(), ModBlocks.CRYING_OBSIDIAN_SLAB.get(),
+				ModBlocks.CRYING_OBSIDIAN_STAIRS.get(), ModBlocks.NETHERITE_SLAB.get(),
+				ModBlocks.NETHERITE_STAIRS.get());
 
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(ModBlocks.ZIRCON_BLOCK.get(), ModBlocks.ZIRCON_ORE.get(),
 				ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_CLUSTER.get(),
 				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
-				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.PETRIFIED_LOG.get());
+				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RAW_IRON_SLAB.get(),
+				ModBlocks.RAW_IRON_STAIRS.get(), ModBlocks.IRON_SLAB.get(), ModBlocks.IRON_STAIRS.get(),
+				ModBlocks.ZIRCON_SLAB.get(), ModBlocks.ZIRCON_STAIRS.get(), ModBlocks.CITRINE_SLAB.get(),
+				ModBlocks.CITRINE_STAIRS.get(), ModBlocks.AMETHYST_SLAB.get(), ModBlocks.AMETHYST_STAIRS.get());
 
 		this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(ModBlocks.PETRIFIED_LOG.get());
 
@@ -65,6 +89,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(ModTags.Blocks.NEEDS_SAPPHIRE_TOOL).add(ModBlocks.SOUND_BLOCK.get());
 
 		// Other block tags
+
+		this.tag(BlockTags.BUTTONS).add(ModBlocks.COPPER_BUTTON.get(), ModBlocks.EXPOSED_COPPER_BUTTON.get(),
+				ModBlocks.WEATHERED_COPPER_BUTTON.get(), ModBlocks.OXIDIZED_COPPER_BUTTON.get());
 
 		// Palm furniture
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.PALM_TRAPDOOR.get());

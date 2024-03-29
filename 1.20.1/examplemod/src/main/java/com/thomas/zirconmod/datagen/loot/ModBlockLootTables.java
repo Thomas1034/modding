@@ -93,6 +93,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.NETHERITE_ANVIL.get());
 		this.dropSelf(ModBlocks.CHARCOAL_BLOCK.get());
 		
+		this.dropSelf(ModBlocks.COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.EXPOSED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.WEATHERED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.OXIDIZED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.WAXED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get());
+		this.dropSelf(ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get());
+		
 		this.dropSelf(ModBlocks.COAL_STAIRS.get());
 		this.dropSelf(ModBlocks.CHARCOAL_STAIRS.get());
 		this.dropSelf(ModBlocks.RAW_COPPER_STAIRS.get());

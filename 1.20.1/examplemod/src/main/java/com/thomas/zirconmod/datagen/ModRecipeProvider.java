@@ -204,7 +204,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_LEGGINGS.get());
 		smithingTransform(pWriter, ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get(), Items.IRON_BOOTS,
 				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_BOOTS.get());
-		
+
 		// Copper equipment
 		shaped(pWriter, List.of("CC", "CS", " S"), List.of('C', 'S'), List.of(Items.COPPER_INGOT, Items.STICK),
 				RecipeCategory.TOOLS, ModItems.COPPER_AXE.get(), 1);
@@ -224,17 +224,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.COPPER_LEGGINGS.get(), 1);
 		shaped(pWriter, List.of("C C", "C C"), List.of('C'), List.of(Items.COPPER_INGOT), RecipeCategory.COMBAT,
 				ModItems.COPPER_BOOTS.get(), 1);
-		
-		// Netherite Anvil
-		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Items.ANVIL,
-				Items.NETHERITE_INGOT, RecipeCategory.TOOLS, ModBlocks.NETHERITE_ANVIL.get().asItem());
-		// Repairing Anvil
-		smithingTransform(pWriter, Items.AIR, Items.DAMAGED_ANVIL, Items.IRON_BLOCK,
-				RecipeCategory.TOOLS, Items.CHIPPED_ANVIL);
-		smithingTransform(pWriter, Items.AIR, Items.CHIPPED_ANVIL, Items.IRON_BLOCK,
-				RecipeCategory.TOOLS, Items.ANVIL);
 
-		
+		// Netherite Anvil
+		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, Items.ANVIL, Items.NETHERITE_INGOT,
+				RecipeCategory.TOOLS, ModBlocks.NETHERITE_ANVIL.get().asItem());
+		// Repairing Anvil
+		smithingTransform(pWriter, Items.AIR, Items.DAMAGED_ANVIL, Items.IRON_BLOCK, RecipeCategory.TOOLS,
+				Items.CHIPPED_ANVIL);
+		smithingTransform(pWriter, Items.AIR, Items.CHIPPED_ANVIL, Items.IRON_BLOCK, RecipeCategory.TOOLS, Items.ANVIL);
+
 		// Horse armor
 		shaped(pWriter, List.of("B  ", "BBB", "B B"), List.of('B'), List.of(Items.IRON_BLOCK), RecipeCategory.COMBAT,
 				Items.IRON_HORSE_ARMOR, 1);
@@ -517,13 +515,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.DIAMOND_WINGS.get(), 1);
 		shapeless(pWriter, List.of(Items.NETHERITE_CHESTPLATE, Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
 				ModItems.NETHERITE_WINGS.get(), 1);
-		shapeless(pWriter, List.of(ModItems.COPPER_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
-				ModItems.COPPER_WINGS.get(), 1);
-		shapeless(pWriter, List.of(ModItems.ZIRCONIUM_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
-				ModItems.ZIRCONIUM_WINGS.get(), 1);
-		shapeless(pWriter, List.of(ModItems.CITRINE_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1), RecipeCategory.COMBAT,
-				ModItems.CITRINE_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.COPPER_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1),
+				RecipeCategory.COMBAT, ModItems.COPPER_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.ZIRCONIUM_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1),
+				RecipeCategory.COMBAT, ModItems.ZIRCONIUM_WINGS.get(), 1);
+		shapeless(pWriter, List.of(ModItems.CITRINE_CHESTPLATE.get(), Items.ELYTRA), List.of(1, 1),
+				RecipeCategory.COMBAT, ModItems.CITRINE_WINGS.get(), 1);
 
+		// Copper buttons
+		shapeless(pWriter, List.of(Blocks.CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.EXPOSED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.EXPOSED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.WEATHERED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.WEATHERED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.OXIDIZED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.OXIDIZED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.WAXED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.WAXED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.WAXED_EXPOSED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.WAXED_WEATHERED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), 1);
+		shapeless(pWriter, List.of(Blocks.WAXED_OXIDIZED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
+				ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), 1);
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

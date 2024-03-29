@@ -139,6 +139,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		directionalPassageBlock((DirectionalPassageBlock) ModBlocks.WEATHER_PASSAGE_BLOCK.get(), "translucent");
 
+		// Copper buttons
+		buttonBlock(((ButtonBlock) ModBlocks.COPPER_BUTTON.get()), blockTexture(Blocks.CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WEATHERED_COPPER_BUTTON.get()), blockTexture(Blocks.WEATHERED_CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_COPPER_BUTTON.get()), blockTexture(Blocks.CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get()), blockTexture(Blocks.WEATHERED_CUT_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_CUT_COPPER));
+		
 		// Citrine blocks
 		blockWithItem(ModBlocks.CITRINE_BLOCK);
 		blockWithItem(ModBlocks.BUDDING_CITRINE);
@@ -386,10 +396,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		if (state.getValue(LanternBlock.HANGING)) {
 			lanternModel = new ConfiguredModel(
 					models().withExistingParent(modelName + "_hanging", mcLoc("template_hanging_lantern"))
-							.texture("lantern", modLoc("block/" + modelName)));
+							.texture("lantern", modLoc("block/" + modelName)).renderType("cutout"));
 		} else {
 			lanternModel = new ConfiguredModel(models().withExistingParent(modelName, mcLoc("template_lantern"))
-					.texture("lantern", modLoc("block/" + modelName)));
+					.texture("lantern", modLoc("block/" + modelName)).renderType("cutout"));
 		}
 
 		models[0] = lanternModel;

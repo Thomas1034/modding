@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -22,7 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		
+
 		simpleItem(ModItems.SPEEDOMETER);
 		simpleItem(ModItems.HEART_OF_THE_SKY);
 		simpleItem(ModItems.HAILSTONE);
@@ -71,9 +72,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.TEMPEST_BOTTLE);
 		simpleItem(ModItems.WIND_BAG);
 		simpleItem(ModItems.EMPTY_WIND_BAG);
-		
-        simpleItem(ModItems.PALM_SIGN);
-        simpleItem(ModItems.PALM_HANGING_SIGN);
+
+		simpleItem(ModItems.PALM_SIGN);
+		simpleItem(ModItems.PALM_HANGING_SIGN);
 		simpleBlockItem(ModBlocks.PALM_DOOR);
 		simpleBlockModel(ModBlocks.ZIRCON_LAMP);
 		simpleLogModel(ModBlocks.PALM_LOG);
@@ -94,6 +95,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.PALM_FENCE_GATE);
 
 		trapdoorItem(ModBlocks.PALM_TRAPDOOR);
+
+		buttonItem(ModBlocks.COPPER_BUTTON, Blocks.CUT_COPPER);
+		buttonItem(ModBlocks.EXPOSED_COPPER_BUTTON, Blocks.EXPOSED_CUT_COPPER);
+		buttonItem(ModBlocks.WEATHERED_COPPER_BUTTON, Blocks.WEATHERED_CUT_COPPER);
+		buttonItem(ModBlocks.OXIDIZED_COPPER_BUTTON, Blocks.OXIDIZED_CUT_COPPER);
+		buttonItem(ModBlocks.WAXED_COPPER_BUTTON, Blocks.CUT_COPPER);
+		buttonItem(ModBlocks.WAXED_EXPOSED_COPPER_BUTTON, Blocks.EXPOSED_CUT_COPPER);
+		buttonItem(ModBlocks.WAXED_WEATHERED_COPPER_BUTTON, Blocks.WEATHERED_CUT_COPPER);
+		buttonItem(ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON, Blocks.OXIDIZED_CUT_COPPER);
 
 		handheldItem(ModItems.COPPER_SWORD);
 		handheldItem(ModItems.COPPER_PICKAXE);
@@ -116,7 +126,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ZIRCONIUM_CHESTPLATE);
 		simpleItem(ModItems.ZIRCONIUM_LEGGINGS);
 		simpleItem(ModItems.ZIRCONIUM_BOOTS);
-		
+
 		handheldItem(ModItems.CITRINE_SWORD);
 		handheldItem(ModItems.CITRINE_PICKAXE);
 		handheldItem(ModItems.CITRINE_AXE);
@@ -127,7 +137,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CITRINE_CHESTPLATE);
 		simpleItem(ModItems.CITRINE_LEGGINGS);
 		simpleItem(ModItems.CITRINE_BOOTS);
-		
 
 		withExistingParent(ModItems.MOLE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.NIMBULA_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -135,12 +144,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 		withExistingParent(ModItems.WISP_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.GUST_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		withExistingParent(ModItems.WRAITH_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
-		
+
 		withExistingParent(ModBlocks.NIMBULA_POLYP.getId().getPath(), modLoc("block/nimbula_polyp0"));
 		withExistingParent(ModBlocks.NETHERITE_ANVIL.getId().getPath(), modLoc("block/netherite_anvil"));
 
 		simpleItem(ModItems.NIMBULA_GEL);
-		
+
 		// Cloud blocks
 		wallItem(ModBlocks.CLOUD_BRICK_WALL, ModBlocks.CLOUD_BRICKS);
 		wallItem(ModBlocks.THUNDER_CLOUD_BRICK_WALL, ModBlocks.THUNDER_CLOUD_BRICKS);
@@ -150,7 +159,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_SLAB);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_PILLAR);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR);
-		
+
 		// Ore and material stairs
 		evenSimplerBlockItem(ModBlocks.COAL_STAIRS);
 		evenSimplerBlockItem(ModBlocks.CHARCOAL_STAIRS);
@@ -171,7 +180,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.RAW_ZIRCONIUM_STAIRS);
 		evenSimplerBlockItem(ModBlocks.ZIRCONIUM_STAIRS);
 		evenSimplerBlockItem(ModBlocks.CITRINE_STAIRS);
-		
 
 		// Ore and material slabs
 		evenSimplerBlockItem(ModBlocks.COAL_SLAB);
@@ -222,6 +230,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 		this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
 				.texture("texture", new ResourceLocation(ZirconMod.MOD_ID,
 						"block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
+	}
+
+	public void buttonItem(RegistryObject<Block> block, Block baseBlock) {
+		this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
+				.texture("texture",
+						new ResourceLocation("block/" + ForgeRegistries.BLOCKS.getKey(baseBlock).getPath()));
 	}
 
 	public void wallItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {

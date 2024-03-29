@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-24T13:37:35.2886227	Item Models: zirconmod
+// 1.20.1	2024-03-27T12:01:11.7764924	Item Models: zirconmod
 8b49c2f3850e1e14e6aa27ab2f7c4f9bfaef8988 assets/zirconmod/models/item/amethyst_slab.json
 8547e7e1aea68ca6a1e22ad47a6a1f6343c833b9 assets/zirconmod/models/item/amethyst_stairs.json
 be4868e296ae9641e28f49eb2f53f2f620710f40 assets/zirconmod/models/item/ancient_feather_wings.json
@@ -33,6 +33,7 @@ bf4a626b9e8c01052d8493d55e15458e535dcf4a assets/zirconmod/models/item/cloud_bric
 db2c7f49be0e8bc33d392310459391f5a8c0e3e5 assets/zirconmod/models/item/coal_stairs.json
 0aba6d10a51b6a429a24f14eb051d5c16b86b798 assets/zirconmod/models/item/copper_axe.json
 b7c1cd312b3654cf2b2ac978decf31b4a7a8c826 assets/zirconmod/models/item/copper_boots.json
+bfdbde1d3081dc326e6a80f2327bcf81acea273c assets/zirconmod/models/item/copper_button.json
 4d1b4441b306214b033eb64c657f30f06d050fa5 assets/zirconmod/models/item/copper_chestplate.json
 33aeb5c3bf34e4404780862185aa3d210fc45c95 assets/zirconmod/models/item/copper_helmet.json
 385f3f9790682ad6368c6b1b205658720b15f938 assets/zirconmod/models/item/copper_hoe.json
@@ -51,6 +52,7 @@ ad02fe9efebad97e717a7a151684eef9b3f07587 assets/zirconmod/models/item/echo_powde
 de0a79157bf17c8b46bd3929765f085feb8e1dd7 assets/zirconmod/models/item/emerald_slab.json
 811f87234bd84dd81cc14628a751c4b802140d6b assets/zirconmod/models/item/emerald_stairs.json
 b9b2606c8e8faa9ca5eb4ca790dfecd057f6f4ef assets/zirconmod/models/item/empty_wind_bag.json
+178aa1ab26721a25f6abb822336b529d78fb24ef assets/zirconmod/models/item/exposed_copper_button.json
 b8d1d3532d198a3bd99e34bd1058fbac0ab29b60 assets/zirconmod/models/item/feather_wings.json
 5e7f372b75d19eea8a062fa75628c6ee97211cf5 assets/zirconmod/models/item/flaming_arrow.json
 267e05816b27217d8a81aedd426edaae6f9f3bc4 assets/zirconmod/models/item/flaming_pine_cone.json
@@ -81,6 +83,7 @@ b584e4860cb0e9fc9e99f4a47deb801123fafe90 assets/zirconmod/models/item/nimbula_ge
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/nimbula_spawn_egg.json
 5db3d09a98b016cfa1cb0a2f26ce836ff41fd7f0 assets/zirconmod/models/item/obsidian_slab.json
 67bee68801ac39ba93b26c88caa768676e108346 assets/zirconmod/models/item/obsidian_stairs.json
+63e8ecc7a86c1d3b1aee1b5206f1b0adf4ed811d assets/zirconmod/models/item/oxidized_copper_button.json
 1db6c2b92c6d1e463c327f8155fe4ce161568518 assets/zirconmod/models/item/palm_boat.json
 a93d5c407d89f010426df1f864194530b64bdd3e assets/zirconmod/models/item/palm_button.json
 0061b415efb80a6bbf46f2a2dd6ce78739232e3f assets/zirconmod/models/item/palm_chest_boat.json
@@ -127,6 +130,11 @@ a8d08b5ad623fbd138be468271b321ec062e4d42 assets/zirconmod/models/item/thunder_cl
 f70ea27f9b7a47ba7e48ee8cc8b91be92b8e2a65 assets/zirconmod/models/item/thunder_cloud_brick_wall.json
 ca8b179ad01ab095d4433d8d9de96021b907c6ba assets/zirconmod/models/item/totem_of_returning.json
 4ddfbe1a7085a6c39544792980924c99efa04cb9 assets/zirconmod/models/item/vigil_eye.json
+bfdbde1d3081dc326e6a80f2327bcf81acea273c assets/zirconmod/models/item/waxed_copper_button.json
+178aa1ab26721a25f6abb822336b529d78fb24ef assets/zirconmod/models/item/waxed_exposed_copper_button.json
+63e8ecc7a86c1d3b1aee1b5206f1b0adf4ed811d assets/zirconmod/models/item/waxed_oxidized_copper_button.json
+7b5426dcc46d4bde76d76aeb356a76dc286bc5d6 assets/zirconmod/models/item/waxed_weathered_copper_button.json
+7b5426dcc46d4bde76d76aeb356a76dc286bc5d6 assets/zirconmod/models/item/weathered_copper_button.json
 f80cb894b53ee9d6cce1d99301a919bf0ddf2840 assets/zirconmod/models/item/wind_bag.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/wisp_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/zirconmod/models/item/wraith_spawn_egg.json

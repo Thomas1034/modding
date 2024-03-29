@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.effect.ModEffects;
 import com.thomas.zirconmod.entity.ai.WispFindHomeGoal;
 import com.thomas.zirconmod.entity.ai.WispGoHomeWhenThunderingGoal;
@@ -16,6 +17,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -301,7 +303,7 @@ public class WispEntity extends AbstractVillager {
 					// merchantOffer.setSpecialPriceDiff(level);
 					// Opens trading.
 					this.setTradingPlayer(p_35856_);
-					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
+					this.openTradingScreen(p_35856_, this.getTradeName(), 1);
 				}
 
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
@@ -309,6 +311,10 @@ public class WispEntity extends AbstractVillager {
 		} else {
 			return super.mobInteract(p_35856_, p_35857_);
 		}
+	}
+
+	private Component getTradeName() {
+		return Component.translatable("entity.minecraft.villager.zirconmod." + this.getProfession().toString());
 	}
 
 	protected void updateTrades() {
