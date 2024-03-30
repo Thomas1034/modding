@@ -9,34 +9,46 @@ import com.thomas.zirconmod.entity.custom.GustEntity;
 import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WraithEntity;
 import com.thomas.zirconmod.item.ModItems;
+import com.thomas.zirconmod.util.ModWeatheringCopper;
 import com.thomas.zirconmod.util.Utilities;
+import com.thomas.zirconmod.util.Waxable;
 import com.thomas.zirconmod.villager.ModVillagerTrades;
 import com.thomas.zirconmod.villager.ModVillagers;
 import com.thomas.zirconmod.worldgen.dimension.ModDimensions;
 import com.thomas.zirconmod.worldgen.portal.ModTeleporter;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.event.entity.EntityEvent.EnteringSection;
 import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -215,19 +227,47 @@ public class ModEvents {
 		}
 	}
 
+	/*
+	 * @SubscribeEvent public static void travelToAndFromSkyEvent(LivingTickEvent
+	 * event) {
+	 * 
+	 * LivingEntity entity = event.getEntity(); Level level = entity.level(); if
+	 * (level instanceof ServerLevel sl) {
+	 * 
+	 * // If going to the sky. if (entity.level().dimension() == Level.OVERWORLD) {
+	 * if (entity.position().y > 512) {
+	 * 
+	 * // Store some data. Vec3 pos = entity.position();
+	 * 
+	 * MinecraftServer server = sl.getServer(); ServerLevel sky_dim =
+	 * server.getLevel(ModDimensions.SKY_DIM_LEVEL_KEY); // Move to sky
+	 * entity.changeDimension(sky_dim, new ModTeleporter()); // Set the data again.
+	 * entity.teleportTo(pos.x, 0, pos.z); } }
+	 * 
+	 * // If going to the overworld. if (entity.level().dimension() ==
+	 * ModDimensions.SKY_DIM_LEVEL_KEY) { if (entity.position().y < -32) {
+	 * 
+	 * // Store some data. Vec3 pos = entity.position();
+	 * 
+	 * MinecraftServer server = sl.getServer(); ServerLevel overworld =
+	 * server.getLevel(Level.OVERWORLD); // Move to overworld
+	 * entity.changeDimension(overworld, new ModTeleporter()); // Set the data
+	 * again. entity.teleportTo(pos.x, 480, pos.z); } } } }
+	 */
 	@SubscribeEvent
-	public static void travelToAndFromSkyEvent(LivingTickEvent event) {
+	public static void travelToAndFromSkyEvent(EnteringSection event) {
 
-		LivingEntity entity = event.getEntity();
+		Entity entity = event.getEntity();
 		Level level = entity.level();
 		if (level instanceof ServerLevel sl) {
+			
 			// If going to the sky.
 			if (entity.level().dimension() == Level.OVERWORLD) {
 				if (entity.position().y > 512) {
 					
 					// Store some data.
 					Vec3 pos = entity.position();
-					
+
 					MinecraftServer server = sl.getServer();
 					ServerLevel sky_dim = server.getLevel(ModDimensions.SKY_DIM_LEVEL_KEY);
 					// Move to sky
@@ -236,14 +276,25 @@ public class ModEvents {
 					entity.teleportTo(pos.x, 0, pos.z);
 				}
 			}
-			
+
 			// If going to the overworld.
 			if (entity.level().dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
 				if (entity.position().y < -32) {
+
+					// Check if it's a trident.
+					if (entity instanceof ThrownTrident trident) {
+						// If so, trigger returning.
+					    trident.setNoPhysics(true);
+					    trident.setDeltaMovement(0, 1, 0);
+					    System.out.println("Setting no physics!");
+					    Entity owner = trident.getOwner();
+					    Vec3 pos = owner.position();
+					    trident.setPosRaw(pos.x, pos.y, pos.z);
+					}
 					
 					// Store some data.
 					Vec3 pos = entity.position();
-					
+
 					MinecraftServer server = sl.getServer();
 					ServerLevel overworld = server.getLevel(Level.OVERWORLD);
 					// Move to overworld
@@ -254,5 +305,74 @@ public class ModEvents {
 			}
 		}
 	}
-	
+
+	@SubscribeEvent
+	public static void removeWaxOrScrapeEvent(BlockToolModificationEvent event) {
+
+		BlockState originalState = event.getState();
+
+		ToolAction action = event.getToolAction();
+
+		// UseOnContext context = event.getContext();
+
+		// BlockPos pos = context.getClickedPos();
+
+		boolean isSimulated = event.isSimulated();
+
+		if (!isSimulated) {
+			// Check if the action is correct.
+			// Now wax can be applied or removed.
+			if (action.equals(ToolActions.AXE_WAX_OFF)) {
+				// Removing wax!
+				event.setFinalState(Waxable.removeWax(originalState));
+				event.setResult(Result.ALLOW);
+			}
+			// Or oxidation can be removed.
+			else if (action.equals(ToolActions.AXE_SCRAPE)) {
+				event.setFinalState(ModWeatheringCopper.getPrevious(originalState).orElse(originalState));
+				event.setResult(Result.ALLOW);
+			}
+
+			// System.out.println("Performing " + action + " on " + originalState + " at " +
+			// pos + ".");
+		}
+	}
+
+	@SubscribeEvent
+	public static void applyWaxEvent(RightClickBlock event) {
+
+		boolean isServerSide = event.getSide().isServer();
+
+		Level level = event.getLevel();
+
+		Player player = event.getEntity();
+
+		BlockPos pos = event.getPos();
+
+		ItemStack itemStack = event.getItemStack();
+
+		BlockState state = level.getBlockState(pos);
+
+		// Check if the level is server side, and if the item extends Honeycomb.
+		if (itemStack.getItem() instanceof HoneycombItem) {
+			// Check if the block is waxable.
+			if (Waxable.canApplyWax(state)) {
+				// If so update the state.
+				BlockState waxed = Waxable.applyWax(state);
+				level.setBlock(pos, waxed, 11);
+				// Grant achievements and particles and stuff.
+				// Copied from honeycomb
+				// I have honestly no idea what all of this does.
+				if (isServerSide) {
+					CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer) player, pos, itemStack);
+				}
+				itemStack.shrink(1);
+				level.levelEvent(player, 3003, pos, 0);
+				level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, waxed));
+				event.setUseItem(Result.DENY);
+				event.setUseBlock(Result.DENY);
+			}
+		}
+	}
+
 }

@@ -16,18 +16,32 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class NimbulaRenderer extends MobRenderer<NimbulaEntity, NimbulaModel<NimbulaEntity>> {
-
+	
 	public NimbulaRenderer(EntityRendererProvider.Context p_174391_) {
 		super(p_174391_, new NimbulaModel<>(p_174391_.bakeLayer(ModModelLayers.NIMBULA_LAYER)), 0.25F);
 	}
 
-	public void render(NimbulaEntity pEntity, float p_115977_, float p_115978_, PoseStack pMatrixStack,
-			MultiBufferSource p_115980_, int p_115981_) {
-		if (pEntity.isBaby()) {
-			pMatrixStack.scale(0.5f, 0.5f, 0.5f);
+	public void render(NimbulaEntity nimbula, float f1, float f2, PoseStack poseStack,
+			MultiBufferSource bufferSource, int i1) {
+		if (nimbula.isBaby()) {
+			poseStack.scale(0.5f, 0.5f, 0.5f);
 		}
-
-		super.render(pEntity, p_115977_, p_115978_, pMatrixStack, p_115980_, p_115981_);
+		
+		// Change color if it's raining.
+		if (nimbula.isInWaterOrRain()) {
+			this.model.multColor(0.8f, 0.9f, 1.0f);
+		}
+		
+		if (nimbula.level().isRaining()) {
+			this.model.multColor(0.8f, 0.8f, 0.8f);
+		}
+		
+		if (nimbula.level().isThundering()) {
+			this.model.multColor(0.5f, 0.5f, 0.5f);
+		}
+		
+		super.render(nimbula, f1, f2, poseStack, bufferSource, i1);
+		this.model.resetColor();
 	}
 
 	public ResourceLocation getTextureLocation(NimbulaEntity nimbula) {

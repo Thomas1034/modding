@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thomas.zirconmod.entity.animations.ModAnimationDefinitions;
 import com.thomas.zirconmod.entity.custom.NimbulaEntity;
 
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -16,7 +15,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class NimbulaModel<T extends Entity> extends HierarchicalModel<T> {
+public class NimbulaModel<T extends Entity> extends ModColorableHierarchicalModel<T> {
 	private final ModelPart nimbula;
 	private final ModelPart head;
 
@@ -180,7 +179,7 @@ public class NimbulaModel<T extends Entity> extends HierarchicalModel<T> {
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay,
 			float red, float green, float blue, float alpha) {
-		nimbula.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	@Override

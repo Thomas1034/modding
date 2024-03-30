@@ -50,12 +50,12 @@ public class CloudBlock extends Block {
 
 	public static final IntegerProperty SOLIDIFIER_DISTANCE = IntegerProperty.create("distance", MIN_DISTANCE,
 			MAX_DISTANCE);
-
+	
 	// private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D,
 	// 0.0D, 0.0D, 1.0D, (double) 0.9F, 1.0D);
 
 	// private static final int TICK_DELAY = 1;
-
+	
 	public CloudBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE));
@@ -63,8 +63,8 @@ public class CloudBlock extends Block {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean skipRendering(BlockState p_53972_, BlockState p_53973_, Direction p_53974_) {
-		return p_53973_.is(this) ? true : super.skipRendering(p_53972_, p_53973_, p_53974_);
+	public boolean skipRendering(BlockState here, BlockState there, Direction p_53974_) {
+		return (there.is(this) && ((here.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE && (there.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE)) || (here.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE && (there.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE))) ? true : super.skipRendering(here, there, p_53974_));
 	}
 
 	@Override

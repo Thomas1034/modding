@@ -1,7 +1,6 @@
 package com.thomas.zirconmod.block.custom;
 
 import com.thomas.zirconmod.util.ModWeatheringCopper;
-import com.thomas.zirconmod.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

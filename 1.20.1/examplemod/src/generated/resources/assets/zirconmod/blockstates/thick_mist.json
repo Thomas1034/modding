@@ -22,7 +22,7 @@
       "model": "zirconmod:block/cloud"
     },
     "distance=15": {
-      "model": "zirconmod:block/cloud_passable"
+      "model": "zirconmod:block/mist"
     },
     "distance=2": {
       "model": "zirconmod:block/cloud"

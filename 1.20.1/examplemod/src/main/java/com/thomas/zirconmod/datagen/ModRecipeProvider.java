@@ -539,6 +539,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), 1);
 		shapeless(pWriter, List.of(Blocks.WAXED_OXIDIZED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
 				ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), 1);
+		
+		// Thick mist
+
+		shapeless(pWriter, List.of(ModBlocks.CLOUD.get(), ModBlocks.MIST.get()), List.of(1, 1), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.THICK_MIST.get(), 2);
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

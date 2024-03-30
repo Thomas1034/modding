@@ -1,5 +1,6 @@
 package com.thomas.zirconmod.util;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -9,12 +10,17 @@ import com.google.common.collect.ImmutableBiMap;
 import com.thomas.zirconmod.block.ModBlocks;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 
 // Reimplements the WeatheringCopper interface, to use mod blocks.
-// Because _of course_ they couldn't make it use overridable methods for subclasses.
+// Because of course they couldn't make it use overridable methods for subclasses.
 public interface ModWeatheringCopper extends WeatheringCopper {
+
+	@SuppressWarnings("rawtypes")
+	List<Property> IGNORED_PROPERTIES = List.of(ButtonBlock.POWERED);
 
 	Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK = Suppliers.memoize(() -> {
 		return ImmutableBiMap.<Block, Block>builder()
@@ -41,9 +47,19 @@ public interface ModWeatheringCopper extends WeatheringCopper {
 		return block;
 	}
 
-	static Optional<BlockState> getPrevious(BlockState p_154900_) {
-		return getPrevious(p_154900_.getBlock()).map((p_154903_) -> {
-			return p_154903_.withPropertiesOf(p_154900_);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	static Optional<BlockState> getPrevious(BlockState inputState) {
+		return getPrevious(inputState.getBlock()).map((rawState) -> {
+			BlockState toReturn = rawState.withPropertiesOf(inputState);
+			BlockState defaultState = inputState.getBlock().defaultBlockState();
+			for (Property p : IGNORED_PROPERTIES) {
+				if (toReturn.hasProperty(p)) {
+					toReturn = toReturn.setValue(p, defaultState.getValue(p));
+
+				}
+			}
+
+			return toReturn;
 		});
 	}
 
@@ -55,9 +71,17 @@ public interface ModWeatheringCopper extends WeatheringCopper {
 		return getFirst(p_154907_.getBlock()).withPropertiesOf(p_154907_);
 	}
 
-	default Optional<BlockState> getNext(BlockState p_154893_) {
-		return getNext(p_154893_.getBlock()).map((p_154896_) -> {
-			return p_154896_.withPropertiesOf(p_154893_);
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	default Optional<BlockState> getNext(BlockState inputState) {
+		return getNext(inputState.getBlock()).map((rawState) -> {
+			BlockState toReturn = rawState.withPropertiesOf(inputState);
+			BlockState defaultState = inputState.getBlock().defaultBlockState();
+			for (Property p : IGNORED_PROPERTIES) {
+				if (toReturn.hasProperty(p)) {
+					toReturn = toReturn.setValue(p, defaultState.getValue(p));
+				}
+			}
+			return toReturn;
 		});
 	}
 

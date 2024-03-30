@@ -5,6 +5,7 @@ import com.thomas.zirconmod.ZirconMod;
 import com.thomas.zirconmod.block.ModBlocks;
 import com.thomas.zirconmod.block.custom.BlueberryCropBlock;
 import com.thomas.zirconmod.block.custom.BubblefruitCropBlock;
+import com.thomas.zirconmod.block.custom.CloudBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
@@ -58,9 +59,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.LIGHTNING_BLOCK, "cutout");
 		blockWithItem(ModBlocks.UNSTABLE_LIGHTNING_BLOCK, "cutout");
 		blockWithItem(ModBlocks.WISP_BED);
-		blockWithItem(ModBlocks.CLOUD);
-		blockWithItem(ModBlocks.MIST, "translucent");
-		blockWithItem(ModBlocks.SEALED_MIST, "translucent");
+		cloudBlock(ModBlocks.CLOUD.get(), "translucent");
+		cloudBlock(ModBlocks.MIST.get(), "translucent");
+		renamedCloudBlock(ModBlocks.THICK_MIST.get(), blockTexture(ModBlocks.MIST.get()).toString(),
+				blockTexture(ModBlocks.CLOUD.get()).toString(), "translucent");
+		cloudBlock(ModBlocks.SEALED_MIST.get(), "translucent");
 		blockWithItem(ModBlocks.THUNDER_CLOUD);
 		blockWithItem(ModBlocks.SEALED_CLOUD);
 		blockWithItem(ModBlocks.CLOUD_CONVERTER);
@@ -91,8 +94,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Register special blocks
 		makeZirconLamp(ModBlocks.ZIRCON_LAMP.get(), "zircon_lamp", "zircon_lamp");
 		anvilBlock((AnvilBlock) ModBlocks.NETHERITE_ANVIL.get());
-		
-		
+
 		// Palm furniture
 		palmFruitBlock((PalmFruitBlock) ModBlocks.PALM_FRUIT.get());
 		frondBlock((FrondBlock) ModBlocks.PALM_FROND.get());
@@ -140,15 +142,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		directionalPassageBlock((DirectionalPassageBlock) ModBlocks.WEATHER_PASSAGE_BLOCK.get(), "translucent");
 
 		// Copper buttons
-		buttonBlock(((ButtonBlock) ModBlocks.COPPER_BUTTON.get()), blockTexture(Blocks.CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.WEATHERED_COPPER_BUTTON.get()), blockTexture(Blocks.WEATHERED_CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.WAXED_COPPER_BUTTON.get()), blockTexture(Blocks.CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get()), blockTexture(Blocks.WEATHERED_CUT_COPPER));
-		buttonBlock(((ButtonBlock) ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_CUT_COPPER));
-		
+		buttonBlock(((ButtonBlock) ModBlocks.COPPER_BUTTON.get()), blockTexture(Blocks.COPPER_BLOCK));
+		buttonBlock(((ButtonBlock) ModBlocks.EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WEATHERED_COPPER_BUTTON.get()), blockTexture(Blocks.WEATHERED_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_COPPER_BUTTON.get()), blockTexture(Blocks.COPPER_BLOCK));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get()), blockTexture(Blocks.EXPOSED_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get()),
+				blockTexture(Blocks.WEATHERED_COPPER));
+		buttonBlock(((ButtonBlock) ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get()), blockTexture(Blocks.OXIDIZED_COPPER));
+
 		// Citrine blocks
 		blockWithItem(ModBlocks.CITRINE_BLOCK);
 		blockWithItem(ModBlocks.BUDDING_CITRINE);
@@ -199,10 +202,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Resonator block
 		resonatorBlock((ResonatorBlock) ModBlocks.RESONATOR_BLOCK.get(), "resonator", "resonator");
-		
+
 		// Charcoal block
 		blockWithItem(ModBlocks.CHARCOAL_BLOCK);
-		
+
 		// Ore and material stairs
 		stairsBlock(((StairBlock) ModBlocks.COAL_STAIRS.get()), blockTexture(Blocks.COAL_BLOCK));
 		stairsBlock(((StairBlock) ModBlocks.CHARCOAL_STAIRS.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()));
@@ -220,32 +223,51 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		stairsBlock(((StairBlock) ModBlocks.CRYING_OBSIDIAN_STAIRS.get()), blockTexture(Blocks.CRYING_OBSIDIAN));
 		stairsBlock(((StairBlock) ModBlocks.AMETHYST_STAIRS.get()), blockTexture(Blocks.AMETHYST_BLOCK));
 		stairsBlock(((StairBlock) ModBlocks.ZIRCON_STAIRS.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()));
-		stairsBlock(((StairBlock) ModBlocks.RAW_ZIRCONIUM_STAIRS.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
+		stairsBlock(((StairBlock) ModBlocks.RAW_ZIRCONIUM_STAIRS.get()),
+				blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
 		stairsBlock(((StairBlock) ModBlocks.ZIRCONIUM_STAIRS.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()));
 		stairsBlock(((StairBlock) ModBlocks.CITRINE_STAIRS.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()));
-		
+
 		// Ore and material slabs
-		slabBlock(((SlabBlock) ModBlocks.COAL_SLAB.get()), blockTexture(Blocks.COAL_BLOCK), blockTexture(Blocks.COAL_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.CHARCOAL_SLAB.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()));
-		slabBlock(((SlabBlock) ModBlocks.AMETHYST_SLAB.get()), blockTexture(Blocks.AMETHYST_BLOCK), blockTexture(Blocks.AMETHYST_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.RAW_COPPER_SLAB.get()), blockTexture(Blocks.RAW_COPPER_BLOCK), blockTexture(Blocks.RAW_COPPER_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.RAW_IRON_SLAB.get()), blockTexture(Blocks.RAW_IRON_BLOCK), blockTexture(Blocks.RAW_IRON_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.IRON_SLAB.get()), blockTexture(Blocks.IRON_BLOCK), blockTexture(Blocks.IRON_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.RAW_GOLD_SLAB.get()), blockTexture(Blocks.RAW_GOLD_BLOCK), blockTexture(Blocks.RAW_GOLD_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.GOLD_SLAB.get()), blockTexture(Blocks.GOLD_BLOCK), blockTexture(Blocks.GOLD_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.REDSTONE_SLAB.get()), blockTexture(Blocks.REDSTONE_BLOCK), blockTexture(Blocks.REDSTONE_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.LAPIS_SLAB.get()), blockTexture(Blocks.LAPIS_BLOCK), blockTexture(Blocks.LAPIS_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.EMERALD_SLAB.get()), blockTexture(Blocks.EMERALD_BLOCK), blockTexture(Blocks.EMERALD_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.DIAMOND_SLAB.get()), blockTexture(Blocks.DIAMOND_BLOCK), blockTexture(Blocks.DIAMOND_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.NETHERITE_SLAB.get()), blockTexture(Blocks.NETHERITE_BLOCK), blockTexture(Blocks.NETHERITE_BLOCK));
-		slabBlock(((SlabBlock) ModBlocks.OBSIDIAN_SLAB.get()), blockTexture(Blocks.OBSIDIAN), blockTexture(Blocks.OBSIDIAN));
-		slabBlock(((SlabBlock) ModBlocks.CRYING_OBSIDIAN_SLAB.get()), blockTexture(Blocks.CRYING_OBSIDIAN), blockTexture(Blocks.CRYING_OBSIDIAN));
-		slabBlock(((SlabBlock) ModBlocks.ZIRCON_SLAB.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()));
-		slabBlock(((SlabBlock) ModBlocks.RAW_ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
-		slabBlock(((SlabBlock) ModBlocks.ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()));
-		slabBlock(((SlabBlock) ModBlocks.CITRINE_SLAB.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()));
-		
-		
+		slabBlock(((SlabBlock) ModBlocks.COAL_SLAB.get()), blockTexture(Blocks.COAL_BLOCK),
+				blockTexture(Blocks.COAL_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.CHARCOAL_SLAB.get()), blockTexture(ModBlocks.CHARCOAL_BLOCK.get()),
+				blockTexture(ModBlocks.CHARCOAL_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.AMETHYST_SLAB.get()), blockTexture(Blocks.AMETHYST_BLOCK),
+				blockTexture(Blocks.AMETHYST_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_COPPER_SLAB.get()), blockTexture(Blocks.RAW_COPPER_BLOCK),
+				blockTexture(Blocks.RAW_COPPER_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_IRON_SLAB.get()), blockTexture(Blocks.RAW_IRON_BLOCK),
+				blockTexture(Blocks.RAW_IRON_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.IRON_SLAB.get()), blockTexture(Blocks.IRON_BLOCK),
+				blockTexture(Blocks.IRON_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.RAW_GOLD_SLAB.get()), blockTexture(Blocks.RAW_GOLD_BLOCK),
+				blockTexture(Blocks.RAW_GOLD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.GOLD_SLAB.get()), blockTexture(Blocks.GOLD_BLOCK),
+				blockTexture(Blocks.GOLD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.REDSTONE_SLAB.get()), blockTexture(Blocks.REDSTONE_BLOCK),
+				blockTexture(Blocks.REDSTONE_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.LAPIS_SLAB.get()), blockTexture(Blocks.LAPIS_BLOCK),
+				blockTexture(Blocks.LAPIS_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.EMERALD_SLAB.get()), blockTexture(Blocks.EMERALD_BLOCK),
+				blockTexture(Blocks.EMERALD_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.DIAMOND_SLAB.get()), blockTexture(Blocks.DIAMOND_BLOCK),
+				blockTexture(Blocks.DIAMOND_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.NETHERITE_SLAB.get()), blockTexture(Blocks.NETHERITE_BLOCK),
+				blockTexture(Blocks.NETHERITE_BLOCK));
+		slabBlock(((SlabBlock) ModBlocks.OBSIDIAN_SLAB.get()), blockTexture(Blocks.OBSIDIAN),
+				blockTexture(Blocks.OBSIDIAN));
+		slabBlock(((SlabBlock) ModBlocks.CRYING_OBSIDIAN_SLAB.get()), blockTexture(Blocks.CRYING_OBSIDIAN),
+				blockTexture(Blocks.CRYING_OBSIDIAN));
+		slabBlock(((SlabBlock) ModBlocks.ZIRCON_SLAB.get()), blockTexture(ModBlocks.ZIRCON_BLOCK.get()),
+				blockTexture(ModBlocks.ZIRCON_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.RAW_ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()),
+				blockTexture(ModBlocks.RAW_ZIRCONIUM_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.ZIRCONIUM_SLAB.get()), blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()),
+				blockTexture(ModBlocks.ZIRCONIUM_BLOCK.get()));
+		slabBlock(((SlabBlock) ModBlocks.CITRINE_SLAB.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()),
+				blockTexture(ModBlocks.CITRINE_BLOCK.get()));
+
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -350,12 +372,58 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			model = models()
 					.withExistingParent(blockTexture(block).toString(), new ResourceLocation("block/template_anvil"))
-					.texture("particle", blockTexture(block).toString())
-					.texture("body", blockTexture(block).toString())
+					.texture("particle", blockTexture(block).toString()).texture("body", blockTexture(block).toString())
 					.texture("top", blockTexture(block).toString() + "_top");
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		});
+	}
+
+	private void cloudBlock(Block block, String renderType) {
+
+		getVariantBuilder(block).forAllStates(state -> {
+			int strength = state.getValue(CloudBlock.SOLIDIFIER_DISTANCE);
+
+			String texture = blockTexture(block).toString();
+
+			if (strength == CloudBlock.MAX_DISTANCE) {
+				texture += "_passable";
+			}
+
+			ModelFile model;
+
+			model = models().withExistingParent(texture, new ResourceLocation("block/cube_all")).texture("all", texture)
+					.renderType(renderType);
+
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+
+		ModelFile model = models().cubeAll(blockTexture(block).toString(), blockTexture(block)).renderType(renderType);
+		simpleBlockItem(block, model);
+	}
+
+	private void renamedCloudBlock(Block block, String passable, String impassable, String renderType) {
+
+		getVariantBuilder(block).forAllStates(state -> {
+			int strength = state.getValue(CloudBlock.SOLIDIFIER_DISTANCE);
+
+			String texture = impassable;
+
+			if (strength == CloudBlock.MAX_DISTANCE) {
+				texture = passable;
+			}
+
+			ModelFile model;
+
+			model = models().withExistingParent(texture, new ResourceLocation("block/cube_all")).texture("all", texture)
+					.renderType(renderType);
+
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+
+		ModelFile model = models().withExistingParent(impassable, new ResourceLocation("block/cube_all"))
+				.texture("all", impassable).renderType(renderType);
+		simpleBlockItem(block, model);
 	}
 
 	private void floorFrondBlock(FloorFrondBlock block) {

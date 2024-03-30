@@ -95,6 +95,7 @@
 	"block.zirconmod.quicksand": "Quicksand",
 	"block.zirconmod.cloud": "Cloud",
 	"block.zirconmod.mist": "Mist",
+	"block.zirconmod.thick_mist": "Thick Mist",
 	"block.zirconmod.thunder_cloud": "Thunder Cloud",
 	"block.zirconmod.sealed_cloud": "Sealed Cloud",
 	"block.zirconmod.sealed_mist": "Sealed Mist",
@@ -175,6 +176,15 @@
 	"block.zirconmod.zirconium_slab": "Zirconium Slab",
 	"block.zirconmod.raw_zirconium_slab": "Raw Zirconium Slab",
 	"block.zirconmod.citrine_slab": "Citrine Slab",
+	
+	"block.zirconmod.copper_button": "Copper Button",
+	"block.zirconmod.exposed_copper_button": "Exposed Copper Button",
+	"block.zirconmod.weathered_copper_button": "Weathered Copper Button",
+	"block.zirconmod.oxidized_copper_button": "Oxidized Copper Button",
+	"block.zirconmod.waxed_copper_button": "Waxed Copper Button",
+	"block.zirconmod.waxed_exposed_copper_button": "Waxed Exposed Copper Button",
+	"block.zirconmod.waxed_weathered_copper_button": "Waxed Weathered Copper Button",
+	"block.zirconmod.waxed_oxidized_copper_button": "Waxed Oxidized Copper Button",
 	
 	"block.zirconmod.palm_trunk": "Palm Trunk",
 	"block.zirconmod.palm_fruit": "Palm Fruit",

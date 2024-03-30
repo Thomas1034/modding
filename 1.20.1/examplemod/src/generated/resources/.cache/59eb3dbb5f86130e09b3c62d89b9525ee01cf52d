@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-27T12:01:11.7796005	Loot Tables
+// 1.20.1	2024-03-29T15:58:56.8266749	Loot Tables
 19937ff0eeef9139e5418e6b08669bbc08dd7921 data/zirconmod/loot_tables/blocks/amethyst_slab.json
 7b4ca55560c4a21c24d44b60fb614158dfe95122 data/zirconmod/loot_tables/blocks/amethyst_stairs.json
 674b14ad9c1544e271a87fad9e831ec2b82df8ab data/zirconmod/loot_tables/blocks/architect_worksite.json
@@ -104,6 +104,7 @@ c9aba48f1fa5bfa0bf2234a4b546d1b8a4605d02 data/zirconmod/loot_tables/blocks/seale
 20d98bd6a4e942eec5aa82090dbd3b5ce241172e data/zirconmod/loot_tables/blocks/small_citrine_bud.json
 cd79db95d4b520a6be9cb79428b499a20b9cde2b data/zirconmod/loot_tables/blocks/stripped_palm_log.json
 004d371c59f1c21a3c1862d26d8c589b80cfc0ab data/zirconmod/loot_tables/blocks/stripped_palm_wood.json
+f6af60fdc14fc7b6bc48fb9bdb842f4a744bf303 data/zirconmod/loot_tables/blocks/thick_mist.json
 c77f9654d0befeb3d856ff03c6a097aedde6a98a data/zirconmod/loot_tables/blocks/thirsty_mud_bricks.json
 8b40f096fa2e77c128b5ebe6c8a7e6f4f2ace90e data/zirconmod/loot_tables/blocks/thirsty_packed_mud.json
 6cff4a8c0cd99a6dba66990226645ab1eb07719e data/zirconmod/loot_tables/blocks/thunder_cloud.json

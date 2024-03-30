@@ -212,6 +212,19 @@ public class ModBlocks {
 									type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
 											|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
 							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
+	
+	// Transparent cloud block
+		public static final RegistryObject<Block> THICK_MIST = registerBlock("thick_mist",
+				() -> new CloudBlock(
+						BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F).pushReaction(PushReaction.DESTROY)
+								.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+								.isValidSpawn((state, level, pos,
+										type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+												|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+								.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
+		
+	
+	// Indestructible cloud block
 	public static final RegistryObject<Block> SEALED_MIST = registerBlock("sealed_mist",
 			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
 					.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
