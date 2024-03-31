@@ -289,7 +289,7 @@ public class ModEvents {
 					    System.out.println("Setting no physics!");
 					    Entity owner = trident.getOwner();
 					    Vec3 pos = owner.position();
-					    trident.setPosRaw(pos.x, pos.y, pos.z);
+					    return;
 					}
 					
 					// Store some data.
