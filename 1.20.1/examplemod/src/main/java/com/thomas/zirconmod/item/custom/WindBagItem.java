@@ -45,7 +45,6 @@ public class WindBagItem extends Item {
 			// Damage the item.
 			if (!player.getAbilities().instabuild) {
 				itemstack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
-				System.out.println(itemstack.getCount() + " durability left.");
 				if (itemstack.isEmpty()) {
 					System.out.println("Gifting.");
 					player.addItem(new ItemStack(this.onUse));
@@ -54,14 +53,25 @@ public class WindBagItem extends Item {
 			
 			// Refill air. Because why not.
 			sp.setAirSupply(sp.getMaxAirSupply());
+			// Also reset fall distance.
+			sp.resetFallDistance();
 
 			// Propel if flying
 			if (sp.isFallFlying()) {
+				
 				sp.addEffect(new MobEffectInstance(ModEffects.PROPELLED.get(), this.duration, (int) this.power * 5));
 				// Set a cooldown.
 				player.getCooldowns().addCooldown(this, this.duration);
 			} else if (!sp.isFallFlying()) {
-				Vec3 charge = sp.getLookAngle().scale(this.power).multiply(1, 1.5, 1);
+				// Otherwise, burst charge.
+				Vec3 charge = sp.getLookAngle().scale(this.power);
+				if (charge.y > 0) {
+					charge = charge.multiply(1f, 1.5f, 1.5f);
+				}
+				// Invert if holding shift.
+				if (sp.isShiftKeyDown()) {
+					charge = charge.scale(-1);
+				}
 				ModPacketHandler.sendToPlayer(new PlayerAddVelocityPacket(charge), sp);
 				// Set a cooldown.
 				player.getCooldowns().addCooldown(this, (int) (this.power * 10));

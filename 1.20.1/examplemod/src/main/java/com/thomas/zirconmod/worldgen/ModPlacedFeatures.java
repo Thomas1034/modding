@@ -45,6 +45,8 @@ public class ModPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> BUBBLEFRUIT_PATCH_PLACED_KEY = registerKey("bubblefruit_patch_placed");
 
+	public static final ResourceKey<PlacedFeature> WHITE_ORCHID_PATCH_PLACED_KEY = registerKey("white_orchid_patch_placed");
+
 	
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -91,6 +93,9 @@ public class ModPlacedFeatures {
 		
 		register(context, BUBBLEFRUIT_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BUBBLEFRUIT_PATCH_KEY),
 				ModPlacement.rareAboveBottomRangePlacement(176, 208, 16));
+		
+		register(context, WHITE_ORCHID_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WHITE_ORCHID_PATCH_KEY),
+				ModPlacement.commonAboveBottomRangePlacement(0, 128, 2));
 
 	}
 

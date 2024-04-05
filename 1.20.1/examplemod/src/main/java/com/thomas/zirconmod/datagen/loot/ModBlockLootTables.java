@@ -66,6 +66,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
 		this.dropSelf(ModBlocks.PALM_STAIRS.get());
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
+		this.dropSelf(ModBlocks.SKY_BLOCK.get());
 		this.dropSelf(ModBlocks.CLOUD.get());
 		this.dropSelf(ModBlocks.MIST.get());
 		this.dropSelf(ModBlocks.THICK_MIST.get());
@@ -187,6 +188,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 		this.add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
 				createPotFlowerItemTable(ModBlocks.ILLUMINATED_TORCHFLOWER.get()));
+		
+		// White orchid
+		this.dropSelf(ModBlocks.WHITE_ORCHID.get());
+		this.add(ModBlocks.POTTED_WHITE_ORCHID.get(),
+				createPotFlowerItemTable(ModBlocks.WHITE_ORCHID.get()));
+		
+		// Potted palm sapling
+		this.add(ModBlocks.POTTED_PALM_SAPLING.get(),
+				createPotFlowerItemTable(ModBlocks.PALM_SAPLING.get()));
 
 		// Villager workstations
 		this.dropSelf(ModBlocks.CARPENTRY_TABLE.get());

@@ -13,6 +13,7 @@ import com.thomas.zirconmod.block.custom.CloudConverterBlock;
 import com.thomas.zirconmod.block.custom.CloudDetectorBlock;
 import com.thomas.zirconmod.block.custom.CloudInverterBlock;
 import com.thomas.zirconmod.block.custom.DirectionalPassageBlock;
+import com.thomas.zirconmod.block.custom.DynamicColorBlock;
 import com.thomas.zirconmod.block.custom.FloorFrondBlock;
 import com.thomas.zirconmod.block.custom.FrondBlock;
 import com.thomas.zirconmod.block.custom.GemBracketBlock;
@@ -212,18 +213,17 @@ public class ModBlocks {
 									type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
 											|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
 							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
-	
+
 	// Transparent cloud block
-		public static final RegistryObject<Block> THICK_MIST = registerBlock("thick_mist",
-				() -> new CloudBlock(
-						BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F).pushReaction(PushReaction.DESTROY)
-								.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
-								.isValidSpawn((state, level, pos,
-										type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
-												|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
-								.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
-		
-	
+	public static final RegistryObject<Block> THICK_MIST = registerBlock("thick_mist",
+			() -> new CloudBlock(
+					BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F).pushReaction(PushReaction.DESTROY)
+							.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+							.isValidSpawn((state, level, pos,
+									type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+											|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
+
 	// Indestructible cloud block
 	public static final RegistryObject<Block> SEALED_MIST = registerBlock("sealed_mist",
 			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
@@ -366,6 +366,10 @@ public class ModBlocks {
 					return state.is(BlockTags.DIRT) || state.is(Blocks.FARMLAND) || state.is(BlockTags.SAND);
 				}
 			});
+
+	public static final RegistryObject<Block> POTTED_PALM_SAPLING = BLOCKS.register("potted_palm_sapling",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.PALM_SAPLING,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_OAK_SAPLING).noOcclusion()));
 
 	public static final RegistryObject<Block> PALM_FROND = registerFuelBlock("palm_frond",
 			() -> new FrondBlock(
@@ -580,7 +584,7 @@ public class ModBlocks {
 
 	// Modded Torchflower
 	public static final RegistryObject<Block> ILLUMINATED_TORCHFLOWER = registerBlock("illuminated_torchflower",
-			() -> new FlowerBlock(() -> MobEffects.GLOWING, 5,
+			() -> new FlowerBlock(() -> MobEffects.GLOWING, 16,
 					BlockBehaviour.Properties.copy(Blocks.TORCHFLOWER).noOcclusion().noCollission()
 							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 14)));
 
@@ -590,7 +594,20 @@ public class ModBlocks {
 					BlockBehaviour.Properties.copy(Blocks.POTTED_TORCHFLOWER).noOcclusion()
 							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 12)));
 
-	// Amethyst lantern
+	// Modded orchid
+	public static final RegistryObject<Block> WHITE_ORCHID = registerBlock("white_orchid",
+			() -> new FlowerBlock(() -> MobEffects.LEVITATION, 8,
+					BlockBehaviour.Properties.copy(Blocks.BLUE_ORCHID).noOcclusion().noCollission()
+							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 1)));
+	
+	public static final RegistryObject<Block> POTTED_WHITE_ORCHID = BLOCKS.register(
+			"potted_white_orchid",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WHITE_ORCHID,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()
+							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 2)));
+
+	
+	// Citrine lantern
 	public static final RegistryObject<Block> CITRINE_LANTERN = registerBlock("citrine_lantern",
 			() -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
 
@@ -851,23 +868,32 @@ public class ModBlocks {
 
 	// Copper buttons
 	public static final RegistryObject<Block> COPPER_BUTTON = registerBlock("copper_button",
-			() -> new WeatheringCopperButtonBlock(WeatherState.UNAFFECTED, 80, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+			() -> new WeatheringCopperButtonBlock(WeatherState.UNAFFECTED, 80,
+					BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
 	public static final RegistryObject<Block> EXPOSED_COPPER_BUTTON = registerBlock("exposed_copper_button",
-			() -> new WeatheringCopperButtonBlock(WeatherState.EXPOSED, 40, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+			() -> new WeatheringCopperButtonBlock(WeatherState.EXPOSED, 40,
+					BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
 	public static final RegistryObject<Block> WEATHERED_COPPER_BUTTON = registerBlock("weathered_copper_button",
-			() -> new WeatheringCopperButtonBlock(WeatherState.WEATHERED, 20, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+			() -> new WeatheringCopperButtonBlock(WeatherState.WEATHERED, 20,
+					BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
 	public static final RegistryObject<Block> OXIDIZED_COPPER_BUTTON = registerBlock("oxidized_copper_button",
-			() -> new WeatheringCopperButtonBlock(WeatherState.OXIDIZED, 10, BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
+			() -> new WeatheringCopperButtonBlock(WeatherState.OXIDIZED, 10,
+					BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).randomTicks()));
 	public static final RegistryObject<Block> WAXED_COPPER_BUTTON = registerBlock("waxed_copper_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 80, false));
 	public static final RegistryObject<Block> WAXED_EXPOSED_COPPER_BUTTON = registerBlock("waxed_exposed_copper_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 40, false));
-	public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = registerBlock("waxed_weathered_copper_button",
+	public static final RegistryObject<Block> WAXED_WEATHERED_COPPER_BUTTON = registerBlock(
+			"waxed_weathered_copper_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 20, false));
-	public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = registerBlock("waxed_oxidized_copper_button",
+	public static final RegistryObject<Block> WAXED_OXIDIZED_COPPER_BUTTON = registerBlock(
+			"waxed_oxidized_copper_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 10, false));
-	
-	
+
+	// Sky block
+	public static final RegistryObject<Block> SKY_BLOCK = registerBlock("sky_block", () -> new DynamicColorBlock(
+			BlockBehaviour.Properties.copy(Blocks.GLASS).lightLevel((state) -> 15).sound(SoundType.GLASS)));
+
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -21,6 +21,7 @@ import com.thomas.zirconmod.item.custom.ModSmithingTemplateItem;
 import com.thomas.zirconmod.item.custom.PineconeItem;
 import com.thomas.zirconmod.item.custom.ReturningTotemItem;
 import com.thomas.zirconmod.item.custom.SearchEyeItem;
+import com.thomas.zirconmod.item.custom.SpearItem;
 import com.thomas.zirconmod.item.custom.SpeedometerItem;
 import com.thomas.zirconmod.item.custom.WindBagItem;
 import com.thomas.zirconmod.item.custom.wings.AncientFeatherWingsItem;
@@ -317,6 +318,11 @@ public class ModItems {
 	public static final RegistryObject<Item> COPPER_WINGS = ITEMS.register("copper_wings",
 			() -> new CopperArmoredWingsItem(ModArmorMaterials.COPPER, Type.CHESTPLATE,
 					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
+	
+	// Spears
+	public static final RegistryObject<Item> ZIRCONIUM_SPEAR = ITEMS.register("zirconium_spear",
+			() -> new SpearItem(ModToolTiers.ZIRCONIUM, 1, -3.0F, new Item.Properties().fireResistant()));
+
 	
 	public static final RegistryObject<Item> ANCIENT_FEATHER_WINGS = ITEMS.register("ancient_feather_wings",
 			() -> new AncientFeatherWingsItem(new Item.Properties().durability(108).rarity(Rarity.UNCOMMON)));

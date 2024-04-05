@@ -1,6 +1,8 @@
 package com.thomas.zirconmod.event;
 
 import com.thomas.zirconmod.ZirconMod;
+import com.thomas.zirconmod.block.ModBlocks;
+import com.thomas.zirconmod.block.custom.DynamicColorBlock;
 import com.thomas.zirconmod.block.entity.ModBlockEntities;
 import com.thomas.zirconmod.entity.client.ModModelLayers;
 import com.thomas.zirconmod.entity.client.WingsLayer;
@@ -21,6 +23,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -72,6 +75,12 @@ public class ModEventBusClientEvents {
 						Minecraft.getInstance().getEntityModels()));
 			}
 		});
+	}
+	
+	
+	@SubscribeEvent
+	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+		event.register(DynamicColorBlock::skyColors, ModBlocks.SKY_BLOCK.get());
 	}
 
 }

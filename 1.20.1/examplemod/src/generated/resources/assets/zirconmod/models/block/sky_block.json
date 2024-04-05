@@ -1,0 +1,6 @@
+{
+  "parent": "zirconmod:block/tinted_block",
+  "textures": {
+    "all": "zirconmod:block/sky_block"
+  }
+}

@@ -28,7 +28,6 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("resonator", () ->
                     BlockEntityType.Builder.of(ResonatorBlockEntity::new,
                             ModBlocks.RESONATOR_BLOCK.get()).build(null));
-
     
 
     public static void register(IEventBus eventBus) {

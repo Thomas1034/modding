@@ -754,4 +754,14 @@ public class Utilities {
 
 		return pos;
 	}
+	
+	// Splits argb channels into int array r g b a.
+	public static int[] splitChannels(int color) {
+		return new int[] {(color >> 16) & 0xFF, (color >> 8) & 0xFF, (color >> 0) & 0xFF, (color >> 24) & 0xFF};
+	}
+	
+	// Reverses splitChannels
+	public static int mergeChannels(int[] channels) {
+		return (channels[0] << 16) + (channels[1] << 8) + (channels[2] << 0) + (channels[3] << 24);
+	}
 }

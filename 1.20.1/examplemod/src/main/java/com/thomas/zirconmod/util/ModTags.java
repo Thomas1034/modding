@@ -23,6 +23,9 @@ public class ModTags {
 		public static final TagKey<Block> NEEDS_COPPER_TOOL = tag("needs_copper_tool");
 		public static final TagKey<Block> NEEDS_ZIRCONIUM_TOOL = tag("needs_zirconium_tool");
 		public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
+		public static final TagKey<Block> CLOUD_PLANTS = tag("cloud_plants");
+		public static final TagKey<Block> SPEAR_EFFICIENT = tag("spear_efficient");
+
 
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));

@@ -63,6 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(ModBlocks.PALM_SAPLING);
 		simpleBlockItem(ModBlocks.CITRINE_LANTERN);
 		simpleBlockItemBlockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER);
+		simpleBlockItemBlockTexture(ModBlocks.WHITE_ORCHID);
 		simpleBlockItem(ModBlocks.CITRINE_CLUSTER);
 		simpleBlockItem(ModBlocks.LARGE_CITRINE_BUD);
 		simpleBlockItem(ModBlocks.MEDIUM_CITRINE_BUD);
@@ -268,5 +269,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return withExistingParent(block.getId().getPath(), new ResourceLocation("block/cube_column"))
 				.texture("side", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()))
 				.texture("end", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath() + "_top"));
+	}
+	
+	// TODO
+	// Make a template, and figure out how to link the textures?
+	private ItemModelBuilder dualModelItem(RegistryObject<Item> item) {
+		return withExistingParent(item.getId().getPath(), new ResourceLocation("item/handheld")).texture("layer0",
+				new ResourceLocation(ZirconMod.MOD_ID, "item/" + item.getId().getPath()));
 	}
 }

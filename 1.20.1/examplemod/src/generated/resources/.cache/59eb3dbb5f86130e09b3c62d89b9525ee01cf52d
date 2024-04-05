@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-29T15:58:56.8266749	Loot Tables
+// 1.20.1	2024-04-04T17:13:08.6488069	Loot Tables
 19937ff0eeef9139e5418e6b08669bbc08dd7921 data/zirconmod/loot_tables/blocks/amethyst_slab.json
 7b4ca55560c4a21c24d44b60fb614158dfe95122 data/zirconmod/loot_tables/blocks/amethyst_stairs.json
 674b14ad9c1544e271a87fad9e831ec2b82df8ab data/zirconmod/loot_tables/blocks/architect_worksite.json
@@ -81,6 +81,8 @@ e987b9b4b843d1e93a6ea22b5cc54875c1946fc9 data/zirconmod/loot_tables/blocks/palm_
 e8fa8bfbf1cd4ca184851ae6b80020be841b9ee0 data/zirconmod/loot_tables/blocks/palm_wood.json
 dc0c50f2689a66434b251e19884480540fc60523 data/zirconmod/loot_tables/blocks/petrified_log.json
 3dd2e3bba9f63cec9862af5b65aee79c24568a82 data/zirconmod/loot_tables/blocks/potted_illuminated_torchflower.json
+fd707058bd32083287b40b315fd06beed9dbb5b6 data/zirconmod/loot_tables/blocks/potted_palm_sapling.json
+2eb8160e3a3213c9b1957b69cf9f24b09537e598 data/zirconmod/loot_tables/blocks/potted_white_orchid.json
 99ce87ce389a9cf14bd24c5c73f1c19f5ae49edd data/zirconmod/loot_tables/blocks/quicksand.json
 725cb3d3ace92b8559daa8c93b7a4e48eb59a74d data/zirconmod/loot_tables/blocks/raw_copper_slab.json
 8cc898d6ca6a2051c1d72113dca231a5d3d0c9fb data/zirconmod/loot_tables/blocks/raw_copper_stairs.json
@@ -101,6 +103,7 @@ e46e051a1efd68a163b293fd73407d7689ea3ea3 data/zirconmod/loot_tables/blocks/redst
 691d13805ce649f0b5ec6318188f4f3df2717b01 data/zirconmod/loot_tables/blocks/sealed_cloud_bricks.json
 416f984bedd850dfaf2465c868bb8827e92b2b40 data/zirconmod/loot_tables/blocks/sealed_mist.json
 c9aba48f1fa5bfa0bf2234a4b546d1b8a4605d02 data/zirconmod/loot_tables/blocks/sealed_thunder_cloud_bricks.json
+642d07af254767dff8a43bf420096ad4fd547b21 data/zirconmod/loot_tables/blocks/sky_block.json
 20d98bd6a4e942eec5aa82090dbd3b5ce241172e data/zirconmod/loot_tables/blocks/small_citrine_bud.json
 cd79db95d4b520a6be9cb79428b499a20b9cde2b data/zirconmod/loot_tables/blocks/stripped_palm_log.json
 004d371c59f1c21a3c1862d26d8c589b80cfc0ab data/zirconmod/loot_tables/blocks/stripped_palm_wood.json
@@ -121,6 +124,7 @@ def0ce964c4c647094d34ea0b8ca1a22fa116103 data/zirconmod/loot_tables/blocks/waxed
 1fa82107b1654569810382ae6a0e3aaf16235ea8 data/zirconmod/loot_tables/blocks/waxed_weathered_copper_button.json
 2d3a45f69a9a4c11f545fcade1252db6fb275c0d data/zirconmod/loot_tables/blocks/weathered_copper_button.json
 e700701b08c00f43c2f1e8cb1041efbd4acf1014 data/zirconmod/loot_tables/blocks/weather_passage_block.json
+f8b1a271d49209245a510c660b38d358964bd6b2 data/zirconmod/loot_tables/blocks/white_orchid.json
 f519b37871bff9b566111c0112027430992c3709 data/zirconmod/loot_tables/blocks/wisp_bed.json
 a41e803968ca7b429f4d07fc6017459f65b72235 data/zirconmod/loot_tables/blocks/zirconium_block.json
 47e019249a91c9fc87f284599e1dfb82d564b51c data/zirconmod/loot_tables/blocks/zirconium_slab.json

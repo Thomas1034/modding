@@ -47,9 +47,7 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -111,6 +109,10 @@ public class ZirconMod {
 			// Add the right click to add to flowerpot event.
 			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ILLUMINATED_TORCHFLOWER.getId(),
 					ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(),
+					ModBlocks.POTTED_PALM_SAPLING);
+			((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(),
+					ModBlocks.POTTED_WHITE_ORCHID);
 
 			SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID,
 					ModSurfaceRules.makeRules());

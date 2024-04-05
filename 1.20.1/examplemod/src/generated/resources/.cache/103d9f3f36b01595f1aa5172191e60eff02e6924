@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-19T17:33:55.8848403	Registries
+// 1.20.1	2024-04-04T23:16:05.2065266	Registries
 c74cd68492fe5b88e353fb4d0439ae6ac0573a53 data/zirconmod/dimension/sky_dim.json
 2f5aac9fb595543d0fd50beb41c5efeb3d98fe24 data/zirconmod/dimension_type/sky_type.json
 d68d42768703fbf7012d6b150278127dbb807f41 data/zirconmod/forge/biome_modifier/add_citrine_geode.json
@@ -22,6 +22,7 @@ ff362245d26301fd451675562fafbae722185485 data/zirconmod/worldgen/configured_feat
 d9ef2f0a116e5b3b226d7041be6d9c3381688826 data/zirconmod/worldgen/configured_feature/sculk_hostiles.json
 801aa6a77d303e8ec3d901dc46030ec70611aa8b data/zirconmod/worldgen/configured_feature/stone_patch.json
 246a19bbf9d8f18cce2a100c18ba2ac840153de0 data/zirconmod/worldgen/configured_feature/thick_cloud_ceiling.json
+03663045795479953c3aeab5c5e6cf4ae884a899 data/zirconmod/worldgen/configured_feature/white_orchid.json
 f8bbab98d0b73026ce1d0a88b1f1721a31fe28af data/zirconmod/worldgen/configured_feature/zircon_ore.json
 38f6d7875e3195bdaee448d2cb6917f3ae4994af data/zirconmod/worldgen/density_function/base_3d_noise_sky.json
 b994dbe2cb5a71e4a96d87e31aa723d37cd426cf data/zirconmod/worldgen/noise/temperature.json
@@ -38,4 +39,5 @@ cb7f5b39d1f543c4f8fdabd74ace587d660f15ca data/zirconmod/worldgen/placed_feature/
 ee93959e417464c46e91ee548e5c896487fae460 data/zirconmod/worldgen/placed_feature/sculk_hostiles_placed.json
 613b6d5cad3c81518cebf7e26c205e10107e0c76 data/zirconmod/worldgen/placed_feature/stone_patch_placed.json
 567ac67f85baff31ddc5b2fb0c094852c9e1a267 data/zirconmod/worldgen/placed_feature/thick_cloud_ceiling_placed.json
+47ed3cc0480cd05d3fd68dfc51f847bca607d6a7 data/zirconmod/worldgen/placed_feature/white_orchid_patch_placed.json
 f57c42598c784e3c76ea8942adb50bd831988f64 data/zirconmod/worldgen/placed_feature/zircon_ore_placed.json

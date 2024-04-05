@@ -51,8 +51,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.RAW_IRON_STAIRS.get(), ModBlocks.IRON_SLAB.get(), ModBlocks.IRON_STAIRS.get(),
 				ModBlocks.ZIRCON_SLAB.get(), ModBlocks.ZIRCON_STAIRS.get(), ModBlocks.CITRINE_SLAB.get(),
 				ModBlocks.CITRINE_STAIRS.get(), ModBlocks.AMETHYST_SLAB.get(), ModBlocks.AMETHYST_STAIRS.get(),
-				ModBlocks.COAL_SLAB.get(), ModBlocks.COAL_STAIRS.get(), ModBlocks.COPPER_BUTTON.get(), ModBlocks.EXPOSED_COPPER_BUTTON.get(),
-				ModBlocks.WEATHERED_COPPER_BUTTON.get(), ModBlocks.OXIDIZED_COPPER_BUTTON.get());
+				ModBlocks.COAL_SLAB.get(), ModBlocks.COAL_STAIRS.get(), ModBlocks.COPPER_BUTTON.get(),
+				ModBlocks.EXPOSED_COPPER_BUTTON.get(), ModBlocks.WEATHERED_COPPER_BUTTON.get(),
+				ModBlocks.OXIDIZED_COPPER_BUTTON.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -115,6 +116,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.LOGS).add(ModBlocks.PALM_TRUNK.get(), ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get());
 
+		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
+				ModBlocks.POTTED_PALM_SAPLING.get(), ModBlocks.POTTED_WHITE_ORCHID.get());
+		
+		this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.ILLUMINATED_TORCHFLOWER.get(), ModBlocks.WHITE_ORCHID.get());
+		
 		// Cloud furniture
 		this.tag(BlockTags.WALLS).add(ModBlocks.CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
@@ -155,9 +161,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		addMediumCloudSolidifier(ModBlocks.MEDIUM_CITRINE_BUD.get());
 		addWeakCloudSolidifier(ModBlocks.SMALL_CITRINE_BUD.get());
 		addWeakCloudSolidifier(ModBlocks.CITRINE_BLOCK.get());
-
-		// this.tag(BlockTags.FENCES).add(ModBlocks.SAPPHIRE_FENCE.get());
-		// this.tag(BlockTags.FENCE_GATES).add(ModBlocks.SAPPHIRE_FENCE_GATE.get());
+		addCloudPlant(ModBlocks.BUBBLEFRUIT_CROP.get());
+		addCloudPlant(ModBlocks.WHITE_ORCHID.get());
+		addCloudPlant(Blocks.BLUE_ORCHID);
 
 	}
 
@@ -174,5 +180,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 	private void addWeakCloudSolidifier(Block b) {
 		this.tag(ModTags.Blocks.CLOUD_SOLIDIFYING_BLOCKS).add(b);
 		this.tag(ModTags.Blocks.WEAK_CLOUD_SOLIDIFYING_BLOCKS).add(b);
+	}
+	
+	private void addCloudPlant(Block b) {
+		this.tag(ModTags.Blocks.CLOUD_PLANTS).add(b);
 	}
 }

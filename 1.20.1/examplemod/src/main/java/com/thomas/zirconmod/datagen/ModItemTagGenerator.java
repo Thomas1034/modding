@@ -90,6 +90,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.STAIRS).add(ModBlocks.PALM_STAIRS.get().asItem());
 		this.tag(ItemTags.WOODEN_STAIRS).add(ModBlocks.PALM_STAIRS.get().asItem());
 
+		// Tag flowers
+		this.tag(ItemTags.SMALL_FLOWERS).add(ModBlocks.ILLUMINATED_TORCHFLOWER.get().asItem(),
+				ModBlocks.WHITE_ORCHID.get().asItem());
+
 		// Marks Echo Powder as a sculk awakening item.
 		this.tag(ModTags.Items.SCULK_AWAKENING_ITEMS).add(ModItems.ECHO_POWDER.get());
 

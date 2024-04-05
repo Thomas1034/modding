@@ -9,6 +9,7 @@ import com.thomas.zirconmod.entity.ModEntityType;
 import com.thomas.zirconmod.entity.custom.GustEntity;
 import com.thomas.zirconmod.util.ModTags;
 import com.thomas.zirconmod.util.Utilities;
+import com.thomas.zirconmod.worldgen.dimension.ModDimensions;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -50,21 +51,26 @@ public class CloudBlock extends Block {
 
 	public static final IntegerProperty SOLIDIFIER_DISTANCE = IntegerProperty.create("distance", MIN_DISTANCE,
 			MAX_DISTANCE);
-	
+
 	// private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D,
 	// 0.0D, 0.0D, 1.0D, (double) 0.9F, 1.0D);
 
 	// private static final int TICK_DELAY = 1;
-	
+
 	public CloudBlock(Properties properties) {
 		super(properties);
+		
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE));
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean skipRendering(BlockState here, BlockState there, Direction p_53974_) {
-		return (there.is(this) && ((here.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE && (there.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE)) || (here.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE && (there.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE))) ? true : super.skipRendering(here, there, p_53974_));
+		return (there.is(this) && ((here.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE
+				&& (there.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE))
+				|| (here.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE
+						&& (there.getValue(SOLIDIFIER_DISTANCE) == MAX_DISTANCE))) ? true
+								: super.skipRendering(here, there, p_53974_));
 	}
 
 	@Override
@@ -74,7 +80,8 @@ public class CloudBlock extends Block {
 		 * switch (pathType) { case LAND: return !isSolid; case WATER: return !isSolid;
 		 * case AIR: return !isSolid; default: return false; }
 		 */
-		return false;//pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE) < MAX_DISTANCE);
+		return false;// pathType == PathComputationType.AIR && !(state.getValue(SOLIDIFIER_DISTANCE)
+						// < MAX_DISTANCE);
 	}
 
 	// Causes no fall damage when landed on.
@@ -222,7 +229,8 @@ public class CloudBlock extends Block {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		Difficulty difficulty = level.getDifficulty();
 		boolean doSpawning = level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
-		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.isRaining() && level.getBlockState(pos.above()).isAir()) {
+		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.isRaining()
+				&& level.getBlockState(pos.above()).isAir() && level.dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
 			float chance = difficulty.getId() * 0.001f;
 			if (rand.nextFloat() < chance) {
 				List<GustEntity> entities = level.getEntitiesOfClass(GustEntity.class,
@@ -240,7 +248,7 @@ public class CloudBlock extends Block {
 	@Override
 	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing,
 			net.minecraftforge.common.IPlantable plantable) {
-		return (facing == Direction.UP && plantable.getPlant(world, pos).is(ModBlocks.BUBBLEFRUIT_CROP.get()));
+		return (facing == Direction.UP && plantable.getPlant(world, pos).is(ModTags.Blocks.CLOUD_PLANTS));
 	}
 
 	// Very important!

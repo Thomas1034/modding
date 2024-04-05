@@ -62,6 +62,8 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BUBBLEFRUIT_PATCH_KEY = registerKey("bubblefruit");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_ORCHID_PATCH_KEY = registerKey("white_orchid");
+
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 		RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
@@ -114,11 +116,16 @@ public class ModConfiguredFeatures {
 				(CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(),
 				new NoneFeatureConfiguration());
 
-
 		register(context, BUBBLEFRUIT_PATCH_KEY, Feature.RANDOM_PATCH,
 				FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
 						new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BUBBLEFRUIT_CROP.get()
 								.defaultBlockState().setValue(BubblefruitCropBlock.AGE, Integer.valueOf(3)))),
+						List.of(ModBlocks.CLOUD.get())));
+
+		register(context, WHITE_ORCHID_PATCH_KEY, Feature.RANDOM_PATCH,
+				FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+						new SimpleBlockConfiguration(
+								BlockStateProvider.simple(ModBlocks.WHITE_ORCHID.get().defaultBlockState())),
 						List.of(ModBlocks.CLOUD.get())));
 	}
 

@@ -178,6 +178,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				models().singleTexture("potted_illuminated_torchflower", new ResourceLocation("flower_pot_cross"),
 						"plant", blockTexture(ModBlocks.ILLUMINATED_TORCHFLOWER.get())).renderType("cutout"));
 
+		// Potted palm sapling
+		simpleBlockWithItem(ModBlocks.POTTED_PALM_SAPLING.get(),
+				models().singleTexture("potted_palm_sapling", new ResourceLocation("flower_pot_cross"),
+						"plant", blockTexture(ModBlocks.PALM_SAPLING.get())).renderType("cutout"));
+		
+		// White orchid
+		simpleBlockWithItem(ModBlocks.WHITE_ORCHID.get(),
+				models().cross(blockTexture(ModBlocks.WHITE_ORCHID.get()).getPath(),
+						blockTexture(ModBlocks.WHITE_ORCHID.get())).renderType("cutout"));
+		simpleBlockWithItem(ModBlocks.POTTED_WHITE_ORCHID.get(),
+				models().singleTexture("potted_white_orchid", new ResourceLocation("flower_pot_cross"),
+						"plant", blockTexture(ModBlocks.WHITE_ORCHID.get())).renderType("cutout"));
+
+		
 		// Carpentry table
 		cubeBlockWithItem(ModBlocks.CARPENTRY_TABLE, "carpentry_table");
 		// Sculk jaw
@@ -268,6 +282,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		slabBlock(((SlabBlock) ModBlocks.CITRINE_SLAB.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()),
 				blockTexture(ModBlocks.CITRINE_BLOCK.get()));
 
+		// Sky block
+		tintedBlockWithItem(ModBlocks.SKY_BLOCK);
+
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -286,6 +303,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	private ResourceLocation key(Block block) {
 		return ForgeRegistries.BLOCKS.getKey(block);
+	}
+
+	protected void tintedBlockWithItem(RegistryObject<Block> block) {
+		//System.out.println("Registering tinted block with " + block.getId());
+		ModelFile model = models().withExistingParent(block.getId().toString(),
+				new ResourceLocation(ZirconMod.MOD_ID, "block/tinted_block")).texture("all", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()));
+		simpleBlockWithItem(block.get(), model);
 	}
 
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject) {

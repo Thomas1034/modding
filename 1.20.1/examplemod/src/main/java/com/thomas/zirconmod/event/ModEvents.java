@@ -10,6 +10,7 @@ import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WraithEntity;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.ModWeatheringCopper;
+import com.thomas.zirconmod.util.Reflection;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.util.Waxable;
 import com.thomas.zirconmod.villager.ModVillagerTrades;
@@ -21,6 +22,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -254,17 +256,18 @@ public class ModEvents {
 	 * entity.changeDimension(overworld, new ModTeleporter()); // Set the data
 	 * again. entity.teleportTo(pos.x, 480, pos.z); } } } }
 	 */
+	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public static void travelToAndFromSkyEvent(EnteringSection event) {
 
 		Entity entity = event.getEntity();
 		Level level = entity.level();
 		if (level instanceof ServerLevel sl) {
-			
+
 			// If going to the sky.
 			if (entity.level().dimension() == Level.OVERWORLD) {
 				if (entity.position().y > 512) {
-					
+
 					// Store some data.
 					Vec3 pos = entity.position();
 
@@ -283,15 +286,33 @@ public class ModEvents {
 
 					// Check if it's a trident.
 					if (entity instanceof ThrownTrident trident) {
-						// If so, trigger returning.
-					    trident.setNoPhysics(true);
-					    trident.setDeltaMovement(0, 1, 0);
-					    System.out.println("Setting no physics!");
-					    Entity owner = trident.getOwner();
-					    Vec3 pos = owner.position();
-					    return;
+						Object rawLoyaltyAccessor = null;
+						EntityDataAccessor<Byte> loyaltyAccessor;
+						try {
+							rawLoyaltyAccessor = Reflection.getFromStaticFinal(ThrownTrident.class, "ID_LOYALTY");
+
+							if (!(rawLoyaltyAccessor instanceof EntityDataAccessor)) {
+								throw new NoSuchFieldException("Cannot access ID_LOYALTY in ThrownTrident.");
+							} else {
+								loyaltyAccessor = (EntityDataAccessor<Byte>) rawLoyaltyAccessor;
+								if (trident.getEntityData().get(loyaltyAccessor) != 0) {
+									// If so, trigger returning.
+									trident.setNoPhysics(true);
+									trident.setDeltaMovement(0, 1, 0);
+									return;
+								}
+							}
+						} catch (NoSuchFieldException e) {
+							e.printStackTrace();
+						} catch (SecurityException e) {
+							e.printStackTrace();
+						} catch (IllegalArgumentException e) {
+							e.printStackTrace();
+						} catch (IllegalAccessException e) {
+							e.printStackTrace();
+						}
 					}
-					
+
 					// Store some data.
 					Vec3 pos = entity.position();
 
