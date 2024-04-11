@@ -50,9 +50,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_BLOCKS = CREATIVE_MODE_TABS.register(
-			"zirconmod_blocks",
+			"cloudscape_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.ZIRCON_BLOCK.get()))
-					.title(Component.translatable("creativetab.zirconmod_blocks"))
+					.title(Component.translatable("creativetab.cloudscape_blocks"))
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModBlocks.ZIRCON_BLOCK.get());
 						pOutput.accept(ModBlocks.ZIRCON_ORE.get());
@@ -163,9 +163,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.CITRINE_STAIRS.get());
 						pOutput.accept(ModBlocks.CITRINE_SLAB.get());
 					}).build());
-	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("zirconmod_tools",
+	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("cloudscape_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))
-					.title(Component.translatable("creativetab.zirconmod_tools"))
+					.title(Component.translatable("creativetab.cloudscape_tools"))
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.COPPER_PICKAXE.get());
 						pOutput.accept(ModItems.COPPER_AXE.get());
@@ -187,9 +187,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.EMPTY_WIND_BAG.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_COMBAT = CREATIVE_MODE_TABS.register(
-			"zirconmod_combat",
+			"cloudscape_combat",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_SWORD.get()))
-					.title(Component.translatable("creativetab.zirconmod_combat"))
+					.title(Component.translatable("creativetab.cloudscape_combat"))
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.COPPER_SWORD.get());
 						pOutput.accept(ModItems.COPPER_AXE.get());
@@ -220,6 +220,15 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.DIAMOND_WINGS.get());
 						pOutput.accept(ModItems.NETHERITE_WINGS.get());
 						pOutput.accept(ModItems.HAILSTONE.get());
+						pOutput.accept(ModItems.WOODEN_SPEAR.get());
+						pOutput.accept(ModItems.STONE_SPEAR.get());
+						pOutput.accept(ModItems.COPPER_SPEAR.get());
+						pOutput.accept(ModItems.GOLDEN_SPEAR.get());
+						pOutput.accept(ModItems.IRON_SPEAR.get());
+						pOutput.accept(ModItems.ZIRCONIUM_SPEAR.get());
+						pOutput.accept(ModItems.DIAMOND_SPEAR.get());
+						pOutput.accept(ModItems.CITRINE_SPEAR.get());
+						pOutput.accept(ModItems.NETHERITE_SPEAR.get());
 					}).build());
 
 	public static void register(IEventBus eventBus) {

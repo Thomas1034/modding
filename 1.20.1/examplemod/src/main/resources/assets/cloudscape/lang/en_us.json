@@ -267,8 +267,8 @@
 	"effect.cloudscape.freezing": "Freezing",
 	"effect.cloudscape.propelled": "Propelled",
 	
-	"creativetab.cloudscape_items": "Zircon Mod Items",
-	"creativetab.cloudscape_blocks": "Zircon Mod Blocks",
-	"creativetab.cloudscape_tools": "Zircon Mod Tools",
-	"creativetab.cloudscape_combat": "Zircon Mod Combat"
+	"creativetab.cloudscape_items": "Cloudscape Items",
+	"creativetab.cloudscape_blocks": "Cloudscape Blocks",
+	"creativetab.cloudscape_tools": "Cloudscape Tools",
+	"creativetab.cloudscape_combat": "Cloudscape Combat"
 }

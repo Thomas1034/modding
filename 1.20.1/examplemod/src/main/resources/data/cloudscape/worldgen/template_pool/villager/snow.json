@@ -1,12 +1,12 @@
 {
-  "name": "cloudscape:villager/snowy",
+  "name": "cloudscape:villager/snow",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "cloudscape:villager/snowy",
+        "location": "cloudscape:villager/snow",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }
