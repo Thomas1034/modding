@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "raw_zirconium",
+  "ingredient": {
+    "item": "cloudscape:zircon_block"
+  },
+  "result": "cloudscape:raw_zirconium"
+}

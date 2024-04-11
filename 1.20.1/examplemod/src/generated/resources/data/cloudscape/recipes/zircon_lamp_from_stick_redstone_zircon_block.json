@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "cloudscape:zircon_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "R#R",
+    "SSS"
+  ],
+  "result": {
+    "item": "cloudscape:zircon_lamp"
+  },
+  "show_notification": true
+}

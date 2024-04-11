@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "cloudscape:block/raw_zirconium_block",
+    "side": "cloudscape:block/raw_zirconium_block",
+    "top": "cloudscape:block/raw_zirconium_block"
+  }
+}

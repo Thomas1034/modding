@@ -1,16 +1,16 @@
 {
   "values": [
-    "zirconmod:copper_helmet",
-    "zirconmod:copper_chestplate",
-    "zirconmod:copper_leggings",
-    "zirconmod:copper_boots",
-    "zirconmod:zirconium_helmet",
-    "zirconmod:zirconium_chestplate",
-    "zirconmod:zirconium_leggings",
-    "zirconmod:zirconium_boots",
-    "zirconmod:citrine_helmet",
-    "zirconmod:citrine_chestplate",
-    "zirconmod:citrine_leggings",
-    "zirconmod:citrine_boots"
+    "cloudscape:copper_helmet",
+    "cloudscape:copper_chestplate",
+    "cloudscape:copper_leggings",
+    "cloudscape:copper_boots",
+    "cloudscape:zirconium_helmet",
+    "cloudscape:zirconium_chestplate",
+    "cloudscape:zirconium_leggings",
+    "cloudscape:zirconium_boots",
+    "cloudscape:citrine_helmet",
+    "cloudscape:citrine_chestplate",
+    "cloudscape:citrine_leggings",
+    "cloudscape:citrine_boots"
   ]
 }

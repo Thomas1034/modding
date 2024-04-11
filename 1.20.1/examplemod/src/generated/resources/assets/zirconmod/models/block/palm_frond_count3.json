@@ -1,7 +1,0 @@
-{
-  "parent": "zirconmod:block/template_frond_count3",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "frond": "zirconmod:block/palm_frond"
-  }
-}

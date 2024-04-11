@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "cloudscape:block/cloud_bricks",
+    "side": "cloudscape:block/cloud_bricks",
+    "top": "cloudscape:block/cloud_bricks"
+  }
+}

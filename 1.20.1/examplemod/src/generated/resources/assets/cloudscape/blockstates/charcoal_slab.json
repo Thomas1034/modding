@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/charcoal_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/charcoal_block"
+    },
+    "type=top": {
+      "model": "cloudscape:block/charcoal_slab_top"
+    }
+  }
+}

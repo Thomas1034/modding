@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "body": "cloudscape:block/netherite_anvil",
+    "particle": "cloudscape:block/netherite_anvil",
+    "top": "cloudscape:block/netherite_anvil_top"
+  }
+}

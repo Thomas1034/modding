@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hanging=false,waterlogged=false": {
+      "model": "cloudscape:block/citrine_lantern"
+    },
+    "hanging=false,waterlogged=true": {
+      "model": "cloudscape:block/citrine_lantern"
+    },
+    "hanging=true,waterlogged=false": {
+      "model": "cloudscape:block/citrine_lantern_hanging"
+    },
+    "hanging=true,waterlogged=true": {
+      "model": "cloudscape:block/citrine_lantern_hanging"
+    }
+  }
+}

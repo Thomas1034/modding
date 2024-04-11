@@ -1,18 +1,18 @@
 {
   "values": [
-    "zirconmod:palm_log",
-    "zirconmod:palm_wood",
-    "zirconmod:stripped_palm_log",
-    "zirconmod:stripped_palm_wood",
-    "zirconmod:palm_button",
-    "zirconmod:palm_door",
-    "zirconmod:palm_fence",
-    "zirconmod:palm_fence_gate",
-    "zirconmod:palm_planks",
-    "zirconmod:palm_pressure_plate",
-    "zirconmod:palm_slab",
-    "zirconmod:palm_trapdoor",
-    "zirconmod:carpentry_table",
-    "zirconmod:palm_trunk"
+    "cloudscape:palm_log",
+    "cloudscape:palm_wood",
+    "cloudscape:stripped_palm_log",
+    "cloudscape:stripped_palm_wood",
+    "cloudscape:palm_button",
+    "cloudscape:palm_door",
+    "cloudscape:palm_fence",
+    "cloudscape:palm_fence_gate",
+    "cloudscape:palm_planks",
+    "cloudscape:palm_pressure_plate",
+    "cloudscape:palm_slab",
+    "cloudscape:palm_trapdoor",
+    "cloudscape:carpentry_table",
+    "cloudscape:palm_trunk"
   ]
 }

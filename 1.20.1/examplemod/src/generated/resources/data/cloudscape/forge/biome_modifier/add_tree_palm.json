@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#cloudscape:has_beach_palms",
+  "features": "cloudscape:palm_placed",
+  "step": "vegetal_decoration"
+}

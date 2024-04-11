@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "cloudscape:zirconium_ingot"
+  },
+  "base": {
+    "item": "minecraft:iron_shovel"
+  },
+  "result": {
+    "item": "cloudscape:zirconium_shovel"
+  },
+  "template": {
+    "item": "cloudscape:zirconium_upgrade_smithing_template"
+  }
+}

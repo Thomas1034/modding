@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "charcoal",
+  "ingredient": {
+    "item": "cloudscape:stripped_palm_wood"
+  },
+  "result": "minecraft:charcoal"
+}

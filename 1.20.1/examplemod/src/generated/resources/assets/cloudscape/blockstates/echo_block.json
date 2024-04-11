@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cloudscape:block/echo_block"
+    }
+  }
+}

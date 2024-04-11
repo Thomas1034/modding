@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "distance=0": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=1": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=10": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=11": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=12": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=13": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=14": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=15": {
+      "model": "cloudscape:block/mist_passable"
+    },
+    "distance=2": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=3": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=4": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=5": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=6": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=7": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=8": {
+      "model": "cloudscape:block/mist"
+    },
+    "distance=9": {
+      "model": "cloudscape:block/mist"
+    }
+  }
+}

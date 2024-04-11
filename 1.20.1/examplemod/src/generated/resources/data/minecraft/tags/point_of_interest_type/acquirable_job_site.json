@@ -1,31 +1,31 @@
 {
   "values": [
     {
-      "id": "zirconmod:forester_poi",
+      "id": "cloudscape:forester_poi",
       "required": false
     },
     {
-      "id": "zirconmod:architect_poi",
+      "id": "cloudscape:architect_poi",
       "required": false
     },
     {
-      "id": "zirconmod:botanist_poi",
+      "id": "cloudscape:botanist_poi",
       "required": false
     },
     {
-      "id": "zirconmod:chief_poi",
+      "id": "cloudscape:chief_poi",
       "required": false
     },
     {
-      "id": "zirconmod:gemsmith_poi",
+      "id": "cloudscape:gemsmith_poi",
       "required": false
     },
     {
-      "id": "zirconmod:scholar_poi",
+      "id": "cloudscape:scholar_poi",
       "required": false
     },
     {
-      "id": "zirconmod:tinkerer_poi",
+      "id": "cloudscape:tinkerer_poi",
       "required": false
     }
   ]

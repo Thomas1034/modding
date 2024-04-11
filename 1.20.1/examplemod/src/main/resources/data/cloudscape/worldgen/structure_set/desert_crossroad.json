@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "cloudscape:desert_crossroad",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 128,
+    "separation": 2,
+    "salt": 14428245782
+  }
+}

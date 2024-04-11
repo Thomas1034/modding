@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "cloudscape:berries"
+    },
+    {
+      "tag": "cloudscape:berries"
+    },
+    {
+      "tag": "cloudscape:berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "result": {
+    "item": "cloudscape:berry_pie"
+  }
+}

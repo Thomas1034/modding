@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cloudscape:block/nimbula_polyp0"
+    },
+    "age=1": {
+      "model": "cloudscape:block/nimbula_polyp1"
+    },
+    "age=2": {
+      "model": "cloudscape:block/nimbula_polyp2"
+    },
+    "age=3": {
+      "model": "cloudscape:block/nimbula_polyp3"
+    }
+  }
+}

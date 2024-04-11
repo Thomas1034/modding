@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "citrine_shard",
+  "ingredient": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": "cloudscape:citrine_shard"
+}

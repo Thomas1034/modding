@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "zirconium_ingot",
+  "ingredient": {
+    "item": "cloudscape:raw_zirconium"
+  },
+  "result": "cloudscape:zirconium_ingot"
+}

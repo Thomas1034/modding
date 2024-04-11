@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cloudscape:block/sculk_jaw_down",
+    "east": "cloudscape:block/sculk_jaw_east",
+    "north": "cloudscape:block/sculk_jaw_north",
+    "particle": "cloudscape:block/sculk_jaw_up",
+    "south": "cloudscape:block/sculk_jaw_south",
+    "up": "cloudscape:block/sculk_jaw_up",
+    "west": "cloudscape:block/sculk_jaw_west"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "values": [
-    "zirconmod:zircon_ore",
-    "zirconmod:deepslate_zircon_ore"
+    "cloudscape:zircon_ore",
+    "cloudscape:deepslate_zircon_ore"
   ]
 }

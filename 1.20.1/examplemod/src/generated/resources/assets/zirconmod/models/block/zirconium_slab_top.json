@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "zirconmod:block/zirconium_block",
-    "side": "zirconmod:block/zirconium_block",
-    "top": "zirconmod:block/zirconium_block"
-  }
-}

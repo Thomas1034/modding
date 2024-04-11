@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "zirconmod:block/citrine_block",
-    "side": "zirconmod:block/citrine_block",
-    "top": "zirconmod:block/citrine_block"
-  }
-}

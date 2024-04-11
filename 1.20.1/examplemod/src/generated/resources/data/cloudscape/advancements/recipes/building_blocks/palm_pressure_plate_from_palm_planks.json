@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_palm_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:palm_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_palm_pressure_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:palm_pressure_plate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:palm_pressure_plate_from_palm_planks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_palm_planks",
+      "has_palm_pressure_plate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:palm_pressure_plate_from_palm_planks"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "cloudscape:block/thunder_cloud_bricks",
+    "side": "cloudscape:block/thunder_cloud_bricks",
+    "top": "cloudscape:block/thunder_cloud_bricks"
+  }
+}

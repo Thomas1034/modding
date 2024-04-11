@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "Z": {
+      "item": "cloudscape:raw_zirconium"
+    }
+  },
+  "pattern": [
+    "ZZZ",
+    "ZZZ",
+    "ZZZ"
+  ],
+  "result": {
+    "item": "cloudscape:raw_zirconium_block"
+  },
+  "show_notification": true
+}

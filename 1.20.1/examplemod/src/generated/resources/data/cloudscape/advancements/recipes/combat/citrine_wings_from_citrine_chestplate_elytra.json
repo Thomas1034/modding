@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_citrine_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:citrine_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_citrine_wings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:citrine_wings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_elytra": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:elytra"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:citrine_wings_from_citrine_chestplate_elytra"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_citrine_chestplate",
+      "has_elytra",
+      "has_citrine_wings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:citrine_wings_from_citrine_chestplate_elytra"
+    ]
+  },
+  "sends_telemetry_event": false
+}

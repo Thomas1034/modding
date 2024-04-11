@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "cloudscape:block/zircon_block",
+    "side": "cloudscape:block/zircon_block",
+    "top": "cloudscape:block/zircon_block"
+  }
+}

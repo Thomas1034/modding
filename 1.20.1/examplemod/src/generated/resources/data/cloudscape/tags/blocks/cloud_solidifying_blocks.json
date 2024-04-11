@@ -1,0 +1,19 @@
+{
+  "values": [
+    "minecraft:budding_amethyst",
+    "minecraft:amethyst_cluster",
+    "minecraft:large_amethyst_bud",
+    "minecraft:medium_amethyst_bud",
+    "minecraft:small_amethyst_bud",
+    "minecraft:amethyst_block",
+    "cloudscape:citrine_lantern",
+    "cloudscape:citrine_bracket",
+    "cloudscape:amethyst_wall_bracket",
+    "cloudscape:budding_citrine",
+    "cloudscape:citrine_cluster",
+    "cloudscape:large_citrine_bud",
+    "cloudscape:medium_citrine_bud",
+    "cloudscape:small_citrine_bud",
+    "cloudscape:citrine_block"
+  ]
+}

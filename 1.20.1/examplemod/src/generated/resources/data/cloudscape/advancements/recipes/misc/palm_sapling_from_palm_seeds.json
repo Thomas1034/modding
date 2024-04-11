@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_palm_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:palm_sapling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_palm_seeds": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:palm_seeds"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:palm_sapling_from_palm_seeds"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_palm_seeds",
+      "has_palm_sapling",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:palm_sapling_from_palm_seeds"
+    ]
+  },
+  "sends_telemetry_event": false
+}

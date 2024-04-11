@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cloudscape:zircon_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "cloudscape:zircon"
+  }
+}

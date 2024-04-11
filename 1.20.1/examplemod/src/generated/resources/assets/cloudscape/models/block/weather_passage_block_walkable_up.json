@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "front": "cloudscape:block/weather_passage_block_walkable_front",
+    "side": "cloudscape:block/weather_passage_block_walkable_side"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cloudscape:block/carpentry_table_down",
+    "east": "cloudscape:block/carpentry_table_east",
+    "north": "cloudscape:block/carpentry_table_north",
+    "particle": "cloudscape:block/carpentry_table_up",
+    "south": "cloudscape:block/carpentry_table_south",
+    "up": "cloudscape:block/carpentry_table_up",
+    "west": "cloudscape:block/carpentry_table_west"
+  }
+}

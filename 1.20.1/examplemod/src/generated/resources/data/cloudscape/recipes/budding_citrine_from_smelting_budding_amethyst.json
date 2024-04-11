@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "budding_citrine",
+  "ingredient": {
+    "item": "minecraft:budding_amethyst"
+  },
+  "result": "cloudscape:budding_citrine"
+}

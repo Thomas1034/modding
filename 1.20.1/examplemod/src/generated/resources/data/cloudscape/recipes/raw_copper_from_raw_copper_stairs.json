@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:raw_copper_stairs"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "minecraft:raw_copper"
+  }
+}

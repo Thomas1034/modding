@@ -1,7 +1,7 @@
 {
   "values": [
-    "zirconmod:palm_slab",
-    "zirconmod:cloud_brick_slab",
-    "zirconmod:thunder_cloud_brick_slab"
+    "cloudscape:palm_slab",
+    "cloudscape:cloud_brick_slab",
+    "cloudscape:thunder_cloud_brick_slab"
   ]
 }

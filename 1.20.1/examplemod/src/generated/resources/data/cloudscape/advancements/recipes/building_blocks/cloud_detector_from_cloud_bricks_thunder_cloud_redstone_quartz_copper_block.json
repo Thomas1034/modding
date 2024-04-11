@@ -1,0 +1,100 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cloud_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cloud_detector": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud_detector"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_copper_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:copper_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_quartz": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:quartz"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_redstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:cloud_detector_from_cloud_bricks_thunder_cloud_redstone_quartz_copper_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thunder_cloud": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:thunder_cloud"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_cloud_bricks",
+      "has_thunder_cloud",
+      "has_redstone",
+      "has_quartz",
+      "has_copper_block",
+      "has_cloud_detector",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:cloud_detector_from_cloud_bricks_thunder_cloud_redstone_quartz_copper_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

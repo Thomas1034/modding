@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_citrine_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:citrine_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cloud": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cloud_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:cloud_bricks_from_cloud_citrine_shard"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cloud",
+      "has_citrine_shard",
+      "has_cloud_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:cloud_bricks_from_cloud_citrine_shard"
+    ]
+  },
+  "sends_telemetry_event": false
+}

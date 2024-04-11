@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "cloudscape:block/resonator_down",
+    "east": "cloudscape:block/resonator_side_0",
+    "north": "cloudscape:block/resonator_front",
+    "south": "cloudscape:block/resonator_side_0",
+    "up": "cloudscape:block/resonator_up",
+    "west": "cloudscape:block/resonator_side_0"
+  }
+}

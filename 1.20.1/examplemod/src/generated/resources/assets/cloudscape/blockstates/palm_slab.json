@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/palm_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/palm_planks"
+    },
+    "type=top": {
+      "model": "cloudscape:block/palm_slab_top"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:zircon_stairs"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "cloudscape:zircon"
+  }
+}

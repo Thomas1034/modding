@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "zirconmod:item/empty_wind_bag"
-  }
-}

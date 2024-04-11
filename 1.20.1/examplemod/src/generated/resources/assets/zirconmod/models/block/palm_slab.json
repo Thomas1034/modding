@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "zirconmod:block/palm_planks",
-    "side": "zirconmod:block/palm_planks",
-    "top": "zirconmod:block/palm_planks"
-  }
-}

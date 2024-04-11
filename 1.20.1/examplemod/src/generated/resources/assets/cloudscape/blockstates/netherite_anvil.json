@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cloudscape:block/netherite_anvil",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cloudscape:block/netherite_anvil"
+    },
+    "facing=south": {
+      "model": "cloudscape:block/netherite_anvil",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cloudscape:block/netherite_anvil",
+      "y": 270
+    }
+  }
+}

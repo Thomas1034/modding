@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_citrine_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:citrine_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_citrine_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:citrine_stairs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:citrine_stairs_from_citrine_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_citrine_block",
+      "has_citrine_stairs",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:citrine_stairs_from_citrine_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

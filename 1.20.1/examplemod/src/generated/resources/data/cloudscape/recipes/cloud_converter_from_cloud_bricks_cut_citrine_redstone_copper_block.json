@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "cloudscape:cloud_bricks"
+    },
+    "P": {
+      "item": "minecraft:copper_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "cloudscape:cut_citrine"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "PTP",
+    "RCR"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cloudscape:cloud_converter"
+  },
+  "show_notification": true
+}

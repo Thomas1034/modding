@@ -1,0 +1,25 @@
+{
+  "feature": "cloudscape:bubblefruit",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 16
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:biased_to_bottom",
+        "inner": 8,
+        "max_inclusive": {
+          "above_bottom": 208
+        },
+        "min_inclusive": {
+          "above_bottom": 176
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

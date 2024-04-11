@@ -1,7 +1,7 @@
 {
   "values": [
-    "zirconmod:zircon_block",
-    "zirconmod:zirconium_block",
-    "zirconmod:raw_zirconium_block"
+    "cloudscape:zircon_block",
+    "cloudscape:zirconium_block",
+    "cloudscape:raw_zirconium_block"
   ]
 }

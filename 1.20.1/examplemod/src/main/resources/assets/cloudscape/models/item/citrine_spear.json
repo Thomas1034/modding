@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "cloudscape:item/spear_3d",
+		"textures": {
+				"0": "cloudscape:item/citrine_spear_3d"
+			}
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "cloudscape:item/spear_2d",
+			"textures": {
+				"layer0": "cloudscape:item/citrine_spear"
+			}
+    },
+    "ground": {
+      "parent": "cloudscape:item/spear_2d",
+			"textures": {
+				"layer0": "cloudscape:item/citrine_spear"
+			}
+    },
+    "fixed": {
+      "parent": "cloudscape:item/spear_2d",
+			"textures": {
+				"layer0": "cloudscape:item/citrine_spear"
+			}
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "values": [
-    "zirconmod:zircon",
-    "zirconmod:zircon_shard"
+    "cloudscape:zircon",
+    "cloudscape:zircon_shard"
   ]
 }

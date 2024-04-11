@@ -1,0 +1,62 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"fruit": "cloudscape:block/palm_fruit_age0",
+		"particle": "#fruit"
+	},
+	"render_type": "cutout",
+	"elements": [
+		{
+			"from": [7, 12, 11],
+			"to": [9, 14, 22],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [9, 14, 16]},
+			"faces": {
+				"north": {"uv": [14, 11, 16, 13], "texture": "#fruit"},
+				"east": {"uv": [14, 0, 16, 11], "rotation": 90, "texture": "#fruit"},
+				"south": {"uv": [14, 11, 16, 13], "texture": "#fruit"},
+				"west": {"uv": [14, 0, 16, 11], "rotation": 90, "texture": "#fruit"},
+				"up": {"uv": [16, 11, 14, 0], "texture": "#fruit"},
+				"down": {"uv": [16, 0, 14, 11], "texture": "#fruit"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 14, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 11, 12]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"east": {"uv": [14, 0, 0, 14], "texture": "#fruit"},
+				"south": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"west": {"uv": [0, 0, 14, 14], "texture": "#fruit"},
+				"up": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"down": {"uv": [0, 0, 0, 14], "texture": "#fruit"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 14, 14],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 11, 12]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"east": {"uv": [14, 0, 0, 14], "texture": "#fruit"},
+				"south": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"west": {"uv": [0, 0, 14, 14], "texture": "#fruit"},
+				"up": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"down": {"uv": [0, 0, 0, 14], "texture": "#fruit"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 14, 14],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 11, 12]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"east": {"uv": [14, 0, 0, 14], "texture": "#fruit"},
+				"south": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"west": {"uv": [0, 0, 14, 14], "texture": "#fruit"},
+				"up": {"uv": [0, 0, 0, 14], "texture": "#fruit"},
+				"down": {"uv": [0, 0, 0, 14], "texture": "#fruit"}
+			}
+		}
+	]
+}

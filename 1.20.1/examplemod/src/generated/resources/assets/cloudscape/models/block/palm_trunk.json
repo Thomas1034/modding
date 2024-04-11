@@ -1,0 +1,6 @@
+{
+  "parent": "cloudscape:block/template_palm_trunk",
+  "textures": {
+    "trunk": "cloudscape:block/palm_trunk"
+  }
+}

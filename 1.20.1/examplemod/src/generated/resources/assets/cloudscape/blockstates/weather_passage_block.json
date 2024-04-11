@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "facing=down,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_down",
+      "x": 180,
+      "y": 90
+    },
+    "facing=down,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_down",
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_horizontal",
+      "y": 90
+    },
+    "facing=east,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_horizontal",
+      "y": 90
+    },
+    "facing=north,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_horizontal"
+    },
+    "facing=north,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_horizontal"
+    },
+    "facing=south,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_horizontal",
+      "y": 180
+    },
+    "facing=south,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_horizontal",
+      "y": 180
+    },
+    "facing=up,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_up",
+      "y": 90
+    },
+    "facing=up,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_up",
+      "y": 90
+    },
+    "facing=west,solid=false": {
+      "model": "cloudscape:block/weather_passage_block_walkable_horizontal",
+      "y": 270
+    },
+    "facing=west,solid=true": {
+      "model": "cloudscape:block/weather_passage_block_solid_horizontal",
+      "y": 270
+    }
+  }
+}

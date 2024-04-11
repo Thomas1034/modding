@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:palm_planks"
+    }
+  ],
+  "result": {
+    "item": "cloudscape:palm_button"
+  }
+}

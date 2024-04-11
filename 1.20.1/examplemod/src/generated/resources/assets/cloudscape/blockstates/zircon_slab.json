@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/zircon_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/zircon_block"
+    },
+    "type=top": {
+      "model": "cloudscape:block/zircon_slab_top"
+    }
+  }
+}

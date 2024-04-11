@@ -1,11 +1,11 @@
 {
   "values": [
-    "zirconmod:netherite_anvil",
-    "zirconmod:obsidian_slab",
-    "zirconmod:obsidian_stairs",
-    "zirconmod:crying_obsidian_slab",
-    "zirconmod:crying_obsidian_stairs",
-    "zirconmod:netherite_slab",
-    "zirconmod:netherite_stairs"
+    "cloudscape:netherite_anvil",
+    "cloudscape:obsidian_slab",
+    "cloudscape:obsidian_stairs",
+    "cloudscape:crying_obsidian_slab",
+    "cloudscape:crying_obsidian_stairs",
+    "cloudscape:netherite_slab",
+    "cloudscape:netherite_stairs"
   ]
 }

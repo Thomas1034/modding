@@ -1,19 +1,19 @@
 {
   "values": [
-    "zirconmod:copper_pickaxe",
-    "zirconmod:copper_hoe",
-    "zirconmod:copper_axe",
-    "zirconmod:copper_shovel",
-    "zirconmod:copper_sword",
-    "zirconmod:zirconium_pickaxe",
-    "zirconmod:zirconium_hoe",
-    "zirconmod:zirconium_axe",
-    "zirconmod:zirconium_shovel",
-    "zirconmod:zirconium_sword",
-    "zirconmod:citrine_pickaxe",
-    "zirconmod:citrine_hoe",
-    "zirconmod:citrine_axe",
-    "zirconmod:citrine_shovel",
-    "zirconmod:citrine_sword"
+    "cloudscape:copper_pickaxe",
+    "cloudscape:copper_hoe",
+    "cloudscape:copper_axe",
+    "cloudscape:copper_shovel",
+    "cloudscape:copper_sword",
+    "cloudscape:zirconium_pickaxe",
+    "cloudscape:zirconium_hoe",
+    "cloudscape:zirconium_axe",
+    "cloudscape:zirconium_shovel",
+    "cloudscape:zirconium_sword",
+    "cloudscape:citrine_pickaxe",
+    "cloudscape:citrine_hoe",
+    "cloudscape:citrine_axe",
+    "cloudscape:citrine_shovel",
+    "cloudscape:citrine_sword"
   ]
 }

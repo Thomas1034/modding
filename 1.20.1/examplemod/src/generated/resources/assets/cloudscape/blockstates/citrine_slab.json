@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/citrine_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/citrine_block"
+    },
+    "type=top": {
+      "model": "cloudscape:block/citrine_slab_top"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "cloudscape:chests/swamp_temple/mining"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "cloudscape:chests/swamp_temple/potion"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "cloudscape:chests/swamp_temple/construction"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "cloudscape:chests/swamp_temple/junk"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "cloudscape:chests/swamp_temple/hidden"
+}

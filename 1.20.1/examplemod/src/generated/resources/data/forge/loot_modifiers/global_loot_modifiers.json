@@ -1,7 +1,7 @@
 {
   "entries": [
-    "zirconmod:citrine_from_jungle_temples",
-    "zirconmod:pine_cone_from_spruce_leaves"
+    "cloudscape:citrine_from_jungle_temples",
+    "cloudscape:pine_cone_from_spruce_leaves"
   ],
   "replace": false
 }

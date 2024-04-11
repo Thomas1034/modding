@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cloudscape:block/citrine_wall_bracket",
+      "y": 360
+    },
+    "facing=north": {
+      "model": "cloudscape:block/citrine_wall_bracket",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "cloudscape:block/citrine_wall_bracket",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cloudscape:block/citrine_wall_bracket",
+      "y": 180
+    }
+  }
+}

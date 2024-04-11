@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:zirconium_leggings_from_smithing_transform_of_iron_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_zirconium_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:zirconium_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_zirconium_upgrade_smithing_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:zirconium_upgrade_smithing_template"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_zirconium_upgrade_smithing_template",
+      "has_iron_leggings",
+      "has_zirconium_ingot",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:zirconium_leggings_from_smithing_transform_of_iron_leggings"
+    ]
+  },
+  "sends_telemetry_event": false
+}

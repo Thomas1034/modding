@@ -1,9 +1,9 @@
 {
   "values": [
-    "zirconmod:copper_button",
-    "zirconmod:exposed_copper_button",
-    "zirconmod:weathered_copper_button",
-    "zirconmod:oxidized_copper_button",
-    "zirconmod:palm_button"
+    "cloudscape:copper_button",
+    "cloudscape:exposed_copper_button",
+    "cloudscape:weathered_copper_button",
+    "cloudscape:oxidized_copper_button",
+    "cloudscape:palm_button"
   ]
 }

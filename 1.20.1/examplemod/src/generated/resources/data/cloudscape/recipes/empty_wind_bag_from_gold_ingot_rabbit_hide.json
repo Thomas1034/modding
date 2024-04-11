@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "pattern": [
+    "GRG",
+    "R R",
+    "RRR"
+  ],
+  "result": {
+    "item": "cloudscape:empty_wind_bag"
+  },
+  "show_notification": true
+}

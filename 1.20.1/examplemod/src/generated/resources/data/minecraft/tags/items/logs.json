@@ -1,8 +1,8 @@
 {
   "values": [
-    "zirconmod:palm_log",
-    "zirconmod:stripped_palm_log",
-    "zirconmod:palm_wood",
-    "zirconmod:stripped_palm_wood"
+    "cloudscape:palm_log",
+    "cloudscape:stripped_palm_log",
+    "cloudscape:palm_wood",
+    "cloudscape:stripped_palm_wood"
   ]
 }

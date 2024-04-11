@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:charcoal_stairs"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "minecraft:charcoal"
+  }
+}

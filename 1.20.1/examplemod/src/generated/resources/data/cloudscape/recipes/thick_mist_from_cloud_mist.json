@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:cloud"
+    },
+    {
+      "item": "cloudscape:mist"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "cloudscape:thick_mist"
+  }
+}

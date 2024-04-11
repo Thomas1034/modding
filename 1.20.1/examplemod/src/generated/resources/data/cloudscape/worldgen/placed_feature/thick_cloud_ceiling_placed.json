@@ -1,0 +1,18 @@
+{
+  "feature": "cloudscape:thick_cloud_ceiling",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "above_bottom": 192
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

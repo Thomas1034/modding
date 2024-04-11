@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "zircon",
+  "ingredient": {
+    "item": "cloudscape:zircon_ore"
+  },
+  "result": "cloudscape:zircon"
+}

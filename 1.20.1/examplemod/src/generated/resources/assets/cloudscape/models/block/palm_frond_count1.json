@@ -1,0 +1,7 @@
+{
+  "parent": "cloudscape:block/template_frond_count1",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "frond": "cloudscape:block/palm_frond"
+  }
+}

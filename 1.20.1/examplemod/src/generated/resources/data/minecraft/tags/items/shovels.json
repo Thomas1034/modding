@@ -1,7 +1,7 @@
 {
   "values": [
-    "zirconmod:copper_shovel",
-    "zirconmod:zirconium_shovel",
-    "zirconmod:citrine_shovel"
+    "cloudscape:copper_shovel",
+    "cloudscape:zirconium_shovel",
+    "cloudscape:citrine_shovel"
   ]
 }

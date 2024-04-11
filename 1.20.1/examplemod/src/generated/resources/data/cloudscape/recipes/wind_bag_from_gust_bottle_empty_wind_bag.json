@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "cloudscape:empty_wind_bag"
+    },
+    "G": {
+      "item": "cloudscape:gust_bottle"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GBG",
+    "GGG"
+  ],
+  "result": {
+    "item": "cloudscape:wind_bag"
+  },
+  "show_notification": true
+}

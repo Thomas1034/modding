@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "cloudscape:block/palm_planks",
+    "side": "cloudscape:block/palm_planks",
+    "top": "cloudscape:block/palm_planks"
+  }
+}

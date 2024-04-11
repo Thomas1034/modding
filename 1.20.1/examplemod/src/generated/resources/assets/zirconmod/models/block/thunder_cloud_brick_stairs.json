@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "zirconmod:block/thunder_cloud_bricks",
-    "side": "zirconmod:block/thunder_cloud_bricks",
-    "top": "zirconmod:block/thunder_cloud_bricks"
-  }
-}

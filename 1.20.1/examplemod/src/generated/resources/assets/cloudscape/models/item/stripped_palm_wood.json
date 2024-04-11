@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cloudscape:block/stripped_palm_wood_top",
+    "side": "cloudscape:block/stripped_palm_wood"
+  }
+}

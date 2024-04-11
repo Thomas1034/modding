@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cloudscape:block/zircon_lamp_unlit"
+    },
+    "lit=true": {
+      "model": "cloudscape:block/zircon_lamp_lit"
+    }
+  }
+}

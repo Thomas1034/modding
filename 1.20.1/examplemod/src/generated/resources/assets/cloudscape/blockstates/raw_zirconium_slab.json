@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/raw_zirconium_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/raw_zirconium_block"
+    },
+    "type=top": {
+      "model": "cloudscape:block/raw_zirconium_slab_top"
+    }
+  }
+}

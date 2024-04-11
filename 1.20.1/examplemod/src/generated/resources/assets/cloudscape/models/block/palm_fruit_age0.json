@@ -1,0 +1,7 @@
+{
+  "parent": "cloudscape:block/template_palm_fruit",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fruit": "cloudscape:block/palm_fruit_age0"
+  }
+}

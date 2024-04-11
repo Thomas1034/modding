@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "cloudscape:raw_zirconium_slab"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "cloudscape:raw_zirconium"
+  }
+}

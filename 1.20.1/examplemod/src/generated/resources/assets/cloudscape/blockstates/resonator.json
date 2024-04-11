@@ -1,0 +1,84 @@
+{
+  "variants": {
+    "charges=0,facing=east": {
+      "model": "cloudscape:block/resonator_0",
+      "y": 450
+    },
+    "charges=0,facing=north": {
+      "model": "cloudscape:block/resonator_0",
+      "y": 360
+    },
+    "charges=0,facing=south": {
+      "model": "cloudscape:block/resonator_0",
+      "y": 180
+    },
+    "charges=0,facing=west": {
+      "model": "cloudscape:block/resonator_0",
+      "y": 270
+    },
+    "charges=1,facing=east": {
+      "model": "cloudscape:block/resonator_1",
+      "y": 450
+    },
+    "charges=1,facing=north": {
+      "model": "cloudscape:block/resonator_1",
+      "y": 360
+    },
+    "charges=1,facing=south": {
+      "model": "cloudscape:block/resonator_1",
+      "y": 180
+    },
+    "charges=1,facing=west": {
+      "model": "cloudscape:block/resonator_1",
+      "y": 270
+    },
+    "charges=2,facing=east": {
+      "model": "cloudscape:block/resonator_2",
+      "y": 450
+    },
+    "charges=2,facing=north": {
+      "model": "cloudscape:block/resonator_2",
+      "y": 360
+    },
+    "charges=2,facing=south": {
+      "model": "cloudscape:block/resonator_2",
+      "y": 180
+    },
+    "charges=2,facing=west": {
+      "model": "cloudscape:block/resonator_2",
+      "y": 270
+    },
+    "charges=3,facing=east": {
+      "model": "cloudscape:block/resonator_3",
+      "y": 450
+    },
+    "charges=3,facing=north": {
+      "model": "cloudscape:block/resonator_3",
+      "y": 360
+    },
+    "charges=3,facing=south": {
+      "model": "cloudscape:block/resonator_3",
+      "y": 180
+    },
+    "charges=3,facing=west": {
+      "model": "cloudscape:block/resonator_3",
+      "y": 270
+    },
+    "charges=4,facing=east": {
+      "model": "cloudscape:block/resonator_4",
+      "y": 450
+    },
+    "charges=4,facing=north": {
+      "model": "cloudscape:block/resonator_4",
+      "y": 360
+    },
+    "charges=4,facing=south": {
+      "model": "cloudscape:block/resonator_4",
+      "y": 180
+    },
+    "charges=4,facing=west": {
+      "model": "cloudscape:block/resonator_4",
+      "y": 270
+    }
+  }
+}

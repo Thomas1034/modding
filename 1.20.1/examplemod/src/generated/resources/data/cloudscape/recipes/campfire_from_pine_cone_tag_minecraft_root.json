@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "cloudscape:pine_cone"
+    },
+    "P": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CCC",
+    "PPP"
+  ],
+  "result": {
+    "item": "minecraft:campfire"
+  },
+  "show_notification": true
+}
