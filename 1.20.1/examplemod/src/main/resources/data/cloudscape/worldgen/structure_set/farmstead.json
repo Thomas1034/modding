@@ -19,6 +19,14 @@
     {
       "structure": "cloudscape:farmstead_snowy",
       "weight": 1
+    },
+    {
+      "structure": "cloudscape:farmstead_swamp",
+      "weight": 1
+    },
+    {
+      "structure": "cloudscape:farmstead_jungle",
+      "weight": 1
     }
   ],
   "placement": {
