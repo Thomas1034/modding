@@ -203,6 +203,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.ZIRCONIUM_SLAB);
 		evenSimplerBlockItem(ModBlocks.CITRINE_SLAB);
 
+		// Spears
+		//spearItem(ModItems.ZIRCONIUM_SPEAR);
+		
+		
 		handheldItem(ModItems.GRAVITY_GUN);
 	}
 
@@ -273,8 +277,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 	
 	// TODO
 	// Make a template, and figure out how to link the textures?
-	private ItemModelBuilder dualModelItem(RegistryObject<Item> item) {
-		return withExistingParent(item.getId().getPath(), new ResourceLocation("item/handheld")).texture("layer0",
+	/*private ItemModelBuilder spearItem(RegistryObject<Item> item) {
+		return withExistingParent(item.getId().getPath(), new ResourceLocation(ZirconMod.MOD_ID, "item/spear")).texture("layer0",
 				new ResourceLocation(ZirconMod.MOD_ID, "item/" + item.getId().getPath()));
-	}
+	}*/
 }

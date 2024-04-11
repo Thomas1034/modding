@@ -11,6 +11,7 @@ import com.thomas.zirconmod.item.custom.CopperAxeItem;
 import com.thomas.zirconmod.item.custom.CopperHoeItem;
 import com.thomas.zirconmod.item.custom.CopperPickaxeItem;
 import com.thomas.zirconmod.item.custom.CopperShovelItem;
+import com.thomas.zirconmod.item.custom.CopperSpearItem;
 import com.thomas.zirconmod.item.custom.CopperSwordItem;
 import com.thomas.zirconmod.item.custom.FlamingArrowItem;
 import com.thomas.zirconmod.item.custom.FlamingPineconeItem;
@@ -47,7 +48,6 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
@@ -279,7 +279,7 @@ public class ModItems {
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> GUST_BOTTLE = ITEMS.register("gust_bottle",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1.8, 200, Items.GLASS_BOTTLE));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(8), 1.8, 200));
 
 	public static final RegistryObject<Item> TEMPEST_BOTTLE = ITEMS.register("tempest_bottle",
 			() -> new WindBagItem(new Item.Properties().defaultDurability(32), 2.0, 200));
@@ -288,7 +288,7 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(64)));
 
 	public static final RegistryObject<Item> WIND_BAG = ITEMS.register("wind_bag",
-			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, 20, EMPTY_WIND_BAG.get()));
+			() -> new WindBagItem(new Item.Properties().defaultDurability(1), 6, 20));
 
 	// Various wing armor tiers
 	public static final RegistryObject<Item> LEATHER_WINGS = ITEMS.register("leather_wings",
@@ -311,22 +311,38 @@ public class ModItems {
 					new Item.Properties().durability(1024).fireResistant().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> ZIRCONIUM_WINGS = ITEMS.register("zirconium_wings",
 			() -> new ArmoredWingsItem(ModArmorMaterials.ZIRCONIUM, Type.CHESTPLATE,
-					new Item.Properties().durability(784).fireResistant().rarity(Rarity.UNCOMMON))); 
+					new Item.Properties().durability(784).fireResistant().rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> CITRINE_WINGS = ITEMS.register("citrine_wings",
 			() -> new CitrineArmoredWingsItem(ModArmorMaterials.CITRINE, Type.CHESTPLATE,
 					new Item.Properties().durability(960).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> COPPER_WINGS = ITEMS.register("copper_wings",
 			() -> new CopperArmoredWingsItem(ModArmorMaterials.COPPER, Type.CHESTPLATE,
 					new Item.Properties().durability(672).rarity(Rarity.UNCOMMON)));
-	
-	// Spears
-	public static final RegistryObject<Item> ZIRCONIUM_SPEAR = ITEMS.register("zirconium_spear",
-			() -> new SpearItem(ModToolTiers.ZIRCONIUM, 1, -3.0F, new Item.Properties().fireResistant()));
 
-	
+	// Spears
+	public static final RegistryObject<Item> WOODEN_SPEAR = ITEMS.register("wooden_spear",
+			() -> new SpearItem(Tiers.WOOD, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> STONE_SPEAR = ITEMS.register("stone_spear",
+			() -> new SpearItem(Tiers.STONE, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> ZIRCONIUM_SPEAR = ITEMS.register("zirconium_spear",
+			() -> new SpearItem(ModToolTiers.ZIRCONIUM, 2, -3.0F, new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> COPPER_SPEAR = ITEMS.register("copper_spear",
+			() -> new CopperSpearItem(ModToolTiers.COPPER, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_SPEAR = ITEMS.register("iron_spear",
+			() -> new SpearItem(Tiers.IRON, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_SPEAR = ITEMS.register("golden_spear",
+			() -> new SpearItem(Tiers.IRON, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> DIAMOND_SPEAR = ITEMS.register("diamond_spear",
+			() -> new SpearItem(Tiers.DIAMOND, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> CITRINE_SPEAR = ITEMS.register("citrine_spear",
+			() -> new SpearItem(Tiers.DIAMOND, 2, -3.0F, new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_SPEAR = ITEMS.register("netherite_spear",
+			() -> new SpearItem(Tiers.NETHERITE, 2, -3.0F, new Item.Properties().fireResistant()));
+
+
 	public static final RegistryObject<Item> ANCIENT_FEATHER_WINGS = ITEMS.register("ancient_feather_wings",
 			() -> new AncientFeatherWingsItem(new Item.Properties().durability(108).rarity(Rarity.UNCOMMON)));
-	
+
 	// Dev items
 	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
 			() -> new GravityGunItem(new Item.Properties().rarity(Rarity.EPIC), 32));

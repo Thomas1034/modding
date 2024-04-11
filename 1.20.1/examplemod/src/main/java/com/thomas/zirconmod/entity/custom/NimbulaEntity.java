@@ -39,8 +39,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
@@ -172,7 +175,7 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 	@Override
 	public void thunderHit(ServerLevel level, LightningBolt bolt) {
 		TempestEntity tempest = new TempestEntity(ModEntityType.TEMPEST_ENTITY.get(), level);
-		if (tempest != null) {
+		if (tempest != null && this.random.nextFloat() < 0.05) {
 			this.remove(RemovalReason.DISCARDED);
 			tempest.moveTo(this.position());
 			tempest.setDeltaMovement(this.getDeltaMovement());
@@ -210,6 +213,16 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 		ItemStack toGive = new ItemStack(Items.AIR);
 		if (stack.is(Items.POTION)) {
 			toGive = (new ItemStack(Items.GLASS_BOTTLE));
+			Item rawItem = stack.getItem();
+			if (rawItem instanceof PotionItem item) {
+				for(MobEffectInstance mobeffectinstance : PotionUtils.getMobEffects(stack)) {
+		            if (mobeffectinstance.getEffect().isInstantenous()) {
+		            	// instantaneous effects are not applied
+		            } else {
+		               this.addEffect(new MobEffectInstance(mobeffectinstance));
+		            }
+		         }
+			}
 		}
 		if (stack.is(Items.WATER_BUCKET)) {
 			toGive = (new ItemStack(Items.BUCKET));
@@ -217,7 +230,7 @@ public class NimbulaEntity extends Animal implements FlyingAnimal {
 		if (stack.is(Items.WET_SPONGE)) {
 			toGive = (new ItemStack(Items.SPONGE));
 		}
-		
+
 		if (!player.getAbilities().instabuild) {
 			stack.shrink(1);
 			player.addItem(toGive);

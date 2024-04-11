@@ -1,12 +1,21 @@
 package com.thomas.zirconmod.item.custom;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.annotation.Nullable;
+
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.thomas.zirconmod.util.ModTags;
+import com.thomas.zirconmod.util.MotionHelper;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -16,11 +25,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class SpearItem extends TieredItem implements Vanishable {
 	private final float attackDamage;
+	private final float baseBonusChargeMultiplier;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
 	public SpearItem(Tier tier, int damage, float useSpeed, Item.Properties properties) {
@@ -32,6 +45,8 @@ public class SpearItem extends TieredItem implements Vanishable {
 		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier",
 				(double) useSpeed, AttributeModifier.Operation.ADDITION));
 		this.defaultModifiers = builder.build();
+
+		this.baseBonusChargeMultiplier = 1;
 	}
 
 	public float getDamage() {
@@ -48,40 +63,80 @@ public class SpearItem extends TieredItem implements Vanishable {
 	}
 
 	@Override
-	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity holder) {
+	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+
+		boolean debug = false;
+
 		// Deal extra damage based on relative speed.
-		
 		// Get the relative speed.
 		// Vertical speed doesn't matter as much.
-		double dv = target.getDeltaMovement().subtract(holder.getDeltaMovement()).multiply(1f, 0.5f, 1f).length();
-		
-		// Now multiply by 8 to get the integer quantity.
-		int chargeDamage = (int) dv * 8;
+		Vec3 holderSpeed = player instanceof ServerPlayer ? MotionHelper.getVelocity((ServerPlayer) player)
+				: player.getDeltaMovement();
+		Vec3 targetSpeed = entity instanceof ServerPlayer ? MotionHelper.getVelocity((ServerPlayer) entity)
+				: entity.getDeltaMovement();
+		float dv = (float) targetSpeed.subtract(holderSpeed).multiply(1f, 0.5f, 1f).length();
+
+		// Now multiply by 12 to get the integer quantity of the charge damage.
+		int chargeDamage = (int) (dv * 16);
 
 		// If the holder is crouching and holding relatively still, add damage.
 		// Defensive ground.
 		// This means that charging someone with a spear is a very, very bad idea.
-		// Just like when a boar fights hunters!
-		if (holder.getDeltaMovement().length() < 0.1 && holder.isShiftKeyDown()) {
-			chargeDamage += 4;
+		// Just like when a boar charges hunters!
+		if (player.getDeltaMovement().length() < 0.1 && player.isShiftKeyDown()) {
+			chargeDamage += 8;
 		}
-		
+
+		// Calculate damage added by enchantments.
+
+		float baseDamage = this.attackDamage;
+		float baseBonus = 0;
+		float chargeBonus = 1;
+		if (entity instanceof LivingEntity le) {
+			baseBonus = getEnchantmentAttackBonuses(stack, le.getMobType());
+			chargeBonus = getEnchantmentImpaleBonuses(stack, le.getMobType());
+		} else {
+			baseBonus = getEnchantmentAttackBonuses(stack, null);
+			chargeBonus = getEnchantmentImpaleBonuses(stack, null);
+		}
+
+		float totalDamage = baseDamage + baseBonus + chargeDamage * (1 + chargeBonus) * this.baseBonusChargeMultiplier;
+
+		float appliedDamage = totalDamage;
+
+		// Scale the total damage by the swing time squared.
+		// This makes spam clicking much less effective.
+		appliedDamage *= (1 - player.attackAnim) * (1 - player.attackAnim);
+
+		// Decrease attack damage by 50% if the enemy has a shield.
+		if (entity instanceof LivingEntity le && le.isBlocking()) {
+			appliedDamage *= 0.5;
+		}
+
 		// Add the damage.
-		
-		System.out.println("Invulnerable time: " + target.invulnerableTime);
-		System.out.println("Damage: " + chargeDamage);
-		target.invulnerableTime = 0;
-		target.hurt(holder.damageSources().mobAttack(holder), chargeDamage);
-		
-		stack.hurtAndBreak(1 + chargeDamage, holder, (wielder) -> {
+		if (!entity.level().isClientSide()) {
+			if (debug) {
+				System.out.println("============================================");
+				System.out.println("Damage: " + totalDamage);
+				System.out
+						.println("Charge damage: " + chargeDamage * (1 + chargeBonus) * this.baseBonusChargeMultiplier);
+				System.out.println("Base damage: " + baseDamage + baseBonus);
+				System.out.println("Speed: " + dv);
+				System.out.println("Attack animation time: " + player.attackAnim);
+				System.out.println("============================================");
+			}
+			entity.hurt(player.damageSources().mobAttack(player), appliedDamage);
+		}
+		// Damage the spear.
+		stack.hurtAndBreak(1 + (chargeDamage / 2), player, (wielder) -> {
 			wielder.broadcastBreakEvent(EquipmentSlot.MAINHAND);
 		});
+
 		return true;
 	}
 
 	@Override
-	public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos,
-			LivingEntity player) {
+	public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity player) {
 		if (state.getDestroySpeed(level, pos) != 0.0F) {
 			stack.hurtAndBreak(2, player, (p_43276_) -> {
 				p_43276_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
@@ -101,6 +156,70 @@ public class SpearItem extends TieredItem implements Vanishable {
 	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot p_43274_) {
 		return p_43274_ == EquipmentSlot.MAINHAND ? this.defaultModifiers
 				: super.getDefaultAttributeModifiers(p_43274_);
+	}
+
+	@Override
+	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+		return this.getDefaultAttributeModifiers(slot);
+	}
+
+	public float getEnchantmentAttackBonuses(ItemStack stack, @Nullable MobType type) {
+
+		Map<Enchantment, Integer> enchantments = stack.getAllEnchantments();
+		float total = 0;
+		for (Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
+			total += getEnchantmentAttackBonus(stack, entry.getKey(), entry.getValue(), type);
+		}
+		return total;
+	}
+
+	public float getEnchantmentImpaleBonuses(ItemStack stack, @Nullable MobType type) {
+
+		Map<Enchantment, Integer> enchantments = stack.getAllEnchantments();
+		float total = 0;
+		for (Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
+			total += getEnchantmentImpaleBonus(stack, entry.getKey(), entry.getValue(), type);
+		}
+		return total;
+	}
+
+	public float getEnchantmentAttackBonus(ItemStack stack, Enchantment enchantment, int strength, MobType type) {
+		float result = enchantment.getDamageBonus(strength, type, stack);
+
+		return result;
+	}
+
+	// Multiplies the impaling damage.
+	public float getEnchantmentImpaleBonus(ItemStack stack, Enchantment enchantment, int strength, MobType type) {
+		float result = 0;
+
+		// On a spear, impaling does more damage to all entities.
+		if (enchantment == Enchantments.IMPALING) {
+			result += 0.2f * strength;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		boolean isValid = super.canApplyAtEnchantingTable(stack, enchantment);
+
+		boolean hasImpaling = stack.getEnchantmentLevel(Enchantments.IMPALING) > 0;
+		boolean hasSmite = stack.getEnchantmentLevel(Enchantments.SMITE) > 0;
+		boolean hasArthro = stack.getEnchantmentLevel(Enchantments.BANE_OF_ARTHROPODS) > 0;
+
+		if (enchantment == Enchantments.IMPALING && !hasSmite && !hasArthro) {
+			isValid = true;
+		} else if (enchantment == Enchantments.SMITE && !hasImpaling && !hasArthro) {
+			isValid = true;
+		} else if (enchantment == Enchantments.BANE_OF_ARTHROPODS && !hasImpaling && !hasSmite) {
+			isValid = true;
+		} else if (enchantment == Enchantments.MOB_LOOTING) {
+			isValid = true;
+		}
+
+		return isValid;
 	}
 
 }

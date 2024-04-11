@@ -13,24 +13,36 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_cloud_detector": {
+    "has_cloud_inverter": {
       "conditions": {
         "items": [
           {
             "items": [
-              "zirconmod:cloud_detector"
+              "zirconmod:cloud_inverter"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_quartz": {
+    "has_copper_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:quartz"
+              "minecraft:copper_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cut_citrine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zirconmod:cut_citrine"
             ]
           }
         ]
@@ -51,36 +63,24 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "zirconmod:cloud_detector_from_cloud_bricks_thunder_cloud_redstone_quartz"
+        "recipe": "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone_copper_block"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_thunder_cloud": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "zirconmod:thunder_cloud"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_cloud_bricks",
-      "has_thunder_cloud",
+      "has_cut_citrine",
       "has_redstone",
-      "has_quartz",
-      "has_cloud_detector",
+      "has_copper_block",
+      "has_cloud_inverter",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "zirconmod:cloud_detector_from_cloud_bricks_thunder_cloud_redstone_quartz"
+      "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone_copper_block"
     ]
   },
   "sends_telemetry_event": false

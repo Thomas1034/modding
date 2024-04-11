@@ -5,6 +5,9 @@
     "C": {
       "item": "zirconmod:cloud_bricks"
     },
+    "P": {
+      "item": "minecraft:copper_block"
+    },
     "Q": {
       "item": "minecraft:quartz"
     },
@@ -16,9 +19,9 @@
     }
   },
   "pattern": [
-    "RCR",
+    "PCR",
     "QTQ",
-    "RCR"
+    "RCP"
   ],
   "result": {
     "item": "zirconmod:cloud_detector"

@@ -12,7 +12,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -20,19 +19,10 @@ public class WindBagItem extends Item {
 
 	private double power;
 	private int duration;
-	private Item onUse;
 
 	public WindBagItem(Properties properties, double power, int duration) {
 		super(properties);
 		this.power = power;
-		this.onUse = Items.AIR;
-		this.duration = duration;
-	}
-
-	public WindBagItem(Properties properties, double power, int duration, Item onUse) {
-		super(properties);
-		this.power = power;
-		this.onUse = onUse;
 		this.duration = duration;
 	}
 
@@ -45,10 +35,6 @@ public class WindBagItem extends Item {
 			// Damage the item.
 			if (!player.getAbilities().instabuild) {
 				itemstack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
-				if (itemstack.isEmpty()) {
-					System.out.println("Gifting.");
-					player.addItem(new ItemStack(this.onUse));
-				}
 			}
 			
 			// Refill air. Because why not.
@@ -65,13 +51,16 @@ public class WindBagItem extends Item {
 			} else if (!sp.isFallFlying()) {
 				// Otherwise, burst charge.
 				Vec3 charge = sp.getLookAngle().scale(this.power);
-				if (charge.y > 0) {
-					charge = charge.multiply(1f, 1.5f, 1.5f);
+				charge = charge.multiply(1f, 0.75f, 1f);
+				if (charge.y < 0) {
+					charge = charge.multiply(1f, 0.75f, 1f);
 				}
+
 				// Invert if holding shift.
 				if (sp.isShiftKeyDown()) {
 					charge = charge.scale(-1);
 				}
+				
 				ModPacketHandler.sendToPlayer(new PlayerAddVelocityPacket(charge), sp);
 				// Set a cooldown.
 				player.getCooldowns().addCooldown(this, (int) (this.power * 10));

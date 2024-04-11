@@ -10,6 +10,7 @@ import com.thomas.zirconmod.entity.custom.TempestEntity;
 import com.thomas.zirconmod.entity.custom.WraithEntity;
 import com.thomas.zirconmod.item.ModItems;
 import com.thomas.zirconmod.util.ModWeatheringCopper;
+import com.thomas.zirconmod.util.MotionHelper;
 import com.thomas.zirconmod.util.Reflection;
 import com.thomas.zirconmod.util.Utilities;
 import com.thomas.zirconmod.util.Waxable;
@@ -45,6 +46,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityEvent.EnteringSection;
 import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
@@ -55,6 +58,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ZirconMod.MOD_ID)
@@ -394,6 +398,22 @@ public class ModEvents {
 				event.setUseBlock(Result.DENY);
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(PlayerTickEvent event) {
+		
+		if (event.phase != TickEvent.Phase.START) {
+			return;
+		}
+		
+		if (event.side == LogicalSide.SERVER) {
+			Player player = event.player;
+			if (player instanceof ServerPlayer sp) {
+				MotionHelper.update(sp);
+			}
+		}
+		
 	}
 
 }

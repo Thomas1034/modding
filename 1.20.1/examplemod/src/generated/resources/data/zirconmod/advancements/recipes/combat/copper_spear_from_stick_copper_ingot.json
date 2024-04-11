@@ -1,48 +1,36 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cloud_bricks": {
+    "has_copper_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "zirconmod:cloud_bricks"
+              "minecraft:copper_ingot"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_cloud_inverter": {
+    "has_copper_spear": {
       "conditions": {
         "items": [
           {
             "items": [
-              "zirconmod:cloud_inverter"
+              "zirconmod:copper_spear"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_cut_citrine": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
             "items": [
-              "zirconmod:cut_citrine"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_redstone": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:redstone"
+              "minecraft:stick"
             ]
           }
         ]
@@ -51,23 +39,22 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone"
+        "recipe": "zirconmod:copper_spear_from_stick_copper_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cloud_bricks",
-      "has_cut_citrine",
-      "has_redstone",
-      "has_cloud_inverter",
+      "has_stick",
+      "has_copper_ingot",
+      "has_copper_spear",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "zirconmod:cloud_inverter_from_cloud_bricks_cut_citrine_redstone"
+      "zirconmod:copper_spear_from_stick_copper_ingot"
     ]
   },
   "sends_telemetry_event": false

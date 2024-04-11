@@ -48,21 +48,24 @@ public class WingFlapPacket {
 
 			// Check if the wings are actually wings.
 			if (wings.getItem() instanceof AbstractFlappingWingsItem afwi) {
+				// Check if the player does not have flight exhaustion
+				if (!player.getActiveEffects().stream()
+						.anyMatch(instance -> instance.getEffect().equals(ModEffects.FLIGHT_EXHAUSTION.get()))) {
+					// Applies flight exhaustion.
+					player.addEffect(new MobEffectInstance(ModEffects.FLIGHT_EXHAUSTION.get(),
+							(int) (msg.getExhaustionToAdd() * 20), 0, false, false));
+					// Adds flapping particles.
+					Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 1.0, 5);
+					Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 1.0, 5);
+					Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 2.0, 5);
+					Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 2.0, 5);
 
-				// Applies flight exhaustion.
-				player.addEffect(new MobEffectInstance(ModEffects.FLIGHT_EXHAUSTION.get(),
-						(int) (msg.getExhaustionToAdd() * 20), 0, false, false));
-				// Adds flapping particles.
-				Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 1.0, 5);
-				Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 1.0, 5);
-				Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 2.0, 5);
-				Utilities.addParticlesAroundPositionServer(sl, player.position(), ParticleTypes.CLOUD, 2.0, 5);
-
-				// Wears down the wings.
-				WingsItem.decreaseDurabilityPublic(wings, player);
-				// Plays a sound, assuming the chunk is loaded.
-				sl.playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0f,
-						1.0f);
+					// Wears down the wings.
+					WingsItem.decreaseDurabilityPublic(wings, player);
+					// Plays a sound, assuming the chunk is loaded.
+					sl.playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0f,
+							1.0f);
+				}
 			}
 
 		});

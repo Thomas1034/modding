@@ -61,6 +61,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_AXE.get());
 		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_SHOVEL.get());
 		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_SWORD.get());
+		this.tag(ModTags.Items.CLOUD_HARVEST_ITEMS).add(ModItems.CITRINE_SPEAR.get());
 
 		// Marks the flaming arrow as an arrow.
 		this.tag(ItemTags.ARROWS).add(ModItems.FLAMING_ARROW.get());

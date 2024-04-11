@@ -3,27 +3,22 @@ package com.thomas.zirconmod.item.custom;
 import java.util.Stack;
 
 import com.thomas.zirconmod.block.ModBlocks;
-import com.thomas.zirconmod.util.Utilities;
-import com.thomas.zirconmod.worldgen.custom.CloudFloorFeature;
+import com.thomas.zirconmod.util.MotionHelper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class SpeedometerItem extends Item {
 	
-	public static int skin = 0;
-
 	public SpeedometerItem(Properties properties) {
 		super(properties);
 	}
@@ -31,28 +26,14 @@ public class SpeedometerItem extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		if (level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
-			Vec3 vel = Utilities.deltaMotion(player);
-			player.sendSystemMessage(Component.literal("Velocity: " + vel.x + " " + vel.y + " " + vel.z));
+			Vec3 vel = player.getDeltaMovement();
 			player.sendSystemMessage(Component.literal("Speed: " + vel.length()));
+			player.sendSystemMessage(Component.literal("Velocity: " + vel.x + " " + vel.y + " " + vel.z));
 		}
 
-		else if (!level.isClientSide()) {
-			/*if (!player.isShiftKeyDown()) {
-				CloudFloorFeature.placeMultiLayer(level, player.blockPosition(), 3, ModBlocks.CLOUD.get().defaultBlockState(), Biomes.RIVER);
-			} else {
-				HitResult result = player.pick(5.0, 1.0f, false);
-				if (result instanceof BlockHitResult bres) {
-					// Erase cloud.
-					eraseCloudAt(level, bres.getBlockPos());
-				}
-			}*/
-			
-			if (!player.isShiftKeyDown()) {
-				skin = 0;
-			} else {
-				skin = 1;
-			}
-			System.out.println(skin);
+		else if (!level.isClientSide() && player instanceof ServerPlayer sp) {
+			Vec3 vel = MotionHelper.getVelocity(sp);
+			player.sendSystemMessage(Component.literal("Server Velocity: " + vel.x + " " + vel.y + " " + vel.z));
 		}
 
 		return super.use(level, player, hand);

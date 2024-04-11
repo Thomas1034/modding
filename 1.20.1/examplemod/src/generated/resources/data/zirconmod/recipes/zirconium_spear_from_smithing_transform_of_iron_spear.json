@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "zirconmod:zirconium_ingot"
+  },
+  "base": {
+    "item": "zirconmod:iron_spear"
+  },
+  "result": {
+    "item": "zirconmod:zirconium_spear"
+  },
+  "template": {
+    "item": "zirconmod:zirconium_upgrade_smithing_template"
+  }
+}

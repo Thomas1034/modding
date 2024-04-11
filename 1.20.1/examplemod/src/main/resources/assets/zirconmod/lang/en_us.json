@@ -1,4 +1,5 @@
 {
+	"item.zirconmod.speedometer": "Speedometer",
 	"item.zirconmod.zircon": "Zircon",
 	"item.zirconmod.zircon_shard": "Zircon Shard",
 	"item.zirconmod.zirconium_ingot": "Zirconium Ingot",
@@ -35,6 +36,13 @@
 	"item.zirconmod.wind_bag": "Bag of Winds",
 	"item.zirconmod.empty_wind_bag": "Empty Bag of Winds",
 	
+	"item.zirconmod.wooden_spear": "Wooden Spear",
+	"item.zirconmod.stone_spear": "Stone Spear",
+	"item.zirconmod.iron_spear": "Iron Spear",
+	"item.zirconmod.golden_spear": "Golden Spear",
+	"item.zirconmod.diamond_spear": "Diamond Spear",
+	"item.zirconmod.netherite_spear": "Netherite Spear",
+	
 	"item.zirconmod.copper_sword": "Copper Sword",
 	"item.zirconmod.copper_pickaxe": "Copper Pickaxe",
 	"item.zirconmod.copper_axe": "Copper Axe",
@@ -44,6 +52,7 @@
 	"item.zirconmod.copper_leggings": "Copper Leggings",
 	"item.zirconmod.copper_boots": "Copper Boots",
 	"item.zirconmod.copper_helmet": "Copper Helmet",
+	"item.zirconmod.copper_spear": "Copper Spear",
 	
 	"item.zirconmod.zirconium_helmet": "Zirconium Helmet",
 	"item.zirconmod.zirconium_chestplate": "Zirconium Chestplate",
@@ -54,6 +63,7 @@
 	"item.zirconmod.zirconium_pickaxe": "Zirconium Pickaxe",
 	"item.zirconmod.zirconium_hoe": "Zirconium Hoe",
 	"item.zirconmod.zirconium_shovel": "Zirconium Shovel",
+	"item.zirconmod.zirconium_spear": "Zirconium Spear",
 	
 	"item.zirconmod.citrine_helmet": "Citrine Helmet",
 	"item.zirconmod.citrine_chestplate": "Citrine Chestplate",
@@ -64,6 +74,7 @@
 	"item.zirconmod.citrine_pickaxe": "Citrine Pickaxe",
 	"item.zirconmod.citrine_hoe": "Citrine Hoe",
 	"item.zirconmod.citrine_shovel": "Citrine Shovel",
+	"item.zirconmod.citrine_spear": "Citrine Spear",
 	
 	"item.zirconmod.leather_wings": "Leather Wings",
 	"item.zirconmod.copper_wings": "Copper Wings",
@@ -242,6 +253,7 @@
 	"entity.zirconmod.mod_boat": "Boat",
 	"entity.zirconmod.mod_chest_boat": "Boat with Chest",
 	"entity.zirconmod.gust": "Gust",
+	"entity.zirconmod.wraith": "Wraith",
 	
 	"entity.minecraft.villager.zirconmod.forester": "Forester",
 	"entity.minecraft.villager.zirconmod.gemsmith": "Gemsmith",

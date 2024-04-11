@@ -321,18 +321,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(), 3);
 
 		// Cloud converter
-		shaped(pWriter, List.of("RCR", "CTC", "RCR"), List.of('C', 'T', 'R'),
-				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE),
+		shaped(pWriter, List.of("RCR", "PTP", "RCR"), List.of('C', 'T', 'R', 'P'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE, Items.COPPER_BLOCK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_CONVERTER.get(), 2);
 
 		// Cloud inverter
-		shaped(pWriter, List.of("CRC", "RTR", "CRC"), List.of('C', 'T', 'R'),
-				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE),
+		shaped(pWriter, List.of("PRC", "RTR", "CRP"), List.of('C', 'T', 'R', 'P'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModItems.CUT_CITRINE.get(), Items.REDSTONE, Items.COPPER_BLOCK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_INVERTER.get(), 2);
 
 		// Cloud detector
-		shaped(pWriter, List.of("RCR", "QTQ", "RCR"), List.of('C', 'T', 'R', 'Q'),
-				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ),
+		shaped(pWriter, List.of("PCR", "QTQ", "RCP"), List.of('C', 'T', 'R', 'Q', 'P'),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ, Items.COPPER_BLOCK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_DETECTOR.get(), 1);
 
 		// Smelting amethyst blocks to citrine
@@ -539,11 +539,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get(), 1);
 		shapeless(pWriter, List.of(Blocks.WAXED_OXIDIZED_CUT_COPPER), List.of(1), RecipeCategory.REDSTONE,
 				ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get(), 1);
-		
-		// Thick mist
 
-		shapeless(pWriter, List.of(ModBlocks.CLOUD.get(), ModBlocks.MIST.get()), List.of(1, 1), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.THICK_MIST.get(), 2);
+		// Thick mist
+		shapeless(pWriter, List.of(ModBlocks.CLOUD.get(), ModBlocks.MIST.get()), List.of(1, 1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THICK_MIST.get(), 2);
+
+		// Spears
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, ItemTags.PLANKS),
+				RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, ItemTags.STONE_TOOL_MATERIALS),
+				RecipeCategory.COMBAT, ModItems.STONE_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.IRON_INGOT),
+				RecipeCategory.COMBAT, ModItems.IRON_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.COPPER_INGOT),
+				RecipeCategory.COMBAT, ModItems.COPPER_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.GOLD_INGOT),
+				RecipeCategory.COMBAT, ModItems.GOLDEN_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.DIAMOND),
+				RecipeCategory.COMBAT, ModItems.DIAMOND_SPEAR.get(), 1);
+		smithingTransform(pWriter, ModItems.ZIRCONIUM_UPGRADE_SMITHING_TEMPLATE.get(), ModItems.IRON_SPEAR.get(),
+				ModItems.ZIRCONIUM_INGOT.get(), RecipeCategory.COMBAT, ModItems.ZIRCONIUM_SPEAR.get());
+		smithingTransform(pWriter, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ModItems.DIAMOND_SPEAR.get(),
+				Items.NETHERITE_INGOT, RecipeCategory.COMBAT, ModItems.NETHERITE_SPEAR.get());
+
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.

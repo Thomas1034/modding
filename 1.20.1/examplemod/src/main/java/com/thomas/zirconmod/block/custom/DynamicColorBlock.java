@@ -55,8 +55,8 @@ public class DynamicColorBlock extends Block {
 			int manualDarkness = (int) ((1.0D - d2 * d0 * d1) * 11.0D);
 
 			float darkness = (0.5f - (manualDarkness / 22.0f)) * 2.0f;
-			System.out.println("Sky darken is " + (level.getSkyDarken()) + " manually is " + manualDarkness);
-			System.out.println("Darkness is " + darkness);
+			//System.out.println("Sky darken is " + (level.getSkyDarken()) + " manually is " + manualDarkness);
+			//System.out.println("Darkness is " + darkness);
 			int skyColor = level.getBiome(pos).get().getSkyColor();
 
 			int[] channels = Utilities.splitChannels(skyColor);
@@ -69,7 +69,7 @@ public class DynamicColorBlock extends Block {
 			return adjustedSkyColor;
 
 		} else {
-			System.out.println("Level is null!");
+			//System.out.println("Level is null!");
 			// return default plains sky.
 			return 0x78A7FF;
 		}

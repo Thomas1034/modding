@@ -100,10 +100,12 @@ public class GustEntity extends Vex {
 		Vec3 knockbackVector = dir.scale(factor);
 		knockbackVector = new Vec3(dir.x * factor, Math.abs(dir.y) * factor / 2, dir.z * factor);
 		if (entity instanceof ServerPlayer player) {
+			// TODO Copy knockback code.
 			ModPacketHandler.sendToPlayer(
 					new PlayerAddVelocityPacket(knockbackVector.x, knockbackVector.y, knockbackVector.z), player);
-		} else {
-			entity.addDeltaMovement(knockbackVector);
+			player.knockback(knockbackVector.x, knockbackVector.y, knockbackVector.z);
+		} else if (entity instanceof LivingEntity le){
+			le.knockback(knockbackVector.x, knockbackVector.y, knockbackVector.z);
 		}
 	}
 

@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "zirconmod:item/spear_3d",
+		"textures": {
+				"0": "zirconmod:item/copper_spear_3d"
+			}
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "zirconmod:item/spear_2d",
+			"textures": {
+				"layer0": "zirconmod:item/copper_spear"
+			}
+    },
+    "ground": {
+      "parent": "zirconmod:item/spear_2d",
+			"textures": {
+				"layer0": "zirconmod:item/copper_spear"
+			}
+    },
+    "fixed": {
+      "parent": "zirconmod:item/spear_2d",
+			"textures": {
+				"layer0": "zirconmod:item/copper_spear"
+			}
+    }
+  }
+}

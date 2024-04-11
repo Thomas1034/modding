@@ -5,6 +5,9 @@
     "C": {
       "item": "zirconmod:cloud_bricks"
     },
+    "P": {
+      "item": "minecraft:copper_block"
+    },
     "R": {
       "item": "minecraft:redstone"
     },
@@ -13,13 +16,13 @@
     }
   },
   "pattern": [
-    "CRC",
-    "RTR",
-    "CRC"
+    "RCR",
+    "PTP",
+    "RCR"
   ],
   "result": {
     "count": 2,
-    "item": "zirconmod:cloud_inverter"
+    "item": "zirconmod:cloud_converter"
   },
   "show_notification": true
 }

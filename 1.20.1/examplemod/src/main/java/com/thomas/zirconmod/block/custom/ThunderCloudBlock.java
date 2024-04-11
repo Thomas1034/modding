@@ -21,13 +21,12 @@ public class ThunderCloudBlock extends CloudBlock {
 	// Damage all entities inside the block if it is thundering.
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		if (level.isThundering())
-			entity.hurt(entity.damageSources().lightningBolt(), 3f);
+		entity.hurt(entity.damageSources().lightningBolt(), 3f);
 	}
 
 	// Damage all entities that step on the block
 	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-		if (level.isThundering() && !entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+		if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
 			entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
 		}
 		super.stepOn(level, pos, state, entity);

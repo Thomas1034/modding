@@ -558,11 +558,6 @@ public class Utilities {
 		return at.add(endPos);
 	}
 
-	// Returns a vector representing a player's motion
-	public static Vec3 deltaMotion(Player player) {
-		return new Vec3(player.getX() - player.xOld, player.getY() - player.yOld, player.getZ() - player.zOld);
-	}
-
 	// Written by ChatGPT
 	public static class Matrix {
 
