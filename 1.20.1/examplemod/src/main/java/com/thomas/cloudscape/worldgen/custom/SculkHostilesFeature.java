@@ -73,7 +73,10 @@ public class SculkHostilesFeature extends Feature<NoneFeatureConfiguration> {
 	// Places a single root.
 	public static boolean placeRoot(LevelAccessor level, BlockPos pos) {
 		try {
+			if (level.getRandom().nextFloat() < 0.3) {
 			return Utilities.setSafeNoFluid(level, Utilities.findSurface(level, pos, 5), ROOT);
+			}
+			return false;
 		} catch (SurfaceNotFoundException e) {
 			// If a surface is not found, do nothing.
 			return false;
