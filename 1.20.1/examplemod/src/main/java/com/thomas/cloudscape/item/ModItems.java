@@ -15,7 +15,6 @@ import com.thomas.cloudscape.item.custom.CopperSpearItem;
 import com.thomas.cloudscape.item.custom.CopperSwordItem;
 import com.thomas.cloudscape.item.custom.FlamingArrowItem;
 import com.thomas.cloudscape.item.custom.FlamingPineconeItem;
-import com.thomas.cloudscape.item.custom.GravityGunItem;
 import com.thomas.cloudscape.item.custom.HailstoneItem;
 import com.thomas.cloudscape.item.custom.ModBoatItem;
 import com.thomas.cloudscape.item.custom.ModSmithingTemplateItem;
@@ -204,7 +203,7 @@ public class ModItems {
 			() -> new ItemNameBlockItem(ModBlocks.BUBBLEFRUIT_CROP.get(),
 					new Item.Properties().stacksTo(64)
 							.food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1f).fast()
-									.effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 100, 0), 0.9F)
+									.effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 0), 1.0F)
 									.build())));
 
 	public static final RegistryObject<Item> BLUEBERRY = ITEMS.register("blueberry",
@@ -342,10 +341,6 @@ public class ModItems {
 
 	public static final RegistryObject<Item> ANCIENT_FEATHER_WINGS = ITEMS.register("ancient_feather_wings",
 			() -> new AncientFeatherWingsItem(new Item.Properties().durability(108).rarity(Rarity.UNCOMMON)));
-
-	// Dev items
-	public static final RegistryObject<Item> GRAVITY_GUN = ITEMS.register("gravity_gun",
-			() -> new GravityGunItem(new Item.Properties().rarity(Rarity.EPIC), 32));
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

@@ -66,6 +66,9 @@ public class SpearItem extends TieredItem implements Vanishable {
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 
 		boolean debug = false;
+		
+		// Get the attack damage.
+		float attributeDamage = (float)player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
 		// Deal extra damage based on relative speed.
 		// Get the relative speed.
@@ -75,7 +78,8 @@ public class SpearItem extends TieredItem implements Vanishable {
 		Vec3 targetSpeed = entity instanceof ServerPlayer ? MotionHelper.getVelocity((ServerPlayer) entity)
 				: entity.getDeltaMovement();
 		float dv = (float) targetSpeed.subtract(holderSpeed).multiply(1f, 0.5f, 1f).length();
-
+		
+		
 		// Now multiply by 12 to get the integer quantity of the charge damage.
 		int chargeDamage = (int) (dv * 16);
 
@@ -89,7 +93,7 @@ public class SpearItem extends TieredItem implements Vanishable {
 
 		// Calculate damage added by enchantments.
 
-		float baseDamage = this.attackDamage;
+		float baseDamage = attributeDamage + this.attackDamage;
 		float baseBonus = 0;
 		float chargeBonus = 1;
 		if (entity instanceof LivingEntity le) {

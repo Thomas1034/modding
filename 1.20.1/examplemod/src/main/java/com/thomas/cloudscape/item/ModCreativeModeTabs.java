@@ -35,6 +35,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.FLAMING_ARROW.get());
 						pOutput.accept(ModItems.TOTEM_OF_RETURNING.get());
 						// pOutput.accept(ModItems.CLEAR_WEATHER_TOTEM.get());
+						pOutput.accept(ModItems.BERRY_PIE.get());
 						pOutput.accept(ModItems.BLUEBERRY.get());
 						pOutput.accept(ModItems.BLUEBERRY_SEEDS.get());
 						pOutput.accept(ModItems.BUBBLEFRUIT.get());

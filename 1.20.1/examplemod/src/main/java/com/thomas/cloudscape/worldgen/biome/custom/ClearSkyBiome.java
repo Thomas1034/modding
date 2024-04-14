@@ -32,6 +32,8 @@ public class ClearSkyBiome {
 				ModPlacedFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
 				ModPlacedFeatures.BUBBLEFRUIT_PATCH_PLACED_KEY);
+		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+				ModPlacedFeatures.WHITE_ORCHID_PATCH_PLACED_KEY);
 
 		int skyColor = Utilities.toHexColor(110, 177, 255);
 		int fogColor = Utilities.toHexColor(110, 177, 255);

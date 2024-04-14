@@ -10,15 +10,12 @@
     },
     "I": {
       "item": "minecraft:iron_ingot"
-    },
-    "L": {
-      "tag": "minecraft:logs"
     }
   },
   "pattern": [
     " C ",
-    "L#L",
-    "LIL"
+    " # ",
+    " I "
   ],
   "result": {
     "item": "cloudscape:carpentry_table"

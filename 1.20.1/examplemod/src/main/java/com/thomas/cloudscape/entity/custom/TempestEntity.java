@@ -2,13 +2,18 @@ package com.thomas.cloudscape.entity.custom;
 
 import java.util.EnumSet;
 
+import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.effect.ModEffects;
 import com.thomas.cloudscape.entity.ai.TempestShootLightningGoal;
+import com.thomas.cloudscape.util.Utilities;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
@@ -60,7 +65,7 @@ public class TempestEntity extends Ghast implements PowerableMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 160.0D).add(Attributes.FOLLOW_RANGE, 256.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 80.0D).add(Attributes.FOLLOW_RANGE, 256.0D);
 	}
 
 	@Override
@@ -135,6 +140,20 @@ public class TempestEntity extends Ghast implements PowerableMob {
 		}
 
 		this.walkAnimation.update(f, 0.2f);
+	}
+
+	// Generates a cloud platform for the loot.
+
+	@Override
+	protected void dropAllDeathLoot(DamageSource p_21192_) {
+		super.dropAllDeathLoot(p_21192_);
+
+		BlockPos center = this.blockPosition();
+		Utilities.placePlatform(this.level(), center.below(1), 3, 1,
+				() -> (this.random.nextFloat() < 0.1 ? ModBlocks.CLOUD.get().defaultBlockState()
+						: ModBlocks.THUNDER_CLOUD.get().defaultBlockState()),
+				(state) -> state.is(BlockTags.REPLACEABLE));
+
 	}
 
 	static class TempestLookGoal extends Goal {
@@ -245,6 +264,7 @@ public class TempestEntity extends Ghast implements PowerableMob {
 
 			return true;
 		}
+
 	}
 
 	@Override

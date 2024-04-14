@@ -47,6 +47,8 @@ public class ModPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> WHITE_ORCHID_PATCH_PLACED_KEY = registerKey("white_orchid_patch_placed");
 
+	public static final ResourceKey<PlacedFeature> CALCITE_ORE_PLACED_KEY = registerKey("calcite_ore_placed");
+
 	
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -55,7 +57,13 @@ public class ModPlacedFeatures {
 				configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_ZIRCON_ORE_KEY),
 				ModPlacement.commonOrePlacement(20,
 						HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320))));
+		
+		register(context, CALCITE_ORE_PLACED_KEY,
+				configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_CALCITE_ORE_KEY),
+				ModPlacement.commonOrePlacement(8,
+						HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(128))));
 
+		
 		register(context, CITRINE_GEODE_PLACED_KEY,
 				configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_CITRINE_GEODE_KEY),
 				ModPlacement.rareOrePlacement(64,
@@ -95,7 +103,7 @@ public class ModPlacedFeatures {
 				ModPlacement.rareAboveBottomRangePlacement(176, 208, 16));
 		
 		register(context, WHITE_ORCHID_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WHITE_ORCHID_PATCH_KEY),
-				ModPlacement.commonAboveBottomRangePlacement(0, 128, 2));
+				ModPlacement.commonAboveBottomRangePlacement(0, 128, 3));
 
 	}
 

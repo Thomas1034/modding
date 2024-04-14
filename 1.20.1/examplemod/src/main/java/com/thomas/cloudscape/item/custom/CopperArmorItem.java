@@ -1,5 +1,6 @@
 package com.thomas.cloudscape.item.custom;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -17,8 +18,8 @@ public class CopperArmorItem extends ArmorItem {
 	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity holder, int iInt, boolean isHeld) {
 		super.inventoryTick(stack, level, holder, iInt, isHeld);
-		if (isHeld)
-			oxidize(stack, level, holder);
+		if (isHeld && !(holder instanceof ServerPlayer sp && sp.getAbilities().instabuild))
+			oxidize(stack, level, holder);		
 	}
 	
 	@SuppressWarnings("removal")

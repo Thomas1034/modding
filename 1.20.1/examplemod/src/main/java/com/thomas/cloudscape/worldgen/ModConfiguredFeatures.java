@@ -64,6 +64,8 @@ public class ModConfiguredFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_ORCHID_PATCH_KEY = registerKey("white_orchid");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_CALCITE_ORE_KEY = registerKey("calcite_ore");
+
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 		RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
@@ -73,7 +75,13 @@ public class ModConfiguredFeatures {
 				OreConfiguration.target(deepslateReplaceables,
 						ModBlocks.DEEPSLATE_ZIRCON_ORE.get().defaultBlockState()));
 
+		List<OreConfiguration.TargetBlockState> overworldCalcite = List.of(
+				OreConfiguration.target(stoneReplaceable, Blocks.CALCITE.defaultBlockState()),
+				OreConfiguration.target(deepslateReplaceables, Blocks.CALCITE.defaultBlockState()));
+
 		register(context, OVERWORLD_ZIRCON_ORE_KEY, Feature.ORE, new OreConfiguration(overworldZirconOres, 12));
+		register(context, OVERWORLD_CALCITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldCalcite, 24));
+		
 		register(context, OVERWORLD_CITRINE_GEODE_KEY, Feature.GEODE, new GeodeConfiguration(
 				new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
 						BlockStateProvider.simple(ModBlocks.CITRINE_BLOCK.get()),

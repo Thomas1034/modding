@@ -1,7 +1,5 @@
 package com.thomas.cloudscape.worldgen.biome.custom;
 
-import com.thomas.cloudscape.entity.ModEntityType;
-
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -17,11 +15,6 @@ public class ModBiomeFeatures {
 
 	public static void skySpawns(Builder builder) {
 		builder.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 10, 2, 8));
-		builder.addSpawn(MobCategory.MONSTER,
-				new MobSpawnSettings.SpawnerData(ModEntityType.WRAITH_ENTITY.get(), 100, 1, 2));
-		builder.addSpawn(MobCategory.MONSTER,
-				new MobSpawnSettings.SpawnerData(ModEntityType.TEMPEST_ENTITY.get(), 1, 1, 2));
-		
 	}
 
 }

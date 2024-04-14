@@ -109,6 +109,10 @@ public class ModVillagerTrades {
 				new ItemStack(Items.OAK_PLANKS, rand.nextInt(4) + 8), 10, 4, 0.02f));
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2),
 				new ItemStack(Items.BIRCH_PLANKS, rand.nextInt(4) + 8), 10, 4, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2),
+				new ItemStack(Items.ACACIA_PLANKS, rand.nextInt(4) + 8), 10, 4, 0.02f));
+		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2),
+				new ItemStack(Items.DARK_OAK_PLANKS, rand.nextInt(4) + 8), 10, 4, 0.02f));
 
 		// Sapling buying trades
 		trades.get(villagerLevel)
@@ -161,8 +165,6 @@ public class ModVillagerTrades {
 				new ItemStack(Items.VINE, 3), 8, 16, 0.02f));
 		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2),
 				new ItemStack(Items.HANGING_ROOTS, 3), 4, 16, 0.02f));
-		trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 2),
-				new ItemStack(Items.LILY_PAD, 3), 4, 16, 0.02f));
 
 		// Level 5 trades start here.
 		villagerLevel = 5;

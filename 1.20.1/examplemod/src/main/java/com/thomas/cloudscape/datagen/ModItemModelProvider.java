@@ -206,8 +206,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		// Spears
 		//spearItem(ModItems.ZIRCONIUM_SPEAR);
 		
-		
-		handheldItem(ModItems.GRAVITY_GUN);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

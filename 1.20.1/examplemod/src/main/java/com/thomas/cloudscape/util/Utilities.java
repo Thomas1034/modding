@@ -6,6 +6,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -18,7 +20,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -29,6 +30,25 @@ import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
 
+	
+	public static void placePlatform(Level level, BlockPos center, double radius, int layers, Supplier<BlockState> stateGetter, Function<BlockState, Boolean> isValid) {
+		
+		int iRadius = (int) Math.ceil(radius);
+		double rsq = radius * radius;
+		for (int i = -iRadius; i <= iRadius; i++) {
+			for (int k = -iRadius; k <= iRadius; k++) {
+				for (int j = -layers; j <= 0; j++)
+				{
+					if ((i*i + k*k) < (rsq + j) && isValid.apply(level.getBlockState(center.offset(i, j, k)))) {
+						level.setBlockAndUpdate(center.offset(i, j, k), stateGetter.get());
+					}
+				}
+			}
+		}
+		
+	}
+	
+	
 	public static void stackTrace() {
 		System.out.println("Stack trace:");
 		StackTraceElement[] stackTraces = Thread.currentThread().getStackTrace();

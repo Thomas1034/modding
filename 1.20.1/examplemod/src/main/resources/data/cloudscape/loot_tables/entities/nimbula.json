@@ -49,5 +49,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:entities/zombie"
+  "random_sequence": "cloudscape:entities/nimbula"
 }

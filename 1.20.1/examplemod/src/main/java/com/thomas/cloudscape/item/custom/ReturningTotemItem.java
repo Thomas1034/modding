@@ -55,7 +55,7 @@ public class ReturningTotemItem extends Item {
 					
 				} catch (NullPointerException e) {
 					// Send a message if the player does not have a valid respawn point.
-					sp.displayClientMessage(Component.translatable("item.zirconmod.no_respawn"), true);
+					sp.displayClientMessage(Component.translatable("item.cloudscape.no_respawn"), true);
 				}
 
 			}

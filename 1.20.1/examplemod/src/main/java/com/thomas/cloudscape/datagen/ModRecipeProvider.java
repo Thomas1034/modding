@@ -255,8 +255,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				Blocks.OBSIDIAN, 1);
 
 		// Carpentry table
-		shaped(pWriter, List.of(" C ", "L#L", "LIL"), List.of('I', 'L', '#', 'C'),
-				List.of(Items.IRON_INGOT, ItemTags.LOGS, Items.CRAFTING_TABLE, Items.COPPER_INGOT),
+		shaped(pWriter, List.of(" C ", " # ", " I "), List.of('I', '#', 'C'),
+				List.of(Items.IRON_INGOT, Items.CRAFTING_TABLE, Items.COPPER_INGOT),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CARPENTRY_TABLE.get(), 1);
 
 		// Feather wings
@@ -334,6 +334,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(pWriter, List.of("PCR", "QTQ", "RCP"), List.of('C', 'T', 'R', 'Q', 'P'),
 				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ, Items.COPPER_BLOCK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_DETECTOR.get(), 1);
+		
+		// Smelting clouds to mist
+		oreSmelting(pWriter, List.of(ModBlocks.CLOUD.get().asItem()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.MIST.get(), 0.01f, 200, "mist");
+
 
 		// Smelting amethyst blocks to citrine
 		oreSmelting(pWriter, List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,

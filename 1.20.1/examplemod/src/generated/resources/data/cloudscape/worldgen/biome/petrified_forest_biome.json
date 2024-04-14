@@ -76,7 +76,8 @@
       "minecraft:disk_sand",
       "minecraft:disk_clay",
       "minecraft:disk_gravel",
-      "cloudscape:zircon_ore_placed"
+      "cloudscape:zircon_ore_placed",
+      "cloudscape:calcite_ore_placed"
     ],
     [],
     [

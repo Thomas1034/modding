@@ -54,18 +54,6 @@
     "misc": [],
     "monster": [
       {
-        "type": "cloudscape:wraith",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 100
-      },
-      {
-        "type": "cloudscape:tempest",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 1
-      },
-      {
         "type": "minecraft:spider",
         "maxCount": 4,
         "minCount": 4,
