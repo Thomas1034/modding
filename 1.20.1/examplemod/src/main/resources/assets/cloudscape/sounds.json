@@ -1,0 +1,20 @@
+{
+  "gust_ambient": {
+    "subtitles": "sounds.cloudscape.gust_ambient",
+    "sounds": [
+      "cloudscape:gust_ambient"
+    ]
+  },
+	"gust_death": {
+    "subtitles": "sounds.cloudscape.gust_death",
+    "sounds": [
+      "cloudscape:gust_death"
+    ]
+  },
+	"gust_hurt": {
+    "subtitles": "sounds.cloudscape.gust_hurt",
+    "sounds": [
+      "cloudscape:gust_hurt"
+    ]
+  }
+}

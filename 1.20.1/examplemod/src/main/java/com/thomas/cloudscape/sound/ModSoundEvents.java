@@ -9,13 +9,16 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModSounds {
+public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ZirconMod.MOD_ID);
 
-    //public static final RegistryObject<SoundEvent> METAL_DETECTOR_FOUND_ORE = registerSoundEvents("metal_detector_found_ore");
-    //public static final RegistryObject<SoundEvent> SOUND_BLOCK_BREAK = registerSoundEvents("sound_block_break");
-    //public static final RegistryObject<SoundEvent> SOUND_BLOCK_STEP = registerSoundEvents("sound_block_step");
+	/*wind.wav by gorkylmz1 -- https://freesound.org/s/518151/ -- License: Creative Commons 0*/
+    public static final RegistryObject<SoundEvent> GUST_AMBIENT = registerSoundEvents("gust_ambient");
+	/*whoosh_short_mid.wav by DJT4NN3R -- https://freesound.org/s/449996/ -- License: Creative Commons 0*/
+    public static final RegistryObject<SoundEvent> GUST_DEATH = registerSoundEvents("gust_death");
+    /*Default Minecraft explosion.*/
+    public static final RegistryObject<SoundEvent> GUST_HURT = registerSoundEvents("gust_hurt");
     //public static final RegistryObject<SoundEvent> SOUND_BLOCK_FALL = registerSoundEvents("sound_block_fall");
     //public static final RegistryObject<SoundEvent> SOUND_BLOCK_PLACE = registerSoundEvents("sound_block_place");
     //public static final RegistryObject<SoundEvent> SOUND_BLOCK_HIT = registerSoundEvents("sound_block_hit");
@@ -24,7 +27,6 @@ public class ModSounds {
     //        ModSounds.SOUND_BLOCK_HIT, ModSounds.SOUND_BLOCK_FALL);
 
 
-    @SuppressWarnings("unused")
 	private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ZirconMod.MOD_ID, name)));
     }

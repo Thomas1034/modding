@@ -5,13 +5,16 @@ import java.util.List;
 
 import com.thomas.cloudscape.network.ModPacketHandler;
 import com.thomas.cloudscape.network.PlayerAddVelocityPacket;
+import com.thomas.cloudscape.sound.ModSoundEvents;
 import com.thomas.cloudscape.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -67,7 +70,7 @@ public class GustEntity extends Vex {
 			}
 			this.dissipate();
 		}
-		
+
 		// Despawn if it's not raining if it's natural.
 		if (!this.level().isRaining() && this.getSpawnType() == MobSpawnType.NATURAL) {
 			this.discard();
@@ -104,7 +107,7 @@ public class GustEntity extends Vex {
 			ModPacketHandler.sendToPlayer(
 					new PlayerAddVelocityPacket(knockbackVector.x, knockbackVector.y, knockbackVector.z), player);
 			player.knockback(knockbackVector.x, knockbackVector.y, knockbackVector.z);
-		} else if (entity instanceof LivingEntity le){
+		} else if (entity instanceof LivingEntity le) {
 			le.knockback(knockbackVector.x, knockbackVector.y, knockbackVector.z);
 		}
 	}
@@ -132,6 +135,21 @@ public class GustEntity extends Vex {
 			// Discard
 			this.discard();
 		}
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSoundEvents.GUST_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.GENERIC_EXPLODE;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_34023_) {
+		return ModSoundEvents.GUST_HURT.get();
 	}
 
 	class GustChargeAttackGoal extends Goal {

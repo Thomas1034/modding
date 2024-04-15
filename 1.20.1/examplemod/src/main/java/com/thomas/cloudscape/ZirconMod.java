@@ -22,7 +22,7 @@ import com.thomas.cloudscape.item.ModItems;
 import com.thomas.cloudscape.loot.ModLootModifiers;
 import com.thomas.cloudscape.network.ModPacketHandler;
 import com.thomas.cloudscape.painting.ModPaintings;
-import com.thomas.cloudscape.sound.ModSounds;
+import com.thomas.cloudscape.sound.ModSoundEvents;
 import com.thomas.cloudscape.util.WoodGolemPlacer;
 import com.thomas.cloudscape.villager.ModVillagers;
 import com.thomas.cloudscape.worldgen.ModFeature;
@@ -88,7 +88,7 @@ public class ZirconMod {
 		ModTrunkPlacerTypes.register(modEventBus);
 		ModFoliagePlacers.register(modEventBus);
 
-		ModSounds.register(modEventBus);
+		ModSoundEvents.register(modEventBus);
 		ModEntityType.register(modEventBus);
 
 		ModFeature.register(modEventBus);

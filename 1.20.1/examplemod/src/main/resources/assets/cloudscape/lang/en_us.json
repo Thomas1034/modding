@@ -323,6 +323,10 @@
 	"effect.cloudscape.freezing": "Freezing",
 	"effect.cloudscape.propelled": "Propelled",
 	
+	"sounds.cloudscape.gust_ambient": "Gust Blows",
+	"sounds.cloudscape.gust_death": "Gust Dissipates",
+	"sounds.cloudscape.gust_hurt": "Gust Moans",
+	
 	"creativetab.cloudscape_items": "Cloudscape Items",
 	"creativetab.cloudscape_blocks": "Cloudscape Blocks",
 	"creativetab.cloudscape_tools": "Cloudscape Tools",
