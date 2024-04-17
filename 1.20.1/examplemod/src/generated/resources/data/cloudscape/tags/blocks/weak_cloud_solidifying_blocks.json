@@ -3,6 +3,8 @@
     "minecraft:small_amethyst_bud",
     "minecraft:amethyst_block",
     "cloudscape:small_citrine_bud",
-    "cloudscape:citrine_block"
+    "cloudscape:citrine_block",
+    "cloudscape:citrine_stairs",
+    "cloudscape:citrine_slab"
   ]
 }

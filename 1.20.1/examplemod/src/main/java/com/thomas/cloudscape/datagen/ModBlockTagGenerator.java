@@ -122,6 +122,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.ILLUMINATED_TORCHFLOWER.get(), ModBlocks.WHITE_ORCHID.get());
 		
 		// Cloud furniture
+		this.tag(BlockTags.MOSS_REPLACEABLE).add(ModBlocks.CLOUD.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.STAIRS).add(ModBlocks.CLOUD_BRICK_STAIRS.get());
@@ -146,6 +147,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
 
 		// Functions
+		this.tag(ModTags.Blocks.BUBBLEFRUIT_CAN_GROW_ON).add(ModBlocks.CLOUD.get(), Blocks.MOSS_BLOCK);
 		addStrongCloudSolidifier(Blocks.BUDDING_AMETHYST);
 		addStrongCloudSolidifier(Blocks.AMETHYST_CLUSTER);
 		addStrongCloudSolidifier(Blocks.LARGE_AMETHYST_BUD);
@@ -161,9 +163,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		addMediumCloudSolidifier(ModBlocks.MEDIUM_CITRINE_BUD.get());
 		addWeakCloudSolidifier(ModBlocks.SMALL_CITRINE_BUD.get());
 		addWeakCloudSolidifier(ModBlocks.CITRINE_BLOCK.get());
+		addWeakCloudSolidifier(ModBlocks.CITRINE_STAIRS.get());
+		addWeakCloudSolidifier(ModBlocks.CITRINE_SLAB.get());
 		addCloudPlant(ModBlocks.BUBBLEFRUIT_CROP.get());
 		addCloudPlant(ModBlocks.WHITE_ORCHID.get());
 		addCloudPlant(Blocks.BLUE_ORCHID);
+		
 
 	}
 

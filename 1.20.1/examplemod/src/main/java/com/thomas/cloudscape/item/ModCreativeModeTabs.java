@@ -99,7 +99,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.UNSTABLE_LIGHTNING_BLOCK.get());
 						pOutput.accept(ModBlocks.MIST.get());
 						pOutput.accept(ModBlocks.CLOUD.get());
-						pOutput.accept(ModBlocks.THICK_MIST.get());
+						pOutput.accept(ModBlocks.DENSE_MIST.get());
 						pOutput.accept(ModBlocks.CLOUD_BRICKS.get());
 						pOutput.accept(ModBlocks.CLOUD_BRICK_SLAB.get());
 						pOutput.accept(ModBlocks.CLOUD_BRICK_STAIRS.get());

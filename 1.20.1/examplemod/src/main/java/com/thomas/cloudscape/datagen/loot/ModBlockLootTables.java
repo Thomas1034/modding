@@ -69,7 +69,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.SKY_BLOCK.get());
 		this.dropSelf(ModBlocks.CLOUD.get());
 		this.dropSelf(ModBlocks.MIST.get());
-		this.dropSelf(ModBlocks.THICK_MIST.get());
+		this.dropSelf(ModBlocks.DENSE_MIST.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICKS.get());

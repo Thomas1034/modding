@@ -215,7 +215,7 @@ public class ModBlocks {
 							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
 
 	// Transparent cloud block
-	public static final RegistryObject<Block> THICK_MIST = registerBlock("thick_mist",
+	public static final RegistryObject<Block> DENSE_MIST = registerBlock("dense_mist",
 			() -> new CloudBlock(
 					BlockBehaviour.Properties.of().strength(0.1F).destroyTime(0.5F).pushReaction(PushReaction.DESTROY)
 							.isViewBlocking((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)

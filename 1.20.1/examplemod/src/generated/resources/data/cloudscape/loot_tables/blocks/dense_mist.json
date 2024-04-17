@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "cloudscape:thick_mist"
+          "name": "cloudscape:dense_mist"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "cloudscape:blocks/thick_mist"
+  "random_sequence": "cloudscape:blocks/dense_mist"
 }

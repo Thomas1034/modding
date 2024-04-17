@@ -61,7 +61,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.WISP_BED);
 		cloudBlock(ModBlocks.CLOUD.get(), "translucent");
 		cloudBlock(ModBlocks.MIST.get(), "translucent");
-		renamedCloudBlock(ModBlocks.THICK_MIST.get(), blockTexture(ModBlocks.MIST.get()).toString(),
+		renamedCloudBlock(ModBlocks.DENSE_MIST.get(), blockTexture(ModBlocks.MIST.get()).toString(),
 				blockTexture(ModBlocks.CLOUD.get()).toString(), "translucent");
 		cloudBlock(ModBlocks.SEALED_MIST.get(), "translucent");
 		blockWithItem(ModBlocks.THUNDER_CLOUD);

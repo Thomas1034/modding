@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-11T12:42:33.4076079	Loot Tables
+// 1.20.1	2024-04-16T21:04:00.7131178	Loot Tables
 0ae3d238ee1b9dfdd033472b2e9fe38575d0979f data/cloudscape/loot_tables/blocks/amethyst_slab.json
 fb6533dc1f453b5a49e8c631eb81d84b5904c654 data/cloudscape/loot_tables/blocks/amethyst_stairs.json
 dc286e29356a3c1623bf71e3d387f01b2946b046 data/cloudscape/loot_tables/blocks/architect_worksite.json
@@ -34,6 +34,7 @@ df8417ff0dbea25db8fd8ce3176ede659f0eeabe data/cloudscape/loot_tables/blocks/copp
 d00416a9b53cdc5537b743867b6d8afd1eff3975 data/cloudscape/loot_tables/blocks/crying_obsidian_slab.json
 d32f44c200b70dd594996bee841a0b9c7090a110 data/cloudscape/loot_tables/blocks/crying_obsidian_stairs.json
 4b7c0e3c5192a5abd66458de8e5a863ab56e730f data/cloudscape/loot_tables/blocks/deepslate_zircon_ore.json
+687308c6fe53e583648b0d7844eb1566f6623dad data/cloudscape/loot_tables/blocks/dense_mist.json
 68bc3828f5fe80d4eba4b23f178e0ad746b5c44f data/cloudscape/loot_tables/blocks/diamond_slab.json
 3c770eb7986761272332f57053e2dd42cb7d046c data/cloudscape/loot_tables/blocks/diamond_stairs.json
 d0554ddcc9f63542d5e00af7b066eab6a99c22db data/cloudscape/loot_tables/blocks/echo_block.json
@@ -107,7 +108,6 @@ cafd0c3fc76932bb0975030ac615690b61fd81e4 data/cloudscape/loot_tables/blocks/sky_
 408f1fc4075461b42cb78bac1c1b5a3c0af17a42 data/cloudscape/loot_tables/blocks/small_citrine_bud.json
 908796aeec5a1f4f9a6c2caf9d2527d6030e385f data/cloudscape/loot_tables/blocks/stripped_palm_log.json
 22f0b8bdfb908d665af9e04938ddf3ef8ba11e74 data/cloudscape/loot_tables/blocks/stripped_palm_wood.json
-4dcd6d8117cbfb7784ef6d074389461393aca7f1 data/cloudscape/loot_tables/blocks/thick_mist.json
 497172d3f3f4a194e00e33d478050c8180652bd5 data/cloudscape/loot_tables/blocks/thirsty_mud_bricks.json
 659720579ca4c5cb6986433f28d62ee6e31ac2d3 data/cloudscape/loot_tables/blocks/thirsty_packed_mud.json
 1ae985b6a07efb1db7514f4d0e95ee2d9d307a08 data/cloudscape/loot_tables/blocks/thunder_cloud.json

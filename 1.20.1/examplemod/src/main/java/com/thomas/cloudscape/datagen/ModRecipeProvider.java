@@ -547,7 +547,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Thick mist
 		shapeless(pWriter, List.of(ModBlocks.CLOUD.get(), ModBlocks.MIST.get()), List.of(1, 1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THICK_MIST.get(), 2);
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.DENSE_MIST.get(), 2);
 
 		// Spears
 		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, ItemTags.PLANKS),

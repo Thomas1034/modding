@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.block.custom;
 
-import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.item.ModItems;
+import com.thomas.cloudscape.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -111,12 +111,12 @@ public class BubblefruitCropBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return state.is(ModBlocks.CLOUD.get());
+		return state.is(ModTags.Blocks.BUBBLEFRUIT_CAN_GROW_ON);
 	}
 
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return level.getBlockState(pos.below()).is(ModBlocks.CLOUD.get()) || super.canSurvive(state, level, pos);
+		return level.getBlockState(pos.below()).is(ModTags.Blocks.BUBBLEFRUIT_CAN_GROW_ON) || super.canSurvive(state, level, pos);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-11T12:42:33.3994183	Block States: cloudscape
+// 1.20.1	2024-04-16T21:04:00.7031296	Block States: cloudscape
 e797215c8c1f83d7beb4304a7d447c648e7cb470 assets/cloudscape/blockstates/amethyst_slab.json
 ba74db05758fea1799171b7bcebef5876ae40540 assets/cloudscape/blockstates/amethyst_stairs.json
 a4160d00817d433008ff15a8bb5c0858baaa2988 assets/cloudscape/blockstates/amethyst_wall_bracket.json
@@ -35,6 +35,7 @@ d558c977a965b520e7e23b592aa325b04d3fc763 assets/cloudscape/blockstates/copper_bu
 8bff32a769270f913e1ce4fe875d9c11356177a7 assets/cloudscape/blockstates/crying_obsidian_slab.json
 c5f1833050f7168a6727ec1e958e59cbe259519d assets/cloudscape/blockstates/crying_obsidian_stairs.json
 e9b28990b19e384dd38ded7edb290036b674337b assets/cloudscape/blockstates/deepslate_zircon_ore.json
+cafac67ef7e335d35c04bd0abdc7cc163dc5bff5 assets/cloudscape/blockstates/dense_mist.json
 7a70b0e62d5289d3d0aba848b8988518506b5649 assets/cloudscape/blockstates/diamond_slab.json
 845b32eeac893b4f071e2e7a60c49f083470c784 assets/cloudscape/blockstates/diamond_stairs.json
 422f0ed424df25192a0e406572dda77ef4c63465 assets/cloudscape/blockstates/echo_block.json
@@ -108,7 +109,6 @@ b21279ea0e2da1f70584cfacd85b7dcd4424f5c4 assets/cloudscape/blockstates/sky_block
 49d5b34c78daa4c06e34702517e06740727e9b87 assets/cloudscape/blockstates/small_citrine_bud.json
 6fe031b6abf8d3e9206f16434fd661d057eea776 assets/cloudscape/blockstates/stripped_palm_log.json
 6e5d5864db475119f4b6608e91cac18b2dd80c66 assets/cloudscape/blockstates/stripped_palm_wood.json
-cafac67ef7e335d35c04bd0abdc7cc163dc5bff5 assets/cloudscape/blockstates/thick_mist.json
 892e65d97fb5594508a9e65bae834585cbdc7669 assets/cloudscape/blockstates/thirsty_mud_bricks.json
 31b21153d98849320792c67273d3567d15d82c35 assets/cloudscape/blockstates/thirsty_packed_mud.json
 1b0e0f8e9c8595823de9facf55a63203db4e2a31 assets/cloudscape/blockstates/thunder_cloud.json
@@ -419,6 +419,7 @@ da13f3ed4f78a22539cb18259d1352c28061d4be assets/cloudscape/models/item/citrine_b
 ca5e8b06349291daec131f03d5c304c3bc48b17c assets/cloudscape/models/item/cloud_detector.json
 c55075e1a4b5a7ca76e558c2c35d02c096804b97 assets/cloudscape/models/item/cloud_inverter.json
 ef966b6b5985088c93f50fa0ec22e909e0e63eea assets/cloudscape/models/item/deepslate_zircon_ore.json
+15fd09ebeeadca7bbe2f1b219bfd592454131a5b assets/cloudscape/models/item/dense_mist.json
 1511365e8de1c08af9f273f7c64354a5758079d0 assets/cloudscape/models/item/echo_block.json
 c5b2020b72e44eff18dd069ccfa6da268b620872 assets/cloudscape/models/item/gemsmith_worksite.json
 93724b26c4a92672c14e2671860af4e075fe2f5c assets/cloudscape/models/item/illuminated_torchflower.json
@@ -440,7 +441,6 @@ d2c99dcf39249833f50075f84e1df6609ebd80ff assets/cloudscape/models/item/sealed_cl
 5610688bc1dc5d486ffe17cc6780f3fac5013577 assets/cloudscape/models/item/sealed_mist.json
 6abd5da2475866b44eb9c7b5e083dd147c80029b assets/cloudscape/models/item/sealed_thunder_cloud_bricks.json
 51a0cd8797b779deeace5005e33cb7a4e26b7e1b assets/cloudscape/models/item/sky_block.json
-15fd09ebeeadca7bbe2f1b219bfd592454131a5b assets/cloudscape/models/item/thick_mist.json
 65e11ef248ec78d67746952fce225542e40a71f0 assets/cloudscape/models/item/thirsty_mud_bricks.json
 645fe1029ee41e53bf59f8f441ddfab3e15482d8 assets/cloudscape/models/item/thirsty_packed_mud.json
 42725beded6ae524ed20cba9d561443c9ccb36aa assets/cloudscape/models/item/thunder_cloud.json

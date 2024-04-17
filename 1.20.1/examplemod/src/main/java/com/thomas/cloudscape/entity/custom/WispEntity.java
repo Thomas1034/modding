@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import com.thomas.cloudscape.ZirconMod;
 import com.thomas.cloudscape.effect.ModEffects;
 import com.thomas.cloudscape.entity.ai.WispFindHomeGoal;
 import com.thomas.cloudscape.entity.ai.WispGoHomeWhenThunderingGoal;
@@ -29,6 +28,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
@@ -126,6 +126,9 @@ public class WispEntity extends AbstractVillager {
 	@Override
 	public void tick() {
 		super.tick();
+		
+		// Provide air.
+		this.setAirSupply(this.getMaxAirSupply());
 
 		// Keeps movement from exceeding a certain value.
 		if (this.getDeltaMovement().length() > this.getFlyingSpeed() * 2) {
@@ -230,12 +233,20 @@ public class WispEntity extends AbstractVillager {
 			// Not immune to spectral arrows.
 			if (entity instanceof SpectralArrow)
 				return super.hurt(damageSource, f);
-			// Not immune if it has amethyst glow.
+			// Not immune if it has citrine glow.
 			else if (this.hasEffect(ModEffects.CITRINE_GLOW.get()))
 				return super.hurt(damageSource, f);
 			// Otherwise, it is immune
 			else
 				return false;
+		} else if (damageSource.is(DamageTypes.LIGHTNING_BOLT)) {
+			return false;
+		} else if (damageSource.is(DamageTypes.DROWN)) {
+			return false;
+		} else if (damageSource.is(DamageTypes.IN_FIRE)) {
+			return false;
+		} else if (damageSource.is(DamageTypes.ON_FIRE)) {
+			return false;
 		}
 		// If it isn't an arrow, is susceptible.
 		return super.hurt(damageSource, f);

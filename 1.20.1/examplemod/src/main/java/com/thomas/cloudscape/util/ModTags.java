@@ -25,7 +25,8 @@ public class ModTags {
 		public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
 		public static final TagKey<Block> CLOUD_PLANTS = tag("cloud_plants");
 		public static final TagKey<Block> SPEAR_EFFICIENT = tag("spear_efficient");
-
+		public static final TagKey<Block> BUBBLEFRUIT_CAN_GROW_ON = tag("bubblefruit_can_grow_on");
+		
 
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));
