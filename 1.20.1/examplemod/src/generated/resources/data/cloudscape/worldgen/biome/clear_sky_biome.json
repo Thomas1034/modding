@@ -24,7 +24,8 @@
   "features": [
     [
       "cloudscape:large_cloud_placed",
-      "cloudscape:thick_cloud_ceiling_placed"
+      "cloudscape:thick_cloud_ceiling_placed",
+      "cloudscape:cirrus_cloud_placed"
     ],
     [],
     [],

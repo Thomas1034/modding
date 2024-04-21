@@ -42,6 +42,8 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LARGE_CLOUD_PLACED_KEY = registerKey("large_cloud_placed");
 
 	public static final ResourceKey<PlacedFeature> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY = registerKey("thick_cloud_ceiling_placed");
+	
+	public static final ResourceKey<PlacedFeature> CIRRUS_CLOUD_FOR_CIRRUS_PLACED_KEY = registerKey("cirrus_cloud_placed");
 
 	public static final ResourceKey<PlacedFeature> BUBBLEFRUIT_PATCH_PLACED_KEY = registerKey("bubblefruit_patch_placed");
 
@@ -98,6 +100,10 @@ public class ModPlacedFeatures {
 		
 		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY),
 				ModPlacement.commonAboveBottomPlacement(192, 1));
+		
+		register(context, CIRRUS_CLOUD_FOR_CIRRUS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CIRRUS_CLOUD_FOR_CIRRUS_KEY),
+				ModPlacement.commonAboveBottomPlacement(256, 1));
+		
 		
 		register(context, BUBBLEFRUIT_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BUBBLEFRUIT_PATCH_KEY),
 				ModPlacement.rareAboveBottomRangePlacement(176, 208, 16));

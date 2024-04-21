@@ -1,6 +1,7 @@
 package com.thomas.cloudscape.worldgen.biome;
 
 import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.worldgen.biome.custom.CirrusBiome;
 import com.thomas.cloudscape.worldgen.biome.custom.ClearSkyBiome;
 import com.thomas.cloudscape.worldgen.biome.custom.CloudySkyBiome;
 import com.thomas.cloudscape.worldgen.biome.custom.PetrifiedForestBiome;
@@ -20,6 +21,8 @@ public class ModBiomes {
 			new ResourceLocation(ZirconMod.MOD_ID, "clear_sky_biome"));
 	public static final ResourceKey<Biome> CLOUDY_SKY_BIOME = ResourceKey.create(Registries.BIOME,
 			new ResourceLocation(ZirconMod.MOD_ID, "cloudy_sky_biome"));
+	public static final ResourceKey<Biome> CIRRUS_BIOME = ResourceKey.create(Registries.BIOME,
+			new ResourceLocation(ZirconMod.MOD_ID, "cirrus_biome"));
 	
 	
 	//OverworldBiomes
@@ -27,6 +30,7 @@ public class ModBiomes {
 		context.register(PETRIFIED_FOREST_BIOME, PetrifiedForestBiome.build(context));
 		context.register(CLEAR_SKY_BIOME, ClearSkyBiome.build(context));
 		context.register(CLOUDY_SKY_BIOME, CloudySkyBiome.build(context));
+		context.register(CIRRUS_BIOME, CirrusBiome.build(context));
 
 	}
 

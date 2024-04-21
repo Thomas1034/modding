@@ -13,8 +13,8 @@ import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
-public class ClearSkyBiome {
-	public static final String NAME = "clear_skies";
+public class CirrusBiome {
+	public static final String NAME = "cirrus";
 
 	public static Biome build(BootstapContext<Biome> context) {
 		// ForgeRegistries.BIOMES.getDefaultKey();
@@ -26,15 +26,12 @@ public class ClearSkyBiome {
 		BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(
 				context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
 
-		biomeBuilder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ModPlacedFeatures.LARGE_CLOUD_PLACED_KEY);
+		biomeBuilder.addFeature(GenerationStep.Decoration.RAW_GENERATION,
+				ModPlacedFeatures.LARGE_CLOUD_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.RAW_GENERATION,
 				ModPlacedFeatures.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_BIOME_PLACED_KEY);
 		biomeBuilder.addFeature(GenerationStep.Decoration.RAW_GENERATION,
 				ModPlacedFeatures.CIRRUS_CLOUD_FOR_CIRRUS_PLACED_KEY);
-		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-				ModPlacedFeatures.BUBBLEFRUIT_PATCH_PLACED_KEY);
-		biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-				ModPlacedFeatures.WHITE_ORCHID_PATCH_PLACED_KEY);
 
 		int skyColor = Utilities.toHexColor(110, 177, 255);
 		int fogColor = Utilities.toHexColor(110, 177, 255);

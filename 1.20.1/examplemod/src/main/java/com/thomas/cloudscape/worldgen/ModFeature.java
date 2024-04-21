@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import com.thomas.cloudscape.ZirconMod;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.worldgen.biome.ModBiomes;
-import com.thomas.cloudscape.worldgen.custom.CloudFeature;
+import com.thomas.cloudscape.worldgen.custom.CirrusFeature;
 import com.thomas.cloudscape.worldgen.custom.CloudFloorFeature;
 import com.thomas.cloudscape.worldgen.custom.OasisFeature;
 import com.thomas.cloudscape.worldgen.custom.PatchFeature;
@@ -40,6 +40,9 @@ public class ModFeature {
 	public static final RegistryObject<Feature<?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY = register("thick_cloud_ceiling",
 			() -> new CloudFloorFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CLOUDY_SKY_BIOME,
 					ModBlocks.CLOUD.get().defaultBlockState()));
+	public static final RegistryObject<Feature<?>> CIRRUS_CLOUD_FOR_CIRRUS = register("cirrus_cloud",
+			() -> new CirrusFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CIRRUS_BIOME,
+					ModBlocks.MIST.get().defaultBlockState()));
 
 	private static <T extends Feature<?>> RegistryObject<T> register(String name, Supplier<T> feature) {
 		return FEATURES.register(name, feature);

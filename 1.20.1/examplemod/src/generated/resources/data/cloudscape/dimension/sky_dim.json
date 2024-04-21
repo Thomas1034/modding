@@ -28,6 +28,18 @@
             "temperature": -0.3,
             "weirdness": 0.0
           }
+        },
+        {
+          "biome": "cloudscape:cirrus_biome",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.1,
+            "humidity": 0.0,
+            "offset": 0.0,
+            "temperature": 0.5,
+            "weirdness": 0.0
+          }
         }
       ]
     },

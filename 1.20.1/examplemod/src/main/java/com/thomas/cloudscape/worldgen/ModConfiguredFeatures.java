@@ -5,6 +5,7 @@ import java.util.List;
 import com.thomas.cloudscape.ZirconMod;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.block.custom.BubblefruitCropBlock;
+import com.thomas.cloudscape.worldgen.custom.CirrusFeature;
 import com.thomas.cloudscape.worldgen.custom.CloudFloorFeature;
 import com.thomas.cloudscape.worldgen.custom.OasisFeature;
 import com.thomas.cloudscape.worldgen.custom.PatchFeature;
@@ -60,6 +61,8 @@ public class ModConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY = registerKey(
 			"thick_cloud_ceiling");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CIRRUS_CLOUD_FOR_CIRRUS_KEY = registerKey("cirrus_cloud");
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BUBBLEFRUIT_PATCH_KEY = registerKey("bubblefruit");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_ORCHID_PATCH_KEY = registerKey("white_orchid");
@@ -81,7 +84,7 @@ public class ModConfiguredFeatures {
 
 		register(context, OVERWORLD_ZIRCON_ORE_KEY, Feature.ORE, new OreConfiguration(overworldZirconOres, 12));
 		register(context, OVERWORLD_CALCITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldCalcite, 24));
-		
+
 		register(context, OVERWORLD_CITRINE_GEODE_KEY, Feature.GEODE, new GeodeConfiguration(
 				new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR),
 						BlockStateProvider.simple(ModBlocks.CITRINE_BLOCK.get()),
@@ -122,6 +125,9 @@ public class ModConfiguredFeatures {
 
 		register(context, THICK_CLOUD_CEILING_FOR_CLOUDY_SKY_KEY,
 				(CloudFloorFeature) ModFeature.THICK_CLOUD_CEILING_FOR_CLOUDY_SKY.get(),
+				new NoneFeatureConfiguration());
+		
+		register(context, CIRRUS_CLOUD_FOR_CIRRUS_KEY, (CirrusFeature) ModFeature.CIRRUS_CLOUD_FOR_CIRRUS.get(),
 				new NoneFeatureConfiguration());
 
 		register(context, BUBBLEFRUIT_PATCH_KEY, Feature.RANDOM_PATCH,

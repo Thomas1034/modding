@@ -61,9 +61,9 @@ public class ModDimensions {
 						Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F),
 								biomeRegistry.getOrThrow(ModBiomes.CLEAR_SKY_BIOME)),
 						Pair.of(Climate.parameters(-0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F),
-								biomeRegistry.getOrThrow(ModBiomes.CLOUDY_SKY_BIOME))
-						//Pair.of(Climate.parameters(0.5F, 0.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.0F),
-						//		biomeRegistry.getOrThrow(Biomes.DESERT)),
+								biomeRegistry.getOrThrow(ModBiomes.CLOUDY_SKY_BIOME)),
+						Pair.of(Climate.parameters(0.5F, 0.0F, 0.0F, 0.1F, 0.0F, 0.0F, 0.0F),
+								biomeRegistry.getOrThrow(ModBiomes.CIRRUS_BIOME))
 						//Pair.of(Climate.parameters(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F),
 						//		biomeRegistry.getOrThrow(Biomes.JAGGED_PEAKS))
 
