@@ -33,12 +33,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.THIRSTY_MUD_BRICKS.get(), ModBlocks.THIRSTY_PACKED_MUD.get(), ModBlocks.ZIRCONIUM_BLOCK.get(),
 				ModBlocks.CITRINE_BLOCK.get(), ModBlocks.CITRINE_LANTERN.get(), ModBlocks.CITRINE_CLUSTER.get(),
 				ModBlocks.LARGE_CITRINE_BUD.get(), ModBlocks.MEDIUM_CITRINE_BUD.get(),
-				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD_BRICKS.get(),
-				ModBlocks.CLOUD_BRICK_WALL.get(), ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(),
-				ModBlocks.CLOUD_BRICK_STAIRS.get(), ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(),
-				ModBlocks.CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
-				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(),
-				ModBlocks.CHISELED_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(),
+				ModBlocks.SMALL_CITRINE_BUD.get(), ModBlocks.CLOUD_BRICKS.get(), ModBlocks.RAIN_CLOUD_BRICKS.get(),
+				ModBlocks.THUNDER_CLOUD_BRICKS.get(), ModBlocks.CLOUD_BRICK_WALL.get(),
+				ModBlocks.RAIN_CLOUD_BRICK_WALL.get(), ModBlocks.THUNDER_CLOUD_BRICK_WALL.get(),
+				ModBlocks.CLOUD_BRICK_STAIRS.get(), ModBlocks.RAIN_CLOUD_BRICK_STAIRS.get(),
+				ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(), ModBlocks.CLOUD_BRICK_SLAB.get(),
+				ModBlocks.RAIN_CLOUD_BRICK_SLAB.get(), ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
+				ModBlocks.CLOUD_BRICK_PILLAR.get(), ModBlocks.RAIN_CLOUD_BRICK_PILLAR.get(),
+				ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get(), ModBlocks.CHISELED_CLOUD_BRICKS.get(),
+				ModBlocks.CHISELED_RAIN_CLOUD_BRICKS.get(), ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get(),
 				ModBlocks.PETRIFIED_LOG.get(), ModBlocks.RESONATOR_BLOCK.get(), ModBlocks.NETHERITE_ANVIL.get(),
 				ModBlocks.GOLD_SLAB.get(), ModBlocks.GOLD_STAIRS.get(), ModBlocks.RAW_GOLD_SLAB.get(),
 				ModBlocks.RAW_GOLD_STAIRS.get(), ModBlocks.EMERALD_SLAB.get(), ModBlocks.EMERALD_STAIRS.get(),
@@ -118,16 +121,19 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
 				ModBlocks.POTTED_PALM_SAPLING.get(), ModBlocks.POTTED_WHITE_ORCHID.get());
-		
+
 		this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.ILLUMINATED_TORCHFLOWER.get(), ModBlocks.WHITE_ORCHID.get());
-		
+
 		// Cloud furniture
 		this.tag(BlockTags.MOSS_REPLACEABLE).add(ModBlocks.CLOUD.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.CLOUD_BRICK_WALL.get());
+		this.tag(BlockTags.WALLS).add(ModBlocks.RAIN_CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.WALLS).add(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
 		this.tag(BlockTags.STAIRS).add(ModBlocks.CLOUD_BRICK_STAIRS.get());
+		this.tag(BlockTags.STAIRS).add(ModBlocks.RAIN_CLOUD_BRICK_STAIRS.get());
 		this.tag(BlockTags.STAIRS).add(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.CLOUD_BRICK_SLAB.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get());
 		this.tag(BlockTags.SLABS).add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get());
 
 		// Anvil
@@ -168,7 +174,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		addCloudPlant(ModBlocks.BUBBLEFRUIT_CROP.get());
 		addCloudPlant(ModBlocks.WHITE_ORCHID.get());
 		addCloudPlant(Blocks.BLUE_ORCHID);
-		
 
 	}
 
@@ -186,7 +191,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(ModTags.Blocks.CLOUD_SOLIDIFYING_BLOCKS).add(b);
 		this.tag(ModTags.Blocks.WEAK_CLOUD_SOLIDIFYING_BLOCKS).add(b);
 	}
-	
+
 	private void addCloudPlant(Block b) {
 		this.tag(ModTags.Blocks.CLOUD_PLANTS).add(b);
 	}

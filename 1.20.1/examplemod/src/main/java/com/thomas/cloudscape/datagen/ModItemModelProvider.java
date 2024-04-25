@@ -153,12 +153,16 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		// Cloud blocks
 		wallItem(ModBlocks.CLOUD_BRICK_WALL, ModBlocks.CLOUD_BRICKS);
+		wallItem(ModBlocks.RAIN_CLOUD_BRICK_WALL, ModBlocks.RAIN_CLOUD_BRICKS);
 		wallItem(ModBlocks.THUNDER_CLOUD_BRICK_WALL, ModBlocks.THUNDER_CLOUD_BRICKS);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_STAIRS);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_SLAB);
+		evenSimplerBlockItem(ModBlocks.RAIN_CLOUD_BRICK_STAIRS);
+		evenSimplerBlockItem(ModBlocks.RAIN_CLOUD_BRICK_SLAB);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_SLAB);
 		evenSimplerBlockItem(ModBlocks.CLOUD_BRICK_PILLAR);
+		evenSimplerBlockItem(ModBlocks.RAIN_CLOUD_BRICK_PILLAR);
 		evenSimplerBlockItem(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR);
 
 		// Ore and material stairs
@@ -204,8 +208,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.CITRINE_SLAB);
 
 		// Spears
-		//spearItem(ModItems.ZIRCONIUM_SPEAR);
-		
+		// spearItem(ModItems.ZIRCONIUM_SPEAR);
+
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
@@ -272,11 +276,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 				.texture("side", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()))
 				.texture("end", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath() + "_top"));
 	}
-	
+
 	// TODO
 	// Make a template, and figure out how to link the textures?
-	/*private ItemModelBuilder spearItem(RegistryObject<Item> item) {
-		return withExistingParent(item.getId().getPath(), new ResourceLocation(ZirconMod.MOD_ID, "item/spear")).texture("layer0",
-				new ResourceLocation(ZirconMod.MOD_ID, "item/" + item.getId().getPath()));
-	}*/
+	/*
+	 * private ItemModelBuilder spearItem(RegistryObject<Item> item) { return
+	 * withExistingParent(item.getId().getPath(), new
+	 * ResourceLocation(ZirconMod.MOD_ID, "item/spear")).texture("layer0", new
+	 * ResourceLocation(ZirconMod.MOD_ID, "item/" + item.getId().getPath())); }
+	 */
 }

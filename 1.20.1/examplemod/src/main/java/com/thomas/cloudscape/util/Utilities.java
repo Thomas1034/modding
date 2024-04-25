@@ -265,6 +265,18 @@ public class Utilities {
 		}
 		return false;
 	}
+	
+	@SuppressWarnings("deprecation")
+	public static boolean setIfAir(LevelAccessor level, BlockPos pos, BlockState state) {
+		if (pos == null) {
+			return false;
+		}
+		if (level.isAreaLoaded(pos, 1) && level.getBlockState(pos).isAir()) {
+			level.setBlock(pos, state, 3);
+			return true;
+		}
+		return false;
+	}
 
 	@SuppressWarnings("deprecation")
 	public static boolean setSafeNoFluid(LevelAccessor level, BlockPos pos, BlockState state) {

@@ -64,8 +64,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		renamedCloudBlock(ModBlocks.DENSE_MIST.get(), blockTexture(ModBlocks.MIST.get()).toString(),
 				blockTexture(ModBlocks.CLOUD.get()).toString(), "translucent");
 		cloudBlock(ModBlocks.SEALED_MIST.get(), "translucent");
-		blockWithItem(ModBlocks.THUNDER_CLOUD);
-		blockWithItem(ModBlocks.SEALED_CLOUD);
+		cloudBlock(ModBlocks.RAIN_CLOUD.get(), "translucent");
+		cloudBlock(ModBlocks.THUNDER_CLOUD.get(), "translucent");
+		cloudBlock(ModBlocks.SEALED_CLOUD.get(), "translucent");
 		blockWithItem(ModBlocks.CLOUD_CONVERTER);
 		blockWithItem(ModBlocks.CLOUD_INVERTER);
 		blockWithItem(ModBlocks.CLOUD_DETECTOR);
@@ -123,13 +124,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Cloud brick blocks.
 		blockWithItem(ModBlocks.CLOUD_BRICKS);
+		blockWithItem(ModBlocks.RAIN_CLOUD_BRICKS);
 		blockWithItem(ModBlocks.THUNDER_CLOUD_BRICKS);
 		blockWithItem(ModBlocks.CHISELED_CLOUD_BRICKS);
+		blockWithItem(ModBlocks.CHISELED_RAIN_CLOUD_BRICKS);
 		blockWithItem(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS);
 		stairsBlock(((StairBlock) ModBlocks.CLOUD_BRICK_STAIRS.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()));
 		slabBlock(((SlabBlock) ModBlocks.CLOUD_BRICK_SLAB.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()),
 				blockTexture(ModBlocks.CLOUD_BRICKS.get()));
 		wallBlock(((WallBlock) ModBlocks.CLOUD_BRICK_WALL.get()), blockTexture(ModBlocks.CLOUD_BRICKS.get()));
+		stairsBlock(((StairBlock) ModBlocks.RAIN_CLOUD_BRICK_STAIRS.get()),
+				blockTexture(ModBlocks.RAIN_CLOUD_BRICKS.get()));
+		slabBlock(((SlabBlock) ModBlocks.RAIN_CLOUD_BRICK_SLAB.get()), blockTexture(ModBlocks.RAIN_CLOUD_BRICKS.get()),
+				blockTexture(ModBlocks.RAIN_CLOUD_BRICKS.get()));
+		wallBlock(((WallBlock) ModBlocks.RAIN_CLOUD_BRICK_WALL.get()), blockTexture(ModBlocks.RAIN_CLOUD_BRICKS.get()));
+
 		stairsBlock(((StairBlock) ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get()),
 				blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()));
 		slabBlock(((SlabBlock) ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()),
@@ -137,6 +146,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		wallBlock(((WallBlock) ModBlocks.THUNDER_CLOUD_BRICK_WALL.get()),
 				blockTexture(ModBlocks.THUNDER_CLOUD_BRICKS.get()));
 		logBlock((RotatedPillarBlock) ModBlocks.CLOUD_BRICK_PILLAR.get());
+		logBlock((RotatedPillarBlock) ModBlocks.RAIN_CLOUD_BRICK_PILLAR.get());
 		logBlock((RotatedPillarBlock) ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
 
 		directionalPassageBlock((DirectionalPassageBlock) ModBlocks.WEATHER_PASSAGE_BLOCK.get(), "translucent");
@@ -180,18 +190,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Potted palm sapling
 		simpleBlockWithItem(ModBlocks.POTTED_PALM_SAPLING.get(),
-				models().singleTexture("potted_palm_sapling", new ResourceLocation("flower_pot_cross"),
-						"plant", blockTexture(ModBlocks.PALM_SAPLING.get())).renderType("cutout"));
-		
-		// White orchid
-		simpleBlockWithItem(ModBlocks.WHITE_ORCHID.get(),
-				models().cross(blockTexture(ModBlocks.WHITE_ORCHID.get()).getPath(),
-						blockTexture(ModBlocks.WHITE_ORCHID.get())).renderType("cutout"));
-		simpleBlockWithItem(ModBlocks.POTTED_WHITE_ORCHID.get(),
-				models().singleTexture("potted_white_orchid", new ResourceLocation("flower_pot_cross"),
-						"plant", blockTexture(ModBlocks.WHITE_ORCHID.get())).renderType("cutout"));
+				models().singleTexture("potted_palm_sapling", new ResourceLocation("flower_pot_cross"), "plant",
+						blockTexture(ModBlocks.PALM_SAPLING.get())).renderType("cutout"));
 
-		
+		// White orchid
+		simpleBlockWithItem(ModBlocks.WHITE_ORCHID.get(), models()
+				.cross(blockTexture(ModBlocks.WHITE_ORCHID.get()).getPath(), blockTexture(ModBlocks.WHITE_ORCHID.get()))
+				.renderType("cutout"));
+		simpleBlockWithItem(ModBlocks.POTTED_WHITE_ORCHID.get(),
+				models().singleTexture("potted_white_orchid", new ResourceLocation("flower_pot_cross"), "plant",
+						blockTexture(ModBlocks.WHITE_ORCHID.get())).renderType("cutout"));
+
 		// Carpentry table
 		cubeBlockWithItem(ModBlocks.CARPENTRY_TABLE, "carpentry_table");
 		// Sculk jaw
@@ -306,9 +315,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	protected void tintedBlockWithItem(RegistryObject<Block> block) {
-		//System.out.println("Registering tinted block with " + block.getId());
-		ModelFile model = models().withExistingParent(block.getId().toString(),
-				new ResourceLocation(ZirconMod.MOD_ID, "block/tinted_block")).texture("all", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()));
+		// System.out.println("Registering tinted block with " + block.getId());
+		ModelFile model = models()
+				.withExistingParent(block.getId().toString(),
+						new ResourceLocation(ZirconMod.MOD_ID, "block/tinted_block"))
+				.texture("all", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()));
 		simpleBlockWithItem(block.get(), model);
 	}
 

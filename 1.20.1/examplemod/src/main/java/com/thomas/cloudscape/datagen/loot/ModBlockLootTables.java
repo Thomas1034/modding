@@ -68,18 +68,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
 		this.dropSelf(ModBlocks.SKY_BLOCK.get());
 		this.dropSelf(ModBlocks.CLOUD.get());
+		this.dropSelf(ModBlocks.RAIN_CLOUD.get());
 		this.dropSelf(ModBlocks.MIST.get());
 		this.dropSelf(ModBlocks.DENSE_MIST.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.RAIN_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICK_STAIRS.get());
+		this.dropSelf(ModBlocks.RAIN_CLOUD_BRICK_STAIRS.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICK_WALL.get());
+		this.dropSelf(ModBlocks.RAIN_CLOUD_BRICK_WALL.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_WALL.get());
 		this.dropSelf(ModBlocks.CLOUD_BRICK_PILLAR.get());
+		this.dropSelf(ModBlocks.RAIN_CLOUD_BRICK_PILLAR.get());
 		this.dropSelf(ModBlocks.THUNDER_CLOUD_BRICK_PILLAR.get());
 		this.dropSelf(ModBlocks.CHISELED_CLOUD_BRICKS.get());
+		this.dropSelf(ModBlocks.CHISELED_RAIN_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CHISELED_THUNDER_CLOUD_BRICKS.get());
 		this.dropSelf(ModBlocks.CLOUD_CONVERTER.get());
 		this.dropSelf(ModBlocks.CLOUD_INVERTER.get());
@@ -94,7 +100,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropOther(ModBlocks.BUBBLEFRUIT_CROP.get(), ModItems.BUBBLEFRUIT.get());
 		this.dropSelf(ModBlocks.NETHERITE_ANVIL.get());
 		this.dropSelf(ModBlocks.CHARCOAL_BLOCK.get());
-		
+
 		this.dropSelf(ModBlocks.COPPER_BUTTON.get());
 		this.dropSelf(ModBlocks.EXPOSED_COPPER_BUTTON.get());
 		this.dropSelf(ModBlocks.WEATHERED_COPPER_BUTTON.get());
@@ -103,7 +109,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.WAXED_EXPOSED_COPPER_BUTTON.get());
 		this.dropSelf(ModBlocks.WAXED_WEATHERED_COPPER_BUTTON.get());
 		this.dropSelf(ModBlocks.WAXED_OXIDIZED_COPPER_BUTTON.get());
-		
+
 		this.dropSelf(ModBlocks.COAL_STAIRS.get());
 		this.dropSelf(ModBlocks.CHARCOAL_STAIRS.get());
 		this.dropSelf(ModBlocks.RAW_COPPER_STAIRS.get());
@@ -123,41 +129,39 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_STAIRS.get());
 		this.dropSelf(ModBlocks.ZIRCONIUM_STAIRS.get());
 		this.dropSelf(ModBlocks.CITRINE_STAIRS.get());
-		
 
-		this.dropSelf(ModBlocks.COAL_SLAB.get());
-		this.dropSelf(ModBlocks.CHARCOAL_SLAB.get());
-		this.dropSelf(ModBlocks.RAW_COPPER_SLAB.get());
-		this.dropSelf(ModBlocks.RAW_IRON_SLAB.get());
-		this.dropSelf(ModBlocks.IRON_SLAB.get());
-		this.dropSelf(ModBlocks.RAW_GOLD_SLAB.get());
-		this.dropSelf(ModBlocks.GOLD_SLAB.get());
-		this.dropSelf(ModBlocks.REDSTONE_SLAB.get());
-		this.dropSelf(ModBlocks.LAPIS_SLAB.get());
-		this.dropSelf(ModBlocks.EMERALD_SLAB.get());
-		this.dropSelf(ModBlocks.DIAMOND_SLAB.get());
-		this.dropSelf(ModBlocks.NETHERITE_SLAB.get());
-		this.dropSelf(ModBlocks.OBSIDIAN_SLAB.get());
-		this.dropSelf(ModBlocks.CRYING_OBSIDIAN_SLAB.get());
-		this.dropSelf(ModBlocks.AMETHYST_SLAB.get());
-		this.dropSelf(ModBlocks.ZIRCON_SLAB.get());
-		this.dropSelf(ModBlocks.RAW_ZIRCONIUM_SLAB.get());
-		this.dropSelf(ModBlocks.ZIRCONIUM_SLAB.get());
-		this.dropSelf(ModBlocks.CITRINE_SLAB.get());
-		
-		
+		this.add(ModBlocks.COAL_SLAB.get(), block -> createSlabItemTable(ModBlocks.COAL_SLAB.get()));
+		this.add(ModBlocks.CHARCOAL_SLAB.get(), block -> createSlabItemTable(ModBlocks.CHARCOAL_SLAB.get()));
+		this.add(ModBlocks.RAW_COPPER_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAW_COPPER_SLAB.get()));
+		this.add(ModBlocks.RAW_IRON_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAW_IRON_SLAB.get()));
+		this.add(ModBlocks.IRON_SLAB.get(), block -> createSlabItemTable(ModBlocks.IRON_SLAB.get()));
+		this.add(ModBlocks.RAW_GOLD_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAW_GOLD_SLAB.get()));
+		this.add(ModBlocks.GOLD_SLAB.get(), block -> createSlabItemTable(ModBlocks.GOLD_SLAB.get()));
+		this.add(ModBlocks.REDSTONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.REDSTONE_SLAB.get()));
+		this.add(ModBlocks.LAPIS_SLAB.get(), block -> createSlabItemTable(ModBlocks.LAPIS_SLAB.get()));
+		this.add(ModBlocks.EMERALD_SLAB.get(), block -> createSlabItemTable(ModBlocks.EMERALD_SLAB.get()));
+		this.add(ModBlocks.DIAMOND_SLAB.get(), block -> createSlabItemTable(ModBlocks.DIAMOND_SLAB.get()));
+		this.add(ModBlocks.NETHERITE_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERITE_SLAB.get()));
+		this.add(ModBlocks.OBSIDIAN_SLAB.get(), block -> createSlabItemTable(ModBlocks.OBSIDIAN_SLAB.get()));
+		this.add(ModBlocks.CRYING_OBSIDIAN_SLAB.get(), block -> createSlabItemTable(ModBlocks.CRYING_OBSIDIAN_SLAB.get()));
+		this.add(ModBlocks.AMETHYST_SLAB.get(), block -> createSlabItemTable(ModBlocks.AMETHYST_SLAB.get()));
+		this.add(ModBlocks.ZIRCON_SLAB.get(), block -> createSlabItemTable(ModBlocks.ZIRCON_SLAB.get()));
+		this.add(ModBlocks.RAW_ZIRCONIUM_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAW_ZIRCONIUM_SLAB.get()));
+		this.add(ModBlocks.ZIRCONIUM_SLAB.get(), block -> createSlabItemTable(ModBlocks.ZIRCONIUM_SLAB.get()));
+		this.add(ModBlocks.CITRINE_SLAB.get(), block -> createSlabItemTable(ModBlocks.CITRINE_SLAB.get()));
+
 		LootItemCondition.Builder palmFruitLootBuilder = LootItemBlockStatePropertyCondition
 				.hasBlockStateProperties(ModBlocks.PALM_FRUIT.get()).setProperties(StatePropertiesPredicate.Builder
 						.properties().hasProperty(PalmFruitBlock.AGE, PalmFruitBlock.MAX_AGE));
-		this.add(ModBlocks.PALM_FRUIT.get(), createCropDrops(ModBlocks.PALM_FRUIT.get(),
-				Items.AIR, ModItems.PALM_SEEDS.get(), palmFruitLootBuilder));
+		this.add(ModBlocks.PALM_FRUIT.get(), createCropDrops(ModBlocks.PALM_FRUIT.get(), Items.AIR,
+				ModItems.PALM_SEEDS.get(), palmFruitLootBuilder));
 
-		
 		this.dropOther(ModBlocks.CITRINE_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.dropOther(ModBlocks.CITRINE_WALL_BRACKET.get(), ModItems.CITRINE_BRACKET.get());
 		this.add(ModBlocks.PALM_SLAB.get(), block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 		this.add(ModBlocks.PALM_DOOR.get(), block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
 		this.add(ModBlocks.CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.CLOUD_BRICK_SLAB.get()));
+		this.add(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get()));
 		this.add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				block -> createSlabItemTable(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()));
 
@@ -172,8 +176,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.requireSilkTouch(ModBlocks.LARGE_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get(), List.of(2, 3));
 		this.requireSilkTouch(ModBlocks.MEDIUM_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get(), List.of(1, 1));
 		this.requireSilkTouch(ModBlocks.SMALL_CITRINE_BUD.get(), ModItems.CITRINE_SHARD.get());
-		
-		
+
 		this.requireSilkTouch(ModBlocks.ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5));
 		this.requireSilkTouch(ModBlocks.DEEPSLATE_ZIRCON_ORE.get(), ModItems.ZIRCON_SHARD.get(), List.of(3, 5));
 
@@ -183,20 +186,18 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 						.properties().hasProperty(BlueberryCropBlock.AGE, BlueberryCropBlock.MAX_AGE));
 		this.add(ModBlocks.BLUEBERRY_CROP.get(), createCropDrops(ModBlocks.BLUEBERRY_CROP.get(),
 				ModItems.BLUEBERRY.get(), ModItems.BLUEBERRY_SEEDS.get(), blueberryLootBuilder));
-		
+
 		// Torchflower stuff
 		this.dropSelf(ModBlocks.ILLUMINATED_TORCHFLOWER.get());
 		this.add(ModBlocks.POTTED_ILLUMINATED_TORCHFLOWER.get(),
 				createPotFlowerItemTable(ModBlocks.ILLUMINATED_TORCHFLOWER.get()));
-		
+
 		// White orchid
 		this.dropSelf(ModBlocks.WHITE_ORCHID.get());
-		this.add(ModBlocks.POTTED_WHITE_ORCHID.get(),
-				createPotFlowerItemTable(ModBlocks.WHITE_ORCHID.get()));
-		
+		this.add(ModBlocks.POTTED_WHITE_ORCHID.get(), createPotFlowerItemTable(ModBlocks.WHITE_ORCHID.get()));
+
 		// Potted palm sapling
-		this.add(ModBlocks.POTTED_PALM_SAPLING.get(),
-				createPotFlowerItemTable(ModBlocks.PALM_SAPLING.get()));
+		this.add(ModBlocks.POTTED_PALM_SAPLING.get(), createPotFlowerItemTable(ModBlocks.PALM_SAPLING.get()));
 
 		// Villager workstations
 		this.dropSelf(ModBlocks.CARPENTRY_TABLE.get());
@@ -210,11 +211,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		// NimbulaPolyp
 		this.add(ModBlocks.NIMBULA_POLYP.get(),
 				block -> createSilkTouchDrop(ModBlocks.NIMBULA_POLYP.get(), ModBlocks.CLOUD.get().asItem()));
-		
+
 		// Sculk root
 		this.requireSilkTouch(ModBlocks.SCULK_ROOTS.get(), Items.SCULK_VEIN);
-		
-		
+
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {
@@ -232,15 +232,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected Iterable<Block> getKnownBlocks() {
 		return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
-	
+
 	protected void requireSilkTouch(Block base, ItemLike withoutSilk) {
-		this.add(base,
-				block -> createSilkTouchDrop(base, withoutSilk.asItem()));
+		this.add(base, block -> createSilkTouchDrop(base, withoutSilk.asItem()));
 	}
-	
+
 	protected void requireSilkTouch(Block base, ItemLike withoutSilk, List<Integer> range) {
-		this.add(base,
-				block -> createOreDrops(base, withoutSilk.asItem(), range));
+		this.add(base, block -> createOreDrops(base, withoutSilk.asItem(), range));
 	}
-	
+
 }

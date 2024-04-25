@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "cloudscape:block/rain_cloud_bricks"
+  }
+}

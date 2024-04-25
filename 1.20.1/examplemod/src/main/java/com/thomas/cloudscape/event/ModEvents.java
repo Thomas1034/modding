@@ -260,6 +260,10 @@ public class ModEvents {
 	 * entity.changeDimension(overworld, new ModTeleporter()); // Set the data
 	 * again. entity.teleportTo(pos.x, 480, pos.z); } } } }
 	 */
+	
+	
+	// Known issues: teleporting in an unloaded chunk may cause loss of flight.
+	// Velocity does not transfer.
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public static void travelToAndFromSkyEvent(EnteringSection event) {

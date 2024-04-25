@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-13T20:05:51.0688795	Item Models: cloudscape
+// 1.20.1	2024-04-25T01:04:38.033561	Item Models: cloudscape
 9281f0bf27bcf189e5ef3e19e99bde44917086a0 assets/cloudscape/models/item/amethyst_slab.json
 7580415ab09c89d15fe2e81dec633a881ca9baa3 assets/cloudscape/models/item/amethyst_stairs.json
 6150d1c237ddf3663bfc3bbec921e4db1cffc67f assets/cloudscape/models/item/ancient_feather_wings.json
@@ -105,6 +105,10 @@ e4a642a8e5884306a767deae9ecbfe20db96bba4 assets/cloudscape/models/item/palm_trap
 b977083b9f5c73e02b1f0323fa85c2a4f9053122 assets/cloudscape/models/item/petrified_log.json
 f8e262af7faf5364a2427417ff41379593d8ba08 assets/cloudscape/models/item/pine_cone.json
 01924cdfc81c98b07ddf7115883979c26db21173 assets/cloudscape/models/item/quicksand_bucket.json
+c666bb8cdf23edd0fbd24708c822c0fb88f3c560 assets/cloudscape/models/item/rain_cloud_brick_pillar.json
+a40429b87e58a4211621fafa48c7ee2c013be840 assets/cloudscape/models/item/rain_cloud_brick_slab.json
+79c5fc0ac8e33a58a85d16f0f47ee4a8b603034b assets/cloudscape/models/item/rain_cloud_brick_stairs.json
+777cecd1866c8a6d758852d31a8c7e9918ca7aab assets/cloudscape/models/item/rain_cloud_brick_wall.json
 f3bbed29050e51e842c17673aabba70b272f3dc2 assets/cloudscape/models/item/raw_copper_slab.json
 d9efee7dd447369744bebe8325c06d213a587bc1 assets/cloudscape/models/item/raw_copper_stairs.json
 850800544af36f24092d5a26f26b18ba0e37f582 assets/cloudscape/models/item/raw_gold_slab.json

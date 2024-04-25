@@ -42,7 +42,7 @@ public class ModFeature {
 					ModBlocks.CLOUD.get().defaultBlockState()));
 	public static final RegistryObject<Feature<?>> CIRRUS_CLOUD_FOR_CIRRUS = register("cirrus_cloud",
 			() -> new CirrusFeature(NoneFeatureConfiguration.CODEC, ModBiomes.CIRRUS_BIOME,
-					ModBlocks.MIST.get().defaultBlockState()));
+					ModBlocks.CLOUD.get().defaultBlockState(), ModBlocks.MIST.get().defaultBlockState()));
 
 	private static <T extends Feature<?>> RegistryObject<T> register(String name, Supplier<T> feature) {
 		return FEATURES.register(name, feature);

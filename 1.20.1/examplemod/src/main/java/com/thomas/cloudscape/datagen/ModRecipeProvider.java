@@ -256,8 +256,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Carpentry table
 		shaped(pWriter, List.of(" C ", " # ", " I "), List.of('I', '#', 'C'),
-				List.of(Items.IRON_INGOT, Items.CRAFTING_TABLE, Items.COPPER_INGOT),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CARPENTRY_TABLE.get(), 1);
+				List.of(Items.IRON_INGOT, Items.CRAFTING_TABLE, Items.COPPER_INGOT), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.CARPENTRY_TABLE.get(), 1);
 
 		// Feather wings
 		shaped(pWriter, List.of("FBF", "PEP", "FBF"), List.of('F', 'B', 'P', 'E'),
@@ -299,19 +299,35 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModBlocks.STRIPPED_PALM_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
 				ModItems.PALM_HANGING_SIGN.get(), 2);
 
+		// Rain cloud
+		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
+				List.of(ModBlocks.CLOUD.get(), ModBlocks.THUNDER_CLOUD.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.RAIN_CLOUD.get(), 9);
+
 		// Cloud brick furniture
 		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
 				List.of(ModBlocks.CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.CLOUD_BRICKS.get(), 4);
 		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
+				List.of(ModBlocks.RAIN_CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.RAIN_CLOUD_BRICKS.get(), 4);
+		shaped(pWriter, List.of("CCC", "CTC", "CCC"), List.of('C', 'T'),
 				List.of(ModBlocks.THUNDER_CLOUD.get(), ModItems.CITRINE_SHARD.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.THUNDER_CLOUD_BRICKS.get(), 4);
+
 		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_STAIRS.get(), 4);
 		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_SLAB.get(), 6);
 		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.CLOUD_BRICKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_BRICK_WALL.get(), 3);
+
+		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.RAIN_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAIN_CLOUD_BRICK_STAIRS.get(), 4);
+		shaped(pWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.RAIN_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAIN_CLOUD_BRICK_SLAB.get(), 6);
+		shaped(pWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.RAIN_CLOUD_BRICKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAIN_CLOUD_BRICK_WALL.get(), 3);
 
 		shaped(pWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.THUNDER_CLOUD_BRICKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.THUNDER_CLOUD_BRICK_STAIRS.get(), 4);
@@ -332,13 +348,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Cloud detector
 		shaped(pWriter, List.of("PCR", "QTQ", "RCP"), List.of('C', 'T', 'R', 'Q', 'P'),
-				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ, Items.COPPER_BLOCK),
+				List.of(ModBlocks.CLOUD_BRICKS.get(), ModBlocks.THUNDER_CLOUD.get(), Items.REDSTONE, Items.QUARTZ,
+						Items.COPPER_BLOCK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.CLOUD_DETECTOR.get(), 1);
-		
+
 		// Smelting clouds to mist
 		oreSmelting(pWriter, List.of(ModBlocks.CLOUD.get().asItem()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.MIST.get(), 0.01f, 200, "mist");
-
 
 		// Smelting amethyst blocks to citrine
 		oreSmelting(pWriter, List.of(Blocks.AMETHYST_BLOCK), RecipeCategory.BUILDING_BLOCKS,
@@ -552,8 +568,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Spears
 		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, ItemTags.PLANKS),
 				RecipeCategory.COMBAT, ModItems.WOODEN_SPEAR.get(), 1);
-		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, ItemTags.STONE_TOOL_MATERIALS),
-				RecipeCategory.COMBAT, ModItems.STONE_SPEAR.get(), 1);
+		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'),
+				List.of(Items.STICK, ItemTags.STONE_TOOL_MATERIALS), RecipeCategory.COMBAT, ModItems.STONE_SPEAR.get(),
+				1);
 		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.IRON_INGOT),
 				RecipeCategory.COMBAT, ModItems.IRON_SPEAR.get(), 1);
 		shaped(pWriter, List.of("T  ", " S ", "  S"), List.of('S', 'T'), List.of(Items.STICK, Items.COPPER_INGOT),

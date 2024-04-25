@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cloudscape:block/rain_cloud_brick_pillar_top",
+    "side": "cloudscape:block/rain_cloud_brick_pillar"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "cloudscape:cloud"
+    },
+    "T": {
+      "item": "cloudscape:thunder_cloud"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CTC",
+    "CCC"
+  ],
+  "result": {
+    "count": 9,
+    "item": "cloudscape:rain_cloud"
+  },
+  "show_notification": true
+}

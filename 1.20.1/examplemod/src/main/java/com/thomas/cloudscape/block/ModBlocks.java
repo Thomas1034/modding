@@ -224,6 +224,16 @@ public class ModBlocks {
 											|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
 							.randomTicks().sound(SoundType.EMPTY).noOcclusion()));
 
+	// Grey cloud block
+	public static final RegistryObject<Block> RAIN_CLOUD = registerBlock("rain_cloud",
+			() -> new CloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
+					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos) -> true)
+					.isSuffocating((state, level, pos) -> false)
+					.isValidSpawn((state, level, pos,
+							type) -> (state.getValue(CloudBlock.SOLIDIFIER_DISTANCE) == CloudBlock.MAX_DISTANCE
+									|| type.is(ModTags.EntityTypes.CLOUD_SPAWNABLE_MOBS)))
+					.randomTicks().sound(SoundType.EMPTY)));
+
 	// Indestructible cloud block
 	public static final RegistryObject<Block> SEALED_MIST = registerBlock("sealed_mist",
 			() -> new CloudBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
@@ -257,6 +267,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CLOUD_BRICKS = registerBlock("cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
 
+	public static final RegistryObject<Block> RAIN_CLOUD_BRICKS = registerBlock("rain_cloud_bricks",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)));
+
 	public static final RegistryObject<Block> THUNDER_CLOUD_BRICKS = registerBlock("thunder_cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).sound(SoundType.EMPTY)) {
 				// Damage all entities that step on the block
@@ -271,6 +284,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CLOUD_BRICK_SLAB = registerBlock("cloud_brick_slab",
 			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
 
+	public static final RegistryObject<Block> RAIN_CLOUD_BRICK_SLAB = registerBlock("rain_cloud_brick_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
 	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_SLAB = registerBlock("thunder_cloud_brick_slab",
 			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
 				// Damage all entities that step on the block
@@ -283,6 +299,10 @@ public class ModBlocks {
 			});
 
 	public static final RegistryObject<Block> CLOUD_BRICK_STAIRS = registerBlock("cloud_brick_stairs",
+			() -> new StairBlock(() -> ModBlocks.CLOUD_BRICKS.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> RAIN_CLOUD_BRICK_STAIRS = registerBlock("rain_cloud_brick_stairs",
 			() -> new StairBlock(() -> ModBlocks.CLOUD_BRICKS.get().defaultBlockState(),
 					BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
 
@@ -301,6 +321,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CLOUD_BRICK_WALL = registerBlock("cloud_brick_wall",
 			() -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
 
+	public static final RegistryObject<Block> RAIN_CLOUD_BRICK_WALL = registerBlock("rain_cloud_brick_wall",
+			() -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
 	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_WALL = registerBlock("thunder_cloud_brick_wall",
 			() -> new WallBlock(BlockBehaviour.Properties.copy(ModBlocks.THUNDER_CLOUD_BRICKS.get())) {
 				// Damage all entities that step on the block
@@ -313,6 +336,9 @@ public class ModBlocks {
 			});
 
 	public static final RegistryObject<Block> CLOUD_BRICK_PILLAR = registerBlock("cloud_brick_pillar",
+			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
+
+	public static final RegistryObject<Block> RAIN_CLOUD_BRICK_PILLAR = registerBlock("rain_cloud_brick_pillar",
 			() -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get())));
 
 	public static final RegistryObject<Block> THUNDER_CLOUD_BRICK_PILLAR = registerBlock("thunder_cloud_brick_pillar",
@@ -328,6 +354,9 @@ public class ModBlocks {
 
 	// Cloud bricks
 	public static final RegistryObject<Block> CHISELED_CLOUD_BRICKS = registerBlock("chiseled_cloud_bricks",
+			() -> new Block(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.EMPTY)));
+
+	public static final RegistryObject<Block> CHISELED_RAIN_CLOUD_BRICKS = registerBlock("chiseled_rain_cloud_bricks",
 			() -> new Block(BlockBehaviour.Properties.copy(ModBlocks.CLOUD_BRICKS.get()).sound(SoundType.EMPTY)));
 
 	public static final RegistryObject<Block> CHISELED_THUNDER_CLOUD_BRICKS = registerBlock(
@@ -599,14 +628,12 @@ public class ModBlocks {
 			() -> new FlowerBlock(() -> MobEffects.LEVITATION, 8,
 					BlockBehaviour.Properties.copy(Blocks.BLUE_ORCHID).noOcclusion().noCollission()
 							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 1)));
-	
-	public static final RegistryObject<Block> POTTED_WHITE_ORCHID = BLOCKS.register(
-			"potted_white_orchid",
+
+	public static final RegistryObject<Block> POTTED_WHITE_ORCHID = BLOCKS.register("potted_white_orchid",
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WHITE_ORCHID,
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()
 							.emissiveRendering((state, getter, position) -> true).lightLevel(state -> 2)));
 
-	
 	// Citrine lantern
 	public static final RegistryObject<Block> CITRINE_LANTERN = registerBlock("citrine_lantern",
 			() -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));

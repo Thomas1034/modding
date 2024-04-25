@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cloudscape:block/rain_cloud_brick_slab"
+    },
+    "type=double": {
+      "model": "cloudscape:block/rain_cloud_bricks"
+    },
+    "type=top": {
+      "model": "cloudscape:block/rain_cloud_brick_slab_top"
+    }
+  }
+}

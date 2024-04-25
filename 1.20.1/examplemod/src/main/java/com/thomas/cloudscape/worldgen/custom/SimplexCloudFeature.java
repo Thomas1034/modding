@@ -63,7 +63,7 @@ public class SimplexCloudFeature extends Feature<NoneFeatureConfiguration> {
 
 		// Iterate over the entire chunk.
 		for (int i = 0; i < 16; i++) {
-			for (int j = level.getMinBuildHeight(); j < level.getMaxBuildHeight(); j++) {
+			for (int j = min - 16; j < max + 16; j++) {
 				for (int k = 0; k < 16; k++) {
 					// The coordinates for noise generation.
 					double x = (i + anchor.getX()) * 0.0125;
@@ -71,11 +71,12 @@ public class SimplexCloudFeature extends Feature<NoneFeatureConfiguration> {
 					double z = (k + anchor.getZ()) * 0.0125;
 					
 					double modifiedThreshold = 1/(Math.pow(-2 * j / denom + offsetTerm, 16) + 1);
-					if (noise.eval(x, y, z) * modifiedThreshold > (threshold)) {
+					double noiseVal = noise.eval(x, y, z);
+					if (noiseVal * modifiedThreshold > (threshold)) {
 						Utilities.setSafe(level, thisChunk.getBlockAt(i, j, k), CLOUD);
 					}
 					
-					if (noise.eval(x, y, z) * modifiedThreshold <  ((threshold + 1) / rarity - 1)) {
+					if (noiseVal * modifiedThreshold <  ((threshold + 1) / rarity - 1)) {
 						Utilities.setSafe(level, thisChunk.getBlockAt(i, j, k), THUNDER_CLOUD);
 					}
 
