@@ -9,8 +9,11 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.thomas.cloudscape.util.ModTags;
 import com.thomas.cloudscape.util.MotionHelper;
+import com.thomas.cloudscape.util.Utilities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -66,9 +69,9 @@ public class SpearItem extends TieredItem implements Vanishable {
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 
 		boolean debug = false;
-		
+
 		// Get the attack damage.
-		float attributeDamage = (float)player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+		float attributeDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
 		// Deal extra damage based on relative speed.
 		// Get the relative speed.
@@ -78,8 +81,7 @@ public class SpearItem extends TieredItem implements Vanishable {
 		Vec3 targetSpeed = entity instanceof ServerPlayer ? MotionHelper.getVelocity((ServerPlayer) entity)
 				: entity.getDeltaMovement();
 		float dv = (float) targetSpeed.subtract(holderSpeed).multiply(1f, 0.5f, 1f).length();
-		
-		
+
 		// Now multiply by 12 to get the integer quantity of the charge damage.
 		int chargeDamage = (int) (dv * 16);
 
@@ -112,9 +114,9 @@ public class SpearItem extends TieredItem implements Vanishable {
 		// This makes spam clicking much less effective.
 		appliedDamage *= (1 - player.attackAnim) * (1 - player.attackAnim);
 
-		// Decrease attack damage by 50% if the enemy has a shield.
+		// Decrease attack damage by 75% if the enemy has a shield.
 		if (entity instanceof LivingEntity le && le.isBlocking()) {
-			appliedDamage *= 0.5;
+			appliedDamage *= 0.25;
 		}
 
 		// Add the damage.
@@ -125,17 +127,24 @@ public class SpearItem extends TieredItem implements Vanishable {
 				System.out
 						.println("Charge damage: " + chargeDamage * (1 + chargeBonus) * this.baseBonusChargeMultiplier);
 				System.out.println("Base damage: " + baseDamage + baseBonus);
+				System.out.println("Applied Damage: " + appliedDamage);
 				System.out.println("Speed: " + dv);
 				System.out.println("Attack animation time: " + player.attackAnim);
 				System.out.println("============================================");
 			}
 			entity.hurt(player.damageSources().mobAttack(player), appliedDamage);
+
+			// Add particles if enough charge damage was done.
+			if (chargeDamage > totalDamage) {
+				Utilities.addParticlesAroundEntity((ServerLevel) player.level(), entity, ParticleTypes.CRIT, 1);
+			}
 		}
 		// Damage the spear.
 		stack.hurtAndBreak(1 + (chargeDamage / 2), player, (wielder) -> {
 			wielder.broadcastBreakEvent(EquipmentSlot.MAINHAND);
 		});
 
+		// No further processing is required.
 		return true;
 	}
 

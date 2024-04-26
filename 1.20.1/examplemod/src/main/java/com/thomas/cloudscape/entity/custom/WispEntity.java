@@ -325,7 +325,7 @@ public class WispEntity extends AbstractVillager {
 	}
 
 	private Component getTradeName() {
-		return Component.translatable("entity.minecraft.villager.zirconmod." + this.getProfession().toString());
+		return Component.translatable("entity.minecraft.villager.cloudscape." + this.getProfession().toString());
 	}
 
 	protected void updateTrades() {

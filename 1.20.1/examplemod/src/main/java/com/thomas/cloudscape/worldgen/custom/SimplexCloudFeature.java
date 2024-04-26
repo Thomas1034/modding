@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 public class SimplexCloudFeature extends Feature<NoneFeatureConfiguration> {
 
 	private static final BlockState CLOUD = ModBlocks.CLOUD.get().defaultBlockState();
-	private static final BlockState THUNDER_CLOUD = ModBlocks.THUNDER_CLOUD.get().defaultBlockState();
+	private static final BlockState DARK_CLOUD = ModBlocks.RAIN_CLOUD.get().defaultBlockState();
 	private final double threshold;
 	private final long seed;
 
@@ -77,7 +77,7 @@ public class SimplexCloudFeature extends Feature<NoneFeatureConfiguration> {
 					}
 					
 					if (noiseVal * modifiedThreshold <  ((threshold + 1) / rarity - 1)) {
-						Utilities.setSafe(level, thisChunk.getBlockAt(i, j, k), THUNDER_CLOUD);
+						Utilities.setSafe(level, thisChunk.getBlockAt(i, j, k), DARK_CLOUD);
 					}
 
 				}

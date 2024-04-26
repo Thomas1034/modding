@@ -25,6 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -101,10 +102,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Hailstones from snowballs and ice (8x)
 		shaped(pWriter, List.of("SSS", "SIS", "SSS"), List.of('S', 'I'), List.of(Items.SNOWBALL, Blocks.ICE),
 				RecipeCategory.COMBAT, ModItems.HAILSTONE.get(), 1);
-
-		// String from wool
-		shapeless(pWriter, List.of(Blocks.WHITE_WOOL), List.of(1), RecipeCategory.MISC, Items.STRING, 3);
-
+		
 		// Spruce sapling from pine cones.
 		shaped(pWriter, List.of("PP", "PP"), List.of('P'), List.of(ModItems.PINE_CONE.get()), RecipeCategory.MISC,
 				Items.SPRUCE_SAPLING, 1);

@@ -28,6 +28,7 @@ import com.thomas.cloudscape.block.custom.NimbulaPolypBlock;
 import com.thomas.cloudscape.block.custom.PalmFruitBlock;
 import com.thomas.cloudscape.block.custom.PalmTrunkBlock;
 import com.thomas.cloudscape.block.custom.QuicksandBlock;
+import com.thomas.cloudscape.block.custom.RainCloudBlock;
 import com.thomas.cloudscape.block.custom.ResonatorBlock;
 import com.thomas.cloudscape.block.custom.SculkJawBlock;
 import com.thomas.cloudscape.block.custom.SculkRootBlock;
@@ -226,7 +227,7 @@ public class ModBlocks {
 
 	// Grey cloud block
 	public static final RegistryObject<Block> RAIN_CLOUD = registerBlock("rain_cloud",
-			() -> new CloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
+			() -> new RainCloudBlock(BlockBehaviour.Properties.of().noOcclusion().strength(0.1F).destroyTime(0.5F)
 					.pushReaction(PushReaction.DESTROY).isViewBlocking((state, level, pos) -> true)
 					.isSuffocating((state, level, pos) -> false)
 					.isValidSpawn((state, level, pos,
