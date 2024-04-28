@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "cloudscape:citrine_block"
+  },
+  "result": "cloudscape:citrine_stairs"
+}

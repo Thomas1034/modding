@@ -13,7 +13,6 @@ import com.thomas.cloudscape.block.custom.CloudConverterBlock;
 import com.thomas.cloudscape.block.custom.CloudDetectorBlock;
 import com.thomas.cloudscape.block.custom.CloudInverterBlock;
 import com.thomas.cloudscape.block.custom.DirectionalPassageBlock;
-import com.thomas.cloudscape.block.custom.DynamicColorBlock;
 import com.thomas.cloudscape.block.custom.FloorFrondBlock;
 import com.thomas.cloudscape.block.custom.FrondBlock;
 import com.thomas.cloudscape.block.custom.GemBracketBlock;
@@ -918,9 +917,29 @@ public class ModBlocks {
 			"waxed_oxidized_copper_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.IRON, 10, false));
 
-	// Sky block
-	public static final RegistryObject<Block> SKY_BLOCK = registerBlock("sky_block", () -> new DynamicColorBlock(
-			BlockBehaviour.Properties.copy(Blocks.GLASS).lightLevel((state) -> 15).sound(SoundType.GLASS)));
+	// Soul sandstone
+	public static final RegistryObject<Block> SOUL_SANDSTONE = registerBlock("soul_sandstone",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+	public static final RegistryObject<Block> CHISELED_SOUL_SANDSTONE = registerBlock("chiseled_soul_sandstone",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CHISELED_SANDSTONE)));
+	public static final RegistryObject<Block> SOUL_SANDSTONE_STAIRS = registerBlock("soul_sandstone_stairs",
+			() -> new StairBlock(() -> ModBlocks.SOUL_SANDSTONE.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.SANDSTONE_STAIRS)));
+	public static final RegistryObject<Block> SOUL_SANDSTONE_SLAB = registerBlock("soul_sandstone_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE_SLAB)));
+	public static final RegistryObject<Block> SOUL_SANDSTONE_WALL = registerBlock("soul_sandstone_wall",
+			() -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE_WALL)));
+	public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE = registerBlock("smooth_soul_sandstone",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.SMOOTH_SANDSTONE)));
+	public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_STAIRS = registerBlock("smooth_soul_sandstone_stairs",
+			() -> new StairBlock(() -> ModBlocks.SOUL_SANDSTONE.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.SMOOTH_SANDSTONE_STAIRS)));
+	public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_SLAB = registerBlock("smooth_soul_sandstone_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.SMOOTH_SANDSTONE_SLAB)));
+	public static final RegistryObject<Block> CUT_SOUL_SANDSTONE = registerBlock("cut_soul_sandstone",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.CUT_SANDSTONE)));
+	public static final RegistryObject<Block> CUT_SOUL_SANDSTONE_SLAB = registerBlock("cut_soul_sandstone_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.CUT_SANDSTONE_SLAB)));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

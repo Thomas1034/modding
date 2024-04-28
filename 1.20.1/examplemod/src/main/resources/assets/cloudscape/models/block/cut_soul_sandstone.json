@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cloudscape:block/soul_sandstone_top",
+    "side": "cloudscape:block/cut_soul_sandstone"
+  }
+}

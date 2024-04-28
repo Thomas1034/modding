@@ -80,7 +80,7 @@ public class ModEventBusClientEvents {
 	
 	@SubscribeEvent
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-		event.register(DynamicColorBlock::skyColors, ModBlocks.SKY_BLOCK.get());
+		//event.register(DynamicColorBlock::skyColors, ModBlocks.SKY_BLOCK.get());
 	}
 
 }

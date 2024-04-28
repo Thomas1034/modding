@@ -291,9 +291,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		slabBlock(((SlabBlock) ModBlocks.CITRINE_SLAB.get()), blockTexture(ModBlocks.CITRINE_BLOCK.get()),
 				blockTexture(ModBlocks.CITRINE_BLOCK.get()));
 
-		// Sky block
-		tintedBlockWithItem(ModBlocks.SKY_BLOCK);
-
+		// Soul is hardcoded.
+		/*sandstoneBlockWithItem(ModBlocks.SOUL_SANDSTONE, "soul_sandstone");
+		slabBlock(((SlabBlock) ModBlocks.SOUL_SANDSTONE_SLAB.get()), blockTexture(ModBlocks.SOUL_SANDSTONE.get()),
+				blockTexture(ModBlocks.SOUL_SANDSTONE.get()));
+		stairsBlock(((StairBlock) ModBlocks.SOUL_SANDSTONE_STAIRS.get()), blockTexture(ModBlocks.SOUL_SANDSTONE.get()));
+		sandstoneBlockWithItem(ModBlocks.CUT_SOUL_SANDSTONE, "cut_soul_sandstone");
+		slabBlock(((SlabBlock) ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get()),
+				blockTexture(ModBlocks.CUT_SOUL_SANDSTONE.get()), blockTexture(ModBlocks.CUT_SOUL_SANDSTONE.get()));
+		blockWithItem(ModBlocks.SMOOTH_SOUL_SANDSTONE);
+		stairsBlock(((StairBlock) ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get()),
+				blockTexture(ModBlocks.SMOOTH_SOUL_SANDSTONE.get()));
+		slabBlock(((SlabBlock) ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get()),
+				blockTexture(ModBlocks.SMOOTH_SOUL_SANDSTONE.get()),
+				blockTexture(ModBlocks.SMOOTH_SOUL_SANDSTONE.get()));
+		wallBlock(((WallBlock) ModBlocks.SOUL_SANDSTONE_WALL.get()), blockTexture(ModBlocks.SOUL_SANDSTONE.get()));
+		*/
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -322,7 +335,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				.texture("all", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()));
 		simpleBlockWithItem(block.get(), model);
 	}
-
+	
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject) {
 		simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
 	}
@@ -542,14 +555,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ResourceLocation down = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_down");
 		ResourceLocation up = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_up");
 		ResourceLocation north = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_north");
-		;
+
 		ResourceLocation south = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_south");
-		;
+
 		ResourceLocation east = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_east");
-		;
+
 		ResourceLocation west = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_west");
-		;
+
 		ModelFile cubeModel = models().cube(name, down, up, north, south, east, west).texture("particle", up);
+
+		simpleBlockWithItem(blockRegistryObject.get(), cubeModel);
+	}
+
+	protected void sandstoneBlockWithItem(RegistryObject<Block> blockRegistryObject, String name) {
+		ResourceLocation down = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_bottom");
+		ResourceLocation up = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_top");
+		ResourceLocation side = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name);
+
+		ModelFile cubeModel = models().cube(name, down, up, side, side, side, side).texture("particle", side);
 
 		simpleBlockWithItem(blockRegistryObject.get(), cubeModel);
 	}

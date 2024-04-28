@@ -170,6 +170,17 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ZIRCONIUM_SLAB.get());
 						pOutput.accept(ModBlocks.CITRINE_STAIRS.get());
 						pOutput.accept(ModBlocks.CITRINE_SLAB.get());
+						pOutput.accept(ModBlocks.CUT_SOUL_SANDSTONE.get());
+						pOutput.accept(ModBlocks.SOUL_SANDSTONE_SLAB.get());
+						pOutput.accept(ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get());
+						pOutput.accept(ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get());
+						pOutput.accept(ModBlocks.SOUL_SANDSTONE.get());
+						pOutput.accept(ModBlocks.SOUL_SANDSTONE_STAIRS.get());
+						pOutput.accept(ModBlocks.SOUL_SANDSTONE_WALL.get());
+						pOutput.accept(ModBlocks.CUT_SOUL_SANDSTONE.get());
+						pOutput.accept(ModBlocks.SMOOTH_SOUL_SANDSTONE.get());
+						pOutput.accept(ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get());
+						pOutput.accept(ModBlocks.CHISELED_SOUL_SANDSTONE.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_TOOLS = CREATIVE_MODE_TABS.register("cloudscape_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COPPER_PICKAXE.get()))

@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rain_cloud_brick_wall": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:rain_cloud_brick_wall"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rain_cloud_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:rain_cloud_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:rain_cloud_brick_wall_from_stonecutting_rain_cloud_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_rain_cloud_bricks",
+      "has_rain_cloud_brick_wall",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:rain_cloud_brick_wall_from_stonecutting_rain_cloud_bricks"
+    ]
+  },
+  "sends_telemetry_event": false
+}

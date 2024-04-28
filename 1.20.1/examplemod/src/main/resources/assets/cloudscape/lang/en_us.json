@@ -245,6 +245,18 @@
 	"block.cloudscape.scholar_worksite": "Scholar Worksite",
 	"block.cloudscape.tinkerer_worksite": "Tinkerer Worksite",
 	
+	"block.cloudscape.soul_sandstone": "Soul Sandstone",
+	"block.cloudscape.soul_sandstone_stairs": "Soul Sandstone Stairs",
+	"block.cloudscape.soul_sandstone_slab": "Soul Sandstone Slab",
+	"block.cloudscape.chiseled_soul_sandstone": "Chiseled Soul Sandstone",
+	"block.cloudscape.soul_sandstone_wall": "Soul Sandstone Wall",
+	"block.cloudscape.smooth_soul_sandstone": "Smooth Soul Sandstone",
+	"block.cloudscape.smooth_soul_sandstone_stairs": "Smooth Soul Sandstone Stairs",
+	"block.cloudscape.smooth_soul_sandstone_slab": "Smooth Soul Sandstone Slab",
+	"block.cloudscape.cut_soul_sandstone": "Cut Soul Sandstone",
+	"block.cloudscape.cut_soul_sandstone_slab": "Cut Soul Sandstone Slab",
+	
+	
 	
 	"painting.cloudscape.vulture.title": "Vulture", 
 	"painting.cloudscape.vulture.author": "TheSpahi", 

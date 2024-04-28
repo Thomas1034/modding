@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cloud_brick_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud_brick_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cloud_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cloud_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:cloud_brick_slab_from_stonecutting_cloud_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cloud_bricks",
+      "has_cloud_brick_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:cloud_brick_slab_from_stonecutting_cloud_bricks"
+    ]
+  },
+  "sends_telemetry_event": false
+}

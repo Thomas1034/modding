@@ -210,6 +210,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		// Spears
 		// spearItem(ModItems.ZIRCONIUM_SPEAR);
 
+		// Soul
+		// wallItem(ModBlocks.SOUL_SANDSTONE_WALL, ModBlocks.SOUL_SANDSTONE);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

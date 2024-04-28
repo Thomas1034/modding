@@ -66,7 +66,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
 		this.dropSelf(ModBlocks.PALM_STAIRS.get());
 		this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
-		this.dropSelf(ModBlocks.SKY_BLOCK.get());
 		this.dropSelf(ModBlocks.CLOUD.get());
 		this.dropSelf(ModBlocks.RAIN_CLOUD.get());
 		this.dropSelf(ModBlocks.MIST.get());
@@ -143,7 +142,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.DIAMOND_SLAB.get(), block -> createSlabItemTable(ModBlocks.DIAMOND_SLAB.get()));
 		this.add(ModBlocks.NETHERITE_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERITE_SLAB.get()));
 		this.add(ModBlocks.OBSIDIAN_SLAB.get(), block -> createSlabItemTable(ModBlocks.OBSIDIAN_SLAB.get()));
-		this.add(ModBlocks.CRYING_OBSIDIAN_SLAB.get(), block -> createSlabItemTable(ModBlocks.CRYING_OBSIDIAN_SLAB.get()));
+		this.add(ModBlocks.CRYING_OBSIDIAN_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.CRYING_OBSIDIAN_SLAB.get()));
 		this.add(ModBlocks.AMETHYST_SLAB.get(), block -> createSlabItemTable(ModBlocks.AMETHYST_SLAB.get()));
 		this.add(ModBlocks.ZIRCON_SLAB.get(), block -> createSlabItemTable(ModBlocks.ZIRCON_SLAB.get()));
 		this.add(ModBlocks.RAW_ZIRCONIUM_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAW_ZIRCONIUM_SLAB.get()));
@@ -161,7 +161,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.PALM_SLAB.get(), block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 		this.add(ModBlocks.PALM_DOOR.get(), block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
 		this.add(ModBlocks.CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.CLOUD_BRICK_SLAB.get()));
-		this.add(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get()));
+		this.add(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.RAIN_CLOUD_BRICK_SLAB.get()));
 		this.add(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get(),
 				block -> createSlabItemTable(ModBlocks.THUNDER_CLOUD_BRICK_SLAB.get()));
 
@@ -215,6 +216,20 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		// Sculk root
 		this.requireSilkTouch(ModBlocks.SCULK_ROOTS.get(), Items.SCULK_VEIN);
 
+		// Soul
+		this.add(ModBlocks.SOUL_SANDSTONE_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.SOUL_SANDSTONE_SLAB.get()));
+		this.add(ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get()));
+		this.add(ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get(),
+				block -> createSlabItemTable(ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get()));
+		this.dropSelf(ModBlocks.SOUL_SANDSTONE.get());
+		this.dropSelf(ModBlocks.SOUL_SANDSTONE_STAIRS.get());
+		this.dropSelf(ModBlocks.SOUL_SANDSTONE_WALL.get());
+		this.dropSelf(ModBlocks.CUT_SOUL_SANDSTONE.get());
+		this.dropSelf(ModBlocks.SMOOTH_SOUL_SANDSTONE.get());
+		this.dropSelf(ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get());
+		this.dropSelf(ModBlocks.CHISELED_SOUL_SANDSTONE.get());
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, Item item, List<Integer> range) {

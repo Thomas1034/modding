@@ -1,6 +1,0 @@
-{
-  "parent": "cloudscape:block/tinted_block",
-  "textures": {
-    "all": "cloudscape:block/sky_block"
-  }
-}

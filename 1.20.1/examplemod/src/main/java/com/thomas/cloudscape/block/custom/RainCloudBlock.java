@@ -32,6 +32,7 @@ public class RainCloudBlock extends CloudBlock {
 			entity.hurt(entity.damageSources().lightningBolt(), 1.0F);
 		}
 		super.stepOn(level, pos, state, entity);
+		
 	}
 
 	// Display lighting particles.
@@ -42,7 +43,9 @@ public class RainCloudBlock extends CloudBlock {
 			ParticleUtils.spawnParticlesAlongAxis(Axis.Y, level, pos, 0.625D, ParticleTypes.ELECTRIC_SPARK,
 					UniformInt.of(1, 3));
 		}
-		ParticleUtils.spawnParticlesAlongAxis(Axis.Y, level, pos, 0.625D, ParticleTypes.RAIN, UniformInt.of(1, 3));
+		if (level.getBlockState(pos.below()).isAir()) {
+			ParticleUtils.spawnParticlesAlongAxis(Axis.Y, level, pos, 0.625D, ParticleTypes.RAIN, UniformInt.of(1, 3));
+		}
 	}
 
 }

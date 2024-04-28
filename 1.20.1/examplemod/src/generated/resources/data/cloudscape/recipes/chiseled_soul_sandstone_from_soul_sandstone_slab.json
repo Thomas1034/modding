@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "cloudscape:soul_sandstone_slab"
+    }
+  },
+  "pattern": [
+    "P",
+    "P"
+  ],
+  "result": {
+    "item": "cloudscape:chiseled_soul_sandstone"
+  },
+  "show_notification": true
+}

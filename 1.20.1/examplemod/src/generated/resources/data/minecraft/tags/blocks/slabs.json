@@ -3,6 +3,9 @@
     "cloudscape:palm_slab",
     "cloudscape:cloud_brick_slab",
     "cloudscape:rain_cloud_brick_slab",
-    "cloudscape:thunder_cloud_brick_slab"
+    "cloudscape:thunder_cloud_brick_slab",
+    "cloudscape:soul_sandstone_slab",
+    "cloudscape:smooth_soul_sandstone_slab",
+    "cloudscape:cut_soul_sandstone_slab"
   ]
 }

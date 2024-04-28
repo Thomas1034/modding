@@ -56,7 +56,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.CITRINE_STAIRS.get(), ModBlocks.AMETHYST_SLAB.get(), ModBlocks.AMETHYST_STAIRS.get(),
 				ModBlocks.COAL_SLAB.get(), ModBlocks.COAL_STAIRS.get(), ModBlocks.COPPER_BUTTON.get(),
 				ModBlocks.EXPOSED_COPPER_BUTTON.get(), ModBlocks.WEATHERED_COPPER_BUTTON.get(),
-				ModBlocks.OXIDIZED_COPPER_BUTTON.get());
+				ModBlocks.OXIDIZED_COPPER_BUTTON.get(), ModBlocks.SOUL_SANDSTONE.get(),
+				ModBlocks.SOUL_SANDSTONE_SLAB.get(), ModBlocks.SOUL_SANDSTONE_STAIRS.get(),
+				ModBlocks.SOUL_SANDSTONE_WALL.get(), ModBlocks.CUT_SOUL_SANDSTONE.get(),
+				ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE.get(),
+				ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get(), ModBlocks.CHISELED_SOUL_SANDSTONE.get());
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.PALM_LOG.get(), ModBlocks.PALM_WOOD.get(),
 				ModBlocks.STRIPPED_PALM_LOG.get(), ModBlocks.STRIPPED_PALM_WOOD.get(), ModBlocks.PALM_BUTTON.get(),
@@ -151,7 +155,27 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(Tags.Blocks.ORES).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
 		this.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ModBlocks.ZIRCON_ORE.get());
 		this.tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ModBlocks.DEEPSLATE_ZIRCON_ORE.get());
-
+		
+		// Soul
+		this.tag(BlockTags.WALLS).add(ModBlocks.SOUL_SANDSTONE_WALL.get());
+		this.tag(BlockTags.STAIRS).add(ModBlocks.SOUL_SANDSTONE_STAIRS.get());
+		this.tag(BlockTags.STAIRS).add(ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.SOUL_SANDSTONE_SLAB.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get());
+		this.tag(BlockTags.SLABS).add(ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get());
+		
+		// Soul fire and speed
+		this.tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(ModBlocks.SOUL_SANDSTONE.get(),
+				ModBlocks.SOUL_SANDSTONE_SLAB.get(), ModBlocks.SOUL_SANDSTONE_STAIRS.get(),
+				ModBlocks.SOUL_SANDSTONE_WALL.get(), ModBlocks.CUT_SOUL_SANDSTONE.get(),
+				ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE.get(),
+				ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get(), ModBlocks.CHISELED_SOUL_SANDSTONE.get());
+		this.tag(BlockTags.SOUL_SPEED_BLOCKS).add(ModBlocks.SOUL_SANDSTONE.get(),
+				ModBlocks.SOUL_SANDSTONE_SLAB.get(), ModBlocks.SOUL_SANDSTONE_STAIRS.get(),
+				ModBlocks.SOUL_SANDSTONE_WALL.get(), ModBlocks.CUT_SOUL_SANDSTONE.get(),
+				ModBlocks.CUT_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE.get(),
+				ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get(), ModBlocks.CHISELED_SOUL_SANDSTONE.get());
+		
 		// Functions
 		this.tag(ModTags.Blocks.BUBBLEFRUIT_CAN_GROW_ON).add(ModBlocks.CLOUD.get(), Blocks.MOSS_BLOCK);
 		addStrongCloudSolidifier(Blocks.BUDDING_AMETHYST);

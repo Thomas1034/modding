@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "cloudscape:thunder_cloud_bricks"
+  },
+  "result": "cloudscape:thunder_cloud_brick_slab"
+}

@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cut_soul_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:cut_soul_sandstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_soul_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cloudscape:soul_sandstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cloudscape:cut_soul_sandstone_from_soul_sandstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_soul_sandstone",
+      "has_cut_soul_sandstone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cloudscape:cut_soul_sandstone_from_soul_sandstone"
+    ]
+  },
+  "sends_telemetry_event": false
+}
