@@ -2,7 +2,7 @@ package com.thomas.cloudscape.item;
 
 import java.util.function.Supplier;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -70,7 +70,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
 
 	@Override
 	public String getName() {
-		return ZirconMod.MOD_ID + ":" + this.name;
+		return Cloudscape.MOD_ID + ":" + this.name;
 	}
 
 	@Override

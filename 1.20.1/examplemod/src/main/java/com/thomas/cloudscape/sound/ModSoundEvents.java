@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.sound;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -11,20 +11,20 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModSoundEvents {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister
-			.create(ForgeRegistries.SOUND_EVENTS, ZirconMod.MOD_ID);
+			.create(ForgeRegistries.SOUND_EVENTS, Cloudscape.MOD_ID);
 
 	/*
 	 * wind.wav by gorkylmz1 -- https://freesound.org/s/518151/ -- License: Creative
 	 * Commons 0
 	 */
-	public static final RegistryObject<SoundEvent> GUST_AMBIENT = registerSoundEvents("gust_ambient");
+	public static final RegistryObject<SoundEvent> GUST_AMBIENT = registerSoundEvents("entity.gust.ambient");
 	/*
 	 * whoosh_short_mid.wav by DJT4NN3R -- https://freesound.org/s/449996/ --
 	 * License: Creative Commons 0
 	 */
-	public static final RegistryObject<SoundEvent> GUST_DEATH = registerSoundEvents("gust_death");
+	public static final RegistryObject<SoundEvent> GUST_DEATH = registerSoundEvents("entity.gust.death");
 	/* Default Minecraft explosion. */
-	public static final RegistryObject<SoundEvent> GUST_HURT = registerSoundEvents("gust_hurt");
+	public static final RegistryObject<SoundEvent> GUST_HURT = registerSoundEvents("entity.gust.hurt");
 	// public static final RegistryObject<SoundEvent> SOUND_BLOCK_FALL =
 	// registerSoundEvents("sound_block_fall");
 	// public static final RegistryObject<SoundEvent> SOUND_BLOCK_PLACE =
@@ -39,7 +39,7 @@ public class ModSoundEvents {
 
 	private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
 		return SOUND_EVENTS.register(name,
-				() -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ZirconMod.MOD_ID, name)));
+				() -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Cloudscape.MOD_ID, name)));
 	}
 
 	public static void register(IEventBus eventBus) {

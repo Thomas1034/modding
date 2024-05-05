@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.effect;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEffects {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,
-			ZirconMod.MOD_ID);
+			Cloudscape.MOD_ID);
 
 	public static final RegistryObject<MobEffect> CITRINE_GLOW = MOB_EFFECTS.register("citrine_glow",
 			() -> new CitrineGlowEffect(MobEffectCategory.NEUTRAL, 0xc48ef3));

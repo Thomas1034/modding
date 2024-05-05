@@ -3,12 +3,12 @@ package com.thomas.cloudscape.effect;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.player.AbstractClientPlayer;
+import com.thomas.cloudscape.util.MotionHelper;
+
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
@@ -22,24 +22,23 @@ public class PropulsionEffect extends MobEffect {
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);
-		if (entity instanceof Player player) {
 
-			if (player instanceof AbstractClientPlayer acp && acp.isFallFlying()) {
-				Vec3 curr = acp.getDeltaMovement();
-				Vec3 facing = acp.getLookAngle();
-				double dot = curr.dot(facing);
-				if (dot < (amplifier * amplifier) / 25.0) {
-					acp.addDeltaMovement(facing.scale(amplifier * 0.05));
-				}
-			} else if (player instanceof ServerPlayer sp) {
-			}
+		double power = amplifier / 10.0;
 
-		} else {
-			Vec3 curr = entity.getDeltaMovement();
-			Vec3 facing = entity.getLookAngle();
-			double dot = curr.dot(facing);
-			if (dot < (amplifier * amplifier)) {
-				entity.addDeltaMovement(facing.scale(amplifier * 0.05));
+		if (entity.isFallFlying()) {
+			// Get the direction this entity is looking.
+			Vec3 lookAngle = entity.getLookAngle().normalize();
+			// Get this entity's velocity.
+			Vec3 velocity = MotionHelper.getVelocity(entity);
+			// Calculates the component of the velocity in the direction of the entity's
+			// look angle.
+			double lookComponent = lookAngle.dot(velocity);
+
+			// If the component in the direction of the entity's look angle is less than the
+			// strength of the item, boost accordingly.
+			if (lookComponent < power) {
+				MotionHelper.addVelocity(entity, lookAngle.scale(0.5 * (lookComponent > 0 ? (power - lookComponent) : power)));
+				//System.out.println("Boosting. " + entity.tickCount);
 			}
 		}
 	}

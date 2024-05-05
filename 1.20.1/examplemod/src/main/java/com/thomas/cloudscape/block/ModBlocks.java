@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.custom.BlueberryCropBlock;
 import com.thomas.cloudscape.block.custom.BubblefruitCropBlock;
 import com.thomas.cloudscape.block.custom.BuddingCitrineBlock;
@@ -91,7 +91,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
-			ZirconMod.MOD_ID);
+			Cloudscape.MOD_ID);
 
 	// Villager workstation blocks
 	public static final RegistryObject<Block> CARPENTRY_TABLE = registerBlock("carpentry_table",

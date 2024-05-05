@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.event;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.block.custom.DynamicColorBlock;
 import com.thomas.cloudscape.block.entity.ModBlockEntities;
@@ -27,7 +27,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = ZirconMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Cloudscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventBusClientEvents {
 	@SubscribeEvent
 	public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {

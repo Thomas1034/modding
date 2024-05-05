@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.model.MoleModel;
 import com.thomas.cloudscape.entity.custom.MoleEntity;
@@ -18,7 +18,7 @@ public class MoleRenderer extends MobRenderer<MoleEntity, MoleModel<MoleEntity>>
 
     @Override
     public ResourceLocation getTextureLocation(MoleEntity pEntity) {
-        return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/mole.png");
+        return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/mole.png");
     }
 
     @Override

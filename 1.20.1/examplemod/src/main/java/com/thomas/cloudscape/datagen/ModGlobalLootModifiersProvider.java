@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.datagen;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.item.ModItems;
 import com.thomas.cloudscape.loot.AddSingleItemModifier;
 
@@ -15,7 +15,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 
 public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     public ModGlobalLootModifiersProvider(PackOutput output) {
-        super(output, ZirconMod.MOD_ID);
+        super(output, Cloudscape.MOD_ID);
     }
 
     @Override

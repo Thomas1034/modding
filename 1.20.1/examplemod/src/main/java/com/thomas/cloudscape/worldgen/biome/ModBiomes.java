@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.worldgen.biome;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.worldgen.biome.custom.CirrusBiome;
 import com.thomas.cloudscape.worldgen.biome.custom.ClearSkyBiome;
 import com.thomas.cloudscape.worldgen.biome.custom.CloudySkyBiome;
@@ -16,13 +16,13 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 
 public class ModBiomes {
 	public static final ResourceKey<Biome> PETRIFIED_FOREST_BIOME = ResourceKey.create(Registries.BIOME,
-			new ResourceLocation(ZirconMod.MOD_ID, "petrified_forest_biome"));
+			new ResourceLocation(Cloudscape.MOD_ID, "petrified_forest_biome"));
 	public static final ResourceKey<Biome> CLEAR_SKY_BIOME = ResourceKey.create(Registries.BIOME,
-			new ResourceLocation(ZirconMod.MOD_ID, "clear_sky_biome"));
+			new ResourceLocation(Cloudscape.MOD_ID, "clear_sky_biome"));
 	public static final ResourceKey<Biome> CLOUDY_SKY_BIOME = ResourceKey.create(Registries.BIOME,
-			new ResourceLocation(ZirconMod.MOD_ID, "cloudy_sky_biome"));
+			new ResourceLocation(Cloudscape.MOD_ID, "cloudy_sky_biome"));
 	public static final ResourceKey<Biome> CIRRUS_BIOME = ResourceKey.create(Registries.BIOME,
-			new ResourceLocation(ZirconMod.MOD_ID, "cirrus_biome"));
+			new ResourceLocation(Cloudscape.MOD_ID, "cirrus_biome"));
 	
 	
 	//OverworldBiomes

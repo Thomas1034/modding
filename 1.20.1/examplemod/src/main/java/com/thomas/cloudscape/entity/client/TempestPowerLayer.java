@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.entity.client;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.model.TempestModel;
 import com.thomas.cloudscape.entity.custom.TempestEntity;
 
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class TempestPowerLayer extends EnergySwirlLayer<TempestEntity, TempestModel<TempestEntity>> {
-	   private static final ResourceLocation POWER_LOCATION = new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/tempest_charging.png");
+	   private static final ResourceLocation POWER_LOCATION = new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/tempest_charging.png");
 	   private final TempestModel<TempestEntity> model;
 
 	   public TempestPowerLayer(RenderLayerParent<TempestEntity, TempestModel<TempestEntity>> model, EntityModelSet modelSet) {

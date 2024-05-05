@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.model.WoodGolemModel;
 import com.thomas.cloudscape.entity.custom.WoodGolemEntity;
@@ -21,25 +21,25 @@ public class WoodGolemRenderer extends MobRenderer<WoodGolemEntity, WoodGolemMod
 	public ResourceLocation getTextureLocation(WoodGolemEntity pEntity) {
 		// Do get different versions here:
 		if (pEntity.getTypeVariant() == WoodGolemVariant.ACACIA.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/acacia.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/acacia.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.BIRCH.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/birch.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/birch.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.CHERRY.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/cherry.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/cherry.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.DARK_OAK.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/dark_oak.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/dark_oak.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.JUNGLE.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/jungle.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/jungle.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.MANGROVE.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/mangrove.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/mangrove.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.OAK.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/oak.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/oak.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.PALM.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/palm.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/palm.png");
 		} else if (pEntity.getTypeVariant() == WoodGolemVariant.SPRUCE.getId()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/spruce.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/spruce.png");
 		}
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wood_golem/oak.png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wood_golem/oak.png");
 
 	}
 

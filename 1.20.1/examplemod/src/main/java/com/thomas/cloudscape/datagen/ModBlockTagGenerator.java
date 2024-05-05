@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.util.ModTags;
 
@@ -20,7 +20,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class ModBlockTagGenerator extends BlockTagsProvider {
 	public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
 			@Nullable ExistingFileHelper existingFileHelper) {
-		super(output, lookupProvider, ZirconMod.MOD_ID, existingFileHelper);
+		super(output, lookupProvider, Cloudscape.MOD_ID, existingFileHelper);
 	}
 
 	@Override

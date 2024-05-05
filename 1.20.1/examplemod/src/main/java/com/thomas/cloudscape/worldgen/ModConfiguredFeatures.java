@@ -2,7 +2,7 @@ package com.thomas.cloudscape.worldgen;
 
 import java.util.List;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.block.custom.BubblefruitCropBlock;
 import com.thomas.cloudscape.worldgen.custom.CirrusFeature;
@@ -144,7 +144,7 @@ public class ModConfiguredFeatures {
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(ZirconMod.MOD_ID, name));
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Cloudscape.MOD_ID, name));
 	}
 
 	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(

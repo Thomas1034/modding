@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.block.entity;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, ZirconMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Cloudscape.MOD_ID);
 
     
     public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN =

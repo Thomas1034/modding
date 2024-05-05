@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.item;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 
 import net.minecraft.core.registries.Registries;
@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModCreativeModeTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
-			.create(Registries.CREATIVE_MODE_TAB, ZirconMod.MOD_ID);
+			.create(Registries.CREATIVE_MODE_TAB, Cloudscape.MOD_ID);
 
 	public static final RegistryObject<CreativeModeTab> ZIRCONMOD_ITEMS = CREATIVE_MODE_TABS.register("cloudscape_items",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ZIRCON.get()))

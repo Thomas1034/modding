@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.model.NimbulaModel;
 import com.thomas.cloudscape.entity.custom.NimbulaEntity;
@@ -46,14 +46,14 @@ public class NimbulaRenderer extends MobRenderer<NimbulaEntity, NimbulaModel<Nim
 
 	public ResourceLocation getTextureLocation(NimbulaEntity nimbula) {
 		if (nimbula.level().isThundering()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/black.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/nimbula/black.png");
 		} else if (nimbula.level().isRaining()) {
-			return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/grey.png");
+			return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/nimbula/grey.png");
 		} else {
 			if (nimbula.level().dimension() == Level.OVERWORLD) {
-				return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/green.png");
+				return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/nimbula/green.png");
 			} else {
-				return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/nimbula/blue.png");
+				return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/nimbula/blue.png");
 			}
 		}
 	}

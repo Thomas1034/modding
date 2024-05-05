@@ -27,6 +27,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -36,24 +37,32 @@ import net.minecraft.world.phys.Vec3;
 
 public class SpearItem extends TieredItem implements Vanishable {
 	private final float attackDamage;
-	private final float baseBonusChargeMultiplier;
+	private final float baseChargeMultiplier;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
 	public SpearItem(Tier tier, int damage, float useSpeed, Item.Properties properties) {
 		super(tier, properties);
-		this.attackDamage = (float) damage + tier.getAttackDamageBonus();
+
+		// Override the attack damage.
+		this.attackDamage = (float) damage + tier.getAttackDamageBonus() / 2;
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
 				(double) this.attackDamage, AttributeModifier.Operation.ADDITION));
 		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier",
 				(double) useSpeed, AttributeModifier.Operation.ADDITION));
 		this.defaultModifiers = builder.build();
-
-		this.baseBonusChargeMultiplier = 1;
+		// Set the base bonus charge multiplier.
+		// Based on the damage bonus from the tier, ranked based on netherite, plus a
+		// flat bonus.
+		this.baseChargeMultiplier = 0.2f + tier.getAttackDamageBonus() / Tiers.NETHERITE.getAttackDamageBonus();
 	}
 
 	public float getDamage() {
 		return this.attackDamage;
+	}
+
+	public float getBaseBonusChargeMultiplier() {
+		return this.baseChargeMultiplier;
 	}
 
 	public boolean canAttackBlock(BlockState p_43291_, Level p_43292_, BlockPos p_43293_, Player p_43294_) {
@@ -72,6 +81,10 @@ public class SpearItem extends TieredItem implements Vanishable {
 
 		// Get the attack damage.
 		float attributeDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+		float baseBonus = 0;
+		float chargeBonus = this.getBaseBonusChargeMultiplier();
+		float baseDamage = attributeDamage + this.attackDamage;
+		int chargeDamage;
 
 		// Deal extra damage based on relative speed.
 		// Get the relative speed.
@@ -82,31 +95,27 @@ public class SpearItem extends TieredItem implements Vanishable {
 				: entity.getDeltaMovement();
 		float dv = (float) targetSpeed.subtract(holderSpeed).multiply(1f, 0.5f, 1f).length();
 
-		// Now multiply by 12 to get the integer quantity of the charge damage.
-		int chargeDamage = (int) (dv * 16);
+		// Now multiply by 10 to get the integer quantity of the charge damage.
+		chargeDamage = (int) (dv * 10);
 
 		// If the holder is crouching and holding relatively still, add damage.
 		// Defensive ground.
 		// This means that charging someone with a spear is a very, very bad idea.
 		// Just like when a boar charges hunters!
 		if (player.getDeltaMovement().length() < 0.1 && player.isShiftKeyDown()) {
-			chargeDamage += 8;
+			chargeBonus += 1;
 		}
 
 		// Calculate damage added by enchantments.
-
-		float baseDamage = attributeDamage + this.attackDamage;
-		float baseBonus = 0;
-		float chargeBonus = 1;
 		if (entity instanceof LivingEntity le) {
 			baseBonus = getEnchantmentAttackBonuses(stack, le.getMobType());
-			chargeBonus = getEnchantmentImpaleBonuses(stack, le.getMobType());
+			chargeBonus += getEnchantmentImpaleBonuses(stack, le.getMobType());
 		} else {
 			baseBonus = getEnchantmentAttackBonuses(stack, null);
-			chargeBonus = getEnchantmentImpaleBonuses(stack, null);
+			chargeBonus += getEnchantmentImpaleBonuses(stack, null);
 		}
 
-		float totalDamage = baseDamage + baseBonus + chargeDamage * (1 + chargeBonus) * this.baseBonusChargeMultiplier;
+		float totalDamage = baseDamage + baseBonus + chargeDamage * chargeBonus;
 
 		float appliedDamage = totalDamage;
 
@@ -119,16 +128,23 @@ public class SpearItem extends TieredItem implements Vanishable {
 			appliedDamage *= 0.25;
 		}
 
+		// Make sure the applied damage isn't negative.
+		appliedDamage = appliedDamage < 0 ? 0 : appliedDamage;
+
 		// Add the damage.
 		if (!entity.level().isClientSide()) {
 			if (debug) {
 				System.out.println("============================================");
-				System.out.println("Damage: " + totalDamage);
-				System.out
-						.println("Charge damage: " + chargeDamage * (1 + chargeBonus) * this.baseBonusChargeMultiplier);
-				System.out.println("Base damage: " + baseDamage + baseBonus);
-				System.out.println("Applied Damage: " + appliedDamage);
 				System.out.println("Speed: " + dv);
+				System.out.println("Base charge multiplier: " + this.baseChargeMultiplier);
+				System.out.println("Charge bonus: " + chargeBonus);
+				System.out.println("Base charge damage: " + chargeDamage);
+				System.out.println("Total charge damage: " + chargeDamage * chargeBonus);
+				System.out.println(player.isShiftKeyDown() ? "Is crouching." : "Is not crouching.");
+				System.out.println("Base damage: " + baseDamage);
+				System.out.println("Base bonus: " + baseBonus);
+				System.out.println("Total damage: " + totalDamage);
+				System.out.println("Applied Damage: " + appliedDamage);
 				System.out.println("Attack animation time: " + player.attackAnim);
 				System.out.println("============================================");
 			}

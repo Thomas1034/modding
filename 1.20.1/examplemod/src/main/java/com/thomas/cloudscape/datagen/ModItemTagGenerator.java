@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.Nullable;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.item.ModItems;
 import com.thomas.cloudscape.util.ModTags;
@@ -21,7 +21,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class ModItemTagGenerator extends ItemTagsProvider {
 	public ModItemTagGenerator(PackOutput p_275343_, CompletableFuture<HolderLookup.Provider> p_275729_,
 			CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
-		super(p_275343_, p_275729_, p_275322_, ZirconMod.MOD_ID, existingFileHelper);
+		super(p_275343_, p_275729_, p_275322_, Cloudscape.MOD_ID, existingFileHelper);
 	}
 
 	@Override

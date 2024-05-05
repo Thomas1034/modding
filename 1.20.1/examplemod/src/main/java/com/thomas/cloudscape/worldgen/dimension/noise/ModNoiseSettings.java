@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.worldgen.dimension.noise;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +15,7 @@ public class ModNoiseSettings {
 	 public static final ResourceKey<NoiseGeneratorSettings> SKY = createKey("sky");
 
 	    private static ResourceKey<NoiseGeneratorSettings> createKey(String name) {
-	        return ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(ZirconMod.MOD_ID, name));
+	        return ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(Cloudscape.MOD_ID, name));
 	    }
 
 	    public static void bootstrap(BootstapContext<NoiseGeneratorSettings> context) {

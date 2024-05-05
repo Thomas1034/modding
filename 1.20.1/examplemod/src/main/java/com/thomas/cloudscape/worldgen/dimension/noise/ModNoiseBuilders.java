@@ -2,7 +2,7 @@ package com.thomas.cloudscape.worldgen.dimension.noise;
 
 import java.util.List;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 
 import net.minecraft.core.HolderGetter;
@@ -29,7 +29,7 @@ public class ModNoiseBuilders {
 
 	
 	private static final ResourceKey<DensityFunction> BASE_3D_NOISE_SKY = ResourceKey
-			.create(Registries.DENSITY_FUNCTION, new ResourceLocation(ZirconMod.MOD_ID, "base_3d_noise_sky"));
+			.create(Registries.DENSITY_FUNCTION, new ResourceLocation(Cloudscape.MOD_ID, "base_3d_noise_sky"));
 
 	public static NoiseGeneratorSettings skyNoiseSettings(HolderGetter<DensityFunction> densityFunctions,
 			HolderGetter<NormalNoise.NoiseParameters> noise) {

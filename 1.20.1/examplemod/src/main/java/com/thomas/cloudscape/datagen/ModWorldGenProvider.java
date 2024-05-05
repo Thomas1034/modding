@@ -3,7 +3,7 @@ package com.thomas.cloudscape.datagen;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.worldgen.ModBiomeModifiers;
 import com.thomas.cloudscape.worldgen.ModConfiguredFeatures;
 import com.thomas.cloudscape.worldgen.ModPlacedFeatures;
@@ -36,6 +36,6 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
     		.add(Registries.DENSITY_FUNCTION, ModNoiseBuilders::bootstrap);
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(ZirconMod.MOD_ID));
+        super(output, registries, BUILDER, Set.of(Cloudscape.MOD_ID));
     }
 }

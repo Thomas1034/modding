@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.network;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,9 +14,9 @@ public class ModPacketHandler {
 	// located here:
 	// https://github.com/DaRealTurtyWurty/1.20-Tutorial-Mod/blob/main/src/main/java/dev/turtywurty/tutorialmod/network/PacketHandler.java
 
-	private static String VERSION = ZirconMod.MOD_ID + ":1";
+	private static String VERSION = Cloudscape.MOD_ID + ":1";
 
-	private static final SimpleChannel INSTANCE = ChannelBuilder.named(new ResourceLocation(ZirconMod.MOD_ID, "main"))
+	private static final SimpleChannel INSTANCE = ChannelBuilder.named(new ResourceLocation(Cloudscape.MOD_ID, "main"))
 			.serverAcceptedVersions(VERSION::equals).clientAcceptedVersions(VERSION::equals)
 			.networkProtocolVersion(() -> VERSION).simpleChannel();
 

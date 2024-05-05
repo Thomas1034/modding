@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.worldgen.tree;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.worldgen.tree.custom.PalmTrunkPlacer;
 
 import net.minecraft.core.registries.Registries;
@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModTrunkPlacerTypes {
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACER =
-            DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, ZirconMod.MOD_ID);
+            DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, Cloudscape.MOD_ID);
 
     public static final RegistryObject<TrunkPlacerType<PalmTrunkPlacer>> PALM_TRUNK_PLACER =
             TRUNK_PLACER.register("palm_trunk_placer", () -> new TrunkPlacerType<>(PalmTrunkPlacer.CODEC));

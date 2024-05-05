@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.TempestPowerLayer;
 import com.thomas.cloudscape.entity.client.model.TempestModel;
@@ -22,7 +22,7 @@ public class TempestRenderer extends MobRenderer<TempestEntity, TempestModel<Tem
 
 	@Override
 	public ResourceLocation getTextureLocation(TempestEntity tempest) {
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/tempest.png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/tempest.png");
 	}
 
 	@Override

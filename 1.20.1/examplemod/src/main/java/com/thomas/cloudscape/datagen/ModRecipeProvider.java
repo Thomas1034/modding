@@ -3,7 +3,7 @@ package com.thomas.cloudscape.datagen;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.item.ModItems;
 import com.thomas.cloudscape.util.ModTags;
@@ -655,6 +655,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModBlocks.SMOOTH_SOUL_SANDSTONE_SLAB.get(), 2);
 		stonecutting(recipeWriter, ModBlocks.SMOOTH_SOUL_SANDSTONE.get(), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.SMOOTH_SOUL_SANDSTONE_STAIRS.get(), 1);
+		
 	}
 
 	// Stonecutting recipe.
@@ -663,7 +664,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 			RecipeCategory recipeCategory, ItemLike result, int count) {
 
 		// The name of the recipe.
-		String recipeName = ZirconMod.MOD_ID + ":" + getItemName(result) + "_from_stonecutting_";
+		String recipeName = Cloudscape.MOD_ID + ":" + getItemName(result) + "_from_stonecutting_";
 
 		Ingredient toAdd = null;
 
@@ -707,7 +708,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 			List<Integer> counts, RecipeCategory recipeCategory, ItemLike result, int count) {
 
 		ShapelessRecipeBuilder recipe = ShapelessRecipeBuilder.shapeless(recipeCategory, result, count);
-		String recipeName = ZirconMod.MOD_ID + ":" + getItemName(result) + "_from";
+		String recipeName = Cloudscape.MOD_ID + ":" + getItemName(result) + "_from";
 
 		// Check if the ingredients match the count length.
 		if (counts.size() != ingredients.size()) {
@@ -770,7 +771,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		recipe = recipe.unlocks(getHasName(base), has(base));
 		recipe = recipe.unlocks(getHasName(addition), has(addition));
 
-		String recipeName = ZirconMod.MOD_ID + ":" + getItemName(result) + "_from_smithing_transform_of_"
+		String recipeName = Cloudscape.MOD_ID + ":" + getItemName(result) + "_from_smithing_transform_of_"
 				+ getItemName(base);
 		System.out.println("Finished smithing recipe, saving with name: " + recipeName);
 		recipe.save(pFinishedRecipeConsumer, recipeName);
@@ -783,7 +784,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 			int count) {
 
 		ShapedRecipeBuilder recipe = ShapedRecipeBuilder.shaped(recipeCategory, result, count);
-		String recipeName = ZirconMod.MOD_ID + ":" + getItemName(result) + "_from";
+		String recipeName = Cloudscape.MOD_ID + ":" + getItemName(result) + "_from";
 		// System.out.println(recipeName);
 
 		// Adds in the pattern.
@@ -860,7 +861,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 			SimpleCookingRecipeBuilder
 					.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer)
 					.group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike)).save(pFinishedRecipeConsumer,
-							ZirconMod.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
+							Cloudscape.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
 		}
 	}
 }

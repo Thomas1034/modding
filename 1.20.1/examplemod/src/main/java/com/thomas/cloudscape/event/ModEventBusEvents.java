@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.event;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.ModEntityType;
 import com.thomas.cloudscape.entity.custom.GustEntity;
 import com.thomas.cloudscape.entity.custom.MoleEntity;
@@ -14,7 +14,7 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = ZirconMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Cloudscape.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
 
 	@SubscribeEvent

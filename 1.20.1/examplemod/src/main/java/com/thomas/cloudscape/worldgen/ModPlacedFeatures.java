@@ -2,7 +2,7 @@ package com.thomas.cloudscape.worldgen;
 
 import java.util.List;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 
 import net.minecraft.core.Holder;
@@ -114,7 +114,7 @@ public class ModPlacedFeatures {
 	}
 
 	private static ResourceKey<PlacedFeature> registerKey(String name) {
-		return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(ZirconMod.MOD_ID, name));
+		return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Cloudscape.MOD_ID, name));
 	}
 
 	private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,

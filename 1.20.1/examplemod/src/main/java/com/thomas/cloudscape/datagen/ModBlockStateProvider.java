@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.datagen;
 
 import com.google.common.base.Function;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.block.custom.BlueberryCropBlock;
 import com.thomas.cloudscape.block.custom.BubblefruitCropBlock;
@@ -49,7 +49,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-		super(output, ZirconMod.MOD_ID, exFileHelper);
+		super(output, Cloudscape.MOD_ID, exFileHelper);
 	}
 
 	@Override
@@ -331,8 +331,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// System.out.println("Registering tinted block with " + block.getId());
 		ModelFile model = models()
 				.withExistingParent(block.getId().toString(),
-						new ResourceLocation(ZirconMod.MOD_ID, "block/tinted_block"))
-				.texture("all", new ResourceLocation(ZirconMod.MOD_ID, "block/" + block.getId().getPath()));
+						new ResourceLocation(Cloudscape.MOD_ID, "block/tinted_block"))
+				.texture("all", new ResourceLocation(Cloudscape.MOD_ID, "block/" + block.getId().getPath()));
 		simpleBlockWithItem(block.get(), model);
 	}
 	
@@ -351,7 +351,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ConfiguredModel[] models = new ConfiguredModel[1];
 		models[0] = new ConfiguredModel(models()
 				.crop(modelName + state.getValue(((BlueberryCropBlock) block).getAgeProperty()),
-						new ResourceLocation(ZirconMod.MOD_ID,
+						new ResourceLocation(Cloudscape.MOD_ID,
 								"block/" + textureName + state.getValue(((BlueberryCropBlock) block).getAgeProperty())))
 				.renderType("cutout"));
 
@@ -363,7 +363,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ConfiguredModel[] models = new ConfiguredModel[1];
 		models[0] = new ConfiguredModel(models()
 				.cross(modelName + state.getValue(((BubblefruitCropBlock) block).getAgeProperty()),
-						new ResourceLocation(ZirconMod.MOD_ID,
+						new ResourceLocation(Cloudscape.MOD_ID,
 								"block/" + textureName
 										+ state.getValue(((BubblefruitCropBlock) block).getAgeProperty())))
 				.renderType("cutout"));
@@ -376,7 +376,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ConfiguredModel[] models = new ConfiguredModel[1];
 		models[0] = new ConfiguredModel(models().cubeAll(
 				modelName + "_" + (state.getValue((block).getLitProperty()) ? "lit" : "unlit"),
-				new ResourceLocation(ZirconMod.MOD_ID,
+				new ResourceLocation(Cloudscape.MOD_ID,
 						"block/" + textureName + "_" + (state.getValue((block).getLitProperty()) ? "lit" : "unlit"))));
 		return models;
 	}
@@ -386,7 +386,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ConfiguredModel[] models = new ConfiguredModel[1];
 		models[0] = new ConfiguredModel(
 				models().withExistingParent(modelName + state.getValue(block.getAgeProperty()), new ResourceLocation(
-						ZirconMod.MOD_ID, "block/" + parentName + "_" + (state.getValue((block).getAgeProperty())))));
+						Cloudscape.MOD_ID, "block/" + parentName + "_" + (state.getValue((block).getAgeProperty())))));
 		return models;
 	}
 
@@ -401,7 +401,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			model = models()
 					.withExistingParent(blockTexture(block).toString() + "_count" + count,
-							new ResourceLocation(ZirconMod.MOD_ID,
+							new ResourceLocation(Cloudscape.MOD_ID,
 									"block/" + "template_frond_count"
 											+ (state.getValue(FrondBlock.getCountProperty()))))
 					.renderType("cutout").texture("frond", blockTexture(block).toString());
@@ -480,7 +480,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			model = models()
 					.withExistingParent(blockTexture(block).toString(),
-							new ResourceLocation(ZirconMod.MOD_ID, "block/" + "template_floor_frond"))
+							new ResourceLocation(Cloudscape.MOD_ID, "block/" + "template_floor_frond"))
 					.renderType("cutout").texture("frond", blockTexture(block).toString());
 
 			return ConfiguredModel.builder().modelFile(model).build();
@@ -498,7 +498,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			model = models()
 					.withExistingParent(blockTexture(block).toString() + "_age" + age,
-							new ResourceLocation(ZirconMod.MOD_ID, "block/" + "template_palm_fruit"))
+							new ResourceLocation(Cloudscape.MOD_ID, "block/" + "template_palm_fruit"))
 					.renderType("cutout").texture("fruit", blockTexture(block).toString() + "_age" + age);
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
@@ -552,15 +552,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	protected void cubeBlockWithItem(RegistryObject<Block> blockRegistryObject, String name) {
-		ResourceLocation down = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_down");
-		ResourceLocation up = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_up");
-		ResourceLocation north = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_north");
+		ResourceLocation down = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_down");
+		ResourceLocation up = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_up");
+		ResourceLocation north = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_north");
 
-		ResourceLocation south = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_south");
+		ResourceLocation south = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_south");
 
-		ResourceLocation east = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_east");
+		ResourceLocation east = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_east");
 
-		ResourceLocation west = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_west");
+		ResourceLocation west = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_west");
 
 		ModelFile cubeModel = models().cube(name, down, up, north, south, east, west).texture("particle", up);
 
@@ -568,9 +568,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	protected void sandstoneBlockWithItem(RegistryObject<Block> blockRegistryObject, String name) {
-		ResourceLocation down = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_bottom");
-		ResourceLocation up = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name + "_top");
-		ResourceLocation side = new ResourceLocation(ZirconMod.MOD_ID, "block/" + name);
+		ResourceLocation down = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_bottom");
+		ResourceLocation up = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name + "_top");
+		ResourceLocation side = new ResourceLocation(Cloudscape.MOD_ID, "block/" + name);
 
 		ModelFile cubeModel = models().cube(name, down, up, side, side, side, side).texture("particle", side);
 

@@ -1,20 +1,20 @@
 {
-  "gust_ambient": {
-    "subtitles": "sounds.cloudscape.gust_ambient",
+  "entity.gust.ambient": {
     "sounds": [
       "cloudscape:gust_ambient"
-    ]
+    ],
+		"subtitles": "sounds.cloudscape.entity.gust.ambient"
   },
-	"gust_death": {
-    "subtitles": "sounds.cloudscape.gust_death",
+	"entity.gust.death": {
     "sounds": [
       "cloudscape:gust_death"
-    ]
+    ],
+    "subtitles": "sounds.cloudscape.entity.gust.death"
   },
-	"gust_hurt": {
-    "subtitles": "sounds.cloudscape.gust_hurt",
+	"entity.gust.hurt": {
     "sounds": [
       "cloudscape:gust_hurt"
-    ]
+    ],
+		"subtitles": "sounds.cloudscape.entity.gust.hurt"
   }
 }

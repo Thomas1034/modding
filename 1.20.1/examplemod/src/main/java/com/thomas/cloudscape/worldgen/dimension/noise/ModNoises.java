@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.worldgen.dimension.noise;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -15,7 +15,7 @@ public class ModNoises {
 	public static final ResourceKey<NoiseParameters> VEGETATION = createKey("vegetation");
 	
 	private static ResourceKey<NoiseParameters> createKey(String name) {
-        return ResourceKey.create(Registries.NOISE, new ResourceLocation(ZirconMod.MOD_ID, name));
+        return ResourceKey.create(Registries.NOISE, new ResourceLocation(Cloudscape.MOD_ID, name));
     }
 	
 	public static void bootstrap(BootstapContext<NoiseParameters> context) {

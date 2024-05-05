@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.util.Pair;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.custom.ModBoatEntity;
 import com.thomas.cloudscape.entity.custom.ModChestBoatEntity;
 
@@ -26,7 +26,7 @@ public class ModBoatRenderer extends BoatRenderer {
 		super(pContext, pChestBoat);
 		this.boatResources = Stream.of(ModBoatEntity.Type.values())
 				.collect(ImmutableMap.toImmutableMap(type -> type,
-						type -> Pair.of(new ResourceLocation(ZirconMod.MOD_ID, getTextureLocation(type, pChestBoat)),
+						type -> Pair.of(new ResourceLocation(Cloudscape.MOD_ID, getTextureLocation(type, pChestBoat)),
 								this.createBoatModel(pContext, type, pChestBoat))));
 		
 	}
@@ -53,7 +53,7 @@ public class ModBoatRenderer extends BoatRenderer {
 	}
 
 	private static ModelLayerLocation createLocation(String pPath, String pModel) {
-		return new ModelLayerLocation(new ResourceLocation(ZirconMod.MOD_ID, pPath), pModel);
+		return new ModelLayerLocation(new ResourceLocation(Cloudscape.MOD_ID, pPath), pModel);
 	}
 
 	public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {

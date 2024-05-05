@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.entity;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.custom.BallLightningEntity;
 import com.thomas.cloudscape.entity.custom.GustEntity;
 import com.thomas.cloudscape.entity.custom.HailstoneEntity;
@@ -23,15 +23,15 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntityType {
 	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister
-			.create(ForgeRegistries.ENTITY_TYPES, ZirconMod.MOD_ID);
+			.create(ForgeRegistries.ENTITY_TYPES, Cloudscape.MOD_ID);
 
 	public static final RegistryObject<EntityType<MoleEntity>> MOLE_ENTITY = ENTITY_TYPES.register("mole",
 			() -> EntityType.Builder.of(MoleEntity::new, MobCategory.MONSTER).sized(0.9f, 0.9f).fireImmune()
-					.canSpawnFarFromPlayer().build(new ResourceLocation(ZirconMod.MOD_ID, "mole").toString()));
+					.canSpawnFarFromPlayer().build(new ResourceLocation(Cloudscape.MOD_ID, "mole").toString()));
 
 	public static final RegistryObject<EntityType<WoodGolemEntity>> WOOD_GOLEM_ENTITY = ENTITY_TYPES
 			.register("wood_golem", () -> EntityType.Builder.of(WoodGolemEntity::new, MobCategory.MISC)
-					.sized(1.0f, 2.0f).build(new ResourceLocation(ZirconMod.MOD_ID, "wood_golem").toString()));
+					.sized(1.0f, 2.0f).build(new ResourceLocation(Cloudscape.MOD_ID, "wood_golem").toString()));
 
 	public static final RegistryObject<EntityType<NimbulaEntity>> NIMBULA_ENTITY = ENTITY_TYPES.register("nimbula",
 			() -> EntityType.Builder.of(NimbulaEntity::new, MobCategory.CREATURE).sized(1.0f, 1.5f).build("nimbula"));

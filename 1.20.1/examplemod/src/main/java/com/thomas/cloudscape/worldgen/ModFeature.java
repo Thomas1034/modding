@@ -2,7 +2,7 @@ package com.thomas.cloudscape.worldgen;
 
 import java.util.function.Supplier;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 import com.thomas.cloudscape.worldgen.biome.ModBiomes;
 import com.thomas.cloudscape.worldgen.custom.CirrusFeature;
@@ -23,7 +23,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModFeature {
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES,
-			ZirconMod.MOD_ID);
+			Cloudscape.MOD_ID);
 
 	public static final RegistryObject<Feature<?>> OASIS = register("oasis",
 			() -> new OasisFeature(NoneFeatureConfiguration.CODEC));

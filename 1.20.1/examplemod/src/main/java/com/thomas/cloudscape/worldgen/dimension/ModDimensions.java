@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.OptionalLong;
 
 import com.mojang.datafixers.util.Pair;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.worldgen.biome.ModBiomes;
 import com.thomas.cloudscape.worldgen.dimension.noise.ModNoiseSettings;
 
@@ -27,11 +27,11 @@ import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 public class ModDimensions {
 	public static final ResourceKey<LevelStem> SKY_DIM_KEY = ResourceKey.create(Registries.LEVEL_STEM,
-			new ResourceLocation(ZirconMod.MOD_ID, "sky_dim"));
+			new ResourceLocation(Cloudscape.MOD_ID, "sky_dim"));
 	public static final ResourceKey<Level> SKY_DIM_LEVEL_KEY = ResourceKey.create(Registries.DIMENSION,
-			new ResourceLocation(ZirconMod.MOD_ID, "sky_dim"));
+			new ResourceLocation(Cloudscape.MOD_ID, "sky_dim"));
 	public static final ResourceKey<DimensionType> SKY_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-			new ResourceLocation(ZirconMod.MOD_ID, "sky_type"));
+			new ResourceLocation(Cloudscape.MOD_ID, "sky_type"));
 
 	public static void bootstrapType(BootstapContext<DimensionType> context) {
 		context.register(SKY_DIM_TYPE, new DimensionType(OptionalLong.empty(), // fixedTime

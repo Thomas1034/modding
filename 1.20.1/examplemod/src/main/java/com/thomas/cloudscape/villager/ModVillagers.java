@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.villager;
 
 import com.google.common.collect.ImmutableSet;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.ModBlocks;
 
 import net.minecraft.sounds.SoundEvents;
@@ -14,9 +14,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModVillagers {
 	public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES,
-			ZirconMod.MOD_ID);
+			Cloudscape.MOD_ID);
 	public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister
-			.create(ForgeRegistries.VILLAGER_PROFESSIONS, ZirconMod.MOD_ID);
+			.create(ForgeRegistries.VILLAGER_PROFESSIONS, Cloudscape.MOD_ID);
 
 	public static final RegistryObject<PoiType> CARPENTER_POI = POI_TYPES.register("forester_poi",
 			() -> new PoiType(

@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.model.GustModel;
 import com.thomas.cloudscape.entity.custom.GustEntity;
@@ -29,7 +29,7 @@ public class GustRenderer extends MobRenderer<GustEntity, GustModel<GustEntity>>
 
 	public ResourceLocation getTextureLocation(GustEntity gust) {
 
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/gust.png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/gust.png");
 	}
 	
 	@Override

@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.worldgen;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.ModEntityType;
 import com.thomas.cloudscape.util.ModTags;
 
@@ -71,6 +71,6 @@ public class ModBiomeModifiers {
 
 	private static ResourceKey<BiomeModifier> registerKey(String name) {
 		
-		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(ZirconMod.MOD_ID, name));
+		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(Cloudscape.MOD_ID, name));
 	}
 }

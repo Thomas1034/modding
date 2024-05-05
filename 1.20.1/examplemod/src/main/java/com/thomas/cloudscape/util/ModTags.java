@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.util;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +29,7 @@ public class ModTags {
 		
 
 		private static TagKey<Block> tag(String name) {
-			return BlockTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));
+			return BlockTags.create(new ResourceLocation(Cloudscape.MOD_ID, name));
 		}
 	}
 
@@ -38,7 +38,7 @@ public class ModTags {
 		public static final TagKey<Structure> QUEST_EYE_LOCATED = tag("quest_eye_located");
 
 		private static TagKey<Structure> tag(String name) {
-			TagKey<Structure> tag = TagKey.create(Registries.STRUCTURE, new ResourceLocation(ZirconMod.MOD_ID, name));
+			TagKey<Structure> tag = TagKey.create(Registries.STRUCTURE, new ResourceLocation(Cloudscape.MOD_ID, name));
 			// System.out.println("\n\n\nDEBUGGER TK: "+tag.toString()+" \n\n\n");
 			return tag;
 		}
@@ -51,7 +51,7 @@ public class ModTags {
 		public static final TagKey<Item> BERRIES = tag("berries");
 
 		private static TagKey<Item> tag(String name) {
-			return ItemTags.create(new ResourceLocation(ZirconMod.MOD_ID, name));
+			return ItemTags.create(new ResourceLocation(Cloudscape.MOD_ID, name));
 		}
 	}
 
@@ -60,7 +60,7 @@ public class ModTags {
 		public static final TagKey<EntityType<?>> CLOUD_SPAWNABLE_MOBS = tag("cloud_spawnable_mobs");
 		
 		private static TagKey<EntityType<?>> tag(String name) {
-			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ZirconMod.MOD_ID, name));
+			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Cloudscape.MOD_ID, name));
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class ModTags {
 		public static final TagKey<Biome> HAS_BEACH_PALMS = tag("has_beach_palms");
 		
 		private static TagKey<Biome> tag(String name) {
-			return TagKey.create(Registries.BIOME, new ResourceLocation(ZirconMod.MOD_ID, name));
+			return TagKey.create(Registries.BIOME, new ResourceLocation(Cloudscape.MOD_ID, name));
 		}
 	}
 }

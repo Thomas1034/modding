@@ -2,7 +2,7 @@ package com.thomas.cloudscape.event;
 
 import java.util.List;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.block.entity.menu.NetheriteAnvilMenu;
 import com.thomas.cloudscape.entity.ModEntityType;
 import com.thomas.cloudscape.entity.custom.GustEntity;
@@ -23,12 +23,14 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -44,15 +46,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.EntityEvent.EnteringSection;
+import net.minecraftforge.event.entity.living.MobSpawnEvent.FinalizeSpawn;
 import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import net.minecraftforge.event.entity.player.PlayerSpawnPhantomsEvent;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
@@ -61,7 +66,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = ZirconMod.MOD_ID)
+@Mod.EventBusSubscriber(modid = Cloudscape.MOD_ID)
 public class ModEvents {
 
 	// Adds custom trades to villagers.
@@ -260,8 +265,7 @@ public class ModEvents {
 	 * entity.changeDimension(overworld, new ModTeleporter()); // Set the data
 	 * again. entity.teleportTo(pos.x, 480, pos.z); } } } }
 	 */
-	
-	
+
 	// Known issues: teleporting in an unloaded chunk may cause loss of flight.
 	// Velocity does not transfer.
 	@SuppressWarnings("unchecked")
@@ -406,18 +410,53 @@ public class ModEvents {
 
 	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event) {
-		
+
 		if (event.phase != TickEvent.Phase.START) {
 			return;
 		}
-		
+
 		if (event.side == LogicalSide.SERVER) {
 			Player player = event.player;
 			if (player instanceof ServerPlayer sp) {
 				MotionHelper.update(sp);
 			}
 		}
-		
+
+	}
+
+	@SubscribeEvent
+	public static void onClientMessage(ClientChatEvent event) {
+
+		System.out.println("Message: " + event.getMessage());
+
+	}
+
+	@SubscribeEvent
+	public static void onPhantomSpawn(PlayerSpawnPhantomsEvent event) {
+
+	}
+
+	@SubscribeEvent
+	public static void onFinalizeSpawn(FinalizeSpawn event) {
+
+		// Remove zombie villagers with wisp professions.
+		Entity entity = event.getEntity();
+
+		if (entity instanceof ZombieVillager zombieVillager) {
+			// Check each of the types. Sigh.
+			// Repeat until it comes up clean.
+			while (ModVillagers.VILLAGER_PROFESSIONS.getEntries().stream()
+					.anyMatch((villagerProfessionHolder) -> villagerProfessionHolder.get()
+							.equals(zombieVillager.getVillagerData().getProfession()))) {
+				// Re-randomize the type.
+				BuiltInRegistries.VILLAGER_PROFESSION.getRandom(zombieVillager.getRandom()).ifPresent((profession) -> {
+					zombieVillager.setVillagerData(zombieVillager.getVillagerData().setProfession(profession.value()));
+				});
+				// Repeat until it comes up clean.
+			}
+
+		}
+
 	}
 
 }

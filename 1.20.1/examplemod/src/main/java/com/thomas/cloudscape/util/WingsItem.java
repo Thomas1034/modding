@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.util;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.item.custom.wings.AbstractWingsItem;
 
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +15,7 @@ import net.minecraft.world.item.Items;
 public interface WingsItem {
 	
 	default ResourceLocation getTextureLocation() {
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wings/" + this.getTextureName() + ".png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wings/" + this.getTextureName() + ".png");
 	}
 	
 	default String getTextureName() {

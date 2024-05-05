@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.item.custom.wings;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +14,7 @@ public class DragonflyWingsItem extends AbstractHoverWingsItem {
 
 	@Override
 	public ResourceLocation getTextureLocation() {
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/feather_wings.png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/feather_wings.png");
 	}
 
 	@Override

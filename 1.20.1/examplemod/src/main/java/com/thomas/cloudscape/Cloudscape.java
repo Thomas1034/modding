@@ -62,14 +62,14 @@ import terrablender.api.SurfaceRuleManager;
 // 
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ZirconMod.MOD_ID)
-public class ZirconMod {
+@Mod(Cloudscape.MOD_ID)
+public class Cloudscape {
 	// Define mod id in a common place for everything to reference
 	public static final String MOD_ID = "cloudscape";
 	// Directly reference a slf4j logger
 	private static final Logger LOGGER = LogUtils.getLogger();
 
-	public ZirconMod() {
+	public Cloudscape() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		ModCreativeModeTabs.register(modEventBus);

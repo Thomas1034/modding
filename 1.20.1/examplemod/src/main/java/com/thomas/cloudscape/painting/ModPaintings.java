@@ -1,6 +1,6 @@
 package com.thomas.cloudscape.painting;
 
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,7 +12,7 @@ public class ModPaintings {
 
 	
 	public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS = 
-			DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, ZirconMod.MOD_ID);
+			DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, Cloudscape.MOD_ID);
 	
 	public static final RegistryObject<PaintingVariant> VULTURE = PAINTING_VARIANTS.register("vulture",
 			() -> new PaintingVariant(16, 16));

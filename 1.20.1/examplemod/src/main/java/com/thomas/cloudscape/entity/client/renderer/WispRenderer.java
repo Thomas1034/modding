@@ -1,7 +1,7 @@
 package com.thomas.cloudscape.entity.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.thomas.cloudscape.ZirconMod;
+import com.thomas.cloudscape.Cloudscape;
 import com.thomas.cloudscape.entity.client.ModModelLayers;
 import com.thomas.cloudscape.entity.client.model.WispModel;
 import com.thomas.cloudscape.entity.custom.WispEntity;
@@ -33,7 +33,7 @@ public class WispRenderer extends MobRenderer<WispEntity, WispModel<WispEntity>>
 
 		String profession = wisp.getProfession().toString();
 
-		return new ResourceLocation(ZirconMod.MOD_ID, "textures/entity/wisp/" + profession + ".png");
+		return new ResourceLocation(Cloudscape.MOD_ID, "textures/entity/wisp/" + profession + ".png");
 	}
 	
 	@Override
