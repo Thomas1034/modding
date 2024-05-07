@@ -33,7 +33,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(Verdant.MOD_ID)
 public class Verdant {
 	// Define mod id in a common place for everything to reference
-	public static final String MOD_ID = "cloudscape";
+	public static final String MOD_ID = "verdant";
 	// Directly reference a slf4j logger
 	private static final Logger LOGGER = LogUtils.getLogger();
 
