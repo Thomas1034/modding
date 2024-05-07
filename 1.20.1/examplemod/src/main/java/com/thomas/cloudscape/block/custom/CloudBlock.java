@@ -7,7 +7,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.thomas.cloudscape.block.ModBlocks;
-import com.thomas.cloudscape.block.custom.CloudBlock.CloudMonsterSpawnData;
 import com.thomas.cloudscape.effect.ModEffects;
 import com.thomas.cloudscape.entity.ModEntityType;
 import com.thomas.cloudscape.entity.custom.GustEntity;
@@ -50,20 +49,29 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.registries.RegistryObject;
 
 public class CloudBlock extends Block {
 
-	private final List<CloudMonsterSpawnData> monsters = List.of(
-			CloudMonsterSpawnData.spawner(GustEntity::new, ModEntityType.GUST_ENTITY.get())
-					.setChance((level) -> level.getDifficulty().getId() * 0.00390625f)
+	public static final float EPS = 1.0f / (256 * 256 * 256);
+
+	private final List<CloudMonsterSpawnData<?>> monsters = List.of(
+			CloudMonsterSpawnData.basic(GustEntity::new, ModEntityType.GUST_ENTITY)
+					.setChance((level) -> level.getDifficulty().getId() * EPS)
 					.callOnSpawn(CloudMonsterSpawnData::levitate)
 					.setSpawnCondition((state, level, pos, rand) -> level.isRainingAt(pos.above())
-							&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 2)),
-			CloudMonsterSpawnData.spawner(TempestEntity::new, ModEntityType.TEMPEST_ENTITY.get())
-					.setChance((level) -> level.getDifficulty().getId() * 0.000244140625f)
-					.callOnSpawn(CloudMonsterSpawnData::levitate)
-					.setSpawnCondition((state, level, pos, rand) -> level.isRainingAt(pos.above())
-							&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 8)));
+							&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 2)
+							&& CloudMonsterSpawnData.verifyMobCap(state, level, pos, rand, 64, 4)
+							&& CloudMonsterSpawnData.verifyMobTypeCap(state, level, pos, rand, 128, 4,
+									ModEntityType.GUST_ENTITY)),
+			CloudMonsterSpawnData.basic(TempestEntity::new, ModEntityType.TEMPEST_ENTITY)
+					.setChance((level) -> level.getDifficulty().getId() * EPS / 64)
+					.callOnSpawn(CloudMonsterSpawnData::levitate).setSpawnCondition(
+							(state, level, pos, rand) -> level.isRainingAt(pos.above()) && level.isThundering()
+									&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 8)
+									&& CloudMonsterSpawnData.verifyMobCap(state, level, pos, rand, 32, 4)
+									&& CloudMonsterSpawnData.verifyMobTypeCap(state, level, pos, rand, 128, 1,
+											ModEntityType.TEMPEST_ENTITY)));
 
 	public static final int MAX_DISTANCE = 15;
 	public static final int MIN_DISTANCE = 0;
@@ -245,7 +253,12 @@ public class CloudBlock extends Block {
 	// Try to spawn monsters.
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		this.trySpawnMonsters(state, level, pos, rand);
+		// Adjust for modified random tick speeds.
+		int currentTickSpeed = level.getGameRules().getInt(GameRules.RULE_RANDOMTICKING);
+		int defaultTickSpeed = GameRules.DEFAULT_RANDOM_TICK_SPEED;
+		if (rand.nextFloat() < ((float) defaultTickSpeed) / currentTickSpeed) {
+			this.trySpawnMonsters(state, level, pos, rand);
+		}
 	}
 
 	@Override
@@ -265,41 +278,41 @@ public class CloudBlock extends Block {
 		Difficulty difficulty = level.getDifficulty();
 		boolean doSpawning = level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
 		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.getBlockState(pos.above()).isAir()
-				&& level.dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
+				&& level.canSeeSky(pos.above()) && level.dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
 			this.monsters.forEach((data) -> data.spawn(level, pos));
 		}
 	}
 
-	public static class CloudMonsterSpawnData {
+	public static class CloudMonsterSpawnData<T extends LivingEntity> {
 
 		private Function<Level, Float> chance;
 		private Function<Level, LivingEntity> spawner;
 		private Function<LivingEntity, LivingEntity> onSpawn;
 		private QuadFunction<BlockState, ServerLevel, BlockPos, RandomSource, Boolean> canSpawn;
 
-		public static CloudMonsterSpawnData spawner(BiFunction<EntityType, Level, LivingEntity> spawner,
-				EntityType type) {
-			CloudMonsterSpawnData spawnData = new CloudMonsterSpawnData();
+		public static <R extends LivingEntity> CloudMonsterSpawnData<R> basic(
+				BiFunction<EntityType<R>, Level, R> spawner, RegistryObject<EntityType<R>> type) {
+			CloudMonsterSpawnData<R> spawnData = new CloudMonsterSpawnData<R>();
 
 			spawnData.chance = (level) -> (1.0f);
-			spawnData.spawner = (level) -> spawner.apply(type, level);
+			spawnData.spawner = (level) -> spawner.apply(type.get(), level);
 			spawnData.onSpawn = (entity) -> (entity);
 
 			return spawnData;
 		}
 
-		public CloudMonsterSpawnData setChance(Function<Level, Float> chance) {
+		public CloudMonsterSpawnData<T> setChance(Function<Level, Float> chance) {
 			this.chance = chance;
 			return this;
 		}
 
-		public CloudMonsterSpawnData setSpawnCondition(
+		public CloudMonsterSpawnData<T> setSpawnCondition(
 				QuadFunction<BlockState, ServerLevel, BlockPos, RandomSource, Boolean> canSpawn) {
 			this.canSpawn = canSpawn;
 			return this;
 		}
 
-		public CloudMonsterSpawnData callOnSpawn(Function<LivingEntity, LivingEntity> action) {
+		public CloudMonsterSpawnData<T> callOnSpawn(Function<LivingEntity, LivingEntity> action) {
 			this.onSpawn = action;
 			return this;
 		}
@@ -333,6 +346,21 @@ public class CloudBlock extends Block {
 
 			return states
 					.allMatch((streamState) -> (streamState.isAir() || streamState.getBlock() instanceof CloudBlock));
+		}
+
+		public static boolean verifyMobCap(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand,
+				int radius, int maxCount) {
+			AABB boundaries = AABB.of(BoundingBox.fromCorners(pos.north(radius).west(radius), pos.above(2 * radius)));
+
+			return level.getEntities(null, boundaries).size() < maxCount;
+		}
+
+		public static <R extends Entity> boolean verifyMobTypeCap(BlockState state, ServerLevel level, BlockPos pos,
+				RandomSource rand, int radius, int maxCount, RegistryObject<EntityType<R>> type) {
+			AABB boundaries = AABB.of(BoundingBox.fromCorners(pos.north(radius).west(radius), pos.above(2 * radius)));
+
+			return level.getEntities(null, boundaries).stream().filter((entity) -> entity.getType().equals(type.get()))
+					.toList().size() <= maxCount;
 		}
 
 	}
