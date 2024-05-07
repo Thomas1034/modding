@@ -1,6 +1,6 @@
-package com.thomas.cloudscape.network;
+package com.thomas.verdant.network;
 
-import com.thomas.cloudscape.Cloudscape;
+import com.thomas.verdant.Verdant;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,16 +14,13 @@ public class ModPacketHandler {
 	// located here:
 	// https://github.com/DaRealTurtyWurty/1.20-Tutorial-Mod/blob/main/src/main/java/dev/turtywurty/tutorialmod/network/PacketHandler.java
 
-	private static String VERSION = Cloudscape.MOD_ID + ":1";
+	private static String VERSION = Verdant.MOD_ID + ":1";
 
-	private static final SimpleChannel INSTANCE = ChannelBuilder.named(new ResourceLocation(Cloudscape.MOD_ID, "main"))
+	private static final SimpleChannel INSTANCE = ChannelBuilder.named(new ResourceLocation(Verdant.MOD_ID, "main"))
 			.serverAcceptedVersions(VERSION::equals).clientAcceptedVersions(VERSION::equals)
 			.networkProtocolVersion(() -> VERSION).simpleChannel();
 
 	public static void register() {
-		INSTANCE.messageBuilder(WingFlapPacket.class, NetworkDirection.PLAY_TO_SERVER.ordinal())
-				.encoder(WingFlapPacket::encode).decoder(WingFlapPacket::decode)
-				.consumerMainThread(WingFlapPacket::handle).add();
 		INSTANCE.messageBuilder(PlayerAddVelocityPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
 				.encoder(PlayerAddVelocityPacket::encode).decoder(PlayerAddVelocityPacket::decode)
 				.consumerNetworkThread(PlayerAddVelocityPacket::handle).add();
