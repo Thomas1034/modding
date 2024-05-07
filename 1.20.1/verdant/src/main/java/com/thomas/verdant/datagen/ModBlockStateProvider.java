@@ -2,6 +2,7 @@ package com.thomas.verdant.datagen;
 
 import com.google.common.base.Function;
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -9,9 +10,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.LanternBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -29,7 +41,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 
-		// Register simple blocks with the same texture on all sides
+		blockWithItem(ModBlocks.VERDANT_PLANKS);
+		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
+		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
+		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_WOOD.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_WOOD.get());
+		stairsBlock(((StairBlock) ModBlocks.VERDANT_STAIRS.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+		slabBlock(((SlabBlock) ModBlocks.VERDANT_SLAB.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()),
+				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+
+		buttonBlock(((ButtonBlock) ModBlocks.VERDANT_BUTTON.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+		pressurePlateBlock(((PressurePlateBlock) ModBlocks.VERDANT_PRESSURE_PLATE.get()),
+				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+
+		fenceBlock(((FenceBlock) ModBlocks.VERDANT_FENCE.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+		fenceGateBlock(((FenceGateBlock) ModBlocks.VERDANT_FENCE_GATE.get()),
+				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+
+		doorBlockWithRenderType(((DoorBlock) ModBlocks.VERDANT_DOOR.get()), modLoc("block/verdant_door_bottom"),
+				modLoc("block/verdant_door_top"), "cutout");
+		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VERDANT_TRAPDOOR.get()),
+				modLoc("block/verdant_trapdoor"), true, "cutout");
+
+		signBlock(((StandingSignBlock) ModBlocks.VERDANT_SIGN.get()),
+				((WallSignBlock) ModBlocks.VERDANT_WALL_SIGN.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
+
+		hangingSignBlock(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
+				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
 
 	}
 

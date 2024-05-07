@@ -1,6 +1,7 @@
 package com.thomas.verdant.item;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -19,14 +20,32 @@ public class ModCreativeModeTabs {
 	public static final RegistryObject<CreativeModeTab> VERDANT_ITEMS = CREATIVE_MODE_TABS.register("verdant_items",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WHEAT_SEEDS))
 					.title(Component.translatable("creativetab.verdant_items")).displayItems((pParameters, pOutput) -> {
-						// pOutput.accept(ModItems.ZIRCON.get());
+
+						pOutput.accept(ModItems.VERDANT_BOAT.get());
+						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
 
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Blocks.DIRT))
 					.title(Component.translatable("creativetab.verdant_blocks"))
 					.displayItems((pParameters, pOutput) -> {
-						// pOutput.accept(ModBlocks.ZIRCON_BLOCK.get());
+						pOutput.accept(ModBlocks.VERDANT_GRASS_BLOCK.get());
+						pOutput.accept(ModBlocks.VERDANT_ROOTED_DIRT.get());
+						pOutput.accept(ModBlocks.VERDANT_PLANKS.get());
+						pOutput.accept(ModBlocks.VERDANT_STAIRS.get());
+						pOutput.accept(ModBlocks.VERDANT_SLAB.get());
+						pOutput.accept(ModBlocks.VERDANT_FENCE.get());
+						pOutput.accept(ModBlocks.VERDANT_FENCE_GATE.get());
+						pOutput.accept(ModBlocks.VERDANT_LOG.get());
+						pOutput.accept(ModBlocks.VERDANT_WOOD.get());
+						pOutput.accept(ModBlocks.STRIPPED_VERDANT_LOG.get());
+						pOutput.accept(ModBlocks.STRIPPED_VERDANT_WOOD.get());
+						pOutput.accept(ModItems.VERDANT_SIGN.get());
+						pOutput.accept(ModItems.VERDANT_HANGING_SIGN.get());
+						pOutput.accept(ModBlocks.VERDANT_PRESSURE_PLATE.get());
+						pOutput.accept(ModBlocks.VERDANT_BUTTON.get());
+						pOutput.accept(ModBlocks.VERDANT_DOOR.get());
+						pOutput.accept(ModBlocks.VERDANT_TRAPDOOR.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WOODEN_PICKAXE))

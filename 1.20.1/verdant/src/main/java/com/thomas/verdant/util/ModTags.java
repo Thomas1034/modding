@@ -16,7 +16,10 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 public class ModTags {
 	public static class Blocks {
 
+		public static final TagKey<Block> VERDANT_LOGS = tag("verdant_logs");
+
 		private static TagKey<Block> tag(String name) {
+
 			return BlockTags.create(new ResourceLocation(Verdant.MOD_ID, name));
 		}
 	}

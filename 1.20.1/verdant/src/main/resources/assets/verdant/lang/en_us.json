@@ -1,0 +1,40 @@
+{
+	
+	"item.verdant.verdant_boat": "Verdant Boat",
+	"item.verdant.verdant_chest_boat": "Verdant Boat with Chest",
+	
+	"block.verdant.verdant_trunk": "Verdant Trunk",
+	"block.verdant.verdant_fruit": "Verdant Fruit",
+	"block.verdant.verdant_floor_frond": "Verdant Floor Frond",
+	"block.verdant.verdant_frond": "Verdant Frond",
+	"block.verdant.verdant_log": "Verdant Log",
+	"block.verdant.verdant_wood": "Verdant Wood",
+	"block.verdant.stripped_verdant_log": "Stripped Verdant Log",
+	"block.verdant.stripped_verdant_wood": "Stripped Verdant Wood",
+	"block.verdant.verdant_log": "Verdant Log",
+	"block.verdant.verdant_wood": "Verdant Wood",
+	"block.verdant.verdant_planks": "Verdant Planks",
+	"block.verdant.stripped_verdant_log": "Stripped Verdant Log",
+	"block.verdant.stripped_verdant_wood": "Stripped Verdant Wood",
+	"block.verdant.verdant_slab": "Verdant Slab",
+	"block.verdant.verdant_stairs": "Verdant Stairs",
+	"block.verdant.verdant_fence": "Verdant Fence",
+	"block.verdant.verdant_fence_gate": "Verdant Fence Gate",
+	"block.verdant.verdant_sapling": "Verdant Sapling",
+	"block.verdant.potted_verdant_sapling": "Potted Verdant Sapling",
+	"block.verdant.verdant_leaves": "Verdant Leaves",
+	"block.verdant.verdant_door": "Verdant Door",
+	"block.verdant.verdant_trapdoor": "Verdant Trapdoor",
+	"block.verdant.verdant_pressure_plate": "Verdant Pressure Plate",
+	"block.verdant.verdant_button": "Verdant Button",
+	"block.verdant.verdant_hanging_sign": "Verdant Hanging Sign",
+	"block.verdant.verdant_sign": "Verdant Sign",
+	
+	"entity.verdant.verdant_boat": "Verdant Boat",
+	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
+	
+	"creativetab.verdant_items": "Verdant Items",
+	"creativetab.verdant_blocks": "Verdant Blocks",
+	"creativetab.verdant_tools": "Verdant Tools",
+	"creativetab.verdant_combat": "Verdant Combat"
+}

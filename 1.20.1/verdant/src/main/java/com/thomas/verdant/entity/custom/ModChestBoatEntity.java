@@ -1,6 +1,7 @@
 package com.thomas.verdant.entity.custom;
 
 import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -22,7 +23,7 @@ public class ModChestBoatEntity extends ChestBoat {
 	}
 
 	public ModChestBoatEntity(Level pLevel, double pX, double pY, double pZ) {
-		this(ModEntityType.MOD_CHEST_BOAT.get(), pLevel);
+		this(ModEntityType.VERDANT_CHEST_BOAT.get(), pLevel);
 		this.setPos(pX, pY, pZ);
 		this.xo = pX;
 		this.yo = pY;
@@ -32,8 +33,8 @@ public class ModChestBoatEntity extends ChestBoat {
 	@Override
 	public Item getDropItem() {
 		switch (getModVariant()) {
-		case DEMO -> {
-			return Items.DIRT;
+		case VERDANT -> {
+			return ModItems.VERDANT_BOAT.get();
 		}
 		}
 		return super.getDropItem();
@@ -45,7 +46,7 @@ public class ModChestBoatEntity extends ChestBoat {
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_ID_TYPE, ModBoatEntity.Type.DEMO.ordinal());
+		this.entityData.define(DATA_ID_TYPE, ModBoatEntity.Type.VERDANT.ordinal());
 	}
 
 	protected void addAdditionalSaveData(CompoundTag pCompound) {

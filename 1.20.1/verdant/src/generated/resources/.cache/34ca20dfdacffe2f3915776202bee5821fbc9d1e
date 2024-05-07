@@ -1,0 +1,24 @@
+// 1.20.1	2024-05-07T14:19:27.3984604	Tags for minecraft:block mod id verdant
+1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates.json
+1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates/wooden.json
+520864719e72e31c4d51cf5c9baa252416a777af data/minecraft/tags/blocks/buttons.json
+a261ce1a3876cdc23d746b2eb84b73f713ed9446 data/minecraft/tags/blocks/dirt.json
+dbc155e67277457bfe92f607f610f4e9c99ba491 data/minecraft/tags/blocks/doors.json
+881c1b3a1a2e936330517f24ea9a99c2bf8d2f8f data/minecraft/tags/blocks/fences.json
+1af8e294d4cee39e33a2622a3bad6e75431189a4 data/minecraft/tags/blocks/fence_gates.json
+e01944c335fb97a9861bfd779e2b3863c9a6b404 data/minecraft/tags/blocks/logs.json
+a53ce64c90a4ec440fc932a5d6992a26072850c4 data/minecraft/tags/blocks/mineable/axe.json
+b05b27f3ae9ae84114c2c5ec724ffd37e55650dc data/minecraft/tags/blocks/mineable/shovel.json
+3272e8bca1f9060db926baa56f196cc3b14f1961 data/minecraft/tags/blocks/planks.json
+11e7fdb4b45cb3f4831a37c8816166efc0227d14 data/minecraft/tags/blocks/pressure_plates.json
+2c335004a58ce2ec10e70a2b7175aad8fa9e62d5 data/minecraft/tags/blocks/slabs.json
+d5149ba114630249b0bfbb2ab9a49ad69a3aa283 data/minecraft/tags/blocks/stairs.json
+c83822c30ab77fc92dfe857baa914f57f20f36ba data/minecraft/tags/blocks/trapdoors.json
+520864719e72e31c4d51cf5c9baa252416a777af data/minecraft/tags/blocks/wooden_buttons.json
+dbc155e67277457bfe92f607f610f4e9c99ba491 data/minecraft/tags/blocks/wooden_doors.json
+881c1b3a1a2e936330517f24ea9a99c2bf8d2f8f data/minecraft/tags/blocks/wooden_fences.json
+11e7fdb4b45cb3f4831a37c8816166efc0227d14 data/minecraft/tags/blocks/wooden_pressure_plates.json
+2c335004a58ce2ec10e70a2b7175aad8fa9e62d5 data/minecraft/tags/blocks/wooden_slabs.json
+d5149ba114630249b0bfbb2ab9a49ad69a3aa283 data/minecraft/tags/blocks/wooden_stairs.json
+c83822c30ab77fc92dfe857baa914f57f20f36ba data/minecraft/tags/blocks/wooden_trapdoors.json
+e01944c335fb97a9861bfd779e2b3863c9a6b404 data/verdant/tags/blocks/verdant_logs.json

@@ -1,14 +1,34 @@
 package com.thomas.verdant.item;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.entity.custom.ModBoatEntity;
+import com.thomas.verdant.item.custom.ModBoatItem;
 
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Verdant.MOD_ID);
+
+	
+	public static final RegistryObject<Item> VERDANT_BOAT = ITEMS.register("verdant_boat",
+			() -> new ModBoatItem(false, ModBoatEntity.Type.VERDANT, new Item.Properties()));
+	public static final RegistryObject<Item> VERDANT_CHEST_BOAT = ITEMS.register("verdant_chest_boat",
+			() -> new ModBoatItem(true, ModBoatEntity.Type.VERDANT, new Item.Properties()));
+
+
+	public static final RegistryObject<Item> VERDANT_SIGN = ITEMS.register("verdant_sign",
+			() -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.VERDANT_SIGN.get(),
+					ModBlocks.VERDANT_WALL_SIGN.get()));
+	public static final RegistryObject<Item> VERDANT_HANGING_SIGN = ITEMS.register("verdant_hanging_sign",
+			() -> new HangingSignItem(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
+					new Item.Properties().stacksTo(16)));
 
 	// Boilerplate
 	public static void register(IEventBus eventBus) {

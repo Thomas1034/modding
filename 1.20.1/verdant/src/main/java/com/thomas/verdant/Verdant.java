@@ -9,6 +9,7 @@ import com.thomas.verdant.effect.ModEffects;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
+import com.thomas.verdant.growth.Eroder;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.network.ModPacketHandler;
@@ -58,6 +59,9 @@ public class Verdant {
 		ModFeature.register(modEventBus);
 
 		ModPacketHandler.register();
+		
+		// Verdant growth mechanics.
+		Eroder.registerErosions();
 
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);
@@ -88,8 +92,8 @@ public class Verdant {
 			// Some client setup code
 			LOGGER.info("CLIENT SETUP:");
 			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-			EntityRenderers.register(ModEntityType.MOD_BOAT.get(), context -> new ModBoatRenderer(context, false));
-			EntityRenderers.register(ModEntityType.MOD_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
+			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
+			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
 		}
 	}
 }

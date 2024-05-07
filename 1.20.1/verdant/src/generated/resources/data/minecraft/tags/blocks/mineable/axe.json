@@ -1,0 +1,16 @@
+{
+  "values": [
+    "verdant:verdant_log",
+    "verdant:verdant_wood",
+    "verdant:stripped_verdant_log",
+    "verdant:stripped_verdant_wood",
+    "verdant:verdant_button",
+    "verdant:verdant_door",
+    "verdant:verdant_fence",
+    "verdant:verdant_fence_gate",
+    "verdant:verdant_planks",
+    "verdant:verdant_pressure_plate",
+    "verdant:verdant_slab",
+    "verdant:verdant_trapdoor"
+  ]
+}

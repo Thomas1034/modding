@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.Mod;
 public class ModEventBusClientEvents {
 	@SubscribeEvent
 	public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-
-		event.registerLayerDefinition(ModModelLayers.DEMO_BOAT_LAYER, BoatModel::createBodyModel);
-		event.registerLayerDefinition(ModModelLayers.DEMO_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
+		
+		event.registerLayerDefinition(ModModelLayers.VERDANT_BOAT_LAYER, BoatModel::createBodyModel);
+		event.registerLayerDefinition(ModModelLayers.VERDANT_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
 	}
 

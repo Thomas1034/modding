@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.entity;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,15 +16,14 @@ public class ModBlockEntities {
 	public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN = BLOCK_ENTITIES.register(
 			"mod_sign",
 			() -> BlockEntityType.Builder
-					.of(ModSignBlockEntity::new/* , ModBlocks.DEMO_SIGN.get(), ModBlocks.DEMO_WALL_SIGN.get() */)
+					.of(ModSignBlockEntity::new, ModBlocks.VERDANT_SIGN.get(), ModBlocks.VERDANT_WALL_SIGN.get())
 					.build(null));
 
 	public static final RegistryObject<BlockEntityType<ModHangingSignBlockEntity>> MOD_HANGING_SIGN = BLOCK_ENTITIES
-			.register("mod_hanging_sign", () -> BlockEntityType.Builder
-					.of(ModHangingSignBlockEntity::new/*
-														 * , ModBlocks.DEMO_HANGING_SIGN.get(),
-														 * ModBlocks.DEMO_WALL_HANGING_SIGN.get()
-														 */).build(null));
+			.register("mod_hanging_sign",
+					() -> BlockEntityType.Builder.of(ModHangingSignBlockEntity::new,
+							ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get())
+							.build(null));
 
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITIES.register(eventBus);

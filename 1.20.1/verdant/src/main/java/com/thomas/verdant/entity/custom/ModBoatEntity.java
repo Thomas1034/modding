@@ -2,7 +2,9 @@ package com.thomas.verdant.entity.custom;
 
 import java.util.function.IntFunction;
 
+import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -27,7 +29,7 @@ public class ModBoatEntity extends Boat {
 	}
 
 	public ModBoatEntity(Level level, double pX, double pY, double pZ) {
-		this(ModEntityType.MOD_BOAT.get(), level);
+		this(ModEntityType.VERDANT_BOAT.get(), level);
 		this.setPos(pX, pY, pZ);
 		this.xo = pX;
 		this.yo = pY;
@@ -37,7 +39,7 @@ public class ModBoatEntity extends Boat {
 	@Override
 	public Item getDropItem() {
 		return switch (getModVariant()) {
-		case DEMO -> Items.DIRT;
+		case VERDANT -> ModItems.VERDANT_BOAT.get();
 		};
 	}
 
@@ -51,7 +53,7 @@ public class ModBoatEntity extends Boat {
 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_ID_TYPE, Type.DEMO.ordinal());
+		this.entityData.define(DATA_ID_TYPE, Type.VERDANT.ordinal());
 	}
 
 	protected void addAdditionalSaveData(CompoundTag pCompound) {
@@ -65,7 +67,7 @@ public class ModBoatEntity extends Boat {
 	}
 
 	public static enum Type implements StringRepresentable {
-		DEMO(Blocks.DIRT, "demo");
+		VERDANT(ModBlocks.VERDANT_PLANKS.get(), "verdant");
 
 		private final String name;
 		private final Block planks;
@@ -105,7 +107,7 @@ public class ModBoatEntity extends Boat {
 
 		@SuppressWarnings("deprecation")
 		public static ModBoatEntity.Type byName(String pName) {
-			return CODEC.byName(pName, DEMO);
+			return CODEC.byName(pName, VERDANT);
 		}
 	}
 }

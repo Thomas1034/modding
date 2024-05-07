@@ -1,6 +1,8 @@
 package com.thomas.verdant.datagen;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +22,25 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleItem(ModItems.VERDANT_BOAT);
+		simpleItem(ModItems.VERDANT_CHEST_BOAT);
+		simpleItem(ModItems.VERDANT_SIGN);
+		simpleItem(ModItems.VERDANT_HANGING_SIGN);
+		simpleBlockItem(ModBlocks.VERDANT_DOOR);
+		simpleLogModel(ModBlocks.VERDANT_LOG);
+		simpleLogModel(ModBlocks.VERDANT_WOOD);
+		simpleLogModel(ModBlocks.STRIPPED_VERDANT_LOG);
+		simpleLogModel(ModBlocks.STRIPPED_VERDANT_WOOD);
+		
+		fenceItem(ModBlocks.VERDANT_FENCE, ModBlocks.VERDANT_PLANKS);
+		buttonItem(ModBlocks.VERDANT_BUTTON, ModBlocks.VERDANT_PLANKS);
 
+		evenSimplerBlockItem(ModBlocks.VERDANT_STAIRS);
+		evenSimplerBlockItem(ModBlocks.VERDANT_SLAB);
+		evenSimplerBlockItem(ModBlocks.VERDANT_PRESSURE_PLATE);
+		evenSimplerBlockItem(ModBlocks.VERDANT_FENCE_GATE);
+
+		trapdoorItem(ModBlocks.VERDANT_TRAPDOOR);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
