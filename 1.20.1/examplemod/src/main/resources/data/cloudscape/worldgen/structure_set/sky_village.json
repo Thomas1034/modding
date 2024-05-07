@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "cloudscape:sky_village",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1732340004,
+    "spacing": 10,
+    "separation": 5
+  }
+}

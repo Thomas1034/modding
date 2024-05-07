@@ -2,12 +2,18 @@ package com.thomas.cloudscape.block.custom;
 
 import java.util.List;
 import java.util.OptionalInt;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 import com.thomas.cloudscape.block.ModBlocks;
+import com.thomas.cloudscape.block.custom.CloudBlock.CloudMonsterSpawnData;
 import com.thomas.cloudscape.effect.ModEffects;
 import com.thomas.cloudscape.entity.ModEntityType;
 import com.thomas.cloudscape.entity.custom.GustEntity;
+import com.thomas.cloudscape.entity.custom.TempestEntity;
 import com.thomas.cloudscape.util.ModTags;
+import com.thomas.cloudscape.util.QuadFunction;
 import com.thomas.cloudscape.util.Utilities;
 import com.thomas.cloudscape.worldgen.dimension.ModDimensions;
 
@@ -37,6 +43,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -45,6 +52,18 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CloudBlock extends Block {
+
+	private final List<CloudMonsterSpawnData> monsters = List.of(
+			CloudMonsterSpawnData.spawner(GustEntity::new, ModEntityType.GUST_ENTITY.get())
+					.setChance((level) -> level.getDifficulty().getId() * 0.00390625f)
+					.callOnSpawn(CloudMonsterSpawnData::levitate)
+					.setSpawnCondition((state, level, pos, rand) -> level.isRainingAt(pos.above())
+							&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 2)),
+			CloudMonsterSpawnData.spawner(TempestEntity::new, ModEntityType.TEMPEST_ENTITY.get())
+					.setChance((level) -> level.getDifficulty().getId() * 0.000244140625f)
+					.callOnSpawn(CloudMonsterSpawnData::levitate)
+					.setSpawnCondition((state, level, pos, rand) -> level.isRainingAt(pos.above())
+							&& CloudMonsterSpawnData.verifyEmptySpace(state, level, pos, rand, 8)));
 
 	public static final int MAX_DISTANCE = 15;
 	public static final int MIN_DISTANCE = 0;
@@ -59,7 +78,7 @@ public class CloudBlock extends Block {
 
 	public CloudBlock(Properties properties) {
 		super(properties);
-		
+
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOLIDIFIER_DISTANCE, MAX_DISTANCE));
 	}
 
@@ -223,26 +242,10 @@ public class CloudBlock extends Block {
 				|| entityType.is(ModTags.EntityTypes.CLOUD_WALKABLE_MOBS);
 	}
 
-	// If the space above it is air, spawns a gust with a very small probability.
-	// Assuming the game rules don't specify otherwise.
+	// Try to spawn monsters.
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		Difficulty difficulty = level.getDifficulty();
-		boolean doSpawning = level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
-		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.isRaining()
-				&& level.getBlockState(pos.above()).isAir() && level.dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
-			float chance = difficulty.getId() * 0.001f;
-			if (rand.nextFloat() < chance) {
-				List<GustEntity> entities = level.getEntitiesOfClass(GustEntity.class,
-						AABB.ofSize(pos.getCenter(), 16, 64, 16));
-				if (entities.size() < 1) {
-					GustEntity gust = new GustEntity(ModEntityType.GUST_ENTITY.get(), level);
-					gust.moveTo(pos.above().getCenter());
-					gust.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 1, 1));
-					level.addFreshEntity(gust);
-				}
-			}
-		}
+		this.trySpawnMonsters(state, level, pos, rand);
 	}
 
 	@Override
@@ -255,6 +258,83 @@ public class CloudBlock extends Block {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
 		p_54447_.add(SOLIDIFIER_DISTANCE);
+	}
+
+	// Spawns monsters based on given conditions and probabilities.
+	protected void trySpawnMonsters(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		Difficulty difficulty = level.getDifficulty();
+		boolean doSpawning = level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
+		if (doSpawning && difficulty != Difficulty.PEACEFUL && level.getBlockState(pos.above()).isAir()
+				&& level.dimension() == ModDimensions.SKY_DIM_LEVEL_KEY) {
+			this.monsters.forEach((data) -> data.spawn(level, pos));
+		}
+	}
+
+	public static class CloudMonsterSpawnData {
+
+		private Function<Level, Float> chance;
+		private Function<Level, LivingEntity> spawner;
+		private Function<LivingEntity, LivingEntity> onSpawn;
+		private QuadFunction<BlockState, ServerLevel, BlockPos, RandomSource, Boolean> canSpawn;
+
+		public static CloudMonsterSpawnData spawner(BiFunction<EntityType, Level, LivingEntity> spawner,
+				EntityType type) {
+			CloudMonsterSpawnData spawnData = new CloudMonsterSpawnData();
+
+			spawnData.chance = (level) -> (1.0f);
+			spawnData.spawner = (level) -> spawner.apply(type, level);
+			spawnData.onSpawn = (entity) -> (entity);
+
+			return spawnData;
+		}
+
+		public CloudMonsterSpawnData setChance(Function<Level, Float> chance) {
+			this.chance = chance;
+			return this;
+		}
+
+		public CloudMonsterSpawnData setSpawnCondition(
+				QuadFunction<BlockState, ServerLevel, BlockPos, RandomSource, Boolean> canSpawn) {
+			this.canSpawn = canSpawn;
+			return this;
+		}
+
+		public CloudMonsterSpawnData callOnSpawn(Function<LivingEntity, LivingEntity> action) {
+			this.onSpawn = action;
+			return this;
+		}
+
+		// Returns true if the monster was spawned.
+		public boolean spawn(ServerLevel level, BlockPos pos) {
+
+			if (this.chance.apply(level) < level.getRandom().nextFloat()) {
+				if (this.canSpawn.apply(level.getBlockState(pos), level, pos, level.getRandom())) {
+					LivingEntity spawned = spawner.apply(level);
+					spawned.moveTo(pos.above().getCenter());
+					spawned = this.onSpawn.apply(spawned);
+					level.addFreshEntity(spawned);
+
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public static LivingEntity levitate(LivingEntity entity) {
+			entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 10, 1));
+			return entity;
+		}
+
+		public static boolean verifyEmptySpace(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand,
+				int radius) {
+
+			AABB boundaries = AABB.of(BoundingBox.fromCorners(pos.north(radius).west(radius), pos.above(2 * radius)));
+			Stream<BlockState> states = level.getBlockStatesIfLoaded(boundaries);
+
+			return states
+					.allMatch((streamState) -> (streamState.isAir() || streamState.getBlock() instanceof CloudBlock));
+		}
+
 	}
 
 }

@@ -1,0 +1,59 @@
+{
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/long",
+        "processors": "minecraft:empty"
+      }
+    },
+		{
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/stairs_long_up",
+        "processors": "minecraft:empty"
+      }
+    },
+		{
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/stairs_long_down",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/medium",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/short",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "cloudscape:sky_village/road/bridge_long",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

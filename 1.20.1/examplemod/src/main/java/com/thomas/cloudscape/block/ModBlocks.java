@@ -370,7 +370,8 @@ public class ModBlocks {
 					super.stepOn(level, pos, state, entity);
 				}
 			});
-
+	
+	
 	// Cloud converter block, converts redstone signal to cloud strength
 	public static final RegistryObject<Block> CLOUD_CONVERTER = registerBlock("cloud_converter",
 			() -> new CloudConverterBlock(BlockBehaviour.Properties.copy(ModBlocks.CLOUD.get())));
