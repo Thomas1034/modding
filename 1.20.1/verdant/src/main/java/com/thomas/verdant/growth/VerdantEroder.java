@@ -2,24 +2,44 @@ package com.thomas.verdant.growth;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraftforge.registries.RegistryObject;
 
-public class Eroder {
+public class VerdantEroder {
 
 	public static final Map<Block, Block> NEXT = new HashMap<>();
+	public static final Map<Block, Block> IF_WET = new HashMap<>();
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static BlockState getNext(BlockState oldState) {
 
 		if (NEXT.containsKey(oldState.getBlock())) {
 			BlockState newState = NEXT.get(oldState.getBlock()).defaultBlockState();
 			for (Property prop : oldState.getProperties()) {
-				newState = newState.trySetValue(prop, oldState.getValue(prop));
+				if (newState.hasProperty(prop)) {
+					newState = newState.trySetValue(prop, oldState.getValue(prop));
+				}
+			}
+			return newState;
+		} else {
+			return oldState;
+		}
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static BlockState getNextIfWet(BlockState oldState) {
+
+		if (IF_WET.containsKey(oldState.getBlock())) {
+			BlockState newState = IF_WET.get(oldState.getBlock()).defaultBlockState();
+			for (Property prop : oldState.getProperties()) {
+				if (newState.hasProperty(prop)) {
+					newState = newState.trySetValue(prop, oldState.getValue(prop));
+				}
 			}
 			return newState;
 		} else {
@@ -30,12 +50,17 @@ public class Eroder {
 	public static void register(Block start, Block finish) {
 		NEXT.put(start, finish);
 	}
+	
+	public static void ifWet(Block start, Block finish) {
+		IF_WET.put(start, finish);
+	}
 
 	public static void registerErosions() {
 		register(Blocks.STONE, Blocks.GRAVEL);
 		register(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
 		register(Blocks.COBBLED_DEEPSLATE, Blocks.GRAVEL);
 		register(Blocks.GRAVEL, Blocks.COARSE_DIRT);
+		register(Blocks.DIRT_PATH, Blocks.DIRT);
 		register(Blocks.COARSE_DIRT, Blocks.DIRT);
 		register(Blocks.MOSS_BLOCK, Blocks.DIRT);
 		register(Blocks.MOSS_CARPET, Blocks.AIR);
@@ -46,6 +71,8 @@ public class Eroder {
 		register(Blocks.COBBLESTONE_WALL, Blocks.MOSSY_COBBLESTONE_WALL);
 		register(Blocks.INFESTED_COBBLESTONE, Blocks.MOSSY_COBBLESTONE);
 		// Stone bricks
+		register(Blocks.SMOOTH_STONE, Blocks.COBBLESTONE);
+		register(Blocks.SMOOTH_STONE_SLAB, Blocks.COBBLESTONE_SLAB);
 		register(Blocks.STONE_BRICKS, Blocks.COBBLESTONE);
 		register(Blocks.STONE_BRICK_STAIRS, Blocks.COBBLESTONE_STAIRS);
 		register(Blocks.STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB);
@@ -65,7 +92,19 @@ public class Eroder {
 		register(Blocks.SANDSTONE, Blocks.SAND);
 		register(Blocks.SANDSTONE_STAIRS, Blocks.SAND);
 		register(Blocks.SANDSTONE_SLAB, Blocks.SAND);
+		register(Blocks.SAND, Blocks.COARSE_DIRT);
+		// Mud
+		ifWet(Blocks.DIRT, Blocks.MUD);
+		register(Blocks.PACKED_MUD, Blocks.DIRT);
+		register(Blocks.MUD_BRICKS, Blocks.PACKED_MUD);
+		register(Blocks.MUD_BRICK_SLAB, Blocks.COARSE_DIRT);
+		register(Blocks.MUD_BRICK_STAIRS, Blocks.COARSE_DIRT);
+		register(Blocks.MUD_BRICK_WALL, Blocks.COARSE_DIRT);
 		
+		System.out.println("Registered erosions:");
+		for (Entry<Block, Block> entry : NEXT.entrySet()) {
+			System.out.println(entry.getKey().getName().getString() + " -> " + entry.getValue().getName().getString());
+		}
 	}
 
 }

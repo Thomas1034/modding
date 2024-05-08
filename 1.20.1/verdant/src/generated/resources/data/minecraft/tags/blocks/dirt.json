@@ -1,6 +1,8 @@
 {
   "values": [
     "verdant:verdant_rooted_dirt",
-    "verdant:verdant_grass_block"
+    "verdant:verdant_grass_block",
+    "verdant:verdant_mud_grass_block",
+    "verdant:verdant_rooted_mud"
   ]
 }

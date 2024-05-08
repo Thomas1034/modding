@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "verdant:block/verdant_mud_grass_block_bottom",
+    "east": "verdant:block/verdant_mud_grass_block",
+    "north": "verdant:block/verdant_mud_grass_block",
+    "particle": "verdant:block/verdant_mud_grass_block",
+    "south": "verdant:block/verdant_mud_grass_block",
+    "up": "verdant:block/verdant_mud_grass_block_top",
+    "west": "verdant:block/verdant_mud_grass_block"
+  }
+}

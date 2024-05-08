@@ -1,5 +1,11 @@
 {
 	
+	
+	"block.verdant.verdant_grass_block": "Verdant Grass Block",
+	"block.verdant.verdant_rooted_dirt": "Verdant Rooted Dirt",
+	"block.verdant.verdant_mud_grass_block": "Verdant Mud Grass Block",
+	"block.verdant.verdant_rooted_mud": "Verdant Rooted Mud",
+	
 	"item.verdant.verdant_boat": "Verdant Boat",
 	"item.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	

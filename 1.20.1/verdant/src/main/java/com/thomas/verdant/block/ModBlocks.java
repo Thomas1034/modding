@@ -10,8 +10,8 @@ import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
 import com.thomas.verdant.block.custom.ModWallHangingSignBlock;
 import com.thomas.verdant.block.custom.ModWallSignBlock;
-import com.thomas.verdant.block.custom.VerdantGrassBlock;
 import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
+import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.util.BurnTimes;
 import com.thomas.verdant.util.ModBlockSetType;
@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,12 +47,34 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Verdant.MOD_ID);
 
-	// Verdant grass
-	public static final RegistryObject<Block> VERDANT_GRASS_BLOCK = registerBlock("verdant_grass_block",
-			() -> new VerdantGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+	public static final RegistryObject<Block> VERDANT_SIGN = BLOCKS.register("verdant_sign",
+			() -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VERDANT));
+	public static final RegistryObject<Block> VERDANT_WALL_SIGN = BLOCKS.register("verdant_wall_sign",
+			() -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.VERDANT));
 
+	public static final RegistryObject<Block> VERDANT_HANGING_SIGN = BLOCKS.register("verdant_hanging_sign",
+			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
+					ModWoodTypes.VERDANT));
+	public static final RegistryObject<Block> VERDANT_WALL_HANGING_SIGN = BLOCKS.register("verdant_wall_hanging_sign",
+			() -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
+					ModWoodTypes.VERDANT));
+
+	// Verdant grass
 	public static final RegistryObject<Block> VERDANT_ROOTED_DIRT = registerBlock("verdant_rooted_dirt",
 			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_GRASS_BLOCK = registerBlock("verdant_grass_block",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_ROOTED_MUD = registerBlock("verdant_rooted_mud",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_MUD_GRASS_BLOCK = registerBlock("verdant_mud_grass_block",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+
+	// Verdant vine
+	public static final RegistryObject<Block> VERDANT_VINE = registerBlock("verdant_vine", () -> new VerdantVineBlock(
+			BlockBehaviour.Properties.copy(Blocks.OAK_LOG).pushReaction(PushReaction.DESTROY).randomTicks()));
 
 	// Verdant logs
 	public static final RegistryObject<Block> VERDANT_LOG = registerFuelBlock("verdant_log",
@@ -237,18 +260,6 @@ public class ModBlocks {
 					return 20;
 				}
 			}, BurnTimes.TRAPDOOR);
-
-	public static final RegistryObject<Block> VERDANT_SIGN = BLOCKS.register("verdant_sign",
-			() -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VERDANT));
-	public static final RegistryObject<Block> VERDANT_WALL_SIGN = BLOCKS.register("verdant_wall_sign",
-			() -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.VERDANT));
-
-	public static final RegistryObject<Block> VERDANT_HANGING_SIGN = BLOCKS.register("verdant_hanging_sign",
-			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
-					ModWoodTypes.VERDANT));
-	public static final RegistryObject<Block> VERDANT_WALL_HANGING_SIGN = BLOCKS.register("verdant_wall_hanging_sign",
-			() -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
-					ModWoodTypes.VERDANT));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

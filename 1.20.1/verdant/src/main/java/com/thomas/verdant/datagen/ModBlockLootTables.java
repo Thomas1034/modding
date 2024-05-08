@@ -29,6 +29,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	protected void generate() {
 		requireSilkTouch(ModBlocks.VERDANT_GRASS_BLOCK.get(), Blocks.DIRT);
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
+		requireSilkTouch(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), Blocks.MUD);
+		requireSilkTouch(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
 		this.dropSelf(ModBlocks.VERDANT_BUTTON.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE_GATE.get());

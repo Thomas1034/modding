@@ -31,6 +31,8 @@ public class ModCreativeModeTabs {
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModBlocks.VERDANT_GRASS_BLOCK.get());
 						pOutput.accept(ModBlocks.VERDANT_ROOTED_DIRT.get());
+						pOutput.accept(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get());
+						pOutput.accept(ModBlocks.VERDANT_ROOTED_MUD.get());
 						pOutput.accept(ModBlocks.VERDANT_PLANKS.get());
 						pOutput.accept(ModBlocks.VERDANT_STAIRS.get());
 						pOutput.accept(ModBlocks.VERDANT_SLAB.get());

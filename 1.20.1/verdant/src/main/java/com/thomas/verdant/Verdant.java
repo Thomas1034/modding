@@ -9,7 +9,10 @@ import com.thomas.verdant.effect.ModEffects;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
-import com.thomas.verdant.growth.Eroder;
+import com.thomas.verdant.growth.VerdantEroder;
+import com.thomas.verdant.growth.VerdantGrassGrower;
+import com.thomas.verdant.growth.VerdantHydratable;
+import com.thomas.verdant.growth.VerdantRootGrower;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.network.ModPacketHandler;
@@ -59,9 +62,6 @@ public class Verdant {
 		ModFeature.register(modEventBus);
 
 		ModPacketHandler.register();
-		
-		// Verdant growth mechanics.
-		Eroder.registerErosions();
 
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);
@@ -74,6 +74,11 @@ public class Verdant {
 		// Some common setup code
 		LOGGER.info("HELLO FROM COMMON SETUP");
 
+		// Register verdant growth mechanics on setup.
+		VerdantEroder.registerErosions();
+		VerdantHydratable.registerHydratables();
+		VerdantGrassGrower.registerGrasses();
+		VerdantRootGrower.registerRoots();
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -81,6 +86,7 @@ public class Verdant {
 	public void onServerStarting(ServerStartingEvent event) {
 		// Do something when the server starts
 		LOGGER.info("HELLO from server starting");
+
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
@@ -93,7 +99,8 @@ public class Verdant {
 			LOGGER.info("CLIENT SETUP:");
 			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
-			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(), context -> new ModBoatRenderer(context, true));
+			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
+					context -> new ModBoatRenderer(context, true));
 		}
 	}
 }

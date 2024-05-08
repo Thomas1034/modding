@@ -11,6 +11,7 @@ import com.thomas.verdant.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -60,8 +61,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(BlockTags.FLOWER_POTS).add();
 		// this.tag(BlockTags.SMALL_FLOWERS).add();
 
-		this.tag(BlockTags.DIRT).add(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_GRASS_BLOCK.get());
-		
+		this.tag(BlockTags.DIRT).add(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_GRASS_BLOCK.get(),
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
+
 		// Anvil
 		// this.tag(BlockTags.ANVIL).add();
 
@@ -73,5 +75,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCON_BLOCK.get());
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCONIUM_BLOCK.get());
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+
 	}
 }

@@ -44,6 +44,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.VERDANT_PLANKS);
 		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
 		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
+		blockWithItem(ModBlocks.VERDANT_ROOTED_MUD);
+		sidedBlockWithItem(ModBlocks.VERDANT_MUD_GRASS_BLOCK, "verdant_mud_grass_block");
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_WOOD.get());
