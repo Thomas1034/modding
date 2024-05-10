@@ -22,11 +22,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleBlockItem(ModBlocks.VERDANT_VINE);
+		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
+		simpleItem(ModItems.LEMON_JUICE_BOTTLE);
 		simpleItem(ModItems.VERDANT_BOAT);
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_SIGN);
 		simpleItem(ModItems.VERDANT_HANGING_SIGN);
 		simpleBlockItem(ModBlocks.VERDANT_DOOR);
+		simpleLogModel(ModBlocks.ROTTEN_WOOD);
 		simpleLogModel(ModBlocks.VERDANT_LOG);
 		simpleLogModel(ModBlocks.VERDANT_WOOD);
 		simpleLogModel(ModBlocks.STRIPPED_VERDANT_LOG);

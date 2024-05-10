@@ -41,15 +41,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 
-		blockWithItem(ModBlocks.VERDANT_PLANKS);
+		blockWithItem(ModBlocks.VERDANT_LEAVES);
 		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
 		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
 		blockWithItem(ModBlocks.VERDANT_ROOTED_MUD);
 		sidedBlockWithItem(ModBlocks.VERDANT_MUD_GRASS_BLOCK, "verdant_mud_grass_block");
+		blockWithItem(ModBlocks.VERDANT_ROOTED_CLAY);
+		sidedBlockWithItem(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, "verdant_clay_grass_block");
+		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_WOOD.get());
 		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_WOOD.get());
+		blockWithItem(ModBlocks.VERDANT_PLANKS);
 		stairsBlock(((StairBlock) ModBlocks.VERDANT_STAIRS.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
 		slabBlock(((SlabBlock) ModBlocks.VERDANT_SLAB.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()),
 				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
@@ -73,6 +77,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		hangingSignBlock(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
 				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
 
+	}
+
+	public ResourceLocation extend(ResourceLocation rl, String suffix) {
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+	}
+
+	public void logBlock(RotatedPillarBlock block, String renderType) {
+		axisBlock(block, blockTexture(block), extend(blockTexture(block), "_top"), renderType);
+	}
+
+	public void doubleSidedLogBlock(RotatedPillarBlock block, String renderType) {
+		doubleSidedAxisBlock(block, blockTexture(block), extend(blockTexture(block), "_top"), renderType);
+	}
+
+	public void axisBlock(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end, String renderType) {
+		axisBlock(block, models().cubeColumn(name(block), side, end).renderType(renderType),
+				models().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
+	}
+
+	public void doubleSidedAxisBlock(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end,
+			String renderType) {
+		axisBlock(block, models()
+				.withExistingParent(name(block), new ResourceLocation(Verdant.MOD_ID, "block/double_sided_cube_column"))
+				.texture("side", blockTexture(block)).texture("end", extend(blockTexture(block), "_top"))
+				.renderType(renderType),
+				models().withExistingParent(name(block) + "_horizontal",
+						new ResourceLocation(Verdant.MOD_ID, "block/double_sided_cube_column_horizontal"))
+						.texture("side", blockTexture(block)).texture("end", extend(blockTexture(block), "_top"))
+						.renderType(renderType));
 	}
 
 	public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -109,6 +142,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void blockWithItem(RegistryObject<Block> blockRegistryObject, String renderType) {
 		Block block = blockRegistryObject.get();
 		ModelFile model = models().cubeAll(blockTexture(block).toString(), blockTexture(block)).renderType(renderType);
+		simpleBlock(block, model);
+		simpleBlockItem(block, model);
+	}
+
+	protected void doubleSidedBlockWithItem(RegistryObject<Block> blockRegistryObject, String renderType) {
+		Block block = blockRegistryObject.get();
+		ModelFile model = models()
+				.withExistingParent(blockTexture(block).toString(),
+						new ResourceLocation(Verdant.MOD_ID, "block/double_sided_cube_all"))
+				.texture("all", blockTexture(blockRegistryObject.get())).renderType(renderType);
 		simpleBlock(block, model);
 		simpleBlockItem(block, model);
 	}

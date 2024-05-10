@@ -1,11 +1,15 @@
 package com.thomas.verdant.growth;
 
+import com.thomas.verdant.block.ModBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.lighting.LightEngine;
 
 public interface VerdantGrower {
@@ -51,9 +55,33 @@ public interface VerdantGrower {
 		}
 	}
 
+	public static boolean convertLeaves(Level level, BlockPos pos) {
+		//System.out.println("Attempting to convert leaves at " + pos + ".");
+		BlockState atPos = level.getBlockState(pos);
+		BlockState replaced = level.getBlockState(pos);
+		BlockState placed = ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
+
+		// Waterlog if possible
+		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
+			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+				//System.out.println("Waterlogging.");
+				placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
+			}
+		}
+
+		if (atPos.is(BlockTags.LEAVES)) {
+			//System.out.println("Converting.");
+			level.addDestroyBlockEffect(pos, atPos);
+			level.setBlockAndUpdate(pos, placed);
+			return true;
+		}
+		//System.out.println("Failed to convert.");
+		return false;
+	}
+
 	// Converts a block to a verdant form if possible.
 	// If not, returns false.
-	public static boolean convert(Level level, BlockPos pos, boolean isNearWater) {
+	public static boolean convertGround(Level level, BlockPos pos, boolean isNearWater) {
 		// System.out.println("Attempting to convert " + pos);
 		BlockState atPos = level.getBlockState(pos);
 
@@ -76,10 +104,11 @@ public interface VerdantGrower {
 						}
 					}
 				}
-				// Maximum of 9 blocks.
+				// Maximum of 3 blocks.
 				// System.out.println("Root count is " + rootCount);
-				if (rootCount <= 6) {
+				if (rootCount <= 3) {
 					level.setBlockAndUpdate(pos, rooted);
+					level.scheduleTick(pos, rooted.getBlock(), 1);
 				}
 
 			}

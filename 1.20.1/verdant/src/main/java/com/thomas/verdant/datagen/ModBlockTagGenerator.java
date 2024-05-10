@@ -35,7 +35,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_FENCE_GATE.get(), ModBlocks.VERDANT_PLANKS.get(),
 				ModBlocks.VERDANT_PRESSURE_PLATE.get(), ModBlocks.VERDANT_SLAB.get(), ModBlocks.VERDANT_TRAPDOOR.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.VERDANT_GRASS_BLOCK.get(),
-				ModBlocks.VERDANT_ROOTED_DIRT.get());
+				ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
 
 		// Verdant furniture
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.VERDANT_TRAPDOOR.get());
@@ -58,11 +60,23 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
 		this.tag(BlockTags.LOGS).add(ModBlocks.VERDANT_LOG.get(), ModBlocks.STRIPPED_VERDANT_LOG.get(),
 				ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
+		this.tag(BlockTags.LOGS_THAT_BURN).add(ModBlocks.VERDANT_LOG.get(), ModBlocks.STRIPPED_VERDANT_LOG.get(),
+				ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
 		// this.tag(BlockTags.FLOWER_POTS).add();
 		// this.tag(BlockTags.SMALL_FLOWERS).add();
 
+		// Mechanical.
 		this.tag(BlockTags.DIRT).add(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_GRASS_BLOCK.get(),
-				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get());
+		this.tag(BlockTags.CLIMBABLE).add(ModBlocks.VERDANT_VINE.get());
+
+		this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(ModBlocks.VERDANT_ROOTED_MUD.get(),
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
+		this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(ModBlocks.VERDANT_ROOTED_MUD.get(),
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
 
 		// Anvil
 		// this.tag(BlockTags.ANVIL).add();
@@ -75,6 +89,27 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCON_BLOCK.get());
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.ZIRCONIUM_BLOCK.get());
 		// this.tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.RAW_ZIRCONIUM_BLOCK.get());
+
+		// TODO
+		this.tag(ModTags.Blocks.MATURE_VERDANT_LOGS).add(Blocks.EMERALD_ORE);
+
+		// All vine replacable blocks.
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.REPLACEABLE);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.FLOWERS);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.SNOW);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.SIGNS);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.WOOL_CARPETS);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.STONE_BUTTONS);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.WOODEN_BUTTONS);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.STONE_PRESSURE_PLATES);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.WOODEN_PRESSURE_PLATES);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.VINE);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.CAVE_VINES);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.CAVE_VINES_PLANT);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.AIR);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.CAVE_AIR);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.VOID_AIR);
+		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).add(Blocks.WATER);
 
 	}
 }

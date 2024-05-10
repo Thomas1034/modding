@@ -29,25 +29,26 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class Utilities {
+	public static final List<Direction> HORIZONTAL_DIRECTIONS = List.of(Direction.NORTH, Direction.EAST,
+			Direction.SOUTH, Direction.WEST);
+	public static final List<Direction> VERTICAL_DIRECTIONS = List.of(Direction.UP, Direction.DOWN);
 
-	
-	public static void placePlatform(Level level, BlockPos center, double radius, int layers, Supplier<BlockState> stateGetter, Function<BlockState, Boolean> isValid) {
-		
+	public static void placePlatform(Level level, BlockPos center, double radius, int layers,
+			Supplier<BlockState> stateGetter, Function<BlockState, Boolean> isValid) {
+
 		int iRadius = (int) Math.ceil(radius);
 		double rsq = radius * radius;
 		for (int i = -iRadius; i <= iRadius; i++) {
 			for (int k = -iRadius; k <= iRadius; k++) {
-				for (int j = -layers; j <= 0; j++)
-				{
-					if ((i*i + k*k) < (rsq + j) && isValid.apply(level.getBlockState(center.offset(i, j, k)))) {
+				for (int j = -layers; j <= 0; j++) {
+					if ((i * i + k * k) < (rsq + j) && isValid.apply(level.getBlockState(center.offset(i, j, k)))) {
 						level.setBlockAndUpdate(center.offset(i, j, k), stateGetter.get());
 					}
 				}
 			}
 		}
 	}
-	
-	
+
 	public static void stackTrace() {
 		System.out.println("Stack trace:");
 		StackTraceElement[] stackTraces = Thread.currentThread().getStackTrace();
@@ -264,7 +265,7 @@ public class Utilities {
 		}
 		return false;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static boolean setIfAir(LevelAccessor level, BlockPos pos, BlockState state) {
 		if (pos == null) {
@@ -780,12 +781,12 @@ public class Utilities {
 
 		return pos;
 	}
-	
+
 	// Splits argb channels into int array r g b a.
 	public static int[] splitChannels(int color) {
-		return new int[] {(color >> 16) & 0xFF, (color >> 8) & 0xFF, (color >> 0) & 0xFF, (color >> 24) & 0xFF};
+		return new int[] { (color >> 16) & 0xFF, (color >> 8) & 0xFF, (color >> 0) & 0xFF, (color >> 24) & 0xFF };
 	}
-	
+
 	// Reverses splitChannels
 	public static int mergeChannels(int[] channels) {
 		return (channels[0] << 16) + (channels[1] << 8) + (channels[2] << 0) + (channels[3] << 24);

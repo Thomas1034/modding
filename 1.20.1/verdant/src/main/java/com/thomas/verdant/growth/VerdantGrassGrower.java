@@ -68,6 +68,7 @@ public class VerdantGrassGrower {
 	public static void registerGrasses() {
 		register(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_GRASS_BLOCK.get());
 		register(ModBlocks.VERDANT_ROOTED_MUD.get(), ModBlocks.VERDANT_MUD_GRASS_BLOCK.get());
+		register(ModBlocks.VERDANT_ROOTED_CLAY.get(), ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
 		
 		System.out.println("Registered grassy blocks:");
 		for (Entry<Block, Block> entry : GRASSY.entrySet()) {

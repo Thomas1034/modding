@@ -5,6 +5,7 @@ public class BurnTimes {
 	public static final int LOG = 300;
 	public static final int PLANKS = 300;
 	public static final int BUTTON = 100;
+	public static final int STICK = 100;
 	public static final int FENCE = 300;
 	public static final int FENCE_GATE = 300;
 	public static final int SLAB = 150;

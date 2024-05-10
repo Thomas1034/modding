@@ -1,0 +1,169 @@
+{
+  "textures": {
+    "particle": "#side"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "rotation": {
+        "origin": [
+          0,
+          0,
+          16
+        ],
+        "axis": "x",
+        "angle": 0
+      },
+      "faces": {
+        "north": {
+          "texture": "#end",
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "rotation": 180
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 90
+        },
+        "south": {
+          "texture": "#end",
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 270
+        },
+        "up": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 180
+        }
+      }
+    },
+    {
+      "from": [
+        15.999,
+        15.999,
+        15.999
+      ],
+      "to": [
+        0.001,
+        0.001,
+        0.001
+      ],
+      "rotation": {
+        "origin": [
+          0,
+          0,
+          16
+        ],
+        "axis": "x",
+        "angle": 0
+      },
+      "faces": {
+        "north": {
+          "texture": "#end",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 180
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 90
+        },
+        "south": {
+          "texture": "#end",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 270
+        },
+        "up": {
+          "texture": "#side",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ]
+        },
+        "down": {
+          "texture": "#side",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 180
+        }
+      }
+    }
+  ]
+}

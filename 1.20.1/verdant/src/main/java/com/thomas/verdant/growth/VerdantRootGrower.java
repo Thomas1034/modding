@@ -59,6 +59,7 @@ public class VerdantRootGrower {
 		register(Blocks.GRASS_BLOCK, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		register(Blocks.DIRT, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		register(Blocks.MUD, ModBlocks.VERDANT_ROOTED_MUD.get());
+		register(Blocks.CLAY, ModBlocks.VERDANT_ROOTED_CLAY.get());
 		
 		System.out.println("Registered rooted blocks:");
 		for (Entry<Block, Block> entry : ROOTED.entrySet()) {

@@ -1,34 +1,127 @@
 package com.thomas.verdant.block.custom;
 
+import java.util.ArrayList;
 import java.util.OptionalInt;
+
+import javax.annotation.Nullable;
 
 import com.thomas.verdant.growth.VerdantGrassGrower;
 import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.growth.VerdantHydratable;
+import com.thomas.verdant.util.FallingBlockHelper;
+import com.thomas.verdant.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.Fluids;
 
 public class VerdantRootedDirtBlock extends Block implements VerdantGrower, VerdantHydratable {
 
 	public VerdantRootedDirtBlock(Properties properties) {
 		super(properties);
-		
+
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
+	}
+
+	@Nullable
+	private static BlockPos findSettleLocation(ServerLevel level, BlockPos pos) {
+
+		ArrayList<BlockPos> locations = new ArrayList<>();
+		for (int i = -1; i <= 1; i++) {
+			for (int k = -1; k <= 1; k++) {
+				if (level.getBlockState(pos.offset(i, -1, k)).is(Blocks.AIR)
+						&& level.getBlockState(pos.offset(i, 0, k)).is(Blocks.AIR)) {
+					locations.add(pos.offset(i, -1, k));
+				}
+			}
+		}
+
+		if (locations.size() > 0) {
+			return locations.get(level.random.nextInt(locations.size()));
+		}
+		return null;
+	}
+
+	private static boolean canSettle(ServerLevel level, BlockPos pos) {
+
+		// If it has no block above it and no block below it, it should certainly
+		// settle.
+		if (level.getBlockState(pos.above()).is(Blocks.AIR) && level.getBlockState(pos.below()).is(Blocks.AIR)) {
+			return true;
+		}
+
+		// Check if it's supported from its sides.
+		// Keep track of how many sides can support.
+		int solidSides = 0;
+		// Loop over the horizontal directions.
+		for (Direction d : Utilities.HORIZONTAL_DIRECTIONS) {
+			// Check if the block in that direction has a sturdy face.
+			// If so, don't settle.
+			// Also don't settle if the block in that direction has a liquid.
+			if (level.getBlockState(pos.relative(d)).isFaceSturdy(level, pos, d.getOpposite())
+					|| !level.getFluidState(pos.relative(d)).isEmpty()) {
+				// Found a solid side.
+				solidSides++;
+			}
+		}
+		// If it's supported by at least two sides, it's good.
+		if (solidSides >= 2) {
+			return false;
+		}
+		// If it has a block above it and a block below it, don't settle.
+		if (!level.getBlockState(pos.above()).is(Blocks.AIR) && !level.getBlockState(pos.below()).is(Blocks.AIR)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	// Removes the block if it is not supported from the sides.
+	private void settle(ServerLevel level, BlockPos pos) {
+		// Check if the dirt should settle.
+		boolean shouldSettle = canSettle(level, pos);
+
+		if (shouldSettle) {
+			// If it has a block beneath it, try to find a place to move this block to.
+			if (!level.getBlockState(pos.below()).is(Blocks.AIR)) {
+				// Find the location.
+				BlockPos settleLocation = findSettleLocation(level, pos);
+				// Move the block if one was found.
+				if (settleLocation != null) {
+					level.setBlockAndUpdate(settleLocation, level.getBlockState(pos));
+					// If it's not supported underneath, fall.
+					if (level.getBlockState(settleLocation.below()).is(Blocks.AIR)) {
+						FallingBlockHelper.fallNoDrops(level, settleLocation);
+					}
+				}
+				// If not, give it another chance to grow.
+				else {
+					this.grow(level.getBlockState(pos), level, pos);
+				}
+				// Destroy it.
+				level.destroyBlock(pos, false);
+			}
+			// Otherwise fall.
+			else {
+				FallingBlockHelper.fallNoDrops(level, pos);
+			}
+		}
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		super.randomTick(state, level, pos, rand);
+		// super.randomTick(state, level, pos, rand);
+		this.tick(state, level, pos, rand);
 		// System.out.println("Ticking at " + pos + " with " + state);
 		if (state.getValue(WATER_DISTANCE) < MAX_DISTANCE) {
 			state = VerdantHydratable.getHydrated(state);
@@ -56,6 +149,10 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 			// System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
 		}
+
+		// Settle
+		this.settle(level, pos);
+
 	}
 
 	@Override
@@ -102,7 +199,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 	}
 
 	private static OptionalInt getOptionalDistanceAt(BlockState state) {
-		if (state.getFluidState().is(Fluids.WATER)) {
+		if (state.getFluidState().is(FluidTags.WATER)) {
 			return OptionalInt.of(0);
 		} else {
 			return state.hasProperty(WATER_DISTANCE) ? OptionalInt.of(state.getValue(WATER_DISTANCE))
@@ -126,14 +223,15 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 	public void grow(BlockState state, Level level, BlockPos pos) {
 		// System.out.println("Verdant Roots are calling the grow function.");
 
-		// Find a place to grow within three tries. Can use further tries to spread even more.
+		// Find a place to grow within three tries. Can use further tries to spread even
+		// more.
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
 			BlockPos posToTry = VerdantGrower.withinDist(pos, 3, level.random);
 			// If it converted successfully, break.
-			if (VerdantGrower.convert(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
+			if (VerdantGrower.convertGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
 				// System.out.println("Successfully grew.");
-				//break;
+				// break;
 			} else {
 				// Otherwise, try to erode it.
 				// System.out.println("Failed to grow; eroding.");

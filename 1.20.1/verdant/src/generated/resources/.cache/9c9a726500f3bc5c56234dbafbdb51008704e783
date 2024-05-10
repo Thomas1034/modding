@@ -1,4 +1,7 @@
-// 1.20.1	2024-05-07T14:19:27.4049868	Item Models: verdant
+// 1.20.1	2024-05-09T23:08:41.7508343	Item Models: verdant
+b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
+deeb756ff5697a89a3b30ffe846f7ebbfd1ede07 assets/verdant/models/item/lemon_juice_bottle.json
+aa1f56b69ab5995a8f94963f868f2c44bd43bd9d assets/verdant/models/item/rotten_wood.json
 51778d2233e054bdb8e7d641860a95248077e9bd assets/verdant/models/item/stripped_verdant_log.json
 a6821bf7dfa73d57ad5361a7820bffca76d3c2e9 assets/verdant/models/item/stripped_verdant_wood.json
 560897c565be572d6d09091413f76e1cf4c11b2f assets/verdant/models/item/verdant_boat.json
@@ -14,4 +17,5 @@ deaa897ce6082f08d12b94c7dc80af0417b68434 assets/verdant/models/item/verdant_sign
 ee66f77bff1270e4246e82563403b0a236ab9f4a assets/verdant/models/item/verdant_slab.json
 714ea3264579e9b6385ae94ae0c9106715e7d045 assets/verdant/models/item/verdant_stairs.json
 475cdc12b04a62307c8ab1698a40836a3dfe6bd8 assets/verdant/models/item/verdant_trapdoor.json
+204d80a8290a3ff07acfa18713026816d3448ad6 assets/verdant/models/item/verdant_vine.json
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/item/verdant_wood.json

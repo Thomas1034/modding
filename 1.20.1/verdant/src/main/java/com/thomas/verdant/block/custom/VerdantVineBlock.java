@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
@@ -13,7 +14,6 @@ import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -28,19 +28,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import oshi.util.tuples.Quartet;
 
 public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWaterloggedBlock {
 
+	private static final Supplier<BlockState> VERDANT_LOG = () -> ModBlocks.VERDANT_WOOD.get().defaultBlockState();
+	private static final Supplier<BlockState> VERDANT_HEARTWOOD = () -> Blocks.EMERALD_ORE.defaultBlockState();
+	private static final Supplier<BlockState> ROTTEN_WOOD = () -> ModBlocks.ROTTEN_WOOD.get().defaultBlockState();
+
 	public static final int MIN_GROWTH = 0;
-	public static final int MAX_GROWTH = 2;
+	public static final int MAX_GROWTH = 3;
 
 	public static final IntegerProperty UP = IntegerProperty.create("up", MIN_GROWTH, MAX_GROWTH);
 	public static final IntegerProperty DOWN = IntegerProperty.create("down", MIN_GROWTH, MAX_GROWTH);
@@ -50,28 +52,33 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	public static final IntegerProperty WEST = IntegerProperty.create("west", MIN_GROWTH, MAX_GROWTH);
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final EnumProperty<Axis> AXIS = BlockStateProperties.AXIS;
 
 	public static final Map<Direction, IntegerProperty> SIDES = Map.of(Direction.UP, UP, Direction.DOWN, DOWN,
 			Direction.NORTH, NORTH, Direction.SOUTH, SOUTH, Direction.WEST, WEST, Direction.EAST, EAST);
 
-	public static final List<VoxelShape> UP_SHAPE = List.of(Block.box(0.0f, 16.0f, 0.0f, 16.0f, 16.0f, 16.0f),
-			Block.box(0.0f, 12.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 8.0f, 0.0f, 16.0f, 16.0f, 16.0f));
+	public static final List<VoxelShape> UP_SHAPE = List.of(Shapes.empty(),
+			Block.box(0.0f, 15.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 12.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+			Block.box(0.0f, 8.0f, 0.0f, 16.0f, 16.0f, 16.0f));
 
-	public static final List<VoxelShape> DOWN_SHAPE = List.of(Block.box(0.0f, 0.0f, 0.0f, 16.0f, 0.0f, 16.0f),
-			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 4.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 16.0f));
+	public static final List<VoxelShape> DOWN_SHAPE = List.of(Shapes.empty(),
+			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 1.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 4.0f, 16.0f),
+			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 16.0f));
 
-	public static final List<VoxelShape> NORTH_SHAPE = List.of(Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 0.0f),
-			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 8.0f));
+	public static final List<VoxelShape> NORTH_SHAPE = List.of(Shapes.empty(),
+			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 1.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f),
+			Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 8.0f));
 
-	public static final List<VoxelShape> SOUTH_SHAPE = List.of(Block.box(0.0f, 0.0f, 16.0f, 16.0f, 16.0f, 16.0f),
-			Block.box(0.0f, 0.0f, 12.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 8.0f, 16.0f, 16.0f, 16.0f));
+	public static final List<VoxelShape> SOUTH_SHAPE = List.of(Shapes.empty(),
+			Block.box(0.0f, 0.0f, 15.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 12.0f, 16.0f, 16.0f, 16.0f),
+			Block.box(0.0f, 0.0f, 8.0f, 16.0f, 16.0f, 16.0f));
 
-	public static final List<VoxelShape> WEST_SHAPE = List.of(Block.box(0.0f, 0.0f, 0.0f, 0.0f, 16.0f, 16.0f),
-			Block.box(0.0f, 0.0f, 0.0f, 4.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 8.0f, 16.0f, 16.0f));
+	public static final List<VoxelShape> WEST_SHAPE = List.of(Shapes.empty(),
+			Block.box(0.0f, 0.0f, 0.0f, 1.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 4.0f, 16.0f, 16.0f),
+			Block.box(0.0f, 0.0f, 0.0f, 8.0f, 16.0f, 16.0f));
 
-	public static final List<VoxelShape> EAST_SHAPE = List.of(Block.box(16.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
-			Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f));
+	public static final List<VoxelShape> EAST_SHAPE = List.of(Shapes.empty(),
+			Block.box(15.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+			Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f));
 
 	public VerdantVineBlock(Properties properties) {
 		super(properties);
@@ -79,10 +86,10 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 				.setValue(SOUTH, 0).setValue(EAST, 0).setValue(WEST, 0).setValue(WATERLOGGED, false));
 	}
 
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		// Empty shape.
 		VoxelShape shape = Shapes.empty();
-
 		// Merge in the shapes based on the state.
 		shape = Shapes.or(shape, UP_SHAPE.get(state.getValue(UP)));
 		shape = Shapes.or(shape, DOWN_SHAPE.get(state.getValue(DOWN)));
@@ -90,139 +97,312 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
 		shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
 		shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
-
 		return shape;
 	}
 
 	@Override
-	public void grow(BlockState state, Level level, BlockPos pos) {
-		System.out.println("Attempting to grow.");
-		// A log state.
-		BlockState logState = ModBlocks.VERDANT_LOG.get().defaultBlockState();
-		// Check every direction of every block in a 3x3 cube. If it can grow there, add
-		// it to a list.
-		// Then pick from that list.
-		ArrayList<Quartet<Integer, Integer, Integer, Direction>> validSites = new ArrayList<>();
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				for (int k = -1; k <= 1; k++) {
+	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+		return Shapes.empty();
+	}
+	
+	public static boolean canGrowToAnyFace(Level level, BlockPos pos) {
+		for (Direction d : Direction.values()) {
+			if (canGrowToFace(level, pos, d)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isValidGrowthSite(Level level, BlockPos pos) {
+		// System.out.println("Checking if the vine can grow to " + here);
+		// Get the block state at that position.
+		BlockState blockState = level.getBlockState(pos);
+		// System.out.println("The block state is " + hereBlockState);
+		// Check if it is replaceable.
+		if (blockState.is(BlockTags.REPLACEABLE)) {
+			// System.out.println("It passed.");
+		} else {
+			// System.out.println("It failed.");
+			return false;
+		}
+		// Get the fluid state at that position.
+		FluidState fluidState = level.getFluidState(pos);
+		// System.out.println("The fluid state is " + hereFluidState);
+		if (fluidState.is(Fluids.WATER) || fluidState.isEmpty()) {
+			// System.out.println("It passed.");
+		} else {
+			// System.out.println("It failed.");
+			return false;
+		}
+		
+		return canGrowToAnyFace(level, pos);
+	}
+
+	// Finds all valid growth sites in a 2n+1 cube.
+	public static ArrayList<BlockPos> getGrowthSites(Level level, BlockPos pos, int n) {
+		// System.out.println("Finding growth sites.");
+		// Check every location in a 2n+1 cube. If it can spread there, add it to a
+		// list.
+		ArrayList<BlockPos> validSites = new ArrayList<>();
+		for (int i = -n; i <= n; i++) {
+			for (int j = -n; j <= n; j++) {
+				for (int k = -n; k <= n; k++) {
+					// Get the proper position to check.
+					BlockPos here = pos.offset(i, j, k);
+					// System.out.println("Checking if the vine can grow to " + here);
+					// Get the block state at that position.
+					BlockState hereBlockState = level.getBlockState(here);
+					// System.out.println("The block state is " + hereBlockState);
+					// Check if it is replaceable.
+					if (hereBlockState.is(BlockTags.REPLACEABLE)) {
+						// System.out.println("It passed.");
+					} else {
+						// System.out.println("It failed.");
+						continue;
+					}
+					// Get the fluid state at that position.
+					FluidState hereFluidState = level.getFluidState(here);
+					// System.out.println("The fluid state is " + hereFluidState);
+					if (hereFluidState.is(Fluids.WATER) || hereFluidState.isEmpty()) {
+						// System.out.println("It passed.");
+					} else {
+						// System.out.println("It failed.");
+						continue;
+					}
+
 					for (Direction d : Direction.values()) {
-						if (this.canGrowToFace(level, pos.offset(i, j, k), d)
-								&& level.getBlockState(pos.offset(i, j, k)).isAir()) {
-							validSites.add(new Quartet<>(i, j, k, d));
+						if (canGrowToFace(level, here, d)) {
+							validSites.add(here);
 						}
 					}
 				}
 			}
 		}
-		System.out.println("Found " + validSites.size() + " valid growth sites.");
+
+		return validSites;
+	}
+
+	// Spreads the vine to a nearby block.
+	private void spread(Level level, BlockPos pos) {
+		// System.out.println("Spreading to nearby blocks.");
+
+		ArrayList<BlockPos> validSites = getGrowthSites(level, pos, 1);
+
+		// System.out.println("Found " + validSites.size() + " valid growth sites.");
 		// Check if any valid sites were found.
 		if (validSites.size() > 0) {
-			
-			Quartet<Integer, Integer, Integer, Direction> site = validSites
-					.get(level.random.nextInt(validSites.size()));
+			// Pick a random location from the list.
+			BlockPos site = validSites.get(level.random.nextInt(validSites.size()));
 
 			// Place the vine block there.
 			BlockState placed = ModBlocks.VERDANT_VINE.get().defaultBlockState();
-			BlockPos placedPos = pos.offset(site.getA(), site.getB(), site.getC());
-			placed = placed.setValue(SIDES.get(site.getD()), 1);
-			level.setBlockAndUpdate(placedPos, placed);
-			System.out.println("Placed vine at " + placedPos);
-		}
-		// Otherwise, thicken this block.
-		else {
-			System.out.println("Attempting to grow in place.");
-			boolean hasMatured = false;
-			for (Entry<Direction, IntegerProperty> side : SIDES.entrySet()) {
-				int thickness = hasMatured ? MIN_GROWTH - 1 : state.getValue(side.getValue());
-				System.out.println("The " + side.getKey().toString() + " side has thickness of " + thickness);
-				// If it is empty and can grow there, do so.
-				if (thickness == MIN_GROWTH && this.canGrowToFace(level, pos, side.getKey())) {
-					System.out.println("Creating a new side at "  + (thickness + 1));
-					state = state.setValue(side.getValue(), thickness + 1);
-				}
-				// If it is immature, grow it.
-				else if (thickness > MIN_GROWTH && thickness < MAX_GROWTH) {
-					System.out.println("Growing to "  + (thickness + 1));
-					state = state.setValue(side.getValue(), thickness + 1);
-				}
-				// Check if the block is mature.
-				else if (thickness == MAX_GROWTH) {
-					System.out.println("At maximum growth.");
-					hasMatured = true;
-					// Check if the host should be consumed.
-					BlockPos hostPos = pos.relative(side.getKey());
-					BlockState host = level.getBlockState(hostPos);
-					System.out.println("Checking if the host can be consumed.");
-					if (!host.is(ModTags.Blocks.VERDANT_LOGS)) {
-						System.out.println("The host is not Verdant.");
-						boolean canConsumeHost = true;
-						// Ensure the host is surrounded on all sides
-						for (Direction d : Direction.values()) {
-							System.out.println("Checking the " + d + " side.");
-							BlockState neighbor = level.getBlockState(hostPos.relative(d));
-							if (!neighbor.isAir()) {
-								System.out.println("This side is blocked by another block. Good to proceed.");
-							} else if (neighbor.is(ModBlocks.VERDANT_VINE.get())
-									&& neighbor.getValue(SIDES.get(d)) == MAX_GROWTH) {
-								System.out.println("This side is blocked by fully grown vines. Good to proceed.");
+			// Store the previous block there.
+			BlockState replaced = level.getBlockState(site);
 
-							} else {
-								System.out.println("This side is a " + neighbor + ". NOT good to proceed.");
-								canConsumeHost = false;
-								break;
-							}
-						}
-						if (canConsumeHost) {
-							System.out.println("Consuming host now.");
-							// Mature all of the vines into logs
-							for (Direction d : Direction.values()) {
-								System.out.println("Checking if there is a vine ");
-								BlockState neighbor = level.getBlockState(hostPos.relative(d));
-								if (neighbor.is(ModBlocks.VERDANT_VINE.get())) {
-									System.out.println("There is a vine, replacing it with a log.");
-									level.setBlockAndUpdate(hostPos.relative(d), logState);
-								}
-							}
-							System.out.println("Destroying the host block.");
-							// Consume the host block.
-							level.destroyBlock(hostPos, false);
-							state = logState;
-						}
-
-					}
-					// If the host is already a Verdant log, change it to heartwood
-					// TODO It's emerald for now.
-					else {
-						System.out.println("The host is Verdant; replacing it with heartwood.");
-						level.setBlockAndUpdate(hostPos, Blocks.EMERALD_ORE.defaultBlockState());
-						state = logState;
-					}
+			// Find every direction it can grow there.
+			for (Direction d : Direction.values()) {
+				if (canGrowToFace(level, site, d)) {
+					placed = placed.setValue(SIDES.get(d), 1);
 				}
 			}
-			System.out.println("Updating the vine to " + state);
+			// Waterlog if possible
+			if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
+				if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+					placed = placed.setValue(WATERLOGGED, true);
+				}
+			}
+
+			// Update the block.
+			level.destroyBlock(site, true);
+			level.setBlockAndUpdate(site, placed);
+			// System.out.println("Placed vine at " + site);
+		}
+	}
+
+	// Grows the current block if possible.
+	// Returns true if it has grown to the maximum for the current environment.
+	private boolean growInPlace(Level level, BlockPos pos) {
+
+		BlockState state = level.getBlockState(pos);
+		// Check if the state is indeed a vine.
+		if (!(state.getBlock() instanceof VerdantVineBlock)) {
+			return false;
+		}
+
+		boolean isMature = true;
+		for (Direction d : Direction.values()) {
+			// Save the growth level in this direction.
+			int maturity = state.getValue(SIDES.get(d));
+
+			// Check if it can grow
+			if (maturity == MIN_GROWTH && canGrowToFace(level, pos, d)) {
+				isMature = false;
+				state = state.setValue(SIDES.get(d), MIN_GROWTH + 1);
+			} else if (maturity > MIN_GROWTH && maturity < MAX_GROWTH) {
+				isMature = false;
+				state = state.setValue(SIDES.get(d), maturity + 1);
+			} else {
+
+			}
+		}
+		if (!isMature) {
+			level.addDestroyBlockEffect(pos, state);
 			level.setBlockAndUpdate(pos, state);
+		}
+		return isMature;
+	}
+
+	// Returns true if a block has mature verdant log neighbors.
+	private boolean hasMatureVerdantLogNeighbors(Level level, BlockPos pos) {
+
+		// If it has neighbors both above and below, then return false. It can still
+		// grow to connect the two.
+		BlockState above = level.getBlockState(pos.above());
+		BlockState below = level.getBlockState(pos.below());
+		if (above.is(ModTags.Blocks.MATURE_VERDANT_LOGS) && below.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
+			// System.out.println("There was heartwood both above and below the block.");
+			return false;
+		}
+
+		for (Direction d : Direction.values()) {
+			// System.out.println("Checking the " + d + " side for verdant heartwood.");
+			BlockPos neighborPos = pos.relative(d);
+			BlockState neighbor = level.getBlockState(neighborPos);
+
+			if (neighbor.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
+				// System.out.println("Found verdant heartwood on the " + d + " side.");
+				return true;
+			}
+		}
+		// System.out.println("Did not find verdant heartwood.");
+		return false;
+	}
+
+	// Tries to consume the neighboring log.
+	// Returns true if it succeeds.
+	private boolean tryConsumeLog(Level level, BlockPos pos) {
+
+		// System.out.println("Attempting to consume a log.");
+
+		BlockState host = level.getBlockState(pos);
+
+		// First, check if the host is a log.
+		if (!host.is(BlockTags.LOGS_THAT_BURN)) {
+			return false;
+		}
+
+		// Then, check if this log is a verdant log and has a mature neighbor.
+		// If so, return early.
+		if (host.is(ModTags.Blocks.VERDANT_LOGS) && this.hasMatureVerdantLogNeighbors(level, pos)) {
+			return false;
+		}
+
+		boolean canConsume = true;
+		// Check each of the sides. Keep track of the ones that need to be grown.
+		ArrayList<BlockPos> positionsToGrow = new ArrayList<>();
+		for (Direction d : Direction.values()) {
+			// System.out.println("Checking the " + d + " side.");
+			BlockPos neighborPos = pos.relative(d);
+			BlockState neighbor = level.getBlockState(neighborPos);
+			// If the side is not replaceable, it's good to proceed.
+
+			// If the side is a fully grown vine, it's good to proceed after growing it to a
+			// log.
+			if (neighbor.is(ModBlocks.VERDANT_VINE.get())) {
+
+				// If the vines are mature, keep checking.
+				if (neighbor.getValue(SIDES.get(d.getOpposite())) == MAX_GROWTH) {
+					// System.out.println("This side is blocked by fully grown vines.");
+					positionsToGrow.add(neighborPos);
+				}
+				// If not, do not proceed.
+				else {
+					// System.out.println("This side is blocked by immature vines. NOT good to
+					// proceed.");
+					canConsume = false;
+					break;
+				}
+			} else if (!neighbor.is(BlockTags.REPLACEABLE)) {
+				// System.out.println("This side is blocked by another block. Good to
+				// proceed.");
+			}
+			// Otherwise, it's not good to proceed.
+			else {
+				// System.out.println(
+				// "This side is " + neighbor.getBlock().getName().getString() + ". NOT good to
+				// proceed.");
+				canConsume = false;
+				break;
+			}
+		}
+		// If it can consume the log, does so.
+		if (canConsume) {
+			// System.out.println("Consuming the log.");
+			// Grow all the neighboring vines.
+			// System.out.println("There are " + positionsToGrow.size() + " vines to
+			// grow.");
+			for (BlockPos toGrow : positionsToGrow) {
+				// System.out.println("Growing a log at " + toGrow + ".");
+				level.setBlockAndUpdate(toGrow, VERDANT_LOG.get());
+			}
+
+			// Add particle and sound effect.
+			level.addDestroyBlockEffect(pos, host);
+			// Save the host state.
+			// If the host is verdant, mature it.
+			if (host.is(ModTags.Blocks.VERDANT_LOGS)) {
+				level.setBlockAndUpdate(pos, VERDANT_HEARTWOOD.get());
+			}
+			// Otherwise destroy it.
+			else {
+				level.setBlockAndUpdate(pos, ROTTEN_WOOD.get());
+			}
+		}
+
+		return canConsume;
+	}
+
+	@Override
+	public void grow(BlockState state, Level level, BlockPos pos) {
+		// System.out.println("Attempting to grow.");
+
+		// Spread to nearby blocks.
+		this.spread(level, pos);
+
+		// Attempt to grow.
+		boolean isMature = this.growInPlace(level, pos);
+
+		// If it is mature, try to consume the log.
+		boolean hasConsumed = false;
+		if (isMature) {
+			// Consume the log in every adjacent direction.
+			for (Direction d : Direction.values()) {
+				if (state.getValue(SIDES.get(d)) == MAX_GROWTH) {
+					hasConsumed = hasConsumed || this.tryConsumeLog(level, pos.relative(d));
+				}
+			}
 		}
 	}
 
 	// From SugarCaneBlock
 	@Override
 	public BlockState updateShape(BlockState p_57179_, Direction p_57180_, BlockState p_57181_, LevelAccessor level,
-			BlockPos p_57183_, BlockPos p_57184_) {
-		System.out.println("Running shape update.");
+			BlockPos pos, BlockPos p_57184_) {
+		// System.out.println("Running shape update.");
 
-		level.scheduleTick(p_57183_, this, 1);
+		level.scheduleTick(pos, this, 1);
 		if (p_57179_.getValue(WATERLOGGED)) {
-			level.scheduleTick(p_57183_, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
-		return super.updateShape(p_57179_, p_57180_, p_57181_, level, p_57183_, p_57184_);
+		return super.updateShape(p_57179_, p_57180_, p_57181_, level, pos, p_57184_);
 	}
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 
-		// Check if any faces are full.
-		boolean anyFacesFull = false;
+		// Check if any faces exist.
+		boolean anyFacesExist = false;
 		// Check each direction to see if it can survive, and update accordingly.
 		for (Entry<Direction, IntegerProperty> side : SIDES.entrySet()) {
 			// Offset to find the neighbor's position.
@@ -240,40 +420,53 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 				} else {
 					// A face has been found.
-					anyFacesFull = true;
+					anyFacesExist = true;
 				}
 			}
 		}
 		// If all the faces are empty, destroy the block.
-		if (!anyFacesFull) {
+		if (!anyFacesExist) {
 			// Second parameter is whether it drops resources.
 			level.destroyBlock(pos, false);
+		} else {
+			level.setBlockAndUpdate(pos, state);
 		}
 
 	}
 
-	private boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
+	public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
 		return level.getBlockState(pos.relative(direction)).is(BlockTags.LOGS_THAT_BURN);
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		super.randomTick(state, level, pos, rand);
+		// super.randomTick(state, level, pos, rand);
 
 		// Grow.
 		if (rand.nextFloat() < this.growthChance()) {
-			// System.out.println("Trying to spread.");
+			// //System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
 		}
 	}
 
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		LevelAccessor level = context.getLevel();
+		LevelAccessor accessor = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
-		return this.defaultBlockState()
-				.setValue(WATERLOGGED, Boolean.valueOf(level.getFluidState(blockpos).getType() == Fluids.WATER))
-				.setValue(SIDES.get(context.getClickedFace().getOpposite()), 1);
+		Direction side = context.getClickedFace().getOpposite();
+		BlockState state = this.defaultBlockState()
+				.setValue(WATERLOGGED, Boolean.valueOf(accessor.getFluidState(blockpos).getType() == Fluids.WATER))
+				.setValue(SIDES.get(side), 1);
+		if (accessor instanceof Level level) {
+			if (VerdantVineBlock.canGrowToFace(level, blockpos, side)) {
+				return state;
+			}
+		} else {
+			System.out.println(
+					"Warning! Unable to place VerdantVineBlock, cannot read properties of " + accessor.getClass());
+		}
+		return null;
+
 	}
 
 	@Override
@@ -285,7 +478,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		return p_152045_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152045_);
 	}
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_152043_) {
-		p_152043_.add(WATERLOGGED, UP, DOWN, NORTH, SOUTH, EAST, WEST, AXIS);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(WATERLOGGED, UP, DOWN, NORTH, SOUTH, EAST, WEST);
 	}
 }

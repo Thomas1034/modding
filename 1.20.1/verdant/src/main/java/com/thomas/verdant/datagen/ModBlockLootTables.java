@@ -9,6 +9,7 @@ import com.thomas.verdant.item.ModItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -27,10 +28,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
+
+		requireSilkTouch(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 2));
+		requireSilkTouch(ModBlocks.ROTTEN_WOOD.get(), Blocks.AIR);
+		requireSilkTouch(ModBlocks.VERDANT_VINE.get(), Items.STICK, List.of(1, 3));
+		requireSilkTouch(ModBlocks.LEAFY_VERDANT_VINE.get(), Items.STICK, List.of(1, 3));
 		requireSilkTouch(ModBlocks.VERDANT_GRASS_BLOCK.get(), Blocks.DIRT);
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
 		requireSilkTouch(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), Blocks.MUD);
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
+		requireSilkTouch(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), Blocks.CLAY);
+		requireSilkTouch(ModBlocks.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
 		this.dropSelf(ModBlocks.VERDANT_BUTTON.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE_GATE.get());
@@ -46,7 +54,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.VERDANT_DOOR.get(), block -> createDoorTable(ModBlocks.VERDANT_DOOR.get()));
 		this.add(ModBlocks.VERDANT_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_SIGN.get()));
 		this.add(ModBlocks.VERDANT_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_SIGN.get()));
-		this.add(ModBlocks.VERDANT_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
+		this.add(ModBlocks.VERDANT_HANGING_SIGN.get(),
+				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
 		this.add(ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
 				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
 

@@ -1,14 +1,19 @@
 {
 	
+	"block.verdant.rotten_wood": "Rotten Wood",
 	
 	"block.verdant.verdant_grass_block": "Verdant Grass Block",
 	"block.verdant.verdant_rooted_dirt": "Verdant Rooted Dirt",
 	"block.verdant.verdant_mud_grass_block": "Verdant Mud Grass Block",
 	"block.verdant.verdant_rooted_mud": "Verdant Rooted Mud",
+	"block.verdant.verdant_clay_grass_block": "Verdant Clay Grass Block",
+	"block.verdant.verdant_rooted_clay": "Verdant Rooted Clay",
 	
+	"item.verdant.lemon_juice_bottle": "Lemon Juice Bottle",
 	"item.verdant.verdant_boat": "Verdant Boat",
 	"item.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	
+	"block.verdant.verdant_vine": "Verdant Vine",
 	"block.verdant.verdant_trunk": "Verdant Trunk",
 	"block.verdant.verdant_fruit": "Verdant Fruit",
 	"block.verdant.verdant_floor_frond": "Verdant Floor Frond",

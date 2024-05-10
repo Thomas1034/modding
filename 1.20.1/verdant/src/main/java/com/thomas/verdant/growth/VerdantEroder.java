@@ -56,20 +56,25 @@ public class VerdantEroder {
 	}
 
 	public static void registerErosions() {
-		register(Blocks.STONE, Blocks.GRAVEL);
+		register(Blocks.STONE, Blocks.COBBLESTONE);
+		register(Blocks.INFESTED_STONE, Blocks.STONE);
+		register(Blocks.COBBLESTONE, Blocks.GRAVEL);
 		register(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
-		register(Blocks.COBBLED_DEEPSLATE, Blocks.GRAVEL);
+		register(Blocks.COBBLED_DEEPSLATE, Blocks.COBBLESTONE);
 		register(Blocks.GRAVEL, Blocks.COARSE_DIRT);
 		register(Blocks.DIRT_PATH, Blocks.DIRT);
 		register(Blocks.COARSE_DIRT, Blocks.DIRT);
 		register(Blocks.MOSS_BLOCK, Blocks.DIRT);
 		register(Blocks.MOSS_CARPET, Blocks.AIR);
-		// Replace with verdant cobblestone when implemented.
-		register(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE);
-		register(Blocks.COBBLESTONE_STAIRS, Blocks.MOSSY_COBBLESTONE_STAIRS);
-		register(Blocks.COBBLESTONE_SLAB, Blocks.MOSSY_COBBLESTONE_SLAB);
-		register(Blocks.COBBLESTONE_WALL, Blocks.MOSSY_COBBLESTONE_WALL);
-		register(Blocks.INFESTED_COBBLESTONE, Blocks.MOSSY_COBBLESTONE);
+		// Cobblestone
+		register(Blocks.COBBLESTONE_STAIRS, Blocks.GRAVEL);
+		register(Blocks.COBBLESTONE_SLAB, Blocks.GRAVEL);
+		register(Blocks.COBBLESTONE_WALL, Blocks.GRAVEL);
+		register(Blocks.INFESTED_COBBLESTONE, Blocks.COBBLESTONE);
+		register(Blocks.MOSSY_COBBLESTONE, Blocks.GRAVEL);
+		register(Blocks.MOSSY_COBBLESTONE_STAIRS, Blocks.GRAVEL);
+		register(Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.GRAVEL);
+		register(Blocks.MOSSY_COBBLESTONE_WALL, Blocks.GRAVEL);
 		// Stone bricks
 		register(Blocks.SMOOTH_STONE, Blocks.COBBLESTONE);
 		register(Blocks.SMOOTH_STONE_SLAB, Blocks.COBBLESTONE_SLAB);
@@ -100,6 +105,8 @@ public class VerdantEroder {
 		register(Blocks.MUD_BRICK_SLAB, Blocks.COARSE_DIRT);
 		register(Blocks.MUD_BRICK_STAIRS, Blocks.COARSE_DIRT);
 		register(Blocks.MUD_BRICK_WALL, Blocks.COARSE_DIRT);
+		// Terracotta, if wet.
+		ifWet(Blocks.TERRACOTTA, Blocks.CLAY);
 		
 		System.out.println("Registered erosions:");
 		for (Entry<Block, Block> entry : NEXT.entrySet()) {

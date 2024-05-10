@@ -5,11 +5,14 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Nullable;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
 import com.thomas.verdant.block.custom.ModWallHangingSignBlock;
 import com.thomas.verdant.block.custom.ModWallSignBlock;
+import com.thomas.verdant.block.custom.VerdantLeafyVineBlock;
+import com.thomas.verdant.block.custom.VerdantLeavesBlock;
 import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.item.ModItems;
@@ -47,52 +50,8 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Verdant.MOD_ID);
 
-	public static final RegistryObject<Block> VERDANT_SIGN = BLOCKS.register("verdant_sign",
-			() -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VERDANT));
-	public static final RegistryObject<Block> VERDANT_WALL_SIGN = BLOCKS.register("verdant_wall_sign",
-			() -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.VERDANT));
-
-	public static final RegistryObject<Block> VERDANT_HANGING_SIGN = BLOCKS.register("verdant_hanging_sign",
-			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
-					ModWoodTypes.VERDANT));
-	public static final RegistryObject<Block> VERDANT_WALL_HANGING_SIGN = BLOCKS.register("verdant_wall_hanging_sign",
-			() -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
-					ModWoodTypes.VERDANT));
-
-	// Verdant grass
-	public static final RegistryObject<Block> VERDANT_ROOTED_DIRT = registerBlock("verdant_rooted_dirt",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
-
-	public static final RegistryObject<Block> VERDANT_GRASS_BLOCK = registerBlock("verdant_grass_block",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
-
-	public static final RegistryObject<Block> VERDANT_ROOTED_MUD = registerBlock("verdant_rooted_mud",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
-
-	public static final RegistryObject<Block> VERDANT_MUD_GRASS_BLOCK = registerBlock("verdant_mud_grass_block",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
-
-	// Verdant vine
-	public static final RegistryObject<Block> VERDANT_VINE = registerBlock("verdant_vine", () -> new VerdantVineBlock(
-			BlockBehaviour.Properties.copy(Blocks.OAK_LOG).pushReaction(PushReaction.DESTROY).randomTicks()));
-
-	// Verdant logs
-	public static final RegistryObject<Block> VERDANT_LOG = registerFuelBlock("verdant_log",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), BurnTimes.LOG);
-
-	public static final RegistryObject<Block> VERDANT_WOOD = registerFuelBlock("verdant_wood",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), BurnTimes.LOG);
-
-	public static final RegistryObject<Block> STRIPPED_VERDANT_LOG = registerFuelBlock("stripped_verdant_log",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
-			BurnTimes.LOG);
-
-	public static final RegistryObject<Block> STRIPPED_VERDANT_WOOD = registerFuelBlock("stripped_verdant_wood",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
-			BurnTimes.LOG);
-
 	// Verdant planks
-	public static final RegistryObject<Block> VERDANT_PLANKS = registerFuelBlock("verdant_planks",
+	public static final RegistryObject<Block> VERDANT_PLANKS = registerFuelBlockWithItem("verdant_planks",
 			() -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
 				@Override
 				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
@@ -110,8 +69,65 @@ public class ModBlocks {
 				}
 			}, BurnTimes.PLANKS);
 
+	// Rotten wood.
+	public static final RegistryObject<Block> ROTTEN_WOOD = registerFuelBlockWithItem("rotten_wood",
+			() -> new FragileFlammableRotatedPillarBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_LOG).instabreak()
+							.isViewBlocking((state, level, pos) -> false).noOcclusion().explosionResistance(0.015625f),
+					35, 1, 2.0f),
+			BurnTimes.STICK);
+
+	// Verdant grass
+	public static final RegistryObject<Block> VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_GRASS_BLOCK = registerBlockWithItem("verdant_grass_block",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_ROOTED_MUD = registerBlockWithItem("verdant_rooted_mud",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_MUD_GRASS_BLOCK = registerBlockWithItem("verdant_mud_grass_block",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_ROOTED_CLAY = registerBlockWithItem("verdant_rooted_clay",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_CLAY_GRASS_BLOCK = registerBlockWithItem(
+			"verdant_clay_grass_block",
+			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+
+	// Verdant vine
+	public static final RegistryObject<Block> VERDANT_VINE = registerBlockWithItem("verdant_vine",
+			() -> new VerdantVineBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY).randomTicks()
+							.isViewBlocking((state, level, pos) -> false).noOcclusion()));
+	public static final RegistryObject<Block> LEAFY_VERDANT_VINE = registerBlockWithItem("leafy_verdant_vine",
+			() -> new VerdantLeafyVineBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).pushReaction(PushReaction.DESTROY).randomTicks()
+							.isViewBlocking((state, level, pos) -> false).noOcclusion()));
+
+	// Verdant logs
+
+	public static final RegistryObject<Block> VERDANT_LEAVES = registerBlockWithItem("verdant_leaves",
+			() -> new VerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
+
+	public static final RegistryObject<Block> VERDANT_LOG = registerFuelBlockWithItem("verdant_log",
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), BurnTimes.LOG);
+
+	public static final RegistryObject<Block> VERDANT_WOOD = registerFuelBlockWithItem("verdant_wood",
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), BurnTimes.LOG);
+
+	public static final RegistryObject<Block> STRIPPED_VERDANT_LOG = registerFuelBlockWithItem("stripped_verdant_log",
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
+			BurnTimes.LOG);
+
+	public static final RegistryObject<Block> STRIPPED_VERDANT_WOOD = registerFuelBlockWithItem("stripped_verdant_wood",
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
+			BurnTimes.LOG);
+
 	// Verdant plank items
-	public static final RegistryObject<Block> VERDANT_STAIRS = registerFuelBlock("verdant_stairs",
+	public static final RegistryObject<Block> VERDANT_STAIRS = registerFuelBlockWithItem("verdant_stairs",
 			() -> new StairBlock(() -> ModBlocks.VERDANT_PLANKS.get().defaultBlockState(),
 					BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get())) {
 				@Override
@@ -130,7 +146,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.STAIRS);
 
-	public static final RegistryObject<Block> VERDANT_SLAB = registerFuelBlock("verdant_slab",
+	public static final RegistryObject<Block> VERDANT_SLAB = registerFuelBlockWithItem("verdant_slab",
 			() -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get())) {
 				@Override
 				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
@@ -148,7 +164,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.SLAB);
 
-	public static final RegistryObject<Block> VERDANT_BUTTON = registerFuelBlock("verdant_button",
+	public static final RegistryObject<Block> VERDANT_BUTTON = registerFuelBlockWithItem("verdant_button",
 			() -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON), ModBlockSetType.VERDANT, 10,
 					true) {
 				@Override
@@ -167,8 +183,8 @@ public class ModBlocks {
 				}
 			}, BurnTimes.BUTTON);
 
-	public static final RegistryObject<Block> VERDANT_PRESSURE_PLATE = registerFuelBlock("verdant_pressure_plate",
-			() -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
+	public static final RegistryObject<Block> VERDANT_PRESSURE_PLATE = registerFuelBlockWithItem(
+			"verdant_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
 					BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get()), ModBlockSetType.VERDANT) {
 				@Override
 				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
@@ -186,7 +202,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.PRESSURE_PLATE);
 
-	public static final RegistryObject<Block> VERDANT_FENCE = registerFuelBlock("verdant_fence",
+	public static final RegistryObject<Block> VERDANT_FENCE = registerFuelBlockWithItem("verdant_fence",
 			() -> new FenceBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get())) {
 				@Override
 				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
@@ -204,7 +220,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.FENCE);
 
-	public static final RegistryObject<Block> VERDANT_FENCE_GATE = registerFuelBlock("verdant_fence_gate",
+	public static final RegistryObject<Block> VERDANT_FENCE_GATE = registerFuelBlockWithItem("verdant_fence_gate",
 			() -> new FenceGateBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get()),
 					SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE) {
 				@Override
@@ -223,7 +239,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.FENCE_GATE);
 
-	public static final RegistryObject<Block> VERDANT_DOOR = registerFuelBlock("verdant_door",
+	public static final RegistryObject<Block> VERDANT_DOOR = registerFuelBlockWithItem("verdant_door",
 			() -> new DoorBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get()).noOcclusion(),
 					ModBlockSetType.VERDANT) {
 				@Override
@@ -242,7 +258,7 @@ public class ModBlocks {
 				}
 			}, BurnTimes.DOOR);
 
-	public static final RegistryObject<Block> VERDANT_TRAPDOOR = registerFuelBlock("verdant_trapdoor",
+	public static final RegistryObject<Block> VERDANT_TRAPDOOR = registerFuelBlockWithItem("verdant_trapdoor",
 			() -> new TrapDoorBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_PLANKS.get()).noOcclusion(),
 					ModBlockSetType.VERDANT) {
 				@Override
@@ -261,14 +277,34 @@ public class ModBlocks {
 				}
 			}, BurnTimes.TRAPDOOR);
 
+	// Verdant signs
+	public static final RegistryObject<Block> VERDANT_SIGN = registerBlockOnly("verdant_sign",
+			() -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.VERDANT));
+	public static final RegistryObject<Block> VERDANT_WALL_SIGN = registerBlockOnly("verdant_wall_sign",
+			() -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.VERDANT));
+
+	public static final RegistryObject<Block> VERDANT_HANGING_SIGN = registerBlockOnly("verdant_hanging_sign",
+			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
+					ModWoodTypes.VERDANT));
+	public static final RegistryObject<Block> VERDANT_WALL_HANGING_SIGN = registerBlockOnly("verdant_wall_hanging_sign",
+			() -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
+					ModWoodTypes.VERDANT));
+
 	// Boilerplate from here on.
-	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
+	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {
+		RegistryObject<T> toReturn = BLOCKS.register(name, block);
+		// registerBlockItem(name, toReturn);
+		return toReturn;
+	}
+
+	private static <T extends Block> RegistryObject<T> registerBlockWithItem(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);
 		registerBlockItem(name, toReturn);
 		return toReturn;
 	}
 
-	private static <T extends Block> RegistryObject<T> registerFuelBlock(String name, Supplier<T> block, int burnTime) {
+	private static <T extends Block> RegistryObject<T> registerFuelBlockWithItem(String name, Supplier<T> block,
+			int burnTime) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);
 		registerFuelBlockItem(name, toReturn, burnTime);
 		return toReturn;

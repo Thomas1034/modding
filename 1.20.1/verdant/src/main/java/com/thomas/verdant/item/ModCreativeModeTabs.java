@@ -20,10 +20,11 @@ public class ModCreativeModeTabs {
 	public static final RegistryObject<CreativeModeTab> VERDANT_ITEMS = CREATIVE_MODE_TABS.register("verdant_items",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WHEAT_SEEDS))
 					.title(Component.translatable("creativetab.verdant_items")).displayItems((pParameters, pOutput) -> {
-
+						
+						pOutput.accept(ModItems.LEMON_JUICE_BOTTLE.get());
 						pOutput.accept(ModItems.VERDANT_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
-
+						
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Blocks.DIRT))
@@ -33,6 +34,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.VERDANT_ROOTED_DIRT.get());
 						pOutput.accept(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get());
 						pOutput.accept(ModBlocks.VERDANT_ROOTED_MUD.get());
+						pOutput.accept(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
+						pOutput.accept(ModBlocks.VERDANT_ROOTED_CLAY.get());
+						pOutput.accept(ModBlocks.ROTTEN_WOOD.get());
 						pOutput.accept(ModBlocks.VERDANT_PLANKS.get());
 						pOutput.accept(ModBlocks.VERDANT_STAIRS.get());
 						pOutput.accept(ModBlocks.VERDANT_SLAB.get());
@@ -40,6 +44,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.VERDANT_FENCE_GATE.get());
 						pOutput.accept(ModBlocks.VERDANT_LOG.get());
 						pOutput.accept(ModBlocks.VERDANT_WOOD.get());
+						pOutput.accept(ModBlocks.VERDANT_LEAVES.get());
 						pOutput.accept(ModBlocks.STRIPPED_VERDANT_LOG.get());
 						pOutput.accept(ModBlocks.STRIPPED_VERDANT_WOOD.get());
 						pOutput.accept(ModItems.VERDANT_SIGN.get());

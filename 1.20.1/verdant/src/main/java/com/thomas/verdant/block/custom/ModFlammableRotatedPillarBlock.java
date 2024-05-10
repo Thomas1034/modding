@@ -14,28 +14,37 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
-
+	
+	private int flammability = 7;
+	private int fireSpreadSpeed = 7;
+	
 	public ModFlammableRotatedPillarBlock(Properties properties) {
 		super(properties);
+	}
+	
+	public ModFlammableRotatedPillarBlock(Properties properties, int flammability, int fireSpreadSpeed) {
+		super(properties);
+		this.flammability = flammability;
+		this.fireSpreadSpeed = fireSpreadSpeed;
 	}
 	
 	
 	@Override
 	public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction)
 	{
-		return true;
+		return this.flammability > 0;
 	}
 	
 	@Override
 	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction)
 	{
-		return 7;
+		return this.flammability;
 	}
 	
 	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction)
 	{
-		return 7;
+		return this.fireSpreadSpeed;
 	}
 	
 	
@@ -57,4 +66,9 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 		return super.getToolModifiedState(state, context, toolAction, simulate);
 		
 	}
+	
+	public record ToolModificationContext(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+		
+	}
+	
 }
