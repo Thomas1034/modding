@@ -8,6 +8,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.lighting.LightEngine;
@@ -56,7 +57,7 @@ public interface VerdantGrower {
 	}
 
 	public static boolean convertLeaves(Level level, BlockPos pos) {
-		//System.out.println("Attempting to convert leaves at " + pos + ".");
+		// System.out.println("Attempting to convert leaves at " + pos + ".");
 		BlockState atPos = level.getBlockState(pos);
 		BlockState replaced = level.getBlockState(pos);
 		BlockState placed = ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
@@ -64,18 +65,24 @@ public interface VerdantGrower {
 		// Waterlog if possible
 		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
 			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
-				//System.out.println("Waterlogging.");
+				// System.out.println("Waterlogging.");
 				placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
 			}
 		}
+		// Update distance if possible
+		if (replaced.hasProperty(LeavesBlock.DISTANCE)) {
+			// System.out.println("Setting distance.");
+			placed = placed.setValue(LeavesBlock.DISTANCE, replaced.getValue(LeavesBlock.DISTANCE));
+
+		}
 
 		if (atPos.is(BlockTags.LEAVES)) {
-			//System.out.println("Converting.");
+			// System.out.println("Converting.");
 			level.addDestroyBlockEffect(pos, atPos);
 			level.setBlockAndUpdate(pos, placed);
 			return true;
 		}
-		//System.out.println("Failed to convert.");
+		// System.out.println("Failed to convert.");
 		return false;
 	}
 
