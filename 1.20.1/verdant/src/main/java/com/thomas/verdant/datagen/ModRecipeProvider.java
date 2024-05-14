@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -25,14 +27,61 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-	
+
 	public ModRecipeProvider(PackOutput pOutput) {
 		super(pOutput);
 	}
 
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> recipeWriter) {
-		
+		// Verdant furniture
+		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_DOOR.get(), 3);
+		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_TRAPDOOR.get(), 2);
+		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_STAIRS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_PLANKS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_BUTTON.get(), 1);
+		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_FENCE.get(), 3);
+		shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_FENCE_GATE.get(), 1);
+		shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PRESSURE_PLATE.get(), 1);
+		shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.VERDANT_SIGN.get(), 3);
+		shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
+				List.of(ModBlocks.STRIPPED_VERDANT_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.VERDANT_HANGING_SIGN.get(), 2);
+
+		// Verdant heartwood furniture
+		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_DOOR.get(), 3);
+		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get(), 2);
+		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_HEARTWOOD_STAIRS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_BUTTON.get(), 1);
+		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_HEARTWOOD_FENCE.get(), 3);
+		shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get(), 1);
+		shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get(), 1);
+		shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.VERDANT_HEARTWOOD_SIGN.get(), 3);
+		shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
+				List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get(), 2);
 	}
 
 	// Stonecutting recipe.

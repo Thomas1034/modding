@@ -22,13 +22,12 @@ import net.minecraft.world.entity.vehicle.Boat;
 public class ModBoatRenderer extends BoatRenderer {
 	private final Map<ModBoatEntity.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 
-	public ModBoatRenderer(EntityRendererProvider.Context pContext, boolean pChestBoat) {
-		super(pContext, pChestBoat);
+	public ModBoatRenderer(EntityRendererProvider.Context context, boolean isChestBoat) {
+		super(context, isChestBoat);
 		this.boatResources = Stream.of(ModBoatEntity.Type.values())
 				.collect(ImmutableMap.toImmutableMap(type -> type,
-						type -> Pair.of(new ResourceLocation(Verdant.MOD_ID, getTextureLocation(type, pChestBoat)),
-								this.createBoatModel(pContext, type, pChestBoat))));
-		
+						type -> Pair.of(new ResourceLocation(Verdant.MOD_ID, getTextureLocation(type, isChestBoat)),
+								this.createBoatModel(context, type, isChestBoat))));
 	}
 
 	private static String getTextureLocation(ModBoatEntity.Type pType, boolean pChestBoat) {
@@ -36,12 +35,12 @@ public class ModBoatRenderer extends BoatRenderer {
 				: "textures/entity/boat/" + pType.getName() + ".png";
 	}
 
-	private ListModel<Boat> createBoatModel(EntityRendererProvider.Context pContext, ModBoatEntity.Type pType,
-			boolean pChestBoat) {
-		ModelLayerLocation modellayerlocation = pChestBoat ? ModBoatRenderer.createChestBoatModelName(pType)
-				: ModBoatRenderer.createBoatModelName(pType);
-		ModelPart modelpart = pContext.bakeLayer(modellayerlocation);
-		return pChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
+	private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, ModBoatEntity.Type type,
+			boolean isChestBoat) {
+		ModelLayerLocation modellayerlocation = isChestBoat ? ModBoatRenderer.createChestBoatModelName(type)
+				: ModBoatRenderer.createBoatModelName(type);
+		ModelPart modelpart = context.bakeLayer(modellayerlocation);
+		return isChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
 	}
 
 	public static ModelLayerLocation createBoatModelName(ModBoatEntity.Type pType) {

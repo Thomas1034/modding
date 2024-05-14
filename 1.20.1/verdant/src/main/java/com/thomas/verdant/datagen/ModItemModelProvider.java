@@ -22,9 +22,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItem(ModBlocks.VERDANT_VINE);
 		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
-		simpleItem(ModItems.LEMON_JUICE_BOTTLE);
+		simpleBlockItem(ModBlocks.VERDANT_TENDRIL);
 		simpleItem(ModItems.VERDANT_BOAT);
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_SIGN);
@@ -35,16 +36,37 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleLogModel(ModBlocks.VERDANT_WOOD);
 		simpleLogModel(ModBlocks.STRIPPED_VERDANT_LOG);
 		simpleLogModel(ModBlocks.STRIPPED_VERDANT_WOOD);
-		
+
 		fenceItem(ModBlocks.VERDANT_FENCE, ModBlocks.VERDANT_PLANKS);
 		buttonItem(ModBlocks.VERDANT_BUTTON, ModBlocks.VERDANT_PLANKS);
 
+		evenSimplerBlockItem(ModBlocks.VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.VERDANT_STAIRS);
 		evenSimplerBlockItem(ModBlocks.VERDANT_SLAB);
 		evenSimplerBlockItem(ModBlocks.VERDANT_PRESSURE_PLATE);
 		evenSimplerBlockItem(ModBlocks.VERDANT_FENCE_GATE);
 
 		trapdoorItem(ModBlocks.VERDANT_TRAPDOOR);
+		
+		simpleItem(ModItems.VERDANT_HEARTWOOD_BOAT);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_SIGN);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN);
+		simpleBlockItem(ModBlocks.VERDANT_HEARTWOOD_DOOR);
+		simpleLogModel(ModBlocks.VERDANT_HEARTWOOD_LOG);
+		simpleLogModel(ModBlocks.VERDANT_HEARTWOOD_WOOD);
+		simpleLogModel(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG);
+		simpleLogModel(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD);
+
+		fenceItem(ModBlocks.VERDANT_HEARTWOOD_FENCE, ModBlocks.VERDANT_HEARTWOOD_PLANKS);
+		buttonItem(ModBlocks.VERDANT_HEARTWOOD_BUTTON, ModBlocks.VERDANT_HEARTWOOD_PLANKS);
+
+		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_STAIRS);
+		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_SLAB);
+		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE);
+		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE);
+
+		trapdoorItem(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

@@ -15,5 +15,7 @@ public class BurnTimes {
 	public static final int PRESSURE_PLATE = 300;
 	public static final int COAL = 1600;
 	
+	public static final int HEARTWOOD_BONUS = 2;
+	
 	
 }

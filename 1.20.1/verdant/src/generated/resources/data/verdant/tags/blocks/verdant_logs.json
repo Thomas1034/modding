@@ -3,6 +3,7 @@
     "verdant:verdant_log",
     "verdant:stripped_verdant_log",
     "verdant:verdant_wood",
-    "verdant:stripped_verdant_wood"
+    "verdant:stripped_verdant_wood",
+    "#verdant:mature_verdant_logs"
   ]
 }

@@ -24,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -32,6 +33,44 @@ public class Utilities {
 	public static final List<Direction> HORIZONTAL_DIRECTIONS = List.of(Direction.NORTH, Direction.EAST,
 			Direction.SOUTH, Direction.WEST);
 	public static final List<Direction> VERTICAL_DIRECTIONS = List.of(Direction.UP, Direction.DOWN);
+
+	// Uses gradient descent to find the lowest point for the given property.
+	public static BlockPos gradientDescent(Level level, BlockPos start, Function<BlockState, Integer> evaluate) {
+
+		BlockPos.MutableBlockPos current = new BlockPos.MutableBlockPos().set(start);
+
+		boolean hasFoundLower = true;
+		int currentValue = Integer.MAX_VALUE;
+		Direction toMoveIn = null;
+
+		while (hasFoundLower) {
+			hasFoundLower = false;
+			toMoveIn = null;
+			// Check each neighbor.
+			for (Direction d : Direction.values()) {
+				// Store the neighbor's information.
+				BlockPos offset = current.relative(d);
+				BlockState offsetState = level.getBlockState(offset);
+				// If the neighbor has the property, get its value.
+				int offsetValue = evaluate.apply(offsetState);
+				// If the neighbor has a lower value than the current lowest, update
+				// accordingly.
+				if (offsetValue < currentValue) {
+					toMoveIn = d;
+					currentValue = offsetValue;
+					hasFoundLower = true;
+				}
+			}
+			// Move.
+			if (toMoveIn != null) {
+				current = current.move(toMoveIn, 1);
+			} else {
+				break;
+			}
+		}
+
+		return current;
+	}
 
 	public static void placePlatform(Level level, BlockPos center, double radius, int layers,
 			Supplier<BlockState> stateGetter, Function<BlockState, Boolean> isValid) {
@@ -424,9 +463,12 @@ public class Utilities {
 
 	// Returns a random horizontal direction.
 	public static Direction randomHorizontalDirection(RandomSource rand) {
+		return HORIZONTAL_DIRECTIONS.get(rand.nextInt(4));
+	}
 
-		Direction[] dirs = { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST };
-		return dirs[rand.nextInt(4)];
+	// Returns a random vertical direction.
+	public static Direction randomVerticalDirection(RandomSource rand) {
+		return VERTICAL_DIRECTIONS.get(rand.nextInt(2));
 	}
 
 	// Returns a block position within the given radius at a random position.

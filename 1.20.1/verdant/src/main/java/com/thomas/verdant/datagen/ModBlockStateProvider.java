@@ -40,8 +40,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-
-		blockWithItem(ModBlocks.VERDANT_LEAVES);
 		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
 		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
 		blockWithItem(ModBlocks.VERDANT_ROOTED_MUD);
@@ -49,6 +47,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.VERDANT_ROOTED_CLAY);
 		sidedBlockWithItem(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, "verdant_clay_grass_block");
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
+
+		// Standard verdant wood
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_WOOD.get());
@@ -77,6 +77,45 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		hangingSignBlock(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
 				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
 
+		// Verdant heartwood.
+		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
+		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
+		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
+		blockWithItem(ModBlocks.VERDANT_HEARTWOOD_PLANKS);
+		stairsBlock(((StairBlock) ModBlocks.VERDANT_HEARTWOOD_STAIRS.get()), blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+		slabBlock(((SlabBlock) ModBlocks.VERDANT_HEARTWOOD_SLAB.get()), blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
+				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+
+		buttonBlock(((ButtonBlock) ModBlocks.VERDANT_HEARTWOOD_BUTTON.get()), blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+		pressurePlateBlock(((PressurePlateBlock) ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get()),
+				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+
+		fenceBlock(((FenceBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE.get()), blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+		fenceGateBlock(((FenceGateBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get()),
+				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+
+		doorBlockWithRenderType(((DoorBlock) ModBlocks.VERDANT_HEARTWOOD_DOOR.get()), modLoc("block/verdant_heartwood_door_bottom"),
+				modLoc("block/verdant_heartwood_door_top"), "cutout");
+		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get()),
+				modLoc("block/verdant_heartwood_trapdoor"), true, "cutout");
+
+		signBlock(((StandingSignBlock) ModBlocks.VERDANT_HEARTWOOD_SIGN.get()),
+				((WallSignBlock) ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get()), blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+
+		hangingSignBlock(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(), ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(),
+				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
+
+		// Tendrils
+		simpleBlockWithItem(ModBlocks.VERDANT_TENDRIL.get(),
+				models().cross(blockTexture(ModBlocks.VERDANT_TENDRIL.get()).getPath(),
+						blockTexture(ModBlocks.VERDANT_TENDRIL.get())).renderType("cutout"));
+		simpleBlockWithItem(ModBlocks.VERDANT_TENDRIL_PLANT.get(),
+				models().cross(blockTexture(ModBlocks.VERDANT_TENDRIL_PLANT.get()).getPath(),
+						blockTexture(ModBlocks.VERDANT_TENDRIL_PLANT.get())).renderType("cutout"));
+
+		// Flowers
+		simpleFlowerWithPot(ModBlocks.BLEEDING_HEART.get(), ModBlocks.POTTED_BLEEDING_HEART.get());
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -291,5 +330,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	protected void crossBlock(Block block, String modelName) {
 		simpleBlock(block, models().cross(modelName, blockTexture(block)));
+	}
+
+	protected void simpleFlowerWithPot(Block flower, Block pottedFlower) {
+		simpleBlock(flower, models().cross(blockTexture(flower).getPath(), blockTexture(flower)).renderType("cutout"));
+		simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(),
+				new ResourceLocation("flower_pot_cross"), "plant", blockTexture(flower)).renderType("cutout"));
+
 	}
 }

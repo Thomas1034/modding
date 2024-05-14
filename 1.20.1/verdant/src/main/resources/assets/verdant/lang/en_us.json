@@ -7,17 +7,15 @@
 	"block.verdant.verdant_clay_grass_block": "Verdant Clay Grass Block",
 	"block.verdant.verdant_rooted_clay": "Verdant Rooted Clay",
 	
-	"item.verdant.lemon_juice_bottle": "Lemon Juice Bottle",
-	
 	"item.verdant.verdant_boat": "Verdant Boat",
 	"item.verdant.verdant_chest_boat": "Verdant Boat with Chest",
+	"item.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
+	"item.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
 	
 	"block.verdant.verdant_vine": "Verdant Vine",
 	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
-	"block.verdant.verdant_trunk": "Verdant Trunk",
-	"block.verdant.verdant_fruit": "Verdant Fruit",
-	"block.verdant.verdant_floor_frond": "Verdant Floor Frond",
-	"block.verdant.verdant_frond": "Verdant Frond",
+	"block.verdant.verdant_tendril": "Verdant Tendril",
+	"block.verdant.verdant_tendril_plant": "Verdant Tendril Plant",
 	"block.verdant.verdant_log": "Verdant Log",
 	"block.verdant.verdant_wood": "Verdant Wood",
 	"block.verdant.stripped_verdant_log": "Stripped Verdant Log",
@@ -41,13 +39,41 @@
 	"block.verdant.verdant_hanging_sign": "Verdant Hanging Sign",
 	"block.verdant.verdant_sign": "Verdant Sign",
 	
+	"block.verdant.verdant_heartwood_log": "Verdant Heartwood Log",
+	"block.verdant.verdant_heartwood_wood": "Verdant Heartwood Wood",
+	"block.verdant.stripped_verdant_heartwood_log": "Stripped Verdant Heartwood Log",
+	"block.verdant.stripped_verdant_heartwood_wood": "Stripped Verdant Heartwood Wood",
+	"block.verdant.verdant_heartwood_log": "Verdant Heartwood Log",
+	"block.verdant.verdant_heartwood_wood": "Verdant Heartwood Wood",
+	"block.verdant.verdant_heartwood_planks": "Verdant Heartwood Planks",
+	"block.verdant.stripped_verdant_heartwood_log": "Stripped Verdant Heartwood Log",
+	"block.verdant.stripped_verdant_heartwood_wood": "Stripped Verdant Heartwood Wood",
+	"block.verdant.verdant_heartwood_slab": "Verdant Heartwood Slab",
+	"block.verdant.verdant_heartwood_stairs": "Verdant Heartwood Stairs",
+	"block.verdant.verdant_heartwood_fence": "Verdant Heartwood Fence",
+	"block.verdant.verdant_heartwood_fence_gate": "Verdant Heartwood Fence Gate",
+	"block.verdant.verdant_heartwood_sapling": "Verdant Heartwood Sapling",
+	"block.verdant.potted_verdant_heartwood_sapling": "Potted Verdant Heartwood Sapling",
+	"block.verdant.verdant_heartwood_leaves": "Verdant Heartwood Leaves",
+	"block.verdant.verdant_heartwood_door": "Verdant Heartwood Door",
+	"block.verdant.verdant_heartwood_trapdoor": "Verdant Heartwood Trapdoor",
+	"block.verdant.verdant_heartwood_pressure_plate": "Verdant Heartwood Pressure Plate",
+	"block.verdant.verdant_heartwood_button": "Verdant Heartwood Button",
+	"block.verdant.verdant_heartwood_hanging_sign": "Verdant Heartwood Hanging Sign",
+	"block.verdant.verdant_heartwood_sign": "Verdant Heartwood Sign",
+	
 	"block.verdant.rotten_wood": "Rotten Wood",
+	
+	"block.verdant.bleeding_heart": "Bleeding Heart Flower",
+	"block.verdant.potted_bleeding_heart": "Potted Bleeding Heart Flower",
 	
 	
 	"entity.verdant.verdant_boat": "Verdant Boat",
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
+	"entity.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
+	"entity.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
 	
-	
+	"effect.verdant.food_poisoning": "Food Poisoning",
 	
 	"creativetab.verdant_items": "Verdant Items",
 	"creativetab.verdant_blocks": "Verdant Blocks",

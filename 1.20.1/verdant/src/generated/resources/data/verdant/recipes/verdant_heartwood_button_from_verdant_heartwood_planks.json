@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "verdant:verdant_heartwood_planks"
+    }
+  ],
+  "result": {
+    "item": "verdant:verdant_heartwood_button"
+  }
+}

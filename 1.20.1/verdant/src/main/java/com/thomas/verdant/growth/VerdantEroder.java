@@ -107,6 +107,22 @@ public class VerdantEroder {
 		register(Blocks.MUD_BRICK_WALL, Blocks.COARSE_DIRT);
 		// Terracotta, if wet.
 		ifWet(Blocks.TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.RED_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.ORANGE_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.YELLOW_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.LIME_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.GREEN_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.CYAN_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.BLUE_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.PURPLE_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.MAGENTA_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.BROWN_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.BLACK_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.GRAY_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.WHITE_TERRACOTTA, Blocks.CLAY);
+		ifWet(Blocks.PINK_TERRACOTTA, Blocks.CLAY);
 		
 		System.out.println("Registered erosions:");
 		for (Entry<Block, Block> entry : NEXT.entrySet()) {

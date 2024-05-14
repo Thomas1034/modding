@@ -33,9 +33,8 @@ public class ModChestBoatEntity extends ChestBoat {
 	@Override
 	public Item getDropItem() {
 		switch (getModVariant()) {
-		case VERDANT -> {
-			return ModItems.VERDANT_BOAT.get();
-		}
+		case VERDANT -> ModItems.VERDANT_BOAT.get();
+		case VERDANT_HEARTWOOD -> ModItems.VERDANT_HEARTWOOD_BOAT.get();
 		}
 		return super.getDropItem();
 	}

@@ -1,6 +1,8 @@
 package com.thomas.verdant.growth;
 
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.VerdantVineBlock;
+import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,9 +26,12 @@ public interface VerdantGrower {
 	abstract void grow(BlockState state, Level level, BlockPos pos);
 
 	default void erode(Level level, BlockPos pos, boolean isNearWater) {
-
+		// System.out.println("Eroding to " +
+		// VerdantEroder.getNext(level.getBlockState(pos)) + ".");
 		level.setBlockAndUpdate(pos, VerdantEroder.getNext(level.getBlockState(pos)));
 		if (isNearWater) {
+			// System.out.println("Eroding to " +
+			// VerdantEroder.getNextIfWet(level.getBlockState(pos)) + ".");
 			level.setBlockAndUpdate(pos, VerdantEroder.getNextIfWet(level.getBlockState(pos)));
 		}
 		// Chance to recurse.
@@ -56,51 +61,113 @@ public interface VerdantGrower {
 		}
 	}
 
+	public static void replaceLeavesWithVine(Level level, BlockPos pos) {
+
+		// Store the previous block there.
+		BlockState replaced = level.getBlockState(pos);
+		if (replaced.is(ModBlocks.VERDANT_LEAVES.get()) && VerdantVineBlock.canGrowToAnyFace(level, pos)) {
+			// //System.out.println("Converting to leafy vines.");
+			// Grow to leafy vines.
+			// Place the vine block there.
+			BlockState placed = ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState();
+
+			// Find every direction it can grow there.
+			for (Direction d : Direction.values()) {
+				if (VerdantVineBlock.canGrowToFace(level, pos, d)) {
+					placed = placed.setValue(VerdantVineBlock.SIDES.get(d), 1);
+				}
+			}
+			// Waterlog if possible
+			if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
+				if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+					placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
+				}
+			}
+			// Update the block.
+			// level.destroyBlock(pos, false);
+			// System.out.println("Replacing leaves with " + placed + ".");
+			level.setBlockAndUpdate(pos, placed);
+		}
+	}
+	
+	
+	public static void replaceLeafyVineWithVine(Level level, BlockPos pos) {
+		// Store the previous block there.
+		BlockState replaced = level.getBlockState(pos);
+		if (replaced.is(ModBlocks.LEAFY_VERDANT_VINE.get()) && VerdantVineBlock.canGrowToAnyFace(level, pos)) {
+			// //System.out.println("Converting to leafless vine.");
+			// Grow to leafy vines.
+			// Place the vine block there.
+			BlockState placed = ModBlocks.VERDANT_VINE.get().defaultBlockState();
+
+			// Find every direction it can grow there.
+			for (Direction d : Direction.values()) {
+				if (VerdantVineBlock.canGrowToFace(level, pos, d)) {
+					placed = placed.setValue(VerdantVineBlock.SIDES.get(d), 1);
+				}
+			}
+			// Waterlog if possible
+			if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
+				if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+					placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
+				}
+			}
+			// Update the block.
+			// level.destroyBlock(pos, false);
+			// System.out.println("Replacing leafy vines with " + placed + ".");
+			level.setBlockAndUpdate(pos, placed);
+		}
+	}
+
+	// Returns true if it succeeded in converting the leaves.
 	public static boolean convertLeaves(Level level, BlockPos pos) {
-		// System.out.println("Attempting to convert leaves at " + pos + ".");
-		BlockState atPos = level.getBlockState(pos);
+		// //System.out.println("Attempting to convert leaves at " + pos + ".");
 		BlockState replaced = level.getBlockState(pos);
 		BlockState placed = ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
+
+		// If the target is already leaves, don't do anything.
+		if (replaced.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS)) {
+			return false;
+		}
 
 		// Waterlog if possible
 		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
 			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
-				// System.out.println("Waterlogging.");
+				// //System.out.println("Waterlogging.");
 				placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
 			}
 		}
 		// Update distance if possible
 		if (replaced.hasProperty(LeavesBlock.DISTANCE)) {
-			// System.out.println("Setting distance.");
+			// //System.out.println("Setting distance.");
 			placed = placed.setValue(LeavesBlock.DISTANCE, replaced.getValue(LeavesBlock.DISTANCE));
-
 		}
 
-		if (atPos.is(BlockTags.LEAVES)) {
-			// System.out.println("Converting.");
-			level.addDestroyBlockEffect(pos, atPos);
+		if (replaced.is(BlockTags.LEAVES)) {
+			// System.out.println("Converting to " + placed + ".");
+			level.addDestroyBlockEffect(pos, replaced);
 			level.setBlockAndUpdate(pos, placed);
 			return true;
 		}
-		// System.out.println("Failed to convert.");
+		// //System.out.println("Failed to convert.");
 		return false;
 	}
 
 	// Converts a block to a verdant form if possible.
 	// If not, returns false.
 	public static boolean convertGround(Level level, BlockPos pos, boolean isNearWater) {
-		// System.out.println("Attempting to convert " + pos);
+		// //System.out.println("Attempting to convert " + pos);
 		BlockState atPos = level.getBlockState(pos);
 
 		if (VerdantRootGrower.isRootable(atPos)) {
 			BlockState rooted = VerdantRootGrower.getRooted(atPos);
 			if (VerdantGrower.canBeGrass(atPos, level, pos) && VerdantGrassGrower.isGrassable(rooted)) {
-				// System.out.println("Placing grass.");
+				// System.out.println("Placing grass: " + rooted);
 				level.setBlockAndUpdate(pos, rooted);
 
 			} else {
 				// Check for surrounding rooted blocks.
-				// System.out.println("Attempting to place roots.");
+				// //System.out.println("Attempting to place roots.");
 				int rootCount = 0;
 				for (int i = -1; i <= 1; i++) {
 					for (int j = -1; j <= 1; j++) {
@@ -112,15 +179,16 @@ public interface VerdantGrower {
 					}
 				}
 				// Maximum of 3 blocks.
-				// System.out.println("Root count is " + rootCount);
+				// //System.out.println("Root count is " + rootCount);
 				if (rootCount <= 3) {
+					// System.out.println("Placing roots: " + rooted);
 					level.setBlockAndUpdate(pos, rooted);
 					level.scheduleTick(pos, rooted.getBlock(), 1);
 				}
 
 			}
 		} else {
-			// System.out.println(atPos + " is not a valid place to grow.");
+			// //System.out.println(atPos + " is not a valid place to grow.");
 		}
 
 		return false;

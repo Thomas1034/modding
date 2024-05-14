@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:item/verdant_heartwood_chest_boat"
+  }
+}

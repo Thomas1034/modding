@@ -10,4 +10,8 @@ public class ModModelLayers {
 			new ResourceLocation(Verdant.MOD_ID, "boat/verdant"), "main");
 	public static final ModelLayerLocation VERDANT_CHEST_BOAT_LAYER = new ModelLayerLocation(
 			new ResourceLocation(Verdant.MOD_ID, "chest_boat/verdant"), "main");
+	public static final ModelLayerLocation VERDANT_HEARTWOOD_BOAT_LAYER = new ModelLayerLocation(
+			new ResourceLocation(Verdant.MOD_ID, "boat/verdant_heartwood"), "main");
+	public static final ModelLayerLocation VERDANT_HEARTWOOD_CHEST_BOAT_LAYER = new ModelLayerLocation(
+			new ResourceLocation(Verdant.MOD_ID, "chest_boat/verdant_heartwood"), "main");
 }

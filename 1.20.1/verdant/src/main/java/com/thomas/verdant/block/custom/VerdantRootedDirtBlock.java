@@ -8,13 +8,13 @@ import javax.annotation.Nullable;
 import com.thomas.verdant.growth.VerdantGrassGrower;
 import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.growth.VerdantHydratable;
+import com.thomas.verdant.growth.VerdantFeaturePlacer;
 import com.thomas.verdant.util.FallingBlockHelper;
 import com.thomas.verdant.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -215,8 +215,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 
 	// Very important!
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
-		p_54447_.add(WATER_DISTANCE);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(WATER_DISTANCE);
 	}
 
 	@Override
@@ -228,16 +228,25 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
 			BlockPos posToTry = VerdantGrower.withinDist(pos, 3, level.random);
-			// If it converted successfully, break.
+			// Ensure that this state is still hydratable.
+			if (!state.hasProperty(WATER_DISTANCE)) {
+				continue;
+			}
+			// Try to convert the nearby block.
 			if (VerdantGrower.convertGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
 				// System.out.println("Successfully grew.");
 				// break;
-			} else {
+			} 
+			// If that fails, try to erode that block.
+			else {
 				// Otherwise, try to erode it.
 				// System.out.println("Failed to grow; eroding.");
 				this.erode(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
 			}
 		}
+		
+		// Try to grow vegetation.
+		VerdantFeaturePlacer.place(level, pos);
 	}
 
 }

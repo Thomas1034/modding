@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:verdant_fence_from_verdant_planks_stick"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_verdant_fence": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_fence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_verdant_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_verdant_planks",
+      "has_stick",
+      "has_verdant_fence",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:verdant_fence_from_verdant_planks_stick"
+    ]
+  },
+  "sends_telemetry_event": false
+}

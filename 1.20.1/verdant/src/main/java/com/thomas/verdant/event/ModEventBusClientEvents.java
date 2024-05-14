@@ -21,6 +21,8 @@ public class ModEventBusClientEvents {
 		
 		event.registerLayerDefinition(ModModelLayers.VERDANT_BOAT_LAYER, BoatModel::createBodyModel);
 		event.registerLayerDefinition(ModModelLayers.VERDANT_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
+		event.registerLayerDefinition(ModModelLayers.VERDANT_HEARTWOOD_BOAT_LAYER, BoatModel::createBodyModel);
+		event.registerLayerDefinition(ModModelLayers.VERDANT_HEARTWOOD_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
 
 	}
 

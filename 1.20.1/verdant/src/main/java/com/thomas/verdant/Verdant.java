@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.entity.ModBlockEntities;
+import com.thomas.verdant.effect.FoodPoisoningEffect;
 import com.thomas.verdant.effect.ModEffects;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
@@ -13,6 +14,7 @@ import com.thomas.verdant.growth.VerdantEroder;
 import com.thomas.verdant.growth.VerdantGrassGrower;
 import com.thomas.verdant.growth.VerdantHydratable;
 import com.thomas.verdant.growth.VerdantRootGrower;
+import com.thomas.verdant.growth.VerdantFeaturePlacer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.network.ModPacketHandler;
@@ -23,6 +25,8 @@ import com.thomas.verdant.worldgen.tree.ModTrunkPlacerTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -34,7 +38,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
-
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -76,12 +79,21 @@ public class Verdant {
 	private void commonSetup(final FMLCommonSetupEvent event) {
 		// Some common setup code
 		LOGGER.info("HELLO FROM COMMON SETUP");
+		// Add the right click to add to flowerpot event.
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLEEDING_HEART.getId(),
+				ModBlocks.POTTED_BLEEDING_HEART);
+		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
+		//		ModBlocks.POTTED_BLEEDING_HEART);
+		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(), ModBlocks.POTTED_PALM_SAPLING);
+		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(), ModBlocks.POTTED_WHITE_ORCHID);
 
 		// Register verdant growth mechanics on setup.
 		VerdantEroder.registerErosions();
 		VerdantHydratable.registerHydratables();
 		VerdantGrassGrower.registerGrasses();
 		VerdantRootGrower.registerRoots();
+		FoodPoisoningEffect.registerEffects();
+		VerdantFeaturePlacer.registerFeatures();
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call

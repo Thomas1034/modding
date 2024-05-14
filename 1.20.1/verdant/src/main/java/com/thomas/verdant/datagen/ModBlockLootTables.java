@@ -39,6 +39,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
 		requireSilkTouch(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), Blocks.CLAY);
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+		this.dropOther(ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.VERDANT_TENDRIL.get());
+		this.dropSelf(ModBlocks.VERDANT_TENDRIL.get());
 		this.dropSelf(ModBlocks.VERDANT_BUTTON.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE.get());
 		this.dropSelf(ModBlocks.VERDANT_FENCE_GATE.get());
@@ -58,6 +60,27 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
 		this.add(ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
 				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_BUTTON.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_FENCE.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_LOG.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
+		this.dropSelf(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
+		this.dropSelf(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_STAIRS.get());
+		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get());
+		this.add(ModBlocks.VERDANT_HEARTWOOD_SLAB.get(), block -> createSlabItemTable(ModBlocks.VERDANT_HEARTWOOD_SLAB.get()));
+		this.add(ModBlocks.VERDANT_HEARTWOOD_DOOR.get(), block -> createDoorTable(ModBlocks.VERDANT_HEARTWOOD_DOOR.get()));
+		this.add(ModBlocks.VERDANT_HEARTWOOD_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_SIGN.get()));
+		this.add(ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_SIGN.get()));
+		this.add(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
+				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get()));
+		this.add(ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(),
+				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get()));
+		this.dropSelf(ModBlocks.BLEEDING_HEART.get());
+		this.add(ModBlocks.POTTED_BLEEDING_HEART.get(), createPotFlowerItemTable(ModBlocks.BLEEDING_HEART.get()));
 
 	}
 

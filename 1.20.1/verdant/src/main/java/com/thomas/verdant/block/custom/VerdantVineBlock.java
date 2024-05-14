@@ -17,20 +17,24 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -38,7 +42,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWaterloggedBlock {
 
 	private static final Supplier<BlockState> VERDANT_LOG = () -> ModBlocks.VERDANT_WOOD.get().defaultBlockState();
-	private static final Supplier<BlockState> VERDANT_HEARTWOOD = () -> Blocks.EMERALD_ORE.defaultBlockState();
+	private static final Supplier<BlockState> VERDANT_HEARTWOOD = () -> ModBlocks.VERDANT_HEARTWOOD_LOG.get()
+			.defaultBlockState();
 	private static final Supplier<BlockState> ROTTEN_WOOD = () -> ModBlocks.ROTTEN_WOOD.get().defaultBlockState();
 
 	public static final int MIN_GROWTH = 0;
@@ -104,7 +109,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
 		return Shapes.empty();
 	}
-	
+
 	public static boolean canGrowToAnyFace(Level level, BlockPos pos) {
 		for (Direction d : Direction.values()) {
 			if (canGrowToFace(level, pos, d)) {
@@ -113,7 +118,20 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		}
 		return false;
 	}
-	
+
+	// Ensure that it is actually removed when the player right clicks on it and
+	// it's empty.
+	@Override
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+			BlockHitResult hitResult) {
+
+		if (level instanceof ServerLevel serverLevel) {
+			this.tick(state, serverLevel, pos, level.random);
+		}
+
+		return InteractionResult.PASS;
+	}
+
 	public static boolean isValidGrowthSite(Level level, BlockPos pos) {
 		// System.out.println("Checking if the vine can grow to " + here);
 		// Get the block state at that position.
@@ -135,7 +153,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// System.out.println("It failed.");
 			return false;
 		}
-		
+
 		return canGrowToAnyFace(level, pos);
 	}
 
@@ -155,7 +173,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 					BlockState hereBlockState = level.getBlockState(here);
 					// System.out.println("The block state is " + hereBlockState);
 					// Check if it is replaceable.
-					if (hereBlockState.is(BlockTags.REPLACEABLE)) {
+					if (!hereBlockState.is(ModTags.Blocks.VERDANT_VINES)
+							&& (hereBlockState.is(BlockTags.REPLACEABLE) || hereBlockState.is(BlockTags.LEAVES))) {
 						// System.out.println("It passed.");
 					} else {
 						// System.out.println("It failed.");
@@ -184,7 +203,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	}
 
 	// Spreads the vine to a nearby block.
-	private void spread(Level level, BlockPos pos) {
+	public static void spread(Level level, BlockPos pos) {
 		// System.out.println("Spreading to nearby blocks.");
 
 		ArrayList<BlockPos> validSites = getGrowthSites(level, pos, 1);
@@ -195,14 +214,19 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// Pick a random location from the list.
 			BlockPos site = validSites.get(level.random.nextInt(validSites.size()));
 
-			// Place the vine block there.
-			BlockState placed = ModBlocks.VERDANT_VINE.get().defaultBlockState();
 			// Store the previous block there.
 			BlockState replaced = level.getBlockState(site);
+			// Place the vine block there. Leafy if it is replacing leaves.
+			BlockState placed = replaced.is(BlockTags.LEAVES) ? ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState()
+					: ModBlocks.VERDANT_VINE.get().defaultBlockState();
 
 			// Find every direction it can grow there.
-			for (Direction d : Direction.values()) {
-				if (canGrowToFace(level, site, d)) {
+			boolean hasGrownAFace = false;
+			for (Direction d : Direction.allShuffled(level.random)) {
+				// 50% chance of growing each face after the first.
+				// This should look more natural.
+				if (canGrowToFace(level, site, d) && (hasGrownAFace || level.random.nextFloat() < 0.5f)) {
+					hasGrownAFace = true;
 					placed = placed.setValue(SIDES.get(d), 1);
 				}
 			}
@@ -214,7 +238,9 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			}
 
 			// Update the block.
-			level.destroyBlock(site, true);
+			// level.destroyBlock(site, false);
+			// System.out.println("Spreading to " + site + ", placing the block " + placed +
+			// ".");
 			level.setBlockAndUpdate(site, placed);
 			// System.out.println("Placed vine at " + site);
 		}
@@ -222,6 +248,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 	// Grows the current block if possible.
 	// Returns true if it has grown to the maximum for the current environment.
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private boolean growInPlace(Level level, BlockPos pos) {
 
 		BlockState state = level.getBlockState(pos);
@@ -246,15 +273,28 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 			}
 		}
+		// Convert to leaves if it has sky access.
+		if (level.canSeeSky(pos)) {
+			// Base leaf state.
+			BlockState leafState = ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState();
+			// Copy all properties.
+			for (Property property : state.getProperties()) {
+				leafState.setValue(property, state.getValue(property));
+			}
+			state = leafState;
+		}
 		if (!isMature) {
 			level.addDestroyBlockEffect(pos, state);
+			// System.out.println("Maturing vine to " + state + ".");
+			// level.setBlockAndUpdate(pos, Blocks.AIR);
 			level.setBlockAndUpdate(pos, state);
 		}
+
 		return isMature;
 	}
 
 	// Returns true if a block has mature verdant log neighbors.
-	private boolean hasMatureVerdantLogNeighbors(Level level, BlockPos pos) {
+	private static boolean hasMatureVerdantLogNeighbors(Level level, BlockPos pos) {
 
 		// If it has neighbors both above and below, then return false. It can still
 		// grow to connect the two.
@@ -279,6 +319,20 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		return false;
 	}
 
+	// Returns true if a block has any log neighbors.
+	private static boolean hasLogNeighbors(Level level, BlockPos pos) {
+
+		for (Direction d : Direction.values()) {
+			BlockState state = level.getBlockState(pos.relative(d));
+			if (state.is(BlockTags.LOGS) || state.is(ModTags.Blocks.MATURE_VERDANT_LOGS)
+					|| state.is(ModTags.Blocks.VERDANT_LOGS) || state.is(ModBlocks.ROTTEN_WOOD.get())) {
+				return true;
+			}
+		}
+		// System.out.println("Did not find any logs.");
+		return false;
+	}
+
 	// Tries to consume the neighboring log.
 	// Returns true if it succeeds.
 	private boolean tryConsumeLog(Level level, BlockPos pos) {
@@ -286,6 +340,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		// System.out.println("Attempting to consume a log.");
 
 		BlockState host = level.getBlockState(pos);
+		boolean shouldDecayToAir = false;
 
 		// First, check if the host is a log.
 		if (!host.is(BlockTags.LOGS_THAT_BURN)) {
@@ -294,8 +349,13 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 		// Then, check if this log is a verdant log and has a mature neighbor.
 		// If so, return early.
-		if (host.is(ModTags.Blocks.VERDANT_LOGS) && this.hasMatureVerdantLogNeighbors(level, pos)) {
+		if (host.is(ModTags.Blocks.VERDANT_LOGS) && hasMatureVerdantLogNeighbors(level, pos)) {
 			return false;
+		}
+
+		// Check if this log has neighboring logs or decayed wood.
+		if (!hasLogNeighbors(level, pos)) {
+			shouldDecayToAir = true;
 		}
 
 		boolean canConsume = true;
@@ -309,7 +369,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 			// If the side is a fully grown vine, it's good to proceed after growing it to a
 			// log.
-			if (neighbor.is(ModBlocks.VERDANT_VINE.get())) {
+			if (neighbor.is(ModTags.Blocks.VERDANT_VINES)) {
 
 				// If the vines are mature, keep checking.
 				if (neighbor.getValue(SIDES.get(d.getOpposite())) == MAX_GROWTH) {
@@ -323,6 +383,10 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 					canConsume = false;
 					break;
 				}
+			} else if (neighbor.is(BlockTags.LEAVES)) {
+				// System.out.println("This side is blocked by leaves. NOT good to proceed.");
+				canConsume = false;
+				break;
 			} else if (!neighbor.is(BlockTags.REPLACEABLE)) {
 				// System.out.println("This side is blocked by another block. Good to
 				// proceed.");
@@ -337,7 +401,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			}
 		}
 		// If it can consume the log, does so.
-		if (canConsume) {
+		if (canConsume && !shouldDecayToAir) {
 			// System.out.println("Consuming the log.");
 			// Grow all the neighboring vines.
 			// System.out.println("There are " + positionsToGrow.size() + " vines to
@@ -352,12 +416,22 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// Save the host state.
 			// If the host is verdant, mature it.
 			if (host.is(ModTags.Blocks.VERDANT_LOGS)) {
+				// System.out.println("Maturing host at " + pos + ".");
 				level.setBlockAndUpdate(pos, VERDANT_HEARTWOOD.get());
 			}
 			// Otherwise destroy it.
 			else {
+				// System.out.println("Destroying host at " + pos + ".");
 				level.setBlockAndUpdate(pos, ROTTEN_WOOD.get());
 			}
+		} else if (shouldDecayToAir) {
+			for (BlockPos toGrow : positionsToGrow) {
+				// System.out.println("Growing a log at " + toGrow + ".");
+				level.destroyBlock(toGrow, false);
+			}
+
+			// Add particle and sound effect.
+			level.destroyBlock(pos, false);
 		}
 
 		return canConsume;
@@ -368,7 +442,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		// System.out.println("Attempting to grow.");
 
 		// Spread to nearby blocks.
-		this.spread(level, pos);
+		spread(level, pos);
 
 		// Attempt to grow.
 		boolean isMature = this.growInPlace(level, pos);
@@ -386,6 +460,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	}
 
 	// From SugarCaneBlock
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState p_57179_, Direction p_57180_, BlockState p_57181_, LevelAccessor level,
 			BlockPos pos, BlockPos p_57184_) {
@@ -403,6 +478,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 		// Check if any faces exist.
 		boolean anyFacesExist = false;
+		boolean needToUpdate = false;
 		// Check each direction to see if it can survive, and update accordingly.
 		for (Entry<Direction, IntegerProperty> side : SIDES.entrySet()) {
 			// Offset to find the neighbor's position.
@@ -417,6 +493,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 					state = state.setValue(side.getValue(), 0);
 
 					level.addDestroyBlockEffect(pos, state);
+					needToUpdate = true;
 
 				} else {
 					// A face has been found.
@@ -426,16 +503,20 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		}
 		// If all the faces are empty, destroy the block.
 		if (!anyFacesExist) {
+			// System.out.println("All faces are empty, destroying block: " + state + ".");
 			// Second parameter is whether it drops resources.
 			level.destroyBlock(pos, false);
-		} else {
+		} else if (needToUpdate) {
+			// System.out.println("Setting vine growth to " + state + ".");
 			level.setBlockAndUpdate(pos, state);
 		}
-
 	}
 
 	public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
-		return level.getBlockState(pos.relative(direction)).is(BlockTags.LOGS_THAT_BURN);
+		BlockState state = level.getBlockState(pos.relative(direction));
+		boolean isSturdy = level.getBlockState(pos.relative(direction)).isFaceSturdy(level, pos,
+				direction.getOpposite());
+		return state.is(BlockTags.LOGS) && isSturdy;
 	}
 
 	@Override
@@ -446,6 +527,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		if (rand.nextFloat() < this.growthChance()) {
 			// //System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
+			VerdantLeavesBlock.growLeaves(level, pos);
 		}
 	}
 
@@ -474,6 +556,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		return 1.0f;
 	}
 
+	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState p_152045_) {
 		return p_152045_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152045_);
 	}
@@ -481,5 +564,21 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(WATERLOGGED, UP, DOWN, NORTH, SOUTH, EAST, WEST);
+	}
+
+	// Fire!
+	@Override
+	public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+		return true;
+	}
+
+	@Override
+	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+		return 15;
+	}
+
+	@Override
+	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+		return 30;
 	}
 }
