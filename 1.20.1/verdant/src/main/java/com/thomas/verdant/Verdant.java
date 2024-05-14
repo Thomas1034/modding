@@ -39,6 +39,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
 
+// Cache shapes for the Verdant Vine? Look at how VineBlock does it.
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
 public class Verdant {
