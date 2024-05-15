@@ -2,6 +2,7 @@ package com.thomas.verdant.growth;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -25,59 +26,127 @@ import net.minecraft.world.level.material.Fluids;
 
 public class VerdantFeaturePlacer {
 
-	private static final HashSet<WeightedFeatureHolder> FEATURES = new HashSet<>();
+	// Surface features will only check for placement if the block above their
+	// position is air.
+	private static final HashSet<WeightedFeatureHolder> SURFACE_FEATURES = new HashSet<>();
+	// Hanging features will only check for placement if the block below their
+	// position is air.
+	private static final HashSet<WeightedFeatureHolder> HANGING_FEATURES = new HashSet<>();
+	// Water features will only check for placement if the block above their
+	// position is water.
+	private static final HashSet<WeightedFeatureHolder> WATER_FEATURES = new HashSet<>();
+	// Generic features always check for placement
+	private static final HashSet<WeightedFeatureHolder> GENERIC_FEATURES = new HashSet<>();
 
-	// Registers a feature to the list, with a given weight.
-	public static void register(Feature plant, int weight) {
-		FEATURES.add(new WeightedFeatureHolder(plant, weight));
+	// Registers a feature to the list of generic features, with a given weight.
+	public static void register(Feature feature, int weight) {
+		GENERIC_FEATURES.add(new WeightedFeatureHolder(feature, weight));
 	}
 
-	// Registers all the features for this class.
-	public static void registerFeatures() {
-		register(Feature.verdantVine((VerdantVineBlock) ModBlocks.VERDANT_VINE.get()), Rarity.SPECIAL_CASE_COMMON);
-		register(Feature.verdantVine((VerdantVineBlock) ModBlocks.LEAFY_VERDANT_VINE.get()),
-				Rarity.SPECIAL_CASE_UNCOMMON);
-		register(Feature.smallPlant(Blocks.FERN), Rarity.VERY_COMMON);
-		register(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON);
-		register(Feature.smallUnderwaterPlant(Blocks.SEAGRASS), Rarity.COMMON);
-		register(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON);
-		register(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON);
-		register(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON);
-		register(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.TALL_SEAGRASS), Rarity.UNCOMMON);
-		register(Feature.hanging(ModBlocks.STINKING_BLOSSOM.get().defaultBlockState()
-				.setValue(StinkingBlossomBlock.VERTICAL_DIRECTION, Direction.DOWN), 0), Rarity.UNCOMMON);
-		register(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.SMALL_DRIPLEAF), Rarity.UNCOMMON);
-		register(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON);
-		register(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON);
-		register(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.EXTREMELY_UNCOMMON);
-		register(Feature.hanging(Blocks.CAVE_VINES, 1), Rarity.EXTREMELY_UNCOMMON);
-		register(
+	// Registers a feature to the list of surface features, with a given weight.
+	public static void registerSurfaceFeature(Feature feature, int weight) {
+		SURFACE_FEATURES.add(new WeightedFeatureHolder(feature, weight));
+	}
+
+	// Registers a feature to the list of hanging features, with a given weight.
+	public static void registerHangingFeature(Feature feature, int weight) {
+		HANGING_FEATURES.add(new WeightedFeatureHolder(feature, weight));
+	}
+
+	// Registers a feature to the list of water features, with a given weight.
+	public static void registerWaterFeature(Feature feature, int weight) {
+		WATER_FEATURES.add(new WeightedFeatureHolder(feature, weight));
+	}
+
+	// Registers all surface features.
+	private static void registerSurfaceFeatures() {
+		registerSurfaceFeature(Feature.smallPlant(Blocks.FERN), Rarity.VERY_COMMON);
+		registerSurfaceFeature(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON);
+		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON);
+		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON);
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON);
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.EXTREMELY_UNCOMMON);
+		registerSurfaceFeature(
 				Feature.simple(
 						(level, pos) -> level.setBlockAndUpdate(pos,
 								Blocks.GLOW_LICHEN.defaultBlockState()
 										.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true))),
 				Rarity.EXTREMELY_UNCOMMON);
-		register(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE);
-		register(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE);
-		register(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE);
-		register(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.EXTREMELY_RARE);
-		register(Feature.hanging(Blocks.SPORE_BLOSSOM, 1), Rarity.EXTREMELY_RARE);
+		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE);
+		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE);
+		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE);
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.EXTREMELY_RARE);
+	}
 
-		System.out.println("Registered " + FEATURES.size() + " vegetation placers.");
+	// Registers all hanging features.
+	private static void registerHangingFeatures() {
+		registerHangingFeature(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON);
+		registerHangingFeature(Feature.hanging(ModBlocks.VERDANT_TENDRIL.get(), 1), Rarity.UNCOMMON);
+		registerHangingFeature(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON);
+		registerHangingFeature(Feature.hanging(Blocks.CAVE_VINES, 1), Rarity.EXTREMELY_UNCOMMON);
+		registerHangingFeature(Feature.hanging(ModBlocks.STINKING_BLOSSOM.get().defaultBlockState()
+				.setValue(StinkingBlossomBlock.VERTICAL_DIRECTION, Direction.DOWN), 1), Rarity.RARE);
+		registerHangingFeature(Feature.hanging(Blocks.SPORE_BLOSSOM, 1), Rarity.EXTREMELY_RARE);
+		System.out.println("Registered " + HANGING_FEATURES.size() + " hanging features.");
+	}
+
+	// Registers all water features.
+	private static void registerWaterFeatures() {
+		registerWaterFeature(Feature.smallUnderwaterPlant(Blocks.SEAGRASS), Rarity.COMMON);
+		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.TALL_SEAGRASS), Rarity.UNCOMMON);
+		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.SMALL_DRIPLEAF), Rarity.UNCOMMON);
+	}
+
+	// Registers all generic features.
+	private static void registerGenericFeatures() {
+		register(Feature.verdantVine((VerdantVineBlock) ModBlocks.VERDANT_VINE.get()), Rarity.SPECIAL_CASE_COMMON);
+		register(Feature.verdantVine((VerdantVineBlock) ModBlocks.LEAFY_VERDANT_VINE.get()),
+				Rarity.SPECIAL_CASE_UNCOMMON);
+	}
+
+	// Registers all the features for this class.
+	public static void registerFeatures() {
+		// Surface features
+		registerSurfaceFeatures();
+		// Hanging features
+		registerHangingFeatures();
+		// Water features
+		registerWaterFeatures();
+		// Generic features
+		registerGenericFeatures();
 	}
 
 	// Places a random feature at the given position.
 	public static void place(Level level, BlockPos pos) {
 
+		List<HashSet<WeightedFeatureHolder>> options = new ArrayList<>();
+		options.add(GENERIC_FEATURES);
+
+		// First, check the conditions for the different types of features.
+		if (level.isStateAtPosition(pos.above(), BlockState::isAir)) {
+			options.add(SURFACE_FEATURES);
+		}
+		if (level.isStateAtPosition(pos.above(), (state) -> state.getFluidState().is(Fluids.WATER))) {
+			options.add(WATER_FEATURES);
+		}
+		if (level.isStateAtPosition(pos.below(), BlockState::isAir)) {
+			options.add(HANGING_FEATURES);
+		}
+
 		// Get a random effect holder.
 		WeightedFeatureHolder holder = null;
-		int totalWeight = FEATURES.stream().mapToInt((el) -> el.weight()).reduce((a, b) -> a + b).orElseGet(() -> 1);
+		int totalWeight = options.stream().mapToInt(
+				(set) -> set.stream().mapToInt((feat) -> feat.weight()).reduce((a, b) -> a + b).orElseGet(() -> 1))
+				.reduce((a, b) -> a + b).orElseGet(() -> 1);
 		int r = level.getRandom().nextInt(totalWeight);
-		for (WeightedFeatureHolder el : FEATURES) {
-			r -= el.weight();
-			if (r <= 0) {
-				holder = el;
-				break;
+		for (HashSet<WeightedFeatureHolder> set : options) {
+
+			for (WeightedFeatureHolder el : set) {
+				if (r <= el.weight()) {
+					holder = el;
+					break;
+				}
+				r -= el.weight();
 			}
 		}
 
@@ -271,12 +340,12 @@ public class VerdantFeaturePlacer {
 			return (level, pos) -> {
 				// Center on the block below the given block.
 				pos = pos.below();
-				
+
 				// Check that position, guaranteed.
 				if (isInvalid.test(level.getBlockState(pos))) {
 					return false;
 				}
-				
+
 				// Iterate over the given area.
 				for (int i = -radius; i <= radius; i++) {
 					for (int k = -radius; k <= radius; k++) {
