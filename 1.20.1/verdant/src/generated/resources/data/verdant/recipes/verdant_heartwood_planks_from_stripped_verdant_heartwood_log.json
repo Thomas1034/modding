@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "verdant:stripped_verdant_heartwood_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "verdant:verdant_heartwood_planks"
+  }
+}

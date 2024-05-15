@@ -11,6 +11,12 @@ import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
 import com.thomas.verdant.block.custom.ModWallHangingSignBlock;
 import com.thomas.verdant.block.custom.ModWallSignBlock;
+import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
+import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
+import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
+import com.thomas.verdant.block.custom.StinkingBlossomBlock;
+import com.thomas.verdant.block.custom.ThornBushBlock;
+import com.thomas.verdant.block.custom.ThornyVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.VerdantLeafyVineBlock;
 import com.thomas.verdant.block.custom.VerdantLeavesBlock;
 import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
@@ -35,11 +41,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RedStoneOreBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
@@ -50,9 +58,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-// Next up: thornbush
-
 
 public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
@@ -141,9 +146,21 @@ public class ModBlocks {
 	public static final RegistryObject<Block> VERDANT_TENDRIL_PLANT = registerBlockOnly("verdant_tendril_plant",
 			() -> new VerdantTendrilPlantBlock(BlockBehaviour.Properties.copy(Blocks.KELP_PLANT)));
 
+	// Poison ivy
+	public static final RegistryObject<Block> POISON_IVY = registerBlockWithItem("poison_ivy",
+			() -> new PoisonVerdantTendrilBlock(BlockBehaviour.Properties.copy(Blocks.KELP)));
+	public static final RegistryObject<Block> POISON_IVY_PLANT = registerBlockOnly("poison_ivy_plant",
+			() -> new PoisonVerdantTendrilPlantBlock(BlockBehaviour.Properties.copy(Blocks.KELP_PLANT)));
+
 	// Verdant logs
 	public static final RegistryObject<Block> VERDANT_LEAVES = registerBlockWithItem("verdant_leaves",
 			() -> new VerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
+
+	public static final RegistryObject<Block> THORNY_VERDANT_LEAVES = registerBlockWithItem("thorny_verdant_leaves",
+			() -> new ThornyVerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
+
+	public static final RegistryObject<Block> POISON_IVY_VERDANT_LEAVES = registerBlockWithItem("poison_ivy_verdant_leaves",
+			() -> new PoisonVerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_LOG = registerFuelBlockWithItem("verdant_log",
 			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), BurnTimes.LOG);
@@ -529,6 +546,35 @@ public class ModBlocks {
 	public static final RegistryObject<Block> POTTED_BLEEDING_HEART = registerBlockOnly("potted_bleeding_heart",
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.BLEEDING_HEART,
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
+	public static final RegistryObject<Block> STINKING_BLOSSOM = registerBlockWithItem("stinking_blossom",
+			() -> new StinkingBlossomBlock(BlockBehaviour.Properties.copy(Blocks.SPORE_BLOSSOM).noOcclusion()));
+
+	// Thorn bush
+	public static final RegistryObject<Block> THORN_BUSH = registerBlockWithItem("thorn_bush", () -> new ThornBushBlock(
+			BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().strength(0.5F)));
+
+	public static final RegistryObject<Block> POTTED_THORN_BUSH = registerBlockOnly("potted_thorn_bush",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.THORN_BUSH,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
+	// Dirt ores
+	public static final RegistryObject<Block> DIRT_COAL_ORE = registerBlockWithItem("dirt_coal_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_COPPER_ORE = registerBlockWithItem("dirt_copper_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_IRON_ORE = registerBlockWithItem("dirt_iron_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_GOLD_ORE = registerBlockWithItem("dirt_gold_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_REDSTONE_ORE = registerBlockWithItem("dirt_redstone_ore",
+			() -> new RedStoneOreBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_LAPIS_ORE = registerBlockWithItem("dirt_lapis_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_EMERALD_ORE = registerBlockWithItem("dirt_emerald_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+	public static final RegistryObject<Block> DIRT_DIAMOND_ORE = registerBlockWithItem("dirt_diamond_ore",
+			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {

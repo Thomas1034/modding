@@ -1,8 +1,8 @@
 package com.thomas.verdant.block.custom;
 
 import java.util.OptionalInt;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.growth.VerdantGrower;
@@ -29,17 +29,27 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public static final double GROWING_RADIUS = 4.4;
 	public static final int VERDANT_DECAY_DISTANCE = (int) (GROWING_RADIUS * 2);
 	public static final IntegerProperty VERDANT_DISTANCE = IntegerProperty.create("verdant_distance", 1,
 			VERDANT_DECAY_DISTANCE);
+	private static final VoxelShape SUPPORT_SHAPE = Shapes.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
 
-	public static final Supplier<BlockState> LEAVES = () -> ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
+	public static final Function<RandomSource, BlockState> LEAVES = (rand) -> (rand.nextFloat() < 0.1f)
+			? ModBlocks.THORNY_VERDANT_LEAVES.get().defaultBlockState()
+			: ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
 
 	public VerdantLeavesBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+		return SUPPORT_SHAPE;
 	}
 
 //	@Override
@@ -188,7 +198,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		// Check if within support distance.
 		int verdantDistance = state.getValue(VERDANT_DISTANCE);
 
-		if (verdantDistance >= DECAY_DISTANCE && verdantDistance < VERDANT_DECAY_DISTANCE) {
+		if (verdantDistance >= DECAY_DISTANCE - 1 && verdantDistance < VERDANT_DECAY_DISTANCE) {
 			// System.out.println("Checking for tendril growth conditions.");
 			// Check if the block below can be grown into.
 			if (!level.getBlockState(pos.below()).isAir()) {
@@ -198,15 +208,38 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 			// Check for nearby blocks
 			AABB boxToCheck = AABB.of(BoundingBox.fromCorners(pos.offset(-2, -3, -2), pos.offset(2, -2, 2)));
-			if (level.getBlockStatesIfLoaded(boxToCheck).anyMatch((stateToCheck) -> !(stateToCheck.isAir()))) {
+			if (level.getBlockStatesIfLoaded(boxToCheck)
+					.anyMatch((stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.is(ModTags.Blocks.VERDANT_VINES)
+							|| stateToCheck.is(ModTags.Blocks.VERDANT_LOGS)
+							|| stateToCheck.is(ModBlocks.POISON_IVY.get())
+							|| stateToCheck.is(ModBlocks.POISON_IVY_PLANT.get())))) {
 				// System.out.println("Returning, since blocks were found.");
 				return;
 			}
 
 			// Now set the block.
 			level.setBlockAndUpdate(pos.below(), ModBlocks.VERDANT_TENDRIL.get().defaultBlockState());
-		}
+		} else {
+			// Check if the block below can be grown into.
+			if (!level.getBlockState(pos.below()).isAir()) {
+				// System.out.println("Returning, since block below isn't air.");
+				return;
+			}
 
+			// Check for nearby blocks
+			AABB boxToCheck = AABB.of(BoundingBox.fromCorners(pos.offset(-1, -2, -1), pos.offset(1, -2, 1)));
+			if (level.getBlockStatesIfLoaded(boxToCheck)
+					.anyMatch((stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.is(ModTags.Blocks.VERDANT_VINES)
+							|| stateToCheck.is(ModTags.Blocks.VERDANT_LOGS)
+							|| stateToCheck.is(ModBlocks.VERDANT_TENDRIL.get())
+							|| stateToCheck.is(ModBlocks.VERDANT_TENDRIL_PLANT.get())))) {
+				// System.out.println("Returning, since blocks were found.");
+				return;
+			}
+
+			// Now set the block.
+			level.setBlockAndUpdate(pos.below(), ModBlocks.POISON_IVY.get().defaultBlockState());
+		}
 	}
 
 	// Attempts to place a verdant leaf block there.
@@ -271,7 +304,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			level.setBlockAndUpdate(pos, placed);
 			return true;
 		} else if (state.is(ModTags.Blocks.VERDANT_VINE_REPLACABLES)) {
-			BlockState placed = updateDistance(LEAVES.get(), level, pos);
+			BlockState placed = updateDistance(LEAVES.apply(level.random), level, pos);
 			level.setBlockAndUpdate(pos, placed);
 			return true;
 		}
@@ -386,9 +419,13 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			// if (hasTransparentOrPlantSpaceBeneath(level, pos.above(), minDistFromGround))
 			// {
 
+			// Ensure that this leaf has no more than two leaf blocks below it.
 			boolean hasNoMoreThanTwoBlocksBelow = getDistanceTillNonLeaf(level, pos, Direction.DOWN, 4) <= 2;
+			if (!hasNoMoreThanTwoBlocksBelow) {
+				return;
+			}
 
-			if (hasAirAbove(level, pos.above(), 4) && hasNoMoreThanTwoBlocksBelow) {
+			if (hasAirAbove(level, pos.above(), 4)) {
 				trySpreadLeafBlock(level, pos.above());
 			} // }
 
@@ -420,7 +457,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		return distance > distanceToCheck;
 
 	}
-	
+
 	private static boolean hasLogOrVineOrLeafBeneath(Level level, BlockPos pos, int distanceToCheck) {
 		// Check for nearby blocks
 
@@ -432,7 +469,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		return distance > distanceToCheck;
 
 	}
-	
+
 	private static boolean hasAirAbove(Level level, BlockPos pos, int distanceToCheck) {
 		// Check for nearby blocks
 
@@ -458,7 +495,8 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		return getDistanceTill(level, initial, direction, checker, max);
 	}
 
-	// Returns the number of blocks to move in that direction to find a non-leaf block.
+	// Returns the number of blocks to move in that direction to find a non-leaf
+	// block.
 	// Negative max values are ignored.
 	public static int getDistanceTillNonLeaf(Level level, BlockPos initial, Direction direction, int max) {
 		Predicate<BlockState> checker = (state) -> !state.is(BlockTags.LEAVES);
@@ -532,12 +570,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	@Override
 	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-		return 20;
+		return 40;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-		return 40;
+		return 20;
 	}
 
 }

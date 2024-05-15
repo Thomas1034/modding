@@ -35,12 +35,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> recipeWriter) {
 		// Verdant furniture
+		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_LOG.get());
+		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_LOG.get());
+		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_WOOD.get());
+		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_WOOD.get());
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_LOG.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_LOG.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_WOOD.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_WOOD.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_LOG.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_WOOD.get(), 3);
 		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_DOOR.get(), 3);
 		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_TRAPDOOR.get(), 2);
 		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_STAIRS.get(), 4);
+		shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_SLAB.get(), 6);
 		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_PLANKS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.VERDANT_BUTTON.get(), 1);
 		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
@@ -59,6 +75,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.VERDANT_HANGING_SIGN.get(), 2);
 
 		// Verdant heartwood furniture
+		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_HEARTWOOD_LOG.get());
+		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
+		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
+		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_WOOD.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get()), List.of(1),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
+		shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_WOOD.get(), 3);
 		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_DOOR.get(), 3);
 		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
@@ -66,6 +96,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'),
 				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.VERDANT_HEARTWOOD_STAIRS.get(), 4);
+		shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_SLAB.get(), 6);
 		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), List.of(1),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_BUTTON.get(), 1);
 		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),

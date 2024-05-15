@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "charcoal",
+  "ingredient": {
+    "item": "verdant:stripped_verdant_heartwood_log"
+  },
+  "result": "minecraft:charcoal"
+}

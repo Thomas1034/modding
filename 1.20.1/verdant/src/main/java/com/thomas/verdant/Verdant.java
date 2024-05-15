@@ -84,7 +84,9 @@ public class Verdant {
 		// Add the right click to add to flowerpot event.
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLEEDING_HEART.getId(),
 				ModBlocks.POTTED_BLEEDING_HEART);
-		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(),
+				ModBlocks.POTTED_THORN_BUSH);
+		///((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
 		//		ModBlocks.POTTED_BLEEDING_HEART);
 		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(), ModBlocks.POTTED_PALM_SAPLING);
 		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(), ModBlocks.POTTED_WHITE_ORCHID);

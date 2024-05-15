@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:charcoal_from_smelting_verdant_log_verdant_log"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_verdant_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_log"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_verdant_log",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:charcoal_from_smelting_verdant_log_verdant_log"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,52 @@
+{
+  "display": {
+    "icon": {
+      "item": "verdant:dirt_iron_ore"
+    },
+    "title": {
+      "translate": "verdant:advancements.deep_roots.title"
+    },
+    "description": {
+      "translate": "verdant:advancements.deep_roots.description"
+    },
+    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "verdant:root",
+  "criteria": {
+    "stand_on_verdant_ground": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "y": {
+                    "min": -64,
+                    "max": 0
+                  }
+                }
+              },
+              "stepping_on": {
+                "block": {
+                  "tag": "verdant:verdant_ground"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stand_on_verdant_ground"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

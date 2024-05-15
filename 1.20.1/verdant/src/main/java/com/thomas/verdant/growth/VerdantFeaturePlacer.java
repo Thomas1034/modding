@@ -7,6 +7,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.util.TriFunction;
 import com.thomas.verdant.util.Utilities;
@@ -17,8 +18,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.MultifaceBlock;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 
 public class VerdantFeaturePlacer {
 
@@ -36,12 +39,29 @@ public class VerdantFeaturePlacer {
 				Rarity.SPECIAL_CASE_UNCOMMON);
 		register(Feature.smallPlant(Blocks.FERN), Rarity.VERY_COMMON);
 		register(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON);
+		register(Feature.smallUnderwaterPlant(Blocks.SEAGRASS), Rarity.COMMON);
+		register(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON);
 		register(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON);
 		register(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON);
-		register(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.RARE);
+		register(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.TALL_SEAGRASS), Rarity.UNCOMMON);
+		register(Feature.hanging(ModBlocks.STINKING_BLOSSOM.get().defaultBlockState()
+				.setValue(StinkingBlossomBlock.VERTICAL_DIRECTION, Direction.DOWN), 0), Rarity.UNCOMMON);
+		register(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.SMALL_DRIPLEAF), Rarity.UNCOMMON);
+		register(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON);
+		register(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON);
+		register(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.EXTREMELY_UNCOMMON);
+		register(Feature.hanging(Blocks.CAVE_VINES, 1), Rarity.EXTREMELY_UNCOMMON);
+		register(
+				Feature.simple(
+						(level, pos) -> level.setBlockAndUpdate(pos,
+								Blocks.GLOW_LICHEN.defaultBlockState()
+										.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true))),
+				Rarity.EXTREMELY_UNCOMMON);
 		register(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE);
 		register(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE);
 		register(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE);
+		register(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.EXTREMELY_RARE);
+		register(Feature.hanging(Blocks.SPORE_BLOSSOM, 1), Rarity.EXTREMELY_RARE);
 
 		System.out.println("Registered " + FEATURES.size() + " vegetation placers.");
 	}
@@ -168,8 +188,17 @@ public class VerdantFeaturePlacer {
 			return new Feature(place, Feature::simpleDoubleAirChecker);
 		}
 
+		public static Feature doubleHeightWater(BiConsumer<Level, BlockPos> place) {
+			return new Feature(place, Feature::simpleDoubleWaterChecker);
+		}
+
 		public static Feature smallPlant(Block block) {
 			return Feature.simple((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()));
+		}
+
+		public static Feature smallUnderwaterPlant(Block block) {
+			return new Feature((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()),
+					Feature::simpleWaterChecker);
 		}
 
 		// TODO
@@ -178,7 +207,13 @@ public class VerdantFeaturePlacer {
 		}
 
 		public static Feature tallPlant(DoublePlantBlock block) {
-			return Feature.doubleHeight((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+			return Feature
+					.doubleHeight((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+		}
+
+		public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
+			return Feature.doubleHeightWater(
+					(level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
 		}
 
 		public static Feature verdantVine(VerdantVineBlock block) {
@@ -186,9 +221,26 @@ public class VerdantFeaturePlacer {
 
 		}
 
+		public static Feature hanging(Block block, int requireAirRadius) {
+			return new Feature((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()),
+					Feature::belowPlacement, Feature.withinHorizontalRangeBelowBlockCheckerProvider(
+							(state) -> !state.isAir(), requireAirRadius));
+		}
+
+		public static Feature hanging(BlockState state, int requireAirRadius) {
+			return new Feature((level, pos) -> level.setBlockAndUpdate(pos, state), Feature::belowPlacement,
+					Feature.withinHorizontalRangeBelowBlockCheckerProvider((stateToCheck) -> !stateToCheck.isAir(),
+							requireAirRadius));
+		}
+
 		// Returns true if the given position is air.
 		public static boolean simpleAirChecker(Level level, BlockPos pos) {
 			return level.getBlockState(pos).isAir();
+		}
+
+		// Returns true if the given position is water.
+		public static boolean simpleWaterChecker(Level level, BlockPos pos) {
+			return level.getBlockState(pos).getFluidState().is(Fluids.WATER);
 		}
 
 		// Returns true if the given position and the one above it is air.
@@ -196,21 +248,56 @@ public class VerdantFeaturePlacer {
 			return level.getBlockState(pos).isAir() && level.getBlockState(pos.above()).isAir();
 		}
 
+		// Returns true if the given position and the one above it is water.
+		public static boolean simpleDoubleWaterChecker(Level level, BlockPos pos) {
+			return level.getBlockState(pos).getFluidState().is(Fluids.WATER)
+					&& level.getBlockState(pos.above()).getFluidState().is(Fluids.WATER);
+		}
+
 		// Returns true if the given position and the one below it is air.
 		public static boolean belowDoubleAirChecker(Level level, BlockPos pos) {
 			return level.getBlockState(pos).isAir() && level.getBlockState(pos.below()).isAir();
 		}
 
-		public static BiPredicate<Level, BlockPos> withinRangeAirCheckerProvider(Level levelParam, BlockPos posParam,
-				int radius) {
-			return withinRangeBlockCheckerProvider((state) -> !state.isAir(), levelParam, posParam, radius);
+		public static BiPredicate<Level, BlockPos> withinRangeAirCheckerProvider(int radius) {
+			return withinRangeBlockCheckerProvider((state) -> !state.isAir(), radius);
+		}
+
+		// Returns a lambda expression that returns true if no blocks within a given
+		// square layer radius (centered on the block below the given block) match the
+		// given predicate.
+		public static BiPredicate<Level, BlockPos> withinHorizontalRangeBelowBlockCheckerProvider(
+				Predicate<BlockState> isInvalid, int radius) {
+			return (level, pos) -> {
+				// Center on the block below the given block.
+				pos = pos.below();
+				
+				// Check that position, guaranteed.
+				if (isInvalid.test(level.getBlockState(pos))) {
+					return false;
+				}
+				
+				// Iterate over the given area.
+				for (int i = -radius; i <= radius; i++) {
+					for (int k = -radius; k <= radius; k++) {
+						BlockPos offset = pos.offset(i, 0, k);
+						// Return false if the block is invalid.
+						if (isInvalid.test(level.getBlockState(offset))) {
+							return false;
+						}
+					}
+				}
+
+				// Return true if the checks succeeded.
+				return true;
+			};
 		}
 
 		// Returns a lambda expression that returns true if no blocks within the given
 		// cube radius (centered on the block above the given block) match the given
 		// predicate.
 		public static BiPredicate<Level, BlockPos> withinRangeBlockCheckerProvider(Predicate<BlockState> isInvalid,
-				Level levelParam, BlockPos posParam, int radius) {
+				int radius) {
 			return (level, pos) -> {
 				// Center on the block above the given block.
 				pos = pos.above();

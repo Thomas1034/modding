@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "verdant:verdant_grass_block"
+    },
+    "title": {
+      "translate": "verdant:advancements.root.title"
+    },
+    "description": {
+      "translate": "verdant:advancements.root.description"
+    },
+    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "stand_on_verdant_ground": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "stepping_on": {
+                "block": {
+                  "tag": "verdant:verdant_ground"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stand_on_verdant_ground"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

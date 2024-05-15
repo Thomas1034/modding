@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.thomas.verdant.block.ModBlocks;
+
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.registries.RegistryObject;
 
 public class VerdantEroder {
 
@@ -123,11 +124,27 @@ public class VerdantEroder {
 		ifWet(Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CLAY);
 		ifWet(Blocks.WHITE_TERRACOTTA, Blocks.CLAY);
 		ifWet(Blocks.PINK_TERRACOTTA, Blocks.CLAY);
-		
+		// Deepslate ores to stone ores.
+		register(Blocks.DEEPSLATE_COAL_ORE, Blocks.COAL_ORE);
+		register(Blocks.DEEPSLATE_COPPER_ORE, Blocks.COPPER_ORE);
+		register(Blocks.DEEPSLATE_IRON_ORE, Blocks.IRON_ORE);
+		register(Blocks.DEEPSLATE_GOLD_ORE, Blocks.GOLD_ORE);
+		register(Blocks.DEEPSLATE_REDSTONE_ORE, Blocks.REDSTONE_ORE);
+		register(Blocks.DEEPSLATE_LAPIS_ORE, Blocks.LAPIS_ORE);
+		register(Blocks.DEEPSLATE_EMERALD_ORE, Blocks.EMERALD_ORE);
+		register(Blocks.DEEPSLATE_DIAMOND_ORE, Blocks.DIAMOND_ORE);
+		// Stone ores to dirt ores
+		register(Blocks.COAL_ORE, ModBlocks.DIRT_COAL_ORE.get());
+		register(Blocks.COPPER_ORE, ModBlocks.DIRT_COPPER_ORE.get());
+		register(Blocks.IRON_ORE, ModBlocks.DIRT_IRON_ORE.get());
+		register(Blocks.GOLD_ORE, ModBlocks.DIRT_GOLD_ORE.get());
+		register(Blocks.REDSTONE_ORE, ModBlocks.DIRT_REDSTONE_ORE.get());
+		register(Blocks.LAPIS_ORE, ModBlocks.DIRT_LAPIS_ORE.get());
+		register(Blocks.EMERALD_ORE, ModBlocks.DIRT_EMERALD_ORE.get());
+		register(Blocks.DIAMOND_ORE, ModBlocks.DIRT_DIAMOND_ORE.get());
 		System.out.println("Registered erosions:");
 		for (Entry<Block, Block> entry : NEXT.entrySet()) {
 			System.out.println(entry.getKey().getName().getString() + " -> " + entry.getValue().getName().getString());
 		}
 	}
-
 }

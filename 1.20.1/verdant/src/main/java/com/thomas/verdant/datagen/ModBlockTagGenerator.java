@@ -45,8 +45,13 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.VERDANT_GRASS_BLOCK.get(),
 				ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
-				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
-		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.VERDANT_LEAVES.get());
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), ModBlocks.DIRT_COAL_ORE.get(),
+				ModBlocks.DIRT_COPPER_ORE.get(), ModBlocks.DIRT_DIAMOND_ORE.get(), ModBlocks.DIRT_EMERALD_ORE.get(),
+				ModBlocks.DIRT_GOLD_ORE.get(), ModBlocks.DIRT_IRON_ORE.get(), ModBlocks.DIRT_LAPIS_ORE.get(),
+				ModBlocks.DIRT_REDSTONE_ORE.get());
+		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
+				ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
+				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
 		// Verdant furniture
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.VERDANT_TRAPDOOR.get(),
@@ -78,7 +83,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get(),
 				ModBlocks.VERDANT_HEARTWOOD_LOG.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get(),
 				ModBlocks.VERDANT_HEARTWOOD_WOOD.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-		this.tag(BlockTags.LEAVES).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
+		this.tag(BlockTags.LEAVES).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
+				ModBlocks.LEAFY_VERDANT_VINE.get());
 		// this.tag(BlockTags.FLOWER_POTS).add();
 		// this.tag(BlockTags.SMALL_FLOWERS).add();
 
@@ -91,7 +97,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_ROOTED_MUD.get(), ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(),
 				ModBlocks.VERDANT_ROOTED_CLAY.get());
 
-		this.tag(BlockTags.CLIMBABLE).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get());
+		this.tag(BlockTags.CLIMBABLE).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
+				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+		this.tag(BlockTags.REPLACEABLE).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
 		this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
@@ -138,7 +147,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Leafy blocks
 		this.tag(ModTags.Blocks.VERDANT_LEAFY_BLOCKS).add(ModBlocks.VERDANT_LEAVES.get(),
-				ModBlocks.LEAFY_VERDANT_VINE.get());
+				ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
 		// Vines
 		this.tag(ModTags.Blocks.VERDANT_VINES).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
 		// Logs
@@ -146,8 +155,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
 		this.tag(ModTags.Blocks.VERDANT_LOGS).addTag(ModTags.Blocks.MATURE_VERDANT_LOGS);
 
+		// Verdant dirts
+		this.tag(ModTags.Blocks.VERDANT_GROUND).add(ModBlocks.VERDANT_GRASS_BLOCK.get(),
+				ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
+				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
+				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
+
 		// Flowers
 		this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.BLEEDING_HEART.get());
 		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_BLEEDING_HEART.get());
+		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_THORN_BUSH.get());
 	}
 }

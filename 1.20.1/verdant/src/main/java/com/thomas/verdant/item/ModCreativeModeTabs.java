@@ -23,7 +23,6 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT.get());
-						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
 
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
@@ -69,6 +68,17 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get());
 						pOutput.accept(ModBlocks.VERDANT_VINE.get());
 						pOutput.accept(ModBlocks.VERDANT_LEAVES.get());
+						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
+						pOutput.accept(ModBlocks.THORN_BUSH.get());
+						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());
+						pOutput.accept(ModBlocks.DIRT_COAL_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_COPPER_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_IRON_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_GOLD_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_LAPIS_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_REDSTONE_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_EMERALD_ORE.get());
+						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WOODEN_PICKAXE))

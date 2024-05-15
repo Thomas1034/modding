@@ -21,6 +21,8 @@ public class ModTags {
 		public static final TagKey<Block> MATURE_VERDANT_LOGS = tag("mature_verdant_logs");
 		public static final TagKey<Block> VERDANT_LEAFY_BLOCKS = tag("verdant_leafy_blocks");
 		public static final TagKey<Block> VERDANT_VINES = tag("verdant_vines");
+		public static final TagKey<Block> VERDANT_GROUND = tag("verdant_ground");
+		public static final TagKey<Block> NEEDS_VERDANT_HEARTWOOD_TOOL = tag("needs_verdant_heartwood_tool");
 
 		private static TagKey<Block> tag(String name) {
 

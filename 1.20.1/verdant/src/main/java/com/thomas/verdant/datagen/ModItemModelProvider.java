@@ -22,10 +22,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItem(ModBlocks.VERDANT_VINE);
 		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
 		simpleBlockItem(ModBlocks.VERDANT_TENDRIL);
+		simpleBlockItemBlockTexture(ModBlocks.POISON_IVY);
 		simpleItem(ModItems.VERDANT_BOAT);
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_SIGN);
@@ -67,6 +69,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE);
 
 		trapdoorItem(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR);
+		
+
+		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

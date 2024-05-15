@@ -1,5 +1,14 @@
 {
 	
+	"block.verdant.dirt_coal_ore": "Dirt Coal Ore",
+	"block.verdant.dirt_copper_ore": "Dirt Copper Ore",
+	"block.verdant.dirt_iron_ore": "Dirt Iron Ore",
+	"block.verdant.dirt_gold_ore": "Dirt Gold Ore",
+	"block.verdant.dirt_lapis_ore": "Dirt Lapis Lazuli Ore",
+	"block.verdant.dirt_redstone_ore": "Dirt Redstone Ore",
+	"block.verdant.dirt_emerald_ore": "Dirt Emerald Ore",
+	"block.verdant.dirt_diamond_ore": "Dirt Diamond Ore",
+	
 	"block.verdant.verdant_grass_block": "Verdant Grass Block",
 	"block.verdant.verdant_rooted_dirt": "Verdant Rooted Dirt",
 	"block.verdant.verdant_mud_grass_block": "Verdant Mud Grass Block",
@@ -16,6 +25,11 @@
 	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
 	"block.verdant.verdant_tendril": "Verdant Tendril",
 	"block.verdant.verdant_tendril_plant": "Verdant Tendril Plant",
+	"block.verdant.poison_ivy": "Poison Ivy",
+	"block.verdant.poison_ivy_plant": "Poison Ivy Plant",
+	"block.verdant.thorny_verdant_leaves": "Thorny Verdant Leaves",
+	"block.verdant.verdant_leaves": "Verdant Leaves",
+	
 	"block.verdant.verdant_log": "Verdant Log",
 	"block.verdant.verdant_wood": "Verdant Wood",
 	"block.verdant.stripped_verdant_log": "Stripped Verdant Log",
@@ -31,7 +45,6 @@
 	"block.verdant.verdant_fence_gate": "Verdant Fence Gate",
 	"block.verdant.verdant_sapling": "Verdant Sapling",
 	"block.verdant.potted_verdant_sapling": "Potted Verdant Sapling",
-	"block.verdant.verdant_leaves": "Verdant Leaves",
 	"block.verdant.verdant_door": "Verdant Door",
 	"block.verdant.verdant_trapdoor": "Verdant Trapdoor",
 	"block.verdant.verdant_pressure_plate": "Verdant Pressure Plate",
@@ -52,9 +65,6 @@
 	"block.verdant.verdant_heartwood_stairs": "Verdant Heartwood Stairs",
 	"block.verdant.verdant_heartwood_fence": "Verdant Heartwood Fence",
 	"block.verdant.verdant_heartwood_fence_gate": "Verdant Heartwood Fence Gate",
-	"block.verdant.verdant_heartwood_sapling": "Verdant Heartwood Sapling",
-	"block.verdant.potted_verdant_heartwood_sapling": "Potted Verdant Heartwood Sapling",
-	"block.verdant.verdant_heartwood_leaves": "Verdant Heartwood Leaves",
 	"block.verdant.verdant_heartwood_door": "Verdant Heartwood Door",
 	"block.verdant.verdant_heartwood_trapdoor": "Verdant Heartwood Trapdoor",
 	"block.verdant.verdant_heartwood_pressure_plate": "Verdant Heartwood Pressure Plate",
@@ -66,7 +76,9 @@
 	
 	"block.verdant.bleeding_heart": "Bleeding Heart Flower",
 	"block.verdant.potted_bleeding_heart": "Potted Bleeding Heart Flower",
+	"block.verdant.stinking_blossom": "Stinking Blossom",
 	
+	"block.verdant.thorn_bush": "Thorn Bush",
 	
 	"entity.verdant.verdant_boat": "Verdant Boat",
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
@@ -74,6 +86,14 @@
 	"entity.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
 	
 	"effect.verdant.food_poisoning": "Food Poisoning",
+	
+	"death.attack.thornBush": "%s stepped on a thorn.",
+	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",
+	"death.attack.thornBush.player": "%s was thrown into the briar patch by %s.",
+	
+	"death.attack.overgrowth": "%s put down roots.",
+	"death.attack.overgrowth.item": "%s put down roots before %s's eyes.",
+	"death.attack.overgrowth.player": "%s put down roots before %s's eyes.",
 	
 	"creativetab.verdant_items": "Verdant Items",
 	"creativetab.verdant_blocks": "Verdant Blocks",
