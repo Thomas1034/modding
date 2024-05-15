@@ -57,7 +57,9 @@ public class ModItems {
 	public static final RegistryObject<Item> ROASTED_COFFEE = ITEMS
 			.register("roasted_coffee",
 					() -> new Item(new Item.Properties()));
-
+	
+	// Heartwood armor
+	
 	
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {

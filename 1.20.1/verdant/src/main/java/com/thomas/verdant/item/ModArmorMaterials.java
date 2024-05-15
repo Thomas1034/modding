@@ -3,18 +3,18 @@ package com.thomas.verdant.item;
 import java.util.function.Supplier;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.ModBlocks;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public enum ModArmorMaterials implements ArmorMaterial {
 
-	DEMO("demo", 22, new int[] { 3, 5, 6, 2 }, 12, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.05F,
-			() -> Ingredient.of(Items.DIRT));
+	VERDANT_HEARTWOOD("verdant_heartwood", 22, new int[] { 3, 5, 6, 2 }, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F,
+			0.05F, () -> Ingredient.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()));
 
 	private final String name;
 	private final int durabilityMultiplier;
