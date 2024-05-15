@@ -83,7 +83,7 @@ public class Feature {
 	public static Feature smallPlant(Block block) {
 		return Feature.simple((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()));
 	}
-	
+
 	public static Feature smallPlant(BlockState state) {
 		return Feature.simple((level, pos) -> level.setBlockAndUpdate(pos, state));
 	}
@@ -99,24 +99,24 @@ public class Feature {
 	}
 
 	public static Feature tallPlant(DoublePlantBlock block) {
-		return Feature
-				.doubleHeight((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+		return Feature.doubleHeight((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
 	}
 
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
-		return Feature.doubleHeightWater(
-				(level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+		return Feature
+				.doubleHeightWater((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
 	}
 
 	public static Feature verdantVine(VerdantVineBlock block) {
-		return Feature.simple(VerdantVineBlock::spread);
+		return new Feature(VerdantVineBlock::placeVine, (feature, level, pos) -> pos.above(),
+				VerdantVineBlock::canGrowToAnyFace);
 
 	}
 
 	public static Feature hanging(Block block, int requireAirRadius) {
 		return new Feature((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()),
-				Feature::belowPlacement, Feature.withinHorizontalRangeBelowBlockCheckerProvider(
-						(state) -> !state.isAir(), requireAirRadius));
+				Feature::belowPlacement,
+				Feature.withinHorizontalRangeBelowBlockCheckerProvider((state) -> !state.isAir(), requireAirRadius));
 	}
 
 	public static Feature hanging(BlockState state, int requireAirRadius) {

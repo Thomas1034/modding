@@ -82,7 +82,13 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
 		// System.out.println("Verdant leaves are ticking at " + pos + ".");
-		this.grow(state, level, pos);
+		float growthChance =  this.growthChance();
+		float randomChance = rand.nextFloat();
+		while (randomChance < growthChance) {
+			// System.out.println("Trying to spread.");
+			this.grow(state, level, pos);
+			growthChance--;
+		}
 		level.scheduleTick(pos, level.getBlockState(pos).getBlock(), 1);
 
 	}
@@ -173,9 +179,15 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public void grow(BlockState state, Level level, BlockPos pos) {
 
 		// System.out.println("Verdant leaves are attempting to grow at " + pos + ".");
+		// It will not grow if artificially placed.
+		if (state.getValue(PERSISTENT)) {
+			return;
+		}
+		
 		// See if it can grow into leafy vines.
 		VerdantGrower.replaceLeavesWithVine(level, pos);
 		// See if it should decay, since it's too close to the ground.
+		
 		if (tryToDecay(level, pos)) {
 			return;
 		}

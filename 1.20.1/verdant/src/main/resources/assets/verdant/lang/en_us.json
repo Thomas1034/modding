@@ -87,6 +87,7 @@
 	"entity.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
 	
 	"effect.verdant.food_poisoning": "Food Poisoning",
+	"effect.verdant.caffeinated": "Caffeinated",
 	
 	"death.attack.thornBush": "%s stepped on a thorn.",
 	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",

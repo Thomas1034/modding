@@ -16,6 +16,10 @@ public class ModEffects {
 
 	public static final RegistryObject<MobEffect> FOOD_POISONING = MOB_EFFECTS.register("food_poisoning",
 			() -> new FoodPoisoningEffect(MobEffectCategory.HARMFUL, 0x94ac02));
+	public static final RegistryObject<MobEffect> CAFFEINATED = MOB_EFFECTS.register("caffeinated",
+			() -> new CaffeinatedEffect(MobEffectCategory.NEUTRAL, 0x94ac02));
+	
+	
 	
 	public static void register(IEventBus eventBus) {
 		MOB_EFFECTS.register(eventBus);

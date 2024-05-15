@@ -78,13 +78,6 @@ public class FoodPoisoningEffect extends MobEffect {
 		return true;
 	}
 
-	// This effect cannot be cured.
-	@Override
-	public List<ItemStack> getCurativeItems() {
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		return ret;
-	}
-
 	public static void register(int weight, int duration, MobEffect effect) {
 		EFFECTS.add(new WeightedEffectHolder(weight, duration, effect));
 	}

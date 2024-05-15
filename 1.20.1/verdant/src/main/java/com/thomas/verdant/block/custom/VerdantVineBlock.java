@@ -186,8 +186,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 					BlockState hereBlockState = level.getBlockState(here);
 					// System.out.println("The block state is " + hereBlockState);
 					// Check if it is replaceable.
-					if (!hereBlockState.is(ModTags.Blocks.VERDANT_VINES)
-							&& (hereBlockState.is(BlockTags.REPLACEABLE) || hereBlockState.is(BlockTags.LEAVES))) {
+					if (hereBlockState.is(ModTags.Blocks.VERDANT_VINE_REPLACABLES)) {
 						// System.out.println("It passed.");
 					} else {
 						// System.out.println("It failed.");
@@ -215,6 +214,35 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		return validSites;
 	}
 
+	// Places a Verdant Vine at that block.
+	public static void placeVine(Level level, BlockPos pos) {
+		// Store the previous block there.
+		BlockState replaced = level.getBlockState(pos);
+		// Place the vine block there. Leafy if it is replacing leaves.
+		BlockState placed = replaced.is(BlockTags.LEAVES) ? ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState()
+				: ModBlocks.VERDANT_VINE.get().defaultBlockState();
+
+		// Find every direction it can grow there.
+		boolean hasGrownAFace = false;
+		for (Direction d : Direction.allShuffled(level.random)) {
+			// 50% chance of growing each face after the first.
+			// This should look more natural.
+			if (canGrowToFace(level, pos, d) && (hasGrownAFace || level.random.nextFloat() < 0.5f)) {
+				hasGrownAFace = true;
+				placed = placed.setValue(SIDES.get(d), 1);
+			}
+		}
+		// Waterlog if possible
+		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
+			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+				placed = placed.setValue(WATERLOGGED, true);
+			}
+		}
+
+		// Update the block.
+		level.setBlockAndUpdate(pos, placed);
+	}
+
 	// Spreads the vine to a nearby block.
 	public static void spread(Level level, BlockPos pos) {
 		// System.out.println("Spreading to nearby blocks.");
@@ -227,35 +255,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// Pick a random location from the list.
 			BlockPos site = validSites.get(level.random.nextInt(validSites.size()));
 
-			// Store the previous block there.
-			BlockState replaced = level.getBlockState(site);
-			// Place the vine block there. Leafy if it is replacing leaves.
-			BlockState placed = replaced.is(BlockTags.LEAVES) ? ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState()
-					: ModBlocks.VERDANT_VINE.get().defaultBlockState();
-
-			// Find every direction it can grow there.
-			boolean hasGrownAFace = false;
-			for (Direction d : Direction.allShuffled(level.random)) {
-				// 50% chance of growing each face after the first.
-				// This should look more natural.
-				if (canGrowToFace(level, site, d) && (hasGrownAFace || level.random.nextFloat() < 0.5f)) {
-					hasGrownAFace = true;
-					placed = placed.setValue(SIDES.get(d), 1);
-				}
-			}
-			// Waterlog if possible
-			if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
-				if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
-					placed = placed.setValue(WATERLOGGED, true);
-				}
-			}
-
-			// Update the block.
-			// level.destroyBlock(site, false);
-			// System.out.println("Spreading to " + site + ", placing the block " + placed +
-			// ".");
-			level.setBlockAndUpdate(site, placed);
-			// System.out.println("Placed vine at " + site);
+			placeVine(level, site);
 		}
 	}
 
@@ -537,10 +537,12 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		// super.randomTick(state, level, pos, rand);
 
 		// Grow.
-		if (rand.nextFloat() < this.growthChance()) {
-			// //System.out.println("Trying to spread.");
+		float growthChance = this.growthChance();
+		float randomChance = rand.nextFloat();
+		while (randomChance < growthChance) {
+			// System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
-			VerdantLeavesBlock.growLeaves(level, pos);
+			growthChance--;
 		}
 	}
 

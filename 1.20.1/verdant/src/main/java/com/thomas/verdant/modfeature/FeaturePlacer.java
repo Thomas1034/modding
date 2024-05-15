@@ -7,14 +7,15 @@ import java.util.function.BiPredicate;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
+import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.MultifaceBlock;
-import net.minecraft.world.level.material.Fluids;
 
 public class FeaturePlacer {
 
@@ -22,59 +23,33 @@ public class FeaturePlacer {
 
 	// Surface features will only check for placement if the block above their
 	// position is air.
-	private static final FeatureType SURFACE_FEATURES = create((level, pos) -> level.getBlockState(pos.above()).isAir(),
-			"surface_features");
+	private static final FeatureType SURFACE_FEATURES = create(FeaturePlacer::surfacePlacement, "surface_features");
+	// Surface replaceable features will only check for placement if the block above
+	// their position is replaceable.
+	private static final FeatureType VERDANT_VINE_FEATURES = create(FeaturePlacer::verdantVinePlacement,
+			"verdant_vine_features");
 	// Hanging features will only check for placement if the block below their
 	// position is air.
-	private static final FeatureType HANGING_FEATURES = create((level, pos) -> level.getBlockState(pos.below()).isAir(),
-			"hanging_features");
+	private static final FeatureType HANGING_FEATURES = create(FeaturePlacer::hangingPlacement, "hanging_features");
 	// Water features will only check for placement if the block above their
 	// position is water.
-	private static final FeatureType WATER_FEATURES = create(
-			(level, pos) -> level.getBlockState(pos.above()).getFluidState().is(Fluids.WATER), "water_features");
+	private static final FeatureType WATER_FEATURES = create(FeaturePlacer::waterPlacement, "water_features");
 	// Generic features always check for placement
-	private static final FeatureType GENERIC_FEATURES = create((level, pos) -> true, "generic_features");
+	private static final FeatureType GENERIC_FEATURES = create(FeaturePlacer::always, "generic_features");
 
 	// Creates a new class of features.
 	public static FeatureType create(BiPredicate<Level, BlockPos> condition, String name) {
 		return FEATURES.create(condition, name);
 	}
-	
+
 	public static void register(FeatureType type, WeightedFeature weightedFeature) {
 		type.addFeature(weightedFeature);
-		System.out.println("Registered " + weightedFeature + " to " + type);
+		System.out.println("Registered " + weightedFeature + " to " + type.getName());
 	}
-	
-	public static void register(FeatureType type, Feature feature, int weight) {
-		WeightedFeature weightedFeature = new WeightedFeature(feature, weight);
-		register(type, weightedFeature);
-	}
-	
+
 	public static void register(FeatureType type, Feature feature, int weight, String name) {
 		WeightedFeature weightedFeature = new WeightedFeature(feature, weight, name);
 		register(type, weightedFeature);
-	}
-	
-	
-
-	// Registers a feature to the list of generic features, with a given weight.
-	private static void registerGenericFeature(Feature feature, int weight) {
-		register(GENERIC_FEATURES, feature, weight);
-	}
-
-	// Registers a feature to the list of surface features, with a given weight.
-	private static void registerSurfaceFeature(Feature feature, int weight) {
-		register(SURFACE_FEATURES, feature, weight);
-	}
-
-	// Registers a feature to the list of hanging features, with a given weight.
-	private static void registerHangingFeature(Feature feature, int weight) {
-		register(HANGING_FEATURES, feature, weight);
-	}
-
-	// Registers a feature to the list of water features, with a given weight.
-	private static void registerWaterFeature(Feature feature, int weight) {
-		register(WATER_FEATURES, feature, weight);
 	}
 
 	// Registers a feature to the list of generic features, with a given weight and
@@ -87,6 +62,12 @@ public class FeaturePlacer {
 	// name.
 	private static void registerSurfaceFeature(Feature feature, int weight, String name) {
 		register(SURFACE_FEATURES, feature, weight, name);
+	}
+
+	// Registers a feature to the list of verdant vine features, with a given
+	// weight and name.
+	private static void registerVerdantVineFeature(Feature feature, int weight, String name) {
+		register(VERDANT_VINE_FEATURES, feature, weight, name);
 	}
 
 	// Registers a feature to the list of hanging features, with a given weight and
@@ -122,11 +103,20 @@ public class FeaturePlacer {
 		System.out.println("Registered " + SURFACE_FEATURES);
 	}
 
+	private static void registerVerdantVineFeatures() {
+		registerVerdantVineFeature(Feature.verdantVine((VerdantVineBlock) ModBlocks.VERDANT_VINE.get()), Rarity.RARE,
+				"verdant_vine");
+		registerVerdantVineFeature(Feature.verdantVine((VerdantVineBlock) ModBlocks.LEAFY_VERDANT_VINE.get()),
+				Rarity.VERY_RARE, "leafy_verdant_vine");
+
+		System.out.println("Registered " + VERDANT_VINE_FEATURES);
+	}
+
 	// Registers all hanging features.
 	private static void registerHangingFeatures() {
-		registerHangingFeature(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON);
-		registerHangingFeature(Feature.hanging(ModBlocks.VERDANT_TENDRIL.get(), 1), Rarity.UNCOMMON);
-		registerHangingFeature(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON);
+		registerHangingFeature(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON, "hanging_roots");
+		registerHangingFeature(Feature.hanging(ModBlocks.VERDANT_TENDRIL.get(), 1), Rarity.UNCOMMON, "tendril");
+		registerHangingFeature(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON, "poison_ivy");
 		registerHangingFeature(
 				Feature.hanging(Blocks.GLOW_LICHEN.defaultBlockState()
 						.setValue(MultifaceBlock.getFaceProperty(Direction.UP), true), 0),
@@ -152,9 +142,7 @@ public class FeaturePlacer {
 
 	// Registers all generic features.
 	private static void registerGenericFeatures() {
-		registerGenericFeature(Feature.verdantVine((VerdantVineBlock) ModBlocks.VERDANT_VINE.get()), Rarity.SPECIAL_CASE_COMMON);
-		registerGenericFeature(Feature.verdantVine((VerdantVineBlock) ModBlocks.LEAFY_VERDANT_VINE.get()),
-				Rarity.SPECIAL_CASE_UNCOMMON);
+
 		System.out.println("Registered " + GENERIC_FEATURES);
 	}
 
@@ -162,6 +150,8 @@ public class FeaturePlacer {
 	public static void registerFeatures() {
 		// Surface features
 		registerSurfaceFeatures();
+		// Surface replaceable features
+		registerVerdantVineFeatures();
 		// Hanging features
 		registerHangingFeatures();
 		// Water features
@@ -177,7 +167,7 @@ public class FeaturePlacer {
 
 		for (FeatureType type : FEATURES.iterate()) {
 			if (type.checkForPlacement(level, pos)) {
-				System.out.println("Adding " + type);
+				// System.out.println("Adding " + type);
 				features.add(type);
 			}
 		}
@@ -201,8 +191,10 @@ public class FeaturePlacer {
 				int featureWeight = featureHolder.weight();
 				if (randomWeight <= featureWeight) {
 					selectedHolder = featureHolder;
-					System.out.println("Found feature in " + type);
-					System.out.println(selectedHolder);
+					// System.out.println("Found feature in " + type);
+					// System.out.println("Current weight: " + randomWeight);
+					// System.out.println("Feature weight: " + featureWeight);
+					// System.out.println(selectedHolder);
 					break;
 				}
 				randomWeight -= featureWeight;
@@ -220,5 +212,26 @@ public class FeaturePlacer {
 		// Otherwise, place the feature.
 		selectedHolder.feature().place(level, pos);
 
+	}
+
+	public static boolean surfacePlacement(Level level, BlockPos pos) {
+		return level.getBlockState(pos.above()).isAir();
+	}
+
+	public static boolean verdantVinePlacement(Level level, BlockPos pos) {
+		return VerdantVineBlock.canGrowToAnyFace(level, pos.above())
+				&& level.getBlockState(pos.above()).is(ModTags.Blocks.VERDANT_VINE_REPLACABLES);
+	}
+
+	public static boolean hangingPlacement(Level level, BlockPos pos) {
+		return level.getBlockState(pos.below()).isAir();
+	}
+
+	public static boolean waterPlacement(Level level, BlockPos pos) {
+		return level.getBlockState(pos.above()).getFluidState().is(FluidTags.WATER);
+	}
+
+	public static boolean always(Level level, BlockPos pos) {
+		return true;
 	}
 }

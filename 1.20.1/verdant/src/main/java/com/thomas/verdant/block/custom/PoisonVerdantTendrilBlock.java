@@ -64,8 +64,12 @@ public class PoisonVerdantTendrilBlock extends GrowingPlantHeadBlock implements 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
-		if (rand.nextFloat() < this.growthChance()) {
+		float growthChance =  this.growthChance();
+		float randomChance = rand.nextFloat();
+		while (randomChance < growthChance) {
+			// System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
+			growthChance--;
 		}
 	}
 

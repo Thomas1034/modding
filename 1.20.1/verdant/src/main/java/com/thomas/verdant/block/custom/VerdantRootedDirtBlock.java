@@ -87,7 +87,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 	}
 
 	// Removes the block if it is not supported from the sides.
-	private void settle(ServerLevel level, BlockPos pos) {
+	private boolean settle(ServerLevel level, BlockPos pos) {
 		// Check if the dirt should settle.
 		boolean shouldSettle = canSettle(level, pos);
 
@@ -116,6 +116,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 				FallingBlockHelper.fallNoDrops(level, pos);
 			}
 		}
+
+		return shouldSettle;
 	}
 
 	@Override
@@ -144,14 +146,17 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 			level.setBlockAndUpdate(pos, state);
 		}
 
-		// Grow.
-		if (rand.nextFloat() < this.growthChance()) {
-			// System.out.println("Trying to spread.");
-			this.grow(state, level, pos);
-		}
-
 		// Settle
-		this.settle(level, pos);
+		if (!this.settle(level, pos)) {
+			// Grow.
+			float growthChance =  this.growthChance();
+			float randomChance = rand.nextFloat();
+			while (randomChance < growthChance) {
+				// System.out.println("Trying to spread.");
+				this.grow(state, level, pos);
+				growthChance--;
+			}
+		}
 
 	}
 
@@ -236,7 +241,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 			if (VerdantGrower.convertGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
 				// System.out.println("Successfully grew.");
 				// break;
-			} 
+			}
 			// If that fails, try to erode that block.
 			else {
 				// Otherwise, try to erode it.
@@ -244,7 +249,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 				this.erode(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
 			}
 		}
-		
+
 		// Try to grow vegetation.
 		FeaturePlacer.place(level, pos);
 	}
