@@ -228,7 +228,7 @@ public class FeaturePlacer {
 	}
 
 	public static boolean waterPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).getFluidState().is(FluidTags.WATER);
+		return level.getBlockState(pos.above()).is(Blocks.WATER);
 	}
 
 	public static boolean always(Level level, BlockPos pos) {
