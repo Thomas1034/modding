@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 import com.thomas.verdant.growth.VerdantGrassGrower;
 import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.growth.VerdantHydratable;
-import com.thomas.verdant.growth.VerdantFeaturePlacer;
+import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.util.FallingBlockHelper;
 import com.thomas.verdant.util.Utilities;
 
@@ -246,7 +246,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 		}
 		
 		// Try to grow vegetation.
-		VerdantFeaturePlacer.place(level, pos);
+		FeaturePlacer.place(level, pos);
 	}
 
 }

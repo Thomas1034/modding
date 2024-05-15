@@ -14,9 +14,9 @@ import com.thomas.verdant.growth.VerdantEroder;
 import com.thomas.verdant.growth.VerdantGrassGrower;
 import com.thomas.verdant.growth.VerdantHydratable;
 import com.thomas.verdant.growth.VerdantRootGrower;
-import com.thomas.verdant.growth.VerdantFeaturePlacer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
+import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.painting.ModPaintings;
 import com.thomas.verdant.worldgen.ModFeature;
@@ -97,7 +97,7 @@ public class Verdant {
 		VerdantGrassGrower.registerGrasses();
 		VerdantRootGrower.registerRoots();
 		FoodPoisoningEffect.registerEffects();
-		VerdantFeaturePlacer.registerFeatures();
+		FeaturePlacer.registerFeatures();
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
