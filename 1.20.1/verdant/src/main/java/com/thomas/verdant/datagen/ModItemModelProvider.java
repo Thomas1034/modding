@@ -24,6 +24,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
+		simpleBlockItemBlockTexture(ModBlocks.WILD_COFFEE);
 		simpleBlockItem(ModBlocks.VERDANT_VINE);
 		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
 		simpleBlockItem(ModBlocks.VERDANT_TENDRIL);
@@ -72,8 +73,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		trapdoorItem(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR);
 		
-
 		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
+		simpleItem(ModItems.COFFEE_BERRIES);
+		simpleItem(ModItems.ROASTED_COFFEE);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

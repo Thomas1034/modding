@@ -39,12 +39,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_LOG.get());
 		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_WOOD.get());
 		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_WOOD.get());
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_LOG.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_LOG.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_PLANKS.get(), 4);
 		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_LOG.get()), List.of(1),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_WOOD.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_WOOD.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.VERDANT_PLANKS.get(), 4);
 		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_WOOD.get()), List.of(1),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
 		shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_LOG.get()),
@@ -114,6 +114,56 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
 				List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
 				ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get(), 2);
+
+		// Roasting coffee
+		oreCooking(recipeWriter, RecipeSerializer.SMELTING_RECIPE, List.of(ModItems.COFFEE_BERRIES.get()),
+				RecipeCategory.BREWING, ModItems.ROASTED_COFFEE.get(), 0.1f, 200, "roasted_coffee",
+				"_from_smelting_coffee_berries");
+
+	}
+
+	// Stonecutting recipe.
+	@SuppressWarnings("unchecked")
+	protected static void brewing(Consumer<FinishedRecipe> pFinishedRecipeConsumer, Object ingredient,
+			RecipeCategory recipeCategory, ItemLike result, int count) {
+
+		// The name of the recipe.
+		String recipeName = Verdant.MOD_ID + ":" + getItemName(result) + "_from_brewing_";
+
+		Ingredient toAdd = null;
+
+		// Determines what type of ingredient is there.
+		if (ingredient instanceof ItemLike item) {
+			toAdd = Ingredient.of(item);
+			recipeName += getItemName((ItemLike) ingredient);
+
+		} else if (ingredient instanceof TagKey<?> tag) {
+			toAdd = Ingredient.of((TagKey<Item>) tag);
+			recipeName += dePath((tag).location());
+
+		} else {
+			throw new IllegalArgumentException("Cannot create a stonecutting recipe with a non-Item, non-Tag object.");
+		}
+
+		// Creates the recipe.
+		SingleItemRecipeBuilder recipe = SingleItemRecipeBuilder.stonecutting(toAdd, recipeCategory, result, count);
+
+		// Adds in the unlock trigger for the ingredient.
+		if (ingredient instanceof ItemLike)
+			recipe = recipe.unlockedBy(getHasName((ItemLike) ingredient), has((ItemLike) ingredient));
+		else if (ingredient instanceof TagKey) {
+			String name = "has" + ((TagKey<Item>) ingredient).registry().registry().toDebugFileName();
+			recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredient));
+		} else {
+			throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredient);
+		}
+
+		// Adds in the unlock trigger for the result.
+		recipe = recipe.unlockedBy(getHasName(result), has(result));
+
+		// Prints out the result.
+		System.out.println("Finished stonecutting recipe, saving with name: " + recipeName);
+		recipe.save(pFinishedRecipeConsumer, recipeName);
 	}
 
 	// Stonecutting recipe.

@@ -6,7 +6,7 @@ import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.FoodPoisoningEffect;
-import com.thomas.verdant.effect.ModEffects;
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
@@ -19,16 +19,21 @@ import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.painting.ModPaintings;
+import com.thomas.verdant.potion.BetterBrewingRecipe;
+import com.thomas.verdant.potion.ModPotions;
 import com.thomas.verdant.worldgen.ModFeature;
 import com.thomas.verdant.worldgen.tree.ModFoliagePlacers;
 import com.thomas.verdant.worldgen.tree.ModTrunkPlacerTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -58,7 +63,8 @@ public class Verdant {
 		ModBlocks.register(modEventBus);
 		ModPaintings.register(modEventBus);
 		ModEnchantments.register(modEventBus);
-		ModEffects.register(modEventBus);
+		ModMobEffects.register(modEventBus);
+		ModPotions.register(modEventBus);
 
 		ModBlockEntities.register(modEventBus);
 
@@ -84,12 +90,21 @@ public class Verdant {
 		// Add the right click to add to flowerpot event.
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLEEDING_HEART.getId(),
 				ModBlocks.POTTED_BLEEDING_HEART);
-		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(),
-				ModBlocks.POTTED_THORN_BUSH);
-		///((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
-		//		ModBlocks.POTTED_BLEEDING_HEART);
-		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(), ModBlocks.POTTED_PALM_SAPLING);
-		//((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(), ModBlocks.POTTED_WHITE_ORCHID);
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(), ModBlocks.POTTED_THORN_BUSH);
+		/// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
+		// ModBlocks.POTTED_BLEEDING_HEART);
+		// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(),
+		/// ModBlocks.POTTED_PALM_SAPLING);
+		// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(),
+		/// ModBlocks.POTTED_WHITE_ORCHID);
+
+		// Register potions
+		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
+				ModBlocks.BLEEDING_HEART.get().asItem(), ModPotions.CAFFEINE.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.REDSTONE, ModPotions.LONG_CAFFEINE.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.GLOWSTONE_DUST, ModPotions.STRONG_CAFFEINE.get()));
 
 		// Register verdant growth mechanics on setup.
 		VerdantEroder.registerErosions();

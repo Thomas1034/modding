@@ -9,7 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModEffects {
+public class ModMobEffects {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,
 			Verdant.MOD_ID);
 
@@ -17,7 +17,7 @@ public class ModEffects {
 	public static final RegistryObject<MobEffect> FOOD_POISONING = MOB_EFFECTS.register("food_poisoning",
 			() -> new FoodPoisoningEffect(MobEffectCategory.HARMFUL, 0x94ac02));
 	public static final RegistryObject<MobEffect> CAFFEINATED = MOB_EFFECTS.register("caffeinated",
-			() -> new CaffeinatedEffect(MobEffectCategory.NEUTRAL, 0x94ac02));
+			() -> new CaffeinatedEffect(MobEffectCategory.NEUTRAL, 0x5c4033));
 	
 	
 	

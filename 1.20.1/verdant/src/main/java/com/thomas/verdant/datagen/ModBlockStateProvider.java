@@ -3,6 +3,7 @@ package com.thomas.verdant.datagen;
 import com.google.common.base.Function;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.CoffeeCropBlock;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
@@ -40,7 +42,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		
+
 		blockWithItem(ModBlocks.DIRT_COAL_ORE);
 		blockWithItem(ModBlocks.DIRT_COPPER_ORE);
 		blockWithItem(ModBlocks.DIRT_IRON_ORE);
@@ -49,7 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.DIRT_LAPIS_ORE);
 		blockWithItem(ModBlocks.DIRT_EMERALD_ORE);
 		blockWithItem(ModBlocks.DIRT_DIAMOND_ORE);
-		
+
 		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
 		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
 		blockWithItem(ModBlocks.VERDANT_ROOTED_MUD);
@@ -140,9 +142,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Flowers
 		simpleFlowerWithPot(ModBlocks.BLEEDING_HEART.get(), ModBlocks.POTTED_BLEEDING_HEART.get());
+		simpleFlowerWithPot(ModBlocks.WILD_COFFEE.get(), ModBlocks.POTTED_WILD_COFFEE.get());
 
 		// Thorn bush
 		simpleFlowerWithPot(ModBlocks.THORN_BUSH.get(), ModBlocks.POTTED_THORN_BUSH.get());
+
+		// Coffee
+		makeCoffeeCrop((CoffeeCropBlock) ModBlocks.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -364,5 +370,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(),
 				new ResourceLocation("flower_pot_cross"), "plant", blockTexture(flower)).renderType("cutout"));
 
+	}
+
+	private ConfiguredModel[] coffeeStates(BlockState state, CropBlock block, String modelName, String textureName) {
+		ConfiguredModel[] models = new ConfiguredModel[1];
+		models[0] = new ConfiguredModel(models()
+				.crop(modelName + state.getValue(((CoffeeCropBlock) block).getAgeProperty()),
+						new ResourceLocation(Verdant.MOD_ID,
+								"block/" + textureName + state.getValue(((CoffeeCropBlock) block).getAgeProperty())))
+				.renderType("cutout"));
+
+		return models;
+	}
+
+	protected void makeCoffeeCrop(CropBlock block, String modelName, String textureName) {
+		Function<BlockState, ConfiguredModel[]> function = state -> coffeeStates(state, block, modelName, textureName);
+
+		getVariantBuilder(block).forAllStates(function);
 	}
 }

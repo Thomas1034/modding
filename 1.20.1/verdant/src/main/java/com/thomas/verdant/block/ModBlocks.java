@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Nullable;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
@@ -23,7 +24,7 @@ import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
 import com.thomas.verdant.block.custom.VerdantTendrilBlock;
 import com.thomas.verdant.block.custom.VerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
-import com.thomas.verdant.effect.ModEffects;
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.util.BurnTimes;
 import com.thomas.verdant.util.ModBlockSetType;
@@ -540,13 +541,22 @@ public class ModBlocks {
 
 	// Decorative flowers
 	public static final RegistryObject<Block> BLEEDING_HEART = registerBlockWithItem("bleeding_heart",
-			() -> new FlowerBlock(() -> ModEffects.FOOD_POISONING.get(), 40,
+			() -> new FlowerBlock(() -> ModMobEffects.FOOD_POISONING.get(), 40,
 					BlockBehaviour.Properties.copy(Blocks.BLUE_ORCHID).noOcclusion().noCollission()));
 
 	public static final RegistryObject<Block> POTTED_BLEEDING_HEART = registerBlockOnly("potted_bleeding_heart",
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.BLEEDING_HEART,
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
 
+	public static final RegistryObject<Block> WILD_COFFEE = registerBlockWithItem("wild_coffee",
+			() -> new FlowerBlock(() -> ModMobEffects.CAFFEINATED.get(), 25,
+					BlockBehaviour.Properties.copy(Blocks.BLUE_ORCHID).noOcclusion().noCollission()));
+
+	public static final RegistryObject<Block> POTTED_WILD_COFFEE = registerBlockOnly("potted_wild_coffee",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WILD_COFFEE,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
+	
 	public static final RegistryObject<Block> STINKING_BLOSSOM = registerBlockWithItem("stinking_blossom",
 			() -> new StinkingBlossomBlock(BlockBehaviour.Properties.copy(Blocks.SPORE_BLOSSOM).noOcclusion()));
 
@@ -558,6 +568,11 @@ public class ModBlocks {
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.THORN_BUSH,
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
 
+	// Coffee crop
+	public static final RegistryObject<Block> COFFEE_CROP = BLOCKS.register("coffee_crop",
+			() -> new CoffeeCropBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().noCollission()));
+
+	
 	// Dirt ores
 	public static final RegistryObject<Block> DIRT_COAL_ORE = registerBlockWithItem("dirt_coal_ore",
 			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));

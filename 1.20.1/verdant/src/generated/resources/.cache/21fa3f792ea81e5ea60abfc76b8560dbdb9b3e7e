@@ -1,5 +1,6 @@
-// 1.20.1	2024-05-14T21:12:45.0459991	Block States: verdant
+// 1.20.1	2024-05-15T16:29:48.8707342	Block States: verdant
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
+81b54a2d837372bd0a718463a44c07776249a56b assets/verdant/blockstates/coffee_crop.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
 d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond_ore.json
@@ -12,6 +13,7 @@ b94488830d17b35540d30baca2bd4b3625fab160 assets/verdant/blockstates/dirt_iron_or
 52fdfa3fd047e2d840e111ef8f6e3851da49a5ac assets/verdant/blockstates/poison_ivy_plant.json
 ac49969b97cf78b47962ee40ea01e6cf8e2c866d assets/verdant/blockstates/potted_bleeding_heart.json
 7476fed6452d79460fdaa94079a49c7b5085ae39 assets/verdant/blockstates/potted_thorn_bush.json
+92ce28eed0925023fc5776d05ec701de83f46d0e assets/verdant/blockstates/potted_wild_coffee.json
 386fffd66f5e9b713b5da40602dbf7974c78b43e assets/verdant/blockstates/rotten_wood.json
 a9e866eaa7a2f6340c1158df878f95eb1d2e0377 assets/verdant/blockstates/stripped_verdant_heartwood_log.json
 6a6e202d8aef30329131f7a321f2b6c2c3eb973a assets/verdant/blockstates/stripped_verdant_heartwood_wood.json
@@ -56,7 +58,11 @@ cc612aea2e6f559e2a58a25fda3988ad6c4d71a7 assets/verdant/blockstates/verdant_stai
 f5049b2edb1b14ce534ca9742af9a340d091dca4 assets/verdant/blockstates/verdant_wall_hanging_sign.json
 da64056f3cbaa9b83c96b30e68af27c834316928 assets/verdant/blockstates/verdant_wall_sign.json
 9217e33a840d79afa3c506de26abaf0e2972f87a assets/verdant/blockstates/verdant_wood.json
+7cc8ce856540d407bcac33040cf6761e39bc5167 assets/verdant/blockstates/wild_coffee.json
 886647fd1fe69097e6c244cf4e2ea5f5d0008d04 assets/verdant/models/block/bleeding_heart.json
+c482872f33fa2b8b884f9f0f1b380bb0fe38ea92 assets/verdant/models/block/coffee_crop_0.json
+5ba0d086912d3a602a12d1f6211648f4a6a57a53 assets/verdant/models/block/coffee_crop_1.json
+08a0ccbe3d29e51bd3ebe59516272e6291e4532c assets/verdant/models/block/coffee_crop_2.json
 ec530d77caa0a4a57cdc2d198defe1684185ac1e assets/verdant/models/block/dirt_coal_ore.json
 11804800a0c87d491bc485ed1f44ed922119230a assets/verdant/models/block/dirt_copper_ore.json
 50b21caba4af059f6ce7d5c14d093669e882e1f4 assets/verdant/models/block/dirt_diamond_ore.json
@@ -69,6 +75,7 @@ ca773c5b9d71d12393db664c521e3f74f2e66ec5 assets/verdant/models/block/dirt_redsto
 b0aec62b42aadc86b393db8b596de71f218de441 assets/verdant/models/block/poison_ivy_plant.json
 8b9149bd049c1f229ddaf6575a679e4d434270cb assets/verdant/models/block/potted_bleeding_heart.json
 1a417d3e3d9822244c0487fb6c5bddbd2c722ff7 assets/verdant/models/block/potted_thorn_bush.json
+248616e05d9271f7ea8f4dc774f1336cfefd22b3 assets/verdant/models/block/potted_wild_coffee.json
 bf6cd65d50fbf28771b899b8e54b8edda4f6dffa assets/verdant/models/block/rotten_wood.json
 3ae76c7758662dc97e95a75f1c8175b7956106ae assets/verdant/models/block/rotten_wood_horizontal.json
 5d70f7d806cb0313440482c28046ef03d970beb5 assets/verdant/models/block/stripped_verdant_heartwood_log.json
@@ -154,6 +161,7 @@ acd6c83f92d6e09675688b3780c803875322ff77 assets/verdant/models/block/verdant_tra
 691ab55f784d3882f55b962a7e58825db1beab60 assets/verdant/models/block/verdant_trapdoor_top.json
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/block/verdant_wood.json
 895ee05670dbf6d087122f6390cb47dc3a106089 assets/verdant/models/block/verdant_wood_horizontal.json
+4e4d79e32c3f18545edb968dde966cc6f89dffc3 assets/verdant/models/block/wild_coffee.json
 4f84d6ecacbcedae63a14f8eb901ff3835132e92 assets/verdant/models/item/dirt_coal_ore.json
 5767d3d16165e0b8c893f33b1862cd64e088ec80 assets/verdant/models/item/dirt_copper_ore.json
 af7e8d5aa110c73386bd150d6b5eb48509b2b172 assets/verdant/models/item/dirt_diamond_ore.json

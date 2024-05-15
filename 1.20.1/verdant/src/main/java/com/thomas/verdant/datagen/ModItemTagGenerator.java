@@ -34,6 +34,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
 		// Tag flowers
 		this.tag(ItemTags.SMALL_FLOWERS).add(ModBlocks.BLEEDING_HEART.get().asItem());
+		this.tag(ItemTags.SMALL_FLOWERS).add(ModBlocks.WILD_COFFEE.get().asItem());
 
 		// Forge tags
 		

@@ -4,11 +4,15 @@ import java.util.function.Supplier;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.item.custom.ModBoatItem;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -41,7 +45,20 @@ public class ModItems {
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HANGING_SIGN = registerItem(
 			"verdant_heartwood_hanging_sign", () -> new HangingSignItem(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
 					ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+	
+	// Feed to goats?
+	public static final RegistryObject<Item> COFFEE_BERRIES = ITEMS
+			.register("coffee_berries",
+					() -> new ItemNameBlockItem(ModBlocks.COFFEE_CROP.get(), new Item.Properties().stacksTo(64)
+							.food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1f).fast()
+									.effect(() -> new MobEffectInstance(ModMobEffects.CAFFEINATED.get(), 300, 0), 1.0F)
+									.build())));
 
+	public static final RegistryObject<Item> ROASTED_COFFEE = ITEMS
+			.register("roasted_coffee",
+					() -> new Item(new Item.Properties()));
+
+	
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);

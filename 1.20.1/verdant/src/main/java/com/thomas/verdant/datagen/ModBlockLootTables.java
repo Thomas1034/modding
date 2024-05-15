@@ -107,6 +107,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.BLEEDING_HEART.get());
 		this.add(ModBlocks.POTTED_BLEEDING_HEART.get(), createPotFlowerItemTable(ModBlocks.BLEEDING_HEART.get()));
 		this.dropSelf(ModBlocks.STINKING_BLOSSOM.get());
+		this.dropSelf(ModBlocks.WILD_COFFEE.get());
+		this.add(ModBlocks.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(ModBlocks.WILD_COFFEE.get()));
+		this.dropOther(ModBlocks.COFFEE_CROP.get(), ModItems.COFFEE_BERRIES.get());
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {

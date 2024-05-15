@@ -27,7 +27,7 @@ public class PoisonVerdantLeavesBlock extends VerdantLeavesBlock {
 	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.FOX
 				&& livingEntity.getMobType() != MobType.ARTHROPOD) {
-			livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
+			//livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
 			if (!level.isClientSide) {
 				livingEntity.addEffect(POISON.get());
 			}

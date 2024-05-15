@@ -81,6 +81,21 @@
 	
 	"block.verdant.thorn_bush": "Thorn Bush",
 	
+	"block.minecraft.bed.caffeine": "You may not rest now; you are caffeinated",
+	
+  "item.minecraft.potion.effect.caffeine": "Coffee",
+  "item.minecraft.splash_potion.effect.caffeine": "Splash Potion of Caffeine",
+  "item.minecraft.lingering_potion.effect.caffeine": "Lingering Potion of Caffeine",
+  "item.minecraft.potion.effect.strong_caffeine": "Strong Coffee",
+  "item.minecraft.splash_potion.effect.strong_caffeine": "Splash Potion of Caffeine",
+  "item.minecraft.lingering_potion.effect.strong_caffeine": "Lingering Potion of Caffeine",
+  "item.minecraft.potion.effect.long_caffeine": "Coffee",
+  "item.minecraft.splash_potion.effect.long_caffeine": "Splash Potion of Caffeine",
+  "item.minecraft.lingering_potion.effect.long_caffeine": "Lingering Potion of Caffeine",
+  "item.minecraft.tipped_arrow.effect.caffeine": "Arrow of Caffeine",
+  "item.minecraft.tipped_arrow.effect.long_caffeine": "Arrow of Caffeine",
+  "item.minecraft.tipped_arrow.effect.strong_caffeine": "Arrow of Caffeine",
+	
 	"entity.verdant.verdant_boat": "Verdant Boat",
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	"entity.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",

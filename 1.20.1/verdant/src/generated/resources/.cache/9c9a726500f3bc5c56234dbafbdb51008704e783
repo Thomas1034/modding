@@ -1,8 +1,10 @@
-// 1.20.1	2024-05-15T09:04:03.3763772	Item Models: verdant
+// 1.20.1	2024-05-15T16:29:48.8739382	Item Models: verdant
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
+3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
 5eb607ece02eadf487e65c82b99017c052651583 assets/verdant/models/item/poison_ivy.json
 b48158e74ef051867524b910407eddc7ca399613 assets/verdant/models/item/poison_ivy_verdant_leaves.json
+9cf955adb5f99d83854928dfd011d6894c093048 assets/verdant/models/item/roasted_coffee.json
 aa1f56b69ab5995a8f94963f868f2c44bd43bd9d assets/verdant/models/item/rotten_wood.json
 b0e14af9179206824fc293ef31f881becc6a0f0e assets/verdant/models/item/stinking_blossom.json
 5d70f7d806cb0313440482c28046ef03d970beb5 assets/verdant/models/item/stripped_verdant_heartwood_log.json
@@ -42,3 +44,4 @@ ee66f77bff1270e4246e82563403b0a236ab9f4a assets/verdant/models/item/verdant_slab
 475cdc12b04a62307c8ab1698a40836a3dfe6bd8 assets/verdant/models/item/verdant_trapdoor.json
 204d80a8290a3ff07acfa18713026816d3448ad6 assets/verdant/models/item/verdant_vine.json
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/item/verdant_wood.json
+29437b96327f5d9d54846050c12f44221c980dca assets/verdant/models/item/wild_coffee.json

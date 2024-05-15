@@ -1,18 +1,11 @@
 package com.thomas.verdant.effect;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.function.Function;
-
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 
-public class CaffeinatedEffect extends MobEffect {
+public class CaffeinatedEffect extends AddictiveEffect {
 
 	public CaffeinatedEffect(MobEffectCategory mobEffectCategory, int color) {
 		super(mobEffectCategory, color);
@@ -30,9 +23,9 @@ public class CaffeinatedEffect extends MobEffect {
 		}
 		
 		// Add the effects
-		MobEffectInstance haste = new MobEffectInstance(MobEffects.DIG_SPEED, 5, amplifier);
-		MobEffectInstance speed = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 5, amplifier);
-		MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600 + 120 * amplifier, amplifier);
+		MobEffectInstance haste = new MobEffectInstance(MobEffects.DIG_SPEED, 100, amplifier);
+		MobEffectInstance speed = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1 + amplifier * 2);
+		MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600 + 1200 * (amplifier + 1), amplifier);
 		
 		
 		entity.addEffect(haste);
