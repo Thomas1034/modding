@@ -52,6 +52,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
 				ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(),
 				ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+		this.tag(BlockTags.SWORD_EFFICIENT).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
+				ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(),
+				ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
 		// Verdant furniture
 		this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.VERDANT_TRAPDOOR.get(),

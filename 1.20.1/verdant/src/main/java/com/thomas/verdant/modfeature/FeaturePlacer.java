@@ -96,6 +96,7 @@ public class FeaturePlacer {
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
 				Rarity.EXTREMELY_UNCOMMON, "floor_glow_lichen");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE, "blue_orchid");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.VERY_RARE, "wild_coffee");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE, "brown_mushroom");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE, "red_mushroom");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.EXTREMELY_RARE,

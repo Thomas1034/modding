@@ -23,7 +23,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT.get());
-
+						pOutput.accept(ModItems.COFFEE_BERRIES.get());
+						pOutput.accept(ModItems.ROASTED_COFFEE.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.VERDANT_GRASS_BLOCK.get()))
@@ -71,6 +72,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.THORNY_VERDANT_LEAVES.get());
 						pOutput.accept(ModBlocks.POISON_IVY_VERDANT_LEAVES.get());
 						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
+						pOutput.accept(ModBlocks.WILD_COFFEE.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());
 						pOutput.accept(ModBlocks.DIRT_COAL_ORE.get());
