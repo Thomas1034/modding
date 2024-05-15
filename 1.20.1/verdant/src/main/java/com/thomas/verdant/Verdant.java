@@ -90,6 +90,7 @@ public class Verdant {
 		// Add the right click to add to flowerpot event.
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLEEDING_HEART.getId(),
 				ModBlocks.POTTED_BLEEDING_HEART);
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WILD_COFFEE.getId(), ModBlocks.POTTED_WILD_COFFEE);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(), ModBlocks.POTTED_THORN_BUSH);
 		/// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
 		// ModBlocks.POTTED_BLEEDING_HEART);
@@ -99,12 +100,12 @@ public class Verdant {
 		/// ModBlocks.POTTED_WHITE_ORCHID);
 
 		// Register potions
-		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD,
-				ModBlocks.BLEEDING_HEART.get().asItem(), ModPotions.CAFFEINE.get()));
 		BrewingRecipeRegistry.addRecipe(
-				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.REDSTONE, ModPotions.LONG_CAFFEINE.get()));
+				new BetterBrewingRecipe(Potions.WATER, ModItems.ROASTED_COFFEE.get(), ModPotions.CAFFEINE.get()));
 		BrewingRecipeRegistry.addRecipe(
-				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.GLOWSTONE_DUST, ModPotions.STRONG_CAFFEINE.get()));
+				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), ModItems.ROASTED_COFFEE.get(), ModPotions.LONG_CAFFEINE.get()));
+		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(ModPotions.CAFFEINE.get(),
+				Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
 		// Register verdant growth mechanics on setup.
 		VerdantEroder.registerErosions();

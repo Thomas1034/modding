@@ -24,6 +24,7 @@ import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
 import com.thomas.verdant.block.custom.VerdantTendrilBlock;
 import com.thomas.verdant.block.custom.VerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
+import com.thomas.verdant.block.custom.WildCoffeeBlock;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.util.BurnTimes;
@@ -549,7 +550,7 @@ public class ModBlocks {
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
 
 	public static final RegistryObject<Block> WILD_COFFEE = registerBlockWithItem("wild_coffee",
-			() -> new FlowerBlock(() -> ModMobEffects.CAFFEINATED.get(), 25,
+			() -> new WildCoffeeBlock(() -> ModMobEffects.CAFFEINATED.get(), 25,
 					BlockBehaviour.Properties.copy(Blocks.BLUE_ORCHID).noOcclusion().noCollission()));
 
 	public static final RegistryObject<Block> POTTED_WILD_COFFEE = registerBlockOnly("potted_wild_coffee",

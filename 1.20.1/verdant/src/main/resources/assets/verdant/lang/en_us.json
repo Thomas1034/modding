@@ -20,6 +20,8 @@
 	"item.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	"item.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
 	"item.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
+	"item.verdant.coffee_berries": "Coffee Berries",
+	"item.verdant.roasted_coffee": "Roasted Coffee",
 	
 	"block.verdant.verdant_vine": "Verdant Vine",
 	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
@@ -76,6 +78,8 @@
 	"block.verdant.rotten_wood": "Rotten Wood",
 	
 	"block.verdant.bleeding_heart": "Bleeding Heart Flower",
+	"block.verdant.wild_coffee": "Wild Coffee",
+	"block.verdant.coffee_crop": "Coffee Crop",
 	"block.verdant.potted_bleeding_heart": "Potted Bleeding Heart Flower",
 	"block.verdant.stinking_blossom": "Stinking Blossom",
 	
@@ -86,10 +90,10 @@
   "item.minecraft.potion.effect.caffeine": "Coffee",
   "item.minecraft.splash_potion.effect.caffeine": "Splash Potion of Caffeine",
   "item.minecraft.lingering_potion.effect.caffeine": "Lingering Potion of Caffeine",
-  "item.minecraft.potion.effect.strong_caffeine": "Strong Coffee",
+  "item.minecraft.potion.effect.strong_caffeine": "Sweet Coffee",
   "item.minecraft.splash_potion.effect.strong_caffeine": "Splash Potion of Caffeine",
   "item.minecraft.lingering_potion.effect.strong_caffeine": "Lingering Potion of Caffeine",
-  "item.minecraft.potion.effect.long_caffeine": "Coffee",
+  "item.minecraft.potion.effect.long_caffeine": "Strong Coffee",
   "item.minecraft.splash_potion.effect.long_caffeine": "Splash Potion of Caffeine",
   "item.minecraft.lingering_potion.effect.long_caffeine": "Lingering Potion of Caffeine",
   "item.minecraft.tipped_arrow.effect.caffeine": "Arrow of Caffeine",

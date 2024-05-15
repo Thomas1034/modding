@@ -75,7 +75,7 @@ public class CoffeeCropBlock extends CropBlock {
 		if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
 			return InteractionResult.PASS;
 		} else if (flag) {
-			int j = 1 + level.random.nextInt(1);
+			int j = level.random.nextInt(3);
 			popResource(level, pos, new ItemStack(ModItems.COFFEE_BERRIES.get(), j + (flag ? 1 : 0)));
 			level.playSound((Player) null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F,
 					0.8F + level.random.nextFloat() * 0.4F);
