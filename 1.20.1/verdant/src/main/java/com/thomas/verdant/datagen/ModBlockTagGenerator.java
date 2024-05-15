@@ -49,7 +49,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.DIRT_COPPER_ORE.get(), ModBlocks.DIRT_DIAMOND_ORE.get(), ModBlocks.DIRT_EMERALD_ORE.get(),
 				ModBlocks.DIRT_GOLD_ORE.get(), ModBlocks.DIRT_IRON_ORE.get(), ModBlocks.DIRT_LAPIS_ORE.get(),
 				ModBlocks.DIRT_REDSTONE_ORE.get());
-		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
+		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY_VERDANT_LEAVES.get(),
 				ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
 				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
@@ -147,7 +147,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Leafy blocks
 		this.tag(ModTags.Blocks.VERDANT_LEAFY_BLOCKS).add(ModBlocks.VERDANT_LEAVES.get(),
-				ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
+				ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
 		// Vines
 		this.tag(ModTags.Blocks.VERDANT_VINES).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.LEAFY_VERDANT_VINE.get());
 		// Logs

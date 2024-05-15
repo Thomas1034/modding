@@ -1,13 +1,15 @@
-// 1.20.1	2024-05-14T18:34:24.1018925	Item Models: verdant
+// 1.20.1	2024-05-15T09:04:03.3763772	Item Models: verdant
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
 b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
 5eb607ece02eadf487e65c82b99017c052651583 assets/verdant/models/item/poison_ivy.json
+b48158e74ef051867524b910407eddc7ca399613 assets/verdant/models/item/poison_ivy_verdant_leaves.json
 aa1f56b69ab5995a8f94963f868f2c44bd43bd9d assets/verdant/models/item/rotten_wood.json
 b0e14af9179206824fc293ef31f881becc6a0f0e assets/verdant/models/item/stinking_blossom.json
 5d70f7d806cb0313440482c28046ef03d970beb5 assets/verdant/models/item/stripped_verdant_heartwood_log.json
 786d995e2bda3b7aec65dc856ea3238a20ebd384 assets/verdant/models/item/stripped_verdant_heartwood_wood.json
 51778d2233e054bdb8e7d641860a95248077e9bd assets/verdant/models/item/stripped_verdant_log.json
 a6821bf7dfa73d57ad5361a7820bffca76d3c2e9 assets/verdant/models/item/stripped_verdant_wood.json
+3db3fa5a4501e3cb1150384e1303579332791734 assets/verdant/models/item/thorny_verdant_leaves.json
 56971747583a4b1f9bdedba4a27af87290cc782a assets/verdant/models/item/thorn_bush.json
 560897c565be572d6d09091413f76e1cf4c11b2f assets/verdant/models/item/verdant_boat.json
 40db7e95ea4d78382db79b688369867cee399109 assets/verdant/models/item/verdant_button.json

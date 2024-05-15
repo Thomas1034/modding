@@ -68,6 +68,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get());
 						pOutput.accept(ModBlocks.VERDANT_VINE.get());
 						pOutput.accept(ModBlocks.VERDANT_LEAVES.get());
+						pOutput.accept(ModBlocks.THORNY_VERDANT_LEAVES.get());
+						pOutput.accept(ModBlocks.POISON_IVY_VERDANT_LEAVES.get());
 						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());

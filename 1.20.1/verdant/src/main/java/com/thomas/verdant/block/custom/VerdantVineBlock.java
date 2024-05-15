@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.custom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -85,6 +86,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			Block.box(15.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
 			Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f));
 
+	private static final Map<BlockState, VoxelShape> CACHED_SHAPES = new HashMap<>();
+
 	public VerdantVineBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(UP, 0).setValue(DOWN, 0).setValue(NORTH, 0)
@@ -93,15 +96,25 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		// Empty shape.
-		VoxelShape shape = Shapes.empty();
-		// Merge in the shapes based on the state.
-		shape = Shapes.or(shape, UP_SHAPE.get(state.getValue(UP)));
-		shape = Shapes.or(shape, DOWN_SHAPE.get(state.getValue(DOWN)));
-		shape = Shapes.or(shape, NORTH_SHAPE.get(state.getValue(NORTH)));
-		shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
-		shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
-		shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
+
+		// Try to get the cached shape.
+		VoxelShape shape = CACHED_SHAPES.get(state);
+
+		if (shape == null) {
+
+			// Empty shape.
+			shape = Shapes.empty();
+			// Merge in the shapes based on the state.
+			shape = Shapes.or(shape, UP_SHAPE.get(state.getValue(UP)));
+			shape = Shapes.or(shape, DOWN_SHAPE.get(state.getValue(DOWN)));
+			shape = Shapes.or(shape, NORTH_SHAPE.get(state.getValue(NORTH)));
+			shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
+			shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
+			shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
+
+			CACHED_SHAPES.put(state, shape);
+		}
+
 		return shape;
 	}
 

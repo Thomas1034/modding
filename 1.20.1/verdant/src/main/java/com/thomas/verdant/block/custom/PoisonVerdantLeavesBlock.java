@@ -24,7 +24,7 @@ public class PoisonVerdantLeavesBlock extends VerdantLeavesBlock {
 	// Poison players who step on it.
 	// Copied from PoisonVerdantTendrilBlock.
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.FOX
 				&& livingEntity.getMobType() != MobType.ARTHROPOD) {
 			livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));

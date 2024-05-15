@@ -37,7 +37,7 @@
                   ]
                 }
               ],
-              "name": "verdant:verdant_leaves"
+              "name": "verdant:poison_ivy_verdant_leaves"
             },
             {
               "type": "minecraft:item",
@@ -46,8 +46,8 @@
                   "add": false,
                   "count": {
                     "type": "minecraft:uniform",
-                    "max": 1.0,
-                    "min": 0.0
+                    "max": 3.0,
+                    "min": 1.0
                   },
                   "function": "minecraft:set_count"
                 },
@@ -60,7 +60,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:stick"
+              "name": "verdant:poison_ivy"
             }
           ]
         }
@@ -68,5 +68,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/verdant_leaves"
+  "random_sequence": "verdant:blocks/poison_ivy_verdant_leaves"
 }

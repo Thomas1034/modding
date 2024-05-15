@@ -43,6 +43,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		buttonItem(ModBlocks.VERDANT_BUTTON, ModBlocks.VERDANT_PLANKS);
 
 		evenSimplerBlockItem(ModBlocks.VERDANT_LEAVES);
+		evenSimplerBlockItem(ModBlocks.THORNY_VERDANT_LEAVES);
+		evenSimplerBlockItem(ModBlocks.POISON_IVY_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.VERDANT_STAIRS);
 		evenSimplerBlockItem(ModBlocks.VERDANT_SLAB);
 		evenSimplerBlockItem(ModBlocks.VERDANT_PRESSURE_PLATE);

@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves"
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/poison_ivy_verdant_leaves",
+        "x": 270,
+        "y": 90
+      }
+    ]
+  }
+}

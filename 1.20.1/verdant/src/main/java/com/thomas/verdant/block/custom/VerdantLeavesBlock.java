@@ -39,9 +39,16 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			VERDANT_DECAY_DISTANCE);
 	private static final VoxelShape SUPPORT_SHAPE = Shapes.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
 
-	public static final Function<RandomSource, BlockState> LEAVES = (rand) -> (rand.nextFloat() < 0.1f)
-			? ModBlocks.THORNY_VERDANT_LEAVES.get().defaultBlockState()
-			: ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
+	public static final Function<RandomSource, BlockState> LEAVES = (rand) -> {
+		float choice = rand.nextFloat();
+		if (choice < 0.1f) {
+			return ModBlocks.THORNY_VERDANT_LEAVES.get().defaultBlockState();
+		} else if (choice < 0.2f) {
+			return ModBlocks.POISON_IVY_VERDANT_LEAVES.get().defaultBlockState();
+		}
+
+		return ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
+	};
 
 	public VerdantLeavesBlock(Properties properties) {
 		super(properties);
