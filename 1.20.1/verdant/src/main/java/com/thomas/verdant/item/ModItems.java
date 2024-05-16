@@ -10,6 +10,7 @@ import com.thomas.verdant.item.custom.ModBoatItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -59,7 +60,22 @@ public class ModItems {
 					() -> new Item(new Item.Properties()));
 	
 	// Heartwood armor
-	
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HELMET = ITEMS.register("verdant_heartwood_helmet",
+			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS.register("verdant_heartwood_chestplate",
+			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.CHESTPLATE,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register("verdant_heartwood_leggings",
+			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
+					new Item.Properties().fireResistant()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_BOOTS = ITEMS.register("verdant_heartwood_boots",
+			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
+					new Item.Properties().fireResistant()));
+
 	
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {

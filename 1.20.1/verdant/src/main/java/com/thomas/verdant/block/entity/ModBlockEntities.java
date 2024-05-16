@@ -27,6 +27,10 @@ public class ModBlockEntities {
 							ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
 							ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<VerdantHeartBlockEntity>> VERDANT_HEART_BLOCK_ENTITY = BLOCK_ENTITIES
+			.register("jungle_heart", () -> BlockEntityType.Builder
+					.of(VerdantHeartBlockEntity::new, ModBlocks.VERDANT_HEART_BLOCK.get()).build(null));
+
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITIES.register(eventBus);
 	}

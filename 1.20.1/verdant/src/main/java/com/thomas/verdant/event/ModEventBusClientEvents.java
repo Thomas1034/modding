@@ -2,6 +2,7 @@ package com.thomas.verdant.event;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.entity.ModBlockEntities;
+import com.thomas.verdant.block.entity.renderer.VerdantHeartRenderer;
 import com.thomas.verdant.entity.client.ModModelLayers;
 
 import net.minecraft.client.model.BoatModel;
@@ -30,6 +31,7 @@ public class ModEventBusClientEvents {
 	public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
 		event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
+		event.registerBlockEntityRenderer(ModBlockEntities.VERDANT_HEART_BLOCK_ENTITY.get(), VerdantHeartRenderer::new);
 
 	}
 

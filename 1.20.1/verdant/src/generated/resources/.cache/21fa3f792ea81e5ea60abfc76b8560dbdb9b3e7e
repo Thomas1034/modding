@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-15T16:29:48.8707342	Block States: verdant
+// 1.20.1	2024-05-15T21:28:59.8951619	Block States: verdant
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
 81b54a2d837372bd0a718463a44c07776249a56b assets/verdant/blockstates/coffee_crop.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
@@ -42,6 +42,7 @@ ab09cee068382fc441dbedc8ccf3e676688ffb9a assets/verdant/blockstates/verdant_hear
 091e7c117d8e33074e75709758c379be7b31ca86 assets/verdant/blockstates/verdant_heartwood_wall_hanging_sign.json
 3be31ba9017e07024362f29eb893cd839a18bcf2 assets/verdant/blockstates/verdant_heartwood_wall_sign.json
 62da1d1860210dc372c79df5135cef0bd43c5e88 assets/verdant/blockstates/verdant_heartwood_wood.json
+c10b3e0ddf86b221a75db90a4e5f40598650c0f7 assets/verdant/blockstates/verdant_heart_block.json
 39df1b6440372bff095d1b4d272dbe38663e7829 assets/verdant/blockstates/verdant_log.json
 a04f48b9da068e41db62997610ab76a2d07a5110 assets/verdant/blockstates/verdant_mud_grass_block.json
 923354084afc47b0707556f2cd36eececaad5246 assets/verdant/blockstates/verdant_planks.json
@@ -139,6 +140,7 @@ bff1c60c4965bd37995d95a42661bf0a2995af11 assets/verdant/models/block/verdant_hea
 ca4812810de5593b8bb891f515c29206a3e5d94b assets/verdant/models/block/verdant_heartwood_trapdoor_top.json
 a3de29680169179bc05a9d025ce790131d0bd072 assets/verdant/models/block/verdant_heartwood_wood.json
 3dcf55622bc356e9a98ba7960d7cb7e37b91cd56 assets/verdant/models/block/verdant_heartwood_wood_horizontal.json
+8019f741de5d4cc9a088f0447537ce1f178ba99a assets/verdant/models/block/verdant_heart_block.json
 7103542e35d65ed90fabe372c99f98b5ba99ebfc assets/verdant/models/block/verdant_log.json
 a9aab48120970fd50698a4f7dbfb1eb98502e294 assets/verdant/models/block/verdant_log_horizontal.json
 2d8c11921cfbd4d6865579c6fea50ac92726ae0e assets/verdant/models/block/verdant_mud_grass_block.json
@@ -175,6 +177,7 @@ ecfe3b55d4391a58aacf9adbf48b69269421f61f assets/verdant/models/item/poison_ivy_p
 69edfd1fddbd0b24ef6289b67908bb2e874a4cfe assets/verdant/models/item/verdant_clay_grass_block.json
 103340fbc8ac95c6a76d0d78f92c38966d58706e assets/verdant/models/item/verdant_grass_block.json
 3fe7d994dbe6b475e0037a2939b3d5c3d33cc715 assets/verdant/models/item/verdant_heartwood_planks.json
+4acfb53b8b990aba28e1e6fc5c36e3f03c4475ee assets/verdant/models/item/verdant_heart_block.json
 2a95b64e885d157c4a75613cf098b0579f4c690b assets/verdant/models/item/verdant_mud_grass_block.json
 b0699a1663848eba90973a28ef250b0efa971968 assets/verdant/models/item/verdant_planks.json
 e5df5ec3cb6094e032f9da2b4b94e76187774ae2 assets/verdant/models/item/verdant_rooted_clay.json

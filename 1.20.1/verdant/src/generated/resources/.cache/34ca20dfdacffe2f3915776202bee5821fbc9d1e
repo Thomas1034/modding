@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-15T16:29:48.8642866	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-05-15T21:28:59.8863968	Tags for minecraft:block mod id verdant
 1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates.json
 1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates/wooden.json
 88a76af7c5398cfc30307af2a425ac3f217f4cb9 data/minecraft/tags/blocks/big_dripleaf_placeable.json
@@ -25,6 +25,7 @@ f06732e6933326d73d08a29530042dc883d750ac data/minecraft/tags/blocks/slabs.json
 88a76af7c5398cfc30307af2a425ac3f217f4cb9 data/minecraft/tags/blocks/small_dripleaf_placeable.json
 beb1989528e98e6c5464c2d8a0805f56271ae257 data/minecraft/tags/blocks/small_flowers.json
 a08e34490356dc9de73f330d9f06989a47c835f4 data/minecraft/tags/blocks/stairs.json
+96932b62cc97a49e9ec56bbe0f04f052e034af6a data/minecraft/tags/blocks/sword_efficient.json
 f3d47226edd2656c3f873afdb5e35bab54e57421 data/minecraft/tags/blocks/trapdoors.json
 7eb08c66fa1a232b3aaa9b86dc9ed9a47ecef11d data/minecraft/tags/blocks/wooden_buttons.json
 ed5cddca994b8d6803863827e48be3c01b4f3c6c data/minecraft/tags/blocks/wooden_doors.json

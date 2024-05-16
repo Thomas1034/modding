@@ -33,6 +33,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		requireSilkTouch(ModBlocks.VERDANT_HEART_BLOCK.get(), Blocks.AIR);
+
 		oreDrop(ModBlocks.DIRT_COAL_ORE.get(), Items.COAL, List.of(1, 1));
 		oreDrop(ModBlocks.DIRT_COPPER_ORE.get(), Items.RAW_COPPER, List.of(2, 5));
 		oreDrop(ModBlocks.DIRT_IRON_ORE.get(), Items.RAW_IRON, List.of(1, 1));
