@@ -341,7 +341,7 @@ public class CloudBlock extends Block {
 		public static boolean verifyEmptySpace(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand,
 				int radius) {
 
-			AABB boundaries = AABB.of(BoundingBox.fromCorners(pos.north(radius).west(radius), pos.above(2 * radius)));
+			AABB boundaries = AABB.of(BoundingBox.fromCorners(pos.north(radius).west(radius), pos.above(2 * radius).south(radius + 1).east(radius + 1)));
 			Stream<BlockState> states = level.getBlockStatesIfLoaded(boundaries);
 
 			return states

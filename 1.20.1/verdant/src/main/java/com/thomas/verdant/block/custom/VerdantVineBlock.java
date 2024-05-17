@@ -111,7 +111,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
 			shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
 			shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
-
+			// shape = shape.optimize();
 			CACHED_SHAPES.put(state, shape);
 		}
 
@@ -223,12 +223,9 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 				: ModBlocks.VERDANT_VINE.get().defaultBlockState();
 
 		// Find every direction it can grow there.
-		boolean hasGrownAFace = false;
 		for (Direction d : Direction.allShuffled(level.random)) {
-			// 50% chance of growing each face after the first.
-			// This should look more natural.
-			if (canGrowToFace(level, pos, d) && (hasGrownAFace || level.random.nextFloat() < 0.5f)) {
-				hasGrownAFace = true;
+			// Place it there.
+			if (canGrowToFace(level, pos, d)) {
 				placed = placed.setValue(SIDES.get(d), 1);
 			}
 		}
@@ -278,10 +275,12 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// Check if it can grow
 			if (maturity == MIN_GROWTH && canGrowToFace(level, pos, d)) {
 				isMature = false;
+				//System.out.println("Setting face " + d + " to " + (MIN_GROWTH + 1) + " at " + pos);
 				state = state.setValue(SIDES.get(d), MIN_GROWTH + 1);
 			} else if (maturity > MIN_GROWTH && maturity < MAX_GROWTH) {
 				isMature = false;
 				state = state.setValue(SIDES.get(d), maturity + 1);
+				//System.out.println("Setting face " + d + " to " + (maturity + 1) + " at " + pos);
 			} else {
 
 			}
@@ -360,6 +359,10 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			return false;
 		}
 
+		// Then, check if this log is a mature verdant log.
+		if (host.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
+			return false;
+		}
 		// Then, check if this log is a verdant log and has a mature neighbor.
 		// If so, return early.
 		if (host.is(ModTags.Blocks.VERDANT_LOGS) && hasMatureVerdantLogNeighbors(level, pos)) {
@@ -501,8 +504,9 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 			// Check if the neighbor can support a block on that side, if such is needed.
 			if (state.getValue(side.getValue()) > 0) {
-				if (!neighbor.isFaceSturdy(level, offset, side.getKey().getOpposite())) {
+				if (!canGrowToFace(level, pos, side.getKey())) {
 					// If not, remove growth on that side.
+					//System.out.println("Removing vine part since " + side.getKey() + "neighbor is " + neighbor);
 					state = state.setValue(side.getValue(), 0);
 
 					level.addDestroyBlockEffect(pos, state);
@@ -510,14 +514,18 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 				} else {
 					// A face has been found.
+					//System.out.println("A face has been found at " + side.getKey());
 					anyFacesExist = true;
 				}
+			} else {
+				//System.out.println("No face was found at " + side.getKey());
 			}
 		}
 		// If all the faces are empty, destroy the block.
 		if (!anyFacesExist) {
 			// System.out.println("All faces are empty, destroying block: " + state + ".");
 			// Second parameter is whether it drops resources.
+			//System.out.println("Destroying vine at " + pos);
 			level.destroyBlock(pos, false);
 		} else if (needToUpdate) {
 			// System.out.println("Setting vine growth to " + state + ".");
@@ -529,6 +537,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		BlockState state = level.getBlockState(pos.relative(direction));
 		boolean isSturdy = level.getBlockState(pos.relative(direction)).isFaceSturdy(level, pos,
 				direction.getOpposite());
+		//System.out.println("Checking if can grow to face " + direction + " at " + pos);
+		//System.out.println("Returning " + (state.is(BlockTags.LOGS) && isSturdy));
 		return state.is(BlockTags.LOGS) && isSturdy;
 	}
 

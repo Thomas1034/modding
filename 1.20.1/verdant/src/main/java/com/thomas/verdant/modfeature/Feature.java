@@ -11,6 +11,7 @@ import com.thomas.verdant.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -72,25 +73,34 @@ public class Feature {
 		return new Feature(place);
 	}
 
-	public static Feature doubleHeight(BiConsumer<Level, BlockPos> place) {
-		return new Feature(place, Feature::simpleDoubleAirChecker);
+	public static Feature doubleHeightPlant(BiConsumer<Level, BlockPos> place) {
+		return new Feature(place, ((BiPredicate<Level, BlockPos>) Feature::simpleDoubleAirChecker)
+				.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	public static Feature doubleHeightWater(BiConsumer<Level, BlockPos> place) {
-		return new Feature(place, Feature::simpleDoubleWaterChecker);
+		return new Feature(place, ((BiPredicate<Level, BlockPos>) Feature::simpleDoubleWaterChecker)
+				.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	public static Feature smallPlant(Block block) {
-		return Feature.simple((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()));
+		return smallPlant(block.defaultBlockState());
 	}
 
 	public static Feature smallPlant(BlockState state) {
-		return Feature.simple((level, pos) -> level.setBlockAndUpdate(pos, state));
+		return new Feature((level, pos) -> level.setBlockAndUpdate(pos, state),
+				((BiPredicate<Level, BlockPos>) Feature::simpleAirChecker)
+						.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	public static Feature smallUnderwaterPlant(Block block) {
-		return new Feature((level, pos) -> level.setBlockAndUpdate(pos, block.defaultBlockState()),
-				Feature::simpleWaterChecker);
+		return smallUnderwaterPlant(block.defaultBlockState());
+	}
+
+	public static Feature smallUnderwaterPlant(BlockState state) {
+		return new Feature((level, pos) -> level.setBlockAndUpdate(pos, state),
+				((BiPredicate<Level, BlockPos>) Feature::simpleWaterChecker)
+						.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	// TODO
@@ -99,12 +109,15 @@ public class Feature {
 	}
 
 	public static Feature tallPlant(DoublePlantBlock block) {
-		return Feature.doubleHeight((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+		return new Feature((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2),
+				((BiPredicate<Level, BlockPos>) Feature::simpleDoubleAirChecker)
+						.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
-		return Feature
-				.doubleHeightWater((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2));
+		return new Feature((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2),
+				((BiPredicate<Level, BlockPos>) Feature::simpleDoubleWaterChecker)
+						.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
 	public static Feature verdantVine(VerdantVineBlock block) {
@@ -128,6 +141,21 @@ public class Feature {
 	// Returns true if the given position is air.
 	public static boolean simpleAirChecker(Level level, BlockPos pos) {
 		return level.getBlockState(pos).isAir();
+	}
+
+	// Returns true if the given position has air above it.
+	public static boolean simpleAirAboveChecker(Level level, BlockPos pos) {
+		return simpleAirChecker(level, pos.above());
+	}
+
+	// Returns true if the given position is dirt.
+	public static boolean simpleDirtChecker(Level level, BlockPos pos) {
+		return level.getBlockState(pos).is(BlockTags.DIRT);
+	}
+
+	// Returns true if the given position has dirt below it.
+	public static boolean simpleDirtBelowChecker(Level level, BlockPos pos) {
+		return simpleDirtChecker(level, pos.below());
 	}
 
 	// Returns true if the given position is water.

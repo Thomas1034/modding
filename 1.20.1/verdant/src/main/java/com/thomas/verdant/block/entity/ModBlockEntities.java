@@ -2,6 +2,9 @@ package com.thomas.verdant.block.entity;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.entity.custom.ModHangingSignBlockEntity;
+import com.thomas.verdant.block.entity.custom.ModSignBlockEntity;
+import com.thomas.verdant.block.entity.custom.VerdantConduitBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,9 +30,9 @@ public class ModBlockEntities {
 							ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
 							ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get()).build(null));
 
-	public static final RegistryObject<BlockEntityType<VerdantHeartBlockEntity>> VERDANT_HEART_BLOCK_ENTITY = BLOCK_ENTITIES
+	public static final RegistryObject<BlockEntityType<VerdantConduitBlockEntity>> VERDANT_HEART_BLOCK_ENTITY = BLOCK_ENTITIES
 			.register("jungle_heart", () -> BlockEntityType.Builder
-					.of(VerdantHeartBlockEntity::new, ModBlocks.VERDANT_HEART_BLOCK.get()).build(null));
+					.of(VerdantConduitBlockEntity::new, ModBlocks.VERDANT_CONDUIT.get()).build(null));
 
 	public static void register(IEventBus eventBus) {
 		BLOCK_ENTITIES.register(eventBus);

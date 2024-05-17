@@ -216,7 +216,7 @@ public class FeaturePlacer {
 	}
 
 	public static boolean surfacePlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).isAir();
+		return level.getBlockState(pos.above()).isAir() && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
 	}
 
 	public static boolean verdantVinePlacement(Level level, BlockPos pos) {
@@ -225,11 +225,11 @@ public class FeaturePlacer {
 	}
 
 	public static boolean hangingPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.below()).isAir();
+		return level.getBlockState(pos.below()).isAir() && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.DOWN);
 	}
 
 	public static boolean waterPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).is(Blocks.WATER);
+		return level.getBlockState(pos.above()).is(Blocks.WATER) && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
 	}
 
 	public static boolean always(Level level, BlockPos pos) {

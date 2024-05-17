@@ -1,6 +1,6 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.block.entity.ModHangingSignBlockEntity;
+import com.thomas.verdant.block.entity.custom.ModHangingSignBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;

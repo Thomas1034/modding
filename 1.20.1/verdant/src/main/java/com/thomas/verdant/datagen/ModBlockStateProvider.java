@@ -42,9 +42,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-
-
-		blockWithItem(ModBlocks.VERDANT_HEART_BLOCK);
 		
 		blockWithItem(ModBlocks.DIRT_COAL_ORE);
 		blockWithItem(ModBlocks.DIRT_COPPER_ORE);

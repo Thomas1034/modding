@@ -83,7 +83,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.DIRT_REDSTONE_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_EMERALD_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
-						pOutput.accept(ModBlocks.VERDANT_HEART_BLOCK.get());
+						pOutput.accept(ModBlocks.VERDANT_CONDUIT.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WOODEN_PICKAXE))

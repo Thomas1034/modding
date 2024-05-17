@@ -1,6 +1,6 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.block.entity.ModSignBlockEntity;
+import com.thomas.verdant.block.entity.custom.ModSignBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.StandingSignBlock;

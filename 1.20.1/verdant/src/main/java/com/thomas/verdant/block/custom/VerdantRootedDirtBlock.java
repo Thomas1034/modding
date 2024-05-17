@@ -15,6 +15,7 @@ import com.thomas.verdant.util.Utilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -56,7 +57,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 
 		// If it has no block above it and no block below it, it should certainly
 		// settle.
-		if (level.getBlockState(pos.above()).is(Blocks.AIR) && level.getBlockState(pos.below()).is(Blocks.AIR)) {
+		if (level.getBlockState(pos.above()).is(Blocks.AIR)
+				&& level.getBlockState(pos.below()).is(BlockTags.REPLACEABLE)) {
 			return true;
 		}
 
@@ -79,7 +81,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 			return false;
 		}
 		// If it has a block above it and a block below it, don't settle.
-		if (!level.getBlockState(pos.above()).is(Blocks.AIR) && !level.getBlockState(pos.below()).is(Blocks.AIR)) {
+		if (!level.getBlockState(pos.above()).is(BlockTags.REPLACEABLE)
+				&& !level.getBlockState(pos.below()).is(Blocks.AIR)) {
 			return false;
 		}
 
@@ -100,7 +103,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 				if (settleLocation != null) {
 					level.setBlockAndUpdate(settleLocation, level.getBlockState(pos));
 					// If it's not supported underneath, fall.
-					if (level.getBlockState(settleLocation.below()).is(Blocks.AIR)) {
+					if (level.getBlockState(settleLocation.below()).isFaceSturdy(level, pos, Direction.UP)) {
 						FallingBlockHelper.fallNoDrops(level, settleLocation);
 					}
 				}
@@ -149,7 +152,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 		// Settle
 		if (!this.settle(level, pos)) {
 			// Grow.
-			float growthChance =  this.growthChance();
+			float growthChance = this.growthChance();
 			float randomChance = rand.nextFloat();
 			while (randomChance < growthChance) {
 				// System.out.println("Trying to spread.");

@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-15T21:28:59.8916688	Loot Tables
+// 1.20.1	2024-05-16T19:44:54.5915128	Loot Tables
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_tables/blocks/bleeding_heart.json
 0bdf5d7147a0905ca324e0b43af26e0c9fb983b2 data/verdant/loot_tables/blocks/coffee_crop.json
 a2a559119908fc28a6139eeacc06a2b4033359d1 data/verdant/loot_tables/blocks/dirt_coal_ore.json
@@ -26,6 +26,7 @@ e2336526863d1aab175ec80c33f5696c568cf40c data/verdant/loot_tables/blocks/strippe
 17072b1b4d436f8359dda652db58b133e31d7197 data/verdant/loot_tables/blocks/thorn_bush.json
 379fb531c8edc19ad723b27e5e1d86c2f04bdade data/verdant/loot_tables/blocks/verdant_button.json
 0eb3e3d9bca7431352857ec926e1251f31a42775 data/verdant/loot_tables/blocks/verdant_clay_grass_block.json
+a8ea22849065fe093b0d2383712f54948802b56e data/verdant/loot_tables/blocks/verdant_conduit.json
 b127c7f04f7120ba3d70da1c4dad2af8387db579 data/verdant/loot_tables/blocks/verdant_door.json
 97c7834e70b8b517af9f1bd9142cd10b80ffec1e data/verdant/loot_tables/blocks/verdant_fence.json
 b730f2a3495ce9f9ef54b18760f06974a13a7f22 data/verdant/loot_tables/blocks/verdant_fence_gate.json
@@ -46,7 +47,6 @@ afeaed3ff8e6de6e51dec2d6fe213be7d60a24d9 data/verdant/loot_tables/blocks/verdant
 a97ccfba34221dcbd55103da9d930d665c110919 data/verdant/loot_tables/blocks/verdant_heartwood_wall_hanging_sign.json
 8b2ba003add42c43daabccc2f8760d0574ae5518 data/verdant/loot_tables/blocks/verdant_heartwood_wall_sign.json
 fdd416ca0c93728255e689d838a75d0559f88579 data/verdant/loot_tables/blocks/verdant_heartwood_wood.json
-5ad75df71af422ad65e6ddd01b52dfcd5f9a353e data/verdant/loot_tables/blocks/verdant_heart_block.json
 ebba98b91292d885c8968749217c3650a99fa9de data/verdant/loot_tables/blocks/verdant_leaves.json
 8323035a28e6bdb053085782d7959316db5a5660 data/verdant/loot_tables/blocks/verdant_log.json
 b68770e22e1609a27b2422352e8359fd00e1aa0c data/verdant/loot_tables/blocks/verdant_mud_grass_block.json

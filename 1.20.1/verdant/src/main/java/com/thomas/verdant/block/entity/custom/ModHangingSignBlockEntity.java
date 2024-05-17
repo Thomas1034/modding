@@ -1,4 +1,6 @@
-package com.thomas.verdant.block.entity;
+package com.thomas.verdant.block.entity.custom;
+
+import com.thomas.verdant.block.entity.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;

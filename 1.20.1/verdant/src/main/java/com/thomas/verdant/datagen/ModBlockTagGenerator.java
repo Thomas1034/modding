@@ -174,5 +174,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Coffee crop
 		this.tag(BlockTags.CROPS).add(ModBlocks.COFFEE_CROP.get());
+		
+		// REMOVE vines from tree replaceables.
+		this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(ModTags.Blocks.VERDANT_VINES);
 	}
 }

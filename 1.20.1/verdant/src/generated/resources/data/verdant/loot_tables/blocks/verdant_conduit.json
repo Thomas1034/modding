@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "verdant:verdant_heart_block"
+              "name": "verdant:verdant_conduit"
             },
             {
               "type": "minecraft:item",
@@ -41,5 +41,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/verdant_heart_block"
+  "random_sequence": "verdant:blocks/verdant_conduit"
 }

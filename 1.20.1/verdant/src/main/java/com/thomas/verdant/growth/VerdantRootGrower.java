@@ -58,6 +58,7 @@ public class VerdantRootGrower {
 		register(Blocks.MYCELIUM, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		register(Blocks.GRASS_BLOCK, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		register(Blocks.DIRT, ModBlocks.VERDANT_ROOTED_DIRT.get());
+		register(Blocks.GRASS_BLOCK, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		register(Blocks.MUD, ModBlocks.VERDANT_ROOTED_MUD.get());
 		register(Blocks.CLAY, ModBlocks.VERDANT_ROOTED_CLAY.get());
 		

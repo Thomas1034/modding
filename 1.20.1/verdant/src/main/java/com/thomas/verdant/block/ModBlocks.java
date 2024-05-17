@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
-import com.thomas.verdant.block.custom.VerdantHeartBlock;
+import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
@@ -593,8 +593,8 @@ public class ModBlocks {
 			() -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
 
 	// Jungle heart block
-	public static final RegistryObject<Block> VERDANT_HEART_BLOCK = registerBlockWithItem("verdant_heart_block",
-			() -> new VerdantHeartBlock(BlockBehaviour.Properties.copy(Blocks.BEACON)));
+	public static final RegistryObject<Block> VERDANT_CONDUIT = registerBlockWithItem("verdant_conduit",
+			() -> new VerdantConduitBlock(BlockBehaviour.Properties.copy(Blocks.BEACON)));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {

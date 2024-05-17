@@ -6,16 +6,18 @@ import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.lighting.LightEngine;
 
-public interface VerdantGrower {
+public interface VerdantGrower extends BonemealableBlock {
 
 	public static final float MULTI_ERODE_CHANCE = 0.25f;
 
@@ -26,26 +28,46 @@ public interface VerdantGrower {
 	abstract void grow(BlockState state, Level level, BlockPos pos);
 
 	default void erode(Level level, BlockPos pos, boolean isNearWater) {
-		// System.out.println("Eroding to " +
-		// VerdantEroder.getNext(level.getBlockState(pos)) + ".");
-		level.setBlockAndUpdate(pos, VerdantEroder.getNext(level.getBlockState(pos)));
+		erodeStatic(level, pos, isNearWater);
+	}
+
+	public static boolean erodeStatic(Level level, BlockPos pos, boolean isNearWater) {
+		BlockState state = level.getBlockState(pos);
+		BlockState next = VerdantEroder.getNext(state);
+		BlockState nextIfWet = VerdantEroder.getNext(next);
+		if (state == next && !(isNearWater && state != nextIfWet)) {
+			return false;
+		}
 		if (isNearWater) {
-			// System.out.println("Eroding to " +
-			// VerdantEroder.getNextIfWet(level.getBlockState(pos)) + ".");
-			level.setBlockAndUpdate(pos, VerdantEroder.getNextIfWet(level.getBlockState(pos)));
+			level.setBlockAndUpdate(pos, nextIfWet);
+		} else {
+			level.setBlockAndUpdate(pos, next);
 		}
 		// Chance to recurse.
 		if (level.random.nextFloat() < MULTI_ERODE_CHANCE) {
-			erode(level, pos, isNearWater);
+			erodeStatic(level, pos, isNearWater);
 		}
-
-	}
+		return true;
+	};
 
 	public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
-
 		return pos.offset(rand.nextIntBetweenInclusive(-dist, dist), rand.nextIntBetweenInclusive(-dist, dist),
 				rand.nextIntBetweenInclusive(-dist, dist));
+	}
 
+	public static BlockPos withinSphereDist(BlockPos pos, int dist, RandomSource rand) {
+
+		int xOffset = 0;
+		int yOffset = 0;
+		int zOffset = 0;
+		do {
+			xOffset = rand.nextIntBetweenInclusive(-dist, dist);
+			yOffset = rand.nextIntBetweenInclusive(-dist, dist);
+			zOffset = rand.nextIntBetweenInclusive(-dist, dist);
+			;
+		} while (xOffset * xOffset + yOffset * yOffset + zOffset * zOffset <= dist * dist);
+
+		return pos.offset(xOffset, yOffset, zOffset);
 	}
 
 	// From the grass block class, except no snow and no underwater.
@@ -89,8 +111,7 @@ public interface VerdantGrower {
 			level.setBlockAndUpdate(pos, placed);
 		}
 	}
-	
-	
+
 	public static void replaceLeafyVineWithVine(Level level, BlockPos pos) {
 		// Store the previous block there.
 		BlockState replaced = level.getBlockState(pos);
@@ -192,6 +213,22 @@ public interface VerdantGrower {
 		}
 
 		return false;
+	}
+
+	@Override
+	default boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean unknownBool) {
+		return true;
+	}
+
+	@Override
+	default boolean isBonemealSuccess(Level level, RandomSource rand, BlockPos pos, BlockState state) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	default void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
+		this.grow(state, level, pos);
 	}
 
 }

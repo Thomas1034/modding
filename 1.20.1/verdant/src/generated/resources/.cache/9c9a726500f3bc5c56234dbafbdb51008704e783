@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-15T16:29:48.8739382	Item Models: verdant
+// 1.20.1	2024-05-16T19:44:54.6103746	Item Models: verdant
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
@@ -16,6 +16,7 @@ a6821bf7dfa73d57ad5361a7820bffca76d3c2e9 assets/verdant/models/item/stripped_ver
 560897c565be572d6d09091413f76e1cf4c11b2f assets/verdant/models/item/verdant_boat.json
 40db7e95ea4d78382db79b688369867cee399109 assets/verdant/models/item/verdant_button.json
 ffad1f8fd6acfe2781b2b5f6bb65f961f83ae252 assets/verdant/models/item/verdant_chest_boat.json
+1173b674f5e0b0dd87ea195e350dd03614831e3f assets/verdant/models/item/verdant_conduit.json
 51f9a7cfc45c3376461f178487622859b260a60a assets/verdant/models/item/verdant_door.json
 18ce35ff9c7ee3735d59ba17472bbe460d2a07d2 assets/verdant/models/item/verdant_fence.json
 622d72e7fdbb3a6759c1d2587774c841ff698646 assets/verdant/models/item/verdant_fence_gate.json

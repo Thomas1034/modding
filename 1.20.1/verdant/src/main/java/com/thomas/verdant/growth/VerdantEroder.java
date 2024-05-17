@@ -31,7 +31,7 @@ public class VerdantEroder {
 			return oldState;
 		}
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static BlockState getNextIfWet(BlockState oldState) {
 
@@ -51,13 +51,15 @@ public class VerdantEroder {
 	public static void register(Block start, Block finish) {
 		NEXT.put(start, finish);
 	}
-	
+
 	public static void ifWet(Block start, Block finish) {
 		IF_WET.put(start, finish);
 	}
 
 	public static void registerErosions() {
 		register(Blocks.STONE, Blocks.COBBLESTONE);
+		register(Blocks.STONE_SLAB, Blocks.GRAVEL);
+		register(Blocks.STONE_STAIRS, Blocks.COBBLESTONE_STAIRS);
 		register(Blocks.INFESTED_STONE, Blocks.STONE);
 		register(Blocks.COBBLESTONE, Blocks.GRAVEL);
 		register(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
@@ -79,12 +81,13 @@ public class VerdantEroder {
 		// Stone bricks
 		register(Blocks.SMOOTH_STONE, Blocks.COBBLESTONE);
 		register(Blocks.SMOOTH_STONE_SLAB, Blocks.COBBLESTONE_SLAB);
-		register(Blocks.STONE_BRICKS, Blocks.COBBLESTONE);
+		register(Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS);
 		register(Blocks.STONE_BRICK_STAIRS, Blocks.COBBLESTONE_STAIRS);
 		register(Blocks.STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB);
 		register(Blocks.STONE_BRICK_WALL, Blocks.COBBLESTONE_WALL);
 		register(Blocks.CHISELED_STONE_BRICKS, Blocks.COBBLESTONE);
-		register(Blocks.MOSSY_STONE_BRICKS, Blocks.COBBLESTONE);
+		register(Blocks.CRACKED_STONE_BRICKS, Blocks.COBBLESTONE);
+		register(Blocks.MOSSY_STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS);
 		register(Blocks.MOSSY_STONE_BRICK_STAIRS, Blocks.COBBLESTONE_STAIRS);
 		register(Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB);
 		register(Blocks.MOSSY_STONE_BRICK_WALL, Blocks.COBBLESTONE_WALL);

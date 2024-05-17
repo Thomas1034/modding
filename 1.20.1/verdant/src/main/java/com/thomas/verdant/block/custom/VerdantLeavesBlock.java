@@ -18,6 +18,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -82,14 +83,19 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
 		// System.out.println("Verdant leaves are ticking at " + pos + ".");
-		float growthChance =  this.growthChance();
+		float growthChance = this.growthChance();
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
 			// System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
 			growthChance--;
 		}
+
+		// Schedule an update tick, just in case.
 		level.scheduleTick(pos, level.getBlockState(pos).getBlock(), 1);
+
+		// See if it should decay, since it's too close to the ground.
+		tryToDecay(level, pos);
 
 	}
 
@@ -183,14 +189,10 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		if (state.getValue(PERSISTENT)) {
 			return;
 		}
-		
+
 		// See if it can grow into leafy vines.
 		VerdantGrower.replaceLeavesWithVine(level, pos);
-		// See if it should decay, since it's too close to the ground.
-		
-		if (tryToDecay(level, pos)) {
-			return;
-		}
+
 		growLeaves(level, pos);
 		spreadLeaves(level, pos);
 		growTendril(level, pos);
@@ -198,7 +200,9 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	// Decays the block if it is too close to the ground.
 	public boolean tryToDecay(Level level, BlockPos pos) {
-		if (!hasTransparentOrPlantSpaceBeneath(level, pos, 2) && !hasLogOrVineOrLeafBeneath(level, pos, 3)) {
+		BlockState beneath = level.getBlockState(pos.below());
+		if (!hasTransparentOrPlantSpaceBeneath(level, pos, 2) && !beneath.is(ModTags.Blocks.VERDANT_VINES)
+				&& !beneath.is(ModTags.Blocks.VERDANT_LOGS) && !beneath.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS)) {
 			level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 			return true;
 		}
@@ -226,7 +230,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			}
 
 			// Check for nearby blocks
-			AABB boxToCheck = AABB.of(BoundingBox.fromCorners(pos.offset(-2, -3, -2), pos.offset(2, -2, 2)));
+			AABB boxToCheck = AABB.of(BoundingBox.fromCorners(pos.offset(-2, -3, -2), pos.offset(3, -2, 3)));
 			if (level.getBlockStatesIfLoaded(boxToCheck)
 					.anyMatch((stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.is(ModTags.Blocks.VERDANT_VINES)
 							|| stateToCheck.is(ModTags.Blocks.VERDANT_LOGS)
@@ -466,12 +470,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	private static boolean hasTransparentOrPlantSpaceBeneath(Level level, BlockPos pos, int distanceToCheck) {
 		// Check for nearby blocks
 
-		Predicate<BlockState> checker = (stateToCheck) -> !(stateToCheck.isAir()
+		Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir()
 				|| stateToCheck.getBlock().propagatesSkylightDown(stateToCheck, level, pos)
 				|| stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS)
 				|| stateToCheck.is(ModTags.Blocks.VERDANT_LOGS) || stateToCheck.is(ModTags.Blocks.VERDANT_VINES)
 				|| stateToCheck.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS));
-		int distance = getDistanceTill(level, pos, Direction.DOWN, checker, distanceToCheck + 1);
+		int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
 
 		return distance > distanceToCheck;
 

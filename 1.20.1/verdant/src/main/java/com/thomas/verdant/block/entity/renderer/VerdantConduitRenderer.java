@@ -8,7 +8,7 @@ import org.joml.Matrix4f;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.thomas.verdant.block.entity.VerdantHeartBlockEntity;
+import com.thomas.verdant.block.entity.custom.VerdantConduitBlockEntity;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -19,21 +19,22 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-public class VerdantHeartRenderer implements BlockEntityRenderer<VerdantHeartBlockEntity> {
+public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantConduitBlockEntity> {
 	public static final ResourceLocation BEAM_LOCATION = new ResourceLocation("textures/entity/beacon_beam.png");
 	public static final int MAX_RENDER_Y = 1024;
 
-	public VerdantHeartRenderer(BlockEntityRendererProvider.Context context) {
+	public VerdantConduitRenderer(BlockEntityRendererProvider.Context context) {
+		
 	}
 
-	public void render(VerdantHeartBlockEntity verdantHeart, float maybePartialTick, PoseStack poseStack, MultiBufferSource bufferSource,
+	public void render(VerdantConduitBlockEntity verdantHeart, float maybePartialTick, PoseStack poseStack, MultiBufferSource bufferSource,
 			int unknownInt1, int unknownInt2) {
 		long time = verdantHeart.getLevel().getGameTime();
-		List<VerdantHeartBlockEntity.BeaconBeamSection> list = verdantHeart.getBeamSections();
+		List<VerdantConduitBlockEntity.BeaconBeamSection> list = verdantHeart.getBeamSections();
 		int totalHeight = 0;
 
 		for (int sectionNumber = 0; sectionNumber < list.size(); ++sectionNumber) {
-			VerdantHeartBlockEntity.BeaconBeamSection beaconblockentity$beaconbeamsection = list.get(sectionNumber);
+			VerdantConduitBlockEntity.BeaconBeamSection beaconblockentity$beaconbeamsection = list.get(sectionNumber);
 			renderBeaconBeam(poseStack, bufferSource, maybePartialTick, time, totalHeight,
 					sectionNumber == list.size() - 1 ? 1024 : beaconblockentity$beaconbeamsection.getHeight(),
 					beaconblockentity$beaconbeamsection.getColor());
@@ -128,7 +129,7 @@ public class VerdantHeartRenderer implements BlockEntityRenderer<VerdantHeartBlo
 	}
 
 	@Override
-	public boolean shouldRenderOffScreen(VerdantHeartBlockEntity blockEntity) {
+	public boolean shouldRenderOffScreen(VerdantConduitBlockEntity blockEntity) {
 		return true;
 	}
 
@@ -138,7 +139,7 @@ public class VerdantHeartRenderer implements BlockEntityRenderer<VerdantHeartBlo
 	}
 
 	@Override
-	public boolean shouldRender(VerdantHeartBlockEntity blockEntity, Vec3 position) {
+	public boolean shouldRender(VerdantConduitBlockEntity blockEntity, Vec3 position) {
 		return Vec3.atCenterOf(blockEntity.getBlockPos()).multiply(1.0D, 0.0D, 1.0D)
 				.closerThan(position.multiply(1.0D, 0.0D, 1.0D), (double) this.getViewDistance());
 	}

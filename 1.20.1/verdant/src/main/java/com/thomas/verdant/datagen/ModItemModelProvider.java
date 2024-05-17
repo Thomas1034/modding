@@ -76,6 +76,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
 		simpleItem(ModItems.COFFEE_BERRIES);
 		simpleItem(ModItems.ROASTED_COFFEE);
+		
+		evenSimplerBlockItem(ModBlocks.VERDANT_CONDUIT);
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
