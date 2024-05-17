@@ -98,7 +98,7 @@
           ]
         },
         "up": {
-          "texture": "#beacon",
+          "texture": "#top",
           "uv": [
             3,
             3,
