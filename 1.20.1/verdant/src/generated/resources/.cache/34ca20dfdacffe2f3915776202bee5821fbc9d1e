@@ -1,9 +1,9 @@
-// 1.20.1	2024-05-16T21:10:20.2319859	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-05-17T23:25:47.3134636	Tags for minecraft:block mod id verdant
 1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates.json
 1af8e294d4cee39e33a2622a3bad6e75431189a4 data/forge/tags/blocks/fence_gates/wooden.json
 88a76af7c5398cfc30307af2a425ac3f217f4cb9 data/minecraft/tags/blocks/big_dripleaf_placeable.json
 7eb08c66fa1a232b3aaa9b86dc9ed9a47ecef11d data/minecraft/tags/blocks/buttons.json
-25322d96bbb82b13af4a26731a25a9fb75b6fdf9 data/minecraft/tags/blocks/climbable.json
+ceb6b4283e4e8a37329445c918ec1150a4c0cc93 data/minecraft/tags/blocks/climbable.json
 e2f23f941114e1d43716f68c7125f4080b06def0 data/minecraft/tags/blocks/crops.json
 e59de92407dac17ebe9462bc450e8af1fea474e6 data/minecraft/tags/blocks/dirt.json
 ed5cddca994b8d6803863827e48be3c01b4f3c6c data/minecraft/tags/blocks/doors.json

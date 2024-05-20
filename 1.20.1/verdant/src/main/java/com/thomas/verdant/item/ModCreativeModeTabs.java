@@ -17,14 +17,20 @@ public class ModCreativeModeTabs {
 			.create(Registries.CREATIVE_MODE_TAB, Verdant.MOD_ID);
 
 	public static final RegistryObject<CreativeModeTab> VERDANT_ITEMS = CREATIVE_MODE_TABS.register("verdant_items",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.BLEEDING_HEART.get()))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.THORN.get()))
 					.title(Component.translatable("creativetab.verdant_items")).displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.VERDANT_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT.get());
-						pOutput.accept(ModItems.COFFEE_BERRIES.get());
 						pOutput.accept(ModItems.ROASTED_COFFEE.get());
+						pOutput.accept(ModItems.THORN.get());
+						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
+					}).build());
+	public static final RegistryObject<CreativeModeTab> VERDANT_FOODS = CREATIVE_MODE_TABS.register("verdant_foods",
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COFFEE_BERRIES.get()))
+					.title(Component.translatable("creativetab.verdant_food")).displayItems((pParameters, pOutput) -> {
+						pOutput.accept(ModItems.COFFEE_BERRIES.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.VERDANT_GRASS_BLOCK.get()))
@@ -84,17 +90,27 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.DIRT_EMERALD_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
 						pOutput.accept(ModBlocks.VERDANT_CONDUIT.get());
+						pOutput.accept(ModBlocks.ROPE.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WOODEN_PICKAXE))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_PICKAXE.get()))
 					.title(Component.translatable("creativetab.verdant_tools")).displayItems((pParameters, pOutput) -> {
-						// pOutput.accept(ModItems.COPPER_PICKAXE.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_PICKAXE.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_AXE.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_SHOVEL.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_HOE.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_COMBAT = CREATIVE_MODE_TABS.register("verdant_combat",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.WOODEN_SWORD))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_SWORD.get()))
 					.title(Component.translatable("creativetab.verdant_combat"))
 					.displayItems((pParameters, pOutput) -> {
-						// pOutput.accept(ModItems.COPPER_SWORD.get());
+						pOutput.accept(ModItems.POISON_ARROW.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_SWORD.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_AXE.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_HELMET.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get());
+						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOOTS.get());
 					}).build());
 
 	public static void register(IEventBus eventBus) {

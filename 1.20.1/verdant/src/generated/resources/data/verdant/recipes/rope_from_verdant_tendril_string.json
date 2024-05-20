@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "minecraft:string"
+    },
+    "T": {
+      "item": "verdant:verdant_tendril"
+    }
+  },
+  "pattern": [
+    "P",
+    "T",
+    "P"
+  ],
+  "result": {
+    "count": 2,
+    "item": "verdant:rope"
+  },
+  "show_notification": true
+}

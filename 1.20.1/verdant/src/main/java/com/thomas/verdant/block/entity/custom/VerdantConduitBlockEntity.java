@@ -1,24 +1,30 @@
 package com.thomas.verdant.block.entity.custom;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.thomas.verdant.block.VerdantGrower;
 import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
-import com.thomas.verdant.growth.VerdantGrower;
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BellBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags.Blocks;
 
 public class VerdantConduitBlockEntity extends BlockEntity {
@@ -46,6 +52,8 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 				grow(serverLevel, pos, state, verdantHeart, BASE_GROWTH_RANGE);
 				doRandomTick(serverLevel, pos, state, verdantHeart, BASE_GROWTH_RANGE);
 			}
+			applyEffect(serverLevel, pos, state, verdantHeart, BASE_GROWTH_RANGE + MAX_GROWTH_BONUS,
+					() -> new MobEffectInstance(ModMobEffects.VERDANT_ENERGY.get(), 600, 0));
 		}
 	}
 
@@ -81,6 +89,31 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 		Block newBlock = newState.getBlock();
 		// Run the tick.
 		newBlock.randomTick(newState, level, posToTry, level.random);
+	}
+
+	private static void applyEffect(ServerLevel level, BlockPos pos, BlockState state,
+			VerdantConduitBlockEntity verdantHeart, int radius, Supplier<MobEffectInstance> effect) {
+
+		if (!verdantHeart.isActive) {
+			return;
+		}
+
+		AABB boxToCheck = AABB.ofSize(Vec3.atLowerCornerOf(pos), 1 + 2 * radius, 1 + 2 * radius, 1 + 2 * radius);
+		List<Entity> toCheck = level.getEntities(null, boxToCheck);
+		int radiusSqr = radius * radius;
+		Vec3 center = Vec3.atCenterOf(pos);
+
+		// Iterate and check
+		for (Entity e : toCheck) {
+			if (e instanceof LivingEntity le) {
+				// Distance check.
+				if (le.distanceToSqr(center.x, center.y, center.z) < radiusSqr) {
+					// Add the effect.
+					le.addEffect(effect.get());
+				}
+			}
+		}
+
 	}
 
 	private static void grow(ServerLevel level, BlockPos pos, BlockState state, VerdantConduitBlockEntity verdantHeart,

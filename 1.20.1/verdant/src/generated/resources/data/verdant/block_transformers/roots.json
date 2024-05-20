@@ -1,0 +1,8 @@
+{
+  "minecraft:clay": "verdant:verdant_rooted_clay",
+  "minecraft:dirt": "verdant:verdant_rooted_dirt",
+  "minecraft:grass_block": "verdant:verdant_rooted_dirt",
+  "minecraft:mud": "verdant:verdant_rooted_mud",
+  "minecraft:mycelium": "verdant:verdant_rooted_dirt",
+  "minecraft:podzol": "verdant:verdant_rooted_dirt"
+}

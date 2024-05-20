@@ -42,7 +42,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		
+
 		blockWithItem(ModBlocks.DIRT_COAL_ORE);
 		blockWithItem(ModBlocks.DIRT_COPPER_ORE);
 		blockWithItem(ModBlocks.DIRT_IRON_ORE);
@@ -139,6 +139,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockWithItem(ModBlocks.POISON_IVY_PLANT.get(),
 				models().cross(blockTexture(ModBlocks.POISON_IVY_PLANT.get()).getPath(),
 						blockTexture(ModBlocks.POISON_IVY_PLANT.get())).renderType("cutout"));
+
+		// Rope
+		simpleBlockWithItem(ModBlocks.ROPE.get(),
+				models().cross(blockTexture(ModBlocks.ROPE.get()).getPath(),
+						blockTexture(ModBlocks.ROPE.get())).renderType("cutout"));
 
 		// Flowers
 		simpleFlowerWithPot(ModBlocks.BLEEDING_HEART.get(), ModBlocks.POTTED_BLEEDING_HEART.get());

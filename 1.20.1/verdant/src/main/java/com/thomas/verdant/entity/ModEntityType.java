@@ -3,6 +3,7 @@ package com.thomas.verdant.entity;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.entity.custom.ModChestBoatEntity;
+import com.thomas.verdant.entity.custom.PoisonIvyArrowEntity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -19,9 +20,14 @@ public class ModEntityType {
 			() -> EntityType.Builder.<ModBoatEntity>of(ModBoatEntity::new, MobCategory.MISC).sized(1.375f, 0.5625f)
 					.build("verdant_boat"));
 	public static final RegistryObject<EntityType<ModChestBoatEntity>> VERDANT_CHEST_BOAT = ENTITY_TYPES.register(
-			"verdant_chest_boat", () -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
+			"verdant_chest_boat",
+			() -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
 					.sized(1.375f, 0.5625f).build("verdant_chest_boat"));
-	
+	public static final RegistryObject<EntityType<PoisonIvyArrowEntity>> POISON_IVY_ARROW = ENTITY_TYPES.register(
+			"poison_ivy_arrow",
+			() -> EntityType.Builder.<PoisonIvyArrowEntity>of(PoisonIvyArrowEntity::new, MobCategory.MISC)
+					.sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("poison_ivy_arrow"));
+
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
 	}

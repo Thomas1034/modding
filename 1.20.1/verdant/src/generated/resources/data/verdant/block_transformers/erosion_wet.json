@@ -1,0 +1,20 @@
+{
+  "minecraft:black_terracotta": "minecraft:clay",
+  "minecraft:blue_terracotta": "minecraft:clay",
+  "minecraft:brown_terracotta": "minecraft:clay",
+  "minecraft:cyan_terracotta": "minecraft:clay",
+  "minecraft:dirt": "minecraft:mud",
+  "minecraft:gray_terracotta": "minecraft:clay",
+  "minecraft:green_terracotta": "minecraft:clay",
+  "minecraft:light_blue_terracotta": "minecraft:clay",
+  "minecraft:light_gray_terracotta": "minecraft:clay",
+  "minecraft:lime_terracotta": "minecraft:clay",
+  "minecraft:magenta_terracotta": "minecraft:clay",
+  "minecraft:orange_terracotta": "minecraft:clay",
+  "minecraft:pink_terracotta": "minecraft:clay",
+  "minecraft:purple_terracotta": "minecraft:clay",
+  "minecraft:red_terracotta": "minecraft:clay",
+  "minecraft:terracotta": "minecraft:clay",
+  "minecraft:white_terracotta": "minecraft:clay",
+  "minecraft:yellow_terracotta": "minecraft:clay"
+}

@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public enum ModArmorMaterials implements ArmorMaterial {
 
-	VERDANT_HEARTWOOD("verdant_heartwood", 22, new int[] { 3, 5, 6, 2 }, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F,
+	VERDANT_HEARTWOOD("verdant_heartwood", 7, new int[] {1, 4, 5, 2 }, 8, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F,
 			0.05F, () -> Ingredient.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()));
 
 	private final String name;

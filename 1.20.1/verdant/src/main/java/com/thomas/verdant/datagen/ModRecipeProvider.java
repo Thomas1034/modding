@@ -17,6 +17,7 @@ import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -120,6 +121,48 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				RecipeCategory.BREWING, ModItems.ROASTED_COFFEE.get(), 0.1f, 200, "roasted_coffee",
 				"_from_smelting_coffee_berries");
 
+		// Poison arrow
+		shapeless(recipeWriter, List.of(ModBlocks.POISON_IVY.get(), Items.ARROW), List.of(1, 1), RecipeCategory.COMBAT,
+				ModItems.POISON_ARROW.get(), 1);
+		// Arrow from thorn
+		shaped(recipeWriter, List.of(" P", "S "), List.of('P', 'S'), List.of(ModItems.THORN.get(), Items.STICK),
+				RecipeCategory.COMBAT, Items.ARROW, 1);
+		// Rope
+		shaped(recipeWriter, List.of("P", "T", "P"), List.of('T', 'P'),
+				List.of(ModBlocks.VERDANT_TENDRIL.get(), Items.STRING), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.ROPE.get(), 2);
+
+		// Heartwood armor
+		shaped(recipeWriter, List.of("PPP", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
+				RecipeCategory.COMBAT, ModItems.VERDANT_HEARTWOOD_HELMET.get(), 1);
+		shaped(recipeWriter, List.of("P P", "PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
+				RecipeCategory.COMBAT, ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), 1);
+		shaped(recipeWriter, List.of("PPP", "P P", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
+				RecipeCategory.COMBAT, ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(), 1);
+		shaped(recipeWriter, List.of("P P", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
+				RecipeCategory.COMBAT, ModItems.VERDANT_HEARTWOOD_BOOTS.get(), 1);
+
+		// Heartwood tools
+		shaped(recipeWriter, List.of("P", "P", "S"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.COMBAT,
+				ModItems.VERDANT_HEARTWOOD_SWORD.get(), 1);
+		shaped(recipeWriter, List.of("PPP", " S ", " S "), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.TOOLS,
+				ModItems.VERDANT_HEARTWOOD_PICKAXE.get(), 1);
+		shaped(recipeWriter, List.of("PP", "PS", " S"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.TOOLS,
+				ModItems.VERDANT_HEARTWOOD_AXE.get(), 1);
+		shaped(recipeWriter, List.of("PP", " S", " S"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.TOOLS,
+				ModItems.VERDANT_HEARTWOOD_HOE.get(), 1);
+		shaped(recipeWriter, List.of("P", "S", "S"), List.of('P', 'S'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.TOOLS,
+				ModItems.VERDANT_HEARTWOOD_SHOVEL.get(), 1);
+
+		// Verdant conduit
+		shaped(recipeWriter, List.of("SSS", "SPS", "SSS"), List.of('P', 'S'),
+				List.of(ModItems.HEART_OF_THE_FOREST.get(), BlockTags.LOGS_THAT_BURN), RecipeCategory.MISC,
+				ModBlocks.VERDANT_CONDUIT.get(), 1);
 	}
 
 	// Stonecutting recipe.

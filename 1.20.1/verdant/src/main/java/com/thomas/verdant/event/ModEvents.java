@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.ClientChatEvent;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.SleepingLocationCheckEvent;
@@ -52,10 +53,9 @@ public class ModEvents {
 
 		if (sleepingEntity.getActiveEffectsMap().get(ModMobEffects.CAFFEINATED.get()) != null) {
 			event.setResult(Result.DENY);
-		}
-		
-		if (sleepingEntity instanceof ServerPlayer sleepingPlayer) {
-			sleepingPlayer.sendSystemMessage(Component.translatable("block.minecraft.bed.caffeine"));
+			if (sleepingEntity instanceof ServerPlayer sleepingPlayer) {
+				sleepingPlayer.sendSystemMessage(Component.translatable("block.minecraft.bed.caffeine"));
+			}
 		}
 
 	}

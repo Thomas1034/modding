@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_COFFEE);
@@ -29,6 +30,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
 		simpleBlockItem(ModBlocks.VERDANT_TENDRIL);
 		simpleBlockItemBlockTexture(ModBlocks.POISON_IVY);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_HELMET);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_CHESTPLATE);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_LEGGINGS);
+		simpleItem(ModItems.VERDANT_HEARTWOOD_BOOTS);
 		simpleItem(ModItems.VERDANT_BOAT);
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_SIGN);
@@ -78,6 +83,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.ROASTED_COFFEE);
 		
 		evenSimplerBlockItem(ModBlocks.VERDANT_CONDUIT);
+
+		simpleItem(ModItems.THORN);
+		simpleItem(ModItems.POISON_ARROW);
+		
+		handheldItem(ModItems.VERDANT_HEARTWOOD_SWORD);
+		handheldItem(ModItems.VERDANT_HEARTWOOD_AXE);
+		handheldItem(ModItems.VERDANT_HEARTWOOD_PICKAXE);
+		handheldItem(ModItems.VERDANT_HEARTWOOD_SHOVEL);
+		handheldItem(ModItems.VERDANT_HEARTWOOD_HOE);
+		handheldItem(ModItems.VERDANT_HEARTWOOD_SHOVEL);
+		
+		simpleItem(ModItems.HEART_OF_THE_FOREST);
+		
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

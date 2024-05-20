@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.growth.VerdantGrower;
+import com.thomas.verdant.block.VerdantGrower;
 import com.thomas.verdant.util.ModTags;
 import com.thomas.verdant.util.Utilities;
 
@@ -18,7 +18,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -260,8 +259,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 				return;
 			}
 
-			// Now set the block.
-			level.setBlockAndUpdate(pos.below(), ModBlocks.POISON_IVY.get().defaultBlockState());
+			// Now set the block. There's a chance it places a tendril instead.
+			if (level.random.nextFloat() < 0.2) {
+				level.setBlockAndUpdate(pos.below(), ModBlocks.VERDANT_TENDRIL.get().defaultBlockState());
+			} else {
+				level.setBlockAndUpdate(pos.below(), ModBlocks.POISON_IVY.get().defaultBlockState());
+			}
 		}
 	}
 

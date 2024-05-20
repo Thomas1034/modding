@@ -8,6 +8,7 @@ import org.joml.Matrix4f;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.entity.custom.VerdantConduitBlockEntity;
 
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,7 +21,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantConduitBlockEntity> {
-	public static final ResourceLocation BEAM_LOCATION = new ResourceLocation("textures/entity/beacon_beam.png");
+	public static final ResourceLocation BEAM_LOCATION = new ResourceLocation(Verdant.MOD_ID, "textures/entity/conduit_beam.png");
 	public static final int MAX_RENDER_Y = 1024;
 
 	public VerdantConduitRenderer(BlockEntityRendererProvider.Context context) {

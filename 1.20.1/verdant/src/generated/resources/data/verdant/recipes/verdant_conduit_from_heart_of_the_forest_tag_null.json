@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "verdant:heart_of_the_forest"
+    },
+    "S": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SPS",
+    "SSS"
+  ],
+  "result": {
+    "item": "verdant:verdant_conduit"
+  },
+  "show_notification": true
+}

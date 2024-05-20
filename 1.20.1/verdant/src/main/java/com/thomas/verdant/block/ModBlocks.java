@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
-import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
@@ -16,9 +15,11 @@ import com.thomas.verdant.block.custom.ModWallSignBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
+import com.thomas.verdant.block.custom.RopeBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
 import com.thomas.verdant.block.custom.ThornyVerdantLeavesBlock;
+import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.custom.VerdantLeafyVineBlock;
 import com.thomas.verdant.block.custom.VerdantLeavesBlock;
 import com.thomas.verdant.block.custom.VerdantRootedDirtBlock;
@@ -595,6 +596,10 @@ public class ModBlocks {
 	// Jungle heart block
 	public static final RegistryObject<Block> VERDANT_CONDUIT = registerBlockWithItem("verdant_conduit",
 			() -> new VerdantConduitBlock(BlockBehaviour.Properties.copy(Blocks.BEACON)));
+
+	// Rope block
+	public static final RegistryObject<Block> ROPE = registerBlockWithItem("rope",
+			() -> new RopeBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_TENDRIL_PLANT.get())));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {

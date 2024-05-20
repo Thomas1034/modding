@@ -1,20 +1,21 @@
 {
   "display": {
     "icon": {
-      "item": "verdant:dirt_iron_ore"
+      "item": "verdant:dirt_diamond_ore"
     },
     "title": {
-      "translate": "verdant:advancements.deep_roots.title"
+      "translate": "advancements.verdant.deep_roots.title"
     },
     "description": {
-      "translate": "verdant:advancements.deep_roots.description"
+      "translate": "advancements.verdant.deep_roots.description"
     },
     "background": "verdant:textures/block/verdant_rooted_dirt.png",
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "hidden": true
   },
-  "parent": "verdant:root",
+  "parent": "verdant:stand_on_verdant_ground",
   "criteria": {
     "stand_on_verdant_ground": {
       "trigger": "minecraft:location",

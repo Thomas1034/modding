@@ -33,6 +33,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		this.dropSelf(ModBlocks.ROPE.get());
+
 		requireSilkTouch(ModBlocks.VERDANT_CONDUIT.get(), Blocks.AIR);
 
 		oreDrop(ModBlocks.DIRT_COAL_ORE.get(), Items.COAL, List.of(1, 1));
@@ -44,11 +46,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		oreDrop(ModBlocks.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 1));
 		oreDrop(ModBlocks.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
 
-		requireSilkTouch(ModBlocks.THORN_BUSH.get(), Items.DEAD_BUSH, List.of(0, 1));
+		requireSilkTouch(ModBlocks.THORN_BUSH.get(), ModItems.THORN.get(), List.of(0, 2));
 		this.add(ModBlocks.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(ModBlocks.THORN_BUSH.get()));
 
 		requireSilkTouchOrShears(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
-		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), List.of(0, 1));
+		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModItems.THORN.get(), List.of(2, 4));
 		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(1, 3));
 
 		requireSilkTouch(ModBlocks.ROTTEN_WOOD.get(), Blocks.AIR);

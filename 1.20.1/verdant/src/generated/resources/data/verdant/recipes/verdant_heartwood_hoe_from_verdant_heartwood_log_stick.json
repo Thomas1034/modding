@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "item": "verdant:verdant_heartwood_log"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "PP",
+    " S",
+    " S"
+  ],
+  "result": {
+    "item": "verdant:verdant_heartwood_hoe"
+  },
+  "show_notification": true
+}

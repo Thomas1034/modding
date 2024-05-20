@@ -1,5 +1,7 @@
 {
 	
+	"block.verdant.rope": "Rope",
+	
 	"block.verdant.dirt_coal_ore": "Dirt Coal Ore",
 	"block.verdant.dirt_copper_ore": "Dirt Copper Ore",
 	"block.verdant.dirt_iron_ore": "Dirt Iron Ore",
@@ -22,6 +24,18 @@
 	"item.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
 	"item.verdant.coffee_berries": "Coffee Berries",
 	"item.verdant.roasted_coffee": "Roasted Coffee",
+	"item.verdant.thorn": "Thorn",
+	"item.verdant.poison_arrow": "Poison Arrow",
+	"item.verdant.verdant_heartwood_helmet": "Verdant Heartwood Helmet",
+	"item.verdant.verdant_heartwood_chestplate": "Verdant Heartwood Chestplate",
+	"item.verdant.verdant_heartwood_leggings": "Verdant Heartwood Leggings",
+	"item.verdant.verdant_heartwood_boots": "Verdant Heartwood Boots",
+	"item.verdant.verdant_heartwood_sword": "Verdant Heartwood Sword",
+	"item.verdant.verdant_heartwood_shovel": "Verdant Heartwood Shovel",
+	"item.verdant.verdant_heartwood_hoe": "Verdant Heartwood Hoe",
+	"item.verdant.verdant_heartwood_axe": "Verdant Heartwood Axe",
+	"item.verdant.verdant_heartwood_pickaxe": "Verdant Heartwood Pickaxe",
+	"item.verdant.heart_of_the_forest": "Heart of the Forest",
 	
 	"block.verdant.verdant_vine": "Verdant Vine",
 	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
@@ -79,7 +93,6 @@
 	
 	"block.verdant.verdant_conduit": "Verdant Conduit",
 	
-	
 	"block.verdant.bleeding_heart": "Bleeding Heart Flower",
 	"block.verdant.wild_coffee": "Wild Coffee",
 	"block.verdant.coffee_crop": "Coffee Crop",
@@ -110,6 +123,7 @@
 	
 	"effect.verdant.food_poisoning": "Food Poisoning",
 	"effect.verdant.caffeinated": "Caffeinated",
+	"effect.verdant.verdant_energy": "Verdant Energy",
 	
 	"death.attack.thornBush": "%s stepped on a thorn.",
 	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",
@@ -119,8 +133,24 @@
 	"death.attack.overgrowth.item": "%s put down roots before %s's eyes.",
 	"death.attack.overgrowth.player": "%s put down roots before %s's eyes.",
 	
+	"advancements.verdant.root.title": "The Verdant Growth",
+	"advancements.verdant.root.description": "A spreading plague of greenery is sealed in this world.",
+	"advancements.verdant.pyramid.title": "Petrichor",
+	"advancements.verdant.pyramid.description": "Discover a pyramid that smells of potential life.",
+	"advancements.verdant.conduit.title": "Pandora's Conduit",
+	"advancements.verdant.conduit.description": "Unleash the Verdant Growth upon an unsuspecting world. There is no going back.",
+	"advancements.verdant.heart.title": "Stolen Heart",
+	"advancements.verdant.heart.description": "Unleash the Verdant Growth upon an unsuspecting world. There is no going back.",
+	"advancements.verdant.stand_on_verdant_ground.title": "What's All That Green Stuff?",
+	"advancements.verdant.stand_on_verdant_ground.description": "Set foot on a strange new type of grass",
+	"advancements.verdant.deep_roots.title": "Their Roots Go Deep",
+	"advancements.verdantdeep_roots.description": "Discover just how far the Verdant has spread.",
+	
 	"creativetab.verdant_items": "Verdant Items",
+	"creativetab.verdant_food": "Verdant Foods",
 	"creativetab.verdant_blocks": "Verdant Blocks",
-	"creativetab.verdant_tools": "Verdant Tools",
+	"creativetab.verdant_tools": "Verdant Tools & Utilities",
 	"creativetab.verdant_combat": "Verdant Combat"
+	
+	
 }

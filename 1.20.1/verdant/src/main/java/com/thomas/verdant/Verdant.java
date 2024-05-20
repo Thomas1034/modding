@@ -4,16 +4,14 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.VerdantTransformationHandler;
 import com.thomas.verdant.block.entity.ModBlockEntities;
-import com.thomas.verdant.effect.FoodPoisoningEffect;
 import com.thomas.verdant.effect.ModMobEffects;
+import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
-import com.thomas.verdant.growth.VerdantEroder;
-import com.thomas.verdant.growth.VerdantGrassGrower;
-import com.thomas.verdant.growth.VerdantHydratable;
-import com.thomas.verdant.growth.VerdantRootGrower;
+import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;
@@ -44,7 +42,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
 
-// Cache shapes for the Verdant Vine? Look at how VineBlock does it.
+// To add: water hemlock (deadly, inflicts wither on contact)
+// To add: wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
+// Make verdant dirt hoeable!
+// Maybe add monkshood? Causes paralysis.
+// Think about giant hogweed.
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -108,10 +110,14 @@ public class Verdant {
 				Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
 		// Register verdant growth mechanics on setup.
-		VerdantEroder.registerErosions();
-		VerdantHydratable.registerHydratables();
-		VerdantGrassGrower.registerGrasses();
-		VerdantRootGrower.registerRoots();
+		// Nope! Data driven now.
+		//VerdantTransformationHandler.registerDehydration();
+		//VerdantTransformationHandler.registerErosion();
+		//VerdantTransformationHandler.registerErosionWet();
+		//VerdantTransformationHandler.registerGrowGrasses();
+		//VerdantTransformationHandler.registerHydration();
+		//VerdantTransformationHandler.registerRemoveGrasses();
+		//VerdantTransformationHandler.registerRoots();
 		FoodPoisoningEffect.registerEffects();
 		FeaturePlacer.registerFeatures();
 	}
@@ -136,6 +142,8 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
+			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(),
+					PoisonIvyArrowRenderer::new);
 		}
 	}
 }

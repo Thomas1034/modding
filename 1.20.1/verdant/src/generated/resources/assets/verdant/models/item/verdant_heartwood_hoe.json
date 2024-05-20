@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "verdant:item/verdant_heartwood_hoe"
+  }
+}

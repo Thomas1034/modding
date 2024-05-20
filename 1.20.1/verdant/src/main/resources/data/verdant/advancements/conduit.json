@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "verdant:verdant_conduit"
+    },
+    "title": {
+      "translate": "advancements.verdant.conduit.title"
+    },
+    "description": {
+      "translate": "advancements.verdant.conduit.description"
+    },
+    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "verdant:root",
+  "criteria": {
+    "effect": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "verdant:verdant_energy": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "effect"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

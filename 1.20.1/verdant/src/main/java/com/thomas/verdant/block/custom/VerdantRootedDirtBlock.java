@@ -5,9 +5,8 @@ import java.util.OptionalInt;
 
 import javax.annotation.Nullable;
 
-import com.thomas.verdant.growth.VerdantGrassGrower;
-import com.thomas.verdant.growth.VerdantGrower;
-import com.thomas.verdant.growth.VerdantHydratable;
+import com.thomas.verdant.block.VerdantGrower;
+import com.thomas.verdant.block.VerdantTransformationHandler;
 import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.util.FallingBlockHelper;
 import com.thomas.verdant.util.Utilities;
@@ -25,8 +24,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-public class VerdantRootedDirtBlock extends Block implements VerdantGrower, VerdantHydratable {
+public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
+
+	public static final int MAX_DISTANCE = 15;
+	public static final int MIN_DISTANCE = 0;
+
+	public static final IntegerProperty WATER_DISTANCE = IntegerProperty.create("water_distance", MIN_DISTANCE,
+			MAX_DISTANCE);
 
 	public VerdantRootedDirtBlock(Properties properties) {
 		super(properties);
@@ -128,24 +134,38 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower, Verd
 		// super.randomTick(state, level, pos, rand);
 		this.tick(state, level, pos, rand);
 		// System.out.println("Ticking at " + pos + " with " + state);
-		if (state.getValue(WATER_DISTANCE) < MAX_DISTANCE) {
-			state = VerdantHydratable.getHydrated(state);
+		boolean isLowDistance = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
+		if (isLowDistance && VerdantTransformationHandler.HYDRATE.get().hasInput(state.getBlock())) {
+			state = VerdantTransformationHandler.HYDRATE.get().next(state);
 			// System.out.println("Hydrating to " + state);
 			level.setBlockAndUpdate(pos, state);
-		} else {
+		} else if (!isLowDistance && VerdantTransformationHandler.DEHYDRATE.get().hasInput(state.getBlock())) {
 			// System.out.println("Dehydrating to " + state);
-			state = VerdantHydratable.getDehydrated(state);
+			state = VerdantTransformationHandler.DEHYDRATE.get().next(state);
 			level.setBlockAndUpdate(pos, state);
 		}
 
 		// Check if grass can survive.
-		if (!VerdantGrower.canBeGrass(state, level, pos)) {
+		boolean canBeGrass = VerdantGrower.canBeGrass(state, level, pos);
+		if (!canBeGrass && VerdantTransformationHandler.REMOVE_GRASSES.get().hasInput(state.getBlock())) {
 			// System.out.println("Killing grass at " + pos);
-			state = VerdantGrassGrower.getDegrass(state);
+			// System.out.println("The input light blockedness level is " +
+			// LightEngine.getLightBlockInto(level, state, pos,
+			// level.getBlockState(pos.above()), pos.above(), Direction.UP,
+			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
+			// System.out.println("Because the block above is " +
+			// level.getBlockState(pos.above()));
+			state = VerdantTransformationHandler.REMOVE_GRASSES.get().next(state);
 			level.setBlockAndUpdate(pos, state);
-		} else {
+		} else if (canBeGrass && VerdantTransformationHandler.GROW_GRASSES.get().hasInput(state.getBlock())) {
 			// System.out.println("Growing grass at " + pos);
-			state = VerdantGrassGrower.getGrass(state);
+			// System.out.println("The input light blockedness level is " +
+			// LightEngine.getLightBlockInto(level, state, pos,
+			// level.getBlockState(pos.above()), pos.above(), Direction.UP,
+			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
+			// System.out.println("Because the block above is " +
+			// level.getBlockState(pos.above()));
+			state = VerdantTransformationHandler.GROW_GRASSES.get().next(state);
 			level.setBlockAndUpdate(pos, state);
 		}
 

@@ -6,15 +6,24 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.entity.custom.ModBoatEntity;
+import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.ModBoatItem;
+import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HangingSignItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,7 +55,7 @@ public class ModItems {
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HANGING_SIGN = registerItem(
 			"verdant_heartwood_hanging_sign", () -> new HangingSignItem(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
 					ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
-	
+
 	// Feed to goats?
 	public static final RegistryObject<Item> COFFEE_BERRIES = ITEMS
 			.register("coffee_berries",
@@ -55,18 +64,17 @@ public class ModItems {
 									.effect(() -> new MobEffectInstance(ModMobEffects.CAFFEINATED.get(), 300, 0), 1.0F)
 									.build())));
 
-	public static final RegistryObject<Item> ROASTED_COFFEE = ITEMS
-			.register("roasted_coffee",
-					() -> new Item(new Item.Properties()));
-	
+	public static final RegistryObject<Item> ROASTED_COFFEE = ITEMS.register("roasted_coffee",
+			() -> new Item(new Item.Properties()));
+
 	// Heartwood armor
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HELMET = ITEMS.register("verdant_heartwood_helmet",
 			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
 					new Item.Properties().fireResistant()));
 
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS.register("verdant_heartwood_chestplate",
-			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.CHESTPLATE,
-					new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
+			.register("verdant_heartwood_chestplate", () -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD,
+					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register("verdant_heartwood_leggings",
 			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
@@ -76,7 +84,30 @@ public class ModItems {
 			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
 					new Item.Properties().fireResistant()));
 
-	
+	// Heartwood weapons
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SWORD = ITEMS.register("verdant_heartwood_sword",
+			() -> new SwordItem(ModToolTiers.VERDANT_HEARTWOOD, 3, -2.4F, new Item.Properties()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SHOVEL = ITEMS.register("verdant_heartwood_shovel",
+			() -> new ShovelItem(ModToolTiers.VERDANT_HEARTWOOD, 1.2F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_PICKAXE = ITEMS.register("verdant_heartwood_pickaxe",
+			() -> new PickaxeItem(ModToolTiers.VERDANT_HEARTWOOD, 1, -2.8F, new Item.Properties()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_AXE = ITEMS.register("verdant_heartwood_axe",
+			() -> new AxeItem(ModToolTiers.VERDANT_HEARTWOOD, 5.0F, -3.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HOE = ITEMS.register("verdant_heartwood_hoe",
+			() -> new HoeItem(ModToolTiers.VERDANT_HEARTWOOD, -2, -1.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> POISON_ARROW = ITEMS.register("poison_arrow",
+			() -> new PoisonIvyArrowItem(new Item.Properties()));
+
+	public static final RegistryObject<Item> THORN = ITEMS.register("thorn", () -> new Item(new Item.Properties()));
+
+	public static final RegistryObject<Item> HEART_OF_THE_FOREST = ITEMS.register("heart_of_the_forest",
+			() -> new HeartOfTheForestItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);

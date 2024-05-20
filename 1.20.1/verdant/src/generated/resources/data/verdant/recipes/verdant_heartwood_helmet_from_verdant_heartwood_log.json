@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": {
+      "item": "verdant:verdant_heartwood_log"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "item": "verdant:verdant_heartwood_helmet"
+  },
+  "show_notification": true
+}

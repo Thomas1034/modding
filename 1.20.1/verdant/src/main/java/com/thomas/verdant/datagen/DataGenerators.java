@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public class DataGenerators {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
+
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
@@ -38,6 +39,9 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
 
 		generator.addProvider(event.includeServer(), new ModGlobalLootModifiersProvider(packOutput));
+
+		// Custom data generator!
+		generator.addProvider(event.includeServer(), new ModBlockTransformerProvider(packOutput));
 
 	}
 }

@@ -1,6 +1,10 @@
 package com.thomas.cloudscape.effect;
 
 import com.thomas.cloudscape.Cloudscape;
+import com.thomas.cloudscape.effect.custom.CitrineGlowEffect;
+import com.thomas.cloudscape.effect.custom.FlightExhaustionEffect;
+import com.thomas.cloudscape.effect.custom.FreezeEffect;
+import com.thomas.cloudscape.effect.custom.PropulsionEffect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

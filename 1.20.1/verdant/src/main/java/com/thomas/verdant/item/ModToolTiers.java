@@ -14,8 +14,9 @@ import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.common.TierSortingRegistry;
 
 public class ModToolTiers {
-	public static final Tier ZIRCONIUM = TierSortingRegistry.registerTier(
-			new ForgeTier(4, 500, 7.0F, 2.5F, 18, ModTags.Blocks.NEEDS_VERDANT_HEARTWOOD_TOOL,
+
+	public static final Tier VERDANT_HEARTWOOD = TierSortingRegistry.registerTier(
+			new ForgeTier(2, 59, 6.0F, 2.0F, 4, ModTags.Blocks.NEEDS_VERDANT_HEARTWOOD_TOOL,
 					() -> Ingredient.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get())),
 			new ResourceLocation(Verdant.MOD_ID, "verdant_heartwood"),
 			List.of(Tiers.WOOD, Tiers.STONE, Tiers.GOLD, Tiers.IRON), List.of(Tiers.DIAMOND, Tiers.NETHERITE));

@@ -2,7 +2,7 @@ package com.thomas.cloudscape.item.custom.wings;
 
 import java.util.Collection;
 
-import com.thomas.cloudscape.effect.FlightExhaustionEffect;
+import com.thomas.cloudscape.effect.custom.FlightExhaustionEffect;
 import com.thomas.cloudscape.network.ModPacketHandler;
 import com.thomas.cloudscape.network.WingFlapPacket;
 

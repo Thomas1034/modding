@@ -101,7 +101,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_ROOTED_CLAY.get());
 
 		this.tag(BlockTags.CLIMBABLE).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
-				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get(), ModBlocks.ROPE.get());
 		this.tag(BlockTags.REPLACEABLE).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
