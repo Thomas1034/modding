@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.block.VerdantGrower;
+import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;

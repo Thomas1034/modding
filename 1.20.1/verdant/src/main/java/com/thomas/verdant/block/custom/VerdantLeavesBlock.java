@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.block.VerdantGrower;
+import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.util.ModTags;
 import com.thomas.verdant.util.Utilities;
 

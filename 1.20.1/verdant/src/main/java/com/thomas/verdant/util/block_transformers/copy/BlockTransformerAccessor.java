@@ -1,4 +1,4 @@
-package com.thomas.verdant.transforms;
+package com.thomas.verdant.util.block_transformers.copy;
 
 import java.util.Map.Entry;
 import java.util.function.Supplier;

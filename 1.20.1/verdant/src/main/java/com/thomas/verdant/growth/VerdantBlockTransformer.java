@@ -1,13 +1,14 @@
-package com.thomas.verdant.block;
+package com.thomas.verdant.growth;
 
 import com.thomas.verdant.Verdant;
-import com.thomas.verdant.transforms.BlockTransformer;
-import com.thomas.verdant.transforms.BlockTransformerAccessor;
+import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.util.block_transformers.BlockTransformer;
+import com.thomas.verdant.util.block_transformers.BlockTransformerAccessor;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 
-public class VerdantTransformationHandler {
+public class VerdantBlockTransformer {
 
 	// Handles all Verdant block conversion processes.
 	public static final BlockTransformerAccessor EROSION = new BlockTransformerAccessor(

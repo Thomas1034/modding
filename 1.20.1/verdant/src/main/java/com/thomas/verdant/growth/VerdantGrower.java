@@ -1,5 +1,6 @@
-package com.thomas.verdant.block;
+package com.thomas.verdant.growth;
 
+import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.util.ModTags;
 
@@ -36,9 +37,9 @@ public interface VerdantGrower extends BonemealableBlock {
 		// System.out.println("Is it near water? " + isNearWater);
 		BlockState state = level.getBlockState(pos);
 		// System.out.println("The state here is " + state);
-		BlockState next = VerdantTransformationHandler.EROSION.get().next(state);
+		BlockState next = VerdantBlockTransformer.EROSION.get().next(state);
 		// System.out.println("The next state is " + next);
-		BlockState nextIfWet = VerdantTransformationHandler.EROSION_WET.get().next(state);
+		BlockState nextIfWet = VerdantBlockTransformer.EROSION_WET.get().next(state);
 		// System.out.println("The next state given water is " + nextIfWet);
 
 		if (isNearWater && state != nextIfWet) {
@@ -188,10 +189,10 @@ public interface VerdantGrower extends BonemealableBlock {
 		// //System.out.println("Attempting to convert " + pos);
 		BlockState state = level.getBlockState(pos);
 
-		if (VerdantTransformationHandler.ROOTS.get().hasInput(state.getBlock())) {
-			BlockState rooted = VerdantTransformationHandler.ROOTS.get().next(state);
+		if (VerdantBlockTransformer.ROOTS.get().hasInput(state.getBlock())) {
+			BlockState rooted = VerdantBlockTransformer.ROOTS.get().next(state);
 			if (VerdantGrower.canBeGrass(state, level, pos)
-					&& VerdantTransformationHandler.GROW_GRASSES.get().hasInput(rooted.getBlock())) {
+					&& VerdantBlockTransformer.GROW_GRASSES.get().hasInput(rooted.getBlock())) {
 				// System.out.println("Placing grass: " + rooted);
 				level.setBlockAndUpdate(pos, rooted);
 				return true;
@@ -203,7 +204,7 @@ public interface VerdantGrower extends BonemealableBlock {
 				for (int i = -1; i <= 1; i++) {
 					for (int j = -1; j <= 1; j++) {
 						for (int k = -1; k <= 1; k++) {
-							if (VerdantTransformationHandler.ROOTS.get()
+							if (VerdantBlockTransformer.ROOTS.get()
 									.hasOutput(level.getBlockState(pos.offset(i, j, k)).getBlock())) {
 								rootCount++;
 							}

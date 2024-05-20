@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.block.VerdantTransformationHandler;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
@@ -12,6 +11,7 @@ import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
+import com.thomas.verdant.growth.VerdantBlockTransformer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;

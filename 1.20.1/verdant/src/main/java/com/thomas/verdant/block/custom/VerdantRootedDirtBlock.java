@@ -5,8 +5,8 @@ import java.util.OptionalInt;
 
 import javax.annotation.Nullable;
 
-import com.thomas.verdant.block.VerdantGrower;
-import com.thomas.verdant.block.VerdantTransformationHandler;
+import com.thomas.verdant.growth.VerdantBlockTransformer;
+import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.util.FallingBlockHelper;
 import com.thomas.verdant.util.Utilities;
@@ -17,7 +17,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +27,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 
 public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
@@ -36,7 +40,6 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
 	public VerdantRootedDirtBlock(Properties properties) {
 		super(properties);
-
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
 	}
 
@@ -135,19 +138,19 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		this.tick(state, level, pos, rand);
 		// System.out.println("Ticking at " + pos + " with " + state);
 		boolean isLowDistance = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
-		if (isLowDistance && VerdantTransformationHandler.HYDRATE.get().hasInput(state.getBlock())) {
-			state = VerdantTransformationHandler.HYDRATE.get().next(state);
+		if (isLowDistance && VerdantBlockTransformer.HYDRATE.get().hasInput(state.getBlock())) {
+			state = VerdantBlockTransformer.HYDRATE.get().next(state);
 			// System.out.println("Hydrating to " + state);
 			level.setBlockAndUpdate(pos, state);
-		} else if (!isLowDistance && VerdantTransformationHandler.DEHYDRATE.get().hasInput(state.getBlock())) {
+		} else if (!isLowDistance && VerdantBlockTransformer.DEHYDRATE.get().hasInput(state.getBlock())) {
 			// System.out.println("Dehydrating to " + state);
-			state = VerdantTransformationHandler.DEHYDRATE.get().next(state);
+			state = VerdantBlockTransformer.DEHYDRATE.get().next(state);
 			level.setBlockAndUpdate(pos, state);
 		}
 
 		// Check if grass can survive.
 		boolean canBeGrass = VerdantGrower.canBeGrass(state, level, pos);
-		if (!canBeGrass && VerdantTransformationHandler.REMOVE_GRASSES.get().hasInput(state.getBlock())) {
+		if (!canBeGrass && VerdantBlockTransformer.REMOVE_GRASSES.get().hasInput(state.getBlock())) {
 			// System.out.println("Killing grass at " + pos);
 			// System.out.println("The input light blockedness level is " +
 			// LightEngine.getLightBlockInto(level, state, pos,
@@ -155,9 +158,9 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
 			// System.out.println("Because the block above is " +
 			// level.getBlockState(pos.above()));
-			state = VerdantTransformationHandler.REMOVE_GRASSES.get().next(state);
+			state = VerdantBlockTransformer.REMOVE_GRASSES.get().next(state);
 			level.setBlockAndUpdate(pos, state);
-		} else if (canBeGrass && VerdantTransformationHandler.GROW_GRASSES.get().hasInput(state.getBlock())) {
+		} else if (canBeGrass && VerdantBlockTransformer.GROW_GRASSES.get().hasInput(state.getBlock())) {
 			// System.out.println("Growing grass at " + pos);
 			// System.out.println("The input light blockedness level is " +
 			// LightEngine.getLightBlockInto(level, state, pos,
@@ -165,7 +168,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
 			// System.out.println("Because the block above is " +
 			// level.getBlockState(pos.above()));
-			state = VerdantTransformationHandler.GROW_GRASSES.get().next(state);
+			state = VerdantBlockTransformer.GROW_GRASSES.get().next(state);
 			level.setBlockAndUpdate(pos, state);
 		}
 
@@ -275,6 +278,24 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
 		// Try to grow vegetation.
 		FeaturePlacer.place(level, pos);
+	}
+
+	@Nullable
+	public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
+			boolean simulate) {
+		ItemStack itemStack = context.getItemInHand();
+		if (!itemStack.canPerformAction(toolAction))
+			return null;
+
+		if (ToolActions.HOE_TILL == toolAction) {
+			// Logic modified super call.
+			Block block = state.getBlock();
+			if (VerdantBlockTransformer.HOEING.get().hasInput(block)) {
+				return VerdantBlockTransformer.HOEING.get().next(state);
+			}
+		}
+
+		return super.getToolModifiedState(state, context, toolAction, simulate);
 	}
 
 }

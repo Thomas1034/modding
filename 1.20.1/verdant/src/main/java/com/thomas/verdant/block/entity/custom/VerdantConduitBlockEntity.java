@@ -5,10 +5,10 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.thomas.verdant.block.VerdantGrower;
 import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
+import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.client.multiplayer.ClientLevel;

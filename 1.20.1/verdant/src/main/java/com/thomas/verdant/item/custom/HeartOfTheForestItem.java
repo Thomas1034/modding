@@ -1,6 +1,6 @@
 package com.thomas.verdant.item.custom;
 
-import com.thomas.verdant.block.VerdantGrower;
+import com.thomas.verdant.growth.VerdantGrower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

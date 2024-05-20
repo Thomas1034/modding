@@ -400,37 +400,6 @@ public class Utilities {
 		return enclosedPoints;
 	}
 
-	public static BlockPos findSurface(LevelAccessor level, BlockPos pos) {
-
-		if (level.getBlockState(pos).isAir()) {
-			return sink(level, pos);
-		} else {
-			return rise(level, pos);
-		}
-
-	}
-
-	public static BlockPos findSurface(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
-
-		if (level.getBlockState(pos).isAir()) {
-			return sink(level, pos, range);
-		} else {
-			return rise(level, pos, range);
-		}
-
-	}
-
-	public static BlockPos findSurfaceForWorldgen(LevelAccessor level, BlockPos pos, int range)
-			throws SurfaceNotFoundException {
-
-		if (!level.getBlockState(pos).is(BlockTags.OVERWORLD_CARVER_REPLACEABLES)) {
-			return sink(level, pos, range);
-		} else {
-			return rise(level, pos, range);
-		}
-
-	}
-
 	public static ArrayList<int[]> getCoordinatesInRadius(int radius) {
 		ArrayList<int[]> coordinatesList = new ArrayList<>();
 
@@ -769,58 +738,6 @@ public class Utilities {
 		}
 
 		return pos.above();
-	}
-
-	// Moves the given position downward to above a solid block.
-	@SuppressWarnings("deprecation")
-	public static BlockPos sink(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
-
-		BlockState state = level.getBlockState(pos);
-		int tries = 0;
-		while (!state.isSolid() && tries < range) {
-			pos = pos.below();
-			state = level.getBlockState(pos);
-			tries++;
-		}
-		if (tries == range) {
-			throw new SurfaceNotFoundException("Failed to find surface within " + range + " blocks.");
-		}
-
-		return pos.above();
-	}
-
-	// Iterates upward to find an air block, and returns that position.
-	@SuppressWarnings("deprecation")
-	public static BlockPos rise(LevelAccessor level, BlockPos pos) {
-
-		BlockState state = level.getBlockState(pos);
-
-		while (state.isSolid()) {
-			pos = pos.above();
-			state = level.getBlockState(pos);
-
-		}
-
-		return pos;
-	}
-
-	// Iterates upward to find an air block, and returns that position.
-	@SuppressWarnings("deprecation")
-	public static BlockPos rise(LevelAccessor level, BlockPos pos, int range) throws SurfaceNotFoundException {
-
-		BlockState state = level.getBlockState(pos);
-		int tries = 0;
-		while (state.isSolid() && tries < range) {
-			pos = pos.above();
-			state = level.getBlockState(pos);
-			tries++;
-
-		}
-		if (tries == range) {
-			throw new SurfaceNotFoundException("Failed to find surface within " + range + " blocks.");
-		}
-
-		return pos;
 	}
 
 	// Splits argb channels into int array r g b a.

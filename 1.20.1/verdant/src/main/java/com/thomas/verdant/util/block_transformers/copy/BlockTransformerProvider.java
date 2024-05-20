@@ -1,4 +1,4 @@
-package com.thomas.verdant.transforms;
+package com.thomas.verdant.util.block_transformers.copy;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

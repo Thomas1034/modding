@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.block.VerdantGrower;
+import com.thomas.verdant.growth.VerdantGrower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
