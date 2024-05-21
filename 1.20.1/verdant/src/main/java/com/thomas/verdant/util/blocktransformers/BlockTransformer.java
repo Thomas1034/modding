@@ -1,9 +1,14 @@
-package com.thomas.verdant.util.block_transformers;
+package com.thomas.verdant.util.blocktransformers;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.thomas.verdant.util.data.DataParseable;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -12,11 +17,11 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.registries.ForgeRegistries;
 
 // Represents an abstract way of transforming one block into another, preserving as much of the state as possible.
-public class BlockTransformer {
+public class BlockTransformer implements DataParseable<BlockTransformer> {
 
 	protected static final Map<ResourceLocation, BlockTransformer> TRANSFORMERS = new HashMap<>();
 
-	protected Map<Block, Block> map;
+	public Map<Block, Block> map;
 	private final ResourceLocation name;
 	private Set<Block> inputs;
 	private Set<Block> outputs;
@@ -33,7 +38,7 @@ public class BlockTransformer {
 
 	// Creates a transformer with the given name and namespace.
 	// The file would be located at: data/namespace/block_transformers/filename
-	protected BlockTransformer(ResourceLocation name) {
+	public BlockTransformer(ResourceLocation name) {
 		this.reset();
 		this.name = name;
 	}
@@ -106,4 +111,35 @@ public class BlockTransformer {
 			return oldState;
 		}
 	}
+
+	// Parses the transformer from a JSON.
+	@SuppressWarnings("unchecked")
+	@Override
+	public BlockTransformer parse(Gson gson, JsonElement element) {
+		// Get the contents of the JSON.
+		Map<String, String> contents = gson.fromJson(element, Map.class);
+
+		// For each element, find it in the block registry and load it into the
+		// transformer.
+		for (Entry<String, String> blockPair : contents.entrySet()) {
+			// Get the strings.
+			String start = blockPair.getKey();
+			String finish = blockPair.getValue();
+
+			// Convert to namespaces.
+			String[] startParts = start.split(":");
+			ResourceLocation startLocation = new ResourceLocation(startParts[0], startParts[1]);
+			String[] finishParts = finish.split(":");
+			ResourceLocation finishLocation = new ResourceLocation(finishParts[0], finishParts[1]);
+
+			// Now, get the blocks
+			Block startBlock = ForgeRegistries.BLOCKS.getValue(startLocation);
+			Block finishBlock = ForgeRegistries.BLOCKS.getValue(finishLocation);
+
+			// Add the blocks to the transformer.
+			this.register(startBlock, finishBlock);
+		}
+		return this;
+	}
+
 }

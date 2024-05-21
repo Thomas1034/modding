@@ -1,4 +1,4 @@
-package com.thomas.verdant.util.block_transformers.copy;
+package com.thomas.verdant.datagen;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.JsonObject;
+import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;

@@ -11,7 +11,6 @@ import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
-import com.thomas.verdant.growth.VerdantBlockTransformer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;
@@ -19,6 +18,7 @@ import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.painting.ModPaintings;
 import com.thomas.verdant.potion.BetterBrewingRecipe;
 import com.thomas.verdant.potion.ModPotions;
+import com.thomas.verdant.util.data.DataRegistries;
 import com.thomas.verdant.worldgen.ModFeature;
 import com.thomas.verdant.worldgen.tree.ModFoliagePlacers;
 import com.thomas.verdant.worldgen.tree.ModTrunkPlacerTypes;
@@ -82,6 +82,9 @@ public class Verdant {
 		// Register the commonSetup method for modloading
 		modEventBus.addListener(this::commonSetup);
 
+		// Accessed to ensure that the class is loaded early in the mod's lifecycle.
+		DataRegistries.ensureAlive();
+
 		// Register ourselves for server and other game events we are interested in
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -104,20 +107,20 @@ public class Verdant {
 		// Register potions
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(Potions.WATER, ModItems.ROASTED_COFFEE.get(), ModPotions.CAFFEINE.get()));
-		BrewingRecipeRegistry.addRecipe(
-				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), ModItems.ROASTED_COFFEE.get(), ModPotions.LONG_CAFFEINE.get()));
 		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(ModPotions.CAFFEINE.get(),
-				Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
+				ModItems.ROASTED_COFFEE.get(), ModPotions.LONG_CAFFEINE.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
 		// Register verdant growth mechanics on setup.
 		// Nope! Data driven now.
-		//VerdantTransformationHandler.registerDehydration();
-		//VerdantTransformationHandler.registerErosion();
-		//VerdantTransformationHandler.registerErosionWet();
-		//VerdantTransformationHandler.registerGrowGrasses();
-		//VerdantTransformationHandler.registerHydration();
-		//VerdantTransformationHandler.registerRemoveGrasses();
-		//VerdantTransformationHandler.registerRoots();
+		// VerdantTransformationHandler.registerDehydration();
+		// VerdantTransformationHandler.registerErosion();
+		// VerdantTransformationHandler.registerErosionWet();
+		// VerdantTransformationHandler.registerGrowGrasses();
+		// VerdantTransformationHandler.registerHydration();
+		// VerdantTransformationHandler.registerRemoveGrasses();
+		// VerdantTransformationHandler.registerRoots();
 		FoodPoisoningEffect.registerEffects();
 		FeaturePlacer.registerFeatures();
 	}
@@ -142,8 +145,7 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
-			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(),
-					PoisonIvyArrowRenderer::new);
+			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
 		}
 	}
 }

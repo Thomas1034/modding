@@ -27,6 +27,10 @@ public class ModPacketHandler {
 		INSTANCE.messageBuilder(PlayerSetVelocityPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
 				.encoder(PlayerSetVelocityPacket::encode).decoder(PlayerSetVelocityPacket::decode)
 				.consumerNetworkThread(PlayerSetVelocityPacket::handle).add();
+		INSTANCE.messageBuilder(SynchronizePlayerInfectionPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
+				.encoder(SynchronizePlayerInfectionPacket::encode).decoder(SynchronizePlayerInfectionPacket::decode)
+				.consumerNetworkThread(SynchronizePlayerInfectionPacket::handle).add();
+
 	}
 
 	public static void sendToServer(Object msg) {

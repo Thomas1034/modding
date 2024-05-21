@@ -6,8 +6,8 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 import com.thomas.verdant.block.custom.VerdantVineBlock;
-import com.thomas.verdant.util.TriFunction;
 import com.thomas.verdant.util.Utilities;
+import com.thomas.verdant.util.function.TriFunction;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

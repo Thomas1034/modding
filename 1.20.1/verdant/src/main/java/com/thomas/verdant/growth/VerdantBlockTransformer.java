@@ -2,31 +2,33 @@ package com.thomas.verdant.growth;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.util.block_transformers.BlockTransformer;
-import com.thomas.verdant.util.block_transformers.BlockTransformerAccessor;
+import com.thomas.verdant.util.blocktransformers.BlockTransformer;
+import com.thomas.verdant.util.data.DataAccessor;
+import com.thomas.verdant.util.data.DataRegistries;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 
 public class VerdantBlockTransformer {
 
 	// Handles all Verdant block conversion processes.
-	public static final BlockTransformerAccessor EROSION = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "erosion"));
-	public static final BlockTransformerAccessor EROSION_WET = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "erosion_wet"));
-	public static final BlockTransformerAccessor GROW_GRASSES = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "grow_grasses"));
-	public static final BlockTransformerAccessor REMOVE_GRASSES = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "remove_grasses"));
-	public static final BlockTransformerAccessor HOEING = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "hoeing"));
-	public static final BlockTransformerAccessor ROOTS = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "roots"));
-	public static final BlockTransformerAccessor HYDRATE = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "hydrate"));
-	public static final BlockTransformerAccessor DEHYDRATE = new BlockTransformerAccessor(
-			new ResourceLocation(Verdant.MOD_ID, "dehydrate"));
+	public static final DataAccessor<BlockTransformer> EROSION = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "erosion");
+	public static final DataAccessor<BlockTransformer> EROSION_WET = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "erosion_wet");
+	public static final DataAccessor<BlockTransformer> GROW_GRASSES = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "grow_grasses");
+	public static final DataAccessor<BlockTransformer> REMOVE_GRASSES = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "remove_grasses");
+	public static final DataAccessor<BlockTransformer> HOEING = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "hoeing");
+	public static final DataAccessor<BlockTransformer> ROOTS = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "roots");
+	public static final DataAccessor<BlockTransformer> HYDRATE = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "hydrate");
+	public static final DataAccessor<BlockTransformer> DEHYDRATE = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "dehydrate");
+	public static final DataAccessor<BlockTransformer> STRIPPING = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "stripping");
 
 	public static void registerHydration(BlockTransformer transformer) {
 		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
@@ -158,5 +160,12 @@ public class VerdantBlockTransformer {
 		transformer.register(ModBlocks.VERDANT_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_DIRT.get());
 		transformer.register(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.FARMLAND);
 		transformer.register(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
+	}
+
+	public static void registerStripping(BlockTransformer transformer) {
+		transformer.register(ModBlocks.VERDANT_LOG.get(), ModBlocks.STRIPPED_VERDANT_LOG.get());
+		transformer.register(ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
+		transformer.register(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
+		transformer.register(ModBlocks.VERDANT_HEARTWOOD_WOOD.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
 	}
 }

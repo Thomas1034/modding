@@ -1,4 +1,4 @@
-package com.thomas.verdant.util;
+package com.thomas.verdant.util.function;
 
 @FunctionalInterface
 public interface QuadFunction<Q, R, S, T, U> {

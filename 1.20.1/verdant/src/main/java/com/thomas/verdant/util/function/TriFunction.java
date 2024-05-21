@@ -1,4 +1,4 @@
-package com.thomas.verdant.util;
+package com.thomas.verdant.util.function;
 
 @FunctionalInterface
 public interface TriFunction<R, S, T, U> {

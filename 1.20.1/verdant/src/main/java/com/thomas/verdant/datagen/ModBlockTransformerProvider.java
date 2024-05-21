@@ -2,7 +2,6 @@ package com.thomas.verdant.datagen;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.growth.VerdantBlockTransformer;
-import com.thomas.verdant.util.block_transformers.BlockTransformerProvider;
 
 import net.minecraft.data.PackOutput;
 
@@ -23,6 +22,7 @@ public class ModBlockTransformerProvider extends BlockTransformerProvider {
 		VerdantBlockTransformer.registerHydration(this.add("hydrate"));
 		VerdantBlockTransformer.registerDehydration(this.add("dehydrate"));
 		VerdantBlockTransformer.registerHoeing(this.add("hoeing"));
+		VerdantBlockTransformer.registerStripping(this.add("stripping"));
 		
 	}
 
