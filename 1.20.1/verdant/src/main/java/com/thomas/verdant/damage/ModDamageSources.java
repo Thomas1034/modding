@@ -13,6 +13,7 @@ public class ModDamageSources {
 	
 	public static final ResourceKey<DamageType> THORN_BUSH = register("thorn_bush");
     public static final ResourceKey<DamageType> OVERGROWTH = register("overgrowth");
+    public static final ResourceKey<DamageType> SUNLIGHT = register("sunlight");
     
     private static ResourceKey<DamageType> register(String name)
     {

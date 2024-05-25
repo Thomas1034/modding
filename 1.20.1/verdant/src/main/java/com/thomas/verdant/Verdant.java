@@ -11,6 +11,7 @@ import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
+import com.thomas.verdant.entity.client.renderer.VerdantZombieRenderer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;
@@ -47,6 +48,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Make verdant dirt hoeable!
 // Maybe add monkshood? Causes paralysis.
 // Think about giant hogweed.
+// Levels of infection: sprouting, leafing, rooting, blooming.
+// sprouting: speed, regen, haste
+// leafing:   regen, haste, resistance, phototrophic (restores saturation based on light level)
+// rooting:   slowness, regen, haste, resistance 2, phototrophic 2
+// blooming: slowness 3, mining fatigue, wither, phototrophic 3
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -146,6 +152,7 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
 			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
+			EntityRenderers.register(ModEntityType.VERDANT_ZOMBIE.get(), VerdantZombieRenderer::new);
 		}
 	}
 }

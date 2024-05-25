@@ -97,7 +97,8 @@ public class ModEvents {
 				} else {
 					infection.addLevel(1);
 				}
-				ModPacketHandler.sendToPlayer(new SynchronizePlayerInfectionPacket(infection.getLevel()),
+				ModPacketHandler.sendToPlayer(
+						new SynchronizePlayerInfectionPacket(infection.getLevel(), event.player.getUUID()),
 						((ServerPlayer) event.player));
 			});
 		}

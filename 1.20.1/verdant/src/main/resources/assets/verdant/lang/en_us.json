@@ -129,9 +129,13 @@
 	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",
 	"death.attack.thornBush.player": "%s was thrown into the briar patch by %s.",
 	
-	"death.attack.overgrowth": "%s put down roots.",
-	"death.attack.overgrowth.item": "%s put down roots before %s's eyes.",
-	"death.attack.overgrowth.player": "%s put down roots before %s's eyes.",
+	"death.attack.overgrowth": "%s is pushing up daisies.",
+	"death.attack.overgrowth.item": "%s is pushing up daisies thanks to %s.",
+	"death.attack.overgrowth.player": "%s is pushing up daisies thanks to %s.",
+	
+	"death.attack.overgrowth": "%s got a sunburn.",
+	"death.attack.overgrowth.item": "%s got a sunburn thanks to %s.",
+	"death.attack.overgrowth.player": "%s got a sunburn thanks to %s.",
 	
 	"advancements.verdant.root.title": "The Verdant Growth",
 	"advancements.verdant.root.description": "A spreading plague of greenery is sealed in this world.",

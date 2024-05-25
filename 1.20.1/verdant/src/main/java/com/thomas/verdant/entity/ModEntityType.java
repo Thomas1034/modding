@@ -4,6 +4,7 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.entity.custom.ModChestBoatEntity;
 import com.thomas.verdant.entity.custom.PoisonIvyArrowEntity;
+import com.thomas.verdant.entity.custom.VerdantZombieEntity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -27,6 +28,10 @@ public class ModEntityType {
 			"poison_ivy_arrow",
 			() -> EntityType.Builder.<PoisonIvyArrowEntity>of(PoisonIvyArrowEntity::new, MobCategory.MISC)
 					.sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("poison_ivy_arrow"));
+	public static final RegistryObject<EntityType<VerdantZombieEntity>> VERDANT_ZOMBIE = ENTITY_TYPES.register(
+			"verdant_zombie",
+			() -> EntityType.Builder.<VerdantZombieEntity>of(VerdantZombieEntity::new, MobCategory.MISC)
+					.sized(0.9f, 1.95f).build("verdant_zombie"));
 
 	public static void register(IEventBus eventBus) {
 		ENTITY_TYPES.register(eventBus);
