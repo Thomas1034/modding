@@ -53,7 +53,7 @@ public class ModEventBusClientEvents {
 	@SuppressWarnings({ "rawtypes", "unchecked"})
 	@SubscribeEvent
 	public static void addVinesLayer(EntityRenderersEvent.AddLayers event) {
-		System.out.println("Adding vines layer!!! ---------------------------------------------------------------------------------------");
+		//System.out.println("Adding vines layer!!! ---------------------------------------------------------------------------------------");
 		event.getSkins().forEach(skin -> {
 			var renderer = event.getSkin(skin);
 			if (renderer != null) {

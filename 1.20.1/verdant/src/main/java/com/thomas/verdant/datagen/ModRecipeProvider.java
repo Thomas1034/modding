@@ -255,7 +255,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	// Shapeless recipe. Item at i must correspond to item count at i.
 	@SuppressWarnings("unchecked")
-	protected static void shapeless(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<Object> ingredients,
+	protected static void shapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, List<Object> ingredients,
 			List<Integer> counts, RecipeCategory recipeCategory, ItemLike result, int count) {
 
 		ShapelessRecipeBuilder recipe = ShapelessRecipeBuilder.shapeless(recipeCategory, result, count);
@@ -296,7 +296,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Saves the recipe.
 		System.out.println("Finished shapeless recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer, recipeName);
+		recipe.save(finishedRecipeConsumer, recipeName);
 
 	}
 
@@ -312,7 +312,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		return null;
 	}
 
-	protected static void smithingTransform(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike template,
+	protected static void smithingTransform(Consumer<FinishedRecipe> finishedRecipeConsumer, ItemLike template,
 			ItemLike base, ItemLike addition, RecipeCategory recipeCategory, Item result) {
 		SmithingTransformRecipeBuilder recipe = SmithingTransformRecipeBuilder.smithing(Ingredient.of(template),
 				Ingredient.of(base), Ingredient.of(addition), recipeCategory, result);
@@ -325,7 +325,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		String recipeName = Verdant.MOD_ID + ":" + getItemName(result) + "_from_smithing_transform_of_"
 				+ getItemName(base);
 		System.out.println("Finished smithing recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer, recipeName);
+		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
 	// Shaped recipe. Token at i must correspond to ingredient at i.

@@ -48,6 +48,8 @@ public class ModTags {
 
 	public static class EntityTypes {
 
+		public static final TagKey<EntityType<?>> VERDANT_ENTITIES = tag("verdant_entities");
+
 		private static TagKey<EntityType<?>> tag(String name) {
 			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(Verdant.MOD_ID, name));
 		}

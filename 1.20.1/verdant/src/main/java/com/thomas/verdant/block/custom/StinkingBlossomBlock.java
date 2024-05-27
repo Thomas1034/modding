@@ -2,6 +2,8 @@ package com.thomas.verdant.block.custom;
 
 import java.util.function.Supplier;
 
+import com.thomas.verdant.infection.EntityInfectionEffects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -45,8 +47,8 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 	// Inflicts nausea on anything inside.
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.FOX
-				&& livingEntity.getMobType() != MobType.ARTHROPOD) {
+		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
+				&& livingEntity.getType() != EntityType.RABBIT && !EntityInfectionEffects.isFriend(livingEntity))) {
 			if (!level.isClientSide) {
 				livingEntity.addEffect(NAUSEA.get());
 			}
@@ -98,7 +100,8 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(VERTICAL_DIRECTION, context.getNearestLookingVerticalDirection().getOpposite());
+		return this.defaultBlockState().setValue(VERTICAL_DIRECTION,
+				context.getNearestLookingVerticalDirection().getOpposite());
 	}
 
 }

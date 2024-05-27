@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public class ClientInfectionData {
 	private static final Map<UUID, Integer> INFECTION_LEVELS = new HashMap<>();
-
 	
 	public static void set(UUID id, int level) {
 		INFECTION_LEVELS.put(id, level);

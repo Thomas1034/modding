@@ -1,10 +1,12 @@
 package com.thomas.verdant.item.custom;
 
 import com.thomas.verdant.growth.VerdantGrower;
+import com.thomas.verdant.infection.EntityInfection;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -28,6 +30,12 @@ public class HeartOfTheForestItem extends Item {
 			VerdantGrower.erodeStatic(level, posToTry, holder.isInWaterOrRain());
 			// Try to convert the nearby block.
 			VerdantGrower.convertGround(level, posToTry, holder.isInWaterOrRain());
+
+			// Grow vines on the holder, if the holder is living.
+			if (holder instanceof LivingEntity livingHolder) {
+				EntityInfection.addLevel(livingHolder, 3);
+				//System.out.println("Added infection: " + EntityInfection.getLevel(holder));
+			}
 		}
 	}
 

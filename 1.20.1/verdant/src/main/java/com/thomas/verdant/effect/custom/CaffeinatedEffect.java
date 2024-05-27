@@ -1,5 +1,7 @@
 package com.thomas.verdant.effect.custom;
 
+import com.thomas.verdant.infection.EntityInfectionEffects;
+
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,16 +23,18 @@ public class CaffeinatedEffect extends AddictiveEffect {
 		if (entity.level().isClientSide) {
 			return;
 		}
-		
+
 		// Add the effects
 		MobEffectInstance haste = new MobEffectInstance(MobEffects.DIG_SPEED, 100, amplifier);
 		MobEffectInstance speed = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1 + amplifier * 2);
-		MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600 + 1200 * (amplifier + 1), amplifier);
-		
-		
+		MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600 + 1200 * (amplifier + 1),
+				amplifier);
+
 		entity.addEffect(haste);
 		entity.addEffect(speed);
-		entity.addEffect(slowness);
+		if (!EntityInfectionEffects.isFriend(entity)) {
+			entity.addEffect(slowness);
+		}
 	}
 
 	@Override

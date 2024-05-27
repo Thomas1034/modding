@@ -3,6 +3,7 @@ package com.thomas.verdant.event;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.infection.EntityInfection;
+import com.thomas.verdant.infection.EntityInfectionEffects;
 import com.thomas.verdant.infection.EntityInfectionProvider;
 import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.network.SynchronizePlayerInfectionPacket;
@@ -18,7 +19,6 @@ import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.SleepingLocationCheckEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -95,7 +95,7 @@ public class ModEvents {
 				if (infection.getLevel() == EntityInfection.MAX_LEVEL) {
 					infection.setLevel(EntityInfection.MIN_LEVEL);
 				} else {
-					infection.addLevel(1);
+					EntityInfectionEffects.updateLevel(event.player);
 				}
 				ModPacketHandler.sendToPlayer(
 						new SynchronizePlayerInfectionPacket(infection.getLevel(), event.player.getUUID()),

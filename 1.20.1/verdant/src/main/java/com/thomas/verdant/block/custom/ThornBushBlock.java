@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.damage.ModDamageSources;
+import com.thomas.verdant.infection.EntityInfectionEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,8 +24,8 @@ public class ThornBushBlock extends BushBlock {
 
 	// Mostly from SweetBerryBushBlock, with a few tweaks.
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX
-				&& entity.getType() != EntityType.BEE && le.getMobType() != MobType.ARTHROPOD) {
+		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
+				&& livingEntity.getType() != EntityType.RABBIT && !EntityInfectionEffects.isFriend(livingEntity))) {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.75D, (double) 0.8F));
 			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);
