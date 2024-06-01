@@ -3,7 +3,7 @@ package com.thomas.verdant.network;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import com.thomas.verdant.client.ClientInfectionData;
+import com.thomas.verdant.client.ClientOvergrowthData;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
@@ -45,7 +45,7 @@ public class SynchronizePlayerInfectionPacket {
 	}
 
 	private static void handleClientPacket(SynchronizePlayerInfectionPacket msg, Supplier<Context> ctx) {
-		ClientInfectionData.set(msg.getID(), msg.getLevel());
+		ClientOvergrowthData.set(msg.getID(), msg.getLevel());
 	}
 
 	public int getLevel() {

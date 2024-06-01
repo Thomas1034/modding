@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.damage.ModDamageSources;
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +24,8 @@ public class ThornyVerdantLeavesBlock extends VerdantLeavesBlock {
 	@Override
 	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX
-				&& entity.getType() != EntityType.BEE && le.getMobType() != MobType.ARTHROPOD) {
+				&& entity.getType() != EntityType.BEE && le.getMobType() != MobType.ARTHROPOD
+				&& !EntityOvergrowthEffects.isFriend(le)) {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.9F, 1.0D, (double) 0.9F));
 			if (!level.isClientSide) {
 				DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);

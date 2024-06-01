@@ -175,7 +175,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		// Settle
 		if (!this.settle(level, pos)) {
 			// Grow.
-			float growthChance = this.growthChance();
+			float growthChance = this.growthChance(null);
 			float randomChance = rand.nextFloat();
 			while (randomChance < growthChance) {
 				// System.out.println("Trying to spread.");
@@ -187,8 +187,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	}
 
 	@Override
-	public float growthChance() {
-		return 1.0f;
+	public float growthChance(Level level) {
+		return 1.0f * VerdantGrower.super.growthChance(level);
 	}
 
 	// Handles hydration

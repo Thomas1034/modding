@@ -22,8 +22,8 @@ public interface VerdantGrower extends BonemealableBlock {
 	public static final float MULTI_ERODE_CHANCE = 0.25f;
 	public static final int MAX_ROOTS = 3;
 
-	default float growthChance() {
-		return 1.0f;
+	default float growthChance(Level level) {
+		return level == null ? 1.0f : SpreadAmount.getAmount(level);
 	}
 
 	abstract void grow(BlockState state, Level level, BlockPos pos);

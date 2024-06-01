@@ -10,8 +10,9 @@ import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
+import com.thomas.verdant.entity.client.renderer.OvergrownSkeletonRenderer;
+import com.thomas.verdant.entity.client.renderer.OvergrownZombieRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
-import com.thomas.verdant.entity.client.renderer.VerdantZombieRenderer;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.modfeature.FeaturePlacer;
@@ -53,6 +54,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // leafing:   regen, haste, resistance, phototrophic (restores saturation based on light level)
 // rooting:   slowness, regen, haste, resistance 2, phototrophic 2
 // blooming: slowness 3, mining fatigue, wither, phototrophic 3
+
+// Known issues: strange freeze when spawning zombie near but not on verdant. Went away on its own. 
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -136,7 +139,6 @@ public class Verdant {
 	public void onServerStarting(ServerStartingEvent event) {
 		// Do something when the server starts
 		LOGGER.info("HELLO from server starting");
-
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
@@ -152,7 +154,9 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
 			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
-			EntityRenderers.register(ModEntityType.VERDANT_ZOMBIE.get(), VerdantZombieRenderer::new);
+			EntityRenderers.register(ModEntityType.VERDANT_ZOMBIE.get(), OvergrownZombieRenderer::new);
+			EntityRenderers.register(ModEntityType.VERDANT_SKELETON.get(), OvergrownSkeletonRenderer::new);
+
 		}
 	}
 }

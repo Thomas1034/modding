@@ -174,6 +174,20 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Coffee crop
 		this.tag(BlockTags.CROPS).add(ModBlocks.COFFEE_CROP.get());
+
+		// Add in ores.
+		this.tag(Tags.Blocks.ORES).add(ModBlocks.DIRT_COAL_ORE.get(), ModBlocks.DIRT_COPPER_ORE.get(),
+				ModBlocks.DIRT_DIAMOND_ORE.get(), ModBlocks.DIRT_EMERALD_ORE.get(), ModBlocks.DIRT_GOLD_ORE.get(),
+				ModBlocks.DIRT_IRON_ORE.get(), ModBlocks.DIRT_LAPIS_ORE.get(), ModBlocks.DIRT_REDSTONE_ORE.get());
+		this.tag(Tags.Blocks.ORES_COAL).add(ModBlocks.DIRT_COAL_ORE.get());
+		this.tag(Tags.Blocks.ORES_COPPER).add(ModBlocks.DIRT_COPPER_ORE.get());
+		this.tag(Tags.Blocks.ORES_DIAMOND).add(ModBlocks.DIRT_DIAMOND_ORE.get());
+		this.tag(Tags.Blocks.ORES_EMERALD).add(ModBlocks.DIRT_EMERALD_ORE.get());
+		this.tag(Tags.Blocks.ORES_GOLD).add(ModBlocks.DIRT_GOLD_ORE.get());
+		this.tag(Tags.Blocks.ORES_IRON).add(ModBlocks.DIRT_IRON_ORE.get());
+		this.tag(Tags.Blocks.ORES_LAPIS).add(ModBlocks.DIRT_LAPIS_ORE.get());
+		this.tag(Tags.Blocks.ORES_REDSTONE).add(ModBlocks.DIRT_REDSTONE_ORE.get());
+
 		
 		// REMOVE vines from tree replaceables.
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(ModTags.Blocks.VERDANT_VINES);

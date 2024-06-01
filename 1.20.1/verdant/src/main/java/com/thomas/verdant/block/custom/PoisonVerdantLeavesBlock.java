@@ -2,6 +2,8 @@ package com.thomas.verdant.block.custom;
 
 import java.util.function.Supplier;
 
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -26,8 +28,9 @@ public class PoisonVerdantLeavesBlock extends VerdantLeavesBlock {
 	@Override
 	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.FOX
-				&& livingEntity.getMobType() != MobType.ARTHROPOD) {
-			//livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
+				&& livingEntity.getMobType() != MobType.ARTHROPOD && !EntityOvergrowthEffects.isFriend(livingEntity)) {
+			// livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double)
+			// 0.9F));
 			if (!level.isClientSide) {
 				livingEntity.addEffect(POISON.get());
 			}

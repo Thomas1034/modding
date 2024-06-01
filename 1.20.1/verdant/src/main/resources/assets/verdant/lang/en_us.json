@@ -125,7 +125,21 @@
 	"effect.verdant.caffeinated": "Caffeinated",
 	"effect.verdant.verdant_energy": "Verdant Energy",
 	
-	"death.attack.thornBush": "%s stepped on a thorn.",
+	"command.verdant.spread_speed": "The Verdant Growth is spreading at a base rate of %s blocks per second.",
+	"command.verdant.spread_speed_random": "The Verdant Growth is spreading at a base rate of %s blocks per second, with a %s chance to grow an additional block.",
+	"command.verdant.spread_check": "There are %s spreading Verdant blocks in that range.",
+	"command.verdant.set_spread_speed": "Setting the spread speed of the Verdant Growth to a base rate of %s blocks per second.",
+	"command.verdant.set_spread_speed_random": "Setting the spread speed of the Verdant Growth to a base rate of %s blocks per second, with a %s chance to grow an additional block.",
+	"command.verdant.exception": "An unexpected error occurred while trying to execute that command.",
+	"command.verdant.not_found": "No valid entity was found.",
+	"command.verdant.set_infection": "Set the overgrowth level of %s entities.",
+	"command.verdant.add_infection": "Added %s to the overgrowth level of %s entities.",
+	"command.verdant.get_infection": "%s has an overgrowth level of %s.",
+	"command.verdant.stop_infection": "Stopping overgrowth progression.",
+	"command.verdant.reset_infection_speed": "Resetting overgrowth progression speeds.",
+	"command.verdant.set_infection_speed": "Setting overgrowth progression speed for stage %s to %s.",
+
+	"death.attack.thornBush": "%s sat on a thorn.",
 	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",
 	"death.attack.thornBush.player": "%s was thrown into the briar patch by %s.",
 	

@@ -82,7 +82,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
 		// System.out.println("Verdant leaves are ticking at " + pos + ".");
-		float growthChance = this.growthChance();
+		float growthChance = this.growthChance(null);
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
 			// System.out.println("Trying to spread.");

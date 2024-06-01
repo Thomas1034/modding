@@ -14,7 +14,6 @@ public class ModBiomeModifiers {
 	public static void bootstrap(BootstapContext<BiomeModifier> context) {
 		var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		var biomes = context.lookup(Registries.BIOME);
-
 	}
 
 	private static ResourceKey<BiomeModifier> registerKey(String name) {

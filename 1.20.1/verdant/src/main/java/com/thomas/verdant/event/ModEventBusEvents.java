@@ -2,7 +2,8 @@ package com.thomas.verdant.event;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.entity.ModEntityType;
-import com.thomas.verdant.entity.custom.VerdantZombieEntity;
+import com.thomas.verdant.entity.custom.OvergrownSkeletonEntity;
+import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -13,8 +14,9 @@ public class ModEventBusEvents {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(ModEntityType.VERDANT_ZOMBIE.get(), VerdantZombieEntity.createAttributes().build());
-
+		event.put(ModEntityType.VERDANT_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
+		event.put(ModEntityType.VERDANT_SKELETON.get(), OvergrownSkeletonEntity.createAttributes().build());
 
 	}
+
 }

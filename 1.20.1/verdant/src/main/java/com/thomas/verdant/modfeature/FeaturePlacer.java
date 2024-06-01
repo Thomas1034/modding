@@ -93,7 +93,7 @@ public class FeaturePlacer {
 		registerSurfaceFeature(
 				Feature.smallPlant(Blocks.GLOW_LICHEN.defaultBlockState()
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
-				Rarity.EXTREMELY_UNCOMMON, "floor_glow_lichen");
+				Rarity.RARE, "floor_glow_lichen");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE, "blue_orchid");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.VERY_RARE, "wild_coffee");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE, "brown_mushroom");
@@ -116,11 +116,11 @@ public class FeaturePlacer {
 	private static void registerHangingFeatures() {
 		registerHangingFeature(Feature.hanging(Blocks.HANGING_ROOTS, 0), Rarity.COMMON, "hanging_roots");
 		registerHangingFeature(Feature.hanging(ModBlocks.VERDANT_TENDRIL.get(), 1), Rarity.UNCOMMON, "tendril");
-		registerHangingFeature(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON, "poison_ivy");
 		registerHangingFeature(
 				Feature.hanging(Blocks.GLOW_LICHEN.defaultBlockState()
 						.setValue(MultifaceBlock.getFaceProperty(Direction.UP), true), 0),
-				Rarity.VERY_UNCOMMON, "ceiling_glow_lichen");
+				Rarity.UNCOMMON, "ceiling_glow_lichen");
+		registerHangingFeature(Feature.hanging(ModBlocks.POISON_IVY.get(), 1), Rarity.VERY_UNCOMMON, "poison_ivy");
 		registerHangingFeature(Feature.hanging(Blocks.CAVE_VINES, 1), Rarity.EXTREMELY_UNCOMMON, "cave_vines");
 		registerHangingFeature(
 				Feature.hanging(ModBlocks.STINKING_BLOSSOM.get().defaultBlockState()
@@ -215,7 +215,8 @@ public class FeaturePlacer {
 	}
 
 	public static boolean surfacePlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).isAir() && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
+		return level.getBlockState(pos.above()).isAir()
+				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
 	}
 
 	public static boolean verdantVinePlacement(Level level, BlockPos pos) {
@@ -224,11 +225,13 @@ public class FeaturePlacer {
 	}
 
 	public static boolean hangingPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.below()).isAir() && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.DOWN);
+		return level.getBlockState(pos.below()).isAir()
+				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.DOWN);
 	}
 
 	public static boolean waterPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).is(Blocks.WATER) && level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
+		return level.getBlockState(pos.above()).is(Blocks.WATER)
+				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
 	}
 
 	public static boolean always(Level level, BlockPos pos) {

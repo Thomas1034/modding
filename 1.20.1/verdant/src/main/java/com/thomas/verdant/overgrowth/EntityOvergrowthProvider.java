@@ -1,4 +1,4 @@
-package com.thomas.verdant.infection;
+package com.thomas.verdant.overgrowth;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,25 +12,25 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class EntityInfectionProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-	public static final Capability<EntityInfection> ENTITY_INFECTION = CapabilityManager
-			.get(new CapabilityToken<EntityInfection>() {
+public class EntityOvergrowthProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+	public static final Capability<EntityOvergrowth> ENTITY_OVERGROWTH = CapabilityManager
+			.get(new CapabilityToken<EntityOvergrowth>() {
 			});
 
-	private EntityInfection thirst = null;
-	private final LazyOptional<EntityInfection> optional = LazyOptional.of(this::createEntityInfection);
+	private EntityOvergrowth overgrowth = null;
+	private final LazyOptional<EntityOvergrowth> optional = LazyOptional.of(this::getEntityInfection);
 
-	private EntityInfection createEntityInfection() {
-		if (this.thirst == null) {
-			this.thirst = new EntityInfection();
+	private EntityOvergrowth getEntityInfection() {
+		if (this.overgrowth == null) {
+			this.overgrowth = new EntityOvergrowth();
 		}
 
-		return this.thirst;
+		return this.overgrowth;
 	}
 
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-		if (cap == ENTITY_INFECTION) {
+		if (cap == ENTITY_OVERGROWTH) {
 			return optional.cast();
 		}
 
@@ -40,13 +40,13 @@ public class EntityInfectionProvider implements ICapabilityProvider, INBTSeriali
 	@Override
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		createEntityInfection().saveNBTData(nbt);
+		getEntityInfection().saveNBTData(nbt);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundTag nbt) {
-		createEntityInfection().loadNBTData(nbt);
+		getEntityInfection().loadNBTData(nbt);
 	}
 
 }

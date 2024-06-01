@@ -3,7 +3,7 @@ package com.thomas.verdant.block.custom;
 import java.util.function.Supplier;
 
 import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.infection.EntityInfectionEffects;
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
@@ -39,7 +39,7 @@ public class PoisonVerdantTendrilPlantBlock extends GrowingPlantBodyBlock {
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
-				&& livingEntity.getType() != EntityType.RABBIT && !EntityInfectionEffects.isFriend(livingEntity))) {
+				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
 			livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
 			if (!level.isClientSide) {
 				livingEntity.addEffect(POISON.get());

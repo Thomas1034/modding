@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thomas.verdant.Verdant;
-import com.thomas.verdant.infection.EntityInfection;
+import com.thomas.verdant.overgrowth.EntityOvergrowth;
 
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -83,8 +83,8 @@ public class VinesLayer<T extends LivingEntity, M extends HumanoidModel<T>, A ex
 	public ResourceLocation getArmorResource(Entity entity, ItemStack stack, EquipmentSlot slot,
 			@Nullable String type) {
 
-		int progressionLevel = EntityInfection.getLevel(entity);
-		String textureSuffix = EntityInfection.getTextureSuffix(progressionLevel);
+		int progressionLevel = EntityOvergrowth.getLevel(entity);
+		String textureSuffix = EntityOvergrowth.getTextureSuffix(progressionLevel);
 		String texture = "vines" + textureSuffix;
 
 		String s1 = String.format(java.util.Locale.ROOT, "textures/models/armor/%s_layer_%d%s.png", texture,

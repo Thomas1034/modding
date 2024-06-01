@@ -2,7 +2,7 @@ package com.thomas.verdant.block.custom;
 
 import java.util.function.Supplier;
 
-import com.thomas.verdant.infection.EntityInfectionEffects;
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -48,7 +48,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
-				&& livingEntity.getType() != EntityType.RABBIT && !EntityInfectionEffects.isFriend(livingEntity))) {
+				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
 			if (!level.isClientSide) {
 				livingEntity.addEffect(NAUSEA.get());
 			}

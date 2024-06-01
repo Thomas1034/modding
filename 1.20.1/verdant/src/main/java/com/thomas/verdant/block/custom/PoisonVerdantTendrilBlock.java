@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.growth.VerdantGrower;
-import com.thomas.verdant.infection.EntityInfectionEffects;
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,7 @@ public class PoisonVerdantTendrilBlock extends GrowingPlantHeadBlock implements 
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
-				&& livingEntity.getType() != EntityType.RABBIT && !EntityInfectionEffects.isFriend(livingEntity))) {
+				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
 			livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
 			if (!level.isClientSide) {
 				livingEntity.addEffect(POISON.get());
@@ -65,7 +65,7 @@ public class PoisonVerdantTendrilBlock extends GrowingPlantHeadBlock implements 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
-		float growthChance = this.growthChance();
+		float growthChance = this.growthChance(null);
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
 			// System.out.println("Trying to spread.");
@@ -98,8 +98,8 @@ public class PoisonVerdantTendrilBlock extends GrowingPlantHeadBlock implements 
 	}
 
 	@Override
-	public float growthChance() {
-		return 0.5f;
+	public float growthChance(Level level) {
+		return 0.5f * VerdantGrower.super.growthChance(level);
 	}
 
 	@Override

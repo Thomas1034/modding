@@ -275,12 +275,14 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// Check if it can grow
 			if (maturity == MIN_GROWTH && canGrowToFace(level, pos, d)) {
 				isMature = false;
-				//System.out.println("Setting face " + d + " to " + (MIN_GROWTH + 1) + " at " + pos);
+				// System.out.println("Setting face " + d + " to " + (MIN_GROWTH + 1) + " at " +
+				// pos);
 				state = state.setValue(SIDES.get(d), MIN_GROWTH + 1);
 			} else if (maturity > MIN_GROWTH && maturity < MAX_GROWTH) {
 				isMature = false;
 				state = state.setValue(SIDES.get(d), maturity + 1);
-				//System.out.println("Setting face " + d + " to " + (maturity + 1) + " at " + pos);
+				// System.out.println("Setting face " + d + " to " + (maturity + 1) + " at " +
+				// pos);
 			} else {
 
 			}
@@ -506,7 +508,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			if (state.getValue(side.getValue()) > 0) {
 				if (!canGrowToFace(level, pos, side.getKey())) {
 					// If not, remove growth on that side.
-					//System.out.println("Removing vine part since " + side.getKey() + "neighbor is " + neighbor);
+					// System.out.println("Removing vine part since " + side.getKey() + "neighbor is
+					// " + neighbor);
 					state = state.setValue(side.getValue(), 0);
 
 					level.addDestroyBlockEffect(pos, state);
@@ -514,18 +517,18 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 				} else {
 					// A face has been found.
-					//System.out.println("A face has been found at " + side.getKey());
+					// System.out.println("A face has been found at " + side.getKey());
 					anyFacesExist = true;
 				}
 			} else {
-				//System.out.println("No face was found at " + side.getKey());
+				// System.out.println("No face was found at " + side.getKey());
 			}
 		}
 		// If all the faces are empty, destroy the block.
 		if (!anyFacesExist) {
 			// System.out.println("All faces are empty, destroying block: " + state + ".");
 			// Second parameter is whether it drops resources.
-			//System.out.println("Destroying vine at " + pos);
+			// System.out.println("Destroying vine at " + pos);
 			level.destroyBlock(pos, false);
 		} else if (needToUpdate) {
 			// System.out.println("Setting vine growth to " + state + ".");
@@ -537,8 +540,9 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		BlockState state = level.getBlockState(pos.relative(direction));
 		boolean isSturdy = level.getBlockState(pos.relative(direction)).isFaceSturdy(level, pos,
 				direction.getOpposite());
-		//System.out.println("Checking if can grow to face " + direction + " at " + pos);
-		//System.out.println("Returning " + (state.is(BlockTags.LOGS) && isSturdy));
+		// System.out.println("Checking if can grow to face " + direction + " at " +
+		// pos);
+		// System.out.println("Returning " + (state.is(BlockTags.LOGS) && isSturdy));
 		return state.is(BlockTags.LOGS) && isSturdy;
 	}
 
@@ -547,7 +551,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		// super.randomTick(state, level, pos, rand);
 
 		// Grow.
-		float growthChance = this.growthChance();
+		float growthChance = this.growthChance(level);
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
 			// System.out.println("Trying to spread.");
@@ -577,8 +581,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	}
 
 	@Override
-	public float growthChance() {
-		return 1.0f;
+	public float growthChance(Level level) {
+		return 2.0f * VerdantGrower.super.growthChance(level);
 	}
 
 	@SuppressWarnings("deprecation")

@@ -2,59 +2,61 @@ package com.thomas.verdant.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.thomas.verdant.Verdant;
-import com.thomas.verdant.infection.EntityInfection;
+import com.thomas.verdant.overgrowth.EntityOvergrowth;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public class InfectionHudOverlay {
+public class OvergrowthHudOverlay {
 
 	private static final ResourceLocation INITIAL_0 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/initial_0.png");
+			"textures/overgrowth/segment/initial_0.png");
 	private static final ResourceLocation INITIAL_1 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/initial_1.png");
+			"textures/overgrowth/segment/initial_1.png");
 	private static final ResourceLocation INITIAL_2 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/initial_2.png");
+			"textures/overgrowth/segment/initial_2.png");
 	private static final ResourceLocation INITIAL_3 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/initial_3.png");
+			"textures/overgrowth/segment/initial_3.png");
 	private static final ResourceLocation MIDDLE_0 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/middle_0.png");
+			"textures/overgrowth/segment/middle_0.png");
 	private static final ResourceLocation MIDDLE_1 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/middle_1.png");
+			"textures/overgrowth/segment/middle_1.png");
 	private static final ResourceLocation MIDDLE_2 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/middle_2.png");
+			"textures/overgrowth/segment/middle_2.png");
 	private static final ResourceLocation MIDDLE_3 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/middle_3.png");
+			"textures/overgrowth/segment/middle_3.png");
 	private static final ResourceLocation FINAL_0 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/final_0.png");
+			"textures/overgrowth/segment/final_0.png");
 	private static final ResourceLocation FINAL_1 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/final_1.png");
+			"textures/overgrowth/segment/final_1.png");
 	private static final ResourceLocation FINAL_2 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/final_2.png");
+			"textures/overgrowth/segment/final_2.png");
 	private static final ResourceLocation FINAL_3 = new ResourceLocation(Verdant.MOD_ID,
-			"textures/infection/segment/final_3.png");
+			"textures/overgrowth/segment/final_3.png");
 
 	@SuppressWarnings("resource")
-	public static final IGuiOverlay HUD_THIRST = ((gui, poseStack, partialTick, width, height) -> {
+	public static final IGuiOverlay HUD_INFECTION = ((gui, poseStack, partialTick, width, height) -> {
 		int horizontalCenter = width / 2;
 		int verticalCenter = height;
 
-		// If the user has no infection level, don't show this.
-		if (ClientInfectionData
-				.getPlayerInfection(Minecraft.getInstance().player.getUUID()) == EntityInfection.MIN_LEVEL) {
+		// If the user has no overgrowth level, don't show this.
+		// Also don't show if in creative or spectator.
+		if (ClientOvergrowthData
+				.getPlayerOvergrowth(Minecraft.getInstance().player.getUUID()) == EntityOvergrowth.MIN_LEVEL
+				|| Minecraft.getInstance().player.getAbilities().invulnerable) {
 			return;
 		}
 
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		int cumulativeSlotOffset = 0;
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < EntityOvergrowth.STAGES; i++) {
 			ResourceLocation toBlit = getTextureForSlotAndLevel(i,
-					ClientInfectionData.getPlayerInfection(Minecraft.getInstance().player.getUUID()));
-			int slotWidth = i == 7 ? 11 : 10;
+					ClientOvergrowthData.getPlayerOvergrowth(Minecraft.getInstance().player.getUUID()));
+			int slotWidth = i == EntityOvergrowth.STAGES ? 11 : 10;
 			int slotHeight = 12;
-			poseStack.blit(toBlit, horizontalCenter + 10 + cumulativeSlotOffset, verticalCenter - 50 - slotHeight, 0, 0, slotWidth,
-					slotHeight, slotWidth, slotHeight);
+			poseStack.blit(toBlit, horizontalCenter + 10 + cumulativeSlotOffset, verticalCenter - 50 - slotHeight, 0, 0,
+					slotWidth, slotHeight, slotWidth, slotHeight);
 			cumulativeSlotOffset += slotWidth;
 		}
 		return;
@@ -62,10 +64,10 @@ public class InfectionHudOverlay {
 
 	private static ResourceLocation getTextureForSlotAndLevel(int slot, int level) {
 
-		// Break the infection level into 32 parts; find how many fractions have been
+		// Break the overgrowth level into 32 parts; find how many fractions have been
 		// filled.
-		int parts = (int) (32.0 * (level - EntityInfection.MIN_LEVEL)
-				/ (EntityInfection.MAX_LEVEL - EntityInfection.MIN_LEVEL));
+		int parts = (int) (32.0 * (level - EntityOvergrowth.MIN_LEVEL)
+				/ (EntityOvergrowth.MAX_LEVEL - EntityOvergrowth.MIN_LEVEL));
 		int fullnessLevel = Math.max(parts - 4 * slot, 0);
 
 		// Special case first slot.
@@ -84,7 +86,7 @@ public class InfectionHudOverlay {
 			}
 		}
 		// Special case last slot
-		else if (slot == 7) {
+		else if (slot == EntityOvergrowth.STAGES - 1) {
 			switch (fullnessLevel) {
 			case 0:
 				return FINAL_0;

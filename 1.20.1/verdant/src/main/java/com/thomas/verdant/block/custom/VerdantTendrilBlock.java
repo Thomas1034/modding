@@ -38,13 +38,14 @@ public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements Verdan
 
 	@Override
 	protected boolean canGrowInto(BlockState state) {
-		return state.getFluidState().isEmpty() && (state.isAir() || state.is(ModBlocks.VERDANT_LEAVES.get()) || state.is(BlockTags.REPLACEABLE));
+		return state.getFluidState().isEmpty()
+				&& (state.isAir() || state.is(ModBlocks.VERDANT_LEAVES.get()) || state.is(BlockTags.REPLACEABLE));
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
-		float growthChance =  this.growthChance();
+		float growthChance = this.growthChance(null);
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
 			// System.out.println("Trying to spread.");
@@ -78,8 +79,8 @@ public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements Verdan
 	}
 
 	@Override
-	public float growthChance() {
-		return 0.5f;
+	public float growthChance(Level level) {
+		return 0.5f * VerdantGrower.super.growthChance(level);
 	}
 
 	@Override

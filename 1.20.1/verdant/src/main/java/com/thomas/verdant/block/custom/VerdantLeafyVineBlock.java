@@ -59,8 +59,12 @@ public class VerdantLeafyVineBlock extends VerdantVineBlock implements IForgeShe
 		// System.out.println("Verdant Leafy Vines are randomly ticking.");
 		super.randomTick(state, level, pos, rand);
 		// Grow leaves, too.
-		if (rand.nextFloat() < this.growthChance()) {
+		float growthChance = this.growthChance(level);
+		float randomChance = rand.nextFloat();
+		while (randomChance < growthChance) {
+			// System.out.println("Trying to spread.");
 			VerdantLeavesBlock.spreadLeaves(level, pos);
+			growthChance--;
 		}
 	}
 

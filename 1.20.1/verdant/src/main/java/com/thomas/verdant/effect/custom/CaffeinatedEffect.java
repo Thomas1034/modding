@@ -1,6 +1,6 @@
 package com.thomas.verdant.effect.custom;
 
-import com.thomas.verdant.infection.EntityInfectionEffects;
+import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -32,7 +32,7 @@ public class CaffeinatedEffect extends AddictiveEffect {
 
 		entity.addEffect(haste);
 		entity.addEffect(speed);
-		if (!EntityInfectionEffects.isFriend(entity)) {
+		if (!EntityOvergrowthEffects.isFriend(entity)) {
 			entity.addEffect(slowness);
 		}
 	}

@@ -13,12 +13,12 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Zombie;
 
-public class VerdantZombieOuterLayer extends RenderLayer<Zombie, ZombieModel<Zombie>> {
+public class OvergrownZombieOuterLayer extends RenderLayer<Zombie, ZombieModel<Zombie>> {
 	private static final ResourceLocation ZOMBIE_OUTER_LAYER_LOCATION = new ResourceLocation(Verdant.MOD_ID,
-			"textures/entity/verdant_zombie/verdant_zombie_outer_layer.png");
+			"textures/entity/overgrown_zombie/overgrown_zombie_outer_layer.png");
 	private final DrownedModel<Zombie> model;
 
-	public VerdantZombieOuterLayer(RenderLayerParent<Zombie, ZombieModel<Zombie>> layerParent,
+	public OvergrownZombieOuterLayer(RenderLayerParent<Zombie, ZombieModel<Zombie>> layerParent,
 			EntityModelSet modelSet) {
 		super(layerParent);
 		this.model = new DrownedModel<>(modelSet.bakeLayer(ModelLayers.DROWNED_OUTER_LAYER));

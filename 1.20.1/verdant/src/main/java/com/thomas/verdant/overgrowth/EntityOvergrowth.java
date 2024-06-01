@@ -1,22 +1,22 @@
-package com.thomas.verdant.infection;
+package com.thomas.verdant.overgrowth;
 
-import com.thomas.verdant.client.ClientInfectionData;
+import com.thomas.verdant.client.ClientOvergrowthData;
 
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
-public class EntityInfection {
+public class EntityOvergrowth {
 
 	private int level;
+	public static final int STAGES = 8;
 	private static final int MINUTES_TO_MAX = 2;
 	public static final int MAX_LEVEL = 1200 * MINUTES_TO_MAX;
 	public static final int MIN_LEVEL = 0;
-	public static final int INCREASES = MIN_LEVEL + (MAX_LEVEL - MIN_LEVEL) / 4;
-	public static final int DECREASES = MIN_LEVEL + (MAX_LEVEL - MIN_LEVEL) / 8;
-	private static final String NAME = "infection";
-	private static final EntityInfection ZERO = new EntityInfection();
+	public static final int FRIEND = MIN_LEVEL + (MAX_LEVEL - MIN_LEVEL) / (STAGES / 2);
+	private static final String NAME = "overgrowth";
+	private static final EntityOvergrowth ZERO = new EntityOvergrowth();
 
 	public int getLevel() {
 		return this.level;
@@ -39,7 +39,7 @@ public class EntityInfection {
 		this.level = Math.min(Math.max(toSet, MIN_LEVEL), MAX_LEVEL);
 	}
 
-	public void copyFrom(EntityInfection other) {
+	public void copyFrom(EntityOvergrowth other) {
 		this.level = other.level;
 	}
 
@@ -53,24 +53,24 @@ public class EntityInfection {
 
 	public static int getLevel(Entity entity) {
 		if (entity instanceof AbstractClientPlayer) {
-			return ClientInfectionData.getPlayerInfection(entity.getUUID());
+			return ClientOvergrowthData.getPlayerOvergrowth(entity.getUUID());
 		}
 
-		return entity.getCapability(EntityInfectionProvider.ENTITY_INFECTION).orElseGet(() -> ZERO).getLevel();
+		return entity.getCapability(EntityOvergrowthProvider.ENTITY_OVERGROWTH).orElseGet(() -> ZERO).getLevel();
 	}
 
 	public static void addLevel(LivingEntity entity, int level) {
-		entity.getCapability(EntityInfectionProvider.ENTITY_INFECTION)
-				.ifPresent(infection -> infection.addLevel(level));
+		entity.getCapability(EntityOvergrowthProvider.ENTITY_OVERGROWTH)
+				.ifPresent(overgrowth -> overgrowth.addLevel(level));
 	}
 
 	public static void setLevel(LivingEntity entity, int level) {
-		entity.getCapability(EntityInfectionProvider.ENTITY_INFECTION)
-				.ifPresent(infection -> infection.setLevel(level));
+		entity.getCapability(EntityOvergrowthProvider.ENTITY_OVERGROWTH)
+				.ifPresent(overgrowth -> overgrowth.setLevel(level));
 	}
 
 	public static String getTextureSuffix(int progressionLevel) {
-		return "_level_" + (progressionLevel / (MAX_LEVEL/4));
+		return "_level_" + (progressionLevel / (MAX_LEVEL / 4));
 	}
 
 }
