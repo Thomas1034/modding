@@ -48,14 +48,21 @@ public class ModEventBusClientEvents {
 		// event.register(DynamicColorBlock::skyColors, ModBlocks.SKY_BLOCK.get());
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked"})
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SubscribeEvent
 	public static void addVinesLayer(EntityRenderersEvent.AddLayers event) {
-		//System.out.println("Adding vines layer!!! ---------------------------------------------------------------------------------------");
+		// This event gives access to the render layers.
+		// For example, this adds in a layer of vines over the player.
+
+		// Iterates over all the player skins.
 		event.getSkins().forEach(skin -> {
+			// Gets each skin as a renderer.
 			var renderer = event.getSkin(skin);
+			// Ensures that the renderer exists.
 			if (renderer != null) {
 				try {
+					// This is what I used for my particular model; I needed duplicate player models
+					// to retexture. So, I got them from the HumanoidArmorModel class.
 					HumanoidArmorModel innerModel = new HumanoidArmorModel(Minecraft.getInstance().getEntityModels()
 							.bakeLayer((Boolean) Reflection.getFromFinal(renderer.getModel(), "slim")
 									? ModelLayers.PLAYER_SLIM_INNER_ARMOR
@@ -64,9 +71,10 @@ public class ModEventBusClientEvents {
 							.bakeLayer((Boolean) Reflection.getFromFinal(renderer.getModel(), "slim")
 									? ModelLayers.PLAYER_SLIM_INNER_ARMOR
 									: ModelLayers.PLAYER_INNER_ARMOR));
-
-					renderer.addLayer(new VinesLayer<>((RenderLayerParent) renderer, innerModel, outerModel,
-							Minecraft.getInstance().getModelManager()));
+					VinesLayer layer = new VinesLayer<>((RenderLayerParent) renderer, innerModel, outerModel,
+							Minecraft.getInstance().getModelManager());
+					// Now I add the layer. 
+					renderer.addLayer(layer);
 				} catch (NoSuchFieldException e) {
 					e.printStackTrace();
 				} catch (SecurityException e) {

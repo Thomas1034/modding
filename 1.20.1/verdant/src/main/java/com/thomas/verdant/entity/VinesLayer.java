@@ -23,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+// This is an example of a layer; I simply copied it from HumanoidArmorLayer in my case. 
 public class VinesLayer<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>>
 		extends HumanoidArmorLayer<T, M, A> {
 	private final A innerModel;
