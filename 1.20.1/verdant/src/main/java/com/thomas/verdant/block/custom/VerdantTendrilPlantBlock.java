@@ -50,6 +50,7 @@ public class VerdantTendrilPlantBlock extends GrowingPlantBodyBlock {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);

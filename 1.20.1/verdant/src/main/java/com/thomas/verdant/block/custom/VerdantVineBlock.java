@@ -499,10 +499,6 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		boolean needToUpdate = false;
 		// Check each direction to see if it can survive, and update accordingly.
 		for (Entry<Direction, IntegerProperty> side : SIDES.entrySet()) {
-			// Offset to find the neighbor's position.
-			BlockPos offset = pos.relative(side.getKey());
-			// Get the neighboring block.
-			BlockState neighbor = level.getBlockState(offset);
 
 			// Check if the neighbor can support a block on that side, if such is needed.
 			if (state.getValue(side.getValue()) > 0) {

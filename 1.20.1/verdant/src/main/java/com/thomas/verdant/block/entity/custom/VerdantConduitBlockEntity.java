@@ -76,6 +76,7 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 		return state;
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void doRandomTick(ServerLevel level, BlockPos pos, BlockState state,
 			VerdantConduitBlockEntity verdantHeart, int radius) {
 		if (!verdantHeart.isActive) {
@@ -205,7 +206,6 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 	}
 
 	private static boolean hasValidBase(Level level, BlockPos pos) {
-		BellBlockEntity b;
 
 		// First, check to see if it has a square of verdant heartwood logs underneath
 		// it.

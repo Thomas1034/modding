@@ -57,6 +57,39 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Known issues: strange freeze when spawning zombie near but not on verdant. Went away on its own. 
 
+//{
+//    "name": "verdant:grass",
+//    "type": "verdant:custom",
+//    "tries": 1,
+//    "parameters": {
+//        "should_place": {
+//            "type": "verdant:single_block",
+//            "parameters": {
+//                "block": "minecraft:air",
+//                "y": "1" 
+//            }
+//        },
+//        "can_place": {
+//            "type": "verdant:single_block",
+//            "parameters": {
+//                "block": "minecraft:air"
+//            }
+//        },
+//        "placement": {
+//            "type": "verdant:offset",
+//            "parameters": {
+//                "y": "1"
+//            }
+//        },
+//        "placer": {
+//            "type": "verdant:single_block",
+//            "parameters": {
+//                "block": "minecraft:grass"
+//            }
+//        }
+//    }
+//}
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
 public class Verdant {

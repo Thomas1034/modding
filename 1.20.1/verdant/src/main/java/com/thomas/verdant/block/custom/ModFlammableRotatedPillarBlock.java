@@ -2,7 +2,6 @@ package com.thomas.verdant.block.custom;
 
 import javax.annotation.Nullable;
 
-import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.growth.VerdantBlockTransformer;
 
 import net.minecraft.core.BlockPos;

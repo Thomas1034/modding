@@ -146,7 +146,9 @@ public class ModEvents {
 		// System.out.println("Calling reinforcements!");
 	}
 
-	@SubscribeEvent
+	// Instead, make verdant monsters spawn as features.
+	// Rewrite features first though!!!
+	// @SubscribeEvent
 	public static void convertMonstersToVerdant(EntityJoinLevelEvent event) {
 		// Only execute on spawn.
 		if (event.loadedFromDisk()) {

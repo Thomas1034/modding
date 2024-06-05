@@ -67,11 +67,7 @@ public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantCondui
 		float f6 = 0.0F;
 		float f8 = 0.0F;
 		float f9 = -unknownFloat2;
-		float f10 = 0.0F;
-		float f11 = 0.0F;
 		float f12 = -unknownFloat2;
-		float f13 = 0.0F;
-		float f14 = 1.0F;
 		float f15 = -1.0F + f2;
 		float f16 = (float) height * unknownFloat1 * (0.5F / unknownFloat2) + f15;
 		renderPart(poseStack, bufferSource.getBuffer(RenderType.beaconBeam(beamImageLocation, false)), f3, f4, f5, 1.0F, totalHeight,
@@ -81,8 +77,6 @@ public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantCondui
 		float f7 = -unknownFloat3;
 		f8 = -unknownFloat3;
 		f9 = -unknownFloat3;
-		f13 = 0.0F;
-		f14 = 1.0F;
 		f15 = -1.0F + f2;
 		f16 = (float) height * unknownFloat1 + f15;
 		renderPart(poseStack, bufferSource.getBuffer(RenderType.beaconBeam(beamImageLocation, true)), f3, f4, f5, 0.125F,

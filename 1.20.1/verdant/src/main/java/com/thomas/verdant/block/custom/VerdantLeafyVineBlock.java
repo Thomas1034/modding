@@ -1,6 +1,5 @@
 package com.thomas.verdant.block.custom;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 

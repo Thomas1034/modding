@@ -484,18 +484,6 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	}
 
-	private static boolean hasLogOrVineOrLeafBeneath(Level level, BlockPos pos, int distanceToCheck) {
-		// Check for nearby blocks
-
-		Predicate<BlockState> checker = (stateToCheck) -> (stateToCheck.is(BlockTags.LOGS)
-				|| stateToCheck.is(ModTags.Blocks.VERDANT_LOGS) || stateToCheck.is(ModTags.Blocks.VERDANT_VINES)
-				|| stateToCheck.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS));
-		int distance = getDistanceTill(level, pos, Direction.DOWN, checker, distanceToCheck + 1);
-
-		return distance > distanceToCheck;
-
-	}
-
 	private static boolean hasAirAbove(Level level, BlockPos pos, int distanceToCheck) {
 		// Check for nearby blocks
 
