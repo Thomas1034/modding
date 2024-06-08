@@ -30,6 +30,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,7 +56,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // rooting:   slowness, regen, haste, resistance 2, phototrophic 2
 // blooming: slowness 3, mining fatigue, wither, phototrophic 3
 
-// Known issues: strange freeze when spawning zombie near but not on verdant. Went away on its own. 
+// To add: poison ivy bundle block, inflicts poison, ages to dead poison ivy items which is compostable at a value of 1.
+// Crafted with four sticks and five ivy.
+// To add: thorns block, harms monsters that step on it. Cross-model like grass.
 
 //{
 //    "name": "verdant:grass",
@@ -153,6 +156,16 @@ public class Verdant {
 				ModItems.ROASTED_COFFEE.get(), ModPotions.LONG_CAFFEINE.get()));
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
+
+		// Register compostables.
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORNY_VERDANT_LEAVES.get(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_LEAVES.get(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORN_BUSH.get(), 0.5f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.BLEEDING_HEART.get(), 0.65f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.STINKING_BLOSSOM.get(), 1.0f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_TENDRIL.get(), 0.5f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_BLOCK.get(), 0.5f);
 
 		// Register verdant growth mechanics on setup.
 		// Nope! Data driven now.

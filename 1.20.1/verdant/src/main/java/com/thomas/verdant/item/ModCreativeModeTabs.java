@@ -7,7 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -26,6 +25,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.ROASTED_COFFEE.get());
 						pOutput.accept(ModItems.THORN.get());
 						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
+						pOutput.accept(ModItems.TOXIC_ASH.get());
+						pOutput.accept(ModItems.TOXIC_ASH_BUCKET.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_FOODS = CREATIVE_MODE_TABS.register("verdant_foods",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COFFEE_BERRIES.get()))
@@ -91,6 +92,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
 						pOutput.accept(ModBlocks.VERDANT_CONDUIT.get());
 						pOutput.accept(ModBlocks.ROPE.get());
+						pOutput.accept(ModBlocks.POISON_IVY_BLOCK.get());
+						pOutput.accept(ModBlocks.TOXIC_ASH_BLOCK.get());
+						pOutput.accept(ModBlocks.THORN_SPIKES.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_PICKAXE.get()))

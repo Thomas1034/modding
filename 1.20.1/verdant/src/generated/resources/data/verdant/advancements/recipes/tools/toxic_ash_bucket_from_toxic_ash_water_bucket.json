@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:toxic_ash_bucket_from_toxic_ash_water_bucket"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_toxic_ash": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:toxic_ash"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_toxic_ash_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:toxic_ash_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_water_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:water_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_toxic_ash",
+      "has_water_bucket",
+      "has_toxic_ash_bucket",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:toxic_ash_bucket_from_toxic_ash_water_bucket"
+    ]
+  },
+  "sends_telemetry_event": false
+}

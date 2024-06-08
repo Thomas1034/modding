@@ -363,8 +363,11 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 		// Then, check if this log is a mature verdant log.
 		if (host.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
+
+			
 			return false;
 		}
+		
 		// Then, check if this log is a verdant log and has a mature neighbor.
 		// If so, return early.
 		if (host.is(ModTags.Blocks.VERDANT_LOGS) && hasMatureVerdantLogNeighbors(level, pos)) {
@@ -443,10 +446,13 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 				level.setBlockAndUpdate(pos, ROTTEN_WOOD.get());
 			}
 		} else if (shouldDecayToAir) {
-			for (BlockPos toGrow : positionsToGrow) {
-				// System.out.println("Growing a log at " + toGrow + ".");
-				level.destroyBlock(toGrow, false);
-			}
+			// for (BlockPos toGrow : positionsToGrow) {
+			// // System.out.println("Growing a log at " + toGrow + ".");
+			// level.destroyBlock(toGrow, false);
+			// }
+			level.destroyBlock(pos, false);
+
+			level.updateNeighborsAt(pos, this);
 
 			// Add particle and sound effect.
 			level.destroyBlock(pos, false);

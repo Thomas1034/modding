@@ -23,6 +23,7 @@ public class ModBlockTransformerProvider extends BlockTransformerProvider {
 		VerdantBlockTransformer.registerDehydration(this.add("dehydrate"));
 		VerdantBlockTransformer.registerHoeing(this.add("hoeing"));
 		VerdantBlockTransformer.registerStripping(this.add("stripping"));
+		VerdantBlockTransformer.registerToxicAsh(this.add("toxic_ash"));
 		
 	}
 

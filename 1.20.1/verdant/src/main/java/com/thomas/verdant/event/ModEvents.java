@@ -128,6 +128,8 @@ public class ModEvents {
 	public static void updateClientInfection(TickEvent.PlayerTickEvent event) {
 		if (event.side == LogicalSide.SERVER) {
 			event.player.getCapability(EntityOvergrowthProvider.ENTITY_OVERGROWTH).ifPresent(infection -> {
+				// TODO disables overgrowth for now, disable later.
+				infection.setLevel(EntityOvergrowth.MIN_LEVEL);
 
 				if (infection.getLevel() == EntityOvergrowth.MAX_LEVEL) {
 					infection.setLevel(EntityOvergrowth.MIN_LEVEL);
@@ -144,72 +146,6 @@ public class ModEvents {
 	@SubscribeEvent
 	public static void reinforcementsEvent(SummonAidEvent event) {
 		// System.out.println("Calling reinforcements!");
-	}
-
-	// Instead, make verdant monsters spawn as features.
-	// Rewrite features first though!!!
-	// @SubscribeEvent
-	public static void convertMonstersToVerdant(EntityJoinLevelEvent event) {
-		// Only execute on spawn.
-		if (event.loadedFromDisk()) {
-			return;
-		}
-
-		// Get entity.
-		Entity entity = event.getEntity();
-
-		// Get level.
-		Level level = entity.level();
-
-		// Get chunk.
-
-		// Only execute on server.
-		if (event.getLevel().isClientSide()) {
-			return;
-		}
-
-		// Get block position.
-		BlockPos pos = entity.blockPosition();
-		// Get vector position.
-		Vec3 vpos = entity.position();
-		// Get rotation.
-		Vec2 rot = entity.getRotationVector();
-
-		// Get chunk.
-		LevelChunk chunk = level.getChunkAt(pos);
-
-		// Wrap everything hereafter in a deferred action.
-
-		// System.out.println("Deferring " + entity);
-		// System.out.println("Chunk is " + chunk.getStatus().toString());
-		// System.out.flush();
-		DeferredAction.waitFor(() -> {
-			// System.out.println("Checking " + entity);
-			// System.out.println("Chunk is " + chunk.getStatus().toString());
-			// System.out.flush();
-			return chunk.getStatus() == ChunkStatus.FULL;
-		}, () -> {
-			// System.out.println("Spawning " + entity);
-			// System.out.println();
-			// System.out.flush();
-			// Get block below.
-			BlockState below = level.getBlockState(pos.below());
-
-			// Check if it's verdant.
-			if (!(below.getBlock() instanceof VerdantGrower)) {
-				return;
-			}
-
-			// Spawn the overgrown zombie as well.
-			if (entity.getClass().equals(Zombie.class)) {
-				OvergrownZombieEntity verdantZombie = new OvergrownZombieEntity(level);
-				verdantZombie.setPos(vpos);
-				verdantZombie.setXRot(rot.x);
-				verdantZombie.setYRot(rot.y);
-				level.addFreshEntity(verdantZombie);
-			}
-
-		});
 	}
 
 	// @SubscribeEvent

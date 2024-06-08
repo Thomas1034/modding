@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-20T19:00:20.6584118	Block Transformers
+// 1.20.1	2024-06-07T20:52:23.791185	Block Transformers
 54e4ff75a3432f1893ee27c35b5df92a71ef78d6 data/verdant/block_transformers/dehydrate.json
 6749d45eb7c57d50ac51ad79ac920279530a1d97 data/verdant/block_transformers/erosion.json
 75af573698333b423fda31619ad7ab2c414b6ffc data/verdant/block_transformers/erosion_wet.json
@@ -8,3 +8,4 @@ afc4560b43f17da826800a10d58e233cadbec01c data/verdant/block_transformers/hoeing.
 54c7dda2b5f0ff753b952e3e9897484294c082ed data/verdant/block_transformers/remove_grasses.json
 5ca1f0881783298ce4879e13e7abd1ddd54c3d6d data/verdant/block_transformers/roots.json
 5e1549d138b37812cba1f57e5beec10e4cb8b6fa data/verdant/block_transformers/stripping.json
+0e8ecc21efa567aef88fcf3d205b79b16ba84091 data/verdant/block_transformers/toxic_ash.json

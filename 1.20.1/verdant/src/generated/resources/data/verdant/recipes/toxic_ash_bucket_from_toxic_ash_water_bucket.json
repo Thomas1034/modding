@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "verdant:toxic_ash"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "verdant:toxic_ash_bucket"
+  }
+}

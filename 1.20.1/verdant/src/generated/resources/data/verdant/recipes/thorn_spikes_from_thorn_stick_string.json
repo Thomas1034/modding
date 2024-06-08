@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "K": {
+      "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "minecraft:string"
+    },
+    "T": {
+      "item": "verdant:thorn"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "TTT",
+    "KRK"
+  ],
+  "result": {
+    "item": "verdant:thorn_spikes"
+  },
+  "show_notification": true
+}

@@ -50,11 +50,11 @@ public abstract class BlockTransformerProvider implements DataProvider {
 			// Create the json object.
 			JsonObject json = new JsonObject();
 			// Add all the properties.
-			for (Entry<Block, Block> entry : transformer.map.entrySet()) {
-				json.addProperty(name(entry.getKey()).toString(), name(entry.getValue()).toString());
-			}
+			transformer.write(json);
+
 			System.out.println("Saving transformer " + i + ": " + transformer.getLocation());
-			futures[i++] = DataProvider.saveStable(cache, json, target.resolve(transformer.getLocation().getPath() + ".json"));
+			futures[i++] = DataProvider.saveStable(cache, json,
+					target.resolve(transformer.getLocation().getPath() + ".json"));
 		}
 
 		return CompletableFuture.allOf(futures);

@@ -8,33 +8,26 @@ import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.thomas.verdant.util.data.DataParseable;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 
 // Represents an abstract way of transforming one block into another, preserving as much of the state as possible.
 public class BlockTransformer implements DataParseable<BlockTransformer> {
 
-	protected static final Map<ResourceLocation, BlockTransformer> TRANSFORMERS = new HashMap<>();
-
 	public Map<Block, Block> map;
+	public Map<TagKey<Block>, Block> tagMap;
 	private final ResourceLocation name;
+	private Set<TagKey<Block>> inputTags;
 	private Set<Block> inputs;
 	private Set<Block> outputs;
-
-	// Gets a transformer with the given name and namespace from a loaded JSON file
-	protected static BlockTransformer get(ResourceLocation name) {
-		return TRANSFORMERS.get(name);
-	}
-
-	// Gets a transformer with the given name and namespace from a loaded JSON file
-	protected static BlockTransformer get(String namespace, String filename) {
-		return TRANSFORMERS.get(new ResourceLocation(namespace, filename));
-	}
 
 	// Creates a transformer with the given name and namespace.
 	// The file would be located at: data/namespace/block_transformers/filename
@@ -54,17 +47,12 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 		return this.name;
 	}
 
-	// Sets the transformer's fields to null, indicating it is not in use.
-	public void nullify() {
-		this.map = new HashMap<>();
-		this.inputs = new HashSet<>();
-		this.outputs = new HashSet<>();
-	}
-
 	// Wipes the transformer, so new blocks can be added.
 	public void reset() {
 		this.map = new HashMap<>();
+		this.tagMap = new HashMap<>();
 		this.inputs = new HashSet<>();
+		this.inputTags = new HashSet<>();
 		this.outputs = new HashSet<>();
 	}
 
@@ -79,8 +67,23 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 		return this;
 	}
 
+	// Adds a block tag to the transformer.
+	public BlockTransformer register(TagKey<Block> a, Block b) {
+		System.out
+				.println("Registering " + this.name + ": " + a.location() + " -> " + ForgeRegistries.BLOCKS.getKey(b));
+		this.inputTags.add(a);
+		this.outputs.add(b);
+		this.tagMap.put(a, b);
+
+		return this;
+	}
+
 	public boolean hasInput(Block a) {
 		return this.inputs.contains(a);
+	}
+
+	public boolean hasInput(TagKey<Block> a) {
+		return this.inputTags.contains(a);
 	}
 
 	public boolean hasOutput(Block a) {
@@ -88,8 +91,21 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 	}
 
 	// Returns the converted block from the map, or null.
+	// If the block was not found directly, checks for tags that might contain it.
 	public Block next(Block a) {
-		return this.map.get(a);
+		Block retval = this.map.get(a);
+
+		if (retval != null) {
+			return retval;
+		}
+
+		for (TagKey<Block> tag : this.inputTags) {
+			if (a.defaultBlockState().is(tag)) {
+				return this.tagMap.get(tag);
+			}
+		}
+
+		return null;
 	}
 
 	// Returns the converted block state, with as many properties as possible copied
@@ -128,18 +144,53 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 
 			// Convert to namespaces.
 			String[] startParts = start.split(":");
+
+			// Check if it is a tag
+			boolean isTag = startParts[0].startsWith("#");
+			if (isTag) {
+				startParts[0] = startParts[0].substring(1);
+			}
+
 			ResourceLocation startLocation = new ResourceLocation(startParts[0], startParts[1]);
 			String[] finishParts = finish.split(":");
 			ResourceLocation finishLocation = new ResourceLocation(finishParts[0], finishParts[1]);
 
-			// Now, get the blocks
-			Block startBlock = ForgeRegistries.BLOCKS.getValue(startLocation);
+			// The finish block should be a block no matter what.
 			Block finishBlock = ForgeRegistries.BLOCKS.getValue(finishLocation);
 
-			// Add the blocks to the transformer.
-			this.register(startBlock, finishBlock);
+			// Check if the start is a block or a tag.
+			if (isTag) {
+				// It is a tag.
+				// Get the tag it corresponds to.
+				ITag<Block> startTag = ForgeRegistries.BLOCKS.tags()
+						.getTag(new TagKey<Block>(ForgeRegistries.BLOCKS.getRegistryKey(), startLocation));
+
+				// Add the blocks to the transformer.
+				this.register(startTag.getKey(), finishBlock);
+			} else {
+				// It is a block.
+				// Now, get the blocks
+				Block startBlock = ForgeRegistries.BLOCKS.getValue(startLocation);
+				// Add the blocks to the transformer.
+				this.register(startBlock, finishBlock);
+			}
+
 		}
 		return this;
+	}
+
+	// @Override
+	public void write(JsonObject element) {
+		for (Entry<Block, Block> entry : this.map.entrySet()) {
+			element.addProperty(name(entry.getKey()).toString(), name(entry.getValue()).toString());
+		}
+		for (Entry<TagKey<Block>, Block> entry : this.tagMap.entrySet()) {
+			element.addProperty("#" + entry.getKey().location(), name(entry.getValue()).toString());
+		}
+	}
+
+	private final ResourceLocation name(Block block) {
+		return ForgeRegistries.BLOCKS.getKey(block);
 	}
 
 }

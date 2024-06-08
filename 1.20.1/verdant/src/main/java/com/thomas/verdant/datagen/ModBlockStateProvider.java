@@ -60,6 +60,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		sidedBlockWithItem(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, "verdant_clay_grass_block");
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
 
+		// Poison ivy block
+		logBlock((RotatedPillarBlock) ModBlocks.POISON_IVY_BLOCK.get());
+		logBlock((RotatedPillarBlock) ModBlocks.TOXIC_ASH_BLOCK.get());
+
 		// Standard verdant wood
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
 		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
@@ -140,10 +144,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				models().cross(blockTexture(ModBlocks.POISON_IVY_PLANT.get()).getPath(),
 						blockTexture(ModBlocks.POISON_IVY_PLANT.get())).renderType("cutout"));
 
+		// Thorn spikes model
+		simpleBlockWithItem(ModBlocks.THORN_SPIKES.get(), models()
+				.cross(blockTexture(ModBlocks.THORN_SPIKES.get()).getPath(), blockTexture(ModBlocks.THORN_SPIKES.get()))
+				.renderType("cutout"));
+
 		// Rope
 		simpleBlockWithItem(ModBlocks.ROPE.get(),
-				models().cross(blockTexture(ModBlocks.ROPE.get()).getPath(),
-						blockTexture(ModBlocks.ROPE.get())).renderType("cutout"));
+				models().cross(blockTexture(ModBlocks.ROPE.get()).getPath(), blockTexture(ModBlocks.ROPE.get()))
+						.renderType("cutout"));
 
 		// Flowers
 		simpleFlowerWithPot(ModBlocks.BLEEDING_HEART.get(), ModBlocks.POTTED_BLEEDING_HEART.get());

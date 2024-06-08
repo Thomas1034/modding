@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "verdant:toxic_ash_block"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "verdant:toxic_ash"
+  }
+}

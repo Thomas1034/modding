@@ -2,10 +2,12 @@ package com.thomas.verdant.growth;
 
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.util.ModTags;
 import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 import com.thomas.verdant.util.data.DataAccessor;
 import com.thomas.verdant.util.data.DataRegistries;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 
 public class VerdantBlockTransformer {
@@ -29,10 +31,43 @@ public class VerdantBlockTransformer {
 			.register(Verdant.MOD_ID, "dehydrate");
 	public static final DataAccessor<BlockTransformer> STRIPPING = DataRegistries.BLOCK_TRANSFORMERS
 			.register(Verdant.MOD_ID, "stripping");
-
+	public static final DataAccessor<BlockTransformer> TOXIC_ASH = DataRegistries.BLOCK_TRANSFORMERS
+			.register(Verdant.MOD_ID, "toxic_ash");
+	
 	public static void registerHydration(BlockTransformer transformer) {
 		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
 		transformer.register(ModBlocks.VERDANT_GRASS_BLOCK.get(), ModBlocks.VERDANT_MUD_GRASS_BLOCK.get());
+	}
+	
+	public static void registerToxicAsh(BlockTransformer transformer) {
+		transformer.register(BlockTags.LEAVES, Blocks.AIR);
+		transformer.register(BlockTags.FLOWERS, Blocks.AIR);
+		transformer.register(BlockTags.BAMBOO_BLOCKS, Blocks.AIR);
+		transformer.register(BlockTags.CAVE_VINES, Blocks.AIR);
+		transformer.register(BlockTags.CROPS, Blocks.AIR);
+		transformer.register(BlockTags.SAPLINGS, Blocks.DEAD_BUSH);
+		transformer.register(BlockTags.NYLIUM, Blocks.NETHERRACK);
+		transformer.register(ModTags.Blocks.VERDANT_VINES, Blocks.AIR);
+		transformer.register(Blocks.GRASS, Blocks.AIR);
+		transformer.register(Blocks.TALL_GRASS, Blocks.AIR);
+		transformer.register(Blocks.FERN, Blocks.AIR);
+		transformer.register(Blocks.LARGE_FERN, Blocks.AIR);
+		transformer.register(Blocks.SEAGRASS, Blocks.AIR);
+		transformer.register(Blocks.TALL_SEAGRASS, Blocks.AIR);
+		transformer.register(Blocks.GRASS_BLOCK, Blocks.COARSE_DIRT);
+		transformer.register(Blocks.ROOTED_DIRT, Blocks.COARSE_DIRT);
+		transformer.register(Blocks.PODZOL, Blocks.COARSE_DIRT);
+		transformer.register(Blocks.MYCELIUM, Blocks.COARSE_DIRT);
+		transformer.register(ModBlocks.VERDANT_GRASS_BLOCK.get(), Blocks.COARSE_DIRT);
+		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.COARSE_DIRT);
+		transformer.register(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), Blocks.MUD);
+		transformer.register(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
+		transformer.register(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), Blocks.CLAY);
+		transformer.register(ModBlocks.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+		transformer.register(ModBlocks.THORN_BUSH.get(), Blocks.DEAD_BUSH);
+		transformer.register(Blocks.GLOW_LICHEN, Blocks.AIR);
+		transformer.register(Blocks.VINE, Blocks.AIR);
+		transformer.register(Blocks.DIRT, Blocks.COARSE_DIRT);
 	}
 
 	public static void registerDehydration(BlockTransformer transformer) {

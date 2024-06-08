@@ -23,6 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
+		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_COFFEE);
@@ -38,7 +39,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_SIGN);
 		simpleItem(ModItems.VERDANT_HANGING_SIGN);
+		simpleItem(ModItems.TOXIC_ASH);
+		simpleItem(ModItems.TOXIC_ASH_BUCKET);
 		simpleBlockItem(ModBlocks.VERDANT_DOOR);
+		simpleLogModel(ModBlocks.POISON_IVY_BLOCK);
+		simpleLogModel(ModBlocks.TOXIC_ASH_BLOCK);
 		simpleLogModel(ModBlocks.ROTTEN_WOOD);
 		simpleLogModel(ModBlocks.VERDANT_LOG);
 		simpleLogModel(ModBlocks.VERDANT_WOOD);
@@ -57,7 +62,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.VERDANT_FENCE_GATE);
 
 		trapdoorItem(ModBlocks.VERDANT_TRAPDOOR);
-		
+
 		simpleItem(ModItems.VERDANT_HEARTWOOD_BOAT);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_SIGN);
@@ -77,25 +82,25 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE);
 
 		trapdoorItem(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR);
-		
+
 		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
 		simpleItem(ModItems.COFFEE_BERRIES);
 		simpleItem(ModItems.ROASTED_COFFEE);
-		
+
 		evenSimplerBlockItem(ModBlocks.VERDANT_CONDUIT);
 
 		simpleItem(ModItems.THORN);
 		simpleItem(ModItems.POISON_ARROW);
-		
+
 		handheldItem(ModItems.VERDANT_HEARTWOOD_SWORD);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_AXE);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_PICKAXE);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_SHOVEL);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_HOE);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_SHOVEL);
-		
+
 		simpleItem(ModItems.HEART_OF_THE_FOREST);
-		
+
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
@@ -152,6 +157,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 				new ResourceLocation(Verdant.MOD_ID, "block/" + item.getId().getPath()));
 	}
 
+	@SuppressWarnings("unused")
 	private ItemModelBuilder simpleBlockModel(RegistryObject<Block> block) {
 		return withExistingParent(block.getId().getPath(), new ResourceLocation("block/cube_all")).texture("all",
 				new ResourceLocation(Verdant.MOD_ID, "block/" + block.getId().getPath()));

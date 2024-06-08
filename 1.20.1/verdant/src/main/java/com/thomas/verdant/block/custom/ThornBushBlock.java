@@ -18,8 +18,11 @@ import net.minecraft.world.phys.Vec3;
 
 public class ThornBushBlock extends BushBlock {
 
-	public ThornBushBlock(Properties properties) {
+	private final float damage;
+	
+	public ThornBushBlock(Properties properties, float damage) {
 		super(properties);
+		this.damage = damage;
 	}
 
 	// Mostly from SweetBerryBushBlock, with a few tweaks.
@@ -32,7 +35,7 @@ public class ThornBushBlock extends BushBlock {
 				double xMovement = Math.abs(entity.getZ() - entity.zOld);
 				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F) {
 					DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
-					entity.hurt(source, 2.0F);
+					entity.hurt(source, damage);
 				}
 			}
 		}

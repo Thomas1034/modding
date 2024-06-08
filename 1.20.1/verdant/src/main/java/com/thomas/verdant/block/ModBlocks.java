@@ -12,10 +12,12 @@ import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
 import com.thomas.verdant.block.custom.ModWallHangingSignBlock;
 import com.thomas.verdant.block.custom.ModWallSignBlock;
+import com.thomas.verdant.block.custom.PoisonIvyBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.RopeBlock;
+import com.thomas.verdant.block.custom.SpikesBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
 import com.thomas.verdant.block.custom.ThornyVerdantLeavesBlock;
@@ -53,6 +55,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RedStoneOreBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -116,23 +119,28 @@ public class ModBlocks {
 
 	// Verdant grass
 	public static final RegistryObject<Block> VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+			() -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).strength(0.75F).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_GRASS_BLOCK = registerBlockWithItem("verdant_grass_block",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+			() -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).strength(0.75F).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_ROOTED_MUD = registerBlockWithItem("verdant_rooted_mud",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+			() -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).strength(0.75F).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_MUD_GRASS_BLOCK = registerBlockWithItem("verdant_mud_grass_block",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+			() -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).strength(0.75F).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_ROOTED_CLAY = registerBlockWithItem("verdant_rooted_clay",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).randomTicks()));
+			() -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).strength(0.75F).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_CLAY_GRASS_BLOCK = registerBlockWithItem(
-			"verdant_clay_grass_block",
-			() -> new VerdantRootedDirtBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).randomTicks()));
+			"verdant_clay_grass_block", () -> new VerdantRootedDirtBlock(
+					BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).strength(0.75F).randomTicks()));
 
 	// Verdant vine
 	public static final RegistryObject<Block> VERDANT_VINE = registerBlockWithItem("verdant_vine",
@@ -565,7 +573,7 @@ public class ModBlocks {
 
 	// Thorn bush
 	public static final RegistryObject<Block> THORN_BUSH = registerBlockWithItem("thorn_bush", () -> new ThornBushBlock(
-			BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().strength(0.5F)));
+			BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().strength(0.5F), 2.0f));
 
 	public static final RegistryObject<Block> POTTED_THORN_BUSH = registerBlockOnly("potted_thorn_bush",
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.THORN_BUSH,
@@ -600,6 +608,19 @@ public class ModBlocks {
 	// Rope block
 	public static final RegistryObject<Block> ROPE = registerBlockWithItem("rope",
 			() -> new RopeBlock(BlockBehaviour.Properties.copy(ModBlocks.VERDANT_TENDRIL_PLANT.get())));
+
+	// Poison ivy block
+	public static final RegistryObject<Block> POISON_IVY_BLOCK = registerBlockWithItem("poison_ivy_block",
+			() -> new PoisonIvyBlock(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK)));
+
+	public static final RegistryObject<Block> TOXIC_ASH_BLOCK = registerBlockWithItem("toxic_ash_block",
+			() -> new FragileFlammableRotatedPillarBlock(
+					BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK).sound(SoundType.SAND).strength(0.1f), 4.0f));
+
+	// Thorns
+	public static final RegistryObject<Block> THORN_SPIKES = registerBlockWithItem("thorn_spikes",
+			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).noOcclusion().strength(0.95F),
+					3.0f));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {

@@ -23,7 +23,7 @@ public class FragileFlammableRotatedPillarBlock extends ModFlammableRotatedPilla
 	@Override
 	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float f) {
 		// Break the block if the fall distance has been exceeded.
-		if (entity.fallDistance > fallDistanceForBreak) {
+		if (entity.fallDistance > fallDistanceForBreak && !level.isClientSide) {
 			level.addDestroyBlockEffect(pos, level.getBlockState(pos));
 			level.destroyBlock(pos, false);
 		}

@@ -36,7 +36,12 @@
 	"item.verdant.verdant_heartwood_axe": "Verdant Heartwood Axe",
 	"item.verdant.verdant_heartwood_pickaxe": "Verdant Heartwood Pickaxe",
 	"item.verdant.heart_of_the_forest": "Heart of the Forest",
+	"item.verdant.toxic_ash": "Toxic Ash",
+	"item.verdant.toxic_ash_bucket": "Toxic Ash Bucket",
 	
+	"block.verdant.thorn_spikes": "Thorn Spikes",
+	"block.verdant.poison_ivy_block": "Poison Ivy Block",
+	"block.verdant.toxic_ash_block": "Toxic Ash Block",
 	"block.verdant.verdant_vine": "Verdant Vine",
 	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
 	"block.verdant.verdant_tendril": "Verdant Tendril",

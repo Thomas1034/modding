@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "P": {
+      "item": "verdant:poison_ivy"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "SPP",
+    "PPP",
+    "PPS"
+  ],
+  "result": {
+    "item": "verdant:poison_ivy_block"
+  },
+  "show_notification": true
+}

@@ -131,6 +131,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("P", "T", "P"), List.of('T', 'P'),
 				List.of(ModBlocks.VERDANT_TENDRIL.get(), Items.STRING), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.ROPE.get(), 2);
+		// Poison ivy block
+		shaped(recipeWriter, List.of("SPP", "PPP", "PPS"), List.of('P', 'S'),
+				List.of(ModBlocks.POISON_IVY.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.POISON_IVY_BLOCK.get(), 1);
+		// Toxic ash block
+		oreSmelting(recipeWriter, List.of(ModBlocks.POISON_IVY_BLOCK.get()), RecipeCategory.MISC,
+				ModBlocks.TOXIC_ASH_BLOCK.get(), 0.1f, 200, "toxic_ash_block_from_poison_ivy_block");
+		// Toxic ash item
+		shapeless(recipeWriter, List.of(ModBlocks.TOXIC_ASH_BLOCK.get()), List.of(1), RecipeCategory.TOOLS,
+				ModItems.TOXIC_ASH.get(), 3);
+		// Toxic ash bucket item
+		shapeless(recipeWriter, List.of(ModItems.TOXIC_ASH.get(), Items.WATER_BUCKET), List.of(8, 1),
+				RecipeCategory.TOOLS, ModItems.TOXIC_ASH_BUCKET.get(), 1);
+		// Thorn spikes item
+		shaped(recipeWriter, List.of("TTT", "TTT", "KRK"), List.of('T', 'K', 'R'),
+				List.of(ModItems.THORN.get(), Items.STICK, Items.STRING), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.THORN_SPIKES.get(), 1);
 
 		// Heartwood armor
 		shaped(recipeWriter, List.of("PPP", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),

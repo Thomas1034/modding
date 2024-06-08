@@ -9,6 +9,8 @@ import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.ModBoatItem;
 import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
+import com.thomas.verdant.item.custom.ToxicAshItem;
+import com.thomas.verdant.item.custom.ToxicBucketItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
@@ -102,6 +105,12 @@ public class ModItems {
 
 	public static final RegistryObject<Item> POISON_ARROW = ITEMS.register("poison_arrow",
 			() -> new PoisonIvyArrowItem(new Item.Properties()));
+
+	public static final RegistryObject<Item> TOXIC_ASH = ITEMS.register("toxic_ash",
+			() -> new ToxicAshItem(new Item.Properties()));
+
+	public static final RegistryObject<Item> TOXIC_ASH_BUCKET = ITEMS.register("toxic_ash_bucket",
+			() -> new ToxicBucketItem(new Item.Properties().stacksTo(1), new ItemStack(Items.BUCKET)));
 
 	public static final RegistryObject<Item> THORN = ITEMS.register("thorn", () -> new Item(new Item.Properties()));
 

@@ -3,17 +3,14 @@ package com.thomas.verdant.datagen;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.JsonObject;
 import com.thomas.verdant.util.modfeature.checkers.AbstractCheckerType;
-import com.thomas.verdant.util.modfeature.placements.AbstractPlacementType;
 
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.Block;
 
 public abstract class CheckerTypeProvider implements DataProvider {
 
@@ -45,16 +42,15 @@ public abstract class CheckerTypeProvider implements DataProvider {
 		CompletableFuture<?>[] futures = new CompletableFuture<?>[this.checker_types.size()];
 		int i = 0;
 		// For each transformer.
-		for (AbstractPlacementType transformer : this.checker_types) {
+		for (AbstractCheckerType checker : this.checker_types) {
 			// Create the json object.
 			JsonObject json = new JsonObject();
 			// Add all the properties.
-			for (Entry<Block, Block> entry : transformer.map.entrySet()) {
-				json.addProperty(name(entry.getKey()).toString(), name(entry.getValue()).toString());
-			}
-			System.out.println("Saving transformer " + i + ": " + transformer.getLocation());
-			futures[i++] = DataProvider.saveStable(cache, json,
-					target.resolve(transformer.getLocation().getPath() + ".json"));
+			// checker.write(json);
+
+			// System.out.println("Saving transformer " + i + ": " + checker.getLocation());
+			// futures[i++] = DataProvider.saveStable(cache, json,
+			// target.resolve(checker.getLocation().getPath() + ".json"));
 		}
 
 		return CompletableFuture.allOf(futures);

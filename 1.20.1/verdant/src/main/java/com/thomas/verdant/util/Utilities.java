@@ -540,15 +540,15 @@ public class Utilities {
 		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
 	}
 
-	public static void addParticlesAroundPosition(Level level, Vec3 position, ParticleOptions particle,
+	public static void addParticlesAroundPosition(LevelAccessor level, Vec3 position, ParticleOptions particle,
 			double boxSize) {
 		for (int i = 0; i < 5; ++i) {
-			double dx = level.random.nextGaussian() * 0.02D;
-			double dy = level.random.nextGaussian() * 0.02D;
-			double dz = level.random.nextGaussian() * 0.02D;
-			double x = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.x;
-			double y = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.y;
-			double z = (2.0D * level.random.nextDouble() - 1.0D) * boxSize + position.z;
+			double dx = level.getRandom().nextGaussian() * 0.02D;
+			double dy = level.getRandom().nextGaussian() * 0.02D;
+			double dz = level.getRandom().nextGaussian() * 0.02D;
+			double x = (2.0D * level.getRandom().nextDouble() - 1.0D) * boxSize + position.x;
+			double y = (2.0D * level.getRandom().nextDouble() - 1.0D) * boxSize + position.y;
+			double z = (2.0D * level.getRandom().nextDouble() - 1.0D) * boxSize + position.z;
 			level.addParticle(particle, x, y, z, dx, dy, dz);
 		}
 	}
