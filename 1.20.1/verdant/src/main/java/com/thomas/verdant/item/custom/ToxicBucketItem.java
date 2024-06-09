@@ -9,14 +9,18 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class ToxicBucketItem extends Item {
 
@@ -27,41 +31,58 @@ public class ToxicBucketItem extends Item {
 		this.empty = empty;
 	}
 
-	public InteractionResult useOn(UseOnContext context) {
-		Level level = context.getLevel();
-		BlockPos pos = context.getClickedPos();
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
+		InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onBucketUse(player, level,
+				itemstack, blockhitresult);
+		if (ret != null)
+			return ret;
+		if (blockhitresult.getType() == HitResult.Type.MISS) {
+			return InteractionResultHolder.pass(itemstack);
+		} else if (blockhitresult.getType() != HitResult.Type.BLOCK) {
+			return InteractionResultHolder.pass(itemstack);
+		} else {
+			BlockPos pos = blockhitresult.getBlockPos();
+			Direction direction = blockhitresult.getDirection();
+			BlockPos offset = pos.relative(direction);
+			if (level.mayInteract(player, pos) && player.mayUseItemAt(offset, direction, itemstack)) {
+				// Check for result.
+				boolean anyPassed = false;
+				// Iterate over a 3x3 area on the x and z axis.
+				for (int i = -1; i <= 1; i++) {
+					for (int k = -1; k <= 1; k++) {
+						// Choose a random depth.
+						// Subtract i and k from the upper bound
+						int depth = level.random.nextInt(2, 4);
+						for (int j = -depth; j <= 1; j++) {
+							BlockPos localPos = pos.offset(i, j, k);
+							if (applyBucketAsh(itemstack, level, localPos, player)) {
 
-		boolean anyPassed = false;
-		// Iterate over a 3x3 area on the x and z axis.
-		for (int i = -1; i <= 1; i++) {
-			for (int k = -1; k <= 1; k++) {
-				// Choose a random depth.
-				// Subtract i and k from the upper bound
-				int depth = level.random.nextInt(2, 4);
-				for (int j = -depth; j <= 1; j++) {
-					BlockPos localPos = pos.offset(i, j, k);
-					if (applyBucketAsh(context.getItemInHand(), level, localPos, context.getPlayer())) {
-
-						if (level instanceof ServerLevel serverLevel) {
-							// System.out.println("Effects.");
-							addDeathParticles(serverLevel, localPos, 30);
-							serverLevel.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS, 1.0f,
-									1.0f);
+								if (level instanceof ServerLevel serverLevel) {
+									// System.out.println("Effects.");
+									addDeathParticles(serverLevel, localPos, 30);
+									serverLevel.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS,
+											1.0f, 1.0f);
+								}
+								anyPassed = true;
+							}
 						}
-						anyPassed = true;
 					}
 				}
+
+				if (anyPassed) {
+					return InteractionResultHolder.sidedSuccess(
+							player.getAbilities().instabuild ? itemstack : new ItemStack(Items.BUCKET),
+							level.isClientSide);
+				} else {
+					return InteractionResultHolder.fail(itemstack);
+				}
+
+			} else {
+				return InteractionResultHolder.fail(itemstack);
 			}
 		}
-
-		if (anyPassed) {
-			if (!context.getPlayer().getAbilities().instabuild) {
-				context.getPlayer().setItemInHand(context.getHand(), this.empty);
-			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
-		}
-
-		return InteractionResult.PASS;
 	}
 
 	public static boolean applyBucketAsh(ItemStack stack, Level level, BlockPos pos, Player player) {

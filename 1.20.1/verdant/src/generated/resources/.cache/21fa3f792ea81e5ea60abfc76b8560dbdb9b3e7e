@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-08T00:09:18.0333176	Block States: verdant
+// 1.20.1	2024-06-08T18:09:33.5689767	Block States: verdant
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
 81b54a2d837372bd0a718463a44c07776249a56b assets/verdant/blockstates/coffee_crop.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
@@ -9,6 +9,7 @@ d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond
 b94488830d17b35540d30baca2bd4b3625fab160 assets/verdant/blockstates/dirt_iron_ore.json
 322e5b4163b6fae277664eb0e07fc8b7f1d02e2f assets/verdant/blockstates/dirt_lapis_ore.json
 43cf34a0446ed7d748ecafdfd61e6f34f10efcce assets/verdant/blockstates/dirt_redstone_ore.json
+14bdeaabf7bbbd29f8fcfe538c212993ecffc560 assets/verdant/blockstates/frame_block.json
 67e7df13c27b70a4120b13f6bbf8d1b323865f2a assets/verdant/blockstates/poison_ivy.json
 d6bed6da59962cfbbcb837efb3e46da70ff1b539 assets/verdant/blockstates/poison_ivy_block.json
 52fdfa3fd047e2d840e111ef8f6e3851da49a5ac assets/verdant/blockstates/poison_ivy_plant.json
@@ -22,7 +23,7 @@ a9e866eaa7a2f6340c1158df878f95eb1d2e0377 assets/verdant/blockstates/stripped_ver
 6aab6cecf12e060f1a1414bf42fb50ac3637a624 assets/verdant/blockstates/stripped_verdant_log.json
 d58b50f8226744dfd58937c4bde8f0e82248a874 assets/verdant/blockstates/stripped_verdant_wood.json
 c8448a0b484c523d477394da7b58bab75fa61f5c assets/verdant/blockstates/thorn_bush.json
-605da2df25e4ca62d128cffc4d67baa6ca298048 assets/verdant/blockstates/thorn_spikes.json
+94d16c5f9b08745fd6057bee8c07c40589fa59c4 assets/verdant/blockstates/thorn_spikes.json
 5545166fefaa270ba03e0d9b8817eaafcb7e6eb8 assets/verdant/blockstates/toxic_ash_block.json
 37339ffa6b93f1ac37ec9fe5dbdf27da978fae88 assets/verdant/blockstates/verdant_button.json
 4393323bb06f8f50c1100f11fa0c20b2ab26852e assets/verdant/blockstates/verdant_clay_grass_block.json
@@ -75,6 +76,8 @@ edfdbfb9a3a3ebcc7b2d55782253d529404b7fd4 assets/verdant/models/block/dirt_gold_o
 91e3342aa8a65faff0bb2888a9af3aa997091f50 assets/verdant/models/block/dirt_iron_ore.json
 425d5e8d68b690d56550dc26f5f01b6d43a37de2 assets/verdant/models/block/dirt_lapis_ore.json
 ca773c5b9d71d12393db664c521e3f74f2e66ec5 assets/verdant/models/block/dirt_redstone_ore.json
+8818a5debd4d5e041dead2f161977dc94ce62239 assets/verdant/models/block/frame_block.json
+ebb8ba373d295c8f0642baf1a6773b21244b90c1 assets/verdant/models/block/frame_block_horizontal.json
 2e7f7cf49a671afa4e9fb8fc7f4417f98ffd9d7a assets/verdant/models/block/poison_ivy.json
 8939dccd81e8d277b663cba1f7c048109220ca80 assets/verdant/models/block/poison_ivy_block.json
 040d3fc034c71b4e8a87e43eb7c5cf08daa886fb assets/verdant/models/block/poison_ivy_block_horizontal.json
@@ -183,7 +186,6 @@ f65da87eb803e5d59aad0510b1776f5f0f9156f1 assets/verdant/models/item/dirt_lapis_o
 720f9e235c071fd21f0c60fb28def54c28393193 assets/verdant/models/item/poison_ivy.json
 ecfe3b55d4391a58aacf9adbf48b69269421f61f assets/verdant/models/item/poison_ivy_plant.json
 bcf9b0e0271ae3f5c5a21165fd1561e385e4e26c assets/verdant/models/item/rope.json
-c141449f12b2c0cb890dbda24c4785da4666c57a assets/verdant/models/item/thorn_spikes.json
 69edfd1fddbd0b24ef6289b67908bb2e874a4cfe assets/verdant/models/item/verdant_clay_grass_block.json
 103340fbc8ac95c6a76d0d78f92c38966d58706e assets/verdant/models/item/verdant_grass_block.json
 3fe7d994dbe6b475e0037a2939b3d5c3d33cc715 assets/verdant/models/item/verdant_heartwood_planks.json

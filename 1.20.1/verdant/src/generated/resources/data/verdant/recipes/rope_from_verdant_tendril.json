@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "P": {
-      "item": "minecraft:string"
-    },
     "T": {
       "item": "verdant:verdant_tendril"
     }
   },
   "pattern": [
-    "P",
     "T",
-    "P"
+    "T",
+    "T"
   ],
   "result": {
     "count": 2,

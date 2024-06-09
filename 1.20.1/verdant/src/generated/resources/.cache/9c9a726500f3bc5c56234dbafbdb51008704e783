@@ -1,6 +1,7 @@
-// 1.20.1	2024-06-08T00:09:18.0333176	Item Models: verdant
+// 1.20.1	2024-06-08T17:54:30.1647353	Item Models: verdant
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
+8b1235d4be877cb19fdfc973cef9e9f3475f2c06 assets/verdant/models/item/frame_block.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
 b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
 863332605628c1cfef54f4ec3aa5552b376f2e05 assets/verdant/models/item/poison_arrow.json
@@ -22,6 +23,7 @@ a6821bf7dfa73d57ad5361a7820bffca76d3c2e9 assets/verdant/models/item/stripped_ver
 52f3667dbd69644119463c036377fc37e436ae53 assets/verdant/models/item/toxic_ash.json
 de37bc635bcae1ff75982efcc1e3dcaefccef197 assets/verdant/models/item/toxic_ash_block.json
 2ec4f5f50291f42e7c4c5659541bf9b1cf690311 assets/verdant/models/item/toxic_ash_bucket.json
+ae3f815dc4d754df8361f21fd61e2026f7d84cb3 assets/verdant/models/item/toxic_solution_bucket.json
 560897c565be572d6d09091413f76e1cf4c11b2f assets/verdant/models/item/verdant_boat.json
 40db7e95ea4d78382db79b688369867cee399109 assets/verdant/models/item/verdant_button.json
 ffad1f8fd6acfe2781b2b5f6bb65f961f83ae252 assets/verdant/models/item/verdant_chest_boat.json

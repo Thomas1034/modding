@@ -29,11 +29,11 @@ public class ToxicAshItem extends Item {
 		Level level = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
 		if (applyAsh(context.getItemInHand(), level, blockpos, context.getPlayer())) {
-			
+
 			if (level instanceof ServerLevel serverLevel) {
-				//System.out.println("Effects.");
+				// System.out.println("Effects.");
 				addDeathParticles(serverLevel, blockpos, 30);
-				level.playSound(context.getPlayer(), blockpos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS);
+				level.playSound(null, blockpos, SoundEvents.BONE_MEAL_USE, SoundSource.PLAYERS);
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
@@ -73,7 +73,7 @@ public class ToxicAshItem extends Item {
 		if (count == 0) {
 			count = 15;
 		}
-		//System.out.println("Particling.");
+		// System.out.println("Particling.");
 		BlockState blockstate = level.getBlockState(pos);
 		double d1 = 0.0D;
 		if (blockstate.isAir()) {
@@ -91,7 +91,7 @@ public class ToxicAshItem extends Item {
 			// Limit so it won't go beneath 0, if the block is empty.
 			d1 = d1 > 0 ? d1 : 0;
 		}
-		//System.out.println("Really Particling; " + d1);
+		// System.out.println("Really Particling; " + d1);
 		Utilities.addParticlesAroundPositionServer(level, pos.getCenter().add(0, d1 - 0.5, 0), ParticleTypes.SMOKE, 0.2,
 				count);
 	}

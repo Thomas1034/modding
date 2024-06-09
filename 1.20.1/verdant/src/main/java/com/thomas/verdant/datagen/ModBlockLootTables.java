@@ -33,6 +33,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		this.dropSelf(ModBlocks.FRAME_BLOCK.get());
 		this.dropSelf(ModBlocks.THORN_SPIKES.get());
 		this.dropSelf(ModBlocks.ROPE.get());
 		this.dropSelf(ModBlocks.POISON_IVY_BLOCK.get());
@@ -48,13 +49,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		oreDrop(ModBlocks.DIRT_REDSTONE_ORE.get(), Items.REDSTONE, List.of(4, 5));
 		oreDrop(ModBlocks.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 1));
 		oreDrop(ModBlocks.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
-		
+
 		requireSilkTouch(ModBlocks.THORN_BUSH.get(), ModItems.THORN.get(), List.of(0, 1));
 		this.add(ModBlocks.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(ModBlocks.THORN_BUSH.get()));
 
 		requireSilkTouchOrShears(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
-		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModItems.THORN.get(), List.of(2, 4));
-		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(1, 3));
+		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModItems.THORN.get(), List.of(0, 2));
+		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(0, 2));
 
 		requireSilkTouch(ModBlocks.ROTTEN_WOOD.get(), Blocks.AIR);
 		requireSilkTouch(ModBlocks.VERDANT_VINE.get(), Items.STICK, List.of(1, 3));

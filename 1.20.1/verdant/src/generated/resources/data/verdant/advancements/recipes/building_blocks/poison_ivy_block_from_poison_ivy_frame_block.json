@@ -1,24 +1,36 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_rope": {
+    "has_frame_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "verdant:rope"
+              "verdant:frame_block"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_string": {
+    "has_poison_ivy": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:string"
+              "verdant:poison_ivy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_poison_ivy_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:poison_ivy_block"
             ]
           }
         ]
@@ -27,34 +39,22 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:rope_from_verdant_tendril_string"
+        "recipe": "verdant:poison_ivy_block_from_poison_ivy_frame_block"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_verdant_tendril": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "verdant:verdant_tendril"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
-      "has_verdant_tendril",
-      "has_string",
-      "has_rope",
+      "has_poison_ivy",
+      "has_frame_block",
+      "has_poison_ivy_block",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:rope_from_verdant_tendril_string"
+      "verdant:poison_ivy_block_from_poison_ivy_frame_block"
     ]
   },
   "sends_telemetry_event": false

@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
@@ -41,6 +42,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.VERDANT_HANGING_SIGN);
 		simpleItem(ModItems.TOXIC_ASH);
 		simpleItem(ModItems.TOXIC_ASH_BUCKET);
+		simpleItem(ModItems.TOXIC_SOLUTION_BUCKET);
 		simpleBlockItem(ModBlocks.VERDANT_DOOR);
 		simpleLogModel(ModBlocks.POISON_IVY_BLOCK);
 		simpleLogModel(ModBlocks.TOXIC_ASH_BLOCK);

@@ -21,7 +21,7 @@ public class SpikesBlock extends AmethystClusterBlock {
 	private final float damage;
 
 	public SpikesBlock(Properties properties, float damage) {
-		super(12, 6, properties);
+		super(5, 3, properties);
 		this.damage = damage;
 	}
 

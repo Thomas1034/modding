@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
+import com.thomas.verdant.block.custom.FrameBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
@@ -180,6 +181,11 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> VERDANT_WOOD = registerFuelBlockWithItem("verdant_wood",
 			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), BurnTimes.LOG);
+
+	public static final RegistryObject<Block> FRAME_BLOCK = registerFuelBlockWithItem("frame_block",
+			() -> new FrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)
+					.isViewBlocking((state, level, pos) -> false).noOcclusion().instabreak()),
+			BurnTimes.PLANKS);
 
 	public static final RegistryObject<Block> STRIPPED_VERDANT_LOG = registerFuelBlockWithItem("stripped_verdant_log",
 			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),

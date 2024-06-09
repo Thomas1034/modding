@@ -38,8 +38,10 @@
 	"item.verdant.heart_of_the_forest": "Heart of the Forest",
 	"item.verdant.toxic_ash": "Toxic Ash",
 	"item.verdant.toxic_ash_bucket": "Toxic Ash Bucket",
+	"item.verdant.toxic_solution_bucket": "Toxic Solution Bucket",
 	
 	"block.verdant.thorn_spikes": "Thorn Spikes",
+	"block.verdant.frame_block": "Frame Block",
 	"block.verdant.poison_ivy_block": "Poison Ivy Block",
 	"block.verdant.toxic_ash_block": "Toxic Ash Block",
 	"block.verdant.verdant_vine": "Verdant Vine",

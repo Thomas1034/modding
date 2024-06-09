@@ -109,8 +109,11 @@ public class ModItems {
 	public static final RegistryObject<Item> TOXIC_ASH = ITEMS.register("toxic_ash",
 			() -> new ToxicAshItem(new Item.Properties()));
 
-	public static final RegistryObject<Item> TOXIC_ASH_BUCKET = ITEMS.register("toxic_ash_bucket",
+	public static final RegistryObject<Item> TOXIC_SOLUTION_BUCKET = ITEMS.register("toxic_solution_bucket",
 			() -> new ToxicBucketItem(new Item.Properties().stacksTo(1), new ItemStack(Items.BUCKET)));
+
+	public static final RegistryObject<Item> TOXIC_ASH_BUCKET = ITEMS.register("toxic_ash_bucket",
+			() -> new Item(new Item.Properties().stacksTo(1)));
 
 	public static final RegistryObject<Item> THORN = ITEMS.register("thorn", () -> new Item(new Item.Properties()));
 

@@ -59,10 +59,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.VERDANT_ROOTED_CLAY);
 		sidedBlockWithItem(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, "verdant_clay_grass_block");
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
-
+		// Frame block
+		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.FRAME_BLOCK.get(), "cutout");
+		
 		// Poison ivy block
 		logBlock((RotatedPillarBlock) ModBlocks.POISON_IVY_BLOCK.get());
 		logBlock((RotatedPillarBlock) ModBlocks.TOXIC_ASH_BLOCK.get());
+
 
 		// Standard verdant wood
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
@@ -145,9 +148,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 						blockTexture(ModBlocks.POISON_IVY_PLANT.get())).renderType("cutout"));
 
 		// Thorn spikes model
-		simpleBlockWithItem(ModBlocks.THORN_SPIKES.get(), models()
-				.cross(blockTexture(ModBlocks.THORN_SPIKES.get()).getPath(), blockTexture(ModBlocks.THORN_SPIKES.get()))
-				.renderType("cutout"));
+		clusterBlock((AmethystClusterBlock) ModBlocks.THORN_SPIKES.get());
 
 		// Rope
 		simpleBlockWithItem(ModBlocks.ROPE.get(),

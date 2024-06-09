@@ -158,14 +158,14 @@ public class Verdant {
 				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
 		// Register compostables.
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), 0.3f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORNY_VERDANT_LEAVES.get(), 0.3f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_LEAVES.get(), 0.3f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORN_BUSH.get(), 0.5f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.BLEEDING_HEART.get(), 0.65f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.STINKING_BLOSSOM.get(), 1.0f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_TENDRIL.get(), 0.5f);
-		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_BLOCK.get(), 0.5f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get().asItem(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORNY_VERDANT_LEAVES.get().asItem(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_LEAVES.get().asItem(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORN_BUSH.get().asItem(), 0.5f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.BLEEDING_HEART.get().asItem(), 0.65f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.STINKING_BLOSSOM.get().asItem(), 1.0f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_TENDRIL.get().asItem(), 0.5f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_BLOCK.get().asItem(), 1.0f);
 
 		// Register verdant growth mechanics on setup.
 		// Nope! Data driven now.

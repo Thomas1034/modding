@@ -21,6 +21,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -363,8 +364,6 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 		// Then, check if this log is a mature verdant log.
 		if (host.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
-
-			
 			return false;
 		}
 		
@@ -375,7 +374,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		}
 
 		// Check if this log has neighboring logs or decayed wood.
-		if (!hasLogNeighbors(level, pos)) {
+		if (!host.is(ModTags.Blocks.VERDANT_LOGS) && !hasLogNeighbors(level, pos)) {
 			shouldDecayToAir = true;
 		}
 

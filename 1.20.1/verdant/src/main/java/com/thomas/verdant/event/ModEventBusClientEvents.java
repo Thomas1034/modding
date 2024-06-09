@@ -61,19 +61,24 @@ public class ModEventBusClientEvents {
 			// Ensures that the renderer exists.
 			if (renderer != null) {
 				try {
+
+					boolean isSlim;
+
+					try {
+						isSlim = (Boolean) Reflection.getFromFinal(renderer.getModel(), "slim");
+					} catch (Exception e) {
+						isSlim = (Boolean) Reflection.getFromFinal(renderer.getModel(), "f_103380_");
+					}
+
 					// This is what I used for my particular model; I needed duplicate player models
 					// to retexture. So, I got them from the HumanoidArmorModel class.
 					HumanoidArmorModel innerModel = new HumanoidArmorModel(Minecraft.getInstance().getEntityModels()
-							.bakeLayer((Boolean) Reflection.getFromFinal(renderer.getModel(), "slim")
-									? ModelLayers.PLAYER_SLIM_INNER_ARMOR
-									: ModelLayers.PLAYER_INNER_ARMOR));
+							.bakeLayer(isSlim ? ModelLayers.PLAYER_SLIM_INNER_ARMOR : ModelLayers.PLAYER_INNER_ARMOR));
 					HumanoidArmorModel outerModel = new HumanoidArmorModel(Minecraft.getInstance().getEntityModels()
-							.bakeLayer((Boolean) Reflection.getFromFinal(renderer.getModel(), "slim")
-									? ModelLayers.PLAYER_SLIM_INNER_ARMOR
-									: ModelLayers.PLAYER_INNER_ARMOR));
+							.bakeLayer(isSlim ? ModelLayers.PLAYER_SLIM_INNER_ARMOR : ModelLayers.PLAYER_INNER_ARMOR));
 					VinesLayer layer = new VinesLayer<>((RenderLayerParent) renderer, innerModel, outerModel,
 							Minecraft.getInstance().getModelManager());
-					// Now I add the layer. 
+					// Now I add the layer.
 					renderer.addLayer(layer);
 				} catch (NoSuchFieldException e) {
 					e.printStackTrace();

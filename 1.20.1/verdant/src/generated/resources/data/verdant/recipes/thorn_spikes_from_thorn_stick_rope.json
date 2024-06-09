@@ -2,20 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "P": {
-      "item": "verdant:poison_ivy"
-    },
-    "S": {
+    "K": {
       "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "verdant:rope"
+    },
+    "T": {
+      "item": "verdant:thorn"
     }
   },
   "pattern": [
-    "SPP",
-    "PPP",
-    "PPS"
+    "TTT",
+    "TTT",
+    "KRK"
   ],
   "result": {
-    "item": "verdant:poison_ivy_block"
+    "item": "verdant:thorn_spikes"
   },
   "show_notification": true
 }

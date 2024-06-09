@@ -27,6 +27,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
 						pOutput.accept(ModItems.TOXIC_ASH.get());
 						pOutput.accept(ModItems.TOXIC_ASH_BUCKET.get());
+						pOutput.accept(ModItems.TOXIC_SOLUTION_BUCKET.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_FOODS = CREATIVE_MODE_TABS.register("verdant_foods",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COFFEE_BERRIES.get()))
@@ -95,6 +96,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.POISON_IVY_BLOCK.get());
 						pOutput.accept(ModBlocks.TOXIC_ASH_BLOCK.get());
 						pOutput.accept(ModBlocks.THORN_SPIKES.get());
+						pOutput.accept(ModBlocks.POISON_IVY.get());
+						pOutput.accept(ModBlocks.VERDANT_TENDRIL.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_PICKAXE.get()))
