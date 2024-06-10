@@ -14,8 +14,8 @@ public class ModEventBusEvents {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(ModEntityType.VERDANT_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
-		event.put(ModEntityType.VERDANT_SKELETON.get(), OvergrownSkeletonEntity.createAttributes().build());
+		event.put(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
+		event.put(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonEntity.createAttributes().build());
 
 	}
 

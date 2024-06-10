@@ -200,8 +200,8 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
 			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
-			EntityRenderers.register(ModEntityType.VERDANT_ZOMBIE.get(), OvergrownZombieRenderer::new);
-			EntityRenderers.register(ModEntityType.VERDANT_SKELETON.get(), OvergrownSkeletonRenderer::new);
+			EntityRenderers.register(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
+			EntityRenderers.register(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
 
 		}
 	}

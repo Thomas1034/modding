@@ -7,10 +7,13 @@ import java.util.function.BiPredicate;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
+import com.thomas.verdant.entity.ModEntityType;
 import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -33,6 +36,9 @@ public class FeaturePlacer {
 	// Water features will only check for placement if the block above their
 	// position is water.
 	private static final FeatureType WATER_FEATURES = create(FeaturePlacer::waterPlacement, "water_features");
+	// Entity features check for passable blocks above.
+	private static final FeatureType ENTITY_FEATURES = create(Feature::simpleAboveDoublePassableChecker,
+			"entity_features");
 	// Generic features always check for placement
 	private static final FeatureType GENERIC_FEATURES = create(FeaturePlacer::always, "generic_features");
 
@@ -63,6 +69,12 @@ public class FeaturePlacer {
 		register(SURFACE_FEATURES, feature, weight, name);
 	}
 
+	// Registers a feature to the list of entity features, with a given weight and
+	// name.
+	private static void registerEntityFeature(Feature feature, int weight, String name) {
+		register(ENTITY_FEATURES, feature, weight, name);
+	}
+
 	// Registers a feature to the list of verdant vine features, with a given
 	// weight and name.
 	private static void registerVerdantVineFeature(Feature feature, int weight, String name) {
@@ -79,6 +91,13 @@ public class FeaturePlacer {
 	// name.
 	private static void registerWaterFeature(Feature feature, int weight, String name) {
 		register(WATER_FEATURES, feature, weight, name);
+	}
+
+	// Registers all entity features.
+	private static void registerEntityFeatures() {
+		registerEntityFeature(Feature.monster(ModEntityType.OVERGROWN_SKELETON.get(), new ItemStack(Items.BOW)),
+				Rarity.UNCOMMON, "overgrown_skeleton");
+		registerEntityFeature(Feature.monster(ModEntityType.OVERGROWN_ZOMBIE.get()), Rarity.COMMON, "overgrown_zombie");
 	}
 
 	// Registers all surface features.
@@ -148,6 +167,8 @@ public class FeaturePlacer {
 
 	// Registers all the features for this class.
 	public static void registerFeatures() {
+		// Entity features
+		registerEntityFeatures();
 		// Surface features
 		registerSurfaceFeatures();
 		// Surface replaceable features

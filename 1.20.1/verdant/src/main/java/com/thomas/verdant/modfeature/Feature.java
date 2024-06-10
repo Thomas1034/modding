@@ -12,12 +12,19 @@ import com.thomas.verdant.util.function.TriFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.AABB;
 
 public class Feature {
 
@@ -114,6 +121,31 @@ public class Feature {
 						.and((BiPredicate<Level, BlockPos>) Feature::simpleDirtBelowChecker));
 	}
 
+	public static Feature monster(EntityType<? extends LivingEntity> type) {
+		return new Feature((level, pos) -> {
+
+			LivingEntity spawned = type.create(level);
+
+			spawned.setPos(pos.getCenter().subtract(0, 0.5, 0));
+			level.addFreshEntity(spawned);
+
+		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2))
+				.and((level, pos) -> Feature.aboveLightLevel(level, pos, 5)));
+	}
+
+	public static Feature monster(EntityType<? extends LivingEntity> type, ItemStack holding) {
+		return new Feature((level, pos) -> {
+
+			LivingEntity spawned = type.create(level);
+
+			spawned.setPos(pos.getCenter().subtract(0, 0.5, 0));
+			spawned.setItemInHand(InteractionHand.MAIN_HAND, holding);
+			level.addFreshEntity(spawned);
+
+		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2))
+				.and((level, pos) -> Feature.aboveLightLevel(level, pos, 5)));
+	}
+
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
 		return new Feature((level, pos) -> DoublePlantBlock.placeAt(level, block.defaultBlockState(), pos, 2),
 				((BiPredicate<Level, BlockPos>) Feature::simpleDoubleWaterChecker)
@@ -158,6 +190,26 @@ public class Feature {
 		return simpleDirtChecker(level, pos.below());
 	}
 
+	// Returns true if the given position has less than n entities within a box of
+	// radius d.
+	public static boolean simpleEntityChecker(Level level, BlockPos pos, int n, int d) {
+		AABB container = AABB.unitCubeFromLowerCorner(pos.getCenter().subtract(0.5, 0.5, 0.5)).inflate(n);
+		return level.getEntities(null, container).size() < d;
+	}
+
+	// Returns true if the block above the given position is darker than l.
+	public static boolean aboveLightLevel(Level level, BlockPos pos, int l) {
+		return lightLevel(level, pos.above(), l);
+	}
+
+	// Returns true if the given position is darker than l.
+	// Does not count sky light at night time.
+	public static boolean lightLevel(Level level, BlockPos pos, int l) {
+
+		return level.getBrightness(LightLayer.BLOCK, pos) < l
+				&& !(level.isDay() && level.getBrightness(LightLayer.SKY, pos) >= l);
+	}
+
 	// Returns true if the given position is water.
 	public static boolean simpleWaterChecker(Level level, BlockPos pos) {
 		return level.getBlockState(pos).getFluidState().is(Fluids.WATER);
@@ -166,6 +218,17 @@ public class Feature {
 	// Returns true if the given position and the one above it is air.
 	public static boolean simpleDoubleAirChecker(Level level, BlockPos pos) {
 		return level.getBlockState(pos).isAir() && level.getBlockState(pos.above()).isAir();
+	}
+
+	// Returns true if the two blocks above the given position are passable.
+	public static boolean simpleAboveDoublePassableChecker(Level level, BlockPos pos) {
+		return simpleDoublePassableChecker(level, pos.above());
+	}
+
+	// Returns true if the given position and the one above are passable.
+	public static boolean simpleDoublePassableChecker(Level level, BlockPos pos) {
+		return level.getBlockState(pos).isPathfindable(level, pos, PathComputationType.LAND)
+				&& level.getBlockState(pos.above()).isPathfindable(level, pos, PathComputationType.LAND);
 	}
 
 	// Returns true if the given position and the one above it is water.

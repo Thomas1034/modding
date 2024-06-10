@@ -127,6 +127,8 @@
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	"entity.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
 	"entity.verdant.verdant_heartwood_chest_boat": "Verdant Heartwood Boat with Chest",
+	"entity.verdant.overgrown_skeleton": "Overgrown Skeleton",
+	"entity.verdant.overgrown_zombie": "Overgrown Zombie",
 	
 	"effect.verdant.food_poisoning": "Food Poisoning",
 	"effect.verdant.caffeinated": "Caffeinated",

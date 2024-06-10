@@ -32,7 +32,7 @@ public class OvergrownSkeletonEntity extends Skeleton {
 	}
 
 	public OvergrownSkeletonEntity(Level level) {
-		super(ModEntityType.VERDANT_SKELETON.get(), level);
+		super(ModEntityType.OVERGROWN_SKELETON.get(), level);
 	}
 
 	@Override

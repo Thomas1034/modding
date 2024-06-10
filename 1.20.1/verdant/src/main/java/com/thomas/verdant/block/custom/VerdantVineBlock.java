@@ -15,18 +15,19 @@ import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -262,6 +263,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private boolean growInPlace(Level level, BlockPos pos) {
 
+		boolean grownIntoLog = false;
+
 		BlockState state = level.getBlockState(pos);
 		// Check if the state is indeed a vine.
 		if (!(state.getBlock() instanceof VerdantVineBlock)) {
@@ -272,7 +275,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		for (Direction d : Direction.values()) {
 			// Save the growth level in this direction.
 			int maturity = state.getValue(SIDES.get(d));
-
+			int oppositeMaturity = state.getValue(SIDES.get(d.getOpposite()));
 			// Check if it can grow
 			if (maturity == MIN_GROWTH && canGrowToFace(level, pos, d)) {
 				isMature = false;
@@ -284,12 +287,15 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 				state = state.setValue(SIDES.get(d), maturity + 1);
 				// System.out.println("Setting face " + d + " to " + (maturity + 1) + " at " +
 				// pos);
-			} else {
-
+			} else if (maturity == MAX_GROWTH && oppositeMaturity == MAX_GROWTH) {
+				// If it's fully grown on both sides, grow to a log.
+				state = ModBlocks.VERDANT_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, d.getAxis());
+				grownIntoLog = true;
+				break;
 			}
 		}
 		// Convert to leaves if it has sky access.
-		if (level.canSeeSky(pos)) {
+		if (!grownIntoLog && level.canSeeSky(pos)) {
 			// Base leaf state.
 			BlockState leafState = ModBlocks.LEAFY_VERDANT_VINE.get().defaultBlockState();
 			// Copy all properties.
@@ -298,7 +304,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			}
 			state = leafState;
 		}
-		if (!isMature) {
+		if (!isMature || grownIntoLog) {
 			level.addDestroyBlockEffect(pos, state);
 			// System.out.println("Maturing vine to " + state + ".");
 			// level.setBlockAndUpdate(pos, Blocks.AIR);
@@ -366,7 +372,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		if (host.is(ModTags.Blocks.MATURE_VERDANT_LOGS)) {
 			return false;
 		}
-		
+
 		// Then, check if this log is a verdant log and has a mature neighbor.
 		// If so, return early.
 		if (host.is(ModTags.Blocks.VERDANT_LOGS) && hasMatureVerdantLogNeighbors(level, pos)) {
