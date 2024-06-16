@@ -5,6 +5,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+import com.google.common.base.Function;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.util.Utilities;
 import com.thomas.verdant.util.function.TriFunction;
@@ -16,6 +17,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
@@ -122,18 +125,15 @@ public class Feature {
 	}
 
 	public static Feature monster(EntityType<? extends LivingEntity> type) {
-		return new Feature((level, pos) -> {
-
-			LivingEntity spawned = type.create(level);
-
-			spawned.setPos(pos.getCenter().subtract(0, 0.5, 0));
-			level.addFreshEntity(spawned);
-
-		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2))
-				.and((level, pos) -> Feature.aboveLightLevel(level, pos, 5)));
+		return monster(type, new ItemStack(Items.AIR), (m) -> (m));
+	}
+	
+	public static Feature monster(EntityType<? extends LivingEntity> type, ItemStack holding) {
+		return monster(type, holding, (m) -> (m));
 	}
 
-	public static Feature monster(EntityType<? extends LivingEntity> type, ItemStack holding) {
+	public static Feature monster(EntityType<? extends LivingEntity> type, ItemStack holding,
+			Function<? extends LivingEntity, ? extends LivingEntity> onSpawn) {
 		return new Feature((level, pos) -> {
 
 			LivingEntity spawned = type.create(level);
@@ -142,8 +142,9 @@ public class Feature {
 			spawned.setItemInHand(InteractionHand.MAIN_HAND, holding);
 			level.addFreshEntity(spawned);
 
-		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2))
-				.and((level, pos) -> Feature.aboveLightLevel(level, pos, 5)));
+		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> level.getGameRules()
+				.getBoolean(GameRules.RULE_DOMOBSPAWNING)).and((level, pos) -> Feature.aboveLightLevel(level, pos, 5))
+				.and((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2)));
 	}
 
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {

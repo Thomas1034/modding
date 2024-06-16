@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class PoisonIvyBlock extends HayBlock {
 
-	protected static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 20, 0);
+	protected static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 160, 0);
 
 	public PoisonIvyBlock(Properties properties) {
 		super(properties);

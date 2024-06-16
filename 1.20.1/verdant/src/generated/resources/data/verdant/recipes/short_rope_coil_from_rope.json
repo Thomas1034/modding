@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "T": {
+      "item": "verdant:rope"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "T T",
+    "TTT"
+  ],
+  "result": {
+    "item": "verdant:short_rope_coil"
+  },
+  "show_notification": true
+}

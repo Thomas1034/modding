@@ -30,6 +30,7 @@ import com.thomas.verdant.block.custom.VerdantTendrilBlock;
 import com.thomas.verdant.block.custom.VerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.block.custom.WildCoffeeBlock;
+import com.thomas.verdant.block.custom.WiltedVerdantLeavesBlock;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.util.BurnTimes;
@@ -166,6 +167,9 @@ public class ModBlocks {
 			() -> new PoisonVerdantTendrilPlantBlock(BlockBehaviour.Properties.copy(Blocks.KELP_PLANT)));
 
 	// Verdant logs
+	public static final RegistryObject<Block> WILTED_VERDANT_LEAVES = registerBlockWithItem("wilted_verdant_leaves",
+			() -> new WiltedVerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
+	
 	public static final RegistryObject<Block> VERDANT_LEAVES = registerBlockWithItem("verdant_leaves",
 			() -> new VerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
 

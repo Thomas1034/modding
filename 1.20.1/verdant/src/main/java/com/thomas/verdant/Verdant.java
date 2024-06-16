@@ -27,6 +27,7 @@ import com.thomas.verdant.worldgen.tree.ModTrunkPlacerTypes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -161,6 +162,7 @@ public class Verdant {
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get().asItem(), 0.3f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORNY_VERDANT_LEAVES.get().asItem(), 0.3f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_LEAVES.get().asItem(), 0.3f);
+		ComposterBlock.COMPOSTABLES.put(ModBlocks.WILTED_VERDANT_LEAVES.get().asItem(), 0.3f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORN_BUSH.get().asItem(), 0.5f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.BLEEDING_HEART.get().asItem(), 0.65f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.STINKING_BLOSSOM.get().asItem(), 1.0f);
@@ -202,6 +204,7 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
 			EntityRenderers.register(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
 			EntityRenderers.register(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
+			EntityRenderers.register(ModEntityType.THROWN_ROPE.get(), ThrownItemRenderer::new);
 
 		}
 	}

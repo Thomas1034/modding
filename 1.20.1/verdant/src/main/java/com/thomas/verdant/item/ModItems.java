@@ -9,6 +9,7 @@ import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.ModBoatItem;
 import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
+import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.ToxicAshItem;
 import com.thomas.verdant.item.custom.ToxicBucketItem;
 
@@ -120,6 +121,12 @@ public class ModItems {
 	public static final RegistryObject<Item> HEART_OF_THE_FOREST = ITEMS.register("heart_of_the_forest",
 			() -> new HeartOfTheForestItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
+	public static final RegistryObject<Item> SHORT_ROPE_COIL = ITEMS.register("short_rope_coil",
+			() -> new RopeCoilItem(new Item.Properties().stacksTo(8), 8));
+	public static final RegistryObject<Item> ROPE_COIL = ITEMS.register("rope_coil",
+			() -> new RopeCoilItem(new Item.Properties().stacksTo(4), 16));
+
+	
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);

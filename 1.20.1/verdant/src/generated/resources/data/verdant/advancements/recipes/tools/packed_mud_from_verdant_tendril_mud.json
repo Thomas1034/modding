@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mud": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:mud"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_packed_mud": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:packed_mud"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:packed_mud_from_verdant_tendril_mud"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_verdant_tendril": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_tendril"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_verdant_tendril",
+      "has_mud",
+      "has_packed_mud",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:packed_mud_from_verdant_tendril_mud"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "verdant:verdant_tendril"
+    },
+    {
+      "item": "verdant:verdant_tendril"
+    },
+    {
+      "item": "minecraft:mud"
+    }
+  ],
+  "result": {
+    "item": "minecraft:packed_mud"
+  }
+}

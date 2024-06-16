@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-08T17:54:30.153251	Loot Tables
+// 1.20.1	2024-06-14T17:21:46.5574378	Loot Tables
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_tables/blocks/bleeding_heart.json
 0bdf5d7147a0905ca324e0b43af26e0c9fb983b2 data/verdant/loot_tables/blocks/coffee_crop.json
 a2a559119908fc28a6139eeacc06a2b4033359d1 data/verdant/loot_tables/blocks/dirt_coal_ore.json
@@ -71,3 +71,4 @@ e1acfe65d95861363ee6869e80b03305ba72dd06 data/verdant/loot_tables/blocks/verdant
 a8bcdacf6c7c38622f38074eecbbb50ee9ab67c9 data/verdant/loot_tables/blocks/verdant_wall_sign.json
 1668a8aea079b5748dc95248d0411aa4ef9780b6 data/verdant/loot_tables/blocks/verdant_wood.json
 4c018b5ddd79f454c4178b764d33d19c8b8e6f1e data/verdant/loot_tables/blocks/wild_coffee.json
+a2de211f398dbadcb3281f9000180cbd755943ad data/verdant/loot_tables/blocks/wilted_verdant_leaves.json

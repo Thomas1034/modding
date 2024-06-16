@@ -33,13 +33,14 @@ public class VerdantBlockTransformer {
 			.register(Verdant.MOD_ID, "stripping");
 	public static final DataAccessor<BlockTransformer> TOXIC_ASH = DataRegistries.BLOCK_TRANSFORMERS
 			.register(Verdant.MOD_ID, "toxic_ash");
-	
+
 	public static void registerHydration(BlockTransformer transformer) {
 		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
 		transformer.register(ModBlocks.VERDANT_GRASS_BLOCK.get(), ModBlocks.VERDANT_MUD_GRASS_BLOCK.get());
 	}
-	
+
 	public static void registerToxicAsh(BlockTransformer transformer) {
+		transformer.register(Blocks.WITHER_ROSE, Blocks.WITHER_ROSE);
 		transformer.register(BlockTags.LEAVES, Blocks.AIR);
 		transformer.register(BlockTags.FLOWERS, Blocks.AIR);
 		transformer.register(BlockTags.BAMBOO_BLOCKS, Blocks.AIR);
@@ -65,9 +66,13 @@ public class VerdantBlockTransformer {
 		transformer.register(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), Blocks.CLAY);
 		transformer.register(ModBlocks.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
 		transformer.register(ModBlocks.THORN_BUSH.get(), Blocks.DEAD_BUSH);
+		transformer.register(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.WILTED_VERDANT_LEAVES.get());
+		transformer.register(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.WILTED_VERDANT_LEAVES.get());
+		transformer.register(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.WILTED_VERDANT_LEAVES.get());
 		transformer.register(Blocks.GLOW_LICHEN, Blocks.AIR);
 		transformer.register(Blocks.VINE, Blocks.AIR);
 		transformer.register(Blocks.DIRT, Blocks.COARSE_DIRT);
+		transformer.register(Blocks.SUGAR_CANE, Blocks.AIR);
 	}
 
 	public static void registerDehydration(BlockTransformer transformer) {

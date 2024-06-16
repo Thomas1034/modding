@@ -28,7 +28,7 @@ public class SpikesBlock extends AmethystClusterBlock {
 	// Mostly from SweetBerryBushBlock, with a few tweaks.
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
-				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
+				&& livingEntity.getType() != EntityType.RABBIT)) {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.75D, (double) 0.8F));
 			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);

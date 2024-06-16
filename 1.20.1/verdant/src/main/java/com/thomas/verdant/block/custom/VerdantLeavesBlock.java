@@ -199,6 +199,10 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	// Decays the block if it is too close to the ground.
 	public boolean tryToDecay(Level level, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		if (!state.hasProperty(PERSISTENT) || state.getValue(PERSISTENT)) {
+			return false;
+		}
 		BlockState beneath = level.getBlockState(pos.below());
 		if (!hasTransparentOrPlantSpaceBeneath(level, pos, 2) && !beneath.is(ModTags.Blocks.VERDANT_VINES)
 				&& !beneath.is(ModTags.Blocks.VERDANT_LOGS) && !beneath.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS)) {

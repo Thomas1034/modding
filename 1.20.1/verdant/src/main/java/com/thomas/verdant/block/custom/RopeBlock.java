@@ -1,5 +1,7 @@
 package com.thomas.verdant.block.custom;
 
+import com.thomas.verdant.entity.custom.ThrownRopeEntity;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -7,6 +9,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,24 +21,43 @@ import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RopeBlock extends Block {
 
 	private static final VoxelShape SHAPE = Block.box(7, 0, 7, 9, 16, 9);
+	private static final VoxelShape LARGE_SHAPE = Block.box(4, 0, 4, 12, 16, 12);
 
 	public RopeBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_,
-			CollisionContext p_60558_) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 
+	// Thrown ropes can hit this.
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		if (context instanceof EntityCollisionContext entitycollisioncontext) {
+			Entity entity = entitycollisioncontext.getEntity();
+
+			if (entity instanceof ThrownRopeEntity thrownRope) {
+				return LARGE_SHAPE;
+			} else {
+				return super.getCollisionShape(state, level, pos, entitycollisioncontext);
+			}
+
+		} else {
+			return super.getCollisionShape(state, level, pos, context);
+		}
+	}
+
 	protected boolean canAttachTo(BlockState state, LevelReader level, BlockPos pos) {
-		return state.isFaceSturdy(level, pos, Direction.DOWN, SupportType.CENTER);
+		return state.isFaceSturdy(level, pos, Direction.DOWN, SupportType.CENTER) || state.is(this);
 	}
 
 	@Override
@@ -85,7 +108,12 @@ public class RopeBlock extends Block {
 				serverLevel.setBlockAndUpdate(scanPos, this.defaultBlockState());
 				serverLevel.addDestroyBlockEffect(scanPos, this.defaultBlockState());
 				if (!player.getAbilities().instabuild) {
-					player.getInventory().removeFromSelected(false);
+					if (hand == InteractionHand.MAIN_HAND) {
+						player.getInventory().removeFromSelected(false);
+					}
+					else {
+						player.getInventory().removeItem(Inventory.SLOT_OFFHAND, 1);
+					}
 				}
 			}
 			// On success

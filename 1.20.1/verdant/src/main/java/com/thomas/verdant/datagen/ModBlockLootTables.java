@@ -52,7 +52,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 		requireSilkTouch(ModBlocks.THORN_BUSH.get(), ModItems.THORN.get(), List.of(0, 1));
 		this.add(ModBlocks.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(ModBlocks.THORN_BUSH.get()));
-
+		
+		requireSilkTouchOrShears(ModBlocks.WILTED_VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
 		requireSilkTouchOrShears(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
 		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModItems.THORN.get(), List.of(0, 2));
 		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(0, 2));

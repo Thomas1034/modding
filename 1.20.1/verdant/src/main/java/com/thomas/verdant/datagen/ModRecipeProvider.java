@@ -25,6 +25,7 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -143,6 +144,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Toxic ash bucket item
 		shapeless(recipeWriter, List.of(ModItems.TOXIC_ASH.get(), Items.BUCKET), List.of(8, 1), RecipeCategory.TOOLS,
 				ModItems.TOXIC_ASH_BUCKET.get(), 1);
+		// Packed mud from verdant tendrils
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_TENDRIL.get(), Blocks.MUD), List.of(2, 1), RecipeCategory.TOOLS,
+				Blocks.PACKED_MUD, 1);
+		
 		// Bucket item
 		shapeless(recipeWriter, List.of(ModItems.TOXIC_ASH_BUCKET.get()), List.of(1), RecipeCategory.TOOLS,
 				Items.BUCKET, 1);
@@ -159,6 +164,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Frame block
 		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(Items.STICK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.FRAME_BLOCK.get(), 1);
+		// Rope coil
+		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(ModBlocks.ROPE.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModItems.SHORT_ROPE_COIL.get(), 1);
+		shaped(recipeWriter, List.of("TTT", "TCT", "TTT"), List.of('T', 'C'), List.of(ModBlocks.ROPE.get(), ModItems.SHORT_ROPE_COIL.get()),
+				RecipeCategory.BUILDING_BLOCKS, ModItems.ROPE_COIL.get(), 1);
 
 		// Heartwood armor
 		shaped(recipeWriter, List.of("PPP", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),

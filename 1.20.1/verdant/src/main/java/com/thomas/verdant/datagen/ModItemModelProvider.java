@@ -32,6 +32,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItem(ModBlocks.LEAFY_VERDANT_VINE);
 		simpleBlockItem(ModBlocks.VERDANT_TENDRIL);
 		simpleBlockItemBlockTexture(ModBlocks.POISON_IVY);
+		simpleItem(ModItems.SHORT_ROPE_COIL);
+		simpleItem(ModItems.ROPE_COIL);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_HELMET);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_CHESTPLATE);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_LEGGINGS);
@@ -55,6 +57,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		fenceItem(ModBlocks.VERDANT_FENCE, ModBlocks.VERDANT_PLANKS);
 		buttonItem(ModBlocks.VERDANT_BUTTON, ModBlocks.VERDANT_PLANKS);
 
+		evenSimplerBlockItem(ModBlocks.WILTED_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.THORNY_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.POISON_IVY_VERDANT_LEAVES);
