@@ -126,7 +126,13 @@ public class ModItems {
 	public static final RegistryObject<Item> ROPE_COIL = ITEMS.register("rope_coil",
 			() -> new RopeCoilItem(new Item.Properties().stacksTo(4), 16));
 
-	
+	// Cassava
+	public static final RegistryObject<Item> CASSAVA_CUTTINGS = ITEMS.register("cassava_cuttings",
+			() -> new ItemNameBlockItem(ModBlocks.CASSAVA_CROP.get(), new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> CASSAVA = ITEMS.register("cassava",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> BITTER_CASSAVA = ITEMS.register("bitter_cassava",
+			() -> new Item(new Item.Properties().stacksTo(64)));
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);

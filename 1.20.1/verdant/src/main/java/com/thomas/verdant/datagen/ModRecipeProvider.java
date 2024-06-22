@@ -118,10 +118,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get(), 2);
 
 		// Roasting coffee
-		oreCooking(recipeWriter, RecipeSerializer.SMELTING_RECIPE, List.of(ModItems.COFFEE_BERRIES.get()),
-				RecipeCategory.BREWING, ModItems.ROASTED_COFFEE.get(), 0.1f, 200, "roasted_coffee",
-				"_from_smelting_coffee_berries");
-
+		foodCooking(recipeWriter, List.of(ModItems.COFFEE_BERRIES.get()), RecipeCategory.FOOD,
+				ModItems.ROASTED_COFFEE.get(), 0.1f, 400, "roasted_coffee");
+		
 		// Poison arrow
 		shapeless(recipeWriter, List.of(ModBlocks.POISON_IVY.get(), Items.ARROW), List.of(1, 1), RecipeCategory.COMBAT,
 				ModItems.POISON_ARROW.get(), 1);
@@ -136,7 +135,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModBlocks.POISON_IVY.get(), ModBlocks.FRAME_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.POISON_IVY_BLOCK.get(), 1);
 		// Toxic ash block
-		oreSmelting(recipeWriter, List.of(ModBlocks.POISON_IVY_BLOCK.get()), RecipeCategory.MISC,
+		smelting(recipeWriter, List.of(ModBlocks.POISON_IVY_BLOCK.get()), RecipeCategory.MISC,
 				ModBlocks.TOXIC_ASH_BLOCK.get(), 0.1f, 200, "toxic_ash_block_from_poison_ivy_block");
 		// Toxic ash item
 		shapeless(recipeWriter, List.of(ModBlocks.TOXIC_ASH_BLOCK.get()), List.of(1), RecipeCategory.TOOLS,
@@ -145,9 +144,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shapeless(recipeWriter, List.of(ModItems.TOXIC_ASH.get(), Items.BUCKET), List.of(8, 1), RecipeCategory.TOOLS,
 				ModItems.TOXIC_ASH_BUCKET.get(), 1);
 		// Packed mud from verdant tendrils
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_TENDRIL.get(), Blocks.MUD), List.of(2, 1), RecipeCategory.TOOLS,
-				Blocks.PACKED_MUD, 1);
-		
+		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_TENDRIL.get(), Blocks.MUD), List.of(2, 1),
+				RecipeCategory.TOOLS, Blocks.PACKED_MUD, 1);
+
 		// Bucket item
 		shapeless(recipeWriter, List.of(ModItems.TOXIC_ASH_BUCKET.get()), List.of(1), RecipeCategory.TOOLS,
 				Items.BUCKET, 1);
@@ -167,8 +166,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Rope coil
 		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(ModBlocks.ROPE.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModItems.SHORT_ROPE_COIL.get(), 1);
-		shaped(recipeWriter, List.of("TTT", "TCT", "TTT"), List.of('T', 'C'), List.of(ModBlocks.ROPE.get(), ModItems.SHORT_ROPE_COIL.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModItems.ROPE_COIL.get(), 1);
+		shaped(recipeWriter, List.of("TTT", "TCT", "TTT"), List.of('T', 'C'),
+				List.of(ModBlocks.ROPE.get(), ModItems.SHORT_ROPE_COIL.get()), RecipeCategory.BUILDING_BLOCKS,
+				ModItems.ROPE_COIL.get(), 1);
 
 		// Heartwood armor
 		shaped(recipeWriter, List.of("PPP", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
@@ -201,11 +201,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("SSS", "SPS", "SSS"), List.of('P', 'S'),
 				List.of(ModItems.HEART_OF_THE_FOREST.get(), BlockTags.LOGS_THAT_BURN), RecipeCategory.MISC,
 				ModBlocks.VERDANT_CONDUIT.get(), 1);
+
+		// Roasting cassava
+		cooking(recipeWriter, RecipeSerializer.SMELTING_RECIPE, List.of(ModItems.BITTER_CASSAVA.get()),
+				RecipeCategory.FOOD, ModItems.CASSAVA.get(), 0.1f, 200, "cleaning_cassava",
+				"_from_smelting_bitter_cassava");
+
 	}
 
 	// Stonecutting recipe.
 	@SuppressWarnings("unchecked")
-	protected static void brewing(Consumer<FinishedRecipe> pFinishedRecipeConsumer, Object ingredient,
+	protected static void brewing(Consumer<FinishedRecipe> finishedRecipeConsumer, Object ingredient,
 			RecipeCategory recipeCategory, ItemLike result, int count) {
 
 		// The name of the recipe.
@@ -244,12 +250,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Prints out the result.
 		System.out.println("Finished stonecutting recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer, recipeName);
+		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
 	// Stonecutting recipe.
 	@SuppressWarnings("unchecked")
-	protected static void stonecutting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, Object ingredient,
+	protected static void stonecutting(Consumer<FinishedRecipe> finishedRecipeConsumer, Object ingredient,
 			RecipeCategory recipeCategory, ItemLike result, int count) {
 
 		// The name of the recipe.
@@ -288,7 +294,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Prints out the result.
 		System.out.println("Finished stonecutting recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer, recipeName);
+		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.
@@ -368,7 +374,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	// Shaped recipe. Token at i must correspond to ingredient at i.
 	@SuppressWarnings("unchecked")
-	protected static void shaped(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<String> pattern,
+	protected static void shaped(Consumer<FinishedRecipe> finishedRecipeConsumer, List<String> pattern,
 			List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result,
 			int count) {
 
@@ -422,35 +428,60 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 		// Saves the recipe.
 		System.out.println("Finished shaped recipe, saving with name: " + recipeName);
-		recipe.save(pFinishedRecipeConsumer, recipeName);
+		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
-	protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients,
-			RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
-		oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult,
-				pExperience, pCookingTime, pGroup, "_from_smelting");
+	protected static void oreCooking(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		smelting(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime, group);
+		blasting(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime / 2, group);
 	}
 
-	protected static void oreBlasting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients,
-			RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
-		oreCooking(pFinishedRecipeConsumer, RecipeSerializer.BLASTING_RECIPE, pIngredients, pCategory, pResult,
-				pExperience, pCookingTime, pGroup, "_from_blasting");
+	protected static void foodCooking(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		campfire(finishedRecipeConsumer, ingredients, category, result, experience, 2 * cookingTime, group);
+		smelting(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime, group);
+		smoking(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime / 2, group);
 	}
 
-	protected static void charcoalSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike pIngredient) {
-		oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, List.of(pIngredient), RecipeCategory.MISC,
+	protected static void smoking(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		cooking(finishedRecipeConsumer, RecipeSerializer.SMOKING_RECIPE, ingredients, category, result, experience,
+				cookingTime, group, "_from_smoking");
+	}
+
+	protected static void smelting(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		cooking(finishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, ingredients, category, result, experience,
+				cookingTime, group, "_from_smelting");
+	}
+
+	protected static void campfire(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		cooking(finishedRecipeConsumer, RecipeSerializer.CAMPFIRE_COOKING_RECIPE, ingredients, category, result,
+				experience, cookingTime, group, "_from_campfire");
+	}
+
+	protected static void blasting(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+		cooking(finishedRecipeConsumer, RecipeSerializer.BLASTING_RECIPE, ingredients, category, result, experience,
+				cookingTime, group, "_from_blasting");
+	}
+
+	protected static void charcoalSmelting(Consumer<FinishedRecipe> finishedRecipeConsumer, ItemLike pIngredient) {
+		cooking(finishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, List.of(pIngredient), RecipeCategory.MISC,
 				Items.CHARCOAL, 0.1f, 200, "charcoal", "_from_smelting_" + getItemName(pIngredient));
 	}
 
-	protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer,
-			RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients,
-			RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup,
-			String pRecipeName) {
-		for (ItemLike itemlike : pIngredients) {
+	protected static void cooking(Consumer<FinishedRecipe> finishedRecipeConsumer,
+			RecipeSerializer<? extends AbstractCookingRecipe> cookingSerializer, List<ItemLike> ingredients,
+			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group,
+			String recipeName) {
+		for (ItemLike itemlike : ingredients) {
 			SimpleCookingRecipeBuilder
-					.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer)
-					.group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike)).save(pFinishedRecipeConsumer,
-							Verdant.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
+					.generic(Ingredient.of(itemlike), category, result, experience, cookingTime, cookingSerializer)
+					.group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(finishedRecipeConsumer,
+							Verdant.MOD_ID + ":" + getItemName(result) + recipeName + "_" + getItemName(itemlike));
 		}
 	}
 }

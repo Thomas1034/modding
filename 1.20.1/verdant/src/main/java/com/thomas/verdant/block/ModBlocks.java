@@ -47,6 +47,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -641,7 +642,10 @@ public class ModBlocks {
 	@SuppressWarnings("resource")
 	public static final RegistryObject<Block> CASSAVA_ROOTED_DIRT = registerBlockWithItem("cassava_rooted_dirt",
 			() -> new HoeRemovableItemBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT), (context) -> {
-				return new ItemStack(Items.DIAMOND, context.getLevel().random.nextInt(1, 3));
+				int bonus = 2 * context.getItemInHand().getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
+				int base = 6;
+				return new ItemStack(ModItems.CASSAVA.get(),
+						context.getLevel().random.nextIntBetweenInclusive(base, 2 * base + bonus));
 			}, (context) -> {
 				return Blocks.DIRT.defaultBlockState();
 			}));

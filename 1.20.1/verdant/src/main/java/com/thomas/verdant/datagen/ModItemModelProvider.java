@@ -22,6 +22,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		simpleItem(ModItems.CASSAVA_CUTTINGS);
+		simpleItem(ModItems.BITTER_CASSAVA);
+		simpleItem(ModItems.CASSAVA);
 		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);

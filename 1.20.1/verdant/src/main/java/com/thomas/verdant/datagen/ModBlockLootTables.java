@@ -131,12 +131,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 		LootTable.Builder cassavaLoot = LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-						.add(LootItem.lootTableItem(Items.WHEAT_SEEDS).when(cassavaCropMaxAgeBuilder.invert())))
+						.add(LootItem.lootTableItem(ModItems.CASSAVA_CUTTINGS.get())
+								.when(cassavaCropMaxAgeBuilder.invert())))
 				.withPool(LootPool.lootPool()
-						.add(LootItem.lootTableItem(Items.WHEAT_SEEDS)
-								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
-										0.5714286F, 3))
-								.when(cassavaCropMaxAgeBuilder).otherwise(LootItem.lootTableItem(Items.WHEAT_SEEDS))));
+						.add(LootItem
+								.lootTableItem(ModItems.CASSAVA_CUTTINGS.get()).apply(ApplyBonusCount
+										.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))
+								.when(cassavaCropMaxAgeBuilder)));
 
 		this.add(ModBlocks.CASSAVA_CROP.get(), cassavaLoot);
 	}

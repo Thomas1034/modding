@@ -1,5 +1,8 @@
-// 1.20.1	2024-06-14T19:27:56.6704123	Item Models: verdant
+// 1.20.1	2024-06-22T14:51:49.2800329	Item Models: verdant
+84580abb9da85465b6dfcf271aef5aa57c7e73fa assets/verdant/models/item/bitter_cassava.json
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
+6a2b0c8a23f19923aaa882395038566fc79287da assets/verdant/models/item/cassava.json
+42906cfecbcef65ff920e66e25e3f6bbb1e19ecc assets/verdant/models/item/cassava_cuttings.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 8b1235d4be877cb19fdfc973cef9e9f3475f2c06 assets/verdant/models/item/frame_block.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
