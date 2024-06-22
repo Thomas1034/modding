@@ -93,6 +93,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// this.tag(BlockTags.SMALL_FLOWERS).add();
 
 		// Mechanical.
+		this.tag(BlockTags.CROPS).add(ModBlocks.CASSAVA_CROP.get(), ModBlocks.COFFEE_CROP.get());
 		this.tag(BlockTags.DIRT).add(ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_GRASS_BLOCK.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get());

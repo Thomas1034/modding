@@ -1,5 +1,7 @@
-// 1.20.1	2024-06-08T18:09:33.5689767	Block States: verdant
+// 1.20.1	2024-06-21T22:04:08.3854804	Block States: verdant
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
+170f51e7da09adf72b31beb447b46d1a7cd85d91 assets/verdant/blockstates/cassava_crop.json
+0647b39056f83c0e378aa8d9dd814df95bdddabc assets/verdant/blockstates/cassava_rooted_dirt.json
 81b54a2d837372bd0a718463a44c07776249a56b assets/verdant/blockstates/coffee_crop.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
@@ -65,6 +67,19 @@ da64056f3cbaa9b83c96b30e68af27c834316928 assets/verdant/blockstates/verdant_wall
 9217e33a840d79afa3c506de26abaf0e2972f87a assets/verdant/blockstates/verdant_wood.json
 7cc8ce856540d407bcac33040cf6761e39bc5167 assets/verdant/blockstates/wild_coffee.json
 886647fd1fe69097e6c244cf4e2ea5f5d0008d04 assets/verdant/models/block/bleeding_heart.json
+ab57eb49e0f1c25a744a49df915ea2f63b49ae5b assets/verdant/models/block/cassava_crop_0.json
+55b69c67c5ef4ac35f18c79a4c3cff0607d80f44 assets/verdant/models/block/cassava_crop_1.json
+de26e28b5b870afc9f02bc138d6d95a9ce33bbd2 assets/verdant/models/block/cassava_crop_10.json
+d63eb3176ef1d9da73ef369aac83a16408119c4c assets/verdant/models/block/cassava_crop_11.json
+3d00a60586cb431bbd2b9ab5f739ec30dc228ec8 assets/verdant/models/block/cassava_crop_2.json
+ceaeb865f92d34c619b15d7706f35c559047e627 assets/verdant/models/block/cassava_crop_3.json
+bb6c14259a1ae5496636c11d95146ceaa8adcc51 assets/verdant/models/block/cassava_crop_4.json
+0a99efeadcbeeac8127cff02ed4ffc91f1cc7f54 assets/verdant/models/block/cassava_crop_5.json
+bb671c6e4c556f7e5aedb141cf423d36a296eaf5 assets/verdant/models/block/cassava_crop_6.json
+762c921485cae669738dfd3b5d5b7c811385527e assets/verdant/models/block/cassava_crop_7.json
+3fc3c4d9b287c5e55009d0a7aef2900d41d9fd21 assets/verdant/models/block/cassava_crop_8.json
+34adbdad7980f4f9ef2583fd3cb2fc908a1af5e7 assets/verdant/models/block/cassava_crop_9.json
+0ff33fc739f835ed82083bb8d5f1d6fe73bdd474 assets/verdant/models/block/cassava_rooted_dirt.json
 c482872f33fa2b8b884f9f0f1b380bb0fe38ea92 assets/verdant/models/block/coffee_crop_0.json
 5ba0d086912d3a602a12d1f6211648f4a6a57a53 assets/verdant/models/block/coffee_crop_1.json
 08a0ccbe3d29e51bd3ebe59516272e6291e4532c assets/verdant/models/block/coffee_crop_2.json
@@ -175,6 +190,7 @@ acd6c83f92d6e09675688b3780c803875322ff77 assets/verdant/models/block/verdant_tra
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/block/verdant_wood.json
 895ee05670dbf6d087122f6390cb47dc3a106089 assets/verdant/models/block/verdant_wood_horizontal.json
 4e4d79e32c3f18545edb968dde966cc6f89dffc3 assets/verdant/models/block/wild_coffee.json
+b10b7fba40dfbd701734207280f01f4853e58018 assets/verdant/models/item/cassava_rooted_dirt.json
 4f84d6ecacbcedae63a14f8eb901ff3835132e92 assets/verdant/models/item/dirt_coal_ore.json
 5767d3d16165e0b8c893f33b1862cd64e088ec80 assets/verdant/models/item/dirt_copper_ore.json
 af7e8d5aa110c73386bd150d6b5eb48509b2b172 assets/verdant/models/item/dirt_diamond_ore.json

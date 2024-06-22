@@ -12,6 +12,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 
@@ -46,7 +47,7 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 	@Override
 	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
 			boolean simulate) {
-		if (context.getItemInHand().getItem() instanceof AxeItem) {
+		if (toolAction == ToolActions.AXE_STRIP) {
 			if (VerdantBlockTransformer.STRIPPING.get().hasInput(state.getBlock())) {
 				return VerdantBlockTransformer.STRIPPING.get().next(state);
 			}

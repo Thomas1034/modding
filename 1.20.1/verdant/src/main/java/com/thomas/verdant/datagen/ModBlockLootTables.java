@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Set;
 
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.item.ModItems;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
@@ -21,6 +23,8 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -33,6 +37,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.FRAME_BLOCK.get());
 		this.dropSelf(ModBlocks.THORN_SPIKES.get());
 		this.dropSelf(ModBlocks.ROPE.get());
@@ -42,17 +47,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		requireSilkTouch(ModBlocks.VERDANT_CONDUIT.get(), Blocks.AIR);
 
 		oreDrop(ModBlocks.DIRT_COAL_ORE.get(), Items.COAL, List.of(1, 1));
-		oreDrop(ModBlocks.DIRT_COPPER_ORE.get(), Items.RAW_COPPER, List.of(2, 5));
+		this.add(ModBlocks.DIRT_COPPER_ORE.get(), this.createCopperOreDrops(ModBlocks.DIRT_COPPER_ORE.get()));
 		oreDrop(ModBlocks.DIRT_IRON_ORE.get(), Items.RAW_IRON, List.of(1, 1));
 		oreDrop(ModBlocks.DIRT_GOLD_ORE.get(), Items.RAW_GOLD, List.of(1, 1));
-		oreDrop(ModBlocks.DIRT_LAPIS_ORE.get(), Items.LAPIS_LAZULI, List.of(4, 9));
-		oreDrop(ModBlocks.DIRT_REDSTONE_ORE.get(), Items.REDSTONE, List.of(4, 5));
+		this.add(ModBlocks.DIRT_LAPIS_ORE.get(), this.createLapisOreDrops(ModBlocks.DIRT_LAPIS_ORE.get()));
+		this.add(ModBlocks.DIRT_REDSTONE_ORE.get(), this.createRedstoneOreDrops(ModBlocks.DIRT_REDSTONE_ORE.get()));
 		oreDrop(ModBlocks.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 1));
 		oreDrop(ModBlocks.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
 
 		requireSilkTouch(ModBlocks.THORN_BUSH.get(), ModItems.THORN.get(), List.of(0, 1));
 		this.add(ModBlocks.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(ModBlocks.THORN_BUSH.get()));
-		
+
 		requireSilkTouchOrShears(ModBlocks.WILTED_VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
 		requireSilkTouchOrShears(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
 		requireSilkTouchOrShears(ModBlocks.THORNY_VERDANT_LEAVES.get(), ModItems.THORN.get(), List.of(0, 2));
@@ -119,6 +124,21 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.WILD_COFFEE.get());
 		this.add(ModBlocks.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(ModBlocks.WILD_COFFEE.get()));
 		this.dropOther(ModBlocks.COFFEE_CROP.get(), ModItems.COFFEE_BERRIES.get());
+
+		LootItemCondition.Builder cassavaCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.CASSAVA_CROP.get()).setProperties(StatePropertiesPredicate.Builder
+						.properties().hasProperty(CassavaCropBlock.AGE, CassavaCropBlock.MAX_AGE));
+
+		LootTable.Builder cassavaLoot = LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(Items.WHEAT_SEEDS).when(cassavaCropMaxAgeBuilder.invert())))
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(Items.WHEAT_SEEDS)
+								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+										0.5714286F, 3))
+								.when(cassavaCropMaxAgeBuilder).otherwise(LootItem.lootTableItem(Items.WHEAT_SEEDS))));
+
+		this.add(ModBlocks.CASSAVA_CROP.get(), cassavaLoot);
 	}
 
 	protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {

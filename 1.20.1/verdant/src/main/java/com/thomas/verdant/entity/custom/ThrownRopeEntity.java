@@ -48,7 +48,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 
 	@Override
 	protected Item getDefaultItem() {
-		return ModItems.COFFEE_BERRIES.get();
+		return ModItems.ROPE_COIL.get();
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 		RopeBlock rope = ((RopeBlock) ModBlocks.ROPE.get());
 
 		// Check if it can place a rope at the given position.
-		boolean canPlace = rope.canSurvive(state, this.level(), pos);
+		boolean canPlace = this.level().getBlockState(pos).isAir() && rope.canSurvive(state, this.level(), pos);
 
 		// Store the maximum length of the rope.
 		int i = this.getLength();
@@ -102,7 +102,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 			}
 		}
 
-		Vec3 droppos = mutpos.above().getCenter();
+		Vec3 droppos = canPlace ? mutpos.above().getCenter() : mutpos.getCenter();
 		// Drop leftover rope.
 		level.addFreshEntity(
 				new ItemEntity(level, droppos.x, droppos.y, droppos.z, new ItemStack(ModBlocks.ROPE.get(), i)));

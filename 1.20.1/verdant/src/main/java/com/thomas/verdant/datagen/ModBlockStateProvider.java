@@ -1,8 +1,11 @@
 package com.thomas.verdant.datagen;
 
+import java.util.function.Supplier;
+
 import com.google.common.base.Function;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 
 import net.minecraft.core.Direction;
@@ -43,6 +46,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 
+		tumbledBlockWithItem(ModBlocks.CASSAVA_ROOTED_DIRT);
+
 		blockWithItem(ModBlocks.DIRT_COAL_ORE);
 		blockWithItem(ModBlocks.DIRT_COPPER_ORE);
 		blockWithItem(ModBlocks.DIRT_IRON_ORE);
@@ -61,11 +66,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
 		// Frame block
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.FRAME_BLOCK.get(), "cutout");
-		
+
 		// Poison ivy block
 		logBlock((RotatedPillarBlock) ModBlocks.POISON_IVY_BLOCK.get());
 		logBlock((RotatedPillarBlock) ModBlocks.TOXIC_ASH_BLOCK.get());
-
 
 		// Standard verdant wood
 		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
@@ -164,6 +168,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Coffee
 		makeCoffeeCrop((CoffeeCropBlock) ModBlocks.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
+		// Cassava
+		makeCassavaCrop((CassavaCropBlock) ModBlocks.CASSAVA_CROP.get(), "cassava_crop_", "cassava_crop_");
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -398,9 +404,62 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		return models;
 	}
 
+	private ConfiguredModel[] cassavaStates(BlockState state, CropBlock block, String modelName, String textureName) {
+		ConfiguredModel[] models = new ConfiguredModel[1];
+		int stage = (state.getValue(CassavaCropBlock.AGE));
+		models[0] = new ConfiguredModel(
+				models().crop(modelName + stage, new ResourceLocation(Verdant.MOD_ID, "block/" + textureName + stage))
+						.renderType("cutout"));
+
+		return models;
+	}
+
 	protected void makeCoffeeCrop(CropBlock block, String modelName, String textureName) {
 		Function<BlockState, ConfiguredModel[]> function = state -> coffeeStates(state, block, modelName, textureName);
 
 		getVariantBuilder(block).forAllStates(function);
+	}
+
+	protected void makeCassavaCrop(CassavaCropBlock block, String modelName, String textureName) {
+		Function<BlockState, ConfiguredModel[]> function = state -> cassavaStates(state, block, modelName, textureName);
+
+		getVariantBuilder(block).forAllStates(function);
+	}
+
+	protected void tumbledBlockWithItem(Supplier<Block> blockSupplier) {
+		ModelFile simple = cubeAll(blockSupplier.get());
+		tumbledBlockWithItem(blockSupplier, simple);
+	}
+
+	protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, ModelFile model) {
+		// Every possible unique rotation of the model.
+		// With most simple blocks, many of these states are superfluous. However, it
+		// doesn't hurt to have them.
+		getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder().modelFile(model)
+				.rotationX(0).rotationY(0).nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel()
+				.modelFile(model).rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270)
+				.nextModel().modelFile(model).rotationX(90).rotationY(0).nextModel().modelFile(model).rotationX(90)
+				.rotationY(90).nextModel().modelFile(model).rotationX(90).rotationY(180).nextModel().modelFile(model)
+				.rotationX(90).rotationY(270).nextModel().modelFile(model).rotationX(180).rotationY(0).nextModel()
+				.modelFile(model).rotationX(180).rotationY(90).nextModel().modelFile(model).rotationX(180)
+				.rotationY(180).nextModel().modelFile(model).rotationX(180).rotationY(270).nextModel().modelFile(model)
+				.rotationX(270).rotationY(0).nextModel().modelFile(model).rotationX(270).rotationY(90).nextModel()
+				.modelFile(model).rotationX(270).rotationY(180).nextModel().modelFile(model).rotationX(270)
+				.rotationY(270).build());
+		simpleBlockItem(blockSupplier.get(), model);
+	}
+
+	protected void spunBlockWithItem(Supplier<Block> blockSupplier) {
+		ModelFile simple = cubeAll(blockSupplier.get());
+		spunBlockWithItem(blockSupplier, simple);
+	}
+
+	protected void spunBlockWithItem(Supplier<Block> blockSupplier, ModelFile model) {
+		// Every possible y-rotation of the model.
+		getVariantBuilder(blockSupplier.get())
+				.forAllStates((state) -> ConfiguredModel.builder().modelFile(model).rotationX(0).rotationY(0)
+						.nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel().modelFile(model)
+						.rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270).build());
+		simpleBlockItem(blockSupplier.get(), model);
 	}
 }

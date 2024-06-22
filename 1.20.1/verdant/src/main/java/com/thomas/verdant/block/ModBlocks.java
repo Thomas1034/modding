@@ -5,9 +5,11 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Nullable;
 
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.FrameBlock;
+import com.thomas.verdant.block.custom.HoeRemovableItemBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
@@ -43,6 +45,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -169,7 +172,7 @@ public class ModBlocks {
 	// Verdant logs
 	public static final RegistryObject<Block> WILTED_VERDANT_LEAVES = registerBlockWithItem("wilted_verdant_leaves",
 			() -> new WiltedVerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
-	
+
 	public static final RegistryObject<Block> VERDANT_LEAVES = registerBlockWithItem("verdant_leaves",
 			() -> new VerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
 
@@ -631,6 +634,17 @@ public class ModBlocks {
 	public static final RegistryObject<Block> THORN_SPIKES = registerBlockWithItem("thorn_spikes",
 			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).noOcclusion().strength(0.95F),
 					3.0f));
+
+	// Cassava
+	public static final RegistryObject<Block> CASSAVA_CROP = registerBlockWithItem("cassava_crop",
+			() -> new CassavaCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
+	@SuppressWarnings("resource")
+	public static final RegistryObject<Block> CASSAVA_ROOTED_DIRT = registerBlockWithItem("cassava_rooted_dirt",
+			() -> new HoeRemovableItemBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT), (context) -> {
+				return new ItemStack(Items.DIAMOND, context.getLevel().random.nextInt(1, 3));
+			}, (context) -> {
+				return Blocks.DIRT.defaultBlockState();
+			}));
 
 	// Boilerplate from here on.
 	private static <T extends Block> RegistryObject<T> registerBlockOnly(String name, Supplier<T> block) {

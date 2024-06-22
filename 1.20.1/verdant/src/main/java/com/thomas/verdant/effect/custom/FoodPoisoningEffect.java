@@ -1,8 +1,6 @@
 package com.thomas.verdant.effect.custom;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.function.Function;
 
 import net.minecraft.world.effect.MobEffect;
@@ -10,7 +8,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 
 public class FoodPoisoningEffect extends MobEffect {
 
@@ -24,6 +21,7 @@ public class FoodPoisoningEffect extends MobEffect {
 	// This should be interesting.
 	// The inflicted level is the same as that of this effect.
 	// An inflicted effect is more likely if the amplifier is higher.
+	@SuppressWarnings("resource")
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);

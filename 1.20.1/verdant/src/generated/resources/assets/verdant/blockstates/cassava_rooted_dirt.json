@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "verdant:block/cassava_rooted_dirt"
+      },
+      {
+        "model": "verdant:block/cassava_rooted_dirt",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/cassava_rooted_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/cassava_rooted_dirt",
+        "x": 90,
+        "y": 90
+      }
+    ]
+  }
+}
