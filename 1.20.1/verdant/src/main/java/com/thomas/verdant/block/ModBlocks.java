@@ -65,6 +65,8 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -75,10 +77,12 @@ public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Verdant.MOD_ID);
-	
+
 	// Register the Verdant heartwood set.
-	public static final WoodSet VERDANT_HEARTWOOD = new WoodSet(ModBlocks.BLOCKS, ModItems.ITEMS, "verdant_heartwood");
-	
+	public static final WoodSet VERDANT_HEARTWOOD = new WoodSet(ModBlocks.BLOCKS, ModItems.ITEMS, Verdant.MOD_ID,
+			"verdant_heartwood", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN)
+					.instrument(NoteBlockInstrument.BASS).strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava(),
+			2.0f, 5, 2);
 
 	// Decorative flowers
 	public static final RegistryObject<Block> BLEEDING_HEART = registerBlockWithItem("bleeding_heart",
@@ -178,15 +182,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> STINKING_BLOSSOM = registerBlockWithItem("stinking_blossom",
 			() -> new StinkingBlossomBlock(BlockBehaviour.Properties.copy(Blocks.SPORE_BLOSSOM).noOcclusion()));
 
-	public static final RegistryObject<Block> STRIPPED_VERDANT_HEARTWOOD_LOG = registerFuelBlockWithItem(
-			"stripped_verdant_heartwood_log",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG), 2, 5),
-			BurnTimes.LOG * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> STRIPPED_VERDANT_HEARTWOOD_LOG = VERDANT_HEARTWOOD.getStrippedLog();
 
-	public static final RegistryObject<Block> STRIPPED_VERDANT_HEARTWOOD_WOOD = registerFuelBlockWithItem(
-			"stripped_verdant_heartwood_wood",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD), 2, 5),
-			BurnTimes.LOG * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> STRIPPED_VERDANT_HEARTWOOD_WOOD = VERDANT_HEARTWOOD.getStrippedWood();
 
 	public static final RegistryObject<Block> STRIPPED_VERDANT_LOG = registerFuelBlockWithItem("stripped_verdant_log",
 			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
@@ -298,210 +296,46 @@ public class ModBlocks {
 			() -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
 					ModWoodTypes.VERDANT));
 
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_BUTTON = registerFuelBlockWithItem(
-			"verdant_heartwood_button", () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON),
-					ModBlockSetType.VERDANT_HEARTWOOD, 20, true) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_BUTTON = VERDANT_HEARTWOOD.getButton();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_DOOR = VERDANT_HEARTWOOD.getDoor();
 
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.BUTTON * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_FENCE = VERDANT_HEARTWOOD.getFence();
 
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_DOOR = registerFuelBlockWithItem(
-			"verdant_heartwood_door",
-			() -> new DoorBlock(ModBlockProperties.VERDANT_HEARTWOOD_DOOR, ModBlockSetType.VERDANT) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_FENCE_GATE = VERDANT_HEARTWOOD.getFenceGate();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.DOOR * BurnTimes.HEARTWOOD_BONUS);
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_FENCE = registerFuelBlockWithItem(
-			"verdant_heartwood_fence", () -> new FenceBlock(ModBlockProperties.VERDANT_HEARTWOOD_FENCE) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
-
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.FENCE * BurnTimes.HEARTWOOD_BONUS);
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_FENCE_GATE = registerFuelBlockWithItem(
-			"verdant_heartwood_fence_gate", () -> new FenceGateBlock(ModBlockProperties.VERDANT_HEARTWOOD_FENCE_GATE,
-					SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
-
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.FENCE_GATE * BurnTimes.HEARTWOOD_BONUS);
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_HANGING_SIGN = registerBlockOnly(
-			"verdant_heartwood_hanging_sign",
-			() -> new ModHangingSignBlock(ModBlockProperties.VERDANT_HEARTWOOD_HANGING_SIGN,
-					ModWoodTypes.VERDANT_HEARTWOOD));
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_HANGING_SIGN = VERDANT_HEARTWOOD.getHangingSign();
 
 	// Heartwood variants
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_LOG = registerFuelBlockWithItem("verdant_heartwood_log",
-			() -> new ModFlammableRotatedPillarBlock(ModBlockProperties.VERDANT_HEARTWOOD_LOGS, 2, 5),
-			BurnTimes.LOG * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_LOG = VERDANT_HEARTWOOD.getLog();
 
 	// Verdant heartwood planks
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_PLANKS = registerFuelBlockWithItem(
-			"verdant_heartwood_planks", () -> new Block(ModBlockProperties.VERDANT_HEARTWOOD_PLANKS) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-					
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_PLANKS = VERDANT_HEARTWOOD.getPlanks();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.PLANKS);
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_PRESSURE_PLATE = registerFuelBlockWithItem(
-			"verdant_heartwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS,
-					ModBlockProperties.VERDANT_HEARTWOOD_PRESSURE_PLATE, ModBlockSetType.VERDANT_HEARTWOOD) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
-
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.PRESSURE_PLATE * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_PRESSURE_PLATE = VERDANT_HEARTWOOD.getPressurePlate();
 
 	// Verdant signs
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_SIGN = registerBlockOnly("verdant_heartwood_sign",
-			() -> new ModStandingSignBlock(ModBlockProperties.VERDANT_HEARTWOOD_SIGN, ModWoodTypes.VERDANT_HEARTWOOD));
-	
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_SLAB = registerFuelBlockWithItem(
-			"verdant_heartwood_slab", () -> new SlabBlock(ModBlockProperties.VERDANT_HEARTWOOD_SLAB) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_SIGN = VERDANT_HEARTWOOD.getSign();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
-
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.SLAB * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_SLAB = VERDANT_HEARTWOOD.getSlab();
 
 	// Verdant plank items
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_STAIRS = registerFuelBlockWithItem(
-			"verdant_heartwood_stairs",
-			() -> new StairBlock(() -> ModBlocks.VERDANT_HEARTWOOD_PLANKS.get().defaultBlockState(),
-					ModBlockProperties.VERDANT_HEARTWOOD_STAIRS) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_STAIRS = VERDANT_HEARTWOOD.getStairs();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_TRAPDOOR = VERDANT_HEARTWOOD.getTrapdoor();
 
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.STAIRS * BurnTimes.HEARTWOOD_BONUS);
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_TRAPDOOR = registerFuelBlockWithItem(
-			"verdant_heartwood_trapdoor",
-			() -> new TrapDoorBlock(ModBlockProperties.VERDANT_HEARTWOOD_TRAPDOOR, ModBlockSetType.VERDANT) {
-				@Override
-				public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 5;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WALL_HANGING_SIGN = VERDANT_HEARTWOOD
+			.getWallHangingSign();
 
-				@Override
-				public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return 2;
-				}
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WALL_SIGN = VERDANT_HEARTWOOD.getWallSign();
 
-				@Override
-				public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-					return true;
-				}
-			}, BurnTimes.TRAPDOOR * BurnTimes.HEARTWOOD_BONUS);
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WALL_HANGING_SIGN = registerBlockOnly(
-			"verdant_heartwood_wall_hanging_sign",
-			() -> new ModWallHangingSignBlock(ModBlockProperties.VERDANT_HEARTWOOD_WALL_HANGING_SIGN,
-					ModWoodTypes.VERDANT_HEARTWOOD));
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WALL_SIGN = registerBlockOnly(
-			"verdant_heartwood_wall_sign",
-			() -> new ModWallSignBlock(ModBlockProperties.VERDANT_HEARTWOOD_WALL_SIGN, ModWoodTypes.VERDANT_HEARTWOOD));
-
-	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WOOD = registerFuelBlockWithItem(
-			"verdant_heartwood_wood",
-			() -> new ModFlammableRotatedPillarBlock(ModBlockProperties.VERDANT_HEARTWOOD_LOGS, 2, 5),
-			BurnTimes.LOG * BurnTimes.HEARTWOOD_BONUS);
+	public static final RegistryObject<Block> VERDANT_HEARTWOOD_WOOD = VERDANT_HEARTWOOD.getWood();
 
 	public static final RegistryObject<Block> VERDANT_LEAVES = registerBlockWithItem("verdant_leaves",
 			() -> new VerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));
 
 	public static final RegistryObject<Block> VERDANT_LOG = registerFuelBlockWithItem("verdant_log",
-			() -> new ModFlammableRotatedPillarBlock(ModBlockProperties.VERDANT_HEARTWOOD_LOGS), BurnTimes.LOG);
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), BurnTimes.LOG);
 
 	public static final RegistryObject<Block> VERDANT_MUD_GRASS_BLOCK = registerBlockWithItem("verdant_mud_grass_block",
 			() -> new VerdantRootedDirtBlock(ModBlockProperties.VERDANT_ROOTS));

@@ -77,9 +77,9 @@ public class ModBoatEntity extends Boat {
 		private static final IntFunction<ModBoatEntity.Type> BY_ID = ByIdMap.continuous(Enum::ordinal, values(),
 				ByIdMap.OutOfBoundsStrategy.ZERO);
 
-		private Type(Block pPlanks, String pName) {
-			this.name = pName;
-			this.planks = pPlanks;
+		private Type(Block planks, String name) {
+			this.name = name;
+			this.planks = planks;
 		}
 
 		public String getSerializedName() {
@@ -101,13 +101,13 @@ public class ModBoatEntity extends Boat {
 		/**
 		 * Get a boat type by its enum ordinal
 		 */
-		public static ModBoatEntity.Type byId(int pId) {
-			return BY_ID.apply(pId);
+		public static ModBoatEntity.Type byId(int id) {
+			return BY_ID.apply(id);
 		}
 
 		@SuppressWarnings("deprecation")
-		public static ModBoatEntity.Type byName(String pName) {
-			return CODEC.byName(pName, VERDANT);
+		public static ModBoatEntity.Type byName(String name) {
+			return CODEC.byName(name, VERDANT);
 		}
 	}
 }

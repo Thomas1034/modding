@@ -53,12 +53,9 @@ public class ModItems {
 			() -> new HangingSignItem(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
 					new Item.Properties().stacksTo(16)));
 
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SIGN = registerItem("verdant_heartwood_sign",
-			() -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.VERDANT_HEARTWOOD_SIGN.get(),
-					ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get()));
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HANGING_SIGN = registerItem(
-			"verdant_heartwood_hanging_sign", () -> new HangingSignItem(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
-					ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SIGN = ModBlocks.VERDANT_HEARTWOOD.getSignItem();
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HANGING_SIGN = ModBlocks.VERDANT_HEARTWOOD
+			.getHangingSignItem();
 
 	// Feed to goats?
 	public static final RegistryObject<Item> COFFEE_BERRIES = ITEMS
@@ -133,6 +130,7 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> BITTER_CASSAVA = ITEMS.register("bitter_cassava",
 			() -> new Item(new Item.Properties().stacksTo(64)));
+
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);

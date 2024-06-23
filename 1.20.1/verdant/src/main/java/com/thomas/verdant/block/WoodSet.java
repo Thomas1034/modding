@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
+import com.thomas.verdant.block.custom.ModHangingSignBlock;
 import com.thomas.verdant.block.custom.ModStandingSignBlock;
 import com.thomas.verdant.block.custom.ModWallHangingSignBlock;
 import com.thomas.verdant.block.custom.ModWallSignBlock;
@@ -13,7 +13,6 @@ import com.thomas.verdant.util.ModBlockSetType;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
@@ -38,9 +37,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -90,8 +86,8 @@ public class WoodSet {
 
 	// Supplier must supply a new instance per call.
 	public WoodSet(DeferredRegister<Block> blockRegister, DeferredRegister<Item> itemRegister, String modid,
-			String baseName, WoodType woodType, Supplier<BlockBehaviour.Properties> baseProperties,
-			float burnTimeMultiplier, int flammability, int fireSpreadSpeed) {
+			String baseName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeMultiplier,
+			int flammability, int fireSpreadSpeed) {
 		this.blockRegister = blockRegister;
 		this.itemRegister = itemRegister;
 
@@ -103,6 +99,12 @@ public class WoodSet {
 		this.burnTimeMultiplier = burnTimeMultiplier;
 		this.flammability = flammability;
 		this.fireSpreadSpeed = fireSpreadSpeed;
+
+		// Generate blocks and items.
+		this.registerBlocks();
+		this.registerItems();
+		
+		
 	}
 
 	protected void registerBlocks() {
@@ -238,7 +240,7 @@ public class WoodSet {
 				() -> new ModWallSignBlock(wallSignProperties(this.baseProperties.get()), this.woodType));
 
 		this.hangingSign = this.registerBlockOnly(hangingSignName(this.baseName),
-				() -> new ModWallHangingSignBlock(hangingSignProperties(this.baseProperties.get()), this.woodType));
+				() -> new ModHangingSignBlock(hangingSignProperties(this.baseProperties.get()), this.woodType));
 
 		this.wallHangingSign = this.registerBlockOnly(wallHangingSignName(this.baseName),
 				() -> new ModWallHangingSignBlock(wallHangingSignProperties(this.baseProperties.get()), this.woodType));
@@ -332,43 +334,6 @@ public class WoodSet {
 						new Item.Properties().stacksTo(16)));
 	}
 
-	protected void generateData() {
-
-//		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_LOG.get());
-//		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
-//		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
-//		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-//		blockWithItem(ModBlocks.VERDANT_HEARTWOOD_PLANKS);
-//		stairsBlock(((StairBlock) ModBlocks.VERDANT_HEARTWOOD_STAIRS.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//		slabBlock(((SlabBlock) ModBlocks.VERDANT_HEARTWOOD_SLAB.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//
-//		buttonBlock(((ButtonBlock) ModBlocks.VERDANT_HEARTWOOD_BUTTON.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//		pressurePlateBlock(((PressurePlateBlock) ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//
-//		fenceBlock(((FenceBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//		fenceGateBlock(((FenceGateBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//
-//		doorBlockWithRenderType(((DoorBlock) ModBlocks.VERDANT_HEARTWOOD_DOOR.get()),
-//				modLoc("block/verdant_heartwood_door_bottom"), modLoc("block/verdant_heartwood_door_top"), "cutout");
-//		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get()),
-//				modLoc("block/verdant_heartwood_trapdoor"), true, "cutout");
-//
-//		signBlock(((StandingSignBlock) ModBlocks.VERDANT_HEARTWOOD_SIGN.get()),
-//				((WallSignBlock) ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get()),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-//
-//		hangingSignBlock(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
-//				ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(),
-//				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-
-	}
 
 	public String getBaseName() {
 		return baseName;
