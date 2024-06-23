@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:roasted_coffee_from_smelting_coffee_berries_coffee_berries"
+        "recipe": "verdant:roasted_coffee_from_smoking_coffee_berries"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "verdant:roasted_coffee_from_smelting_coffee_berries_coffee_berries"
+      "verdant:roasted_coffee_from_smoking_coffee_berries"
     ]
   },
   "sends_telemetry_event": false

@@ -393,14 +393,25 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	}
 
+	// The function to generate the model array for each state of the block.
 	private ConfiguredModel[] coffeeStates(BlockState state, CropBlock block, String modelName, String textureName) {
+		// Create a (very small) array to hold the model in.
 		ConfiguredModel[] models = new ConfiguredModel[1];
-		models[0] = new ConfiguredModel(models()
-				.crop(modelName + state.getValue(((CoffeeCropBlock) block).getAgeProperty()),
-						new ResourceLocation(Verdant.MOD_ID,
-								"block/" + textureName + state.getValue(((CoffeeCropBlock) block).getAgeProperty())))
-				.renderType("cutout"));
-
+		// Set the model to a new configured model.
+		models[0] = new ConfiguredModel(
+				// Get the list of builtin model templates
+				models()
+						// Create a new crop model.
+						.crop(
+								// Add the age of the state to the name, so it's unique
+								modelName + state.getValue(((CoffeeCropBlock) block).getAgeProperty()),
+								// Create the texture location by adding the age of the state to the name
+								new ResourceLocation(Verdant.MOD_ID,
+										"block/" + textureName
+												+ state.getValue(((CoffeeCropBlock) block).getAgeProperty())))
+						// The render type is cutout, since it is a crop
+						.renderType("cutout"));
+		// Return the (small) array
 		return models;
 	}
 
@@ -415,8 +426,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	protected void makeCoffeeCrop(CropBlock block, String modelName, String textureName) {
+		// Call the above function to create the models, with the data passed in
 		Function<BlockState, ConfiguredModel[]> function = state -> coffeeStates(state, block, modelName, textureName);
-
+		// Add all of the states
 		getVariantBuilder(block).forAllStates(function);
 	}
 

@@ -22,12 +22,12 @@ public class ModChestBoatEntity extends ChestBoat {
 		super(pEntityType, pLevel);
 	}
 
-	public ModChestBoatEntity(Level pLevel, double pX, double pY, double pZ) {
+	public ModChestBoatEntity(Level pLevel, double x, double y, double z) {
 		this(ModEntityType.VERDANT_CHEST_BOAT.get(), pLevel);
-		this.setPos(pX, pY, pZ);
-		this.xo = pX;
-		this.yo = pY;
-		this.zo = pZ;
+		this.setPos(x, y, z);
+		this.xo = x;
+		this.yo = y;
+		this.zo = z;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class ModChestBoatEntity extends ChestBoat {
 		return super.getDropItem();
 	}
 
-	public void setVariant(ModBoatEntity.Type pVariant) {
-		this.entityData.set(DATA_ID_TYPE, pVariant.ordinal());
+	public void setVariant(ModBoatEntity.Type variant) {
+		this.entityData.set(DATA_ID_TYPE, variant.ordinal());
 	}
 
 	protected void defineSynchedData() {
@@ -48,13 +48,13 @@ public class ModChestBoatEntity extends ChestBoat {
 		this.entityData.define(DATA_ID_TYPE, ModBoatEntity.Type.VERDANT.ordinal());
 	}
 
-	protected void addAdditionalSaveData(CompoundTag pCompound) {
-		pCompound.putString("Type", this.getModVariant().getSerializedName());
+	protected void addAdditionalSaveData(CompoundTag tag) {
+		tag.putString("Type", this.getModVariant().getSerializedName());
 	}
 
-	protected void readAdditionalSaveData(CompoundTag pCompound) {
-		if (pCompound.contains("Type", 8)) {
-			this.setVariant(ModBoatEntity.Type.byName(pCompound.getString("Type")));
+	protected void readAdditionalSaveData(CompoundTag tag) {
+		if (tag.contains("Type", 8)) {
+			this.setVariant(ModBoatEntity.Type.byName(tag.getString("Type")));
 		}
 	}
 

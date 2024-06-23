@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Verdant.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
+
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 

@@ -12,8 +12,8 @@ public class ModHangingSignBlockEntity extends SignBlockEntity {
 	private static final int MAX_TEXT_LINE_WIDTH = 60;
 	private static final int TEXT_LINE_HEIGHT = 9;
 
-	public ModHangingSignBlockEntity(BlockPos pPos, BlockState pBlockState) {
-		super(ModBlockEntities.MOD_HANGING_SIGN.get(), pPos, pBlockState);
+	public ModHangingSignBlockEntity(BlockPos pos, BlockState state) {
+		super(ModBlockEntities.MOD_HANGING_SIGN.get(), pos, state);
 	}
 
 	@Override
