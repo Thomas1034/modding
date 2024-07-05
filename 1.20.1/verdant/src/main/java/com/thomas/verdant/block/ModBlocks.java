@@ -15,6 +15,7 @@ import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.RopeBlock;
+import com.thomas.verdant.block.custom.SlowBushBlock;
 import com.thomas.verdant.block.custom.SpikesBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
@@ -48,6 +49,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RedStoneOreBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -341,6 +343,10 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> WATER_HEMLOCK = registerBlockOnly("water_hemlock",
 			() -> new WaterHemlockBlock(BlockBehaviour.Properties.copy(Blocks.SMALL_DRIPLEAF)));
+
+	public static final RegistryObject<Block> WILD_CASSAVA = registerBlockWithItem("wild_cassava",
+			() -> new SlowBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
+					.offsetType(OffsetType.XZ), 0.9f, 1.0f, 0.9f));
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);

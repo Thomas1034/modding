@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-04T16:19:28.3956978	Block States: verdant
+// 1.20.1	2024-07-04T22:59:15.1389585	Block States: verdant
 342dd2cf155c3b51ad77886446a1824fcaaa2f5b assets/verdant/blockstates/bitter_cassava_crop.json
 8937687c73ad1d5aa63b28513a79b059d6ac115b assets/verdant/blockstates/bitter_cassava_rooted_dirt.json
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
@@ -68,6 +68,7 @@ f5049b2edb1b14ce534ca9742af9a340d091dca4 assets/verdant/blockstates/verdant_wall
 da64056f3cbaa9b83c96b30e68af27c834316928 assets/verdant/blockstates/verdant_wall_sign.json
 9217e33a840d79afa3c506de26abaf0e2972f87a assets/verdant/blockstates/verdant_wood.json
 321b2563c0417153a0479d812b09806658505bad assets/verdant/blockstates/water_hemlock.json
+cdb03c7123d1553c00931387465efa684f953964 assets/verdant/blockstates/wild_cassava.json
 7cc8ce856540d407bcac33040cf6761e39bc5167 assets/verdant/blockstates/wild_coffee.json
 eb2d6b0a76a195bc28e9e55b524314eda28b7ac7 assets/verdant/models/block/bitter_cassava_crop_0.json
 ffea56b579c4d27288f3b537f59e58b04061efa8 assets/verdant/models/block/bitter_cassava_crop_1.json
@@ -207,6 +208,7 @@ acd6c83f92d6e09675688b3780c803875322ff77 assets/verdant/models/block/verdant_tra
 895ee05670dbf6d087122f6390cb47dc3a106089 assets/verdant/models/block/verdant_wood_horizontal.json
 e4e212c08f10becac90e15b860302965b4314ef3 assets/verdant/models/block/water_hemlock_bottom.json
 bc77a93f5b310713819c0617cbd075adf5662b47 assets/verdant/models/block/water_hemlock_top.json
+aa7ebaf97f999c7d3a2e87ab532e5d45739c797a assets/verdant/models/block/wild_cassava.json
 4e4d79e32c3f18545edb968dde966cc6f89dffc3 assets/verdant/models/block/wild_coffee.json
 ddc88b4496b318b3ab2a3d0485ef812b375490bc assets/verdant/models/item/bitter_cassava_rooted_dirt.json
 b10b7fba40dfbd701734207280f01f4853e58018 assets/verdant/models/item/cassava_rooted_dirt.json
@@ -231,3 +233,4 @@ e5df5ec3cb6094e032f9da2b4b94e76187774ae2 assets/verdant/models/item/verdant_root
 a99418e2ffa558574de190dece78714b42bffc77 assets/verdant/models/item/verdant_rooted_mud.json
 943866e5f3787824b651f56bb84e385bfcd63815 assets/verdant/models/item/verdant_tendril.json
 51281a7e51017ffd1419aca110562a9ad263aade assets/verdant/models/item/verdant_tendril_plant.json
+d427c1c655ce70a4a6dbba3f025cc2338fa22fdb assets/verdant/models/item/wild_cassava.json

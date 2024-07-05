@@ -105,6 +105,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ROPE.get());
 						pOutput.accept(ModBlocks.THORN_SPIKES.get());
 						pOutput.accept(ModBlocks.POISON_IVY.get());
+						pOutput.accept(ModBlocks.WILD_CASSAVA.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());
 						pOutput.accept(ModBlocks.WILD_COFFEE.get());

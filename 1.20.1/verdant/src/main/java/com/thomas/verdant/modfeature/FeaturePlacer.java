@@ -113,6 +113,7 @@ public class FeaturePlacer {
 		registerSurfaceFeature(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON, "small_grass");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON, "tall_fern");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON, "tall_grass");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_CASSAVA.get()), Rarity.UNCOMMON, "shrub");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON, "thorn_bush");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.EXTREMELY_UNCOMMON,
 				"bleeding_heart_flower");
@@ -121,11 +122,11 @@ public class FeaturePlacer {
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
 				Rarity.RARE, "floor_glow_lichen");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.RARE, "blue_orchid");
-		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.VERY_RARE, "wild_coffee");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.RARE, "wild_coffee");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE, "brown_mushroom");
-		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE, "red_mushroom");
-		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.EXTREMELY_RARE,
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.VERY_RARE,
 				"floor_stinking_blossom");
+		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE, "red_mushroom");
 		System.out.println("Registered " + SURFACE_FEATURES);
 	}
 

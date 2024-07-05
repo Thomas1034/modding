@@ -36,6 +36,7 @@ public class WaterHemlockBlock extends SmallDripleafBlock {
 			if (!level.isClientSide) {
 				livingEntity.addEffect(WITHER.get());
 				//Blocks.SUNFLOWER;
+				
 			}
 		}
 	}

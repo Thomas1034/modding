@@ -38,6 +38,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CASSAVA_CUTTINGS);
 		simpleItem(ModItems.BITTER_CASSAVA);
 		simpleItem(ModItems.CASSAVA);
+		simpleBlockItemBlockTexture(ModBlocks.WILD_CASSAVA);
 		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);

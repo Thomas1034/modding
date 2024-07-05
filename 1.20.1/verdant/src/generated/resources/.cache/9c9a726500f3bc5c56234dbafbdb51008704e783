@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-04T16:05:44.8070217	Item Models: verdant
+// 1.20.1	2024-07-04T22:59:15.1519829	Item Models: verdant
 6a73ef878a16b4651c7a8f9d8b6a298f8f2a9538 assets/verdant/models/item/bitter_bread.json
 84580abb9da85465b6dfcf271aef5aa57c7e73fa assets/verdant/models/item/bitter_cassava.json
 9968910aceb1564f60d29374c6979d7f904b5251 assets/verdant/models/item/bitter_cassava_cuttings.json
@@ -79,5 +79,6 @@ ee66f77bff1270e4246e82563403b0a236ab9f4a assets/verdant/models/item/verdant_slab
 204d80a8290a3ff07acfa18713026816d3448ad6 assets/verdant/models/item/verdant_vine.json
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/item/verdant_wood.json
 fc842670d504961183ee7fae35d26b9de1dac409 assets/verdant/models/item/water_hemlock.json
+3582fbdea72e2c4075617ba1c5d9220595f1ca16 assets/verdant/models/item/wild_cassava.json
 29437b96327f5d9d54846050c12f44221c980dca assets/verdant/models/item/wild_coffee.json
 e25b9e007b7a6cbc73776d0a22514638be4e2288 assets/verdant/models/item/wilted_verdant_leaves.json

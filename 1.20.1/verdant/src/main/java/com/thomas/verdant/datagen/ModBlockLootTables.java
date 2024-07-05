@@ -25,6 +25,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -42,6 +43,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		ModBlocks.VERDANT.addLootTables(this);
 
 		this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
+
+		this.add(ModBlocks.WILD_CASSAVA.get(),
+				this.createChanceDrops(ModBlocks.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.125f));
 
 		this.dropSelf(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());
@@ -160,6 +164,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 //			}
 //		}
 //	}
+
+	protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
+		return createShearsDispatchTable(block,
+				this.applyExplosionDecay(block,
+						LootItem.lootTableItem(item).when(LootItemRandomChanceCondition.randomChance(chance))
+								.apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE, 2))));
+	}
 
 	protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
 		return createSilkTouchDispatchTable(block,

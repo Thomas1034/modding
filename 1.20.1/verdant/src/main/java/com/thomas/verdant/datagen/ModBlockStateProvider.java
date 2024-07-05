@@ -40,10 +40,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
-		
+
 		doublePlantBlock((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get(), "water_hemlock");
-		
-		
+
+		simpleBlockWithItem(ModBlocks.WILD_CASSAVA.get(),
+				models().cross(blockTexture(ModBlocks.WILD_CASSAVA.get()).getPath(), blockTexture(ModBlocks.WILD_CASSAVA.get()))
+						.renderType("cutout"));
+
 		tumbledBlockWithItem(ModBlocks.CASSAVA_ROOTED_DIRT);
 		tumbledBlockWithItem(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT);
 

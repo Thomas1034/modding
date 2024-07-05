@@ -42,6 +42,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
 
+// Additions
+// Cassava (bitter, normal, golden) hoe and double high
+// Shrub
+// Water hemlock
+
 // Changes
 // Verdant heartwood blocks are now harder to mine.
 // Thorn bushes now do more damage when you are jumping or falling, and less while walking through them. Don't fall on them.
