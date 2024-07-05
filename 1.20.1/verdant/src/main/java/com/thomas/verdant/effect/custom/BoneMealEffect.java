@@ -19,10 +19,11 @@ public class BoneMealEffect extends MobEffect {
 		super.applyEffectTick(entity, amplifier);
 		
 		// Random chance.
-		if (entity.getRandom().nextFloat() >= 0.05) {
+		if (entity.getRandom().nextFloat() >= 0.05 * (amplifier+1)) {
 			return;
 		}
 
+		
 		// Applies bone meal below, at, and above the player.
 		BoneMealItem.applyBonemeal(new ItemStack(Items.BONE_MEAL, 64), entity.level(), entity.blockPosition(),
 				entity instanceof Player ? (Player) entity : null);
@@ -30,6 +31,8 @@ public class BoneMealEffect extends MobEffect {
 				entity instanceof Player ? (Player) entity : null);
 		BoneMealItem.applyBonemeal(new ItemStack(Items.BONE_MEAL, 64), entity.level(), entity.blockPosition().above(),
 				entity instanceof Player ? (Player) entity : null);
+		
+		// Small chance of applying around the player? Maybe add later.
 
 	}
 

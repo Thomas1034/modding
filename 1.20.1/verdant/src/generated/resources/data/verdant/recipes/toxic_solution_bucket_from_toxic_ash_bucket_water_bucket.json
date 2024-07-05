@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
+  "group": "verdant:toxic_solution_bucket",
   "ingredients": [
     {
       "item": "verdant:toxic_ash_bucket"

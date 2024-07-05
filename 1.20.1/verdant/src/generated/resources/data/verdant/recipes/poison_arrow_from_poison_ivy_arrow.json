@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
+  "group": "verdant:poison_arrow",
   "ingredients": [
     {
       "item": "verdant:poison_ivy"

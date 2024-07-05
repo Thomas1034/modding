@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:bitter_starch",
+  "ingredients": [
+    {
+      "item": "verdant:bitter_cassava"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "verdant:bitter_starch"
+  }
+}

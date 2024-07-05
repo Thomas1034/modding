@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "verdant:verdant_stairs",
   "key": {
     "P": {
       "item": "verdant:verdant_planks"

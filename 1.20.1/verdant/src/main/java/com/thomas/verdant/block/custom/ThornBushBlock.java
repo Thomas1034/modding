@@ -19,7 +19,7 @@ import net.minecraft.world.phys.Vec3;
 public class ThornBushBlock extends BushBlock {
 
 	private final float damage;
-	
+
 	public ThornBushBlock(Properties properties, float damage) {
 		super(properties);
 		this.damage = damage;
@@ -30,12 +30,21 @@ public class ThornBushBlock extends BushBlock {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
 				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.75D, (double) 0.8F));
-			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+			if (!level.isClientSide
+					&& (entity.xOld != entity.getX() || entity.yOld != entity.getY() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);
+				double yMovement = Math.abs(entity.getY() - entity.yOld);
 				double xMovement = Math.abs(entity.getZ() - entity.zOld);
+				int cumulativeDamage = 0;
+				if (yMovement >= (double) 0.003F) {
+					cumulativeDamage += this.damage;
+				}
 				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F) {
+					cumulativeDamage += this.damage / 2;
+				}
+				if (cumulativeDamage >= 0) {
 					DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
-					entity.hurt(source, damage);
+					entity.hurt(source, cumulativeDamage);
 				}
 			}
 		}

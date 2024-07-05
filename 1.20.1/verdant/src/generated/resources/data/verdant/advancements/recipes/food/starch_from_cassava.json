@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cassava": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:cassava"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_starch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:starch"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:starch_from_cassava"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cassava",
+      "has_starch",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:starch_from_cassava"
+    ]
+  },
+  "sends_telemetry_event": false
+}

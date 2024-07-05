@@ -37,13 +37,19 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 
+		// For the wood set
+		ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
+		ModBlocks.VERDANT.addLootTables(this);
+
+		this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
+
+		this.dropSelf(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.FRAME_BLOCK.get());
 		this.dropSelf(ModBlocks.THORN_SPIKES.get());
 		this.dropSelf(ModBlocks.ROPE.get());
 		this.dropSelf(ModBlocks.POISON_IVY_BLOCK.get());
 		this.dropSelf(ModBlocks.TOXIC_ASH_BLOCK.get());
-
 		requireSilkTouch(ModBlocks.VERDANT_CONDUIT.get(), Blocks.AIR);
 
 		oreDrop(ModBlocks.DIRT_COAL_ORE.get(), Items.COAL, List.of(1, 1));
@@ -64,8 +70,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(0, 2));
 
 		requireSilkTouch(ModBlocks.ROTTEN_WOOD.get(), Blocks.AIR);
-		requireSilkTouch(ModBlocks.VERDANT_VINE.get(), Items.STICK, List.of(1, 3));
-		requireSilkTouch(ModBlocks.LEAFY_VERDANT_VINE.get(), Items.STICK, List.of(1, 3));
+
+		// TODO
+		this.add(ModBlocks.VERDANT_VINE.get(),
+				this.createMultifaceBlockDrops(ModBlocks.VERDANT_VINE.get(), HAS_SILK_TOUCH));
+		this.add(ModBlocks.LEAFY_VERDANT_VINE.get(),
+				this.createMultifaceBlockDrops(ModBlocks.LEAFY_VERDANT_VINE.get(), HAS_SILK_TOUCH));
+
 		requireSilkTouch(ModBlocks.VERDANT_GRASS_BLOCK.get(), Blocks.DIRT);
 		requireSilkTouch(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
 		requireSilkTouch(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), Blocks.MUD);
@@ -76,48 +87,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.VERDANT_TENDRIL.get());
 		this.dropOther(ModBlocks.POISON_IVY_PLANT.get(), ModBlocks.POISON_IVY.get());
 		this.dropSelf(ModBlocks.POISON_IVY.get());
-		this.dropSelf(ModBlocks.VERDANT_BUTTON.get());
-		this.dropSelf(ModBlocks.VERDANT_FENCE.get());
-		this.dropSelf(ModBlocks.VERDANT_FENCE_GATE.get());
-		this.dropSelf(ModBlocks.VERDANT_PLANKS.get());
-		this.dropSelf(ModBlocks.VERDANT_LOG.get());
-		this.dropSelf(ModBlocks.VERDANT_WOOD.get());
-		this.dropSelf(ModBlocks.STRIPPED_VERDANT_LOG.get());
-		this.dropSelf(ModBlocks.STRIPPED_VERDANT_WOOD.get());
-		this.dropSelf(ModBlocks.VERDANT_PRESSURE_PLATE.get());
-		this.dropSelf(ModBlocks.VERDANT_STAIRS.get());
-		this.dropSelf(ModBlocks.VERDANT_TRAPDOOR.get());
-		this.add(ModBlocks.VERDANT_SLAB.get(), block -> createSlabItemTable(ModBlocks.VERDANT_SLAB.get()));
-		this.add(ModBlocks.VERDANT_DOOR.get(), block -> createDoorTable(ModBlocks.VERDANT_DOOR.get()));
-		this.add(ModBlocks.VERDANT_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_SIGN.get()));
-		this.add(ModBlocks.VERDANT_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.VERDANT_SIGN.get()));
-		this.add(ModBlocks.VERDANT_HANGING_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
-		this.add(ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HANGING_SIGN.get()));
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_BUTTON.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_FENCE.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_LOG.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
-		this.dropSelf(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
-		this.dropSelf(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_STAIRS.get());
-		this.dropSelf(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get());
-		this.add(ModBlocks.VERDANT_HEARTWOOD_SLAB.get(),
-				block -> createSlabItemTable(ModBlocks.VERDANT_HEARTWOOD_SLAB.get()));
-		this.add(ModBlocks.VERDANT_HEARTWOOD_DOOR.get(),
-				block -> createDoorTable(ModBlocks.VERDANT_HEARTWOOD_DOOR.get()));
-		this.add(ModBlocks.VERDANT_HEARTWOOD_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_SIGN.get()));
-		this.add(ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_SIGN.get()));
-		this.add(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get()));
-		this.add(ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(),
-				block -> createSingleItemTable(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get()));
+
 		this.dropSelf(ModBlocks.BLEEDING_HEART.get());
 		this.add(ModBlocks.POTTED_BLEEDING_HEART.get(), createPotFlowerItemTable(ModBlocks.BLEEDING_HEART.get()));
 		this.dropSelf(ModBlocks.STINKING_BLOSSOM.get());
@@ -134,13 +104,62 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 						.add(LootItem.lootTableItem(ModItems.CASSAVA_CUTTINGS.get())
 								.when(cassavaCropMaxAgeBuilder.invert())))
 				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(ModItems.CASSAVA_CUTTINGS.get())
+								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+										0.5714286F, 2))
+								.when(cassavaCropMaxAgeBuilder).setWeight(31))
 						.add(LootItem
-								.lootTableItem(ModItems.CASSAVA_CUTTINGS.get()).apply(ApplyBonusCount
-										.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))
-								.when(cassavaCropMaxAgeBuilder)));
+								.lootTableItem(ModItems.BITTER_CASSAVA_CUTTINGS.get()).apply(ApplyBonusCount
+										.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 4))
+								.when(cassavaCropMaxAgeBuilder).setWeight(1)));
 
 		this.add(ModBlocks.CASSAVA_CROP.get(), cassavaLoot);
+
+		LootItemCondition.Builder bitterCassavaCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.BITTER_CASSAVA_CROP.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CassavaCropBlock.AGE,
+						CassavaCropBlock.MAX_AGE));
+
+		LootTable.Builder bitterCassavaLoot = LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(ModItems.BITTER_CASSAVA_CUTTINGS.get())
+								.when(bitterCassavaCropMaxAgeBuilder.invert())))
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(ModItems.BITTER_CASSAVA_CUTTINGS.get())
+								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+										0.5714286F, 4))
+								.when(bitterCassavaCropMaxAgeBuilder).setWeight(15))
+						.add(LootItem
+								.lootTableItem(ModItems.CASSAVA_CUTTINGS.get()).apply(ApplyBonusCount
+										.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 1))
+								.when(bitterCassavaCropMaxAgeBuilder).setWeight(1)));
+
+		this.add(ModBlocks.BITTER_CASSAVA_CROP.get(), bitterCassavaLoot);
 	}
+
+//	// Stop requiring all blocks to have loot tables.
+//	// The equivalent of banging on the blinking warning light to get it to stop.
+//	@Override
+//	public void generate(BiConsumer<ResourceLocation, LootTable.Builder> p_249322_) {
+//		this.generate();
+//		Set<ResourceLocation> set = new HashSet<>();
+//
+//		for (Block block : getKnownBlocks()) {
+//			if (block.isEnabled(this.enabledFeatures)) {
+//				ResourceLocation resourcelocation = block.getLootTable();
+//				if (resourcelocation != BuiltInLootTables.EMPTY && set.add(resourcelocation)) {
+//					LootTable.Builder builder = this.map.remove(resourcelocation);
+//					// if (builder == null) {
+//					// throw new IllegalStateException(String.format(Locale.ROOT, "Missing loottable
+//					// '%s' for '%s'", resourcelocation, BuiltInRegistries.BLOCK.getKey(block)));
+//					// }
+//					if (builder != null) {
+//						p_249322_.accept(resourcelocation, builder);
+//					}
+//				}
+//			}
+//		}
+//	}
 
 	protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
 		return createSilkTouchDispatchTable(block,

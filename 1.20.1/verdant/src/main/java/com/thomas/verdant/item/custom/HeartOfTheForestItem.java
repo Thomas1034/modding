@@ -1,11 +1,11 @@
 package com.thomas.verdant.item.custom;
 
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.growth.VerdantGrower;
-import com.thomas.verdant.overgrowth.EntityOvergrowth;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -35,12 +35,13 @@ public class HeartOfTheForestItem extends Item {
 				// Try to convert the nearby block.
 				VerdantGrower.convertGround(level, posToTry, holder.isInWaterOrRain());
 			}
-			// Grow vines on the holder, if the holder is living.
-			if (holder instanceof LivingEntity livingHolder
-					&& !(holder instanceof ServerPlayer sp && sp.getAbilities().instabuild)) {
-				EntityOvergrowth.addLevel(livingHolder, 3);
-				// System.out.println("Added infection: " + EntityInfection.getLevel(holder));
-			}
+
+//			// Grow vines on the holder, if the holder is living.
+//			if (holder instanceof LivingEntity livingHolder
+//					&& !(holder instanceof ServerPlayer sp && sp.getAbilities().instabuild)) {
+//				EntityOvergrowth.addLevel(livingHolder, 3);
+//				// System.out.println("Added infection: " + EntityInfection.getLevel(holder));
+//			}
 
 		}
 	}

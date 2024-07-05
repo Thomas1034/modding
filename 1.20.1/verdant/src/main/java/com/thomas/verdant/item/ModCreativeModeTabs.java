@@ -16,13 +16,21 @@ public class ModCreativeModeTabs {
 			.create(Registries.CREATIVE_MODE_TAB, Verdant.MOD_ID);
 
 	public static final RegistryObject<CreativeModeTab> VERDANT_ITEMS = CREATIVE_MODE_TABS.register("verdant_items",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.THORN.get()))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.HEART_OF_THE_FOREST.get()))
 					.title(Component.translatable("creativetab.verdant_items")).displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.VERDANT_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_CHEST_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOAT.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT.get());
 						pOutput.accept(ModItems.ROASTED_COFFEE.get());
+						pOutput.accept(ModItems.STARCH.get());
+						pOutput.accept(ModItems.BITTER_STARCH.get());
+						pOutput.accept(ModItems.SPARKLING_STARCH.get());
+						pOutput.accept(ModItems.CASSAVA.get());
+						pOutput.accept(ModItems.BITTER_CASSAVA.get());
+						pOutput.accept(ModItems.GOLDEN_CASSAVA.get());
+						pOutput.accept(ModItems.CASSAVA_CUTTINGS.get());
+						pOutput.accept(ModItems.BITTER_CASSAVA_CUTTINGS.get());
 						pOutput.accept(ModItems.THORN.get());
 						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
 						pOutput.accept(ModItems.TOXIC_ASH.get());
@@ -32,6 +40,10 @@ public class ModCreativeModeTabs {
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COFFEE_BERRIES.get()))
 					.title(Component.translatable("creativetab.verdant_food")).displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.COFFEE_BERRIES.get());
+						pOutput.accept(ModItems.BITTER_BREAD.get());
+						pOutput.accept(ModItems.COOKED_CASSAVA.get());
+						pOutput.accept(ModItems.COOKED_GOLDEN_CASSAVA.get());
+
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.VERDANT_GRASS_BLOCK.get()))
@@ -97,6 +109,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());
 						pOutput.accept(ModBlocks.WILD_COFFEE.get());
 						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
+						pOutput.accept(ModBlocks.WATER_HEMLOCK.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_PICKAXE.get()))

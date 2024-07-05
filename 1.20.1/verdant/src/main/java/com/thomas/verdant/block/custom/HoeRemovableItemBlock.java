@@ -1,14 +1,15 @@
 package com.thomas.verdant.block.custom;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
@@ -32,10 +33,12 @@ public class HoeRemovableItemBlock extends Block {
 	@Nullable
 	public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
 			boolean simulate) {
-
-		if (toolAction == ToolActions.HOE_TILL) {
-			Block.popResourceFromFace(context.getLevel(), context.getClickedPos(), context.getClickedFace(),
-					this.itemProvider.apply(context));
+		Level level = context.getLevel();
+		BlockPos pos = context.getClickedPos();
+		Direction facing = context.getClickedFace();
+		if (toolAction == ToolActions.HOE_TILL && !level.getBlockState(pos.relative(context.getClickedFace()))
+				.isFaceSturdy(level, pos, facing.getOpposite())) {
+			Block.popResourceFromFace(level, pos, facing, this.itemProvider.apply(context));
 			return this.stateProvider.apply(context);
 		}
 

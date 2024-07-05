@@ -1,161 +1,104 @@
 package com.thomas.verdant.util.function;
 
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 
 public class Reflection {
 
-	public static void makeMethodPublic(Class<?> clazz, String methodName)
-			throws NoSuchMethodException, IllegalAccessException {
-		// Get the Method object
-		Method method = clazz.getDeclaredMethod(methodName);
+	public static Object getFromFinal(Object instance, String fieldName) {
+		try {
+			// Get the class of the instance
+			Class<?> clazz = instance.getClass();
 
-		// Set the method accessible if it's private
-		if (Modifier.isPrivate(method.getModifiers())) {
+			// Get the field from the class
+			Field field = clazz.getDeclaredField(fieldName);
+
+			// Make the field accessible
+			field.setAccessible(true);
+
+			// Return the value of the field
+			return field.get(instance);
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static Object getMethodCallableOrRunnable(Object instance, String methodName, Class<?>... paramTypes) {
+		try {
+			// Find the method with the specified name and parameter types in the class
+			// hierarchy
+			Method method = findMethodInHierarchy(instance.getClass(), methodName, paramTypes);
+
+			if (method == null) {
+				throw new NoSuchMethodException(
+						"Method " + methodName + " with specified parameters not found in class hierarchy.");
+			}
+
+			// Make the method accessible if it is private or protected
 			method.setAccessible(true);
-			// Check if the method is private, as it might be already accessible
-			if (!Modifier.isPublic(method.getModifiers())) {
-				// Get the method's declaring class
-				Class<?> declaringClass = method.getDeclaringClass();
-				// Change the method's modifiers to public
-				Method reflectedMethod = declaringClass.getDeclaredMethod(methodName, method.getParameterTypes());
-				java.lang.reflect.Field modifiersField = null;
-				try {
-					modifiersField = Method.class.getDeclaredField("modifiers");
-				} catch (NoSuchFieldException e) {
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				}
-				modifiersField.setAccessible(true);
-				modifiersField.setInt(reflectedMethod, reflectedMethod.getModifiers() & ~Modifier.PRIVATE);
-				modifiersField.setAccessible(false);
+
+			// Check if the method returns void
+			if (method.getReturnType().equals(Void.TYPE)) {
+				// Return a Runnable for void methods
+				return (RunnableWithArgs) (args) -> {
+					try {
+						method.invoke(instance, args);
+					} catch (IllegalAccessException | InvocationTargetException e) {
+						throw new RuntimeException(e);
+					}
+				};
+			} else {
+				// Return a CallableWithArgs<Object> for non-void methods
+				return (CallableWithArgs<Object>) (args) -> {
+					try {
+						return method.invoke(instance, args);
+					} catch (IllegalAccessException | InvocationTargetException e) {
+						throw new RuntimeException(e);
+					}
+				};
+			}
+		} catch (NoSuchMethodException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private static Method findMethodInHierarchy(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+		while (clazz != null) {
+			try {
+				return clazz.getDeclaredMethod(methodName, paramTypes);
+			} catch (NoSuchMethodException e) {
+				// Method not found in this class, check the superclass
+				clazz = clazz.getSuperclass();
 			}
 		}
+		return null; // Method not found in the class hierarchy
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static Object getFromStaticFinal(Class clazz, String fieldName)
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public static CallableWithArgs<?> getMethodCallable(Object instance, String methodName, Class<?>... paramTypes) {
 
-		// Get the Field object representing the private static final field
-		Field field = clazz.getDeclaredField(fieldName);
+		Object toReturn = getMethodCallableOrRunnable(instance, methodName, paramTypes);
 
-		// Since the field is private, we need to make it accessible
-		field.setAccessible(true);
-
-		// Ensure that the field is static and final
-		int modifiers = field.getModifiers();
-		if (Modifier.isStatic(modifiers) && Modifier.isFinal(modifiers)) {
-			// Get the value of the field
-			Object value = field.get(null); // Pass null for static fields
-
-			// Now you can use the value
-			return value;
-		} else {
-			throw new IllegalAccessException(
-					"This field is either non-static or non-final, use the appropriate method to access it.");
-		}
+		return (toReturn instanceof CallableWithArgs<?> callable) ? callable : null;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static Object getFromFinal(Object instance, String fieldName)
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public static RunnableWithArgs getMethodRunnable(Object instance, String methodName, Class<?>... paramTypes) {
 
-		Class clazz = instance.getClass();
+		Object toReturn = getMethodCallableOrRunnable(instance, methodName, paramTypes);
 
-		// Get the Field object representing the private static final field
-		Field field = clazz.getDeclaredField(fieldName);
-
-		// Since the field is private, we need to make it accessible
-		field.setAccessible(true);
-
-		// Ensure that the field is final
-		int modifiers = field.getModifiers();
-		if (Modifier.isFinal(modifiers)) {
-			// Get the value of the field
-			Object value = field.get(instance); // Pass null for static fields
-
-			// Now you can use the value
-			return value;
-		} else {
-			throw new IllegalAccessException("This field is non-final, use the appropriate method to access it.");
-		}
+		return (toReturn instanceof RunnableWithArgs runnable) ? runnable : null;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static void setFromFinal(Object instance, String fieldName, Object value)
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-
-		Class clazz = instance.getClass();
-
-		// Get the Field object representing the private final field
-		Field field = clazz.getDeclaredField(fieldName);
-
-		// Since the field is private, we need to make it accessible
-		field.setAccessible(true);
-
-		// Ensure that the field is final
-		int modifiers = field.getModifiers();
-		if (Modifier.isFinal(modifiers)) {
-			// Set the value of the field
-			field.set(instance, value);
-		} else {
-			throw new IllegalAccessException("This field is non-final, use the appropriate method to access it.");
-		}
+	// Functional interface for Callable with arguments
+	@FunctionalInterface
+	public interface CallableWithArgs<V> {
+		V call(Object... args);
 	}
 
-	public static void setPrivateField(Object object, String fieldName, Class<?> fieldClass, Object newValue,
-			Class<?> newValueClass) throws NoSuchFieldException, IllegalAccessException {
-		Reflection.setPrivateFieldAs(object, object.getClass(), fieldName, fieldClass, newValue, newValueClass);
-	}
-
-	public static void setPrivateFieldAs(Object object, Class<?> clazz, String fieldName, Class<?> fieldClass,
-			Object newValue, Class<?> newValueClass) throws NoSuchFieldException, IllegalAccessException {
-
-		Field field = clazz.getDeclaredField(fieldName);
-		field.setAccessible(true); // Allow access to private field
-
-		// Remove the final modifier temporarily
-		Field modifiersField = Field.class.getDeclaredField("modifiers");
-		modifiersField.setAccessible(true);
-		int modifiers = field.getModifiers();
-		modifiersField.setInt(field, modifiers & ~Modifier.FINAL);
-
-		// Now actually set the field.
-
-		// Step 1: Get a Lookup object
-		MethodHandles.Lookup lookup = MethodHandles.privateLookupIn(clazz, MethodHandles.lookup());
-
-		// Step 2: Get the VarHandle for the private field
-		VarHandle varHandle = lookup.findVarHandle(clazz, fieldName, fieldClass);
-
-		// Step 3: Set the value of the private field.
-		varHandle.set(object, newValue);
-	}
-
-	public static Object getPrivateField(Object object, String fieldName, Class<?> fieldClass)
-			throws NoSuchFieldException, IllegalAccessException, InstantiationException, IllegalArgumentException,
-			InvocationTargetException, NoSuchMethodException, SecurityException {
-		return Reflection.getPrivateFieldAs(object, object.getClass(), fieldName, fieldClass);
-	}
-
-	public static Object getPrivateFieldAs(Object object, Class<?> clazz, String fieldName, Class<?> fieldClass)
-			throws NoSuchFieldException, IllegalAccessException, InstantiationException, IllegalArgumentException,
-			InvocationTargetException, NoSuchMethodException, SecurityException {
-
-		// Step 1: Get a Lookup object
-		MethodHandles.Lookup lookup = MethodHandles.privateLookupIn(clazz, MethodHandles.lookup());
-
-		// Step 2: Get the VarHandle for the private field
-		VarHandle varHandle = lookup.findVarHandle(clazz, fieldName, fieldClass);
-
-		// Step 3: Get the value of the private field
-		return varHandle.get(object);
+	// Functional interface for Runnable with arguments
+	@FunctionalInterface
+	public interface RunnableWithArgs {
+		void run(Object... args);
 	}
 
 	public static void printAllMethods(Object target) {

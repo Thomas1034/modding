@@ -22,6 +22,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+
+		ModBlocks.VERDANT_HEARTWOOD.addItemModels(this);
+		ModBlocks.VERDANT.addItemModels(this);
+
+		otherTextureItem(ModItems.WATER_HEMLOCK, "block/water_hemlock_top");
+		simpleItem(ModItems.GOLDEN_CASSAVA);
+		simpleItem(ModItems.COOKED_GOLDEN_CASSAVA);
+		simpleItem(ModItems.SPARKLING_STARCH);
+		simpleItem(ModItems.COOKED_CASSAVA);
+		simpleItem(ModItems.BITTER_BREAD);
+		simpleItem(ModItems.BITTER_STARCH);
+		simpleItem(ModItems.STARCH);
+		simpleItem(ModItems.BITTER_CASSAVA_CUTTINGS);
 		simpleItem(ModItems.CASSAVA_CUTTINGS);
 		simpleItem(ModItems.BITTER_CASSAVA);
 		simpleItem(ModItems.CASSAVA);
@@ -43,53 +56,20 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.VERDANT_HEARTWOOD_BOOTS);
 		simpleItem(ModItems.VERDANT_BOAT);
 		simpleItem(ModItems.VERDANT_CHEST_BOAT);
-		simpleItem(ModItems.VERDANT_SIGN);
-		simpleItem(ModItems.VERDANT_HANGING_SIGN);
 		simpleItem(ModItems.TOXIC_ASH);
 		simpleItem(ModItems.TOXIC_ASH_BUCKET);
 		simpleItem(ModItems.TOXIC_SOLUTION_BUCKET);
-		simpleBlockItem(ModBlocks.VERDANT_DOOR);
 		simpleLogModel(ModBlocks.POISON_IVY_BLOCK);
 		simpleLogModel(ModBlocks.TOXIC_ASH_BLOCK);
 		simpleLogModel(ModBlocks.ROTTEN_WOOD);
-		simpleLogModel(ModBlocks.VERDANT_LOG);
-		simpleLogModel(ModBlocks.VERDANT_WOOD);
-		simpleLogModel(ModBlocks.STRIPPED_VERDANT_LOG);
-		simpleLogModel(ModBlocks.STRIPPED_VERDANT_WOOD);
-
-		fenceItem(ModBlocks.VERDANT_FENCE, ModBlocks.VERDANT_PLANKS);
-		buttonItem(ModBlocks.VERDANT_BUTTON, ModBlocks.VERDANT_PLANKS);
 
 		evenSimplerBlockItem(ModBlocks.WILTED_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.THORNY_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.POISON_IVY_VERDANT_LEAVES);
-		evenSimplerBlockItem(ModBlocks.VERDANT_STAIRS);
-		evenSimplerBlockItem(ModBlocks.VERDANT_SLAB);
-		evenSimplerBlockItem(ModBlocks.VERDANT_PRESSURE_PLATE);
-		evenSimplerBlockItem(ModBlocks.VERDANT_FENCE_GATE);
-
-		trapdoorItem(ModBlocks.VERDANT_TRAPDOOR);
 
 		simpleItem(ModItems.VERDANT_HEARTWOOD_BOAT);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT);
-		simpleItem(ModItems.VERDANT_HEARTWOOD_SIGN);
-		simpleItem(ModItems.VERDANT_HEARTWOOD_HANGING_SIGN);
-		simpleBlockItem(ModBlocks.VERDANT_HEARTWOOD_DOOR);
-		simpleLogModel(ModBlocks.VERDANT_HEARTWOOD_LOG);
-		simpleLogModel(ModBlocks.VERDANT_HEARTWOOD_WOOD);
-		simpleLogModel(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG);
-		simpleLogModel(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD);
-
-		fenceItem(ModBlocks.VERDANT_HEARTWOOD_FENCE, ModBlocks.VERDANT_HEARTWOOD_PLANKS);
-		buttonItem(ModBlocks.VERDANT_HEARTWOOD_BUTTON, ModBlocks.VERDANT_HEARTWOOD_PLANKS);
-
-		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_STAIRS);
-		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_SLAB);
-		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE);
-		evenSimplerBlockItem(ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE);
-
-		trapdoorItem(ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR);
 
 		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
 		simpleItem(ModItems.COFFEE_BERRIES);
@@ -114,6 +94,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
 		return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated")).texture("layer0",
 				new ResourceLocation(Verdant.MOD_ID, "item/" + item.getId().getPath()));
+	}
+
+	private ItemModelBuilder otherTextureItem(RegistryObject<Item> item, String texture) {
+		return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated")).texture("layer0",
+				new ResourceLocation(Verdant.MOD_ID, texture));
 	}
 
 	public void evenSimplerBlockItem(RegistryObject<Block> block) {

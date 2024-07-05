@@ -1,10 +1,16 @@
-// 1.20.1	2024-06-22T14:51:49.2800329	Item Models: verdant
+// 1.20.1	2024-07-04T16:05:44.8070217	Item Models: verdant
+6a73ef878a16b4651c7a8f9d8b6a298f8f2a9538 assets/verdant/models/item/bitter_bread.json
 84580abb9da85465b6dfcf271aef5aa57c7e73fa assets/verdant/models/item/bitter_cassava.json
+9968910aceb1564f60d29374c6979d7f904b5251 assets/verdant/models/item/bitter_cassava_cuttings.json
+c25a982b125b499e5d15850bfa9e0c2517358c11 assets/verdant/models/item/bitter_starch.json
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
 6a2b0c8a23f19923aaa882395038566fc79287da assets/verdant/models/item/cassava.json
 42906cfecbcef65ff920e66e25e3f6bbb1e19ecc assets/verdant/models/item/cassava_cuttings.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
+c6bcf2a05ecaaf51f6cb70e77d12c594bc82d8bf assets/verdant/models/item/cooked_cassava.json
+59e178767225e138acda193b87c473916fb55cbe assets/verdant/models/item/cooked_golden_cassava.json
 8b1235d4be877cb19fdfc973cef9e9f3475f2c06 assets/verdant/models/item/frame_block.json
+3c823437c5ded1eeaea81271864c45e6bcc20c3a assets/verdant/models/item/golden_cassava.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
 b2f31c295e8484903069ec395244e6ef0be2c979 assets/verdant/models/item/leafy_verdant_vine.json
 863332605628c1cfef54f4ec3aa5552b376f2e05 assets/verdant/models/item/poison_arrow.json
@@ -16,6 +22,8 @@ b48158e74ef051867524b910407eddc7ca399613 assets/verdant/models/item/poison_ivy_v
 bc3206357af33f43bb8c6e3498a83e5a352b3899 assets/verdant/models/item/rope_coil.json
 aa1f56b69ab5995a8f94963f868f2c44bd43bd9d assets/verdant/models/item/rotten_wood.json
 2485107bcd9e35ae1a09d8ee222a6d484d1e52d8 assets/verdant/models/item/short_rope_coil.json
+61d922d06668b903df5c6d017393a74c950a8f98 assets/verdant/models/item/sparkling_starch.json
+2e5a5b17d74b9f84ea55e936337ba9f641459169 assets/verdant/models/item/starch.json
 b0e14af9179206824fc293ef31f881becc6a0f0e assets/verdant/models/item/stinking_blossom.json
 5d70f7d806cb0313440482c28046ef03d970beb5 assets/verdant/models/item/stripped_verdant_heartwood_log.json
 786d995e2bda3b7aec65dc856ea3238a20ebd384 assets/verdant/models/item/stripped_verdant_heartwood_wood.json
@@ -70,5 +78,6 @@ ee66f77bff1270e4246e82563403b0a236ab9f4a assets/verdant/models/item/verdant_slab
 475cdc12b04a62307c8ab1698a40836a3dfe6bd8 assets/verdant/models/item/verdant_trapdoor.json
 204d80a8290a3ff07acfa18713026816d3448ad6 assets/verdant/models/item/verdant_vine.json
 178c8f3cce26fc5e7480119bcf04d99a12acd9a2 assets/verdant/models/item/verdant_wood.json
+fc842670d504961183ee7fae35d26b9de1dac409 assets/verdant/models/item/water_hemlock.json
 29437b96327f5d9d54846050c12f44221c980dca assets/verdant/models/item/wild_coffee.json
 e25b9e007b7a6cbc73776d0a22514638be4e2288 assets/verdant/models/item/wilted_verdant_leaves.json

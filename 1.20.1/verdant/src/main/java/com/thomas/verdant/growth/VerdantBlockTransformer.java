@@ -201,11 +201,4 @@ public class VerdantBlockTransformer {
 		transformer.register(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.FARMLAND);
 		transformer.register(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
 	}
-
-	public static void registerStripping(BlockTransformer transformer) {
-		transformer.register(ModBlocks.VERDANT_LOG.get(), ModBlocks.STRIPPED_VERDANT_LOG.get());
-		transformer.register(ModBlocks.VERDANT_WOOD.get(), ModBlocks.STRIPPED_VERDANT_WOOD.get());
-		transformer.register(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
-		transformer.register(ModBlocks.VERDANT_HEARTWOOD_WOOD.get(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-	}
 }

@@ -25,6 +25,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider pProvider) {
 
+		ModBlocks.VERDANT_HEARTWOOD.addItemTags(this);
+		ModBlocks.VERDANT.addItemTags(this);
+
 		// Adds in armor as trimmable.
 		this.tag(ItemTags.TRIMMABLE_ARMOR).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
 				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
@@ -64,50 +67,8 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		// this.tag(Tags.Items.DUSTS).add();
 
 		// All the blocks.
-		this.tag(ItemTags.WOODEN_TRAPDOORS).add(ModBlocks.VERDANT_TRAPDOOR.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get().asItem());
-		this.tag(ItemTags.TRAPDOORS).add(ModBlocks.VERDANT_TRAPDOOR.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get().asItem());
-		this.tag(ItemTags.WOODEN_DOORS).add(ModBlocks.VERDANT_DOOR.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_DOOR.get().asItem());
-		this.tag(ItemTags.DOORS).add(ModBlocks.VERDANT_DOOR.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_DOOR.get().asItem());
-		this.tag(ItemTags.WOODEN_SLABS).add(ModBlocks.VERDANT_SLAB.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_SLAB.get().asItem());
-		this.tag(ItemTags.SLABS).add(ModBlocks.VERDANT_SLAB.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_SLAB.get().asItem());
-		this.tag(ItemTags.WOODEN_STAIRS).add(ModBlocks.VERDANT_STAIRS.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_STAIRS.get().asItem());
-		this.tag(ItemTags.STAIRS).add(ModBlocks.VERDANT_STAIRS.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_STAIRS.get().asItem());
-		this.tag(ItemTags.WOODEN_BUTTONS).add(ModBlocks.VERDANT_BUTTON.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_BUTTON.get().asItem());
-		this.tag(ItemTags.BUTTONS).add(ModBlocks.VERDANT_BUTTON.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_BUTTON.get().asItem());
-		this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.VERDANT_PRESSURE_PLATE.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get().asItem());
-		this.tag(ItemTags.WOODEN_FENCES).add(ModBlocks.VERDANT_FENCE.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_FENCE.get().asItem());
-		this.tag(ItemTags.FENCES).add(ModBlocks.VERDANT_FENCE.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_FENCE.get().asItem());
-		this.tag(ItemTags.FENCE_GATES).add(ModBlocks.VERDANT_FENCE_GATE.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get().asItem());
-		this.tag(ItemTags.PLANKS).add(ModBlocks.VERDANT_PLANKS.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_PLANKS.get().asItem());
-		this.tag(ItemTags.LOGS).add(ModBlocks.VERDANT_LOG.get().asItem(), ModBlocks.STRIPPED_VERDANT_LOG.get().asItem(),
-				ModBlocks.VERDANT_WOOD.get().asItem(), ModBlocks.STRIPPED_VERDANT_WOOD.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_LOG.get().asItem(), ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_WOOD.get().asItem(),
-				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get().asItem());
-		this.tag(ItemTags.LOGS_THAT_BURN).add(ModBlocks.VERDANT_LOG.get().asItem(),
-				ModBlocks.STRIPPED_VERDANT_LOG.get().asItem(), ModBlocks.VERDANT_WOOD.get().asItem(),
-				ModBlocks.STRIPPED_VERDANT_WOOD.get().asItem(), ModBlocks.VERDANT_HEARTWOOD_LOG.get().asItem(),
-				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get().asItem(),
-				ModBlocks.VERDANT_HEARTWOOD_WOOD.get().asItem(),
-				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get().asItem());
+
 		this.tag(ItemTags.LEAVES).add(ModBlocks.VERDANT_LEAVES.get().asItem(),
 				ModBlocks.THORNY_VERDANT_LEAVES.get().asItem(), ModBlocks.LEAFY_VERDANT_VINE.get().asItem());
-		this.tag(Tags.Items.FENCE_GATES).add(ModBlocks.VERDANT_FENCE_GATE.get().asItem());
-		this.tag(Tags.Items.FENCE_GATES_WOODEN).add(ModBlocks.VERDANT_FENCE_GATE.get().asItem());
 	}
 }

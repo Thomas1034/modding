@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:sparkling_starch",
+  "ingredients": [
+    {
+      "item": "verdant:golden_cassava"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "verdant:sparkling_starch"
+  }
+}

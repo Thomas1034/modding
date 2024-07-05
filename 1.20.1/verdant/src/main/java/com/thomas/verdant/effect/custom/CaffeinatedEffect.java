@@ -15,6 +15,7 @@ public class CaffeinatedEffect extends AddictiveEffect {
 
 	// This effect gives speed, haste, and slowness.
 	// The slowness lasts longer.
+	@SuppressWarnings("resource")
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);

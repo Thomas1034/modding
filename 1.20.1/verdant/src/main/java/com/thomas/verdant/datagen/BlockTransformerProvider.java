@@ -60,7 +60,7 @@ public abstract class BlockTransformerProvider implements DataProvider {
 		return CompletableFuture.allOf(futures);
 	}
 
-	protected BlockTransformer add(String name) {
+	public BlockTransformer add(String name) {
 		BlockTransformer transformer = new BlockTransformer(new ResourceLocation(this.modid, name));
 		this.transformers.add(transformer);
 		return transformer;

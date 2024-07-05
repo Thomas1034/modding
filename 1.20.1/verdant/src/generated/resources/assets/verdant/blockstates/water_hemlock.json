@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "facing=east,half=lower,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=east,half=lower,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=east,half=upper,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=east,half=upper,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=north,half=lower,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=north,half=lower,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=north,half=upper,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=north,half=upper,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=south,half=lower,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=south,half=lower,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=south,half=upper,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=south,half=upper,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=west,half=lower,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=west,half=lower,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_bottom"
+    },
+    "facing=west,half=upper,waterlogged=false": {
+      "model": "verdant:block/water_hemlock_top"
+    },
+    "facing=west,half=upper,waterlogged=true": {
+      "model": "verdant:block/water_hemlock_top"
+    }
+  }
+}

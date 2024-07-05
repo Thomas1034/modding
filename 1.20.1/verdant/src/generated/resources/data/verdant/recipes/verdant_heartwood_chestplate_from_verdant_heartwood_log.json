@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
+  "group": "verdant:verdant_heartwood_chestplate",
   "key": {
     "P": {
       "item": "verdant:verdant_heartwood_log"

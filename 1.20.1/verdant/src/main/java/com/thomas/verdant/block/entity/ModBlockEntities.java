@@ -19,16 +19,14 @@ public class ModBlockEntities {
 	public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> MOD_SIGN = BLOCK_ENTITIES.register(
 			"mod_sign",
 			() -> BlockEntityType.Builder
-					.of(ModSignBlockEntity::new, ModBlocks.VERDANT_SIGN.get(), ModBlocks.VERDANT_WALL_SIGN.get(),
-							ModBlocks.VERDANT_HEARTWOOD_SIGN.get(), ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get())
+					.of(ModSignBlockEntity::new, ModBlocks.VERDANT_SIGN.get(), ModBlocks.VERDANT_WALL_SIGN.get())
 					.build(null));
 
 	public static final RegistryObject<BlockEntityType<ModHangingSignBlockEntity>> MOD_HANGING_SIGN = BLOCK_ENTITIES
 			.register("mod_hanging_sign",
 					() -> BlockEntityType.Builder.of(ModHangingSignBlockEntity::new,
-							ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
-							ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
-							ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get()).build(null));
+							ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get())
+							.build(null));
 
 	public static final RegistryObject<BlockEntityType<VerdantConduitBlockEntity>> VERDANT_HEART_BLOCK_ENTITY = BLOCK_ENTITIES
 			.register("jungle_heart", () -> BlockEntityType.Builder

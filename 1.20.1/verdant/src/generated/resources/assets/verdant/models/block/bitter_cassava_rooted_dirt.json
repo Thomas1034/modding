@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "verdant:block/bitter_cassava_rooted_dirt"
+  }
+}

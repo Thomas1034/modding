@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 16,
+  "group": "minecraft:emerald",
+  "ingredient": {
+    "item": "minecraft:grass_block"
+  },
+  "result": "minecraft:emerald"
+}

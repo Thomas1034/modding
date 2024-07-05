@@ -20,6 +20,12 @@ public class ModPotions {
 			() -> new Potion(new MobEffectInstance(ModMobEffects.CAFFEINATED.get(), 9600, 0)));
 	public static final RegistryObject<Potion> STRONG_CAFFEINE = POTIONS.register("strong_caffeine",
 			() -> new Potion(new MobEffectInstance(ModMobEffects.CAFFEINATED.get(), 1800, 1)));
+	public static final RegistryObject<Potion> COLLOID = POTIONS.register("colloid",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.COLLOID.get(), 3600, 0)));
+	public static final RegistryObject<Potion> LONG_COLLOID = POTIONS.register("long_colloid",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.COLLOID.get(), 9600, 0)));
+	public static final RegistryObject<Potion> STRONG_COLLOID = POTIONS.register("strong_colloid",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.COLLOID.get(), 1800, 1)));
 
 	public static void register(IEventBus eventBus) {
 		POTIONS.register(eventBus);

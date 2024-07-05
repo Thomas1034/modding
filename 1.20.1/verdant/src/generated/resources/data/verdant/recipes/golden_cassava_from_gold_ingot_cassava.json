@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:golden_cassava",
+  "key": {
+    "C": {
+      "item": "verdant:cassava"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GCG",
+    "GGG"
+  ],
+  "result": {
+    "item": "verdant:golden_cassava"
+  },
+  "show_notification": true
+}

@@ -58,8 +58,9 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 
 	// Adds a block to the transformer.
 	public BlockTransformer register(Block a, Block b) {
-		System.out.println("Registering " + this.name + ": " + ForgeRegistries.BLOCKS.getKey(a) + " -> "
-				+ ForgeRegistries.BLOCKS.getKey(b));
+		// System.out.println("Registering " + this.name + ": " +
+		// ForgeRegistries.BLOCKS.getKey(a) + " -> "
+		// + ForgeRegistries.BLOCKS.getKey(b));
 		this.inputs.add(a);
 		this.outputs.add(b);
 		this.map.put(a, b);
@@ -69,8 +70,9 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 
 	// Adds a block tag to the transformer.
 	public BlockTransformer register(TagKey<Block> a, Block b) {
-		System.out
-				.println("Registering " + this.name + ": " + a.location() + " -> " + ForgeRegistries.BLOCKS.getKey(b));
+		// System.out
+		// .println("Registering " + this.name + ": " + a.location() + " -> " +
+		// ForgeRegistries.BLOCKS.getKey(b));
 		this.inputTags.add(a);
 		this.outputs.add(b);
 		this.tagMap.put(a, b);

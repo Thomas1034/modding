@@ -14,23 +14,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FenceBlock;
-import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.LanternBlock;
-import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TorchBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -46,7 +38,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 
+		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
+		ModBlocks.VERDANT.addBlockModels(this);
+		
+		doublePlantBlock((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get(), "water_hemlock");
+		
+		
 		tumbledBlockWithItem(ModBlocks.CASSAVA_ROOTED_DIRT);
+		tumbledBlockWithItem(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT);
 
 		blockWithItem(ModBlocks.DIRT_COAL_ORE);
 		blockWithItem(ModBlocks.DIRT_COPPER_ORE);
@@ -70,70 +69,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Poison ivy block
 		logBlock((RotatedPillarBlock) ModBlocks.POISON_IVY_BLOCK.get());
 		logBlock((RotatedPillarBlock) ModBlocks.TOXIC_ASH_BLOCK.get());
-
-		// Standard verdant wood
-		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_WOOD.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_WOOD.get());
-		blockWithItem(ModBlocks.VERDANT_PLANKS);
-		stairsBlock(((StairBlock) ModBlocks.VERDANT_STAIRS.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-		slabBlock(((SlabBlock) ModBlocks.VERDANT_SLAB.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()),
-				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-
-		buttonBlock(((ButtonBlock) ModBlocks.VERDANT_BUTTON.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-		pressurePlateBlock(((PressurePlateBlock) ModBlocks.VERDANT_PRESSURE_PLATE.get()),
-				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-
-		fenceBlock(((FenceBlock) ModBlocks.VERDANT_FENCE.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-		fenceGateBlock(((FenceGateBlock) ModBlocks.VERDANT_FENCE_GATE.get()),
-				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-
-		doorBlockWithRenderType(((DoorBlock) ModBlocks.VERDANT_DOOR.get()), modLoc("block/verdant_door_bottom"),
-				modLoc("block/verdant_door_top"), "cutout");
-		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VERDANT_TRAPDOOR.get()),
-				modLoc("block/verdant_trapdoor"), true, "cutout");
-
-		signBlock(((StandingSignBlock) ModBlocks.VERDANT_SIGN.get()),
-				((WallSignBlock) ModBlocks.VERDANT_WALL_SIGN.get()), blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-
-		hangingSignBlock(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
-				blockTexture(ModBlocks.VERDANT_PLANKS.get()));
-
-		// Verdant heartwood.
-		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
-		logBlock((RotatedPillarBlock) ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
-		logBlock((RotatedPillarBlock) ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-		blockWithItem(ModBlocks.VERDANT_HEARTWOOD_PLANKS);
-		stairsBlock(((StairBlock) ModBlocks.VERDANT_HEARTWOOD_STAIRS.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-		slabBlock(((SlabBlock) ModBlocks.VERDANT_HEARTWOOD_SLAB.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-
-		buttonBlock(((ButtonBlock) ModBlocks.VERDANT_HEARTWOOD_BUTTON.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-		pressurePlateBlock(((PressurePlateBlock) ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-
-		fenceBlock(((FenceBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-		fenceGateBlock(((FenceGateBlock) ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-
-		doorBlockWithRenderType(((DoorBlock) ModBlocks.VERDANT_HEARTWOOD_DOOR.get()),
-				modLoc("block/verdant_heartwood_door_bottom"), modLoc("block/verdant_heartwood_door_top"), "cutout");
-		trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get()),
-				modLoc("block/verdant_heartwood_trapdoor"), true, "cutout");
-
-		signBlock(((StandingSignBlock) ModBlocks.VERDANT_HEARTWOOD_SIGN.get()),
-				((WallSignBlock) ModBlocks.VERDANT_HEARTWOOD_WALL_SIGN.get()),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
-
-		hangingSignBlock(ModBlocks.VERDANT_HEARTWOOD_HANGING_SIGN.get(),
-				ModBlocks.VERDANT_HEARTWOOD_WALL_HANGING_SIGN.get(),
-				blockTexture(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()));
 
 		// Tendrils
 		simpleBlockWithItem(ModBlocks.VERDANT_TENDRIL.get(),
@@ -170,6 +105,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		makeCoffeeCrop((CoffeeCropBlock) ModBlocks.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
 		// Cassava
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.CASSAVA_CROP.get(), "cassava_crop_", "cassava_crop_");
+		makeCassavaCrop((CassavaCropBlock) ModBlocks.BITTER_CASSAVA_CROP.get(), "bitter_cassava_crop_",
+				"bitter_cassava_crop_");
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -312,6 +249,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				name);
 
 		getVariantBuilder((LanternBlock) lanternBlock).forAllStates(function);
+	}
+
+	protected void doublePlantBlock(DoublePlantBlock plant, String name) {
+		Function<BlockState, ConfiguredModel[]> function = state -> {
+			ConfiguredModel[] models = new ConfiguredModel[1];
+			ConfiguredModel model;
+
+			if (state.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER) {
+				model = new ConfiguredModel(models().withExistingParent(name + "_bottom", mcLoc("block/cross"))
+						.texture("cross", modLoc("block/" + name + "_bottom")).renderType("cutout"));
+			} else {
+				model = new ConfiguredModel(models().withExistingParent(name + "_top", mcLoc("block/cross"))
+						.texture("cross", modLoc("block/" + name + "_top")).renderType("cutout"));
+			}
+
+			models[0] = model;
+
+			return models;
+		};
+
+		getVariantBuilder(plant).forAllStates(function);
 	}
 
 	public void wallTorchBlock(WallTorchBlock block, String modelName, String texture) {

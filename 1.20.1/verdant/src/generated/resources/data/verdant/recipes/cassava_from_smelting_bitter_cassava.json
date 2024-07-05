@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "verdant:cassava",
+  "ingredient": {
+    "item": "verdant:bitter_cassava"
+  },
+  "result": "verdant:cassava"
+}

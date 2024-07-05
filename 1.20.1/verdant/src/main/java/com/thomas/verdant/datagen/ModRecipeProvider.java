@@ -27,6 +27,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
@@ -36,91 +37,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> recipeWriter) {
-		// Verdant furniture
-		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_LOG.get());
-		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_LOG.get());
-		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_WOOD.get());
-		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_WOOD.get());
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_LOG.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_LOG.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_WOOD.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_WOOD.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PLANKS.get(), 4);
-		shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_LOG.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_WOOD.get(), 3);
-		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_DOOR.get(), 3);
-		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_TRAPDOOR.get(), 2);
-		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_STAIRS.get(), 4);
-		shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_SLAB.get(), 6);
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_PLANKS.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_BUTTON.get(), 1);
-		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_FENCE.get(), 3);
-		shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_FENCE_GATE.get(), 1);
-		shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.VERDANT_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_PRESSURE_PLATE.get(), 1);
-		shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModItems.VERDANT_SIGN.get(), 3);
-		shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
-				List.of(ModBlocks.STRIPPED_VERDANT_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
-				ModItems.VERDANT_HANGING_SIGN.get(), 2);
-
-		// Verdant heartwood furniture
-		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_HEARTWOOD_LOG.get());
-		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get());
-		charcoalSmelting(recipeWriter, ModBlocks.VERDANT_HEARTWOOD_WOOD.get());
-		charcoalSmelting(recipeWriter, ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_WOOD.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
-		shapeless(recipeWriter, List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), 4);
-		shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_WOOD.get(), 3);
-		shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_DOOR.get(), 3);
-		shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_TRAPDOOR.get(), 2);
-		shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'),
-				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_HEARTWOOD_STAIRS.get(), 4);
-		shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_SLAB.get(), 6);
-		shapeless(recipeWriter, List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_BUTTON.get(), 1);
-		shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_HEARTWOOD_FENCE.get(), 3);
-		shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.VERDANT_HEARTWOOD_FENCE_GATE.get(), 1);
-		shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get()),
-				RecipeCategory.BUILDING_BLOCKS, ModBlocks.VERDANT_HEARTWOOD_PRESSURE_PLATE.get(), 1);
-		shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
-				List.of(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS,
-				ModItems.VERDANT_HEARTWOOD_SIGN.get(), 3);
-		shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
-				List.of(ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
-				ModItems.VERDANT_HEARTWOOD_HANGING_SIGN.get(), 2);
+		ModBlocks.VERDANT_HEARTWOOD.addRecipes(recipeWriter);
+		ModBlocks.VERDANT.addRecipes(recipeWriter);
 
 		// Roasting coffee
 		foodCooking(recipeWriter, List.of(ModItems.COFFEE_BERRIES.get()), RecipeCategory.FOOD,
-				ModItems.ROASTED_COFFEE.get(), 0.1f, 400, "roasted_coffee");
-		
+				ModItems.ROASTED_COFFEE.get(), 0.1f, 400);
+
 		// Poison arrow
 		shapeless(recipeWriter, List.of(ModBlocks.POISON_IVY.get(), Items.ARROW), List.of(1, 1), RecipeCategory.COMBAT,
 				ModItems.POISON_ARROW.get(), 1);
@@ -202,55 +125,46 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModItems.HEART_OF_THE_FOREST.get(), BlockTags.LOGS_THAT_BURN), RecipeCategory.MISC,
 				ModBlocks.VERDANT_CONDUIT.get(), 1);
 
+		// Roasting bitter cassava
+		foodCooking(recipeWriter, List.of(ModItems.BITTER_CASSAVA.get()), RecipeCategory.FOOD, ModItems.CASSAVA.get(),
+				0.1f, 200);
+
+		// Golden Cassava
+		shaped(recipeWriter, List.of("GGG", "GCG", "GGG"), List.of('G', 'C'),
+				List.of(Items.GOLD_INGOT, ModItems.CASSAVA.get()), RecipeCategory.FOOD, ModItems.GOLDEN_CASSAVA.get(),
+				1);
+
+		// Roasting golden cassava
+		foodCooking(recipeWriter, List.of(ModItems.GOLDEN_CASSAVA.get()), RecipeCategory.FOOD, ModItems.COOKED_GOLDEN_CASSAVA.get(),
+				0.1f, 200);
+
+		// Sparkling Starch
+		shapeless(recipeWriter, List.of(ModItems.GOLDEN_CASSAVA.get()), List.of(1), RecipeCategory.FOOD,
+				ModItems.SPARKLING_STARCH.get(), 4);
+
+		// Starch
+		shapeless(recipeWriter, List.of(ModItems.CASSAVA.get()), List.of(1), RecipeCategory.FOOD, ModItems.STARCH.get(),
+				4);
+
+		// Bitter Starch
+		shapeless(recipeWriter, List.of(ModItems.BITTER_CASSAVA.get()), List.of(1), RecipeCategory.FOOD,
+				ModItems.BITTER_STARCH.get(), 4);
+
+		// Bread
+		shaped(recipeWriter, List.of("BBB"), List.of('B'), List.of(ModItems.STARCH.get()), RecipeCategory.FOOD,
+				Items.BREAD, 1);
+
+		// Bitter Bread
+		shaped(recipeWriter, List.of("BBB"), List.of('B'), List.of(ModItems.BITTER_STARCH.get()), RecipeCategory.FOOD,
+				ModItems.BITTER_BREAD.get(), 1);
+
 		// Roasting cassava
-		cooking(recipeWriter, RecipeSerializer.SMELTING_RECIPE, List.of(ModItems.BITTER_CASSAVA.get()),
-				RecipeCategory.FOOD, ModItems.CASSAVA.get(), 0.1f, 200, "cleaning_cassava",
-				"_from_smelting_bitter_cassava");
+		foodCooking(recipeWriter, List.of(ModItems.CASSAVA.get()), RecipeCategory.FOOD, ModItems.COOKED_CASSAVA.get(),
+				0.1f, 200);
 
-	}
+		// TODO test
+		stonecutting(recipeWriter, Items.GRASS_BLOCK, RecipeCategory.BUILDING_BLOCKS, Items.EMERALD, 16);
 
-	// Stonecutting recipe.
-	@SuppressWarnings("unchecked")
-	protected static void brewing(Consumer<FinishedRecipe> finishedRecipeConsumer, Object ingredient,
-			RecipeCategory recipeCategory, ItemLike result, int count) {
-
-		// The name of the recipe.
-		String recipeName = Verdant.MOD_ID + ":" + getItemName(result) + "_from_brewing_";
-
-		Ingredient toAdd = null;
-
-		// Determines what type of ingredient is there.
-		if (ingredient instanceof ItemLike item) {
-			toAdd = Ingredient.of(item);
-			recipeName += getItemName((ItemLike) ingredient);
-
-		} else if (ingredient instanceof TagKey<?> tag) {
-			toAdd = Ingredient.of((TagKey<Item>) tag);
-			recipeName += dePath((tag).location());
-
-		} else {
-			throw new IllegalArgumentException("Cannot create a stonecutting recipe with a non-Item, non-Tag object.");
-		}
-
-		// Creates the recipe.
-		SingleItemRecipeBuilder recipe = SingleItemRecipeBuilder.stonecutting(toAdd, recipeCategory, result, count);
-
-		// Adds in the unlock trigger for the ingredient.
-		if (ingredient instanceof ItemLike)
-			recipe = recipe.unlockedBy(getHasName((ItemLike) ingredient), has((ItemLike) ingredient));
-		else if (ingredient instanceof TagKey) {
-			String name = "has" + ((TagKey<Item>) ingredient).registry().registry().toDebugFileName();
-			recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredient));
-		} else {
-			throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredient);
-		}
-
-		// Adds in the unlock trigger for the result.
-		recipe = recipe.unlockedBy(getHasName(result), has(result));
-
-		// Prints out the result.
-		System.out.println("Finished stonecutting recipe, saving with name: " + recipeName);
-		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
 	// Stonecutting recipe.
@@ -292,9 +206,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Adds in the unlock trigger for the result.
 		recipe = recipe.unlockedBy(getHasName(result), has(result));
 
+		recipe.group(getItemNamespace(result) + ":" + getItemName(result));
+
 		// Prints out the result.
 		System.out.println("Finished stonecutting recipe, saving with name: " + recipeName);
 		recipe.save(finishedRecipeConsumer, recipeName);
+	}
+
+	private static String getItemNamespace(ItemLike result) {
+		return ForgeRegistries.ITEMS.getKey(result.asItem()).getNamespace();
 	}
 
 	// Shapeless recipe. Item at i must correspond to item count at i.
@@ -338,6 +258,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Adds in the unlock trigger for the result.
 		recipe = recipe.unlockedBy(getHasName(result), has(result));
 
+		recipe.group(getItemNamespace(result) + ":" + getItemName(result));
+
 		// Saves the recipe.
 		System.out.println("Finished shapeless recipe, saving with name: " + recipeName);
 		recipe.save(finishedRecipeConsumer, recipeName);
@@ -369,6 +291,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		String recipeName = Verdant.MOD_ID + ":" + getItemName(result) + "_from_smithing_transform_of_"
 				+ getItemName(base);
 		System.out.println("Finished smithing recipe, saving with name: " + recipeName);
+
 		recipe.save(finishedRecipeConsumer, recipeName);
 	}
 
@@ -426,6 +349,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// System.out.println("Adding criterion with name: " + getHasName(result));
 		recipe = recipe.unlockedBy(getHasName(result), has(result));
 
+		recipe.group(getItemNamespace(result) + ":" + getItemName(result));
+
 		// Saves the recipe.
 		System.out.println("Finished shaped recipe, saving with name: " + recipeName);
 		recipe.save(finishedRecipeConsumer, recipeName);
@@ -438,7 +363,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 	}
 
 	protected static void foodCooking(Consumer<FinishedRecipe> finishedRecipeConsumer, List<ItemLike> ingredients,
-			RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+			RecipeCategory category, ItemLike result, float experience, int cookingTime) {
+
+		String group = (getItemNamespace(result) + ":" + getItemName(result));
 		campfire(finishedRecipeConsumer, ingredients, category, result, experience, 2 * cookingTime, group);
 		smelting(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime, group);
 		smoking(finishedRecipeConsumer, ingredients, category, result, experience, cookingTime / 2, group);

@@ -43,23 +43,4 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return this.fireSpreadSpeed;
 	}
-
-	@Override
-	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
-			boolean simulate) {
-		if (toolAction == ToolActions.AXE_STRIP) {
-			if (VerdantBlockTransformer.STRIPPING.get().hasInput(state.getBlock())) {
-				return VerdantBlockTransformer.STRIPPING.get().next(state);
-			}
-		}
-
-		return super.getToolModifiedState(state, context, toolAction, simulate);
-
-	}
-
-	public record ToolModificationContext(BlockState state, UseOnContext context, ToolAction toolAction,
-			boolean simulate) {
-
-	}
-
 }

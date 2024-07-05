@@ -3,7 +3,7 @@
   "category": "food",
   "cookingtime": 800,
   "experience": 0.1,
-  "group": "roasted_coffee",
+  "group": "verdant:roasted_coffee",
   "ingredient": {
     "item": "verdant:coffee_berries"
   },

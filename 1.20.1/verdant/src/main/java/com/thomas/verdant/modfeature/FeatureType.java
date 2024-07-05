@@ -12,10 +12,12 @@ public class FeatureType implements Iterable<WeightedFeature> {
 	private final HashSet<WeightedFeature> holders = new HashSet<>();
 	private final BiPredicate<Level, BlockPos> condition;
 	private final String name;
+	private int totalWeight;
 
 	public FeatureType(BiPredicate<Level, BlockPos> condition, String name) {
 		this.condition = condition;
 		this.name = name;
+		this.totalWeight = 0;
 	}
 
 	public boolean checkForPlacement(Level level, BlockPos pos) {
@@ -24,6 +26,7 @@ public class FeatureType implements Iterable<WeightedFeature> {
 
 	public WeightedFeature addFeature(WeightedFeature holder) {
 		this.holders.add(holder);
+		this.totalWeight += holder.weight();
 		return holder;
 	}
 
@@ -40,18 +43,13 @@ public class FeatureType implements Iterable<WeightedFeature> {
 	public int size() {
 		return this.holders.size();
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
 
 	public int weight() {
-		int sum = 0;
-		for (WeightedFeature feature : this) {
-			sum += feature.weight();
-		}
-
-		return sum;
+		return this.totalWeight;
 	}
 
 	public Stream<WeightedFeature> stream() {
@@ -62,7 +60,7 @@ public class FeatureType implements Iterable<WeightedFeature> {
 	public Iterator<WeightedFeature> iterator() {
 		return this.holders.iterator();
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.name + ":" + this.holders.size();

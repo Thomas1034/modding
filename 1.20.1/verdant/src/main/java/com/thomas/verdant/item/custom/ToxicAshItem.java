@@ -43,11 +43,6 @@ public class ToxicAshItem extends Item {
 	public static boolean applyAsh(ItemStack stack, Level level, BlockPos pos, Player player) {
 		BlockState state = level.getBlockState(pos);
 
-		// Ensure the level is a server level.
-		if (level.isClientSide) {
-			return false;
-		}
-
 		// See if the player can break the block.
 		// Returns true if the player can.
 		boolean hook = net.minecraftforge.event.ForgeEventFactory.onEntityDestroyBlock(player, pos, state);
@@ -62,7 +57,12 @@ public class ToxicAshItem extends Item {
 			return false;
 		}
 
+		// Ensure the level is a server level.
+		if (level.isClientSide) {
+			return true;
+		}
 		// Otherwise, update and shrink.
+		level.addDestroyBlockEffect(pos, state);
 		level.setBlockAndUpdate(pos, next);
 		stack.shrink(1);
 		return true;

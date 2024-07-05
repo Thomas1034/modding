@@ -21,11 +21,7 @@ import com.thomas.verdant.painting.ModPaintings;
 import com.thomas.verdant.potion.BetterBrewingRecipe;
 import com.thomas.verdant.potion.ModPotions;
 import com.thomas.verdant.util.data.DataRegistries;
-import com.thomas.verdant.worldgen.ModFeature;
-import com.thomas.verdant.worldgen.tree.ModFoliagePlacers;
-import com.thomas.verdant.worldgen.tree.ModTrunkPlacerTypes;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.Items;
@@ -45,6 +41,28 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
+
+// Changes
+// Verdant heartwood blocks are now harder to mine.
+// Thorn bushes now do more damage when you are jumping or falling, and less while walking through them. Don't fall on them.
+// Block transforms no longer print when registered.
+// Verdant wood is now far more flammable.
+// Verdant Energy now correctly applies more frequently on higher levels.
+// Verdant Vines now no longer drop sticks.
+
+// Bugfixes
+// General stability increases
+// Toxic Ash / Toxic Solution now have a proper use animations
+// Verdant wood/heartwood items have now been standardized into a common constructor.
+// This is primarily a backend change, but it has fixed some bugs. This might change the mining time
+// and flammability of some blocks to a minor degree
+// Fixed hanging sign edit screen
+// Fixed inaccurate /verdant command text
+// Heart of the Forest no longer grows vines on players who hold it - that was meant to be experimental.
+
+// Cassava -> 4 Cassava Flour 
+// 6 Cassava Flour -> 4 Bread
+// Cassava -> Cooked Cassava (like chicken)
 
 // To add: water hemlock (deadly, inflicts wither on contact)
 // To add: wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
@@ -116,12 +134,7 @@ public class Verdant {
 
 		ModBlockEntities.register(modEventBus);
 
-		ModTrunkPlacerTypes.register(modEventBus);
-		ModFoliagePlacers.register(modEventBus);
-
 		ModEntityType.register(modEventBus);
-
-		ModFeature.register(modEventBus);
 
 		ModPacketHandler.register();
 
@@ -158,6 +171,13 @@ public class Verdant {
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.SPARKLING_STARCH.get(), ModPotions.COLLOID.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.REDSTONE, ModPotions.LONG_COLLOID.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.GLOWSTONE, ModPotions.STRONG_COLLOID.get()));
+
 		// Register compostables.
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get().asItem(), 0.3f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.THORNY_VERDANT_LEAVES.get().asItem(), 0.3f);
@@ -168,6 +188,14 @@ public class Verdant {
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.STINKING_BLOSSOM.get().asItem(), 1.0f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.VERDANT_TENDRIL.get().asItem(), 0.5f);
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_BLOCK.get().asItem(), 1.0f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.COOKED_CASSAVA.get(), 0.85f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.BITTER_BREAD.get(), 0.85f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.CASSAVA.get(), 0.65f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.CASSAVA_CUTTINGS.get(), 0.30f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.BITTER_CASSAVA.get(), 0.65f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.30f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.BITTER_STARCH.get(), 0.30f);
+		ComposterBlock.COMPOSTABLES.put(ModItems.STARCH.get(), 0.30f);
 
 		// Register verdant growth mechanics on setup.
 		// Nope! Data driven now.
@@ -185,8 +213,7 @@ public class Verdant {
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
 	@SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event) {
-		// Do something when the server starts
-		LOGGER.info("HELLO from server starting");
+		// Don't something when the server starts
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods
@@ -196,8 +223,6 @@ public class Verdant {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 			// Some client setup code
-			LOGGER.info("CLIENT SETUP:");
-			LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
 			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
 					context -> new ModBoatRenderer(context, true));
@@ -205,7 +230,6 @@ public class Verdant {
 			EntityRenderers.register(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
 			EntityRenderers.register(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
 			EntityRenderers.register(ModEntityType.THROWN_ROPE.get(), ThrownItemRenderer::new);
-
 		}
 	}
 }

@@ -1,12 +1,13 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.block.ModBlocks;
-import com.thomas.verdant.item.ModItems;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -20,9 +21,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IPlantable;
-
-// 8 stages, 0-7.
-// LOOK UP KAUPENJOE TUTORIAL ON DOUBLE-HIGH CROP!!!
 
 public class CassavaCropBlock extends CropBlock {
 	public static final int FIRST_STAGE_MAX_AGE = 7;
@@ -40,8 +38,17 @@ public class CassavaCropBlock extends CropBlock {
 
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-	public CassavaCropBlock(Properties properties) {
+	private final Supplier<BlockState> underneath;
+	private final Supplier<Item> item;
+	private final Predicate<BlockState> alsoSurvivesOn;
+
+	public CassavaCropBlock(Properties properties, Predicate<BlockState> alsoSurvivesOn,
+			Supplier<BlockState> underneath, Supplier<Item> item) {
 		super(properties);
+		this.underneath = underneath;
+		this.item = item;
+		this.alsoSurvivesOn = alsoSurvivesOn;
+
 	}
 
 	@Override
@@ -80,8 +87,7 @@ public class CassavaCropBlock extends CropBlock {
 							if (aboveAge < MAX_AGE) {
 								level.setBlockAndUpdate(pos.above(), this.getStateForAge(aboveAge + 1));
 								if (aboveAge == MAX_AGE - 1) {
-									level.setBlockAndUpdate(pos.below(1),
-											ModBlocks.CASSAVA_ROOTED_DIRT.get().defaultBlockState());
+									level.setBlockAndUpdate(pos.below(1), this.underneath.get());
 								}
 							}
 							level.setBlockAndUpdate(pos, this.getStateForAge(currentAge + 1));
@@ -98,8 +104,7 @@ public class CassavaCropBlock extends CropBlock {
 							if (aboveAge < MAX_AGE) {
 								level.setBlockAndUpdate(pos.above(), this.getStateForAge(aboveAge + 1));
 								if (aboveAge == MAX_AGE - 1) {
-									level.setBlockAndUpdate(pos.below(1),
-											ModBlocks.CASSAVA_ROOTED_DIRT.get().defaultBlockState());
+									level.setBlockAndUpdate(pos.below(1), this.underneath.get());
 								}
 							}
 						}
@@ -107,8 +112,7 @@ public class CassavaCropBlock extends CropBlock {
 					} else {
 						level.setBlockAndUpdate(pos, this.getStateForAge(currentAge + 1));
 						if (currentAge == MAX_AGE - 1) {
-							level.setBlockAndUpdate(pos.below(2),
-									ModBlocks.CASSAVA_ROOTED_DIRT.get().defaultBlockState());
+							level.setBlockAndUpdate(pos.below(2), this.underneath.get());
 						}
 					}
 
@@ -129,7 +133,7 @@ public class CassavaCropBlock extends CropBlock {
 		return (super.canSurvive(state, level, pos)
 				|| (level.getBlockState(pos.below(1)).is(this)
 						&& level.getBlockState(pos.below()).getValue(AGE) == FIRST_STAGE_MAX_AGE)
-				|| (level.getBlockState(pos.below(1)).is(ModBlocks.CASSAVA_ROOTED_DIRT.get())))
+				|| this.alsoSurvivesOn.test(level.getBlockState(pos.below(1))))
 				&& (this.getAge(state) != FIRST_STAGE_MAX_AGE || level.getBlockState(pos.above()).is(this));
 	}
 
@@ -143,25 +147,41 @@ public class CassavaCropBlock extends CropBlock {
 		int thisAge = this.getAge(state);
 		int nextAge = thisAge + this.getBonemealAgeIncrease(level);
 		int maxAge = this.getMaxAge();
+		System.out.println("Current age is " + thisAge + ", next age is " + nextAge);
 		BlockState above = level.getBlockState(pos.above());
 		if (nextAge > maxAge) {
+			System.out.println("Next age was too high at " + nextAge + ", setting to " + maxAge);
 			nextAge = maxAge;
 		}
 
 		if (thisAge < FIRST_STAGE_MAX_AGE - 1 && nextAge >= FIRST_STAGE_MAX_AGE) {
 			nextAge = FIRST_STAGE_MAX_AGE - 1;
 		}
-		if (thisAge == FIRST_STAGE_MAX_AGE - 1 && above.is(Blocks.AIR)) {
-			level.setBlockAndUpdate(pos, this.getStateForAge(FIRST_STAGE_MAX_AGE));
-			level.setBlockAndUpdate(pos.above(), this.getStateForAge(FIRST_STAGE_MAX_AGE + 1));
+		if (thisAge == FIRST_STAGE_MAX_AGE - 1) {
+			if (above.is(Blocks.AIR)) {
+				System.out.println("Age " + thisAge + " is one below the maxiumum, and the block above is air.");
+				level.setBlockAndUpdate(pos, this.getStateForAge(FIRST_STAGE_MAX_AGE));
+				level.setBlockAndUpdate(pos.above(), this.getStateForAge(FIRST_STAGE_MAX_AGE + 1));
+			}
 		} else if (thisAge == FIRST_STAGE_MAX_AGE && above.is(this)) {
-			if (this.getAge(above) < this.getMaxAge()) {
-				this.growCrops(level, pos.above(), state);
+			if (this.getAge(above) < maxAge) {
+				System.out.println("Age " + thisAge + " is at maxiumum, and the block above is the same block.");
+				this.growCrops(level, pos.above(), above);
+			}
+		} else if (thisAge == FIRST_STAGE_MAX_AGE) {
+			if (above.is(Blocks.AIR)) {
+				System.out.println("Age " + thisAge + " is at maxiumum, and the block above is air.");
+				level.setBlockAndUpdate(pos.above(), this.getStateForAge(FIRST_STAGE_MAX_AGE + 1));
 			}
 		} else if (nextAge == maxAge) {
-			level.setBlockAndUpdate(pos.below(2), ModBlocks.CASSAVA_ROOTED_DIRT.get().defaultBlockState());
+			level.setBlockAndUpdate(pos.below(2), this.underneath.get());
+			System.out.println("Setting this block and rooting to " + nextAge + ", was " + thisAge);
 			level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
+		} else if (thisAge == maxAge) {
+			// Do nothing
 		} else {
+
+			System.out.println("Setting this block to " + nextAge + ", was " + thisAge);
 			level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
 		}
 	}
@@ -174,6 +194,8 @@ public class CassavaCropBlock extends CropBlock {
 			if (above.is(this)) {
 				return this.getAge(above) < this.getMaxAge();
 			}
+		} else if (this.getAge(state) == FIRST_STAGE_MAX_AGE - 1) {
+			return level.getBlockState(pos.above()).isAir();
 		}
 		return !this.isMaxAge(state);
 	}
@@ -185,7 +207,7 @@ public class CassavaCropBlock extends CropBlock {
 
 	@Override
 	protected ItemLike getBaseSeedId() {
-		return ModItems.COFFEE_BERRIES.get();
+		return this.item.get();
 	}
 
 	@Override

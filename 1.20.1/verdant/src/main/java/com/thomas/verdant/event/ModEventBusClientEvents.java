@@ -80,13 +80,9 @@ public class ModEventBusClientEvents {
 							Minecraft.getInstance().getModelManager());
 					// Now I add the layer.
 					renderer.addLayer(layer);
-				} catch (NoSuchFieldException e) {
-					e.printStackTrace();
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 

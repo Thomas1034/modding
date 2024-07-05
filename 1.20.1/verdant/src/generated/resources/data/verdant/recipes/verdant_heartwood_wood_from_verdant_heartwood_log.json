@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "verdant:verdant_heartwood_wood",
   "key": {
     "P": {
       "item": "verdant:verdant_heartwood_log"

@@ -6,6 +6,7 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.entity.custom.ModBoatEntity;
+import com.thomas.verdant.item.custom.EffectBoostFoodItem;
 import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.ModBoatItem;
 import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
@@ -14,10 +15,12 @@ import com.thomas.verdant.item.custom.ToxicAshItem;
 import com.thomas.verdant.item.custom.ToxicBucketItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HangingSignItem;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -26,7 +29,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -46,14 +48,12 @@ public class ModItems {
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHEST_BOAT = registerItem("verdant_heartwood_chest_boat",
 			() -> new ModBoatItem(true, ModBoatEntity.Type.VERDANT_HEARTWOOD, new Item.Properties()));
 
-	public static final RegistryObject<Item> VERDANT_SIGN = registerItem("verdant_sign",
-			() -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.VERDANT_SIGN.get(),
-					ModBlocks.VERDANT_WALL_SIGN.get()));
-	public static final RegistryObject<Item> VERDANT_HANGING_SIGN = registerItem("verdant_hanging_sign",
-			() -> new HangingSignItem(ModBlocks.VERDANT_HANGING_SIGN.get(), ModBlocks.VERDANT_WALL_HANGING_SIGN.get(),
-					new Item.Properties().stacksTo(16)));
+	public static final RegistryObject<Item> VERDANT_SIGN = ModBlocks.VERDANT.getSignItem();
+
+	public static final RegistryObject<Item> VERDANT_HANGING_SIGN = ModBlocks.VERDANT.getHangingSignItem();
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SIGN = ModBlocks.VERDANT_HEARTWOOD.getSignItem();
+
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HANGING_SIGN = ModBlocks.VERDANT_HEARTWOOD
 			.getHangingSignItem();
 
@@ -108,7 +108,7 @@ public class ModItems {
 			() -> new ToxicAshItem(new Item.Properties()));
 
 	public static final RegistryObject<Item> TOXIC_SOLUTION_BUCKET = ITEMS.register("toxic_solution_bucket",
-			() -> new ToxicBucketItem(new Item.Properties().stacksTo(1), new ItemStack(Items.BUCKET)));
+			() -> new ToxicBucketItem(new Item.Properties().stacksTo(1), () -> new ItemStack(Items.BUCKET)));
 
 	public static final RegistryObject<Item> TOXIC_ASH_BUCKET = ITEMS.register("toxic_ash_bucket",
 			() -> new Item(new Item.Properties().stacksTo(1)));
@@ -126,10 +126,37 @@ public class ModItems {
 	// Cassava
 	public static final RegistryObject<Item> CASSAVA_CUTTINGS = ITEMS.register("cassava_cuttings",
 			() -> new ItemNameBlockItem(ModBlocks.CASSAVA_CROP.get(), new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> BITTER_CASSAVA_CUTTINGS = ITEMS.register("bitter_cassava_cuttings",
+			() -> new ItemNameBlockItem(ModBlocks.BITTER_CASSAVA_CROP.get(), new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> CASSAVA = ITEMS.register("cassava",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> BITTER_CASSAVA = ITEMS.register("bitter_cassava",
 			() -> new Item(new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> STARCH = ITEMS.register("starch",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> BITTER_STARCH = ITEMS.register("bitter_starch",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> BITTER_BREAD = ITEMS.register("bitter_bread",
+			() -> new EffectBoostFoodItem(new Item.Properties().stacksTo(64).food(Foods.BREAD),
+					ModMobEffects.CASSAVA_POISONING,
+					(i) -> new MobEffectInstance(ModMobEffects.CASSAVA_POISONING.get(), (i + 2) * 20 * 60, i + 1)));
+	public static final RegistryObject<Item> COOKED_CASSAVA = ITEMS.register("cooked_cassava",
+			() -> new Item(new Item.Properties().stacksTo(64).food(Foods.COOKED_CHICKEN)));
+	public static final RegistryObject<Item> GOLDEN_CASSAVA = ITEMS.register("golden_cassava",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> COOKED_GOLDEN_CASSAVA = ITEMS.register("cooked_golden_cassava",
+			() -> new Item(new Item.Properties().stacksTo(64).food((new FoodProperties.Builder()).nutrition(4)
+					.saturationMod(1.2F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 2400, 0), 1.0F)
+					.effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEat().build())));
+	public static final RegistryObject<Item> SPARKLING_STARCH = ITEMS.register("sparkling_starch",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	
+	// Water hemlock
+	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
+			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties().stacksTo(64)));
+	
+	
+	
 
 	// Boilerplate
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {

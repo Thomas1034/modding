@@ -26,7 +26,7 @@ public class FoodPoisoningEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);
 
-		// Ensure only runs on the client.
+		// Ensure only runs on the server.
 		if (entity.level().isClientSide) {
 			return;
 		}
@@ -94,7 +94,7 @@ public class FoodPoisoningEffect extends MobEffect {
 		register(5, 200, MobEffects.DIG_SLOWDOWN);
 		// Poison
 		register(5, 200, MobEffects.POISON);
-		System.out.println("Registered " + EFFECTS.size() + " food poisoning effects.");
+		//System.out.println("Registered " + EFFECTS.size() + " food poisoning effects.");
 
 
 	}

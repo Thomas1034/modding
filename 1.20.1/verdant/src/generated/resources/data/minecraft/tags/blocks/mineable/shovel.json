@@ -13,6 +13,8 @@
     "verdant:dirt_gold_ore",
     "verdant:dirt_iron_ore",
     "verdant:dirt_lapis_ore",
-    "verdant:dirt_redstone_ore"
+    "verdant:dirt_redstone_ore",
+    "verdant:cassava_rooted_dirt",
+    "verdant:bitter_cassava_rooted_dirt"
   ]
 }

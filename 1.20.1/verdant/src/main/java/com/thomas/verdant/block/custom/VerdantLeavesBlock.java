@@ -588,12 +588,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	@Override
 	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-		return 40;
+		return 50;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-		return 20;
+		return 50;
 	}
 
 }

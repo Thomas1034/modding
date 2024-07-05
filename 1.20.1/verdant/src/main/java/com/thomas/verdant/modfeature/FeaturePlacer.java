@@ -51,7 +51,8 @@ public class FeaturePlacer {
 
 	public static void register(FeatureType type, WeightedFeature weightedFeature) {
 		type.addFeature(weightedFeature);
-		System.out.println("Registered " + weightedFeature + " to " + type.getName());
+		// System.out.println("Registered " + weightedFeature + " to " +
+		// type.getName());
 	}
 
 	public static void register(FeatureType type, Feature feature, int weight, String name) {
@@ -119,7 +120,7 @@ public class FeaturePlacer {
 				Feature.smallPlant(Blocks.GLOW_LICHEN.defaultBlockState()
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
 				Rarity.RARE, "floor_glow_lichen");
-		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.VERY_RARE, "blue_orchid");
+		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.RARE, "blue_orchid");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.VERY_RARE, "wild_coffee");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE, "brown_mushroom");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE, "red_mushroom");
@@ -162,6 +163,9 @@ public class FeaturePlacer {
 				"tall_seagrass");
 		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.SMALL_DRIPLEAF), Rarity.UNCOMMON,
 				"small_dripleaf");
+		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get()),
+				Rarity.VERY_UNCOMMON, "water_hemlock");
+
 		System.out.println("Registered " + WATER_FEATURES);
 	}
 
@@ -199,40 +203,56 @@ public class FeaturePlacer {
 			}
 		}
 
-		// Get a random feature holder.
-		WeightedFeature selectedHolder = null;
-
+		// First, get a random type to place.
 		// Get the total weight.
 		int totalWeight = features.stream().mapToInt((type) -> type.weight()).reduce((a, b) -> a + b).orElse(0);
 		if (totalWeight == 0) {
-			// No features were registered.
+			// No features can be placed.
 			return;
 		}
-		// Get a random number to correspond to the feature holder to choose.
+		// Get a random number to correspond to the feature type to choose.
 		int randomWeight = level.getRandom().nextInt(totalWeight);
-
+		FeatureType chosenType = null;
 		// Iterate until all the weight has been consumed.
 		for (FeatureType type : features) {
 
-			for (WeightedFeature featureHolder : type) {
-				int featureWeight = featureHolder.weight();
-				if (randomWeight <= featureWeight) {
-					selectedHolder = featureHolder;
-					// System.out.println("Found feature in " + type);
-					// System.out.println("Current weight: " + randomWeight);
-					// System.out.println("Feature weight: " + featureWeight);
-					// System.out.println(selectedHolder);
-					break;
-				}
-				randomWeight -= featureWeight;
+			int weight = type.weight();
+			if (randomWeight <= weight) {
+				chosenType = type;
+				break;
 			}
+			randomWeight -= weight;
+		}
+
+		// If the type is still null, there has been an error.
+		// Print out a warning message.
+		if (chosenType == null) {
+			System.err.println("Warning! Failed to place a feature in " + FeaturePlacer.class);
+			System.err.println("There was " + randomWeight + " weight remaining out of " + totalWeight + ".");
+			return;
+		}
+
+		// Then, get a random feature holder.
+		WeightedFeature selectedHolder = null;
+		// Get a random number to correspond to the feature type to choose.
+		totalWeight = chosenType.weight();
+		randomWeight = level.getRandom().nextInt(totalWeight);
+		// Iterate until all the weight has been consumed.
+		for (WeightedFeature feature : chosenType) {
+
+			int weight = feature.weight();
+			if (randomWeight <= weight) {
+				selectedHolder = feature;
+				break;
+			}
+			randomWeight -= weight;
 		}
 
 		// If the holder is still null, there has been an error.
 		// Print out a warning message.
 		if (selectedHolder == null) {
-			System.out.println("Warning! Failed to place a feature in " + FeaturePlacer.class);
-			System.out.println("There was " + randomWeight + " weight remaining out of " + totalWeight + ".");
+			System.err.println("Warning! Failed to place a feature in " + FeaturePlacer.class);
+			System.err.println("There was " + randomWeight + " weight remaining out of " + totalWeight + ".");
 			return;
 		}
 

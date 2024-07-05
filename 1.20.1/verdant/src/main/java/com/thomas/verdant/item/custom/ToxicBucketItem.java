@@ -1,5 +1,7 @@
 package com.thomas.verdant.item.custom;
 
+import java.util.function.Supplier;
+
 import com.thomas.verdant.growth.VerdantBlockTransformer;
 import com.thomas.verdant.util.Utilities;
 
@@ -14,7 +16,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -24,9 +25,9 @@ import net.minecraft.world.phys.HitResult;
 
 public class ToxicBucketItem extends Item {
 
-	private final ItemStack empty;
+	private final Supplier<ItemStack> empty;
 
-	public ToxicBucketItem(Properties properties, ItemStack empty) {
+	public ToxicBucketItem(Properties properties, Supplier<ItemStack> empty) {
 		super(properties);
 		this.empty = empty;
 	}
@@ -73,8 +74,7 @@ public class ToxicBucketItem extends Item {
 
 				if (anyPassed) {
 					return InteractionResultHolder.sidedSuccess(
-							player.getAbilities().instabuild ? itemstack : new ItemStack(Items.BUCKET),
-							level.isClientSide);
+							player.getAbilities().instabuild ? itemstack : this.empty.get(), level.isClientSide);
 				} else {
 					return InteractionResultHolder.fail(itemstack);
 				}
@@ -87,11 +87,6 @@ public class ToxicBucketItem extends Item {
 
 	public static boolean applyBucketAsh(ItemStack stack, Level level, BlockPos pos, Player player) {
 		BlockState state = level.getBlockState(pos);
-
-		// Ensure the level is a server level.
-		if (level.isClientSide) {
-			return false;
-		}
 
 		// See if the player can break the block.
 		// Returns true if the player can.
@@ -107,7 +102,12 @@ public class ToxicBucketItem extends Item {
 			return false;
 		}
 
+		// Ensure the level is a server level.
+		if (level.isClientSide) {
+			return true;
+		}
 		// Otherwise, update and shrink.
+		level.addDestroyBlockEffect(pos, state);
 		level.setBlockAndUpdate(pos, next);
 		return true;
 
