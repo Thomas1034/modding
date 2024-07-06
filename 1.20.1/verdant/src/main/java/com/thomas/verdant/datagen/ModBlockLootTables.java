@@ -45,7 +45,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
 
 		this.add(ModBlocks.WILD_CASSAVA.get(),
-				this.createChanceDrops(ModBlocks.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.125f));
+				this.createChanceDrops(ModBlocks.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.25f));
 
 		this.dropSelf(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());

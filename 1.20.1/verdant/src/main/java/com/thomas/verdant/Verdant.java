@@ -54,6 +54,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Verdant wood is now far more flammable.
 // Verdant Energy now correctly applies more frequently on higher levels.
 // Verdant Vines now no longer drop sticks.
+// Verdant roots now grow slightly differently and are slightly less "smart" about where they grow to. This is more than made up by a ~25% performance improvement
+// Frame blocks are now half as expensive.
+// Leaves no longer schedule an extra tick after updating; this cuts off 8 ms of lag per tick on a heavily overgrown world. This _may_ cause some odd behavior when the leaves are affected by non-block-updating block changes from other mods, but this is unlikely. 
 
 // Bugfixes
 // General stability increases
@@ -63,7 +66,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // and flammability of some blocks to a minor degree
 // Fixed hanging sign edit screen
 // Fixed inaccurate /verdant command text
-// Heart of the Forest no longer grows vines on players who hold it - that was meant to be experimental.
+// Heart of the Forest no longer grows vines on players who hold it - that was meant to be experimental. Pretend you never saw it.
+// Decreased lag! Hooray!
 
 // Cassava -> 4 Cassava Flour 
 // 6 Cassava Flour -> 4 Bread

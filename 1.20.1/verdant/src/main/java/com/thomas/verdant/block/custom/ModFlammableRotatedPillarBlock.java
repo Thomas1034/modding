@@ -1,18 +1,10 @@
 package com.thomas.verdant.block.custom;
 
-import javax.annotation.Nullable;
-
-import com.thomas.verdant.growth.VerdantBlockTransformer;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 

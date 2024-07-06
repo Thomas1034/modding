@@ -15,7 +15,6 @@ import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.RopeBlock;
-import com.thomas.verdant.block.custom.SlowBushBlock;
 import com.thomas.verdant.block.custom.SpikesBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
@@ -43,6 +42,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -345,8 +345,8 @@ public class ModBlocks {
 			() -> new WaterHemlockBlock(BlockBehaviour.Properties.copy(Blocks.SMALL_DRIPLEAF)));
 
 	public static final RegistryObject<Block> WILD_CASSAVA = registerBlockWithItem("wild_cassava",
-			() -> new SlowBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
-					.offsetType(OffsetType.XZ), 0.9f, 1.0f, 0.9f));
+			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
+					.offsetType(OffsetType.XZ)));
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);

@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RopeBlock extends Block {
@@ -40,6 +39,7 @@ public class RopeBlock extends Block {
 	}
 
 	// Thrown ropes can hit this.
+	@SuppressWarnings("deprecation")
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		if (context instanceof EntityCollisionContext entitycollisioncontext) {
@@ -110,8 +110,7 @@ public class RopeBlock extends Block {
 				if (!player.getAbilities().instabuild) {
 					if (hand == InteractionHand.MAIN_HAND) {
 						player.getInventory().removeFromSelected(false);
-					}
-					else {
+					} else {
 						player.getInventory().removeItem(Inventory.SLOT_OFFHAND, 1);
 					}
 				}

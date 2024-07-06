@@ -74,11 +74,12 @@ public class VerdantLeafyVineBlock extends VerdantVineBlock implements IForgeShe
 		this.playerWillDestroy(level, pos, state, player);
 
 		// The state to set.
-		BlockState toSet = LEAVES.get().setValue(WATERLOGGED, fluid.is(FluidTags.WATER))
-				.setValue(BlockStateProperties.DISTANCE, 1);
+		// BlockState toSet = LEAVES.get().setValue(WATERLOGGED,
+		// fluid.is(FluidTags.WATER))
+		// .setValue(BlockStateProperties.DISTANCE, 1);
 
 		// Set the block.
-		return level.setBlock(pos, toSet, level.isClientSide ? 11 : 3);
+		return VerdantGrower.replaceLeafyVineWithVine(level, pos);
 	}
 
 	// Override to ensure the leafy vines turn to leaves when destroyed.

@@ -3,6 +3,7 @@ package com.thomas.verdant.growth;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.util.ModTags;
+import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,30 +34,24 @@ public interface VerdantGrower extends BonemealableBlock {
 	}
 
 	public static boolean erodeStatic(Level level, BlockPos pos, boolean isNearWater) {
-		// System.out.println("Statically eroding.");
-		// System.out.println("Is it near water? " + isNearWater);
 		BlockState state = level.getBlockState(pos);
-		// System.out.println("The state here is " + state);
-		BlockState next = VerdantBlockTransformer.EROSION.get().next(state);
-		// System.out.println("The next state is " + next);
-		BlockState nextIfWet = VerdantBlockTransformer.EROSION_WET.get().next(state);
-		// System.out.println("The next state given water is " + nextIfWet);
-
-		if (isNearWater && state != nextIfWet) {
-			// System.out.println("Wetting.");
-			level.setBlockAndUpdate(pos, nextIfWet);
-		} else if (state != next) {
-			// System.out.println("Updating.");
-			level.setBlockAndUpdate(pos, next);
-		} else {
+		BlockTransformer transformer = isNearWater ? VerdantBlockTransformer.EROSION_WET.get()
+				: VerdantBlockTransformer.EROSION.get();
+		if (!transformer.hasInput(state.getBlock())) {
 			return false;
 		}
-		// Chance to recurse.
-		if (level.random.nextFloat() < MULTI_ERODE_CHANCE) {
-			// System.out.println("Recursing.");
-			erodeStatic(level, pos, isNearWater);
+		BlockState next = transformer.next(state);
+		// Chance to repeat erosion, if it's not fully eroded.
+		// if (transformer.hasInput(next.getBlock()) && level.random.nextFloat() <
+		// MULTI_ERODE_CHANCE) {
+		// next = transformer.next(state);
+		// }
+		if (!state.equals(next)) {
+			level.setBlockAndUpdate(pos, next);
+			return true;
 		}
-		return true;
+
+		return false;
 	};
 
 	public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
@@ -121,7 +116,7 @@ public interface VerdantGrower extends BonemealableBlock {
 		}
 	}
 
-	public static void replaceLeafyVineWithVine(Level level, BlockPos pos) {
+	public static boolean replaceLeafyVineWithVine(Level level, BlockPos pos) {
 		// Store the previous block there.
 		BlockState replaced = level.getBlockState(pos);
 		if (replaced.is(ModBlocks.LEAFY_VERDANT_VINE.get()) && VerdantVineBlock.canGrowToAnyFace(level, pos)) {
@@ -145,8 +140,9 @@ public interface VerdantGrower extends BonemealableBlock {
 			// Update the block.
 			// level.destroyBlock(pos, false);
 			// System.out.println("Replacing leafy vines with " + placed + ".");
-			level.setBlockAndUpdate(pos, placed);
+			return level.setBlockAndUpdate(pos, placed);
 		}
+		return false;
 	}
 
 	// Returns true if it succeeded in converting the leaves.
@@ -183,9 +179,27 @@ public interface VerdantGrower extends BonemealableBlock {
 		return false;
 	}
 
+	// Returns true if it can grow.
+	public static boolean checkForRoots(Level level, BlockPos pos) {
+
+		int rootCount = 0;
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				for (int k = -1; k <= 1; k++) {
+					if (VerdantBlockTransformer.ROOTS.get()
+							.hasOutput(level.getBlockState(pos.offset(i, j, k)).getBlock())) {
+						rootCount++;
+					}
+				}
+			}
+		}
+
+		return rootCount <= MAX_ROOTS;
+	}
+
 	// Converts a block to a verdant form if possible.
 	// If not, returns false.
-	public static boolean convertGround(Level level, BlockPos pos, boolean isNearWater) {
+	public static boolean convertGround(Level level, BlockPos pos) {
 		// //System.out.println("Attempting to convert " + pos);
 		BlockState state = level.getBlockState(pos);
 
@@ -198,31 +212,10 @@ public interface VerdantGrower extends BonemealableBlock {
 				return true;
 
 			} else {
-				// Check for surrounding rooted blocks.
-				// //System.out.println("Attempting to place roots.");
-				int rootCount = 0;
-				for (int i = -1; i <= 1; i++) {
-					for (int j = -1; j <= 1; j++) {
-						for (int k = -1; k <= 1; k++) {
-							if (VerdantBlockTransformer.ROOTS.get()
-									.hasOutput(level.getBlockState(pos.offset(i, j, k)).getBlock())) {
-								rootCount++;
-							}
-						}
-					}
-				}
-				// Maximum of 3 blocks.
-				// //System.out.println("Root count is " + rootCount);
-				if (rootCount <= MAX_ROOTS) {
-					// System.out.println("Placing roots: " + rooted);
-					level.setBlockAndUpdate(pos, rooted);
-					level.scheduleTick(pos, rooted.getBlock(), 1);
-					return true;
-				}
-
+				level.setBlockAndUpdate(pos, rooted);
+				level.scheduleTick(pos, rooted.getBlock(), 1);
+				return true;
 			}
-		} else {
-			// //System.out.println(atPos + " is not a valid place to grow.");
 		}
 
 		return false;

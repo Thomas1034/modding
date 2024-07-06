@@ -91,7 +91,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		}
 
 		// Schedule an update tick, just in case.
-		level.scheduleTick(pos, level.getBlockState(pos).getBlock(), 1);
+		// level.scheduleTick(pos, level.getBlockState(pos).getBlock(), 1);
 
 		// See if it should decay, since it's too close to the ground.
 		tryToDecay(level, pos);

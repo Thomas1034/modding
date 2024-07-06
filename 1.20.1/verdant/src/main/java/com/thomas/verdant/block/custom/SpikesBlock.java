@@ -1,7 +1,6 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.damage.ModDamageSources;
-import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

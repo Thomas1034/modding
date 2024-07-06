@@ -8,9 +8,9 @@
     }
   },
   "pattern": [
-    "TTT",
+    " T ",
     "T T",
-    "TTT"
+    " T "
   ],
   "result": {
     "item": "verdant:frame_block"

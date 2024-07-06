@@ -1,13 +1,10 @@
 package com.thomas.verdant.item.custom;
 
-import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.growth.VerdantGrower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -33,7 +30,7 @@ public class HeartOfTheForestItem extends Item {
 				// Try to erode the block, then try to convert it.
 				VerdantGrower.erodeStatic(level, posToTry, holder.isInWaterOrRain());
 				// Try to convert the nearby block.
-				VerdantGrower.convertGround(level, posToTry, holder.isInWaterOrRain());
+				VerdantGrower.convertGround(level, posToTry);
 			}
 
 //			// Grow vines on the holder, if the holder is living.

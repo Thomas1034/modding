@@ -86,7 +86,7 @@ public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements Verdan
 	@Override
 	public void grow(BlockState state, Level level, BlockPos pos) {
 		// Try to convert the ground.
-		if (VerdantGrower.convertGround(level, pos.below(), state.getValue(WATERLOGGED))) {
+		if (VerdantGrower.convertGround(level, pos.below())) {
 		} else {
 			// Otherwise, try to erode it.
 			this.erode(level, pos.below(), state.getValue(WATERLOGGED));

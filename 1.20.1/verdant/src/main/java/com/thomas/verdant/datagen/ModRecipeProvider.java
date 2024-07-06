@@ -84,7 +84,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModItems.THORN.get(), Items.STICK, ModBlocks.ROPE.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.THORN_SPIKES.get(), 1);
 		// Frame block
-		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(Items.STICK),
+		shaped(recipeWriter, List.of(" T ", "T T", " T "), List.of('T'), List.of(Items.STICK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.FRAME_BLOCK.get(), 1);
 		// Rope coil
 		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(ModBlocks.ROPE.get()),
@@ -135,8 +135,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				1);
 
 		// Roasting golden cassava
-		foodCooking(recipeWriter, List.of(ModItems.GOLDEN_CASSAVA.get()), RecipeCategory.FOOD, ModItems.COOKED_GOLDEN_CASSAVA.get(),
-				0.1f, 200);
+		foodCooking(recipeWriter, List.of(ModItems.GOLDEN_CASSAVA.get()), RecipeCategory.FOOD,
+				ModItems.COOKED_GOLDEN_CASSAVA.get(), 0.1f, 200);
 
 		// Sparkling Starch
 		shapeless(recipeWriter, List.of(ModItems.GOLDEN_CASSAVA.get()), List.of(1), RecipeCategory.FOOD,
@@ -163,7 +163,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				0.1f, 200);
 
 		// TODO test
-		stonecutting(recipeWriter, Items.GRASS_BLOCK, RecipeCategory.BUILDING_BLOCKS, Items.EMERALD, 16);
+		// stonecutting(recipeWriter, Items.GRASS_BLOCK, RecipeCategory.BUILDING_BLOCKS,
+		// Items.EMERALD, 16);
 
 	}
 

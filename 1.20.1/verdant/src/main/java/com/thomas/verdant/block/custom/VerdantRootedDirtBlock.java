@@ -256,6 +256,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
 		// Find a place to grow within three tries. Can use further tries to spread even
 		// more.
+		// Check for surrounding roots.
+		boolean canGrow = VerdantGrower.checkForRoots(level, pos);
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
 			BlockPos posToTry = VerdantGrower.withinDist(pos, 3, level.random);
@@ -263,8 +265,10 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			if (!state.hasProperty(WATER_DISTANCE)) {
 				continue;
 			}
+			
 			// Try to convert the nearby block.
-			if (VerdantGrower.convertGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
+			boolean canBeGrass = VerdantGrower.canBeGrass(state, level, posToTry);
+			if ((canGrow || canBeGrass) && VerdantGrower.convertGround(level, posToTry)) {
 				// System.out.println("Successfully grew.");
 				// break;
 			}

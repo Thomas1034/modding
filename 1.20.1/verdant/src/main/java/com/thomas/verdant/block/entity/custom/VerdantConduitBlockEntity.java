@@ -20,7 +20,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BellBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -130,7 +129,7 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 		// Try to convert the nearby block.
 		// On failure, increase the range to try.
 		boolean didErode = VerdantGrower.erodeStatic(level, posToTry, false);
-		boolean didConvert = VerdantGrower.convertGround(level, posToTry, false);
+		boolean didConvert = VerdantGrower.convertGround(level, posToTry);
 		if (!didErode && !didConvert) {
 			if (verdantHeart.bonusGrowthRange < MAX_GROWTH_BONUS) {
 				verdantHeart.bonusGrowthRange++;

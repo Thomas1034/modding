@@ -12,10 +12,13 @@ import com.thomas.verdant.util.function.TriFunction;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
@@ -127,7 +130,7 @@ public class Feature {
 	public static Feature monster(EntityType<? extends LivingEntity> type) {
 		return monster(type, new ItemStack(Items.AIR), (m) -> (m));
 	}
-	
+
 	public static Feature monster(EntityType<? extends LivingEntity> type, ItemStack holding) {
 		return monster(type, holding, (m) -> (m));
 	}
@@ -141,10 +144,10 @@ public class Feature {
 			spawned.setPos(pos.getCenter().subtract(0, 0.5, 0));
 			spawned.setItemInHand(InteractionHand.MAIN_HAND, holding);
 			level.addFreshEntity(spawned);
+			// TODO
 
-		}, ((BiPredicate<Level, BlockPos>) (level, pos) -> level.getGameRules()
-				.getBoolean(GameRules.RULE_DOMOBSPAWNING)).and((level, pos) -> Feature.aboveLightLevel(level, pos, 5))
-				.and((BiPredicate<Level, BlockPos>) (level, pos) -> Feature.simpleEntityChecker(level, pos, 16, 2)));
+		}, (level, pos) -> (level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)
+				&& Feature.aboveLightLevel(level, pos, 5) && Feature.simpleEntityChecker(level, pos, 16, 2)));
 	}
 
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
@@ -195,6 +198,7 @@ public class Feature {
 	// radius d.
 	public static boolean simpleEntityChecker(Level level, BlockPos pos, int n, int d) {
 		AABB container = AABB.unitCubeFromLowerCorner(pos.getCenter().subtract(0.5, 0.5, 0.5)).inflate(n);
+
 		return level.getEntities(null, container).size() < d;
 	}
 

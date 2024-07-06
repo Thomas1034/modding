@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-04T22:59:15.1389585	Loot Tables
+// 1.20.1	2024-07-05T17:19:08.9031011	Loot Tables
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_tables/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_tables/blocks/bitter_cassava_rooted_dirt.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_tables/blocks/bleeding_heart.json
@@ -75,6 +75,6 @@ e1acfe65d95861363ee6869e80b03305ba72dd06 data/verdant/loot_tables/blocks/verdant
 a8bcdacf6c7c38622f38074eecbbb50ee9ab67c9 data/verdant/loot_tables/blocks/verdant_wall_sign.json
 1668a8aea079b5748dc95248d0411aa4ef9780b6 data/verdant/loot_tables/blocks/verdant_wood.json
 4ca5b87da283166c168a44c07ff5f5f1327886aa data/verdant/loot_tables/blocks/water_hemlock.json
-0ef6e8b5d28ab79a51094ddee2fc34fb7e9b33f3 data/verdant/loot_tables/blocks/wild_cassava.json
+4775b8288cfd43d272b1d004ab7b173fffaca382 data/verdant/loot_tables/blocks/wild_cassava.json
 4c018b5ddd79f454c4178b764d33d19c8b8e6f1e data/verdant/loot_tables/blocks/wild_coffee.json
 a2de211f398dbadcb3281f9000180cbd755943ad data/verdant/loot_tables/blocks/wilted_verdant_leaves.json

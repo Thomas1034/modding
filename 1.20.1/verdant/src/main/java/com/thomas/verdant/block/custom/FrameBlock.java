@@ -61,6 +61,7 @@ public class FrameBlock extends ModFlammableRotatedPillarBlock implements Simple
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
@@ -71,6 +72,7 @@ public class FrameBlock extends ModFlammableRotatedPillarBlock implements Simple
 		return super.updateShape(state, direction, otherState, level, pos, otherPos);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);

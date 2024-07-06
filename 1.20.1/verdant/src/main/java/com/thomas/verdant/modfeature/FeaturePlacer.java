@@ -62,6 +62,7 @@ public class FeaturePlacer {
 
 	// Registers a feature to the list of generic features, with a given weight and
 	// name.
+	@SuppressWarnings("unused")
 	private static void registerGenericFeature(Feature feature, int weight, String name) {
 		register(GENERIC_FEATURES, feature, weight, name);
 	}
@@ -113,7 +114,6 @@ public class FeaturePlacer {
 		registerSurfaceFeature(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON, "small_grass");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON, "tall_fern");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON, "tall_grass");
-		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_CASSAVA.get()), Rarity.UNCOMMON, "shrub");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON, "thorn_bush");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.BLEEDING_HEART.get()), Rarity.EXTREMELY_UNCOMMON,
 				"bleeding_heart_flower");
@@ -121,13 +121,14 @@ public class FeaturePlacer {
 				Feature.smallPlant(Blocks.GLOW_LICHEN.defaultBlockState()
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
 				Rarity.RARE, "floor_glow_lichen");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_CASSAVA.get()), Rarity.RARE, "wild_cassava");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.RARE, "blue_orchid");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_COFFEE.get()), Rarity.RARE, "wild_coffee");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.VERY_RARE, "brown_mushroom");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.VERY_RARE,
 				"floor_stinking_blossom");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.RED_MUSHROOM), Rarity.EXTREMELY_RARE, "red_mushroom");
-		System.out.println("Registered " + SURFACE_FEATURES);
+		// System.out.println("Registered " + SURFACE_FEATURES);
 	}
 
 	private static void registerVerdantVineFeatures() {
@@ -136,7 +137,7 @@ public class FeaturePlacer {
 		registerVerdantVineFeature(Feature.verdantVine((VerdantVineBlock) ModBlocks.LEAFY_VERDANT_VINE.get()),
 				Rarity.VERY_RARE, "leafy_verdant_vine");
 
-		System.out.println("Registered " + VERDANT_VINE_FEATURES);
+		// System.out.println("Registered " + VERDANT_VINE_FEATURES);
 	}
 
 	// Registers all hanging features.
@@ -154,7 +155,7 @@ public class FeaturePlacer {
 						.setValue(StinkingBlossomBlock.VERTICAL_DIRECTION, Direction.DOWN), 1),
 				Rarity.RARE, "ceiling_stinking_blossom");
 		registerHangingFeature(Feature.hanging(Blocks.SPORE_BLOSSOM, 1), Rarity.EXTREMELY_RARE, "spore_blossom");
-		System.out.println("Registered " + HANGING_FEATURES);
+		// System.out.println("Registered " + HANGING_FEATURES);
 	}
 
 	// Registers all water features.
@@ -167,13 +168,13 @@ public class FeaturePlacer {
 		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get()),
 				Rarity.VERY_UNCOMMON, "water_hemlock");
 
-		System.out.println("Registered " + WATER_FEATURES);
+		// System.out.println("Registered " + WATER_FEATURES);
 	}
 
 	// Registers all generic features.
 	private static void registerGenericFeatures() {
 
-		System.out.println("Registered " + GENERIC_FEATURES);
+		// System.out.println("Registered " + GENERIC_FEATURES);
 	}
 
 	// Registers all the features for this class.
