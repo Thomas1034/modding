@@ -8,8 +8,7 @@ import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.enchantment.ModEnchantments;
-import com.thomas.verdant.entity.ModEntityType;
-import com.thomas.verdant.entity.client.renderer.ModBoatRenderer;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.entity.client.renderer.OvergrownSkeletonRenderer;
 import com.thomas.verdant.entity.client.renderer.OvergrownZombieRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
@@ -57,6 +56,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Verdant roots now grow slightly differently and are slightly less "smart" about where they grow to. This is more than made up by a ~25% performance improvement
 // Frame blocks are now half as expensive.
 // Leaves no longer schedule an extra tick after updating; this cuts off 8 ms of lag per tick on a heavily overgrown world. This _may_ cause some odd behavior when the leaves are affected by non-block-updating block changes from other mods, but this is unlikely. 
+// Verdant ground blocks can now be hoed back to their ordinary variants.
+
 
 // Bugfixes
 // General stability increases
@@ -143,7 +144,7 @@ public class Verdant {
 
 		ModBlockEntities.register(modEventBus);
 
-		ModEntityType.register(modEventBus);
+		ModEntityTypes.register(modEventBus);
 
 		ModPacketHandler.register();
 
@@ -231,14 +232,11 @@ public class Verdant {
 	public static class ClientModEvents {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
-			// Some client setup code
-			EntityRenderers.register(ModEntityType.VERDANT_BOAT.get(), context -> new ModBoatRenderer(context, false));
-			EntityRenderers.register(ModEntityType.VERDANT_CHEST_BOAT.get(),
-					context -> new ModBoatRenderer(context, true));
-			EntityRenderers.register(ModEntityType.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
-			EntityRenderers.register(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
-			EntityRenderers.register(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
-			EntityRenderers.register(ModEntityType.THROWN_ROPE.get(), ThrownItemRenderer::new);
+			// Register entity renderers
+			EntityRenderers.register(ModEntityTypes.POISON_IVY_ARROW.get(), PoisonIvyArrowRenderer::new);
+			EntityRenderers.register(ModEntityTypes.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
+			EntityRenderers.register(ModEntityTypes.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
+			EntityRenderers.register(ModEntityTypes.THROWN_ROPE.get(), ThrownItemRenderer::new);
 		}
 	}
 }

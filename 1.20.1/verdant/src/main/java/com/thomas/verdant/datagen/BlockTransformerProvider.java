@@ -3,7 +3,6 @@ package com.thomas.verdant.datagen;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.JsonObject;

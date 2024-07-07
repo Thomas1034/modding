@@ -196,9 +196,11 @@ public class VerdantBlockTransformer {
 	}
 
 	public static void registerHoeing(BlockTransformer transformer) {
-		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.FARMLAND);
+		transformer.register(ModBlocks.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
 		transformer.register(ModBlocks.VERDANT_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_DIRT.get());
-		transformer.register(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.FARMLAND);
+		transformer.register(ModBlocks.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
 		transformer.register(ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_MUD.get());
+		transformer.register(ModBlocks.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+		transformer.register(ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get());
 	}
 }

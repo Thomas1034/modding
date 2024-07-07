@@ -1,6 +1,6 @@
 package com.thomas.verdant.entity.custom;
 
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.nbt.CompoundTag;
@@ -36,7 +36,7 @@ public class OvergrownZombieEntity extends Zombie {
 	}
 
 	public OvergrownZombieEntity(Level level) {
-		super(ModEntityType.OVERGROWN_ZOMBIE.get(), level);
+		super(ModEntityTypes.OVERGROWN_ZOMBIE.get(), level);
 	}
 
 	// Prevent drownding
@@ -109,9 +109,9 @@ public class OvergrownZombieEntity extends Zombie {
 	public boolean killedEntity(ServerLevel level, LivingEntity entity) {
 		boolean flag = super.killedEntity(level, entity);
 		if (entity instanceof Zombie zombie && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(entity,
-				ModEntityType.OVERGROWN_ZOMBIE.get(), (timer) -> {
+				ModEntityTypes.OVERGROWN_ZOMBIE.get(), (timer) -> {
 				})) {
-			OvergrownZombieEntity overgrownZombie = zombie.convertTo(ModEntityType.OVERGROWN_ZOMBIE.get(), false);
+			OvergrownZombieEntity overgrownZombie = zombie.convertTo(ModEntityTypes.OVERGROWN_ZOMBIE.get(), false);
 			if (overgrownZombie != null) {
 				overgrownZombie.finalizeSpawn(level, level.getCurrentDifficultyAt(overgrownZombie.blockPosition()),
 						MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, true), (CompoundTag) null);
@@ -123,9 +123,9 @@ public class OvergrownZombieEntity extends Zombie {
 				flag = false;
 			}
 		} else if (entity instanceof Skeleton skeleton && net.minecraftforge.event.ForgeEventFactory
-				.canLivingConvert(entity, ModEntityType.OVERGROWN_SKELETON.get(), (timer) -> {
+				.canLivingConvert(entity, ModEntityTypes.OVERGROWN_SKELETON.get(), (timer) -> {
 				})) {
-			OvergrownSkeletonEntity overgrownZombie = skeleton.convertTo(ModEntityType.OVERGROWN_SKELETON.get(), false);
+			OvergrownSkeletonEntity overgrownZombie = skeleton.convertTo(ModEntityTypes.OVERGROWN_SKELETON.get(), false);
 			if (overgrownZombie != null) {
 				overgrownZombie.finalizeSpawn(level, level.getCurrentDifficultyAt(overgrownZombie.blockPosition()),
 						MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, true), (CompoundTag) null);

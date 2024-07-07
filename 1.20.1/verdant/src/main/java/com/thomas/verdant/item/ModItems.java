@@ -5,10 +5,8 @@ import java.util.function.Supplier;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.effect.ModMobEffects;
-import com.thomas.verdant.entity.custom.ModBoatEntity;
 import com.thomas.verdant.item.custom.EffectBoostFoodItem;
 import com.thomas.verdant.item.custom.HeartOfTheForestItem;
-import com.thomas.verdant.item.custom.ModBoatItem;
 import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
 import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.ToxicAshItem;
@@ -38,15 +36,15 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Verdant.MOD_ID);
 
-	public static final RegistryObject<Item> VERDANT_BOAT = registerItem("verdant_boat",
-			() -> new ModBoatItem(false, ModBoatEntity.Type.VERDANT, new Item.Properties()));
-	public static final RegistryObject<Item> VERDANT_CHEST_BOAT = registerItem("verdant_chest_boat",
-			() -> new ModBoatItem(true, ModBoatEntity.Type.VERDANT, new Item.Properties()));
+	// TODO SWAP TO WoodSet
+	public static final RegistryObject<Item> VERDANT_BOAT = ModBlocks.VERDANT.getBoatItem();
 
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_BOAT = registerItem("verdant_heartwood_boat",
-			() -> new ModBoatItem(false, ModBoatEntity.Type.VERDANT_HEARTWOOD, new Item.Properties()));
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHEST_BOAT = registerItem("verdant_heartwood_chest_boat",
-			() -> new ModBoatItem(true, ModBoatEntity.Type.VERDANT_HEARTWOOD, new Item.Properties()));
+	public static final RegistryObject<Item> VERDANT_CHEST_BOAT = ModBlocks.VERDANT.getChestBoatItem();
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_BOAT = ModBlocks.VERDANT_HEARTWOOD.getBoatItem();
+
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHEST_BOAT = ModBlocks.VERDANT_HEARTWOOD
+			.getChestBoatItem();
 
 	public static final RegistryObject<Item> VERDANT_SIGN = ModBlocks.VERDANT.getSignItem();
 
@@ -150,15 +148,13 @@ public class ModItems {
 					.effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEat().build())));
 	public static final RegistryObject<Item> SPARKLING_STARCH = ITEMS.register("sparkling_starch",
 			() -> new Item(new Item.Properties().stacksTo(64)));
-	
+
 	// Water hemlock
 	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
 			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties().stacksTo(64)));
-	
-	
-	
 
 	// Boilerplate
+	@SuppressWarnings("unused")
 	private static RegistryObject<Item> registerItem(String name, Supplier<Item> item) {
 		return ModItems.ITEMS.register(name, item);
 	}

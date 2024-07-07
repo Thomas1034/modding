@@ -1,6 +1,8 @@
 {
+  "verdant:verdant_clay_grass_block": "verdant:verdant_rooted_clay",
   "verdant:verdant_grass_block": "verdant:verdant_rooted_dirt",
   "verdant:verdant_mud_grass_block": "verdant:verdant_rooted_mud",
-  "verdant:verdant_rooted_dirt": "minecraft:farmland",
-  "verdant:verdant_rooted_mud": "minecraft:farmland"
+  "verdant:verdant_rooted_clay": "minecraft:clay",
+  "verdant:verdant_rooted_dirt": "minecraft:dirt",
+  "verdant:verdant_rooted_mud": "minecraft:mud"
 }

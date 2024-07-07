@@ -31,6 +31,7 @@ import com.thomas.verdant.block.custom.WildCoffeeBlock;
 import com.thomas.verdant.block.custom.WiltedVerdantLeavesBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.util.BurnTimes;
 import com.thomas.verdant.woodset.WoodSet;
@@ -64,14 +65,14 @@ public class ModBlocks {
 			Verdant.MOD_ID);
 
 	// Register the Verdant heartwood set.
-	public static final WoodSet VERDANT_HEARTWOOD = new WoodSet(ModBlocks.BLOCKS, ModItems.ITEMS,
-			ModBlockEntities.BLOCK_ENTITIES, Verdant.MOD_ID, "verdant_heartwood",
-			() -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS)
-					.strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava(),
+	public static final WoodSet VERDANT_HEARTWOOD = new WoodSet(
+			ModBlocks.BLOCKS, ModItems.ITEMS, ModBlockEntities.BLOCK_ENTITIES, ModEntityTypes.ENTITY_TYPES,
+			Verdant.MOD_ID, "verdant_heartwood", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN)
+					.instrument(NoteBlockInstrument.BASS).strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava(),
 			2.0f, 5, 2);
 
 	public static final WoodSet VERDANT = new WoodSet(ModBlocks.BLOCKS, ModItems.ITEMS, ModBlockEntities.BLOCK_ENTITIES,
-			Verdant.MOD_ID, "verdant",
+			ModEntityTypes.ENTITY_TYPES, Verdant.MOD_ID, "verdant",
 			() -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
 					.instrument(NoteBlockInstrument.BASS).strength(2.0f).sound(SoundType.WOOD).ignitedByLava(),
 			2.0f, 15, 50);
@@ -97,7 +98,7 @@ public class ModBlocks {
 	@SuppressWarnings("resource")
 	public static final RegistryObject<Block> CASSAVA_ROOTED_DIRT = registerBlockWithItem("cassava_rooted_dirt",
 			() -> new HoeRemovableItemBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT), (context) -> {
-				int base = 4;
+				int base = 3;
 				int bonus = 3 * context.getItemInHand().getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
 				return new ItemStack(ModItems.CASSAVA.get(),
 						context.getLevel().random.nextIntBetweenInclusive(base, 2 * base + bonus));
@@ -111,7 +112,7 @@ public class ModBlocks {
 			() -> new HoeRemovableItemBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT), (context) -> {
 
 				int bonus = 3 * context.getItemInHand().getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
-				int base = 6;
+				int base = 4;
 
 				if (context.getLevel().getRandom().nextFloat() < (1f / 32f)) {
 					return new ItemStack(ModItems.CASSAVA.get(),

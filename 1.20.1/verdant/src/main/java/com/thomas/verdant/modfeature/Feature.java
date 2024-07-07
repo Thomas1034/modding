@@ -12,13 +12,10 @@ import com.thomas.verdant.util.function.TriFunction;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
@@ -75,6 +72,9 @@ public class Feature {
 	}
 
 	public void place(Level level, BlockPos pos) {
+		if (!level.isLoaded(pos)) {
+			return;
+		}
 		BlockPos placementPos = this.findPlacementLocation.apply(this, level, pos);
 		if (placementPos == null) {
 			return;

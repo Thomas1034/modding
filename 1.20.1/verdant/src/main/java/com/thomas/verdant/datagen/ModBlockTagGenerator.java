@@ -38,7 +38,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.DIRT_COPPER_ORE.get(), ModBlocks.DIRT_DIAMOND_ORE.get(), ModBlocks.DIRT_EMERALD_ORE.get(),
 				ModBlocks.DIRT_GOLD_ORE.get(), ModBlocks.DIRT_IRON_ORE.get(), ModBlocks.DIRT_LAPIS_ORE.get(),
 				ModBlocks.DIRT_REDSTONE_ORE.get(), ModBlocks.CASSAVA_ROOTED_DIRT.get(),
-				ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
+				ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get(), ModBlocks.VERDANT_CONDUIT.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.WILTED_VERDANT_LEAVES.get(), ModBlocks.VERDANT_LEAVES.get(),
 				ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY_VERDANT_LEAVES.get(),
 				ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),

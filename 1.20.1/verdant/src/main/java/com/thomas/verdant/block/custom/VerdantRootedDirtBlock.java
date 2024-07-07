@@ -66,9 +66,15 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
 		// If it has no block above it and no block below it, it should certainly
 		// settle.
-		if (level.getBlockState(pos.above()).is(Blocks.AIR)
-				&& level.getBlockState(pos.below()).is(BlockTags.REPLACEABLE)) {
+		BlockState above = level.getBlockState(pos.above());
+		BlockState below = level.getBlockState(pos.below());
+		if (above.is(Blocks.AIR) && below.is(BlockTags.REPLACEABLE)) {
 			return true;
+		}
+
+		// If it has a block above it and a block below it, don't settle.
+		if (!above.is(BlockTags.REPLACEABLE) && !below.is(Blocks.AIR)) {
+			return false;
 		}
 
 		// Check if it's supported from its sides.
@@ -83,16 +89,11 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 					|| !level.getFluidState(pos.relative(d)).isEmpty()) {
 				// Found a solid side.
 				solidSides++;
+				// If it's supported by at least two sides, it's good.
+				if (solidSides >= 2) {
+					return false;
+				}
 			}
-		}
-		// If it's supported by at least two sides, it's good.
-		if (solidSides >= 2) {
-			return false;
-		}
-		// If it has a block above it and a block below it, don't settle.
-		if (!level.getBlockState(pos.above()).is(BlockTags.REPLACEABLE)
-				&& !level.getBlockState(pos.below()).is(Blocks.AIR)) {
-			return false;
 		}
 
 		return true;
@@ -115,10 +116,6 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 					if (level.getBlockState(settleLocation.below()).isFaceSturdy(level, pos, Direction.UP)) {
 						FallingBlockHelper.fallNoDrops(level, settleLocation);
 					}
-				}
-				// If not, give it another chance to grow.
-				else {
-					this.grow(level.getBlockState(pos), level, pos);
 				}
 				// Destroy it.
 				level.destroyBlock(pos, false);
@@ -265,7 +262,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			if (!state.hasProperty(WATER_DISTANCE)) {
 				continue;
 			}
-			
+
 			// Try to convert the nearby block.
 			boolean canBeGrass = VerdantGrower.canBeGrass(state, level, posToTry);
 			if ((canGrow || canBeGrass) && VerdantGrower.convertGround(level, posToTry)) {

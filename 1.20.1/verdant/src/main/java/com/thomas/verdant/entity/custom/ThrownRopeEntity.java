@@ -2,7 +2,7 @@ package com.thomas.verdant.entity.custom;
 
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.RopeBlock;
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -35,7 +35,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 	}
 
 	public ThrownRopeEntity(Level level, LivingEntity thrower) {
-		super(ModEntityType.THROWN_ROPE.get(), thrower, level);
+		super(ModEntityTypes.THROWN_ROPE.get(), thrower, level);
 	}
 
 	public ThrownRopeEntity(EntityType<? extends ThrowableItemProjectile> type, Level level) {
@@ -43,7 +43,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 	}
 
 	public ThrownRopeEntity(Level level) {
-		super(ModEntityType.THROWN_ROPE.get(), level);
+		super(ModEntityTypes.THROWN_ROPE.get(), level);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package com.thomas.verdant.event;
 
 import com.thomas.verdant.Verdant;
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.entity.custom.OvergrownSkeletonEntity;
 import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
 
@@ -14,8 +14,8 @@ public class ModEventBusEvents {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(ModEntityType.OVERGROWN_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
-		event.put(ModEntityType.OVERGROWN_SKELETON.get(), OvergrownSkeletonEntity.createAttributes().build());
+		event.put(ModEntityTypes.OVERGROWN_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
+		event.put(ModEntityTypes.OVERGROWN_SKELETON.get(), OvergrownSkeletonEntity.createAttributes().build());
 
 	}
 

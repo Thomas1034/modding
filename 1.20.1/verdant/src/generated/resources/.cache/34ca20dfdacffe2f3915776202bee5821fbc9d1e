@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-29T16:27:04.3968832	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-07-06T15:26:13.4584351	Tags for minecraft:block mod id verdant
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences/wooden.json
 a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/forge/tags/blocks/fence_gates.json
@@ -26,7 +26,7 @@ e9aee8ebf39418fb0d17448e7ffea3e4c3ada219 data/minecraft/tags/blocks/leaves.json
 3473aa247c81c8c58896f026d09d5393a061bf46 data/minecraft/tags/blocks/logs_that_burn.json
 dac4b7450140e86dc067a60042f0793691acdad6 data/minecraft/tags/blocks/mineable/axe.json
 4d280bdd3358b06586181f644d6697d101631871 data/minecraft/tags/blocks/mineable/hoe.json
-cd632a4f74cc95741a7543af29bbb4f06de51803 data/minecraft/tags/blocks/mineable/shovel.json
+5f874e8ae3ee5f017055c4d5d94e79bae501a078 data/minecraft/tags/blocks/mineable/shovel.json
 e59de92407dac17ebe9462bc450e8af1fea474e6 data/minecraft/tags/blocks/mushroom_grow_block.json
 9746dfa6dadab13ab1c8ba93f56be8893a68eb7b data/minecraft/tags/blocks/planks.json
 ed8944f5bcf3b97f15bcd32e8f5767576c49100b data/minecraft/tags/blocks/pressure_plates.json

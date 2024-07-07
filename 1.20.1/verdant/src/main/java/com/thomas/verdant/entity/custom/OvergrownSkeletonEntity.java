@@ -1,6 +1,6 @@
 package com.thomas.verdant.entity.custom;
 
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.item.ModItems;
 import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
@@ -32,7 +32,7 @@ public class OvergrownSkeletonEntity extends Skeleton {
 	}
 
 	public OvergrownSkeletonEntity(Level level) {
-		super(ModEntityType.OVERGROWN_SKELETON.get(), level);
+		super(ModEntityTypes.OVERGROWN_SKELETON.get(), level);
 	}
 
 	@Override

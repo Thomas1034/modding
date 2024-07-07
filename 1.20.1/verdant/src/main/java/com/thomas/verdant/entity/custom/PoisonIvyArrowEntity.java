@@ -1,6 +1,6 @@
 package com.thomas.verdant.entity.custom;
 
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,11 +19,11 @@ public class PoisonIvyArrowEntity extends ModArrowEntity {
 	}
 
 	public PoisonIvyArrowEntity(Level level, double x, double y, double z) {
-		super(ModEntityType.POISON_IVY_ARROW.get(), level, x, y, z);
+		super(ModEntityTypes.POISON_IVY_ARROW.get(), level, x, y, z);
 	}
 
 	public PoisonIvyArrowEntity(Level level, LivingEntity archer) {
-		super(ModEntityType.POISON_IVY_ARROW.get(), level, archer);
+		super(ModEntityTypes.POISON_IVY_ARROW.get(), level, archer);
 	}
 
 	// Apply poison to the hit entity, if it is a living entity.

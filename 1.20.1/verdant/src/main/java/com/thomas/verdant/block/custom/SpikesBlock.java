@@ -31,8 +31,9 @@ public class SpikesBlock extends AmethystClusterBlock {
 			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.75D, (double) 0.8F));
 			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);
+				double yMovement = Math.abs(entity.getY() - entity.yOld);
 				double xMovement = Math.abs(entity.getZ() - entity.zOld);
-				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F) {
+				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F || yMovement >= (double) 0.003F) {
 					DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
 					entity.hurt(source, damage);
 				}

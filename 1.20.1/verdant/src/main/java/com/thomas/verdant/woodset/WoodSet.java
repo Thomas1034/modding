@@ -3,25 +3,33 @@ package com.thomas.verdant.woodset;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.thomas.verdant.Verdant;
+import com.mojang.datafixers.util.Pair;
 import com.thomas.verdant.datagen.BlockTransformerProvider;
 import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 import com.thomas.verdant.util.data.DataAccessor;
 import com.thomas.verdant.util.data.DataRegistries;
 import com.thomas.verdant.util.function.Reflection;
 import com.thomas.verdant.util.function.Reflection.CallableWithArgs;
-import com.thomas.verdant.util.function.TriFunction;
 
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.ListModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -33,10 +41,19 @@ import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
@@ -49,7 +66,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
@@ -73,9 +92,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTable.Builder;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -86,6 +109,7 @@ import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -98,6 +122,7 @@ public class WoodSet {
 	protected final DeferredRegister<Block> blockRegister;
 	protected final DeferredRegister<Item> itemRegister;
 	protected final DeferredRegister<BlockEntityType<?>> blockEntityRegister;
+	protected final DeferredRegister<EntityType<?>> entityRegister;
 
 	// The name of the wood set
 	public final String baseName;
@@ -138,6 +163,8 @@ public class WoodSet {
 	// The items created
 	protected RegistryObject<Item> signItem;
 	protected RegistryObject<Item> hangingSignItem;
+	protected RegistryObject<Item> boatItem;
+	protected RegistryObject<Item> chestBoatItem;
 
 	// The block entities created for the signs
 	protected RegistryObject<BlockEntityType<WoodSet.WoodSetSignBlockEntity>> signBlockEntity;
@@ -146,14 +173,19 @@ public class WoodSet {
 	// The block transformer to handle stripping.
 	public final DataAccessor<BlockTransformer> stripping;
 
+	// The entities for boats
+	protected RegistryObject<EntityType<WoodSet.WoodSetBoatEntity>> boatEntity;
+	protected RegistryObject<EntityType<WoodSet.WoodSetChestBoatEntity>> chestBoatEntity;
+
 	// Supplier must supply a new instance per call.
 	public WoodSet(DeferredRegister<Block> blockRegister, DeferredRegister<Item> itemRegister,
-			DeferredRegister<BlockEntityType<?>> blockEntityRegister, String modid, String baseName,
-			Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeMultiplier, int flammability,
-			int fireSpreadSpeed) {
+			DeferredRegister<BlockEntityType<?>> blockEntityRegister, DeferredRegister<EntityType<?>> entityRegister,
+			String modid, String baseName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeMultiplier,
+			int flammability, int fireSpreadSpeed) {
 		this.blockRegister = blockRegister;
 		this.itemRegister = itemRegister;
 		this.blockEntityRegister = blockEntityRegister;
+		this.entityRegister = entityRegister;
 
 		this.baseName = baseName;
 		this.modid = modid;
@@ -171,6 +203,7 @@ public class WoodSet {
 		this.registerBlocks();
 		this.registerItems();
 		this.registerBlockEntities();
+		this.registerEntities();
 
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 
@@ -180,6 +213,12 @@ public class WoodSet {
 	protected void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(this.signBlockEntity.get(), SignRenderer::new);
 		event.registerBlockEntityRenderer(this.hangingSignBlockEntity.get(), HangingSignRenderer::new);
+	}
+
+	@SubscribeEvent
+	protected void registerER(FMLClientSetupEvent event) {
+		EntityRenderers.register(this.boatEntity.get(), context -> this.new WoodSetBoatRenderer(context, false));
+		EntityRenderers.register(this.chestBoatEntity.get(), context -> this.new WoodSetBoatRenderer(context, true));
 	}
 
 	protected void registerBlocks() {
@@ -259,6 +298,12 @@ public class WoodSet {
 		this.hangingSignItem = this.registerItem(hangingSignName(this.baseName),
 				() -> new HangingSignItem(this.hangingSign.get(), this.wallHangingSign.get(),
 						new Item.Properties().stacksTo(16)));
+
+		this.boatItem = registerItem(boatName(this.baseName), () -> new WoodSetBoatItem(false, new Item.Properties()));
+
+		this.chestBoatItem = registerItem(chestBoatName(this.baseName),
+				() -> new WoodSetBoatItem(true, new Item.Properties()));
+
 	}
 
 	protected void registerBlockEntities() {
@@ -269,6 +314,16 @@ public class WoodSet {
 		this.signBlockEntity = this.blockEntityRegister.register(signName(this.baseName), () -> BlockEntityType.Builder
 				.of(WoodSet.WoodSetSignBlockEntity::new, this.wallSign.get(), this.sign.get()).build(null));
 
+	}
+
+	protected void registerEntities() {
+
+		this.boatEntity = this.entityRegister.register(boatName(this.getBaseName()),
+				() -> EntityType.Builder.<WoodSetBoatEntity>of(WoodSetBoatEntity::new, MobCategory.MISC)
+						.sized(1.375f, 0.5625f).build(boatName(this.getBaseName())));
+		this.chestBoatEntity = this.entityRegister.register(chestBoatName(this.getBaseName()),
+				() -> EntityType.Builder.<WoodSetChestBoatEntity>of(WoodSetChestBoatEntity::new, MobCategory.MISC)
+						.sized(1.375f, 0.5625f).build(chestBoatName(this.getBaseName())));
 	}
 
 	public String getBaseName() {
@@ -375,6 +430,14 @@ public class WoodSet {
 		return trapdoor;
 	}
 
+	public RegistryObject<Item> getBoatItem() {
+		return boatItem;
+	}
+
+	public RegistryObject<Item> getChestBoatItem() {
+		return chestBoatItem;
+	}
+
 	protected static Properties planksProperties(BlockBehaviour.Properties base) {
 		return base;
 	}
@@ -474,53 +537,59 @@ public class WoodSet {
 	}
 
 	public void addRecipes(Consumer<FinishedRecipe> recipeWriter) {
-		// Verdant heartwood furniture
-		WoodSet.Recipes.charcoalSmelting(recipeWriter, this.log.get());
-		WoodSet.Recipes.charcoalSmelting(recipeWriter, this.strippedLog.get());
-		WoodSet.Recipes.charcoalSmelting(recipeWriter, this.wood.get());
-		WoodSet.Recipes.charcoalSmelting(recipeWriter, this.strippedWood.get());
-		WoodSet.Recipes.shapeless(recipeWriter, List.of(this.log.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+		WoodSet.Recipes recipes = new WoodSet.Recipes();
+
+		recipes.charcoalSmelting(recipeWriter, this.log.get());
+		recipes.charcoalSmelting(recipeWriter, this.strippedLog.get());
+		recipes.charcoalSmelting(recipeWriter, this.wood.get());
+		recipes.charcoalSmelting(recipeWriter, this.strippedWood.get());
+		recipes.shapeless(recipeWriter, List.of(this.log.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
 				this.planks.get(), 4);
-		WoodSet.Recipes.shapeless(recipeWriter, List.of(this.strippedLog.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, this.planks.get(), 4);
-		WoodSet.Recipes.shapeless(recipeWriter, List.of(this.wood.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+		recipes.shapeless(recipeWriter, List.of(this.strippedLog.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
 				this.planks.get(), 4);
-		WoodSet.Recipes.shapeless(recipeWriter, List.of(this.strippedWood.get()), List.of(1),
-				RecipeCategory.BUILDING_BLOCKS, this.planks.get(), 4);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(this.log.get()),
+		recipes.shapeless(recipeWriter, List.of(this.wood.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				this.planks.get(), 4);
+		recipes.shapeless(recipeWriter, List.of(this.strippedWood.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+				this.planks.get(), 4);
+		recipes.shaped(recipeWriter, List.of("PP", "PP"), List.of('P'), List.of(this.log.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.wood.get(), 3);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(this.planks.get()),
+		recipes.shaped(recipeWriter, List.of("PP", "PP", "PP"), List.of('P'), List.of(this.planks.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.door.get(), 3);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(this.planks.get()),
+		recipes.shaped(recipeWriter, List.of("PPP", "PPP"), List.of('P'), List.of(this.planks.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.trapdoor.get(), 2);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(this.planks.get()),
+		recipes.shaped(recipeWriter, List.of("P  ", "PP ", "PPP"), List.of('P'), List.of(this.planks.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.stairs.get(), 4);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(this.planks.get()),
+		recipes.shaped(recipeWriter, List.of("PPP"), List.of('P'), List.of(this.planks.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.slab.get(), 6);
-		WoodSet.Recipes.shapeless(recipeWriter, List.of(this.planks.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
+		recipes.shapeless(recipeWriter, List.of(this.planks.get()), List.of(1), RecipeCategory.BUILDING_BLOCKS,
 				this.button.get(), 1);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'),
-				List.of(this.planks.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS, this.fence.get(), 3);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'),
-				List.of(this.planks.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS, this.fenceGate.get(), 1);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(this.planks.get()),
+		recipes.shaped(recipeWriter, List.of("PSP", "PSP"), List.of('P', 'S'), List.of(this.planks.get(), Items.STICK),
+				RecipeCategory.BUILDING_BLOCKS, this.fence.get(), 3);
+		recipes.shaped(recipeWriter, List.of("SPS", "SPS"), List.of('P', 'S'), List.of(this.planks.get(), Items.STICK),
+				RecipeCategory.BUILDING_BLOCKS, this.fenceGate.get(), 1);
+		recipes.shaped(recipeWriter, List.of("PP"), List.of('P'), List.of(this.planks.get()),
 				RecipeCategory.BUILDING_BLOCKS, this.pressurePlate.get(), 1);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
+		recipes.shaped(recipeWriter, List.of("PPP", "PPP", " S "), List.of('P', 'S'),
 				List.of(this.planks.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS, this.signItem.get(), 3);
-		WoodSet.Recipes.shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
+		recipes.shaped(recipeWriter, List.of("C C", "PPP", "PPP"), List.of('P', 'C'),
 				List.of(this.strippedLog.get(), Items.CHAIN), RecipeCategory.BUILDING_BLOCKS,
 				this.hangingSignItem.get(), 2);
+		recipes.shaped(recipeWriter, List.of("P P", "PPP"), List.of('P'), List.of(this.planks.get()),
+				RecipeCategory.TRANSPORTATION, this.boatItem.get(), 1);
+		recipes.shaped(recipeWriter, List.of("P", "C"), List.of('P', 'C'), List.of(this.boatItem.get(), Items.CHEST),
+				RecipeCategory.TRANSPORTATION, this.chestBoatItem.get(), 1);
+
 	}
 
 	private class Recipes {
 
 		// Shapeless recipe. Item at i must correspond to item count at i.
 		@SuppressWarnings("unchecked")
-		public static void shapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, List<Object> ingredients,
+		public void shapeless(Consumer<FinishedRecipe> finishedRecipeConsumer, List<Object> ingredients,
 				List<Integer> counts, RecipeCategory recipeCategory, ItemLike result, int count) {
 
 			ShapelessRecipeBuilder recipe = ShapelessRecipeBuilder.shapeless(recipeCategory, result, count);
-			String recipeName = Verdant.MOD_ID + ":" + getItemPath(result) + "_from";
+			String recipeName = WoodSet.this.modid + ":" + getItemPath(result) + "_from";
 
 			// Check if the ingredients match the count length.
 			if (counts.size() != ingredients.size()) {
@@ -564,12 +633,12 @@ public class WoodSet {
 
 		// Shaped recipe. Token at i must correspond to ingredient at i.
 		@SuppressWarnings("unchecked")
-		protected static void shaped(Consumer<FinishedRecipe> finishedRecipeConsumer, List<String> pattern,
+		protected void shaped(Consumer<FinishedRecipe> finishedRecipeConsumer, List<String> pattern,
 				List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result,
 				int count) {
 
 			ShapedRecipeBuilder recipe = ShapedRecipeBuilder.shaped(recipeCategory, result, count);
-			String recipeName = Verdant.MOD_ID + ":" + getItemPath(result) + "_from";
+			String recipeName = WoodSet.this.modid + ":" + getItemPath(result) + "_from";
 			// System.out.println(recipeName);
 
 			// Adds in the pattern.
@@ -584,14 +653,16 @@ public class WoodSet {
 			// System.out.println("There are " + tokens.size() + " tokens. They are: ");
 			// Defines the tokens.
 			for (int i = 0; i < tokens.size(); i++) {
-				if (ingredients.get(i) instanceof ItemLike) {
-					recipeName += "_" + getItemPath((ItemLike) ingredients.get(i));
-					recipe = recipe.define(tokens.get(i), (ItemLike) ingredients.get(i));
-				} else if (ingredients.get(i) instanceof TagKey) {
-					recipeName += "_tag_" + dePath(((TagKey<Item>) ingredients.get(i)).location());
-					recipe = recipe.define(tokens.get(i), Ingredient.of((TagKey<Item>) ingredients.get(i)));
+				Object obj = ingredients.get(i);
+				Character token = tokens.get(i);
+				if (obj instanceof ItemLike item) {
+					recipeName += "_" + getItemPath(item);
+					recipe = recipe.define(token, item);
+				} else if (obj instanceof TagKey tag) {
+					recipeName += "_tag_" + dePath(tag.location());
+					recipe = recipe.define(token, Ingredient.of(tag));
 				} else {
-					throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredients.get(i));
+					throw new IllegalArgumentException("Unrecognized item or tag type: " + obj);
 				}
 				// System.out.println(recipeName);
 
@@ -623,20 +694,21 @@ public class WoodSet {
 			recipe.save(finishedRecipeConsumer, recipeName);
 		}
 
-		protected static void charcoalSmelting(Consumer<FinishedRecipe> finishedRecipeConsumer, ItemLike pIngredient) {
+		protected void charcoalSmelting(Consumer<FinishedRecipe> finishedRecipeConsumer, ItemLike pIngredient) {
 			cooking(finishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, List.of(pIngredient), RecipeCategory.MISC,
 					Items.CHARCOAL, 0.1f, 200, "charcoal", "_from_smelting_" + getItemPath(pIngredient));
 		}
 
-		protected static void cooking(Consumer<FinishedRecipe> finishedRecipeConsumer,
+		protected void cooking(Consumer<FinishedRecipe> finishedRecipeConsumer,
 				RecipeSerializer<? extends AbstractCookingRecipe> cookingSerializer, List<ItemLike> ingredients,
 				RecipeCategory category, ItemLike result, float experience, int cookingTime, String group,
 				String recipeName) {
 			for (ItemLike itemlike : ingredients) {
 				SimpleCookingRecipeBuilder
 						.generic(Ingredient.of(itemlike), category, result, experience, cookingTime, cookingSerializer)
-						.group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(finishedRecipeConsumer,
-								Verdant.MOD_ID + ":" + getItemPath(result) + recipeName + "_" + getItemPath(itemlike));
+						.group(group).unlockedBy(getHasName(itemlike), has(itemlike))
+						.save(finishedRecipeConsumer, WoodSet.this.modid + ":" + getItemPath(result) + recipeName + "_"
+								+ getItemPath(itemlike));
 			}
 		}
 
@@ -771,7 +843,7 @@ public class WoodSet {
 
 		BiFunction<ItemModelProvider, RegistryObject<Block>, ItemModelBuilder> evenSimplerBlockItem = (provider,
 				block) -> provider.withExistingParent(
-						Verdant.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
+						WoodSet.this.modid + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
 						new ResourceLocation(this.modid,
 								"block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
 
@@ -804,6 +876,8 @@ public class WoodSet {
 						new ResourceLocation(this.modid,
 								"block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath() + "_bottom"));
 
+		simpleItem.apply(modelProvider, this.boatItem);
+		simpleItem.apply(modelProvider, this.chestBoatItem);
 		simpleItem.apply(modelProvider, this.signItem);
 		simpleItem.apply(modelProvider, this.hangingSignItem);
 		simpleBlockItem.apply(modelProvider, this.door);
@@ -971,6 +1045,14 @@ public class WoodSet {
 
 	protected static final String doorName(String base) {
 		return base + "_door";
+	}
+
+	protected static final String boatName(String base) {
+		return base + "_boat";
+	}
+
+	protected static final String chestBoatName(String base) {
+		return base + "_chest_boat";
 	}
 
 	public class Door extends DoorBlock {
@@ -1419,6 +1501,151 @@ public class WoodSet {
 		public BlockEntityType<?> getType() {
 			return WoodSet.this.signBlockEntity.get();
 		}
+	}
+
+	public class WoodSetBoatEntity extends Boat {
+		public WoodSetBoatEntity(EntityType<? extends Boat> entityType, Level level) {
+			super(entityType, level);
+		}
+
+		public WoodSetBoatEntity(Level level, double x, double y, double z) {
+			this(WoodSet.this.boatEntity.get(), level);
+			this.setPos(x, y, z);
+			this.xo = x;
+			this.yo = y;
+			this.zo = z;
+		}
+
+		@Override
+		public Item getDropItem() {
+			return WoodSet.this.boatItem.get();
+		}
+	}
+
+	public class WoodSetChestBoatEntity extends ChestBoat {
+
+		public WoodSetChestBoatEntity(EntityType<? extends ChestBoat> entityType, Level level) {
+			super(entityType, level);
+		}
+
+		public WoodSetChestBoatEntity(Level level, double x, double y, double z) {
+			this(WoodSet.this.chestBoatEntity.get(), level);
+			this.setPos(x, y, z);
+			this.xo = x;
+			this.yo = y;
+			this.zo = z;
+		}
+
+		@Override
+		public Item getDropItem() {
+
+			return WoodSet.this.chestBoatItem.get();
+		}
+	}
+
+	public class WoodSetBoatRenderer extends BoatRenderer {
+
+		private final Pair<ResourceLocation, ListModel<Boat>> modelWithLocation;
+
+		public WoodSetBoatRenderer(EntityRendererProvider.Context context, boolean isChestBoat) {
+			super(context, isChestBoat);
+			this.modelWithLocation = Pair.of(this.getTextureLocation(isChestBoat),
+					this.createBoatModel(context, isChestBoat));
+		}
+
+		private ResourceLocation getTextureLocation(boolean chestBoat) {
+			return new ResourceLocation(WoodSet.this.modid,
+					chestBoat ? "textures/entity/chest_boat/" + WoodSet.this.baseName + ".png"
+							: "textures/entity/boat/" + WoodSet.this.baseName + ".png");
+		}
+
+		private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, boolean isChestBoat) {
+			ModelLayerLocation modellayerlocation = isChestBoat ? this.createChestBoatModelName()
+					: this.createBoatModelName();
+			ModelPart modelpart = context.bakeLayer(modellayerlocation);
+			return isChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
+		}
+
+		public ModelLayerLocation createBoatModelName() {
+			return createLocation("boat/" + WoodSet.this.baseName, "main");
+		}
+
+		public ModelLayerLocation createChestBoatModelName() {
+			return createLocation("chest_boat/" + WoodSet.this.baseName, "main");
+		}
+
+		private ModelLayerLocation createLocation(String path, String model) {
+			return new ModelLayerLocation(new ResourceLocation(WoodSet.this.modid, path), model);
+		}
+
+		public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
+			return this.modelWithLocation;
+		}
+	}
+
+	public class WoodSetBoatItem extends Item {
+		private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
+		private final boolean hasChest;
+
+		public WoodSetBoatItem(boolean hasChest, Item.Properties properties) {
+			super(properties);
+			this.hasChest = hasChest;
+		}
+
+		public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand useHand) {
+			ItemStack itemstack = player.getItemInHand(useHand);
+			HitResult hitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
+			if (hitresult.getType() == HitResult.Type.MISS) {
+				return InteractionResultHolder.pass(itemstack);
+			} else {
+				Vec3 vec3 = player.getViewVector(1.0F);
+				List<Entity> list = level.getEntities(player,
+						player.getBoundingBox().expandTowards(vec3.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
+				if (!list.isEmpty()) {
+					Vec3 vec31 = player.getEyePosition();
+
+					for (Entity entity : list) {
+						AABB aabb = entity.getBoundingBox().inflate((double) entity.getPickRadius());
+						if (aabb.contains(vec31)) {
+							return InteractionResultHolder.pass(itemstack);
+						}
+					}
+				}
+				if (hitresult.getType() == HitResult.Type.BLOCK) {
+					Boat boat = this.getBoat(level, hitresult);
+					boat.setYRot(player.getYRot());
+					if (!level.noCollision(boat, boat.getBoundingBox())) {
+						return InteractionResultHolder.fail(itemstack);
+					} else {
+						if (!level.isClientSide) {
+							level.addFreshEntity(boat);
+							level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.getLocation());
+							if (!player.getAbilities().instabuild) {
+								itemstack.shrink(1);
+							}
+						}
+
+						player.awardStat(Stats.ITEM_USED.get(this));
+						return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+					}
+				} else {
+					return InteractionResultHolder.pass(itemstack);
+				}
+			}
+		}
+
+		private Boat getBoat(Level level, HitResult result) {
+			return (Boat) (this.hasChest
+					? WoodSet.this.new WoodSetBoatEntity(level, result.getLocation().x, result.getLocation().y,
+							result.getLocation().z)
+					: WoodSet.this.new WoodSetChestBoatEntity(level, result.getLocation().x, result.getLocation().y,
+							result.getLocation().z));
+		}
+	}
+
+	@FunctionalInterface
+	public interface TriFunction<R, S, T, U> {
+		public U apply(R r, S s, T t);
 	}
 
 	public static class BurnTimes {

@@ -4,7 +4,6 @@ import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.levelgen.structure.Structure.GenerationContext;
 
 // Handles updating and applying the overgrowth.
 public class EntityOvergrowthEffects {

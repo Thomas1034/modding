@@ -1,6 +1,5 @@
 package com.thomas.verdant.util.function;
 
-import java.awt.EventQueue;
 import java.util.function.BooleanSupplier;
 
 // Executes the supplied Runnable when the given BooleanSupplier returns true.

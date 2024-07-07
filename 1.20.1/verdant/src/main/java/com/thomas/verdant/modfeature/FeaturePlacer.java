@@ -7,7 +7,7 @@ import java.util.function.BiPredicate;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.VerdantVineBlock;
-import com.thomas.verdant.entity.ModEntityType;
+import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
 import com.thomas.verdant.util.ModTags;
 
@@ -99,9 +99,9 @@ public class FeaturePlacer {
 
 	// Registers all entity features.
 	private static void registerEntityFeatures() {
-		registerEntityFeature(Feature.monster(ModEntityType.OVERGROWN_SKELETON.get(), new ItemStack(Items.BOW)),
+		registerEntityFeature(Feature.monster(ModEntityTypes.OVERGROWN_SKELETON.get(), new ItemStack(Items.BOW)),
 				Rarity.EXTREMELY_RARE, "overgrown_skeleton");
-		registerEntityFeature(Feature.monster(ModEntityType.OVERGROWN_ZOMBIE.get(), new ItemStack(Items.AIR), (m) -> {
+		registerEntityFeature(Feature.monster(ModEntityTypes.OVERGROWN_ZOMBIE.get(), new ItemStack(Items.AIR), (m) -> {
 			OvergrownZombieEntity z = ((OvergrownZombieEntity) m);
 			z.setBaby(Zombie.getSpawnAsBabyOdds(z.getRandom()));
 			return z;

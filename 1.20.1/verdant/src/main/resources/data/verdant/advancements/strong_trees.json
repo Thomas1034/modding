@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "verdant:verdant_heartwood"
+    },
+    "title": {
+      "translate": "advancements.verdant.strong_trees.title"
+    },
+    "description": {
+      "translate": "advancements.verdant.strong_trees.description"
+    },
+    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "verdant:stand_on_verdant_ground",
+  "criteria": {
+    "destroy_heartwood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": {},
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_heartwood_log"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": false
+}

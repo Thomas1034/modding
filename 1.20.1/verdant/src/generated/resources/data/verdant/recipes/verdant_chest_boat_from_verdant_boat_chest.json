@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:verdant_chest_boat",
+  "key": {
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "P": {
+      "item": "verdant:verdant_boat"
+    }
+  },
+  "pattern": [
+    "P",
+    "C"
+  ],
+  "result": {
+    "item": "verdant:verdant_chest_boat"
+  },
+  "show_notification": true
+}

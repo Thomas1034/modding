@@ -55,8 +55,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.VERDANT_HEARTWOOD_CHESTPLATE);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_LEGGINGS);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_BOOTS);
-		simpleItem(ModItems.VERDANT_BOAT);
-		simpleItem(ModItems.VERDANT_CHEST_BOAT);
+
 		simpleItem(ModItems.TOXIC_ASH);
 		simpleItem(ModItems.TOXIC_ASH_BUCKET);
 		simpleItem(ModItems.TOXIC_SOLUTION_BUCKET);
@@ -68,9 +67,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		evenSimplerBlockItem(ModBlocks.VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.THORNY_VERDANT_LEAVES);
 		evenSimplerBlockItem(ModBlocks.POISON_IVY_VERDANT_LEAVES);
-
-		simpleItem(ModItems.VERDANT_HEARTWOOD_BOAT);
-		simpleItem(ModItems.VERDANT_HEARTWOOD_CHEST_BOAT);
 
 		evenSimplerBlockItem(ModBlocks.STINKING_BLOSSOM);
 		simpleItem(ModItems.COFFEE_BERRIES);
