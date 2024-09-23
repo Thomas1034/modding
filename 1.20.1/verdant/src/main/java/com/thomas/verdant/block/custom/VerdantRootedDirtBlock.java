@@ -273,7 +273,9 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			else {
 				// Otherwise, try to erode it.
 				// System.out.println("Failed to grow; eroding.");
-				this.erode(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
+				if (canGrow) {
+					this.erode(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
+				}
 			}
 		}
 

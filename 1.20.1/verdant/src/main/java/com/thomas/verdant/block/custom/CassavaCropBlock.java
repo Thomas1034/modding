@@ -61,6 +61,7 @@ public class CassavaCropBlock extends CropBlock {
 		}
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (!level.isLoaded(pos) || !level.isLoaded(pos.above())) {
 			return;
@@ -147,10 +148,8 @@ public class CassavaCropBlock extends CropBlock {
 		int thisAge = this.getAge(state);
 		int nextAge = thisAge + this.getBonemealAgeIncrease(level);
 		int maxAge = this.getMaxAge();
-		System.out.println("Current age is " + thisAge + ", next age is " + nextAge);
 		BlockState above = level.getBlockState(pos.above());
 		if (nextAge > maxAge) {
-			System.out.println("Next age was too high at " + nextAge + ", setting to " + maxAge);
 			nextAge = maxAge;
 		}
 
@@ -159,29 +158,24 @@ public class CassavaCropBlock extends CropBlock {
 		}
 		if (thisAge == FIRST_STAGE_MAX_AGE - 1) {
 			if (above.is(Blocks.AIR)) {
-				System.out.println("Age " + thisAge + " is one below the maxiumum, and the block above is air.");
 				level.setBlockAndUpdate(pos, this.getStateForAge(FIRST_STAGE_MAX_AGE));
 				level.setBlockAndUpdate(pos.above(), this.getStateForAge(FIRST_STAGE_MAX_AGE + 1));
 			}
 		} else if (thisAge == FIRST_STAGE_MAX_AGE && above.is(this)) {
 			if (this.getAge(above) < maxAge) {
-				System.out.println("Age " + thisAge + " is at maxiumum, and the block above is the same block.");
 				this.growCrops(level, pos.above(), above);
 			}
 		} else if (thisAge == FIRST_STAGE_MAX_AGE) {
 			if (above.is(Blocks.AIR)) {
-				System.out.println("Age " + thisAge + " is at maxiumum, and the block above is air.");
 				level.setBlockAndUpdate(pos.above(), this.getStateForAge(FIRST_STAGE_MAX_AGE + 1));
 			}
 		} else if (nextAge == maxAge) {
 			level.setBlockAndUpdate(pos.below(2), this.underneath.get());
-			System.out.println("Setting this block and rooting to " + nextAge + ", was " + thisAge);
 			level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
 		} else if (thisAge == maxAge) {
 			// Do nothing
 		} else {
 
-			System.out.println("Setting this block to " + nextAge + ", was " + thisAge);
 			level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
 		}
 	}

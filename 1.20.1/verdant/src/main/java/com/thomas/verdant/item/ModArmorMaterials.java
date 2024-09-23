@@ -14,8 +14,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 public enum ModArmorMaterials implements ArmorMaterial {
 
 	VERDANT_HEARTWOOD("verdant_heartwood", 7, new int[] {1, 4, 5, 2 }, 8, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F,
+			0.05F, () -> Ingredient.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get())),
+
+	IMBUED_VERDANT_HEARTWOOD("imbued_verdant_heartwood", 21, new int[] {3, 5, 7, 3}, 5, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F,
 			0.05F, () -> Ingredient.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()));
 
+	
 	private final String name;
 	private final int durabilityMultiplier;
 	private final int[] protectionAmounts;

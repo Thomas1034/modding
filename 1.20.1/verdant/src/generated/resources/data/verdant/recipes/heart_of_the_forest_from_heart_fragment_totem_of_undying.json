@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:heart_of_the_forest",
+  "key": {
+    "H": {
+      "item": "verdant:heart_fragment"
+    },
+    "T": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "pattern": [
+    " H ",
+    "HTH",
+    " H "
+  ],
+  "result": {
+    "item": "verdant:heart_of_the_forest"
+  },
+  "show_notification": true
+}

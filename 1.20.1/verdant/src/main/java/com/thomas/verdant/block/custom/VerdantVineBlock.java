@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
@@ -43,10 +43,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWaterloggedBlock {
 
-	private static final Supplier<BlockState> VERDANT_LOG = () -> ModBlocks.VERDANT_WOOD.get().defaultBlockState();
-	private static final Supplier<BlockState> VERDANT_HEARTWOOD = () -> ModBlocks.VERDANT_HEARTWOOD_LOG.get()
+	public static final float IMBUED_LOG_CHANCE = 1.0f / 16.0f;
+	private static final Function<RandomSource, BlockState> VERDANT_LOG = (rand) -> ModBlocks.VERDANT_WOOD.get()
 			.defaultBlockState();
-	private static final Supplier<BlockState> ROTTEN_WOOD = () -> ModBlocks.ROTTEN_WOOD.get().defaultBlockState();
+	private static final Function<RandomSource, BlockState> VERDANT_HEARTWOOD = (
+			rand) -> (rand.nextFloat() < (IMBUED_LOG_CHANCE))
+					? (ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get().defaultBlockState())
+					: ModBlocks.VERDANT_HEARTWOOD_LOG.get().defaultBlockState();
+	private static final Function<RandomSource, BlockState> ROTTEN_WOOD = (rand) -> ModBlocks.ROTTEN_WOOD.get()
+			.defaultBlockState();
 
 	public static final int MIN_GROWTH = 0;
 	public static final int MAX_GROWTH = 3;
@@ -400,6 +405,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 				if (neighbor.getValue(SIDES.get(d.getOpposite())) == MAX_GROWTH) {
 					// System.out.println("This side is blocked by fully grown vines.");
 					positionsToGrow.add(neighborPos);
+
 				}
 				// If not, do not proceed.
 				else {
@@ -433,7 +439,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// grow.");
 			for (BlockPos toGrow : positionsToGrow) {
 				// System.out.println("Growing a log at " + toGrow + ".");
-				level.setBlockAndUpdate(toGrow, VERDANT_LOG.get());
+				level.setBlockAndUpdate(toGrow, VERDANT_LOG.apply(level.random));
 			}
 
 			// Add particle and sound effect.
@@ -442,12 +448,12 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			// If the host is verdant, mature it.
 			if (host.is(ModTags.Blocks.VERDANT_LOGS)) {
 				// System.out.println("Maturing host at " + pos + ".");
-				level.setBlockAndUpdate(pos, VERDANT_HEARTWOOD.get());
+				level.setBlockAndUpdate(pos, VERDANT_HEARTWOOD.apply(level.random));
 			}
 			// Otherwise destroy it.
 			else {
 				// System.out.println("Destroying host at " + pos + ".");
-				level.setBlockAndUpdate(pos, ROTTEN_WOOD.get());
+				level.setBlockAndUpdate(pos, ROTTEN_WOOD.apply(level.random));
 			}
 		} else if (shouldDecayToAir) {
 			// for (BlockPos toGrow : positionsToGrow) {

@@ -28,6 +28,7 @@ public class PhotosensitiveEffect extends MobEffect {
 		// Do some damage.
 		DamageSource source = ModDamageSources.get(entity.level(), ModDamageSources.THORN_BUSH);
 		entity.hurt(source, amplifier);
+		
 	}
 
 	@Override

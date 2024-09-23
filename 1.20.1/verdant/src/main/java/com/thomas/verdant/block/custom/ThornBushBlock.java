@@ -2,12 +2,14 @@ package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.damage.ModDamageSources;
 import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
+import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.level.BlockGetter;
@@ -29,7 +31,19 @@ public class ThornBushBlock extends BushBlock {
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
 				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
-			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 0.75D, (double) 0.8F));
+			double slowdownFactor = 0.2d;
+			if (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(ModTags.Items.VERDANT_FRIENDLY_ARMORS)) {
+				slowdownFactor -= 0.1d;
+			}
+			if (livingEntity.getItemBySlot(EquipmentSlot.LEGS).is(ModTags.Items.VERDANT_FRIENDLY_ARMORS)) {
+				slowdownFactor -= 0.1d;
+			}
+
+			slowdownFactor = 1 - slowdownFactor;
+
+			if (slowdownFactor < 0.999) {
+				entity.makeStuckInBlock(state, new Vec3(slowdownFactor, slowdownFactor, slowdownFactor));
+			}
 			if (!level.isClientSide
 					&& (entity.xOld != entity.getX() || entity.yOld != entity.getY() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);

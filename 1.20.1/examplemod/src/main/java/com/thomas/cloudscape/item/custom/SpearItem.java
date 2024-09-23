@@ -1,6 +1,7 @@
 package com.thomas.cloudscape.item.custom;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import javax.annotation.Nullable;
@@ -34,26 +35,40 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
 
 public class SpearItem extends TieredItem implements Vanishable {
+	
 	private final float attackDamage;
 	private final float baseChargeMultiplier;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+	private static final double BONUS_RANGE = 2;
+	protected static final UUID BASE_ATTACK_RANGE_UUID = UUID.fromString("685FBD03-3751-4083-84DC-572555E11665");
 
 	public SpearItem(Tier tier, int damage, float useSpeed, Item.Properties properties) {
 		super(tier, properties);
 
-		// Override the attack damage.
+		// Override the attack damage. 
+		// Note that the spear doesn't get the full bonus from the tier.
+		// Given its unique benefits, this prevents it from becoming too unbalanced.
 		this.attackDamage = (float) damage + tier.getAttackDamageBonus() / 2;
+		// Create the new modifiers. 
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+		// Attack damage.
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
 				(double) this.attackDamage, AttributeModifier.Operation.ADDITION));
+		// Attack speed.
 		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier",
 				(double) useSpeed, AttributeModifier.Operation.ADDITION));
+		// Entity reach (can't mine blocks at long range)
+		builder.put(ForgeMod.ENTITY_REACH.get(), new AttributeModifier(BASE_ATTACK_RANGE_UUID, "Weapon modifier",
+				BONUS_RANGE, AttributeModifier.Operation.ADDITION));
+		// Build and set the default modifiers.
 		this.defaultModifiers = builder.build();
+		
 		// Set the base bonus charge multiplier.
 		// Based on the damage bonus from the tier, ranked based on netherite, plus a
-		// flat bonus.
+		// flat bonus. This took careful balancing.
 		this.baseChargeMultiplier = 0.2f + tier.getAttackDamageBonus() / Tiers.NETHERITE.getAttackDamageBonus();
 	}
 

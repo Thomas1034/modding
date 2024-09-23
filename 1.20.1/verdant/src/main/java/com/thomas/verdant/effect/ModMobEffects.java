@@ -6,6 +6,7 @@ import com.thomas.verdant.effect.custom.CaffeinatedEffect;
 import com.thomas.verdant.effect.custom.CassavaPoisoningEffect;
 import com.thomas.verdant.effect.custom.ColloidEffect;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
+import com.thomas.verdant.effect.custom.GenericEffect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -29,6 +30,8 @@ public class ModMobEffects {
 			() -> new CassavaPoisoningEffect(MobEffectCategory.HARMFUL, 0x4B5320));
 	public static final RegistryObject<MobEffect> COLLOID = MOB_EFFECTS.register("colloid",
 			() -> new ColloidEffect(MobEffectCategory.HARMFUL, 0xf7ebc8));
+	public static final RegistryObject<MobEffect> TRAPPED = MOB_EFFECTS.register("trapped",
+			() -> new GenericEffect(MobEffectCategory.HARMFUL, 0x000000));
 	
 	
 	

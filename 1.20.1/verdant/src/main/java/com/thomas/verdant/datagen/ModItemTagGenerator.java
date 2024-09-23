@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.item.ModItems;
+import com.thomas.verdant.util.ModTags;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -28,10 +29,19 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addItemTags(this);
 		ModBlocks.VERDANT.addItemTags(this);
 
+		// Friendly armors
+		this.tag(ModTags.Items.VERDANT_FRIENDLY_ARMORS).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
+				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
+				ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
+
 		// Adds in armor as trimmable.
 		this.tag(ItemTags.TRIMMABLE_ARMOR).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
 				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
-				ModItems.VERDANT_HEARTWOOD_BOOTS.get());
+				ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
 		// Adds in copper tools and weapons.
 		this.tag(ItemTags.PICKAXES).add(ModItems.VERDANT_HEARTWOOD_PICKAXE.get());
 		this.tag(ItemTags.HOES).add(ModItems.VERDANT_HEARTWOOD_HOE.get());
@@ -51,11 +61,17 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		// Armor sets
 		this.tag(Tags.Items.ARMORS).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
 				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
-				ModItems.VERDANT_HEARTWOOD_BOOTS.get());
-		this.tag(Tags.Items.ARMORS_HELMETS).add(ModItems.VERDANT_HEARTWOOD_HELMET.get());
-		this.tag(Tags.Items.ARMORS_CHESTPLATES).add(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get());
-		this.tag(Tags.Items.ARMORS_LEGGINGS).add(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get());
-		this.tag(Tags.Items.ARMORS_BOOTS).add(ModItems.VERDANT_HEARTWOOD_BOOTS.get());
+				ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
+		this.tag(Tags.Items.ARMORS_HELMETS).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get());
+		this.tag(Tags.Items.ARMORS_CHESTPLATES).add(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get());
+		this.tag(Tags.Items.ARMORS_LEGGINGS).add(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get());
+		this.tag(Tags.Items.ARMORS_BOOTS).add(ModItems.VERDANT_HEARTWOOD_BOOTS.get(),
+				ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
 		// Adds in copper tools and weapons.
 		this.tag(Tags.Items.TOOLS).add(ModItems.VERDANT_HEARTWOOD_AXE.get(), ModItems.VERDANT_HEARTWOOD_SHOVEL.get(),
 				ModItems.VERDANT_HEARTWOOD_HOE.get(), ModItems.VERDANT_HEARTWOOD_PICKAXE.get());

@@ -7,6 +7,7 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
+import com.thomas.verdant.block.custom.TrapBlock;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -41,11 +42,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
 
+		logBlock((RotatedPillarBlock) ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
+
 		doublePlantBlock((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get(), "water_hemlock");
 
-		simpleBlockWithItem(ModBlocks.WILD_CASSAVA.get(),
-				models().cross(blockTexture(ModBlocks.WILD_CASSAVA.get()).getPath(), blockTexture(ModBlocks.WILD_CASSAVA.get()))
-						.renderType("cutout"));
+		simpleBlockWithItem(ModBlocks.WILD_CASSAVA.get(), models()
+				.cross(blockTexture(ModBlocks.WILD_CASSAVA.get()).getPath(), blockTexture(ModBlocks.WILD_CASSAVA.get()))
+				.renderType("cutout"));
 
 		tumbledBlockWithItem(ModBlocks.CASSAVA_ROOTED_DIRT);
 		tumbledBlockWithItem(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT);
@@ -91,7 +94,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Thorn spikes model
 		clusterBlock((AmethystClusterBlock) ModBlocks.THORN_SPIKES.get());
-
+		clusterBlock((AmethystClusterBlock) ModBlocks.IRON_SPIKES.get());
+		
+		// Thorn trap block
+		trapBlock((TrapBlock) ModBlocks.THORN_TRAP.get(), "thorn_trap", "thorn_trap");
+		trapBlock((TrapBlock) ModBlocks.IRON_TRAP.get(), "iron_trap", "iron_trap");
+		
 		// Rope
 		simpleBlockWithItem(ModBlocks.ROPE.get(),
 				models().cross(blockTexture(ModBlocks.ROPE.get()).getPath(), blockTexture(ModBlocks.ROPE.get()))
@@ -110,6 +118,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.CASSAVA_CROP.get(), "cassava_crop_", "cassava_crop_");
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.BITTER_CASSAVA_CROP.get(), "bitter_cassava_crop_",
 				"bitter_cassava_crop_");
+		
+		
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -295,6 +305,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		});
 
 	}
+	
+	public void trapBlock(TrapBlock block, String modelName, String texture) {
+		getVariantBuilder(block).forAllStates(state -> {
+			ModelFile model = models().withExistingParent(modelName + "_" + state.getValue(TrapBlock.STAGE), modLoc("block/trap/trap_" + state.getValue(TrapBlock.STAGE))).renderType("cutout")
+					.texture("texture", modLoc("block/" + texture));
+			
+			return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(TrapBlock.FACING).toYRot()).build();
+		});
+	}
+
 
 	protected void clusterBlock(AmethystClusterBlock block) {
 		getVariantBuilder(block).forAllStates(state -> {

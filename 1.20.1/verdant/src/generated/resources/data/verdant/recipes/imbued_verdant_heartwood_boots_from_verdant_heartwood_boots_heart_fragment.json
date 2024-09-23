@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:imbued_verdant_heartwood_boots",
+  "ingredients": [
+    {
+      "item": "verdant:verdant_heartwood_boots"
+    },
+    {
+      "item": "verdant:heart_fragment"
+    }
+  ],
+  "result": {
+    "item": "verdant:imbued_verdant_heartwood_boots"
+  }
+}

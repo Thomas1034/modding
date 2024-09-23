@@ -1,0 +1,85 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:copper_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:wooden_pressure_plates"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:thorn_trap_from_thorn_spikes_copper_ingot_stick_tag_null"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thorn_spikes": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:thorn_spikes"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_thorn_trap": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:thorn_trap"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_thorn_spikes",
+      "has_copper_ingot",
+      "has_stick",
+      "has_minecraft_root",
+      "has_thorn_trap",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:thorn_trap_from_thorn_spikes_copper_ingot_stick_tag_null"
+    ]
+  },
+  "sends_telemetry_event": false
+}

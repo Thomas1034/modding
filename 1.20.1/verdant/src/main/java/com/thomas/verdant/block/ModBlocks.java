@@ -10,6 +10,7 @@ import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.FrameBlock;
 import com.thomas.verdant.block.custom.HoeRemovableItemBlock;
+import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.PoisonIvyBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantLeavesBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
@@ -19,6 +20,7 @@ import com.thomas.verdant.block.custom.SpikesBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
 import com.thomas.verdant.block.custom.ThornyVerdantLeavesBlock;
+import com.thomas.verdant.block.custom.TrapBlock;
 import com.thomas.verdant.block.custom.VerdantConduitBlock;
 import com.thomas.verdant.block.custom.VerdantLeafyVineBlock;
 import com.thomas.verdant.block.custom.VerdantLeavesBlock;
@@ -76,6 +78,23 @@ public class ModBlocks {
 			() -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
 					.instrument(NoteBlockInstrument.BASS).strength(2.0f).sound(SoundType.WOOD).ignitedByLava(),
 			2.0f, 15, 50);
+
+	// It's a trap!
+	public static final RegistryObject<Block> THORN_TRAP = registerBlockWithItem("thorn_trap",
+			() -> new TrapBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noOcclusion().noCollission(), 20, 5,
+					4));
+	public static final RegistryObject<Block> IRON_TRAP = registerBlockWithItem("iron_trap",
+			() -> new TrapBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS).noOcclusion().noCollission(), 10, 2,
+					8));
+
+	// Register imbued heartwood logs
+	public static final RegistryObject<Block> IMBUED_VERDANT_HEARTWOOD_LOG = registerFuelBlockWithItem(
+			"imbued_verdant_heartwood_log",
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN)
+					.instrument(NoteBlockInstrument.BASS).strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava(), 5,
+					2),
+			30000);
+
 	// Decorative flowers
 	public static final RegistryObject<Block> BLEEDING_HEART = registerBlockWithItem("bleeding_heart",
 			() -> new FlowerBlock(() -> ModMobEffects.FOOD_POISONING.get(), 40,
@@ -220,6 +239,8 @@ public class ModBlocks {
 	public static final RegistryObject<Block> THORN_SPIKES = registerBlockWithItem("thorn_spikes",
 			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).noOcclusion().strength(0.95F),
 					3.0f));
+	public static final RegistryObject<Block> IRON_SPIKES = registerBlockWithItem("iron_spikes",
+			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS).noOcclusion().noCollission(), 6.0f));
 
 	public static final RegistryObject<Block> THORNY_VERDANT_LEAVES = registerBlockWithItem("thorny_verdant_leaves",
 			() -> new ThornyVerdantLeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).randomTicks()));

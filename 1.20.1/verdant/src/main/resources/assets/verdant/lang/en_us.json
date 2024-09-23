@@ -39,11 +39,16 @@
 	"item.verdant.verdant_heartwood_chestplate": "Verdant Heartwood Chestplate",
 	"item.verdant.verdant_heartwood_leggings": "Verdant Heartwood Leggings",
 	"item.verdant.verdant_heartwood_boots": "Verdant Heartwood Boots",
+	"item.verdant.imbued_verdant_heartwood_helmet": "Imbued Verdant Heartwood Helmet",
+	"item.verdant.imbued_verdant_heartwood_chestplate": "Imbued Verdant Heartwood Chestplate",
+	"item.verdant.imbued_verdant_heartwood_leggings": "Imbued Verdant Heartwood Leggings",
+	"item.verdant.imbued_verdant_heartwood_boots": "Imbued Verdant Heartwood Boots",
 	"item.verdant.verdant_heartwood_sword": "Verdant Heartwood Sword",
 	"item.verdant.verdant_heartwood_shovel": "Verdant Heartwood Shovel",
 	"item.verdant.verdant_heartwood_hoe": "Verdant Heartwood Hoe",
 	"item.verdant.verdant_heartwood_axe": "Verdant Heartwood Axe",
 	"item.verdant.verdant_heartwood_pickaxe": "Verdant Heartwood Pickaxe",
+	"item.verdant.heart_fragment": "Heart Fragment",
 	"item.verdant.heart_of_the_forest": "Heart of the Forest",
 	"item.verdant.toxic_ash": "Toxic Ash",
 	"item.verdant.toxic_ash_bucket": "Toxic Ash Bucket",
@@ -61,6 +66,7 @@
 	"item.verdant.cooked_golden_cassava": "Cooked Golden Cassava",
 	
 	"block.verdant.thorn_spikes": "Thorn Spikes",
+	"block.verdant.iron_spikes": "Iron Spikes",
 	"block.verdant.frame_block": "Frame Block",
 	"block.verdant.poison_ivy_block": "Poison Ivy Block",
 	"block.verdant.toxic_ash_block": "Toxic Ash Block",
@@ -97,6 +103,7 @@
 	"block.verdant.verdant_hanging_sign": "Verdant Hanging Sign",
 	"block.verdant.verdant_sign": "Verdant Sign",
 	
+	"block.verdant.imbued_verdant_heartwood_log": "Imbued Verdant Heartwood Log",
 	"block.verdant.verdant_heartwood_log": "Verdant Heartwood Log",
 	"block.verdant.verdant_heartwood_wood": "Verdant Heartwood Wood",
 	"block.verdant.stripped_verdant_heartwood_log": "Stripped Verdant Heartwood Log",
@@ -127,7 +134,10 @@
 	"block.verdant.potted_bleeding_heart": "Potted Bleeding Heart Flower",
 	"block.verdant.stinking_blossom": "Stinking Blossom",
 	
+	"block.verdant.bush": "Bush",
 	"block.verdant.thorn_bush": "Thorn Bush",
+	"block.verdant.thorn_trap": "Thorn Trap",
+	"block.verdant.iron_trap": "Iron Trap",
 	
 	"block.minecraft.bed.caffeine": "You may not rest now; you are caffeinated",
 	
@@ -168,6 +178,7 @@
 	"effect.verdant.caffeinated": "Caffeinated",
 	"effect.verdant.verdant_energy": "Verdant Energy",
 	"effect.verdant.colloid": "Colloid",
+	"effect.verdant.trapped": "Trapped",
 	
 	"command.verdant.spread_speed": "The Verdant Growth is spreading at a base rate of %s blocks per random tick.",
 	"command.verdant.spread_speed_random": "The Verdant Growth is spreading at a base rate of %s blocks per random tick, with a %s chance to grow an additional block.",
@@ -208,9 +219,9 @@
 	"advancements.verdant.strong_trees.title": "The Trees Are Strong...",
 	"advancements.verdant.strong_trees.description": "Get to the heart of a new tree species.",
 	"advancements.verdant.deep_roots.title": "Their Roots Go Deep",
-	"advancements.verdant.deep_roots.description": "Discover just how far the Verdant has spread.",
+	"advancements.verdant.deep_roots.description": "Discover just how deep the Verdant has spread.",
 	"advancements.verdant.rip_them_all_down.title": "Rip Them All Down",
-	"advancements.verdant.rip_them_all_down.description": "Wage a war against the forest.",
+	"advancements.verdant.rip_them_all_down.description": "Wage a war against the forest, and hold a very large amount of heartwood",
 	
 	"creativetab.verdant_items": "Verdant Items",
 	"creativetab.verdant_food": "Verdant Foods",

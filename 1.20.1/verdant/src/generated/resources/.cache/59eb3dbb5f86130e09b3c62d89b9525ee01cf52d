@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-05T17:19:08.9031011	Loot Tables
+// 1.20.1	2024-09-04T17:47:00.9796174	Loot Tables
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_tables/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_tables/blocks/bitter_cassava_rooted_dirt.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_tables/blocks/bleeding_heart.json
@@ -14,6 +14,9 @@ a2a559119908fc28a6139eeacc06a2b4033359d1 data/verdant/loot_tables/blocks/dirt_co
 d272d5202afac19ff7505e2e292127b3684f18af data/verdant/loot_tables/blocks/dirt_lapis_ore.json
 5bd6f10821aafa84c070ba5dd65a91533fdae92d data/verdant/loot_tables/blocks/dirt_redstone_ore.json
 c281c354bd98abf5465b2960e92377684fbfe401 data/verdant/loot_tables/blocks/frame_block.json
+c54b239ec890d1b300bf200d43acd7032381d8c5 data/verdant/loot_tables/blocks/imbued_verdant_heartwood_log.json
+dc89c0fb244b3a087c06d57e42aa9182979f27b8 data/verdant/loot_tables/blocks/iron_spikes.json
+4687caeef06da386bb77ee827a90fc15e83aba32 data/verdant/loot_tables/blocks/iron_trap.json
 58d68cf5b7b1b5c0470a08152ec04286a7ff4f0f data/verdant/loot_tables/blocks/leafy_verdant_vine.json
 36324f8f9a402711d549954ed8a4016d5fda102c data/verdant/loot_tables/blocks/poison_ivy.json
 611b22d2cd087b9052f0f066433ac9734d94c157 data/verdant/loot_tables/blocks/poison_ivy_block.json
@@ -32,6 +35,7 @@ e2336526863d1aab175ec80c33f5696c568cf40c data/verdant/loot_tables/blocks/strippe
 3038fb23fda198ba3b15a2aedfecc50e793de716 data/verdant/loot_tables/blocks/thorny_verdant_leaves.json
 30aa8b9ea0ee263d7db0f365119aadb42ba9ec36 data/verdant/loot_tables/blocks/thorn_bush.json
 725dbad308d87ee3c8c312f283d0cfaaa4f7fbb1 data/verdant/loot_tables/blocks/thorn_spikes.json
+b12f209664a9af1bef3e56295ec9bb82c814bb7d data/verdant/loot_tables/blocks/thorn_trap.json
 ba8c6aef6e703d603121aeafe1951374f4e5bfc8 data/verdant/loot_tables/blocks/toxic_ash_block.json
 379fb531c8edc19ad723b27e5e1d86c2f04bdade data/verdant/loot_tables/blocks/verdant_button.json
 0eb3e3d9bca7431352857ec926e1251f31a42775 data/verdant/loot_tables/blocks/verdant_clay_grass_block.json

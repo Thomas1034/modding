@@ -167,6 +167,8 @@ public class FeaturePlacer {
 				"small_dripleaf");
 		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get()),
 				Rarity.VERY_UNCOMMON, "water_hemlock");
+		registerWaterFeature(Feature.aboveShallowWater(Blocks.LILY_PAD.defaultBlockState(), 4, 2), Rarity.VERY_UNCOMMON,
+				"lily_pad");
 
 		// System.out.println("Registered " + WATER_FEATURES);
 	}

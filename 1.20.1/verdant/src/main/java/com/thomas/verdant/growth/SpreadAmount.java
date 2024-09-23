@@ -23,6 +23,7 @@ public class SpreadAmount {
 
 	public void copyFrom(SpreadAmount other) {
 		this.amount = other.amount;
+		
 	}
 
 	public void saveNBTData(CompoundTag nbt) {

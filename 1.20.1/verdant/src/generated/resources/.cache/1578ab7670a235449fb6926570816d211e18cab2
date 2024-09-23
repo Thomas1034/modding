@@ -1,9 +1,9 @@
-// 1.20.1	2024-06-29T15:23:50.1959385	Tags for minecraft:item mod id verdant
-5f47b8d5f47349c2bc9eb17151a304843001207f data/forge/tags/items/armors.json
-7fff261eedebb2414be270a2cb758437776cd9d4 data/forge/tags/items/armors/boots.json
-3a653d903d4fe9591bf206c65f80016f58067ad9 data/forge/tags/items/armors/chestplates.json
-b4ca15dfe3014e72032209286211d4b95083dad2 data/forge/tags/items/armors/helmets.json
-0d34214ea72ff880d599b9306b89fc9093309c3a data/forge/tags/items/armors/leggings.json
+// 1.20.1	2024-09-04T23:24:00.1837096	Tags for minecraft:item mod id verdant
+b0671c29336ac757e097c96b300df7d65cf47f61 data/forge/tags/items/armors.json
+656e19cd3c3c1c88156304999524ee1d4d1903df data/forge/tags/items/armors/boots.json
+39fc9dbd77e66d38c37e2ec966217f69986ddb73 data/forge/tags/items/armors/chestplates.json
+2abc713ae524a5677a1474ac6a03e5053988c469 data/forge/tags/items/armors/helmets.json
+de3f6ee3b61dcf3833d9e815b702881960d6b867 data/forge/tags/items/armors/leggings.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/items/fences.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/items/fences/wooden.json
 a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/forge/tags/items/fence_gates.json
@@ -27,7 +27,7 @@ beb1989528e98e6c5464c2d8a0805f56271ae257 data/minecraft/tags/items/small_flowers
 fc527a4d5f7afaf6f370449bd9eeeeaa9505fd0b data/minecraft/tags/items/stairs.json
 052a21514e8dbade4ef3df3610afaa8679dfd75a data/minecraft/tags/items/swords.json
 7a68c1c2b3bd5049ef02380c9c5a3db861e444a2 data/minecraft/tags/items/trapdoors.json
-5f47b8d5f47349c2bc9eb17151a304843001207f data/minecraft/tags/items/trimmable_armor.json
+b0671c29336ac757e097c96b300df7d65cf47f61 data/minecraft/tags/items/trimmable_armor.json
 a8ac9f19e1839fb7a6988b55f74fbf5ba68fc9e6 data/minecraft/tags/items/wooden_buttons.json
 bec43e7ba10f18b8a32cd6eeb72008244803bbac data/minecraft/tags/items/wooden_doors.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/minecraft/tags/items/wooden_fences.json
@@ -35,3 +35,4 @@ ed8944f5bcf3b97f15bcd32e8f5767576c49100b data/minecraft/tags/items/wooden_pressu
 0fa6e95c8b7dcfe5b07515b65aca9c297c22e36e data/minecraft/tags/items/wooden_slabs.json
 fc527a4d5f7afaf6f370449bd9eeeeaa9505fd0b data/minecraft/tags/items/wooden_stairs.json
 7a68c1c2b3bd5049ef02380c9c5a3db861e444a2 data/minecraft/tags/items/wooden_trapdoors.json
+b0671c29336ac757e097c96b300df7d65cf47f61 data/verdant/tags/items/verdant_friendly_armors.json

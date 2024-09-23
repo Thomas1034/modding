@@ -13,6 +13,7 @@ import com.thomas.verdant.util.function.TriFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -144,10 +146,11 @@ public class Feature {
 			spawned.setPos(pos.getCenter().subtract(0, 0.5, 0));
 			spawned.setItemInHand(InteractionHand.MAIN_HAND, holding);
 			level.addFreshEntity(spawned);
-			// TODO
 
-		}, (level, pos) -> (level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)
-				&& Feature.aboveLightLevel(level, pos, 5) && Feature.simpleEntityChecker(level, pos, 16, 2)));
+		}, (level,
+				pos) -> (level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)
+						&& !level.getDifficulty().equals(Difficulty.PEACEFUL) && Feature.aboveLightLevel(level, pos, 5)
+						&& Feature.simpleEntityChecker(level, pos, 16, 2)));
 	}
 
 	public static Feature tallUnderwaterPlant(DoublePlantBlock block) {
@@ -172,6 +175,25 @@ public class Feature {
 		return new Feature((level, pos) -> level.setBlockAndUpdate(pos, state), Feature::belowPlacement,
 				Feature.withinHorizontalRangeBelowBlockCheckerProvider((stateToCheck) -> !stateToCheck.isAir(),
 						requireAirRadius));
+	}
+
+	public static Feature aboveShallowWater(BlockState state, int maxDistanceAboveSeabed, int exclusionZone) {
+		return new Feature((level, pos) -> {
+			level.setBlockAndUpdate(pos, state);
+		}, (feature, level, pos) -> {
+			BlockPos toReturn = pos.above();
+
+			for (int i = 1; i < maxDistanceAboveSeabed; i++) {
+				toReturn = toReturn.above();
+				BlockState at = level.getBlockState(toReturn);
+				if (at.isAir()) {
+					return toReturn;
+				} else if (!at.getFluidState().is(Fluids.WATER)) {
+					return null;
+				}
+			}
+			return null;
+		}, (level, pos) -> true);
 	}
 
 	// Returns true if the given position is air.

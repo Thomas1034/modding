@@ -104,6 +104,9 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.TOXIC_ASH_BLOCK.get());
 						pOutput.accept(ModBlocks.ROPE.get());
 						pOutput.accept(ModBlocks.THORN_SPIKES.get());
+						pOutput.accept(ModBlocks.IRON_SPIKES.get());
+						pOutput.accept(ModBlocks.THORN_TRAP.get());
+						pOutput.accept(ModBlocks.IRON_TRAP.get());
 						pOutput.accept(ModBlocks.POISON_IVY.get());
 						pOutput.accept(ModBlocks.WILD_CASSAVA.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
@@ -134,6 +137,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_BOOTS.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
 					}).build());
 
 	public static void register(IEventBus eventBus) {

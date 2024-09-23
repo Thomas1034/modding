@@ -12,7 +12,8 @@
     "background": "verdant:textures/block/verdant_rooted_dirt.png",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "hidden": true
   },
   "parent": "verdant:root",
   "criteria": {

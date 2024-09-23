@@ -18,6 +18,7 @@ public abstract class AddictiveEffect extends MobEffect{
 	public static void register(MobEffect e1, MobEffect e2) {
 		OPPOSITES.put(e1, e2);
 		OPPOSITES.put(e2, e1);
+		
 	}
 	
 	public static void registerEffects() {

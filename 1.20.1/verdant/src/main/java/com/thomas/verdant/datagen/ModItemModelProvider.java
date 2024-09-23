@@ -26,6 +26,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addItemModels(this);
 		ModBlocks.VERDANT.addItemModels(this);
 
+		simpleLogModel(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG);
+		simpleItem(ModItems.HEART_FRAGMENT);
+		simpleItem(ModItems.YAM);
+
 		otherTextureItem(ModItems.WATER_HEMLOCK, "block/water_hemlock_top");
 		simpleItem(ModItems.GOLDEN_CASSAVA);
 		simpleItem(ModItems.COOKED_GOLDEN_CASSAVA);
@@ -42,6 +46,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);
+		simpleBlockItemBlockTexture(ModBlocks.IRON_SPIKES);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_COFFEE);
@@ -55,6 +60,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.VERDANT_HEARTWOOD_CHESTPLATE);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_LEGGINGS);
 		simpleItem(ModItems.VERDANT_HEARTWOOD_BOOTS);
+		simpleItem(ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET);
+		simpleItem(ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE);
+		simpleItem(ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS);
+		simpleItem(ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS);
 
 		simpleItem(ModItems.TOXIC_ASH);
 		simpleItem(ModItems.TOXIC_ASH_BUCKET);
@@ -86,6 +95,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 		simpleItem(ModItems.HEART_OF_THE_FOREST);
 
+		simpleBlockItem(ModBlocks.THORN_TRAP);
+		simpleBlockItem(ModBlocks.IRON_TRAP);
+
+	}
+
+	public void otherModel(RegistryObject<Block> block, String otherLocation) {
+		this.withExistingParent(Verdant.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
+				modLoc(otherLocation));
 	}
 
 	private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

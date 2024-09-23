@@ -11,6 +11,7 @@ import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
 import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.ToxicAshItem;
 import com.thomas.verdant.item.custom.ToxicBucketItem;
+import com.thomas.verdant.item.custom.VerdantHeartwoodArmorItem;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -68,20 +69,37 @@ public class ModItems {
 
 	// Heartwood armor
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HELMET = ITEMS.register("verdant_heartwood_helmet",
-			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
-					new Item.Properties().fireResistant()));
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
+					new Item.Properties().fireResistant(), 400));
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
-			.register("verdant_heartwood_chestplate", () -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD,
-					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()));
+			.register("verdant_heartwood_chestplate", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD,
+					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant(), 400));
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register("verdant_heartwood_leggings",
-			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
-					new Item.Properties().fireResistant()));
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
+					new Item.Properties().fireResistant(), 400));
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_BOOTS = ITEMS.register("verdant_heartwood_boots",
-			() -> new ArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
-					new Item.Properties().fireResistant()));
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
+					new Item.Properties().fireResistant(), 400));
+
+	// Heartwood armor
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HELMET = ITEMS
+			.register("imbued_verdant_heartwood_helmet", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+					ArmorItem.Type.HELMET, new Item.Properties().fireResistant(), 100));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
+			.register("imbued_verdant_heartwood_chestplate", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant(), 100));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_LEGGINGS = ITEMS
+			.register("imbued_verdant_heartwood_leggings", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+					ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant(), 100));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_BOOTS = ITEMS
+			.register("imbued_verdant_heartwood_boots", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+					ArmorItem.Type.BOOTS, new Item.Properties().fireResistant(), 100));
 
 	// Heartwood weapons
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SWORD = ITEMS.register("verdant_heartwood_sword",
@@ -113,6 +131,9 @@ public class ModItems {
 
 	public static final RegistryObject<Item> THORN = ITEMS.register("thorn", () -> new Item(new Item.Properties()));
 
+	public static final RegistryObject<Item> HEART_FRAGMENT = ITEMS.register("heart_fragment",
+			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+	
 	public static final RegistryObject<Item> HEART_OF_THE_FOREST = ITEMS.register("heart_of_the_forest",
 			() -> new HeartOfTheForestItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
@@ -143,10 +164,14 @@ public class ModItems {
 	public static final RegistryObject<Item> GOLDEN_CASSAVA = ITEMS.register("golden_cassava",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> COOKED_GOLDEN_CASSAVA = ITEMS.register("cooked_golden_cassava",
-			() -> new Item(new Item.Properties().stacksTo(64).food((new FoodProperties.Builder()).nutrition(4)
+			() -> new Item(new Item.Properties().stacksTo(64).food((new FoodProperties.Builder()).nutrition(8)
 					.saturationMod(1.2F).effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 2400, 0), 1.0F)
 					.effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEat().build())));
 	public static final RegistryObject<Item> SPARKLING_STARCH = ITEMS.register("sparkling_starch",
+			() -> new Item(new Item.Properties().stacksTo(64)));
+	
+	// Yam stuff
+	public static final RegistryObject<Item> YAM = ITEMS.register("yam",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 
 	// Water hemlock

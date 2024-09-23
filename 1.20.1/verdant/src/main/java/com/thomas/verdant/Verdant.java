@@ -42,41 +42,17 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Remember 1:33
 
 // Additions
-// Cassava (bitter, normal, golden) hoe and double high
-// Shrub
-// Water hemlock
 
 // Changes
-// Verdant heartwood blocks are now harder to mine.
-// Thorn bushes now do more damage when you are jumping or falling, and less while walking through them. Don't fall on them.
-// Block transforms no longer print when registered.
-// Verdant wood is now far more flammable.
-// Verdant Energy now correctly applies more frequently on higher levels.
-// Verdant Vines now no longer drop sticks.
-// Verdant roots now grow slightly differently and are slightly less "smart" about where they grow to. This is more than made up by a ~25% performance improvement
-// Frame blocks are now half as expensive.
-// Leaves no longer schedule an extra tick after updating; this cuts off 8 ms of lag per tick on a heavily overgrown world. This _may_ cause some odd behavior when the leaves are affected by non-block-updating block changes from other mods, but this is unlikely. 
-// Verdant ground blocks can now be hoed back to their ordinary variants.
-
 
 // Bugfixes
-// General stability increases
-// Toxic Ash / Toxic Solution now have a proper use animations
-// Verdant wood/heartwood items have now been standardized into a common constructor.
-// This is primarily a backend change, but it has fixed some bugs. This might change the mining time
-// and flammability of some blocks to a minor degree
-// Fixed hanging sign edit screen
-// Fixed inaccurate /verdant command text
-// Heart of the Forest no longer grows vines on players who hold it - that was meant to be experimental. Pretend you never saw it.
-// Decreased lag! Hooray!
+// Removed debug text when the Cassava crop is bonemealed.
+// Fixed possible desync when a poison ivy arrow hits an entity.
 
-// Cassava -> 4 Cassava Flour 
-// 6 Cassava Flour -> 4 Bread
-// Cassava -> Cooked Cassava (like chicken)
+// To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
 
-// To add: water hemlock (deadly, inflicts wither on contact)
+
 // To add: wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
-// Make verdant dirt hoeable!
 // Maybe add monkshood? Causes paralysis.
 // Think about giant hogweed.
 // Levels of infection: sprouting, leafing, rooting, blooming.
@@ -85,42 +61,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // rooting:   slowness, regen, haste, resistance 2, phototrophic 2
 // blooming: slowness 3, mining fatigue, wither, phototrophic 3
 
-// To add: poison ivy bundle block, inflicts poison, ages to dead poison ivy items which is compostable at a value of 1.
-// Crafted with four sticks and five ivy.
-// To add: thorns block, harms monsters that step on it. Cross-model like grass.
 
-//{
-//    "name": "verdant:grass",
-//    "type": "verdant:custom",
-//    "tries": 1,
-//    "parameters": {
-//        "should_place": {
-//            "type": "verdant:single_block",
-//            "parameters": {
-//                "block": "minecraft:air",
-//                "y": "1" 
-//            }
-//        },
-//        "can_place": {
-//            "type": "verdant:single_block",
-//            "parameters": {
-//                "block": "minecraft:air"
-//            }
-//        },
-//        "placement": {
-//            "type": "verdant:offset",
-//            "parameters": {
-//                "y": "1"
-//            }
-//        },
-//        "placer": {
-//            "type": "verdant:single_block",
-//            "parameters": {
-//                "block": "minecraft:grass"
-//            }
-//        }
-//    }
-//}
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -128,6 +70,7 @@ public class Verdant {
 	// Define mod id in a common place for everything to reference
 	public static final String MOD_ID = "verdant";
 	// Directly reference a slf4j logger
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	public Verdant() {
@@ -160,7 +103,7 @@ public class Verdant {
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
 		// Some common setup code
-		LOGGER.info("HELLO FROM COMMON SETUP");
+		// LOGGER.info("HELLO FROM COMMON SETUP");
 		// Add the right click to add to flowerpot event.
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BLEEDING_HEART.getId(),
 				ModBlocks.POTTED_BLEEDING_HEART);
@@ -207,15 +150,6 @@ public class Verdant {
 		ComposterBlock.COMPOSTABLES.put(ModItems.BITTER_STARCH.get(), 0.30f);
 		ComposterBlock.COMPOSTABLES.put(ModItems.STARCH.get(), 0.30f);
 
-		// Register verdant growth mechanics on setup.
-		// Nope! Data driven now.
-		// VerdantTransformationHandler.registerDehydration();
-		// VerdantTransformationHandler.registerErosion();
-		// VerdantTransformationHandler.registerErosionWet();
-		// VerdantTransformationHandler.registerGrowGrasses();
-		// VerdantTransformationHandler.registerHydration();
-		// VerdantTransformationHandler.registerRemoveGrasses();
-		// VerdantTransformationHandler.registerRoots();
 		FoodPoisoningEffect.registerEffects();
 		FeaturePlacer.registerFeatures();
 	}

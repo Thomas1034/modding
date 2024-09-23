@@ -40,8 +40,10 @@ public class ModTags {
 	}
 
 	public static class Items {
-
+		public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
+		
 		private static TagKey<Item> tag(String name) {
+			
 			return ItemTags.create(new ResourceLocation(Verdant.MOD_ID, name));
 		}
 	}

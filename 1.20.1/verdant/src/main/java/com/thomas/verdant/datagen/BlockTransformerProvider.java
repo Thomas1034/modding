@@ -36,7 +36,8 @@ public abstract class BlockTransformerProvider implements DataProvider {
 			return save(cache, this.output.getOutputFolder(PackOutput.Target.DATA_PACK).resolve(this.modid)
 					.resolve("block_transformers"));
 
-		return null;
+		return CompletableFuture.runAsync(() -> {
+		});
 	}
 
 	private CompletableFuture<?> save(CachedOutput cache, Path target) {

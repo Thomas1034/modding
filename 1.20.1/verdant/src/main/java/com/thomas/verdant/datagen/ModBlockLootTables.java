@@ -50,7 +50,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.FRAME_BLOCK.get());
+		this.dropSelf(ModBlocks.THORN_TRAP.get());
+		this.dropSelf(ModBlocks.IRON_TRAP.get());
 		this.dropSelf(ModBlocks.THORN_SPIKES.get());
+		this.dropSelf(ModBlocks.IRON_SPIKES.get());
 		this.dropSelf(ModBlocks.ROPE.get());
 		this.dropSelf(ModBlocks.POISON_IVY_BLOCK.get());
 		this.dropSelf(ModBlocks.TOXIC_ASH_BLOCK.get());
@@ -139,6 +142,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 								.when(bitterCassavaCropMaxAgeBuilder).setWeight(1)));
 
 		this.add(ModBlocks.BITTER_CASSAVA_CROP.get(), bitterCassavaLoot);
+
+		LootTable.Builder imbuedLogLoot = LootTable.lootTable()
+				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))
+				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModBlocks.VERDANT_HEARTWOOD_LOG.get())));
+
+		this.add(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get(), imbuedLogLoot);
 	}
 
 //	// Stop requiring all blocks to have loot tables.

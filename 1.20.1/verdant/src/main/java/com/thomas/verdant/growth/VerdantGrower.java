@@ -41,17 +41,10 @@ public interface VerdantGrower extends BonemealableBlock {
 			return false;
 		}
 		BlockState next = transformer.next(state);
-		// Chance to repeat erosion, if it's not fully eroded.
-		// if (transformer.hasInput(next.getBlock()) && level.random.nextFloat() <
-		// MULTI_ERODE_CHANCE) {
-		// next = transformer.next(state);
-		// }
-		if (!state.equals(next)) {
-			level.setBlockAndUpdate(pos, next);
-			return true;
-		}
 
-		return false;
+		level.setBlockAndUpdate(pos, next);
+		return true;
+
 	};
 
 	public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {

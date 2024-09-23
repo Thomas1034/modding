@@ -1,4 +1,4 @@
-// 1.20.1	2024-07-06T15:26:13.4584351	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-09-04T22:24:12.2702465	Tags for minecraft:block mod id verdant
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences/wooden.json
 a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/forge/tags/blocks/fence_gates.json
@@ -24,8 +24,9 @@ a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/minecraft/tags/blocks/fence_gates.
 e9aee8ebf39418fb0d17448e7ffea3e4c3ada219 data/minecraft/tags/blocks/leaves.json
 3473aa247c81c8c58896f026d09d5393a061bf46 data/minecraft/tags/blocks/logs.json
 3473aa247c81c8c58896f026d09d5393a061bf46 data/minecraft/tags/blocks/logs_that_burn.json
-dac4b7450140e86dc067a60042f0793691acdad6 data/minecraft/tags/blocks/mineable/axe.json
+ed2e28066b87bf90deb7531cff3c89a8642f3b93 data/minecraft/tags/blocks/mineable/axe.json
 4d280bdd3358b06586181f644d6697d101631871 data/minecraft/tags/blocks/mineable/hoe.json
+9926f292a84961a8c3d58243dfd697cd4ebdb359 data/minecraft/tags/blocks/mineable/pickaxe.json
 5f874e8ae3ee5f017055c4d5d94e79bae501a078 data/minecraft/tags/blocks/mineable/shovel.json
 e59de92407dac17ebe9462bc450e8af1fea474e6 data/minecraft/tags/blocks/mushroom_grow_block.json
 9746dfa6dadab13ab1c8ba93f56be8893a68eb7b data/minecraft/tags/blocks/planks.json
@@ -45,7 +46,7 @@ ed8944f5bcf3b97f15bcd32e8f5767576c49100b data/minecraft/tags/blocks/wooden_press
 0fa6e95c8b7dcfe5b07515b65aca9c297c22e36e data/minecraft/tags/blocks/wooden_slabs.json
 fc527a4d5f7afaf6f370449bd9eeeeaa9505fd0b data/minecraft/tags/blocks/wooden_stairs.json
 7a68c1c2b3bd5049ef02380c9c5a3db861e444a2 data/minecraft/tags/blocks/wooden_trapdoors.json
-aa835de5ad43f44aef790169a4f7730f896e4b72 data/verdant/tags/blocks/mature_verdant_logs.json
+c9e551a8f70ee359285986b1c93dace6ba7c937e data/verdant/tags/blocks/mature_verdant_logs.json
 4543e8a43c73b0d07036db7baa21ebac12e687ab data/verdant/tags/blocks/verdant_ground.json
 3edf6152139052695219072674a17e802455d523 data/verdant/tags/blocks/verdant_leafy_blocks.json
 39ee70565cb34d9c3f4547fbecc112df4985d9c2 data/verdant/tags/blocks/verdant_logs.json

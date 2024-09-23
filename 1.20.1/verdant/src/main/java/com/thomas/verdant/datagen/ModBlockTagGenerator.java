@@ -30,7 +30,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
 		// Mineables
 
-		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.LEAFY_VERDANT_VINE.get(), ModBlocks.VERDANT_VINE.get());
+		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.LEAFY_VERDANT_VINE.get(), ModBlocks.VERDANT_VINE.get(),
+				ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.VERDANT_GRASS_BLOCK.get(),
 				ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
@@ -46,6 +47,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.SWORD_EFFICIENT).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
 				ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(),
 				ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.IRON_SPIKES.get(), ModBlocks.IRON_TRAP.get());
 
 		this.tag(BlockTags.LEAVES).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
 				ModBlocks.LEAFY_VERDANT_VINE.get());
@@ -89,7 +91,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// TODO
 		this.tag(ModTags.Blocks.MATURE_VERDANT_LOGS).add(ModBlocks.VERDANT_HEARTWOOD_LOG.get(),
 				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), ModBlocks.VERDANT_HEARTWOOD_WOOD.get(),
-				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get());
+				ModBlocks.STRIPPED_VERDANT_HEARTWOOD_WOOD.get(), ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
 
 		// All vine replacable blocks.
 		this.tag(ModTags.Blocks.VERDANT_VINE_REPLACABLES).addTag(BlockTags.REPLACEABLE);

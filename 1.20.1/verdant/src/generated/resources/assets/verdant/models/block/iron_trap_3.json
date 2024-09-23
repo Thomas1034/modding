@@ -1,0 +1,7 @@
+{
+  "parent": "verdant:block/trap/trap_3",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "verdant:block/iron_trap"
+  }
+}

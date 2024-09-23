@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_bars": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_bars"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_iron_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_nugget"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_iron_spikes": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:iron_spikes"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:iron_spikes_from_iron_nugget_thorn_spikes_iron_bars"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thorn_spikes": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:thorn_spikes"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_nugget",
+      "has_thorn_spikes",
+      "has_iron_bars",
+      "has_iron_spikes",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:iron_spikes_from_iron_nugget_thorn_spikes_iron_bars"
+    ]
+  },
+  "sends_telemetry_event": false
+}

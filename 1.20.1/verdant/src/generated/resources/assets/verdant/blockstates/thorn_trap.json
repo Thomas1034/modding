@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,shrinking=false,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 270
+    },
+    "facing=east,shrinking=false,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 270
+    },
+    "facing=east,shrinking=false,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 270
+    },
+    "facing=east,shrinking=false,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 270
+    },
+    "facing=east,shrinking=true,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 270
+    },
+    "facing=east,shrinking=true,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 270
+    },
+    "facing=east,shrinking=true,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 270
+    },
+    "facing=east,shrinking=true,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 270
+    },
+    "facing=north,shrinking=false,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 180
+    },
+    "facing=north,shrinking=false,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 180
+    },
+    "facing=north,shrinking=false,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 180
+    },
+    "facing=north,shrinking=false,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 180
+    },
+    "facing=north,shrinking=true,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 180
+    },
+    "facing=north,shrinking=true,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 180
+    },
+    "facing=north,shrinking=true,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 180
+    },
+    "facing=north,shrinking=true,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 180
+    },
+    "facing=south,shrinking=false,stage=0": {
+      "model": "verdant:block/thorn_trap_0"
+    },
+    "facing=south,shrinking=false,stage=1": {
+      "model": "verdant:block/thorn_trap_1"
+    },
+    "facing=south,shrinking=false,stage=2": {
+      "model": "verdant:block/thorn_trap_2"
+    },
+    "facing=south,shrinking=false,stage=3": {
+      "model": "verdant:block/thorn_trap_3"
+    },
+    "facing=south,shrinking=true,stage=0": {
+      "model": "verdant:block/thorn_trap_0"
+    },
+    "facing=south,shrinking=true,stage=1": {
+      "model": "verdant:block/thorn_trap_1"
+    },
+    "facing=south,shrinking=true,stage=2": {
+      "model": "verdant:block/thorn_trap_2"
+    },
+    "facing=south,shrinking=true,stage=3": {
+      "model": "verdant:block/thorn_trap_3"
+    },
+    "facing=west,shrinking=false,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 90
+    },
+    "facing=west,shrinking=false,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 90
+    },
+    "facing=west,shrinking=false,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 90
+    },
+    "facing=west,shrinking=false,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 90
+    },
+    "facing=west,shrinking=true,stage=0": {
+      "model": "verdant:block/thorn_trap_0",
+      "y": 90
+    },
+    "facing=west,shrinking=true,stage=1": {
+      "model": "verdant:block/thorn_trap_1",
+      "y": 90
+    },
+    "facing=west,shrinking=true,stage=2": {
+      "model": "verdant:block/thorn_trap_2",
+      "y": 90
+    },
+    "facing=west,shrinking=true,stage=3": {
+      "model": "verdant:block/thorn_trap_3",
+      "y": 90
+    }
+  }
+}

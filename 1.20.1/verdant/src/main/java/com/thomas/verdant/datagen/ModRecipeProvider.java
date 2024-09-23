@@ -26,6 +26,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -83,6 +84,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("TTT", "TTT", "KRK"), List.of('T', 'K', 'R'),
 				List.of(ModItems.THORN.get(), Items.STICK, ModBlocks.ROPE.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.THORN_SPIKES.get(), 1);
+		// Iron spikes item
+		shaped(recipeWriter, List.of("NNN", "SSS", "III"), List.of('N', 'S', 'I'),
+				List.of(Items.IRON_NUGGET, ModBlocks.THORN_SPIKES.get(), Items.IRON_BARS), RecipeCategory.BUILDING_BLOCKS,
+				ModBlocks.IRON_SPIKES.get(), 1);
+		
 		// Frame block
 		shaped(recipeWriter, List.of(" T ", "T T", " T "), List.of('T'), List.of(Items.STICK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.FRAME_BLOCK.get(), 1);
@@ -120,10 +126,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.STICK), RecipeCategory.TOOLS,
 				ModItems.VERDANT_HEARTWOOD_SHOVEL.get(), 1);
 
+		// Heart of the Forest
+		shaped(recipeWriter, List.of(" H ", "HTH", " H "), List.of('H', 'T'),
+				List.of(ModItems.HEART_FRAGMENT.get(), Items.TOTEM_OF_UNDYING), RecipeCategory.MISC,
+				ModItems.HEART_OF_THE_FOREST.get(), 1);
+
 		// Verdant conduit
 		shaped(recipeWriter, List.of("SSS", "SPS", "SSS"), List.of('P', 'S'),
 				List.of(ModItems.HEART_OF_THE_FOREST.get(), BlockTags.LOGS_THAT_BURN), RecipeCategory.MISC,
 				ModBlocks.VERDANT_CONDUIT.get(), 1);
+
+		// Traps
+		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
+				List.of(ModBlocks.THORN_SPIKES.get(), Items.COPPER_INGOT, Items.STICK, BlockTags.WOODEN_PRESSURE_PLATES), RecipeCategory.MISC,
+				ModBlocks.THORN_TRAP.get(), 3);
+		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
+				List.of(ModBlocks.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE), RecipeCategory.MISC,
+				ModBlocks.IRON_TRAP.get(), 3);
+
+		// Imbued armor
+		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get()),
+				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(), 1);
+		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.HEART_FRAGMENT.get()),
+				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), 1);
+		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(), ModItems.HEART_FRAGMENT.get()),
+				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(), 1);
+		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.HEART_FRAGMENT.get()),
+				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get(), 1);
 
 		// Roasting bitter cassava
 		foodCooking(recipeWriter, List.of(ModItems.BITTER_CASSAVA.get()), RecipeCategory.FOOD, ModItems.CASSAVA.get(),

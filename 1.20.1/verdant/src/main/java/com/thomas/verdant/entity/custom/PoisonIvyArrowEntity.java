@@ -33,7 +33,7 @@ public class PoisonIvyArrowEntity extends ModArrowEntity {
 		Entity target = hitResult.getEntity();
 		Entity owner = this.getOwner();
 
-		if (target instanceof LivingEntity livingTarget) {
+		if (target instanceof LivingEntity livingTarget && !target.level().isClientSide) {
 			livingTarget.addEffect(new MobEffectInstance(MobEffects.POISON, 40, 1), owner);
 		}
 	}

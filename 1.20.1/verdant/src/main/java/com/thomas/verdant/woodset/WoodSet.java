@@ -969,16 +969,7 @@ public class WoodSet {
 		add.run(this.wallHangingSign.get(), provider.createSingleItemTable(this.hangingSignItem.get()));
 
 	}
-
-	@SubscribeEvent
-	protected void generateData(GatherDataEvent event) {
-
-		// TODO add recipe provider
-		// generator.addProvider(event.includeServer(), new
-		// ModRecipeProvider(packOutput));
-		// TODO
-	}
-
+	
 	protected static final String logName(String base) {
 		return base + "_log";
 	}
@@ -1636,9 +1627,9 @@ public class WoodSet {
 
 		private Boat getBoat(Level level, HitResult result) {
 			return (Boat) (this.hasChest
-					? WoodSet.this.new WoodSetBoatEntity(level, result.getLocation().x, result.getLocation().y,
+					? WoodSet.this.new WoodSetChestBoatEntity(level, result.getLocation().x, result.getLocation().y,
 							result.getLocation().z)
-					: WoodSet.this.new WoodSetChestBoatEntity(level, result.getLocation().x, result.getLocation().y,
+					: WoodSet.this.new WoodSetBoatEntity(level, result.getLocation().x, result.getLocation().y,
 							result.getLocation().z));
 		}
 	}
