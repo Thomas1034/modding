@@ -43,5 +43,8 @@ public class DataGenerators {
 
 		// Custom data generator!
 		generator.addProvider(event.includeServer(), new ModBlockTransformerProvider(packOutput));
+		generator.addProvider(event.includeServer(), new ModBaitDataProvider(packOutput));
+		generator.addProvider(event.includeServer(), new ModItemToNumberProvider(packOutput));
+
 	}
 }

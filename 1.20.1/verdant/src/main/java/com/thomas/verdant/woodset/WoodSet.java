@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.datafixers.util.Pair;
-import com.thomas.verdant.datagen.BlockTransformerProvider;
+import com.thomas.verdant.datagen.DataParseableProvider;
 import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 import com.thomas.verdant.util.data.DataAccessor;
 import com.thomas.verdant.util.data.DataRegistries;
@@ -107,7 +107,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -750,7 +749,7 @@ public class WoodSet {
 		}
 	}
 
-	public void addTransforms(BlockTransformerProvider provider) {
+	public void addTransforms(DataParseableProvider<BlockTransformer> provider) {
 		BlockTransformer stripping = provider.add(this.baseName + "_stripping");
 		stripping.register(this.log.get(), this.strippedLog.get());
 		stripping.register(this.wood.get(), this.strippedWood.get());

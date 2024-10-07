@@ -47,6 +47,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.WILD_CASSAVA.get(),
 				this.createChanceDrops(ModBlocks.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.25f));
 
+		this.dropSelf(ModBlocks.FISH_TRAP_BLOCK.get());
+		this.dropSelf(ModBlocks.ROPE_LADDER.get());
 		this.dropSelf(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.CASSAVA_ROOTED_DIRT.get());
 		this.dropSelf(ModBlocks.FRAME_BLOCK.get());
@@ -70,6 +72,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
 		requireSilkTouch(ModBlocks.THORN_BUSH.get(), ModItems.THORN.get(), List.of(0, 1));
 		this.add(ModBlocks.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(ModBlocks.THORN_BUSH.get()));
+		requireSilkTouch(ModBlocks.BUSH.get(), Items.STICK, List.of(0, 1));
+		this.add(ModBlocks.POTTED_BUSH.get(), createPotFlowerItemTable(ModBlocks.BUSH.get()));
 
 		requireSilkTouchOrShears(ModBlocks.WILTED_VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
 		requireSilkTouchOrShears(ModBlocks.VERDANT_LEAVES.get(), Items.STICK, List.of(0, 1));
@@ -77,6 +81,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		requireSilkTouchOrShears(ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY.get(), List.of(0, 2));
 
 		requireSilkTouch(ModBlocks.ROTTEN_WOOD.get(), Blocks.AIR);
+		requireSilkTouch(ModBlocks.CHARRED_FRAME_BLOCK.get(), Blocks.AIR);
 
 		// TODO
 		this.add(ModBlocks.VERDANT_VINE.get(),

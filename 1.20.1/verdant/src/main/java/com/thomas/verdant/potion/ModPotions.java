@@ -26,6 +26,10 @@ public class ModPotions {
 			() -> new Potion(new MobEffectInstance(ModMobEffects.COLLOID.get(), 9600, 0)));
 	public static final RegistryObject<Potion> STRONG_COLLOID = POTIONS.register("strong_colloid",
 			() -> new Potion(new MobEffectInstance(ModMobEffects.COLLOID.get(), 1800, 1)));
+	public static final RegistryObject<Potion> ANTIDOTE = POTIONS.register("antidote",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.ANTIDOTE.get(), 1800, 0)));
+	public static final RegistryObject<Potion> LONG_ANTIDOTE = POTIONS.register("long_antidote",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.ANTIDOTE.get(), 4800, 0)));
 
 	public static void register(IEventBus eventBus) {
 		POTIONS.register(eventBus);

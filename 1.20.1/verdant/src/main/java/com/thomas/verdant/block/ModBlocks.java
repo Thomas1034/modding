@@ -7,8 +7,10 @@ import org.jetbrains.annotations.Nullable;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
+import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.block.custom.FragileFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.FrameBlock;
+import com.thomas.verdant.block.custom.HangingLadderBlock;
 import com.thomas.verdant.block.custom.HoeRemovableItemBlock;
 import com.thomas.verdant.block.custom.ModFlammableRotatedPillarBlock;
 import com.thomas.verdant.block.custom.PoisonIvyBlock;
@@ -172,10 +174,18 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> DIRT_REDSTONE_ORE = registerBlockWithItem("dirt_redstone_ore",
 			() -> new RedStoneOreBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).strength(0.75f)));
+
 	public static final RegistryObject<Block> FRAME_BLOCK = registerFuelBlockWithItem("frame_block",
 			() -> new FrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)
 					.isViewBlocking((state, level, pos) -> false).noOcclusion().instabreak()),
 			BurnTimes.PLANKS);
+
+	public static final RegistryObject<Block> CHARRED_FRAME_BLOCK = registerFuelBlockWithItem("charred_frame_block",
+			() -> new FragileFlammableRotatedPillarBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).instabreak()
+							.isViewBlocking((state, level, pos) -> false).noOcclusion().explosionResistance(0.015625f),
+					35, 1, 2.0f),
+			BurnTimes.STICK);
 
 	public static final RegistryObject<Block> LEAFY_VERDANT_VINE = registerBlockWithItem("leafy_verdant_vine",
 			() -> new VerdantLeafyVineBlock(
@@ -208,6 +218,10 @@ public class ModBlocks {
 			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WILD_COFFEE,
 					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
 
+	public static final RegistryObject<Block> POTTED_BUSH = registerBlockOnly("potted_bush",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.BUSH,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
 	// Rope block
 	public static final RegistryObject<Block> ROPE = registerBlockWithItem("rope",
 			() -> new RopeBlock(BlockBehaviour.Properties.copy(Blocks.KELP).sound(SoundType.WOOL)));
@@ -235,9 +249,14 @@ public class ModBlocks {
 	public static final RegistryObject<Block> THORN_BUSH = registerBlockWithItem("thorn_bush", () -> new ThornBushBlock(
 			BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().strength(0.5F), 2.0f));
 
+	public static final RegistryObject<Block> BUSH = registerBlockWithItem("bush", () -> new ThornBushBlock(
+			BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().strength(0.3F), 0.0f));
+
 	// Thorns
 	public static final RegistryObject<Block> THORN_SPIKES = registerBlockWithItem("thorn_spikes",
-			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).noOcclusion().strength(0.95F),
+			() -> new SpikesBlock(
+					BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noCollission().sound(SoundType.WOOD)
+							.ignitedByLava().pushReaction(PushReaction.DESTROY).noOcclusion().strength(0.95F),
 					3.0f));
 	public static final RegistryObject<Block> IRON_SPIKES = registerBlockWithItem("iron_spikes",
 			() -> new SpikesBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS).noOcclusion().noCollission(), 6.0f));
@@ -369,6 +388,15 @@ public class ModBlocks {
 	public static final RegistryObject<Block> WILD_CASSAVA = registerBlockWithItem("wild_cassava",
 			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
 					.offsetType(OffsetType.XZ)));
+
+	// Rope ladder
+	public static final RegistryObject<Block> ROPE_LADDER = registerBlockWithItem("rope_ladder",
+			() -> new HangingLadderBlock(
+					BlockBehaviour.Properties.copy(Blocks.LADDER).strength(0.2F).sound(SoundType.WOOL).noCollission()));
+
+	// Fish trap
+	public static final RegistryObject<Block> FISH_TRAP_BLOCK = registerBlockWithItem("fish_trap_block",
+			() -> new FishTrapBlock(BlockBehaviour.Properties.copy(Blocks.LOOM).noOcclusion()));
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);

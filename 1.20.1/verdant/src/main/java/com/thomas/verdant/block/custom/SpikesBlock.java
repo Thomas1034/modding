@@ -3,7 +3,6 @@ package com.thomas.verdant.block.custom;
 import org.jetbrains.annotations.Nullable;
 
 import com.thomas.verdant.damage.ModDamageSources;
-import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,7 +15,6 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
@@ -34,6 +32,9 @@ public class SpikesBlock extends AmethystClusterBlock {
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity
 				&& (livingEntity.getMobType() != MobType.ARTHROPOD && livingEntity.getType() != EntityType.RABBIT)) {
+
+			// VoxelShape box = this.getShape(state, level, pos, CollisionContext.empty());
+
 			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 1D, (double) 0.8F));
 			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double zMovement = Math.abs(entity.getX() - entity.xOld);
@@ -41,7 +42,7 @@ public class SpikesBlock extends AmethystClusterBlock {
 				double xMovement = Math.abs(entity.getZ() - entity.zOld);
 				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F || yMovement >= (double) 0.003F) {
 					DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
-					entity.hurt(source, damage);
+					entity.hurt(source, damage + (float) (1 + 5 * yMovement));
 				}
 			}
 		}
@@ -61,7 +62,7 @@ public class SpikesBlock extends AmethystClusterBlock {
 	@Override
 	@Nullable
 	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-		return mob == null ? super.getBlockPathType(state, level, pos, mob) : BlockPathTypes.DANGER_OTHER;
+		return BlockPathTypes.DAMAGE_OTHER;
 	}
 
 }

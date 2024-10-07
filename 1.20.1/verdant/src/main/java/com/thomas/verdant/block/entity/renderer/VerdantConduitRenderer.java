@@ -28,18 +28,18 @@ public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantCondui
 		
 	}
 
-	public void render(VerdantConduitBlockEntity verdantHeart, float maybePartialTick, PoseStack poseStack, MultiBufferSource bufferSource,
+	public void render(VerdantConduitBlockEntity verdantConduit, float maybePartialTick, PoseStack poseStack, MultiBufferSource bufferSource,
 			int unknownInt1, int unknownInt2) {
-		long time = verdantHeart.getLevel().getGameTime();
-		List<VerdantConduitBlockEntity.BeaconBeamSection> list = verdantHeart.getBeamSections();
+		long time = verdantConduit.getLevel().getGameTime();
+		List<VerdantConduitBlockEntity.BeaconBeamSection> list = verdantConduit.getBeamSections();
 		int totalHeight = 0;
 
 		for (int sectionNumber = 0; sectionNumber < list.size(); ++sectionNumber) {
-			VerdantConduitBlockEntity.BeaconBeamSection beaconblockentity$beaconbeamsection = list.get(sectionNumber);
+			VerdantConduitBlockEntity.BeaconBeamSection beamSection = list.get(sectionNumber);
 			renderBeaconBeam(poseStack, bufferSource, maybePartialTick, time, totalHeight,
-					sectionNumber == list.size() - 1 ? 1024 : beaconblockentity$beaconbeamsection.getHeight(),
-					beaconblockentity$beaconbeamsection.getColor());
-			totalHeight += beaconblockentity$beaconbeamsection.getHeight();
+					sectionNumber == list.size() - 1 ? 1024 : beamSection.getHeight(),
+					beamSection.getColor());
+			totalHeight += beamSection.getHeight();
 		}
 
 	}

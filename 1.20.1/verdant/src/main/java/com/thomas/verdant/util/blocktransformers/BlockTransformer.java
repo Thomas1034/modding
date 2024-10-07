@@ -181,14 +181,16 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 		return this;
 	}
 
-	// @Override
-	public void write(JsonObject element) {
+	@Override
+	public JsonObject write(JsonObject element) {
 		for (Entry<Block, Block> entry : this.map.entrySet()) {
 			element.addProperty(name(entry.getKey()).toString(), name(entry.getValue()).toString());
 		}
 		for (Entry<TagKey<Block>, Block> entry : this.tagMap.entrySet()) {
 			element.addProperty("#" + entry.getKey().location(), name(entry.getValue()).toString());
 		}
+		
+		return element;
 	}
 
 	private final ResourceLocation name(Block block) {

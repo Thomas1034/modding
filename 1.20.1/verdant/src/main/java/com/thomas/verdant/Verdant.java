@@ -19,8 +19,11 @@ import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.painting.ModPaintings;
 import com.thomas.verdant.potion.BetterBrewingRecipe;
 import com.thomas.verdant.potion.ModPotions;
+import com.thomas.verdant.screen.ModMenuTypes;
+import com.thomas.verdant.screen.screen.FishTrapScreen;
 import com.thomas.verdant.util.data.DataRegistries;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.Items;
@@ -41,16 +44,30 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
 
+// register spawn eggs!
+// add recipes!
+
 // Additions
+// Rope ladders
+// Traps
+// Iron Spikes
+// Heart fragment + heart recipe
+// Imbued armor
+// Bush
+// Charred frame block
 
 // Changes
+// Entities should try to avoid walking on spikes
 
 // Bugfixes
 // Removed debug text when the Cassava crop is bonemealed.
 // Fixed possible desync when a poison ivy arrow hits an entity.
+// Spikes can no longer be instantly replaced by other blocks.
+// Frame blocks are in the creative menu
 
 // To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
-
+// Changed icon for food poisoning
+// Restoration potion, provides immunity to poison and wither
 
 // To add: wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
 // Maybe add monkshood? Causes paralysis.
@@ -60,9 +77,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // leafing:   regen, haste, resistance, phototrophic (restores saturation based on light level)
 // rooting:   slowness, regen, haste, resistance 2, phototrophic 2
 // blooming: slowness 3, mining fatigue, wither, phototrophic 3
-
-
-
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Verdant.MOD_ID)
@@ -86,6 +100,7 @@ public class Verdant {
 		ModPotions.register(modEventBus);
 
 		ModBlockEntities.register(modEventBus);
+		ModMenuTypes.register(modEventBus);
 
 		ModEntityTypes.register(modEventBus);
 
@@ -109,12 +124,7 @@ public class Verdant {
 				ModBlocks.POTTED_BLEEDING_HEART);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WILD_COFFEE.getId(), ModBlocks.POTTED_WILD_COFFEE);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(), ModBlocks.POTTED_THORN_BUSH);
-		/// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks..getId(),
-		// ModBlocks.POTTED_BLEEDING_HEART);
-		// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PALM_SAPLING.getId(),
-		/// ModBlocks.POTTED_PALM_SAPLING);
-		// ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WHITE_ORCHID.getId(),
-		/// ModBlocks.POTTED_WHITE_ORCHID);
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BUSH.getId(), ModBlocks.POTTED_BUSH);
 
 		// Register potions
 		BrewingRecipeRegistry.addRecipe(
@@ -130,6 +140,11 @@ public class Verdant {
 				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.REDSTONE, ModPotions.LONG_COLLOID.get()));
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.GLOWSTONE, ModPotions.STRONG_COLLOID.get()));
+
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.HEART_FRAGMENT.get(), ModPotions.ANTIDOTE.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.ANTIDOTE.get(), Items.REDSTONE, ModPotions.LONG_ANTIDOTE.get()));
 
 		// Register compostables.
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get().asItem(), 0.3f);
@@ -152,6 +167,8 @@ public class Verdant {
 
 		FoodPoisoningEffect.registerEffects();
 		FeaturePlacer.registerFeatures();
+
+		// FishingRodItem
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -171,6 +188,8 @@ public class Verdant {
 			EntityRenderers.register(ModEntityTypes.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
 			EntityRenderers.register(ModEntityTypes.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
 			EntityRenderers.register(ModEntityTypes.THROWN_ROPE.get(), ThrownItemRenderer::new);
+
+			MenuScreens.register(ModMenuTypes.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 		}
 	}
 }

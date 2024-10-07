@@ -1,122 +1,242 @@
 {
   "variants": {
-    "facing=east,shrinking=false,stage=0": {
+    "facing=east,hidden=false,shrinking=false,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 270
     },
-    "facing=east,shrinking=false,stage=1": {
+    "facing=east,hidden=false,shrinking=false,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 270
     },
-    "facing=east,shrinking=false,stage=2": {
+    "facing=east,hidden=false,shrinking=false,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 270
     },
-    "facing=east,shrinking=false,stage=3": {
+    "facing=east,hidden=false,shrinking=false,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 270
     },
-    "facing=east,shrinking=true,stage=0": {
+    "facing=east,hidden=false,shrinking=true,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 270
     },
-    "facing=east,shrinking=true,stage=1": {
+    "facing=east,hidden=false,shrinking=true,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 270
     },
-    "facing=east,shrinking=true,stage=2": {
+    "facing=east,hidden=false,shrinking=true,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 270
     },
-    "facing=east,shrinking=true,stage=3": {
+    "facing=east,hidden=false,shrinking=true,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 270
     },
-    "facing=north,shrinking=false,stage=0": {
+    "facing=east,hidden=true,shrinking=false,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=false,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=false,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=false,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=true,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=true,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=true,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 270
+    },
+    "facing=east,hidden=true,shrinking=true,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 270
+    },
+    "facing=north,hidden=false,shrinking=false,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 180
     },
-    "facing=north,shrinking=false,stage=1": {
+    "facing=north,hidden=false,shrinking=false,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 180
     },
-    "facing=north,shrinking=false,stage=2": {
+    "facing=north,hidden=false,shrinking=false,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 180
     },
-    "facing=north,shrinking=false,stage=3": {
+    "facing=north,hidden=false,shrinking=false,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 180
     },
-    "facing=north,shrinking=true,stage=0": {
+    "facing=north,hidden=false,shrinking=true,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 180
     },
-    "facing=north,shrinking=true,stage=1": {
+    "facing=north,hidden=false,shrinking=true,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 180
     },
-    "facing=north,shrinking=true,stage=2": {
+    "facing=north,hidden=false,shrinking=true,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 180
     },
-    "facing=north,shrinking=true,stage=3": {
+    "facing=north,hidden=false,shrinking=true,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 180
     },
-    "facing=south,shrinking=false,stage=0": {
+    "facing=north,hidden=true,shrinking=false,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=false,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=false,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=false,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=true,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=true,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=true,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 180
+    },
+    "facing=north,hidden=true,shrinking=true,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 180
+    },
+    "facing=south,hidden=false,shrinking=false,stage=0": {
       "model": "verdant:block/iron_trap_0"
     },
-    "facing=south,shrinking=false,stage=1": {
+    "facing=south,hidden=false,shrinking=false,stage=1": {
       "model": "verdant:block/iron_trap_1"
     },
-    "facing=south,shrinking=false,stage=2": {
+    "facing=south,hidden=false,shrinking=false,stage=2": {
       "model": "verdant:block/iron_trap_2"
     },
-    "facing=south,shrinking=false,stage=3": {
+    "facing=south,hidden=false,shrinking=false,stage=3": {
       "model": "verdant:block/iron_trap_3"
     },
-    "facing=south,shrinking=true,stage=0": {
+    "facing=south,hidden=false,shrinking=true,stage=0": {
       "model": "verdant:block/iron_trap_0"
     },
-    "facing=south,shrinking=true,stage=1": {
+    "facing=south,hidden=false,shrinking=true,stage=1": {
       "model": "verdant:block/iron_trap_1"
     },
-    "facing=south,shrinking=true,stage=2": {
+    "facing=south,hidden=false,shrinking=true,stage=2": {
       "model": "verdant:block/iron_trap_2"
     },
-    "facing=south,shrinking=true,stage=3": {
+    "facing=south,hidden=false,shrinking=true,stage=3": {
       "model": "verdant:block/iron_trap_3"
     },
-    "facing=west,shrinking=false,stage=0": {
+    "facing=south,hidden=true,shrinking=false,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden"
+    },
+    "facing=south,hidden=true,shrinking=false,stage=1": {
+      "model": "verdant:block/iron_trap_1"
+    },
+    "facing=south,hidden=true,shrinking=false,stage=2": {
+      "model": "verdant:block/iron_trap_2"
+    },
+    "facing=south,hidden=true,shrinking=false,stage=3": {
+      "model": "verdant:block/iron_trap_3"
+    },
+    "facing=south,hidden=true,shrinking=true,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden"
+    },
+    "facing=south,hidden=true,shrinking=true,stage=1": {
+      "model": "verdant:block/iron_trap_1"
+    },
+    "facing=south,hidden=true,shrinking=true,stage=2": {
+      "model": "verdant:block/iron_trap_2"
+    },
+    "facing=south,hidden=true,shrinking=true,stage=3": {
+      "model": "verdant:block/iron_trap_3"
+    },
+    "facing=west,hidden=false,shrinking=false,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 90
     },
-    "facing=west,shrinking=false,stage=1": {
+    "facing=west,hidden=false,shrinking=false,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 90
     },
-    "facing=west,shrinking=false,stage=2": {
+    "facing=west,hidden=false,shrinking=false,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 90
     },
-    "facing=west,shrinking=false,stage=3": {
+    "facing=west,hidden=false,shrinking=false,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 90
     },
-    "facing=west,shrinking=true,stage=0": {
+    "facing=west,hidden=false,shrinking=true,stage=0": {
       "model": "verdant:block/iron_trap_0",
       "y": 90
     },
-    "facing=west,shrinking=true,stage=1": {
+    "facing=west,hidden=false,shrinking=true,stage=1": {
       "model": "verdant:block/iron_trap_1",
       "y": 90
     },
-    "facing=west,shrinking=true,stage=2": {
+    "facing=west,hidden=false,shrinking=true,stage=2": {
       "model": "verdant:block/iron_trap_2",
       "y": 90
     },
-    "facing=west,shrinking=true,stage=3": {
+    "facing=west,hidden=false,shrinking=true,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=false,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=false,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=false,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=false,stage=3": {
+      "model": "verdant:block/iron_trap_3",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=true,stage=0": {
+      "model": "verdant:block/iron_trap_0_hidden",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=true,stage=1": {
+      "model": "verdant:block/iron_trap_1",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=true,stage=2": {
+      "model": "verdant:block/iron_trap_2",
+      "y": 90
+    },
+    "facing=west,hidden=true,shrinking=true,stage=3": {
       "model": "verdant:block/iron_trap_3",
       "y": 90
     }

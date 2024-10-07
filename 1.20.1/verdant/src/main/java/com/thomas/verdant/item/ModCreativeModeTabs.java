@@ -32,6 +32,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.CASSAVA_CUTTINGS.get());
 						pOutput.accept(ModItems.BITTER_CASSAVA_CUTTINGS.get());
 						pOutput.accept(ModItems.THORN.get());
+						pOutput.accept(ModItems.HEART_FRAGMENT.get());
 						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
 						pOutput.accept(ModItems.TOXIC_ASH.get());
 						pOutput.accept(ModItems.TOXIC_ASH_BUCKET.get());
@@ -71,6 +72,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.VERDANT_BUTTON.get());
 						pOutput.accept(ModBlocks.VERDANT_DOOR.get());
 						pOutput.accept(ModBlocks.VERDANT_TRAPDOOR.get());
+						pOutput.accept(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
 						pOutput.accept(ModBlocks.VERDANT_HEARTWOOD_PLANKS.get());
 						pOutput.accept(ModBlocks.VERDANT_HEARTWOOD_STAIRS.get());
 						pOutput.accept(ModBlocks.VERDANT_HEARTWOOD_SLAB.get());
@@ -100,6 +102,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.DIRT_EMERALD_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
 						pOutput.accept(ModBlocks.VERDANT_CONDUIT.get());
+						pOutput.accept(ModBlocks.FRAME_BLOCK.get());
+						pOutput.accept(ModBlocks.CHARRED_FRAME_BLOCK.get());
 						pOutput.accept(ModBlocks.POISON_IVY_BLOCK.get());
 						pOutput.accept(ModBlocks.TOXIC_ASH_BLOCK.get());
 						pOutput.accept(ModBlocks.ROPE.get());
@@ -107,9 +111,11 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.IRON_SPIKES.get());
 						pOutput.accept(ModBlocks.THORN_TRAP.get());
 						pOutput.accept(ModBlocks.IRON_TRAP.get());
+						pOutput.accept(ModBlocks.ROPE_LADDER.get());
 						pOutput.accept(ModBlocks.POISON_IVY.get());
 						pOutput.accept(ModBlocks.WILD_CASSAVA.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
+						pOutput.accept(ModBlocks.BUSH.get());
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());
 						pOutput.accept(ModBlocks.WILD_COFFEE.get());
 						pOutput.accept(ModBlocks.BLEEDING_HEART.get());

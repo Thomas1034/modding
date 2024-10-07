@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -30,6 +31,7 @@ public class ToxicAshItem extends Item {
 		BlockPos blockpos = context.getClickedPos();
 		if (applyAsh(context.getItemInHand(), level, blockpos, context.getPlayer())) {
 
+			context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
 			if (level instanceof ServerLevel serverLevel) {
 				// System.out.println("Effects.");
 				addDeathParticles(serverLevel, blockpos, 30);

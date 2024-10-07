@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/ladder",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "verdant:block/rope_ladder_up_right",
+    "texture": "verdant:block/rope_ladder_up_right"
+  }
+}

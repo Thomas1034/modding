@@ -30,6 +30,9 @@ public class ModPacketHandler {
 		INSTANCE.messageBuilder(SynchronizePlayerInfectionPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
 				.encoder(SynchronizePlayerInfectionPacket::encode).decoder(SynchronizePlayerInfectionPacket::decode)
 				.consumerNetworkThread(SynchronizePlayerInfectionPacket::handle).add();
+//		INSTANCE.messageBuilder(DestroyEffectsPacket.class, NetworkDirection.PLAY_TO_CLIENT.ordinal())
+//				.encoder(DestroyEffectsPacket::encode).decoder(DestroyEffectsPacket::decode)
+//				.consumerNetworkThread(DestroyEffectsPacket::handle).add();
 
 	}
 

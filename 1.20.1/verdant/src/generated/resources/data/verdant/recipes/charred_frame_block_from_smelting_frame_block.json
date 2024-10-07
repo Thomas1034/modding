@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "charred_frame_block",
+  "ingredient": {
+    "item": "verdant:frame_block"
+  },
+  "result": "verdant:charred_frame_block"
+}

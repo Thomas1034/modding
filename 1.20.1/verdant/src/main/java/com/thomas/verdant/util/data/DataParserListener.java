@@ -44,8 +44,12 @@ public class DataParserListener<T extends DataParseable<T>> extends SimpleJsonRe
 				continue; // Forge: filter anything beginning with "_" as it's used for metadata.
 
 			try {
-				// Register the new registry.
-				this.registry.register(location, factory.apply(location).parse(GSON, element));
+				// Register the new registry object.
+				T t = factory.apply(location).parse(GSON, element);
+				if (null == t) {
+					System.out.println("Parsing error loading json " + location);
+				}
+				this.registry.register(location, t);
 
 			} catch (IllegalArgumentException | JsonParseException jpe) {
 				System.out.println("Parsing error loading json " + location);

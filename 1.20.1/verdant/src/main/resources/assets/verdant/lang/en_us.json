@@ -4,6 +4,9 @@
 	
 	"block.verdant.wild_cassava": "Wild Cassava",
 	"block.verdant.rope": "Rope",
+	"block.verdant.rope_ladder": "Rope Ladder",
+	
+	"block.verdant.fish_trap_block": "Fish Trap",
 	
 	"block.verdant.dirt_coal_ore": "Dirt Coal Ore",
 	"block.verdant.dirt_copper_ore": "Dirt Copper Ore",
@@ -68,6 +71,7 @@
 	"block.verdant.thorn_spikes": "Thorn Spikes",
 	"block.verdant.iron_spikes": "Iron Spikes",
 	"block.verdant.frame_block": "Frame Block",
+	"block.verdant.charred_frame_block": "Charred Frame Block",
 	"block.verdant.poison_ivy_block": "Poison Ivy Block",
 	"block.verdant.toxic_ash_block": "Toxic Ash Block",
 	"block.verdant.verdant_vine": "Verdant Vine",
@@ -135,6 +139,7 @@
 	"block.verdant.stinking_blossom": "Stinking Blossom",
 	
 	"block.verdant.bush": "Bush",
+	"block.verdant.potted_bush": "Potted Bush",
 	"block.verdant.thorn_bush": "Thorn Bush",
 	"block.verdant.thorn_trap": "Thorn Trap",
 	"block.verdant.iron_trap": "Iron Trap",
@@ -166,6 +171,19 @@
   "item.minecraft.tipped_arrow.effect.long_colloid": "Arrow of Colloid",
   "item.minecraft.tipped_arrow.effect.strong_colloid": "Arrow of Colloid",
 	
+  "item.minecraft.potion.effect.antidote": "Potion of Antidote",
+  "item.minecraft.splash_potion.effect.antidote": "Splash Potion of Antidote",
+  "item.minecraft.lingering_potion.effect.antidote": "Lingering Potion of Antidote",
+  "item.minecraft.potion.effect.strong_antidote": "Potion of Antidote",
+  "item.minecraft.splash_potion.effect.strong_antidote": "Splash Potion of Antidote",
+  "item.minecraft.lingering_potion.effect.strong_antidote": "Lingering Potion of Antidote",
+  "item.minecraft.potion.effect.long_antidote": "Potion of Antidote",
+  "item.minecraft.splash_potion.effect.long_antidote": "Splash Potion of Antidote",
+  "item.minecraft.lingering_potion.effect.long_antidote": "Lingering Potion of Antidote",
+  "item.minecraft.tipped_arrow.effect.antidote": "Arrow of Antidote",
+  "item.minecraft.tipped_arrow.effect.long_antidote": "Arrow of Antidote",
+  "item.minecraft.tipped_arrow.effect.strong_antidote": "Arrow of Antidote",
+	
 	"entity.verdant.verdant_boat": "Verdant Boat",
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	"entity.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
@@ -179,6 +197,7 @@
 	"effect.verdant.verdant_energy": "Verdant Energy",
 	"effect.verdant.colloid": "Colloid",
 	"effect.verdant.trapped": "Trapped",
+	"effect.verdant.antidote": "Antidote",
 	
 	"command.verdant.spread_speed": "The Verdant Growth is spreading at a base rate of %s blocks per random tick.",
 	"command.verdant.spread_speed_random": "The Verdant Growth is spreading at a base rate of %s blocks per random tick, with a %s chance to grow an additional block.",

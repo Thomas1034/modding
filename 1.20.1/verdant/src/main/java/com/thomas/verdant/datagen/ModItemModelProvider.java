@@ -26,6 +26,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addItemModels(this);
 		ModBlocks.VERDANT.addItemModels(this);
 
+		simpleBlockItemBlockTexture(ModBlocks.ROPE_LADDER);
+
 		simpleLogModel(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG);
 		simpleItem(ModItems.HEART_FRAGMENT);
 		simpleItem(ModItems.YAM);
@@ -44,10 +46,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CASSAVA);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_CASSAVA);
 		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
+		simpleBlockItemBlockTexture(ModBlocks.CHARRED_FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.ROPE);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_SPIKES);
 		simpleBlockItemBlockTexture(ModBlocks.IRON_SPIKES);
 		simpleBlockItemBlockTexture(ModBlocks.THORN_BUSH);
+		simpleBlockItemBlockTexture(ModBlocks.BUSH);
 		simpleBlockItemBlockTexture(ModBlocks.BLEEDING_HEART);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_COFFEE);
 		simpleBlockItem(ModBlocks.VERDANT_VINE);

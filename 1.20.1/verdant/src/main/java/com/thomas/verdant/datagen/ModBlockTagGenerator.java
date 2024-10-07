@@ -67,7 +67,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.VERDANT_ROOTED_CLAY.get());
 
 		this.tag(BlockTags.CLIMBABLE).add(ModBlocks.VERDANT_VINE.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
-				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get(), ModBlocks.ROPE.get());
+				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get(), ModBlocks.ROPE.get(),
+				ModBlocks.ROPE_LADDER.get());
 		this.tag(BlockTags.REPLACEABLE).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
 
@@ -135,6 +136,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_BLEEDING_HEART.get());
 		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_WILD_COFFEE.get());
 		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_THORN_BUSH.get());
+		this.tag(BlockTags.FLOWER_POTS).add(ModBlocks.POTTED_BUSH.get());
 
 		// Add in ores.
 		this.tag(Tags.Blocks.ORES).add(ModBlocks.DIRT_COAL_ORE.get(), ModBlocks.DIRT_COPPER_ORE.get(),

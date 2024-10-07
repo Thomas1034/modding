@@ -26,7 +26,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -86,18 +85,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModBlocks.THORN_SPIKES.get(), 1);
 		// Iron spikes item
 		shaped(recipeWriter, List.of("NNN", "SSS", "III"), List.of('N', 'S', 'I'),
-				List.of(Items.IRON_NUGGET, ModBlocks.THORN_SPIKES.get(), Items.IRON_BARS), RecipeCategory.BUILDING_BLOCKS,
-				ModBlocks.IRON_SPIKES.get(), 1);
-		
+				List.of(Items.IRON_NUGGET, ModBlocks.THORN_SPIKES.get(), Items.IRON_BARS),
+				RecipeCategory.BUILDING_BLOCKS, ModBlocks.IRON_SPIKES.get(), 1);
+
 		// Frame block
 		shaped(recipeWriter, List.of(" T ", "T T", " T "), List.of('T'), List.of(Items.STICK),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.FRAME_BLOCK.get(), 1);
+		// Charred frame block
+		smelting(recipeWriter, List.of(ModBlocks.FRAME_BLOCK.get()), RecipeCategory.DECORATIONS,
+				ModBlocks.CHARRED_FRAME_BLOCK.get(), 0.1f, 200, "charred_frame_block");
 		// Rope coil
 		shaped(recipeWriter, List.of("TTT", "T T", "TTT"), List.of('T'), List.of(ModBlocks.ROPE.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModItems.SHORT_ROPE_COIL.get(), 1);
 		shaped(recipeWriter, List.of("TTT", "TCT", "TTT"), List.of('T', 'C'),
 				List.of(ModBlocks.ROPE.get(), ModItems.SHORT_ROPE_COIL.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModItems.ROPE_COIL.get(), 1);
+		// Rope ladder
+		shaped(recipeWriter, List.of("R R", "RSR", "R R"), List.of('R', 'S'),
+				List.of(ModBlocks.ROPE.get(), Items.STICK), RecipeCategory.BUILDING_BLOCKS, ModBlocks.ROPE_LADDER.get(),
+				3);
 
 		// Heartwood armor
 		shaped(recipeWriter, List.of("PPP", "P P"), List.of('P'), List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get()),
@@ -137,12 +143,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				ModBlocks.VERDANT_CONDUIT.get(), 1);
 
 		// Traps
+		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List
+				.of(ModBlocks.THORN_SPIKES.get(), Items.COPPER_INGOT, Items.STICK, BlockTags.WOODEN_PRESSURE_PLATES),
+				RecipeCategory.MISC, ModBlocks.THORN_TRAP.get(), 3);
 		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
-				List.of(ModBlocks.THORN_SPIKES.get(), Items.COPPER_INGOT, Items.STICK, BlockTags.WOODEN_PRESSURE_PLATES), RecipeCategory.MISC,
-				ModBlocks.THORN_TRAP.get(), 3);
-		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
-				List.of(ModBlocks.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE), RecipeCategory.MISC,
-				ModBlocks.IRON_TRAP.get(), 3);
+				List.of(ModBlocks.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE),
+				RecipeCategory.MISC, ModBlocks.IRON_TRAP.get(), 3);
 
 		// Imbued armor
 		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get()),

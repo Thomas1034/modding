@@ -112,6 +112,7 @@ public class FeaturePlacer {
 	private static void registerSurfaceFeatures() {
 		registerSurfaceFeature(Feature.smallPlant(Blocks.FERN), Rarity.VERY_COMMON, "small_fern");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.GRASS), Rarity.COMMON, "small_grass");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.BUSH.get()), Rarity.UNCOMMON, "bush");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.LARGE_FERN), Rarity.UNCOMMON, "tall_fern");
 		registerSurfaceFeature(Feature.tallPlant((DoublePlantBlock) Blocks.TALL_GRASS), Rarity.UNCOMMON, "tall_grass");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.THORN_BUSH.get()), Rarity.VERY_UNCOMMON, "thorn_bush");

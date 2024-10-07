@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/double_sided_cube_column",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "end": "verdant:block/charred_frame_block_top",
+    "side": "verdant:block/charred_frame_block"
+  }
+}

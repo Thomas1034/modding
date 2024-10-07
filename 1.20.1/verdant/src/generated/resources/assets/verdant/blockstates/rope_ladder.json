@@ -1,0 +1,260 @@
+{
+  "variants": {
+    "facing=east,left=false,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder",
+      "y": 450
+    },
+    "facing=east,left=false,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder",
+      "y": 450
+    },
+    "facing=east,left=false,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 450
+    },
+    "facing=east,left=false,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 450
+    },
+    "facing=east,left=false,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 450
+    },
+    "facing=east,left=false,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 450
+    },
+    "facing=east,left=false,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 450
+    },
+    "facing=east,left=false,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 450
+    },
+    "facing=east,left=true,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 450
+    },
+    "facing=east,left=true,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 450
+    },
+    "facing=north,left=false,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder",
+      "y": 360
+    },
+    "facing=north,left=false,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder",
+      "y": 360
+    },
+    "facing=north,left=false,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 360
+    },
+    "facing=north,left=false,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 360
+    },
+    "facing=north,left=false,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 360
+    },
+    "facing=north,left=false,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 360
+    },
+    "facing=north,left=false,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 360
+    },
+    "facing=north,left=false,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 360
+    },
+    "facing=north,left=true,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 360
+    },
+    "facing=north,left=true,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 360
+    },
+    "facing=south,left=false,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder",
+      "y": 180
+    },
+    "facing=south,left=false,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder",
+      "y": 180
+    },
+    "facing=south,left=false,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 180
+    },
+    "facing=south,left=false,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 180
+    },
+    "facing=south,left=false,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 180
+    },
+    "facing=south,left=false,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 180
+    },
+    "facing=south,left=false,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 180
+    },
+    "facing=south,left=false,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 180
+    },
+    "facing=south,left=true,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 180
+    },
+    "facing=south,left=true,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 180
+    },
+    "facing=west,left=false,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder",
+      "y": 270
+    },
+    "facing=west,left=false,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder",
+      "y": 270
+    },
+    "facing=west,left=false,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 270
+    },
+    "facing=west,left=false,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up",
+      "y": 270
+    },
+    "facing=west,left=false,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 270
+    },
+    "facing=west,left=false,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right",
+      "y": 270
+    },
+    "facing=west,left=false,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 270
+    },
+    "facing=west,left=false,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right",
+      "y": 270
+    },
+    "facing=west,left=true,right=false,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=false,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=false,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=false,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=true,up=false,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=true,up=false,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_right_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=true,up=true,waterlogged=false": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 270
+    },
+    "facing=west,left=true,right=true,up=true,waterlogged=true": {
+      "model": "verdant:block/rope_ladder_up_right_left",
+      "y": 270
+    }
+  }
+}

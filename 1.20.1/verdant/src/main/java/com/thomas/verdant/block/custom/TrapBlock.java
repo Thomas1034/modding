@@ -7,17 +7,26 @@ import javax.annotation.Nullable;
 
 import com.thomas.verdant.damage.ModDamageSources;
 import com.thomas.verdant.effect.ModMobEffects;
+import com.thomas.verdant.network.DestroyEffectsPacket;
+import com.thomas.verdant.network.ModPacketHandler;
+import com.thomas.verdant.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -26,18 +35,22 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.ForgeHooks;
 
 public class TrapBlock extends Block {
-	
+
 	protected static final VoxelShape[] SHAPE = { Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D),
 			Block.box(1.0D, 0.0D, 1.0D, 15.0D, 5.0D, 15.0D), Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
 			Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D) };
@@ -53,6 +66,8 @@ public class TrapBlock extends Block {
 	public static final int MAX_STAGE = 3;
 	public static final IntegerProperty STAGE = IntegerProperty.create("stage", MIN_STAGE, MAX_STAGE);
 	public static final BooleanProperty SHRINKING = BooleanProperty.create("shrinking");
+	public static final BooleanProperty HIDDEN = BooleanProperty.create("hidden");
+
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	private static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
 			ModMobEffects.TRAPPED.get(), 10, 0);
@@ -137,6 +152,12 @@ public class TrapBlock extends Block {
 
 			// Now damage all the entities if you haven't triggered before.
 			if (!state.getValue(SHRINKING)) {
+				// If it is hidden, display burst particles.
+				if (state.getValue(HIDDEN)) {
+					level.addDestroyBlockEffect(pos, level.getBlockState(pos.below()));
+					level.addDestroyBlockEffect(pos, level.getBlockState(pos.below()));
+				}
+
 				// Play the snap sound
 				level.playSound(null, pos, SoundEvents.EVOKER_FANGS_ATTACK, SoundSource.BLOCKS);
 				state = state.setValue(SHRINKING, true);
@@ -205,15 +226,50 @@ public class TrapBlock extends Block {
 		p_49292_.updateNeighborsAt(p_49293_.below(), this);
 	}
 
+	@Override
+	@Nullable
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+			BlockHitResult hitResult) {
+
+		BlockState belowState = level.getBlockState(pos.below());
+		float destroySpeedRaw = belowState.getDestroySpeed(level, pos);
+		boolean isCorrectToolForBelow = ForgeHooks.isCorrectToolForDrops(belowState, player)
+				&& (player.getInventory().getDestroySpeed(belowState) > 1.0f
+						|| (destroySpeedRaw < 1.0f && destroySpeedRaw >= 0));
+
+		// If it's the right tool and the trap is fully open
+		if (isCorrectToolForBelow && state.getValue(STAGE) == MIN_STAGE) {
+			// Hide/unhide the trap.
+			if (level instanceof ServerLevel serverLevel) {
+				// ModPacketHandler.sendToAllClients(new DestroyEffectsPacket(pos, belowState,
+				// 2));
+				level.levelEvent(null, LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(belowState));
+				// Utilities.addParticlesAroundPositionServer(serverLevel, pos.getCenter(), new
+				// BlockParticleOption(ParticleTypes.BLOCK, state), 1.0, 20);
+				level.setBlockAndUpdate(pos, state.setValue(HIDDEN, !state.getValue(HIDDEN)));
+			}
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		}
+
+		return super.use(belowState, level, pos, player, hand, hitResult);
+	}
+
+	@Override
+	@Nullable
+	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return state.getValue(STAGE) == MIN_STAGE ? (state.getValue(HIDDEN) ? null : BlockPathTypes.DAMAGE_OTHER)
+				: null;
+	}
+
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(HIDDEN, false);
 	}
 
 	// Very important!
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
-		p_54447_.add(STAGE).add(SHRINKING).add(FACING);
+		p_54447_.add(STAGE, SHRINKING, FACING, HIDDEN);
 	}
 
 }

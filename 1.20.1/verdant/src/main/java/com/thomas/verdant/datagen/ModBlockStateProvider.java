@@ -7,6 +7,7 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.CassavaCropBlock;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
+import com.thomas.verdant.block.custom.HangingLadderBlock;
 import com.thomas.verdant.block.custom.TrapBlock;
 
 import net.minecraft.core.Direction;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.TorchBlock;
@@ -41,6 +43,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
+
+		blockWithItem(ModBlocks.FISH_TRAP_BLOCK);
+
+		hangingLadderBlock((HangingLadderBlock) ModBlocks.ROPE_LADDER.get(), "rope_ladder");
 
 		logBlock((RotatedPillarBlock) ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
 
@@ -71,6 +77,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
 		// Frame block
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.FRAME_BLOCK.get(), "cutout");
+		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.CHARRED_FRAME_BLOCK.get(), "cutout");
 
 		// Poison ivy block
 		logBlock((RotatedPillarBlock) ModBlocks.POISON_IVY_BLOCK.get());
@@ -95,11 +102,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		// Thorn spikes model
 		clusterBlock((AmethystClusterBlock) ModBlocks.THORN_SPIKES.get());
 		clusterBlock((AmethystClusterBlock) ModBlocks.IRON_SPIKES.get());
-		
+
 		// Thorn trap block
 		trapBlock((TrapBlock) ModBlocks.THORN_TRAP.get(), "thorn_trap", "thorn_trap");
 		trapBlock((TrapBlock) ModBlocks.IRON_TRAP.get(), "iron_trap", "iron_trap");
-		
+
 		// Rope
 		simpleBlockWithItem(ModBlocks.ROPE.get(),
 				models().cross(blockTexture(ModBlocks.ROPE.get()).getPath(), blockTexture(ModBlocks.ROPE.get()))
@@ -111,6 +118,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		// Thorn bush
 		simpleFlowerWithPot(ModBlocks.THORN_BUSH.get(), ModBlocks.POTTED_THORN_BUSH.get());
+		simpleFlowerWithPot(ModBlocks.BUSH.get(), ModBlocks.POTTED_BUSH.get());
 
 		// Coffee
 		makeCoffeeCrop((CoffeeCropBlock) ModBlocks.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
@@ -118,8 +126,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.CASSAVA_CROP.get(), "cassava_crop_", "cassava_crop_");
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.BITTER_CASSAVA_CROP.get(), "bitter_cassava_crop_",
 				"bitter_cassava_crop_");
-		
-		
+
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -296,6 +303,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		});
 	}
 
+	public void ladderBlock(LadderBlock block, String texture) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(LadderBlock.FACING);
+			int yRot = ((int) facing.toYRot()) + 180;
+			ModelFile model = models().withExistingParent(texture, mcLoc("block/ladder")).renderType("cutout")
+					.texture("texture", modLoc("block/" + texture)).texture("particle", modLoc("block/" + texture));
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+	}
+
+	public void hangingLadderBlock(HangingLadderBlock block, String texture) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(LadderBlock.FACING);
+			int yRot = ((int) facing.toYRot()) + 180;
+			String up = state.getValue(HangingLadderBlock.UP) ? "_up" : "";
+			String left = state.getValue(HangingLadderBlock.LEFT) ? "_left" : "";
+			String right = state.getValue(HangingLadderBlock.RIGHT) ? "_right" : "";
+			String joinedTexture = texture + up + right + left;
+			ModelFile model = models().withExistingParent(joinedTexture, mcLoc("block/ladder")).renderType("cutout")
+					.texture("texture", modLoc("block/" + joinedTexture))
+					.texture("particle", modLoc("block/" + joinedTexture));
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+	}
+
 	public void torchBlock(TorchBlock block, String modelName, String texture) {
 		getVariantBuilder(block).forAllStates(state -> {
 			ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch")).renderType("cutout")
@@ -303,18 +337,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			return ConfiguredModel.builder().modelFile(model).build();
 		});
-
 	}
-	
+
 	public void trapBlock(TrapBlock block, String modelName, String texture) {
 		getVariantBuilder(block).forAllStates(state -> {
-			ModelFile model = models().withExistingParent(modelName + "_" + state.getValue(TrapBlock.STAGE), modLoc("block/trap/trap_" + state.getValue(TrapBlock.STAGE))).renderType("cutout")
-					.texture("texture", modLoc("block/" + texture));
-			
-			return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(TrapBlock.FACING).toYRot()).build();
+			int stage = state.getValue(TrapBlock.STAGE);
+			boolean hidden = state.getValue(TrapBlock.HIDDEN);
+			String append = "_" + stage + ((hidden && 0 == stage) ? "_hidden" : "");
+			ModelFile model = models().withExistingParent(modelName + append, modLoc("block/trap/trap" + append))
+					.renderType("cutout").texture("texture", modLoc("block/" + texture));
+
+			return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(TrapBlock.FACING).toYRot())
+					.build();
 		});
 	}
-
 
 	protected void clusterBlock(AmethystClusterBlock block) {
 		getVariantBuilder(block).forAllStates(state -> {

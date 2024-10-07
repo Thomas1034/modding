@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 public class RopeCoilItem extends Item {
 
@@ -32,7 +33,6 @@ public class RopeCoilItem extends Item {
 			rope.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
 			level.addFreshEntity(rope);
 		}
-
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (!player.getAbilities().instabuild) {
 			itemstack.shrink(1);

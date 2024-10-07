@@ -123,11 +123,4 @@ public class RopeBlock extends Block {
 		return super.use(state, level, pos, player, hand, hitResult);
 	}
 
-	@Override
-	public void onPlace(BlockState state, Level level, BlockPos pos, BlockState placedOn, boolean simulate) {
-		// if (!level.isClientSide) {
-		// level.scheduleTick(pos, this, 1);
-		// }
-	}
-
 }

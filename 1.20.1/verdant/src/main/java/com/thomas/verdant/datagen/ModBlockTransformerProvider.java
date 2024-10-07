@@ -3,17 +3,18 @@ package com.thomas.verdant.datagen;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.growth.VerdantBlockTransformer;
+import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 
 import net.minecraft.data.PackOutput;
 
-public class ModBlockTransformerProvider extends BlockTransformerProvider {
+public class ModBlockTransformerProvider extends DataParseableProvider<BlockTransformer> {
 
 	public ModBlockTransformerProvider(PackOutput output) {
-		super(output, Verdant.MOD_ID);
+		super(output, Verdant.MOD_ID, "block_transformers", "Block Transformers", BlockTransformer::new);
 	}
 
 	@Override
-	protected void addTransformers() {
+	protected void addParseables() {
 
 		ModBlocks.VERDANT_HEARTWOOD.addTransforms(this);
 		ModBlocks.VERDANT.addTransforms(this);

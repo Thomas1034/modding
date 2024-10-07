@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:rope_ladder",
+  "key": {
+    "R": {
+      "item": "verdant:rope"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "R R",
+    "RSR",
+    "R R"
+  ],
+  "result": {
+    "count": 3,
+    "item": "verdant:rope_ladder"
+  },
+  "show_notification": true
+}
