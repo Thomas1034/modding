@@ -201,17 +201,18 @@ public class FeaturePlacer {
 
 		List<FeatureType> features = new ArrayList<>();
 
+		int totalWeight = 0;
 		for (FeatureType type : FEATURES.iterate()) {
 			if (type.checkForPlacement(level, pos)) {
 				// System.out.println("Adding " + type);
 				features.add(type);
+				totalWeight += type.weight();
 			}
 		}
 
 		// First, get a random type to place.
 		// Get the total weight.
-		int totalWeight = features.stream().mapToInt((type) -> type.weight()).reduce((a, b) -> a + b).orElse(0);
-		if (totalWeight == 0) {
+		if (0 == totalWeight) {
 			// No features can be placed.
 			return;
 		}
@@ -232,7 +233,7 @@ public class FeaturePlacer {
 		// If the type is still null, there has been an error.
 		// Print out a warning message.
 		if (chosenType == null) {
-			System.err.println("Warning! Failed to place a feature in " + FeaturePlacer.class);
+			System.err.println("Warning! Failed to select a feature type in " + FeaturePlacer.class);
 			System.err.println("There was " + randomWeight + " weight remaining out of " + totalWeight + ".");
 			return;
 		}
@@ -256,7 +257,7 @@ public class FeaturePlacer {
 		// If the holder is still null, there has been an error.
 		// Print out a warning message.
 		if (selectedHolder == null) {
-			System.err.println("Warning! Failed to place a feature in " + FeaturePlacer.class);
+			System.err.println("Warning! Failed to select a feature in " + FeaturePlacer.class);
 			System.err.println("There was " + randomWeight + " weight remaining out of " + totalWeight + ".");
 			return;
 		}

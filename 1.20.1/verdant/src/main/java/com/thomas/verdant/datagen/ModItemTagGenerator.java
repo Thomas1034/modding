@@ -13,6 +13,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,7 +31,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 		ModBlocks.VERDANT.addItemTags(this);
 
 		// Friendly armors
-		this.tag(ModTags.Items.VERDANT_FRIENDLY_ARMORS).add(ModItems.VERDANT_HEARTWOOD_HELMET.get(),
+		this.tag(ModTags.Items.VERDANT_FRIENDLY_ARMORS).add(Items.LEATHER_HELMET,
+				Items.LEATHER_CHESTPLATE, Items.LEATHER_LEGGINGS,
+				Items.LEATHER_BOOTS, ModItems.VERDANT_HEARTWOOD_HELMET.get(),
 				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(),
 				ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(),
 				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(),

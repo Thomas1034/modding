@@ -1,5 +1,7 @@
 package com.thomas.verdant.block.custom;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.thomas.verdant.damage.ModDamageSources;
 import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 import com.thomas.verdant.util.ModTags;
@@ -11,11 +13,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 
 public class ThornBushBlock extends BushBlock {
@@ -62,6 +66,12 @@ public class ThornBushBlock extends BushBlock {
 				}
 			}
 		}
+	}
+
+	@Override
+	@Nullable
+	public BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return (mob != null && EntityOvergrowthEffects.isFriend(mob)) ? null : BlockPathTypes.DAMAGE_OTHER;
 	}
 
 	// Fire!

@@ -48,8 +48,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shapeless(recipeWriter, List.of(ModBlocks.POISON_IVY.get(), Items.ARROW), List.of(1, 1), RecipeCategory.COMBAT,
 				ModItems.POISON_ARROW.get(), 1);
 		// Arrow from thorn
-		shaped(recipeWriter, List.of(" P", "S "), List.of('P', 'S'), List.of(ModItems.THORN.get(), Items.STICK),
-				RecipeCategory.COMBAT, Items.ARROW, 1);
+		shaped(recipeWriter, List.of("  P", " S ", "V  "), List.of('P', 'S', 'V'),
+				List.of(ModItems.THORN.get(), Items.STICK, Items.VINE), RecipeCategory.COMBAT, Items.ARROW, 1);
 		// Rope
 		shaped(recipeWriter, List.of("T", "T", "T"), List.of('T'), List.of(ModBlocks.VERDANT_TENDRIL.get()),
 				RecipeCategory.BUILDING_BLOCKS, ModBlocks.ROPE.get(), 2);

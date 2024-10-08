@@ -10,6 +10,7 @@ import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.util.FallingBlockHelper;
 import com.thomas.verdant.util.Utilities;
+import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,40 +33,54 @@ import net.minecraftforge.common.ToolActions;
 
 public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 
+	// The maximum distance the block can be from water.
 	public static final int MAX_DISTANCE = 15;
+	// The minimum distance the block can be from water.
 	public static final int MIN_DISTANCE = 0;
 
+	// A property storing how far the block is from the nearest water source.
 	public static final IntegerProperty WATER_DISTANCE = IntegerProperty.create("water_distance", MIN_DISTANCE,
 			MAX_DISTANCE);
 
 	public VerdantRootedDirtBlock(Properties properties) {
 		super(properties);
+		// Registers the default state to be far away from water.
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
 	}
 
+	// If the block is going to settle, finds a location for it to settle to.
 	@Nullable
 	private static BlockPos findSettleLocation(ServerLevel level, BlockPos pos) {
 
+		// Keep a list of all valid locations.
 		ArrayList<BlockPos> locations = new ArrayList<>();
+		// Iterate over the 3x3 grid around it.
 		for (int i = -1; i <= 1; i++) {
 			for (int k = -1; k <= 1; k++) {
-				if (level.getBlockState(pos.offset(i, -1, k)).is(Blocks.AIR)
-						&& level.getBlockState(pos.offset(i, 0, k)).is(Blocks.AIR)) {
-					locations.add(pos.offset(i, -1, k));
+				// At each position, check if the block has a clear path to fall to the y-level
+				// beneath it.
+				BlockPos offsetBelow = pos.offset(i, -1, k);
+				if (level.getBlockState(offsetBelow).is(Blocks.AIR)
+						&& level.getBlockState(offsetBelow.above()).is(Blocks.AIR)) {
+					locations.add(offsetBelow);
 				}
 			}
 		}
 
+		// If there is a place to fall to (or more than one) return one at random.
 		if (locations.size() > 0) {
 			return locations.get(level.random.nextInt(locations.size()));
 		}
+
+		// Return null if no place to fall to was found.
 		return null;
 	}
 
 	private static boolean canSettle(ServerLevel level, BlockPos pos) {
 
-		// If it has no block above it and no block below it, it should certainly
+		// If the block has no block above it and no block below it, it should certainly
 		// settle.
+		// This makes 1 block thick floors (and floating blocks) cave in.
 		BlockState above = level.getBlockState(pos.above());
 		BlockState below = level.getBlockState(pos.below());
 		if (above.is(Blocks.AIR) && below.is(BlockTags.REPLACEABLE)) {
@@ -73,6 +88,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		}
 
 		// If it has a block above it and a block below it, don't settle.
+		// This prevents ceilings from caving in.
 		if (!above.is(BlockTags.REPLACEABLE) && !below.is(Blocks.AIR)) {
 			return false;
 		}
@@ -85,8 +101,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			// Check if the block in that direction has a sturdy face.
 			// If so, don't settle.
 			// Also don't settle if the block in that direction has a liquid.
-			if (level.getBlockState(pos.relative(d)).isFaceSturdy(level, pos, d.getOpposite())
-					|| !level.getFluidState(pos.relative(d)).isEmpty()) {
+			BlockState relativeState = level.getBlockState(pos.relative(d));
+			if (relativeState.isFaceSturdy(level, pos, d.getOpposite()) || !relativeState.getFluidState().isEmpty()) {
 				// Found a solid side.
 				solidSides++;
 				// If it's supported by at least two sides, it's good.
@@ -96,10 +112,12 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 			}
 		}
 
+		// If it's supported from below, and not supported from at least two sides,
+		// settle.
 		return true;
 	}
 
-	// Removes the block if it is not supported from the sides.
+	// Removes the block if it is not supported (as detailed in canSettle)
 	private boolean settle(ServerLevel level, BlockPos pos) {
 		// Check if the dirt should settle.
 		boolean shouldSettle = canSettle(level, pos);
@@ -113,11 +131,14 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 				if (settleLocation != null) {
 					level.setBlockAndUpdate(settleLocation, level.getBlockState(pos));
 					// If it's not supported underneath, fall.
+					// This prevents random "dripping" blocks from spikes, since that looked really
+					// ugly.
 					if (level.getBlockState(settleLocation.below()).isFaceSturdy(level, pos, Direction.UP)) {
 						FallingBlockHelper.fallNoDrops(level, settleLocation);
 					}
 				}
-				// Destroy it.
+				// Destroy it, if a settling location wasn't found.
+				// Don't drop resources, to avoid lag.
 				level.destroyBlock(pos, false);
 			}
 			// Otherwise fall.
@@ -125,90 +146,103 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 				FallingBlockHelper.fallNoDrops(level, pos);
 			}
 		}
-
+		// Return whether it settled or not.
+		// I could return false here and true up above, but adding that many return
+		// statements might get a bit hard to read.
 		return shouldSettle;
 	}
 
+	// The heart and soul of the lag. Block! I meant block.
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		// super.randomTick(state, level, pos, rand);
-		this.tick(state, level, pos, rand);
-		// System.out.println("Ticking at " + pos + " with " + state);
-		boolean isLowDistance = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
-		if (isLowDistance && VerdantBlockTransformer.HYDRATE.get().hasInput(state.getBlock())) {
-			state = VerdantBlockTransformer.HYDRATE.get().next(state);
-			// System.out.println("Hydrating to " + state);
-			level.setBlockAndUpdate(pos, state);
-		} else if (!isLowDistance && VerdantBlockTransformer.DEHYDRATE.get().hasInput(state.getBlock())) {
-			// System.out.println("Dehydrating to " + state);
-			state = VerdantBlockTransformer.DEHYDRATE.get().next(state);
-			level.setBlockAndUpdate(pos, state);
-		}
 
 		// Check if grass can survive.
-		boolean canBeGrass = VerdantGrower.canBeGrass(state, level, pos);
+		boolean canBeGrass = VerdantGrower.canBeGrass(level, pos);
 		if (!canBeGrass && VerdantBlockTransformer.REMOVE_GRASSES.get().hasInput(state.getBlock())) {
-			// System.out.println("Killing grass at " + pos);
-			// System.out.println("The input light blockedness level is " +
-			// LightEngine.getLightBlockInto(level, state, pos,
-			// level.getBlockState(pos.above()), pos.above(), Direction.UP,
-			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
-			// System.out.println("Because the block above is " +
-			// level.getBlockState(pos.above()));
+			// If it cannot be grass, and grass can be removed, set the state and update the
+			// block.
 			state = VerdantBlockTransformer.REMOVE_GRASSES.get().next(state);
-			level.setBlockAndUpdate(pos, state);
 		} else if (canBeGrass && VerdantBlockTransformer.GROW_GRASSES.get().hasInput(state.getBlock())) {
-			// System.out.println("Growing grass at " + pos);
-			// System.out.println("The input light blockedness level is " +
-			// LightEngine.getLightBlockInto(level, state, pos,
-			// level.getBlockState(pos.above()), pos.above(), Direction.UP,
-			// level.getBlockState(pos.above()).getLightBlock(level, pos.above())));
-			// System.out.println("Because the block above is " +
-			// level.getBlockState(pos.above()));
+			// If it can be grass and can be turned into grass, set the state and update the
+			// block.
 			state = VerdantBlockTransformer.GROW_GRASSES.get().next(state);
-			level.setBlockAndUpdate(pos, state);
 		}
+		level.setBlockAndUpdate(pos, state);
 
-		// Settle
-		if (!this.settle(level, pos)) {
-			// Grow.
-			float growthChance = this.growthChance(level);
-			float randomChance = rand.nextFloat();
-			while (randomChance < growthChance) {
-				// System.out.println("Trying to spread.");
-				this.grow(state, level, pos);
-				growthChance--;
-			}
+		float growthChance = this.growthChance(level);
+		float randomChance = rand.nextFloat();
+		// If the growth chance is really high, it might grow repeatedly.
+		// Unlikely, though, unless the user sets it really high.
+		while (randomChance < growthChance) {
+			// System.out.println("Trying to spread.");
+			this.grow(state, level, pos);
+			growthChance--;
 		}
 
 	}
 
+	// This just gets the base growth chance from the game rule.
 	@Override
 	public float growthChance(Level level) {
 		return 1.0f * VerdantGrower.super.growthChance(level);
 	}
 
-	// Handles hydration
+	// Handles hydration updating
 	@Override
-	public void tick(BlockState p_221369_, ServerLevel p_221370_, BlockPos p_221371_, RandomSource p_221372_) {
-		p_221370_.setBlock(p_221371_, updateDistance(p_221369_, p_221370_, p_221371_), 3);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+		// Try to settle the block.
+		// If it did not succeed, update the block.
+		if (!this.settle(level, pos)) {
+			level.setBlock(pos, updateDistance(state, level, pos), 3);
+		}
 	}
 
+	// Sets the block to update by scheduling a nearly-immediate tick.
 	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
-		int dist = getDistanceAt(level, otherPos, otherState) + 1;
-		if (dist != 1 || state.getValue(WATER_DISTANCE) != dist) {
-			level.scheduleTick(pos, this, 1);
+		// Update the state's distance
+		int distance = state.getValue(WATER_DISTANCE);
+		// We know that only otherState changed.
+		// So, that is the only value that needs to be checked.
+		int otherDistance = getDistanceAt(level, otherPos, otherState);
+
+		// Update this block's distance if need be.
+		if (otherDistance < (distance - 1)) {
+			distance = otherDistance + 1;
+			state.setValue(WATER_DISTANCE, distance);
 		}
 
+		return updateHydrationState(state, distance);
+	}
+
+	private static BlockState updateHydrationState(BlockState state, int distanceToWater) {
+		BlockTransformer hydrationTransformer = VerdantBlockTransformer.HYDRATE.get();
+		BlockTransformer dehydrationTransformer = VerdantBlockTransformer.DEHYDRATE.get();
+		Block block = state.getBlock();
+		boolean isLowDistance = distanceToWater < MAX_DISTANCE;
+		if (isLowDistance && hydrationTransformer.hasInput(block)) {
+			// If it is hydrated, and the data-driven map says it should turn into something
+			// when hydrated,
+			// set the state and update the block.
+			return hydrationTransformer.next(state);
+		} else if (!isLowDistance && dehydrationTransformer.hasInput(block)) {
+			// If it is not hydrated, and the data-driven map says it should turn into
+			// something when dehydrated,
+			// set the state and update the block.
+			return dehydrationTransformer.next(state);
+		}
 		return state;
 	}
 
+	// Returns the updated state's water distance, given its position, by checking
+	// its neighbors.
+	// Mostly just copied from LeafBlock
 	public static BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
 		int dist = MAX_DISTANCE;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
+		// Iterates over each directly adjacent block, checking its distance from water.
 		// Should be less laggy, but doesn't count corners.
 		for (Direction direction : Direction.values()) {
 			blockpos$mutableblockpos.setWithOffset(pos, direction);
@@ -235,10 +269,14 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		}
 	}
 
+	// Boring. Just sets the default state for placement to be the correct one for
+	// the given position.
+	// Does not contribute significantly to lag.
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		BlockState blockstate = this.defaultBlockState().setValue(WATER_DISTANCE, MAX_DISTANCE);
-		return updateDistance(blockstate, context.getLevel(), context.getClickedPos());
+		BlockState blockstate = this.defaultBlockState();
+		blockstate = updateDistance(blockstate, context.getLevel(), context.getClickedPos());
+		return updateHydrationState(blockstate, blockstate.getValue(WATER_DISTANCE));
 	}
 
 	// Very important!
@@ -247,6 +285,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		builder.add(WATER_DISTANCE);
 	}
 
+	// This function causes the most lag.
 	@Override
 	public void grow(BlockState state, Level level, BlockPos pos) {
 		// System.out.println("Verdant Roots are calling the grow function.");
@@ -254,51 +293,46 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		// Find a place to grow within three tries. Can use further tries to spread even
 		// more.
 		// Check for surrounding roots.
-		boolean canGrow = VerdantGrower.checkForRoots(level, pos);
+		// See other file.
+		// boolean canGrow = VerdantGrower.checkForRoots(level, pos);
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
-			BlockPos posToTry = VerdantGrower.withinDist(pos, 3, level.random);
+			BlockPos posToTry = VerdantGrower.withinDist(pos, 2, level.random);
 			// Ensure that this state is still hydratable.
 			if (!state.hasProperty(WATER_DISTANCE)) {
-				continue;
+				break;
 			}
-
 			// Try to convert the nearby block.
-			boolean canBeGrass = VerdantGrower.canBeGrass(state, level, posToTry);
-			if ((canGrow || canBeGrass) && VerdantGrower.convertGround(level, posToTry)) {
-				// System.out.println("Successfully grew.");
-				// break;
-			}
-			// If that fails, try to erode that block.
-			else {
-				// Otherwise, try to erode it.
-				// System.out.println("Failed to grow; eroding.");
-				if (canGrow) {
-					this.erode(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
-				}
-			}
+			VerdantGrower.convertOrErodeGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
 		}
 
 		// Try to grow vegetation.
+		// This is a big source of lag, which I will cover separately.
 		FeaturePlacer.place(level, pos);
 	}
 
 	@Nullable
 	public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
 			boolean simulate) {
+		// Basic sanity-check from super call.
 		ItemStack itemStack = context.getItemInHand();
 		if (!itemStack.canPerformAction(toolAction))
 			return null;
 
+		// Use custom logic for hoeing.
 		if (ToolActions.HOE_TILL == toolAction) {
 			// Logic modified super call.
 			Block block = state.getBlock();
+			// This is my fancy shmancy deferred-registry style data handling.
+			// This won't cause too much lag (hopefully)! since it's just checking if a map
+			// has a key
 			if (VerdantBlockTransformer.HOEING.get().hasInput(block)) {
+				// Again, using the fancy data driven stuff to transfer over as many block state
+				// properties as possible.
 				return VerdantBlockTransformer.HOEING.get().next(state);
 			}
 		}
 
 		return super.getToolModifiedState(state, context, toolAction, simulate);
 	}
-
 }

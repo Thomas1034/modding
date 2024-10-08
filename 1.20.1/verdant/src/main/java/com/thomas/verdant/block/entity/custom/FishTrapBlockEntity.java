@@ -1,6 +1,5 @@
 package com.thomas.verdant.block.entity.custom;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
@@ -32,15 +30,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -53,9 +45,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 	public static final int OUTPUT_SLOTS = 3;
 	public static final int TOTAL_SLOTS = OUTPUT_SLOTS + BAIT_SLOTS;
 
-	private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS) {
-
-	};
+	private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS);
 
 	public static final String INVENTORY_TAG_NAME = "inventory";
 	public static final String PROGRESS_TAG_NAME = "fish_trap_progress";
@@ -70,6 +60,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 
 	public FishTrapBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), pos, state);
+
 		this.data = new ContainerData() {
 
 			@Override
@@ -100,7 +91,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 
 			@Override
 			public int getCount() {
-				return 3;
+				return 2;
 			}
 		};
 	}
@@ -236,15 +227,16 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 		// Server only!
 		if (this.level instanceof ServerLevel serverLevel) {
 			float luck = 0;
-			FishingHook hook = null;
 			// Get the loot table.
-			LootParams lootparams = (new LootParams.Builder(serverLevel))
-					.withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
-					.withParameter(LootContextParams.TOOL, new ItemStack(this.getBlockState().getBlock().asItem()))
-					.withLuck(luck).create(LootContextParamSets.FISHING);
-			LootTable loottable = serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
-			List<ItemStack> list = loottable.getRandomItems(lootparams);
-			
+			// LootParams lootparams = (new LootParams.Builder(serverLevel))
+			// .withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
+			// .withParameter(LootContextParams.BLOCK_STATE,
+			// this.getBlockState()).withLuck(luck)
+			// .create(LootContextParamSets.FISHING);
+			// LootTable loottable =
+			// serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
+			// List<ItemStack> list = loottable.getRandomItems(lootparams);
+
 		}
 	}
 

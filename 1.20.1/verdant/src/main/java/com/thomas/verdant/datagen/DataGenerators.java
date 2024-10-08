@@ -17,34 +17,34 @@ public class DataGenerators {
 
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-
+		boolean hasServer = event.includeServer();
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-		generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
-		generator.addProvider(event.includeServer(), ModLootTableProvider.create(packOutput));
+		generator.addProvider(hasServer, new ModRecipeProvider(packOutput));
+		generator.addProvider(hasServer, ModLootTableProvider.create(packOutput));
 
 		generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
 		generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
 
-		ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
+		ModBlockTagGenerator blockTagGenerator = generator.addProvider(hasServer,
 				new ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
-		generator.addProvider(event.includeServer(), new ModItemTagGenerator(packOutput, lookupProvider,
+		generator.addProvider(hasServer, new ModItemTagGenerator(packOutput, lookupProvider,
 				blockTagGenerator.contentsGetter(), existingFileHelper));
 
-		generator.addProvider(event.includeServer(),
-				new ModPoiTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+		generator.addProvider(hasServer, new ModPoiTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
 
-		generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
+		generator.addProvider(hasServer, new ModWorldGenProvider(packOutput, lookupProvider));
 
-		generator.addProvider(event.includeServer(), new ModGlobalLootModifiersProvider(packOutput));
+		generator.addProvider(hasServer, new ModGlobalLootModifiersProvider(packOutput));
+
 
 		// Custom data generator!
-		generator.addProvider(event.includeServer(), new ModBlockTransformerProvider(packOutput));
-		generator.addProvider(event.includeServer(), new ModBaitDataProvider(packOutput));
-		generator.addProvider(event.includeServer(), new ModItemToNumberProvider(packOutput));
+		generator.addProvider(hasServer, new ModBlockTransformerProvider(packOutput));
+		generator.addProvider(hasServer, new ModBaitDataProvider(packOutput));
+		generator.addProvider(hasServer, new ModItemToNumberProvider(packOutput));
 
 	}
 }

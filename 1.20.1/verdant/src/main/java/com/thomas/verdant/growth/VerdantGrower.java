@@ -12,11 +12,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.lighting.LightEngine;
 
 public interface VerdantGrower extends BonemealableBlock {
 
@@ -47,9 +47,61 @@ public interface VerdantGrower extends BonemealableBlock {
 
 	};
 
+	// Converts a block to a verdant form if possible.
+	// If not, erodes it. Returns false if no change was made..
+	public static boolean convertOrErodeGround(Level level, BlockPos pos, boolean isNearWater) {
+		BlockState state = level.getBlockState(pos);
+		Block block = state.getBlock();
+		BlockTransformer erosion = isNearWater ? VerdantBlockTransformer.EROSION_WET.get()
+				: VerdantBlockTransformer.EROSION.get();
+		boolean change = false;
+		if (erosion.hasInput(block)) {
+			state = erosion.next(state);
+			change = true;
+		} else {
+			BlockTransformer roots = VerdantBlockTransformer.ROOTS.get();
+			if (roots.hasInput(block)) {
+				state = roots.next(state);
+				change = true;
+			}
+		}
+		if (change) {
+			level.setBlockAndUpdate(pos, state);
+		}
+		return change;
+	}
+
+	// Returns true if it can grow.
+	public static boolean checkForRoots(Level level, BlockPos pos) {
+		BlockTransformer roots = VerdantBlockTransformer.ROOTS.get();
+		int rootCount = 0;
+		for (int i = -1; i <= 1; i++) {
+			for (int j = -1; j <= 1; j++) {
+				for (int k = -1; k <= 1; k++) {
+					if (roots.hasOutput(level.getBlockState(pos.offset(i, j, k)).getBlock())) {
+						if (++rootCount > MAX_ROOTS) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+
+		return rootCount <= MAX_ROOTS;
+	}
+
 	public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
-		return pos.offset(rand.nextIntBetweenInclusive(-dist, dist), rand.nextIntBetweenInclusive(-dist, dist),
-				rand.nextIntBetweenInclusive(-dist, dist));
+		int num = rand.nextInt();
+		int range = 2 * dist + 1;
+		int int1 = num & 0xFF; // Use the lowest 7 bits
+		int int2 = (num >> 7) & 0xFF; // Use the next 7 bits
+		int int3 = (num >> 14) & 0xFF; // Use the next 7 bits after that
+
+		int offset1 = (int1 * range) / 0xFF;
+		int offset2 = (int2 * range) / 0xFF;
+		int offset3 = (int3 * range) / 0xFF;
+
+		return pos.offset(offset1, offset2, offset3);
 	}
 
 	public static BlockPos withinSphereDist(BlockPos pos, int dist, RandomSource rand) {
@@ -61,22 +113,26 @@ public interface VerdantGrower extends BonemealableBlock {
 			xOffset = rand.nextIntBetweenInclusive(-dist, dist);
 			yOffset = rand.nextIntBetweenInclusive(-dist, dist);
 			zOffset = rand.nextIntBetweenInclusive(-dist, dist);
-			;
+
 		} while (xOffset * xOffset + yOffset * yOffset + zOffset * zOffset <= dist * dist);
 
 		return pos.offset(xOffset, yOffset, zOffset);
 	}
 
 	// From the grass block class, except no snow and no underwater.
-	public static boolean canBeGrass(BlockState state, LevelReader level, BlockPos pos) {
+	// EDIT: now only checks if the block above is not full and is not fluid.
+	// This could lead to jank with things like stairs and slabs growing grass
+	// underneath, but should be *mostly* harmless.
+	public static boolean canBeGrass(LevelReader level, BlockPos pos) {
 		BlockPos abovePos = pos.above();
 		BlockState aboveState = level.getBlockState(abovePos);
 		if (aboveState.getFluidState().getAmount() > 0) {
 			return false;
 		} else {
-			int i = LightEngine.getLightBlockInto(level, state, pos, aboveState, abovePos, Direction.UP,
-					aboveState.getLightBlock(level, abovePos));
-			return i < level.getMaxLightLevel();
+			return !aboveState.isCollisionShapeFullBlock(level, abovePos);
+//			int i = LightEngine.getLightBlockInto(level, state, pos, aboveState, abovePos, Direction.UP,
+//					aboveState.getLightBlock(level, abovePos));
+//			return i < level.getMaxLightLevel();
 		}
 	}
 
@@ -144,50 +200,32 @@ public interface VerdantGrower extends BonemealableBlock {
 		BlockState replaced = level.getBlockState(pos);
 		BlockState placed = ModBlocks.VERDANT_LEAVES.get().defaultBlockState();
 
-		// If the target is already leaves, don't do anything.
+		// If the target is already verdant leaves, don't do anything.
 		if (replaced.is(ModTags.Blocks.VERDANT_LEAFY_BLOCKS)) {
 			return false;
 		}
 
-		// Waterlog if possible
-		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
-			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
+		// Don't do anything if it isn't leaves already.
+		if (replaced.is(BlockTags.LEAVES)) {
+			// Waterlog if possible
+			if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)
+					&& replaced.getValue(BlockStateProperties.WATERLOGGED)) {
 				// //System.out.println("Waterlogging.");
 				placed = placed.setValue(BlockStateProperties.WATERLOGGED, true);
 			}
-		}
-		// Update distance if possible
-		if (replaced.hasProperty(LeavesBlock.DISTANCE)) {
-			// //System.out.println("Setting distance.");
-			placed = placed.setValue(LeavesBlock.DISTANCE, replaced.getValue(LeavesBlock.DISTANCE));
-		}
+			// Update distance if possible
+			if (replaced.hasProperty(LeavesBlock.DISTANCE)) {
+				// //System.out.println("Setting distance.");
+				placed = placed.setValue(LeavesBlock.DISTANCE, replaced.getValue(LeavesBlock.DISTANCE));
+			}
 
-		if (replaced.is(BlockTags.LEAVES)) {
 			// System.out.println("Converting to " + placed + ".");
 			level.addDestroyBlockEffect(pos, replaced);
 			level.setBlockAndUpdate(pos, placed);
 			return true;
 		}
-		// //System.out.println("Failed to convert.");
+
 		return false;
-	}
-
-	// Returns true if it can grow.
-	public static boolean checkForRoots(Level level, BlockPos pos) {
-
-		int rootCount = 0;
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				for (int k = -1; k <= 1; k++) {
-					if (VerdantBlockTransformer.ROOTS.get()
-							.hasOutput(level.getBlockState(pos.offset(i, j, k)).getBlock())) {
-						rootCount++;
-					}
-				}
-			}
-		}
-
-		return rootCount <= MAX_ROOTS;
 	}
 
 	// Converts a block to a verdant form if possible.
@@ -195,22 +233,12 @@ public interface VerdantGrower extends BonemealableBlock {
 	public static boolean convertGround(Level level, BlockPos pos) {
 		// //System.out.println("Attempting to convert " + pos);
 		BlockState state = level.getBlockState(pos);
-
-		if (VerdantBlockTransformer.ROOTS.get().hasInput(state.getBlock())) {
-			BlockState rooted = VerdantBlockTransformer.ROOTS.get().next(state);
-			if (VerdantGrower.canBeGrass(state, level, pos)
-					&& VerdantBlockTransformer.GROW_GRASSES.get().hasInput(rooted.getBlock())) {
-				// System.out.println("Placing grass: " + rooted);
-				level.setBlockAndUpdate(pos, rooted);
-				return true;
-
-			} else {
-				level.setBlockAndUpdate(pos, rooted);
-				level.scheduleTick(pos, rooted.getBlock(), 1);
-				return true;
-			}
+		BlockTransformer roots = VerdantBlockTransformer.ROOTS.get();
+		if (roots.hasInput(state.getBlock())) {
+			BlockState rooted = roots.next(state);
+			level.setBlockAndUpdate(pos, rooted);
+			return true;
 		}
-
 		return false;
 	}
 

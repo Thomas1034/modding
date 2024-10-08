@@ -1,20 +1,41 @@
-[06Oct2024 23:33:16.361] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, verdant, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\main\resources]
-[06Oct2024 23:33:16.379] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
-[06Oct2024 23:33:16.570] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[06Oct2024 23:33:16.646] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/thoma/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[06Oct2024 23:33:17.023] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.0\7f9181f85acc66547685a72020713fc8cbde98\javafmllanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[06Oct2024 23:33:17.028] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.0\7872f5205685fdd26fae39b1be79b0e60ca5b7bd\lowcodelanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[06Oct2024 23:33:17.034] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.0\d501d161cabed08b3c139a2c6217b02a39f3c3e9\mclanguage-1.20.1-47.2.0.jar is missing mods.toml file
-[06Oct2024 23:33:17.038] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.0\ffd3c6debac0a388c9e33ac43c9f5eafb91cb466\fmlcore-1.20.1-47.2.0.jar is missing mods.toml file
-[06Oct2024 23:33:17.144] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[06Oct2024 23:33:19.173] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, verdant, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\main\resources]
-[06Oct2024 23:33:19.880] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [verdant]
-[06Oct2024 23:33:27.205] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.0, for MC 1.20.1 with MCP 20230612.114412
-[06Oct2024 23:33:27.212] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.0 Initialized
-[06Oct2024 23:33:37.343] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[06Oct2024 23:33:37.344] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[06Oct2024 23:33:37.909] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[06Oct2024 23:33:38.081] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 169 ms
-[06Oct2024 23:33:38.081] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[06Oct2024 23:33:38.257] [main/WARN] [net.minecraft.data.loot.LootTableProvider/]: Found validation problem in {verdant:gameplay/fish_trap_fishing}.pools[0].entries[1]: Unknown loot table called minecraft:gameplay/fishing/treasure
-[06Oct2024 23:33:38.258] [main/WARN] [net.minecraft.data.loot.LootTableProvider/]: Found validation problem in {verdant:gameplay/fish_trap_fishing}.pools[0].entries[0]: Unknown loot table called minecraft:gameplay/fishing
+[08Oct2024 00:40:10.508] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, verdant, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\main\resources]
+[08Oct2024 00:40:10.527] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.9 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[08Oct2024 00:40:10.743] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[08Oct2024 00:40:10.813] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/thoma/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[08Oct2024 00:40:11.195] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.0\7f9181f85acc66547685a72020713fc8cbde98\javafmllanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[08Oct2024 00:40:11.199] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.0\7872f5205685fdd26fae39b1be79b0e60ca5b7bd\lowcodelanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[08Oct2024 00:40:11.204] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.0\d501d161cabed08b3c139a2c6217b02a39f3c3e9\mclanguage-1.20.1-47.2.0.jar is missing mods.toml file
+[08Oct2024 00:40:11.207] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\thoma\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.0\ffd3c6debac0a388c9e33ac43c9f5eafb91cb466\fmlcore-1.20.1-47.2.0.jar is missing mods.toml file
+[08Oct2024 00:40:11.321] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[08Oct2024 00:40:13.569] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\thoma\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, verdant, --all, --output, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\generated\resources, --existing, C:\Users\thoma\OneDrive\Documents\GitHub\modding\1.20.1\verdant\src\main\resources]
+[08Oct2024 00:40:14.198] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [verdant]
+[08Oct2024 00:40:19.834] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.0, for MC 1.20.1 with MCP 20230612.114412
+[08Oct2024 00:40:19.835] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.0 Initialized
+[08Oct2024 00:40:29.201] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[08Oct2024 00:40:29.203] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/thoma/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.0_mapped_official_1.20.1/forge-1.20.1-47.2.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[08Oct2024 00:40:29.698] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[08Oct2024 00:40:29.904] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 204 ms
+[08Oct2024 00:40:29.904] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[08Oct2024 00:40:30.051] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 147 ms
+[08Oct2024 00:40:30.052] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: verdant
+[08Oct2024 00:40:30.717] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: verdant finished after 665 ms
+[08Oct2024 00:40:30.717] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: verdant
+[08Oct2024 00:40:30.885] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: verdant finished after 166 ms
+[08Oct2024 00:40:30.885] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id verdant
+[08Oct2024 00:40:30.935] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id verdant finished after 51 ms
+[08Oct2024 00:40:30.936] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id verdant
+[08Oct2024 00:40:30.956] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id verdant finished after 20 ms
+[08Oct2024 00:40:30.956] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:point_of_interest_type mod id verdant
+[08Oct2024 00:40:30.957] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:point_of_interest_type mod id verdant finished after 0 ms
+[08Oct2024 00:40:30.957] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[08Oct2024 00:40:30.959] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 2 ms
+[08Oct2024 00:40:30.960] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : verdant
+[08Oct2024 00:40:30.976] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : verdant finished after 15 ms
+[08Oct2024 00:40:30.976] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block Transformers
+[08Oct2024 00:40:30.990] [main/INFO] [net.minecraft.data.DataGenerator/]: Block Transformers finished after 13 ms
+[08Oct2024 00:40:30.990] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Bait Data
+[08Oct2024 00:40:30.997] [main/INFO] [net.minecraft.data.DataGenerator/]: Bait Data finished after 7 ms
+[08Oct2024 00:40:30.997] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item to Number Maps
+[08Oct2024 00:40:30.997] [main/INFO] [net.minecraft.data.DataGenerator/]: Item to Number Maps finished after 0 ms
+[08Oct2024 00:40:30.997] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1299 ms
+[08Oct2024 00:40:31.059] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 747, old count: 751, new count: 746, removed stale: 2, written: 1

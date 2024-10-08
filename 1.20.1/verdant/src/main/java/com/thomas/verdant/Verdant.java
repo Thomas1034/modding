@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.entity.ModBlockEntities;
+import com.thomas.verdant.datagen.ModLootModifiers;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.enchantment.ModEnchantments;
@@ -57,13 +58,20 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Charred frame block
 
 // Changes
-// Entities should try to avoid walking on spikes
+// Entities should try to avoid walking through spikes and thorn bushes
+// Significant changes to how verdant rooted dirt spreads, in an attempt to decrease lag.
+// Verdant rooted dirt will now immediately convert to mud (or vice versa) when placed, if appropriate.
+// Visual rework of verdant rooted dirt
+// The added recipe for arrows now requires a vine as fletching, in addition to the stick and the thorn.
+// - This is made in anticipation of a possible new weapon in the future that will include the original crafting recipe.
 
 // Bugfixes
 // Removed debug text when the Cassava crop is bonemealed.
 // Fixed possible desync when a poison ivy arrow hits an entity.
 // Spikes can no longer be instantly replaced by other blocks.
 // Frame blocks are in the creative menu
+// Reduced lag
+// Fixed a bug where verdant rooted dirt wouldn't always erode the entire area around it.
 
 // To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
 // Changed icon for food poisoning
@@ -101,6 +109,7 @@ public class Verdant {
 
 		ModBlockEntities.register(modEventBus);
 		ModMenuTypes.register(modEventBus);
+		ModLootModifiers.register(modEventBus);
 
 		ModEntityTypes.register(modEventBus);
 

@@ -21,13 +21,13 @@ public class ModFishingLootTables implements LootTableSubProvider {
 	@Override
 	public void generate(BiConsumer<ResourceLocation, Builder> builder) {
 
-		builder.accept(FISH_TRAP_FISHING,
-				LootTable.lootTable()
-						.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-								.add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING).setWeight(99)
-										.setQuality(-1))
-								.add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING_TREASURE)
-										.setWeight(1).setQuality(2))));
+//		builder.accept(FISH_TRAP_FISHING,
+//				LootTable.lootTable()
+//						.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+//								.add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING).setWeight(99)
+//										.setQuality(-1))
+//								.add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING_TREASURE)
+//										.setWeight(1).setQuality(2))));
 
 	}
 
