@@ -22,6 +22,8 @@ public interface VerdantGrower extends BonemealableBlock {
 
 	public static final float MULTI_ERODE_CHANCE = 0.25f;
 	public static final int MAX_ROOTS = 3;
+	static BlockTransformer EROSION = null;
+	static BlockTransformer EROSION_WET = null;
 
 	default float growthChance(Level level) {
 		return level == null ? 1.0f : SpreadAmount.getAmount(level);
@@ -97,9 +99,9 @@ public interface VerdantGrower extends BonemealableBlock {
 		int int2 = (num >> 7) & 0xFF; // Use the next 7 bits
 		int int3 = (num >> 14) & 0xFF; // Use the next 7 bits after that
 
-		int offset1 = (int1 * range) / 0xFF;
-		int offset2 = (int2 * range) / 0xFF;
-		int offset3 = (int3 * range) / 0xFF;
+		int offset1 = (int1 * range) / 0xFF - dist;
+		int offset2 = (int2 * range) / 0xFF - dist;
+		int offset3 = (int3 * range) / 0xFF - dist;
 
 		return pos.offset(offset1, offset2, offset3);
 	}

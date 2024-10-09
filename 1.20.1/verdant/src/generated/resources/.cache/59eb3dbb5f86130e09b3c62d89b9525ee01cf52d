@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-05T23:45:42.1280532	Loot Tables
+// 1.20.1	2024-10-08T13:54:52.5243886	Loot Tables
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_tables/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_tables/blocks/bitter_cassava_rooted_dirt.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_tables/blocks/bleeding_heart.json
@@ -7,6 +7,7 @@ feafa855e54f53ed5b491f49e5e0c805d6169594 data/verdant/loot_tables/blocks/bush.js
 1992f42782da587529d5dece464c024f658cf70a data/verdant/loot_tables/blocks/cassava_rooted_dirt.json
 287bd2c6a44c48ea7b1fa7ede0d41df0200ab7c4 data/verdant/loot_tables/blocks/charred_frame_block.json
 0bdf5d7147a0905ca324e0b43af26e0c9fb983b2 data/verdant/loot_tables/blocks/coffee_crop.json
+d1c65532b01dda15adb0db9020f2ad5a5277c329 data/verdant/loot_tables/blocks/dense_gravel.json
 a2a559119908fc28a6139eeacc06a2b4033359d1 data/verdant/loot_tables/blocks/dirt_coal_ore.json
 283bcf6216b213308f98e0252444ae2ed24b4c74 data/verdant/loot_tables/blocks/dirt_copper_ore.json
 41e491f824f50f224f7d8137214829ba8b5811e9 data/verdant/loot_tables/blocks/dirt_diamond_ore.json

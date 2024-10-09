@@ -1,5 +1,9 @@
 {
   "values": [
+    "minecraft:leather_helmet",
+    "minecraft:leather_chestplate",
+    "minecraft:leather_leggings",
+    "minecraft:leather_boots",
     "verdant:verdant_heartwood_helmet",
     "verdant:verdant_heartwood_chestplate",
     "verdant:verdant_heartwood_leggings",

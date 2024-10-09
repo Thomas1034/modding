@@ -173,7 +173,9 @@ public class ModItems {
 	// Yam stuff
 	public static final RegistryObject<Item> YAM = ITEMS.register("yam",
 			() -> new Item(new Item.Properties().stacksTo(64)));
+	
 
+	
 	// Water hemlock
 	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
 			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties().stacksTo(64)));

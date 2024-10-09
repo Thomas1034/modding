@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.entity.custom;
 
 import java.util.Map;
+import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -18,9 +19,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -36,7 +39,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
+public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
 
 	protected static final Map<Item, BaitData> BAIT_MAP = DataRegistries.BAIT_DATA.parallelStream()
 			.collect(Collectors.toUnmodifiableMap((data) -> data.getItem(), (data) -> data));
@@ -44,6 +47,8 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 	public static final int BAIT_SLOTS = 3;
 	public static final int OUTPUT_SLOTS = 3;
 	public static final int TOTAL_SLOTS = OUTPUT_SLOTS + BAIT_SLOTS;
+	public static final IntPredicate IS_BAIT_SLOT = (i) -> i < BAIT_SLOTS;
+	public static final IntPredicate IS_OUTPUT_SLOT = (i) -> i >= BAIT_SLOTS && i < TOTAL_SLOTS;
 
 	private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS);
 
@@ -172,11 +177,11 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 
 	// Returns the output slot that the item can be inserted into, or -1 if none are
 	// valid.
-	private int canInsertItemIntoOutputSlot(Item item, int count) {
+	private int getOutputSlotToAddTo(Item item, int count) {
 		ItemStack[] output = this.getOutput();
 
 		for (int i = 0; i < output.length; i++) {
-			if (canInsertItemIntoSlot(output[i], item, count)) {
+			if (canInsertItemIntoSlot(i, output[i], item, count)) {
 				return i;
 			}
 		}
@@ -185,8 +190,13 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 	}
 
 	// Returns the slot that the item can be inserted into, or -1.
-	private boolean canInsertItemIntoSlot(ItemStack slot, Item item, int count) {
-		return slot.isEmpty() || (slot.is(item) && slot.getCount() + count <= slot.getMaxStackSize());
+	private boolean canInsertItemIntoSlot(int slot, ItemStack contents, Item item, int count) {
+		boolean isBaitOrOutput = true;
+		if (IS_BAIT_SLOT.test(slot)) {
+			isBaitOrOutput = BAIT_MAP.containsKey(item);
+		}
+		return isBaitOrOutput && (contents.isEmpty()
+				|| (contents.is(item) && contents.getCount() + count <= contents.getMaxStackSize()));
 	}
 
 	private void resetProgress() {
@@ -272,6 +282,94 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 			}
 		}
 		return Pair.of(best, bestStack);
+	}
+
+	@Override
+	public int getContainerSize() {
+		return FishTrapBlockEntity.TOTAL_SLOTS;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < FishTrapBlockEntity.TOTAL_SLOTS; i++) {
+			if (!this.itemHandler.getStackInSlot(i).isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public ItemStack getItem(int slot) {
+		// TODO Auto-generated method stub
+		return this.itemHandler.getStackInSlot(slot);
+	}
+
+	@Override
+	public ItemStack removeItem(int slot, int count) {
+		return this.itemHandler.extractItem(slot, count, false);
+	}
+
+	@Override
+	public ItemStack removeItemNoUpdate(int slot) {
+		// TODO Auto-generated method stub
+		ItemStack stack = this.itemHandler.getStackInSlot(slot);
+		this.itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
+		return stack;
+	}
+
+	@Override
+	public void setItem(int slot, ItemStack stack) {
+		if (stack.getCount() > this.getMaxStackSize()) {
+			stack.setCount(this.getMaxStackSize());
+		}
+		this.itemHandler.setStackInSlot(slot, stack);
+	}
+
+	@Override
+	public boolean stillValid(Player player) {
+		return Container.stillValidBlockEntity(this, player);
+	}
+
+	@Override
+	public void clearContent() {
+		for (int i = 0; i < FishTrapBlockEntity.TOTAL_SLOTS; i++) {
+			this.itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+		}
+	}
+
+	@Override
+	public int[] getSlotsForFace(Direction face) {
+
+		if (Direction.DOWN == face) {
+			int[] sequence = new int[OUTPUT_SLOTS];
+			for (int i = 0; i < OUTPUT_SLOTS; i++) {
+				sequence[i] = i; // Fill the array with a sequence of integers
+			}
+			return sequence;
+		} else {
+			int[] sequence = new int[BAIT_SLOTS];
+			for (int i = 0; i < BAIT_SLOTS; i++) {
+				sequence[i] = i + OUTPUT_SLOTS; // Fill the array with a sequence of integers
+			}
+			return sequence;
+		}
+	}
+
+	@Override
+	public boolean canPlaceItem(int slot, ItemStack stack) {
+		return this.canInsertItemIntoSlot(slot, this.getItem(slot), stack.getItem(), stack.getCount());
+	}
+
+	@Override
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, Direction face) {
+		return !IS_OUTPUT_SLOT.test(slot) && this.canPlaceItem(slot, stack);
+	}
+
+	@Override
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction face) {
+		return IS_OUTPUT_SLOT.test(slot) != (Direction.DOWN == face);
 	}
 
 }

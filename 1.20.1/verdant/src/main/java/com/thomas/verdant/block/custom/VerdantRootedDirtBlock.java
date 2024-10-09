@@ -187,17 +187,6 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		return 1.0f * VerdantGrower.super.growthChance(level);
 	}
 
-	// Handles hydration updating
-	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		// Try to settle the block.
-		// If it did not succeed, update the block.
-		if (!this.settle(level, pos)) {
-			level.setBlock(pos, updateDistance(state, level, pos), 3);
-		}
-	}
-
-	// Sets the block to update by scheduling a nearly-immediate tick.
 	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
@@ -210,10 +199,9 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		// Update this block's distance if need be.
 		if (otherDistance < (distance - 1)) {
 			distance = otherDistance + 1;
-			state.setValue(WATER_DISTANCE, distance);
 		}
 
-		return updateHydrationState(state, distance);
+		return updateHydrationState(state, distance).setValue(WATER_DISTANCE, distance);
 	}
 
 	private static BlockState updateHydrationState(BlockState state, int distanceToWater) {
@@ -303,7 +291,10 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 				break;
 			}
 			// Try to convert the nearby block.
-			VerdantGrower.convertOrErodeGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE);
+			if (!VerdantGrower.convertOrErodeGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
+				break;
+			}
+
 		}
 
 		// Try to grow vegetation.

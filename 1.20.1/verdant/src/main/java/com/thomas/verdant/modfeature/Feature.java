@@ -188,7 +188,7 @@ public class Feature {
 				BlockState at = level.getBlockState(toReturn);
 				if (at.isAir()) {
 					return toReturn;
-				} else if (!at.getFluidState().is(Fluids.WATER)) {
+				} else if (!at.getFluidState().isSourceOfType(Fluids.WATER)) {
 					return null;
 				}
 			}

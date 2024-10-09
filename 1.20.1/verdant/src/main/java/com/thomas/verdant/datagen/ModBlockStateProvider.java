@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -44,6 +45,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
 
+		tumbledBlockWithItem(ModBlocks.DENSE_GRAVEL);
 		blockWithItem(ModBlocks.FISH_TRAP_BLOCK);
 
 		hangingLadderBlock((HangingLadderBlock) ModBlocks.ROPE_LADDER.get(), "rope_ladder");
@@ -68,12 +70,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		blockWithItem(ModBlocks.DIRT_EMERALD_ORE);
 		blockWithItem(ModBlocks.DIRT_DIAMOND_ORE);
 
-		blockWithItem(ModBlocks.VERDANT_ROOTED_DIRT);
-		sidedBlockWithItem(ModBlocks.VERDANT_GRASS_BLOCK, "verdant_grass_block");
-		blockWithItem(ModBlocks.VERDANT_ROOTED_MUD);
-		sidedBlockWithItem(ModBlocks.VERDANT_MUD_GRASS_BLOCK, "verdant_mud_grass_block");
-		blockWithItem(ModBlocks.VERDANT_ROOTED_CLAY);
-		sidedBlockWithItem(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, "verdant_clay_grass_block");
+		verdantGroundBlock(ModBlocks.VERDANT_ROOTED_DIRT, () -> Blocks.DIRT);
+		verdantGrassBlock(ModBlocks.VERDANT_GRASS_BLOCK, () -> Blocks.DIRT);
+		verdantGroundBlock(ModBlocks.VERDANT_ROOTED_MUD, () -> Blocks.MUD);
+		verdantGrassBlock(ModBlocks.VERDANT_MUD_GRASS_BLOCK, () -> Blocks.MUD);
+		verdantGroundBlock(ModBlocks.VERDANT_ROOTED_CLAY, () -> Blocks.CLAY);
+		verdantGrassBlock(ModBlocks.VERDANT_CLAY_GRASS_BLOCK, () -> Blocks.CLAY);
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.ROTTEN_WOOD.get(), "cutout");
 		// Frame block
 		doubleSidedLogBlock((RotatedPillarBlock) ModBlocks.FRAME_BLOCK.get(), "cutout");
@@ -127,6 +129,58 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.BITTER_CASSAVA_CROP.get(), "bitter_cassava_crop_",
 				"bitter_cassava_crop_");
 
+	}
+
+	private void verdantGroundBlock(Supplier<Block> blockSource, Supplier<Block> baseSource) {
+		// TODO Auto-generated method stub
+		String[] extensions = new String[] { "", "_thick", "_thin", "_thin2", "_wilted", "_very_thin",
+				"_very_thin_mixed"
+
+		};
+
+		Block block = blockSource.get();
+		Block base = baseSource.get();
+		ResourceLocation baseLocation = base.builtInRegistryHolder().key().location();
+
+		ModelFile[] files = new ModelFile[extensions.length];
+
+		for (int i = 0; i < extensions.length; i++) {
+			files[i] = models()
+					.withExistingParent(name(block) + extensions[i],
+							new ResourceLocation(Verdant.MOD_ID, "block/verdant_ground_block"))
+					.texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
+					.texture("overlay", new ResourceLocation(Verdant.MOD_ID, "block/verdant_overlay" + extensions[i]))
+					.renderType("cutout");
+		}
+
+		tumbledBlockWithItem(blockSource, files);
+	}
+
+	private void verdantGrassBlock(Supplier<Block> blockSource, Supplier<Block> baseSource) {
+		// TODO Auto-generated method stub
+		String[] extensions = new String[] { "", "_thick", "_thin", "_thin2", "_wilted", "_very_thin",
+				"_very_thin_mixed"
+
+		};
+
+		Block block = blockSource.get();
+		Block base = baseSource.get();
+		ResourceLocation baseLocation = base.builtInRegistryHolder().key().location();
+
+		ModelFile[] files = new ModelFile[extensions.length];
+
+		for (int i = 0; i < extensions.length; i++) {
+			files[i] = models()
+					.withExistingParent(name(block) + extensions[i],
+							new ResourceLocation(Verdant.MOD_ID, "block/verdant_base_grass_block"))
+					.texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
+					.texture("overlay", new ResourceLocation(Verdant.MOD_ID, "block/verdant_overlay" + extensions[i]))
+					.texture("top", new ResourceLocation(Verdant.MOD_ID, "block/verdant_grass_block_top"))
+					.texture("side", new ResourceLocation(Verdant.MOD_ID, "block/verdant_grass_block_side"))
+					.renderType("cutout");
+		}
+
+		spunBlockWithItem(blockSource, files);
 	}
 
 	public ResourceLocation extend(ResourceLocation rl, String suffix) {
@@ -460,6 +514,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		tumbledBlockWithItem(blockSupplier, simple);
 	}
 
+	protected void tumbledBlockWithItemMultitexture(Supplier<Block> blockSupplier, String[] textureSuffixes) {
+		Block block = blockSupplier.get();
+		ModelFile simple = cubeAll(block);
+		ModelFile[] models = new ModelFile[textureSuffixes.length + 1];
+
+		models[0] = simple;
+		for (int i = 1; i <= textureSuffixes.length; i++) {
+			models[i] = models().cubeAll(name(block), blockTexture(block).withSuffix(textureSuffixes[i - 1]));
+		}
+
+		tumbledBlockWithItem(blockSupplier, models);
+	}
+
 	protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, ModelFile model) {
 		// Every possible unique rotation of the model.
 		// With most simple blocks, many of these states are superfluous. However, it
@@ -478,6 +545,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockItem(blockSupplier.get(), model);
 	}
 
+	protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, ModelFile[] models) {
+		// Every possible unique rotation of the model.
+		// With most simple blocks, many of these states are superfluous. However, it
+		// doesn't hurt to have them.
+		final int[] rotations = new int[] { 0, 90, 180, 270 };
+
+		getVariantBuilder(blockSupplier.get()).forAllStates((state) -> {
+			ConfiguredModel.Builder<?> builder = ConfiguredModel.builder().modelFile(models[0]);
+
+			for (int xrot : rotations) {
+				for (int yrot : rotations) {
+					for (ModelFile model : models) {
+						if (0 == xrot && 0 == yrot && model == models[0]) {
+							continue;
+						}
+						// System.out.println(
+						// "Adding model " + model.getLocation() + " with rotation " + xrot + ", " +
+						// yrot);
+						builder = builder.nextModel().modelFile(model).rotationX(xrot).rotationY(yrot);
+					}
+				}
+			}
+
+			return builder.build();
+
+		});
+
+		simpleBlockItem(blockSupplier.get(), models[0]);
+	}
+
 	protected void spunBlockWithItem(Supplier<Block> blockSupplier) {
 		ModelFile simple = cubeAll(blockSupplier.get());
 		spunBlockWithItem(blockSupplier, simple);
@@ -490,5 +587,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
 						.nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel().modelFile(model)
 						.rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270).build());
 		simpleBlockItem(blockSupplier.get(), model);
+	}
+
+	protected void spunBlockWithItem(Supplier<Block> blockSupplier, ModelFile[] models) {
+		// Every possible unique rotation of the model.
+		// With most simple blocks, many of these states are superfluous. However, it
+		// doesn't hurt to have them.
+		final int[] rotations = new int[] { 0, 90, 180, 270 };
+
+		getVariantBuilder(blockSupplier.get()).forAllStates((state) -> {
+			ConfiguredModel.Builder<?> builder = ConfiguredModel.builder().modelFile(models[0]);
+			for (int yrot : rotations) {
+				for (ModelFile model : models) {
+					if (0 == yrot && model == models[0]) {
+						continue;
+					}
+					// System.out.println(
+					// "Adding model " + model.getLocation() + " with rotation " + xrot + ", " +
+					// yrot);
+					builder = builder.nextModel().modelFile(model).rotationY(yrot);
+				}
+			}
+
+			return builder.build();
+
+		});
+
+		simpleBlockItem(blockSupplier.get(), models[0]);
 	}
 }

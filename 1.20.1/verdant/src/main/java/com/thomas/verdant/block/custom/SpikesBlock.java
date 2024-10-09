@@ -17,7 +17,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SpikesBlock extends AmethystClusterBlock {
 
@@ -33,18 +36,23 @@ public class SpikesBlock extends AmethystClusterBlock {
 		if (entity instanceof LivingEntity livingEntity
 				&& (livingEntity.getMobType() != MobType.ARTHROPOD && livingEntity.getType() != EntityType.RABBIT)) {
 
-			// VoxelShape box = this.getShape(state, level, pos, CollisionContext.empty());
+			VoxelShape box = this.getShape(state, level, pos, CollisionContext.empty());
+			AABB shiftedBounds = box.bounds().move(pos);
+			if (shiftedBounds.intersects(entity.getBoundingBox())) {
 
-			entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 1D, (double) 0.8F));
-			if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
-				double zMovement = Math.abs(entity.getX() - entity.xOld);
-				double yMovement = Math.abs(entity.getY() - entity.yOld);
-				double xMovement = Math.abs(entity.getZ() - entity.zOld);
-				if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F || yMovement >= (double) 0.003F) {
-					DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
-					entity.hurt(source, damage + (float) (1 + 5 * yMovement));
+				entity.makeStuckInBlock(state, new Vec3((double) 0.8F, 1D, (double) 0.8F));
+				if (!level.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+					double zMovement = Math.abs(entity.getX() - entity.xOld);
+					double yMovement = Math.abs(entity.getY() - entity.yOld);
+					double xMovement = Math.abs(entity.getZ() - entity.zOld);
+					if (zMovement >= (double) 0.003F || xMovement >= (double) 0.003F || yMovement >= (double) 0.003F) {
+						DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
+						entity.hurt(source, damage + (float) (1 + 5 * yMovement));
+					}
 				}
+
 			}
+			;
 		}
 	}
 

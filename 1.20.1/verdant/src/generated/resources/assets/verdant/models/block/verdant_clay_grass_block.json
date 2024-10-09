@@ -1,12 +1,10 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "verdant:block/verdant_base_grass_block",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "down": "verdant:block/verdant_clay_grass_block_bottom",
-    "east": "verdant:block/verdant_clay_grass_block",
-    "north": "verdant:block/verdant_clay_grass_block",
-    "particle": "verdant:block/verdant_clay_grass_block",
-    "south": "verdant:block/verdant_clay_grass_block",
-    "up": "verdant:block/verdant_clay_grass_block_top",
-    "west": "verdant:block/verdant_clay_grass_block"
+    "base": "minecraft:block/clay",
+    "overlay": "verdant:block/verdant_overlay",
+    "side": "verdant:block/verdant_grass_block_side",
+    "top": "verdant:block/verdant_grass_block_top"
   }
 }

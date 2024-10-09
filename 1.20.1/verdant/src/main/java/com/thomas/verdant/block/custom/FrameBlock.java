@@ -47,6 +47,10 @@ public class FrameBlock extends ModFlammableRotatedPillarBlock implements Simple
 		builder.add(WATERLOGGED);
 	}
 
+	public VoxelShape getBlockSupportShape(BlockState p_60581_, BlockGetter p_60582_, BlockPos p_60583_) {
+		return Shapes.empty();
+	}
+
 	@Override
 	public VoxelShape getShape(BlockState p_51470_, BlockGetter p_51471_, BlockPos p_51472_,
 			CollisionContext p_51473_) {

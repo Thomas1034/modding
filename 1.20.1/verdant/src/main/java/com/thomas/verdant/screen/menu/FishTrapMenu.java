@@ -99,31 +99,33 @@ public class FishTrapMenu extends AbstractContainerMenu {
 	private static final int BLOCK_ENTITY_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
 	// THIS YOU HAVE TO DEFINE!
-	private static final int BLOCK_ENTITY_INVENTORY_SLOT_COUNT = 2; // must be the number of slots you have!
+	private static final int BLOCK_ENTITY_INVENTORY_SLOT_COUNT = FishTrapBlockEntity.TOTAL_SLOTS; // must be the number
+																									// of slots you
+																									// have!
 
 	@Override
-	public ItemStack quickMoveStack(Player playerIn, int pIndex) {
-		Slot sourceSlot = slots.get(pIndex);
+	public ItemStack quickMoveStack(Player playerIn, int index) {
+		Slot sourceSlot = slots.get(index);
 		if (sourceSlot == null || !sourceSlot.hasItem())
 			return ItemStack.EMPTY; // EMPTY_ITEM
 		ItemStack sourceStack = sourceSlot.getItem();
 		ItemStack copyOfSourceStack = sourceStack.copy();
 
 		// Check if the slot clicked is one of the vanilla container slots
-		if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+		if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
 			// This is a vanilla container slot so merge the stack into the tile inventory
 			if (!moveItemStackTo(sourceStack, BLOCK_ENTITY_INVENTORY_FIRST_SLOT_INDEX,
 					BLOCK_ENTITY_INVENTORY_FIRST_SLOT_INDEX + BLOCK_ENTITY_INVENTORY_SLOT_COUNT, false)) {
 				return ItemStack.EMPTY; // EMPTY_ITEM
 			}
-		} else if (pIndex < BLOCK_ENTITY_INVENTORY_FIRST_SLOT_INDEX + BLOCK_ENTITY_INVENTORY_SLOT_COUNT) {
+		} else if (index < BLOCK_ENTITY_INVENTORY_FIRST_SLOT_INDEX + BLOCK_ENTITY_INVENTORY_SLOT_COUNT) {
 			// This is a block entity slot so merge the stack into the players inventory
 			if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT,
 					false)) {
 				return ItemStack.EMPTY;
 			}
 		} else {
-			System.out.println("Invalid slotIndex:" + pIndex);
+			System.out.println("Invalid slotIndex:" + index);
 			return ItemStack.EMPTY;
 		}
 		// If stack size == 0 (the entire stack was moved) set slot contents to null
@@ -137,8 +139,8 @@ public class FishTrapMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public boolean stillValid(Player pPlayer) {
-		return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer,
+	public boolean stillValid(Player player) {
+		return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player,
 				ModBlocks.FISH_TRAP_BLOCK.get());
 	}
 

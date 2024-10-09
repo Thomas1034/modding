@@ -8,11 +8,15 @@
     },
     "S": {
       "item": "minecraft:stick"
+    },
+    "V": {
+      "item": "minecraft:vine"
     }
   },
   "pattern": [
-    " P",
-    "S "
+    "  P",
+    " S ",
+    "V  "
   ],
   "result": {
     "item": "minecraft:arrow"

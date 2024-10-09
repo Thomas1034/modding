@@ -20,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.MultifaceBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 
 public class FeaturePlacer {
 
@@ -269,12 +271,13 @@ public class FeaturePlacer {
 
 	public static boolean surfacePlacement(Level level, BlockPos pos) {
 		return level.getBlockState(pos.above()).isAir()
-				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
+				&& level.getBlockState(pos).isCollisionShapeFullBlock(level, pos);
 	}
 
 	public static boolean verdantVinePlacement(Level level, BlockPos pos) {
-		return VerdantVineBlock.canGrowToAnyFace(level, pos.above())
-				&& level.getBlockState(pos.above()).is(ModTags.Blocks.VERDANT_VINE_REPLACABLES);
+		BlockState above = level.getBlockState(pos.above());
+		return above.is(ModTags.Blocks.VERDANT_VINE_REPLACABLES)
+				&& VerdantVineBlock.canGrowToAnyFace(level, pos.above());
 	}
 
 	public static boolean hangingPlacement(Level level, BlockPos pos) {
@@ -283,7 +286,8 @@ public class FeaturePlacer {
 	}
 
 	public static boolean waterPlacement(Level level, BlockPos pos) {
-		return level.getBlockState(pos.above()).is(Blocks.WATER)
+		BlockState above = level.getBlockState(pos.above());
+		return above.is(Blocks.WATER) && above.getFluidState().isSourceOfType(Fluids.WATER)
 				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
 	}
 

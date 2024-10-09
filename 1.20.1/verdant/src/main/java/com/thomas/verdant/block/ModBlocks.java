@@ -81,6 +81,10 @@ public class ModBlocks {
 					.instrument(NoteBlockInstrument.BASS).strength(2.0f).sound(SoundType.WOOD).ignitedByLava(),
 			2.0f, 15, 50);
 
+	// Non-falling gravel
+	public static final RegistryObject<Block> DENSE_GRAVEL = registerBlockWithItem("dense_gravel",
+			() -> new Block(BlockBehaviour.Properties.copy(Blocks.GRAVEL).pushReaction(PushReaction.DESTROY)));
+
 	// It's a trap!
 	public static final RegistryObject<Block> THORN_TRAP = registerBlockWithItem("thorn_trap",
 			() -> new TrapBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noOcclusion().noCollission(), 20, 5,

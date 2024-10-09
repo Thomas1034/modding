@@ -101,6 +101,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.DIRT_REDSTONE_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_EMERALD_ORE.get());
 						pOutput.accept(ModBlocks.DIRT_DIAMOND_ORE.get());
+						pOutput.accept(ModBlocks.DENSE_GRAVEL.get());
 						pOutput.accept(ModBlocks.VERDANT_CONDUIT.get());
 						pOutput.accept(ModBlocks.FRAME_BLOCK.get());
 						pOutput.accept(ModBlocks.CHARRED_FRAME_BLOCK.get());
@@ -114,6 +115,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.ROPE_LADDER.get());
 						pOutput.accept(ModBlocks.POISON_IVY.get());
 						pOutput.accept(ModBlocks.WILD_CASSAVA.get());
+						pOutput.accept(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get());
+						pOutput.accept(ModBlocks.CASSAVA_ROOTED_DIRT.get());
 						pOutput.accept(ModBlocks.THORN_BUSH.get());
 						pOutput.accept(ModBlocks.BUSH.get());
 						pOutput.accept(ModBlocks.STINKING_BLOSSOM.get());

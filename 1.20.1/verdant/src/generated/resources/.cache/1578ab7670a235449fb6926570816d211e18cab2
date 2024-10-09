@@ -1,4 +1,4 @@
-// 1.20.1	2024-09-04T23:24:00.1837096	Tags for minecraft:item mod id verdant
+// 1.20.1	2024-10-08T11:43:40.4335526	Tags for minecraft:item mod id verdant
 b0671c29336ac757e097c96b300df7d65cf47f61 data/forge/tags/items/armors.json
 656e19cd3c3c1c88156304999524ee1d4d1903df data/forge/tags/items/armors/boots.json
 39fc9dbd77e66d38c37e2ec966217f69986ddb73 data/forge/tags/items/armors/chestplates.json
@@ -35,4 +35,4 @@ ed8944f5bcf3b97f15bcd32e8f5767576c49100b data/minecraft/tags/items/wooden_pressu
 0fa6e95c8b7dcfe5b07515b65aca9c297c22e36e data/minecraft/tags/items/wooden_slabs.json
 fc527a4d5f7afaf6f370449bd9eeeeaa9505fd0b data/minecraft/tags/items/wooden_stairs.json
 7a68c1c2b3bd5049ef02380c9c5a3db861e444a2 data/minecraft/tags/items/wooden_trapdoors.json
-b0671c29336ac757e097c96b300df7d65cf47f61 data/verdant/tags/items/verdant_friendly_armors.json
+6cd8dc2a0b3ee0d3b371c518a9b67cc3c58764ae data/verdant/tags/items/verdant_friendly_armors.json

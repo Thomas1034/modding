@@ -550,12 +550,10 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 	public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
 		BlockState state = level.getBlockState(pos.relative(direction));
-		boolean isSturdy = level.getBlockState(pos.relative(direction)).isFaceSturdy(level, pos,
-				direction.getOpposite());
-		// System.out.println("Checking if can grow to face " + direction + " at " +
-		// pos);
-		// System.out.println("Returning " + (state.is(BlockTags.LOGS) && isSturdy));
-		return state.is(BlockTags.LOGS) && isSturdy;
+		if (!state.is(BlockTags.LOGS)) {
+			return false;
+		}
+		return state.isFaceSturdy(level, pos, direction.getOpposite());
 	}
 
 	@Override

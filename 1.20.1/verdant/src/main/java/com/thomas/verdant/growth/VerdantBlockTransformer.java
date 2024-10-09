@@ -82,12 +82,13 @@ public class VerdantBlockTransformer {
 
 	public static void registerErosion(BlockTransformer transformer) {
 		transformer.register(Blocks.STONE, Blocks.COBBLESTONE);
-		transformer.register(Blocks.STONE_SLAB, Blocks.GRAVEL);
+		transformer.register(Blocks.STONE_SLAB, ModBlocks.DENSE_GRAVEL.get());
 		transformer.register(Blocks.STONE_STAIRS, Blocks.COBBLESTONE_STAIRS);
 		transformer.register(Blocks.INFESTED_STONE, Blocks.STONE);
-		transformer.register(Blocks.COBBLESTONE, Blocks.GRAVEL);
+		transformer.register(Blocks.COBBLESTONE, ModBlocks.DENSE_GRAVEL.get());
 		transformer.register(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
 		transformer.register(Blocks.COBBLED_DEEPSLATE, Blocks.COBBLESTONE);
+		transformer.register(ModBlocks.DENSE_GRAVEL.get(), Blocks.COARSE_DIRT);
 		transformer.register(Blocks.GRAVEL, Blocks.COARSE_DIRT);
 		transformer.register(Blocks.DIRT_PATH, Blocks.DIRT);
 		transformer.register(Blocks.COARSE_DIRT, Blocks.DIRT);
@@ -98,7 +99,7 @@ public class VerdantBlockTransformer {
 		transformer.register(Blocks.COBBLESTONE_SLAB, Blocks.GRAVEL);
 		transformer.register(Blocks.COBBLESTONE_WALL, Blocks.GRAVEL);
 		transformer.register(Blocks.INFESTED_COBBLESTONE, Blocks.COBBLESTONE);
-		transformer.register(Blocks.MOSSY_COBBLESTONE, Blocks.GRAVEL);
+		transformer.register(Blocks.MOSSY_COBBLESTONE, ModBlocks.DENSE_GRAVEL.get());
 		transformer.register(Blocks.MOSSY_COBBLESTONE_STAIRS, Blocks.GRAVEL);
 		transformer.register(Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.GRAVEL);
 		transformer.register(Blocks.MOSSY_COBBLESTONE_WALL, Blocks.GRAVEL);

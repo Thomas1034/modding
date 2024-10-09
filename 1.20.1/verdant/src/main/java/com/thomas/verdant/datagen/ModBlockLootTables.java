@@ -42,6 +42,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
 		ModBlocks.VERDANT.addLootTables(this);
 
+		requireSilkTouch(ModBlocks.DENSE_GRAVEL.get(), Blocks.GRAVEL, List.of(1, 3));
+
 		this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
 
 		this.add(ModBlocks.WILD_CASSAVA.get(),

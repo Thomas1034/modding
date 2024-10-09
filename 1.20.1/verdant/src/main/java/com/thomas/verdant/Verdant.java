@@ -56,10 +56,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Imbued armor
 // Bush
 // Charred frame block
+// Lilypads will now grow on water that has verdant ground underneath.
 
 // Changes
 // Entities should try to avoid walking through spikes and thorn bushes
 // Significant changes to how verdant rooted dirt spreads, in an attempt to decrease lag.
+// Verdant rooted dirt will no longer collapse from cave ceilings or smooth out pillars.
+// Rooted dirt will erode cobblestone into "dense gravel", which does not fall, but can drop up to three gravel items.
+// Dense Gravel will break when pushed by a piston.
+// Updated texture for poison ivy
+
 // Verdant rooted dirt will now immediately convert to mud (or vice versa) when placed, if appropriate.
 // Visual rework of verdant rooted dirt
 // The added recipe for arrows now requires a vine as fletching, in addition to the stick and the thorn.
@@ -70,8 +76,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Fixed possible desync when a poison ivy arrow hits an entity.
 // Spikes can no longer be instantly replaced by other blocks.
 // Frame blocks are in the creative menu
-// Reduced lag
+// Reduced lag considerably
 // Fixed a bug where verdant rooted dirt wouldn't always erode the entire area around it.
+// Frame blocks now have the proper block support shape (i.e. they can't support blocks like torches at all)
 
 // To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
 // Changed icon for food poisoning
