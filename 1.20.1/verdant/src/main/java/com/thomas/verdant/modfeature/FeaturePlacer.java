@@ -34,6 +34,7 @@ public class FeaturePlacer {
 			FeaturePlacer::surfacePlacement, "surface_features");
 	// Surface replaceable features will only check for placement if the block above
 	// their position is replaceable.
+	public static final FeatureType VERDANT_VINE_FEATURES = create(FeaturePlacer::verdantVinePlacement,
 			FeaturePlacer::verdantVinePlacement, "verdant_vine_features");
 	// Hanging features will only check for placement if the block below their
 	// position is air.
