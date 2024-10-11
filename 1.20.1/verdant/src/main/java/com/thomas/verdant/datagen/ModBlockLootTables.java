@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.CassavaCropBlock;
+import com.thomas.verdant.block.custom.YamCropBlock;
 import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -149,6 +150,18 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 								.when(bitterCassavaCropMaxAgeBuilder).setWeight(1)));
 
 		this.add(ModBlocks.BITTER_CASSAVA_CROP.get(), bitterCassavaLoot);
+
+		LootItemCondition.Builder yamCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.YAM_CROP.get()).setProperties(StatePropertiesPredicate.Builder
+						.properties().hasProperty(CassavaCropBlock.AGE, YamCropBlock.MAX_AGE));
+		LootTable.Builder yamLoot = LootTable.lootTable()
+				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.YAM.get())))
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(ModItems.YAM.get())
+								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+										0.5714286F, 1)))
+						.setRolls(UniformGenerator.between(1, 2)).when(yamCropMaxAgeBuilder));
+		this.add(ModBlocks.YAM_CROP.get(), yamLoot);
 
 		LootTable.Builder imbuedLogLoot = LootTable.lootTable()
 				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))

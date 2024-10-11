@@ -2,6 +2,7 @@
 	
 	"block.verdant.water_hemlock": "Water Hemlock",
 	
+	"block.verdant.yam_crop": "Yam Crop",
 	"block.verdant.wild_cassava": "Wild Cassava",
 	"block.verdant.rope": "Rope",
 	"block.verdant.rope_ladder": "Rope Ladder",
@@ -68,6 +69,7 @@
 	"item.verdant.bitter_bread": "Bitter Bread",
 	"item.verdant.cooked_cassava": "Cooked Cassava",
 	"item.verdant.cooked_golden_cassava": "Cooked Golden Cassava",
+	"item.verdant.yam": "Yam",
 	
 	"block.verdant.thorn_spikes": "Thorn Spikes",
 	"block.verdant.iron_spikes": "Iron Spikes",

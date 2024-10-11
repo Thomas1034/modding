@@ -72,8 +72,8 @@ public class ModItems {
 			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
 					new Item.Properties().fireResistant(), 400));
 
-	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
-			.register("verdant_heartwood_chestplate", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD,
+	public static final RegistryObject<Item> VERDANT_HEARTWOOD_CHESTPLATE = ITEMS.register(
+			"verdant_heartwood_chestplate", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.VERDANT_HEARTWOOD,
 					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant(), 400));
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register("verdant_heartwood_leggings",
@@ -85,21 +85,25 @@ public class ModItems {
 					new Item.Properties().fireResistant(), 400));
 
 	// Heartwood armor
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HELMET = ITEMS
-			.register("imbued_verdant_heartwood_helmet", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
-					ArmorItem.Type.HELMET, new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HELMET = ITEMS.register(
+			"imbued_verdant_heartwood_helmet",
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
+					new Item.Properties().fireResistant(), 100));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
-			.register("imbued_verdant_heartwood_chestplate", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
-					ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_CHESTPLATE = ITEMS.register(
+			"imbued_verdant_heartwood_chestplate",
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.CHESTPLATE,
+					new Item.Properties().fireResistant(), 100));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_LEGGINGS = ITEMS
-			.register("imbued_verdant_heartwood_leggings", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
-					ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register(
+			"imbued_verdant_heartwood_leggings",
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
+					new Item.Properties().fireResistant(), 100));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_BOOTS = ITEMS
-			.register("imbued_verdant_heartwood_boots", () -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
-					ArmorItem.Type.BOOTS, new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_BOOTS = ITEMS.register(
+			"imbued_verdant_heartwood_boots",
+			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
+					new Item.Properties().fireResistant(), 100));
 
 	// Heartwood weapons
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SWORD = ITEMS.register("verdant_heartwood_sword",
@@ -133,7 +137,7 @@ public class ModItems {
 
 	public static final RegistryObject<Item> HEART_FRAGMENT = ITEMS.register("heart_fragment",
 			() -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
-	
+
 	public static final RegistryObject<Item> HEART_OF_THE_FOREST = ITEMS.register("heart_of_the_forest",
 			() -> new HeartOfTheForestItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
@@ -169,13 +173,11 @@ public class ModItems {
 					.effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEat().build())));
 	public static final RegistryObject<Item> SPARKLING_STARCH = ITEMS.register("sparkling_starch",
 			() -> new Item(new Item.Properties().stacksTo(64)));
-	
+
 	// Yam stuff
 	public static final RegistryObject<Item> YAM = ITEMS.register("yam",
-			() -> new Item(new Item.Properties().stacksTo(64)));
-	
+			() -> new ItemNameBlockItem(ModBlocks.YAM_CROP.get(), new Item.Properties().stacksTo(64)));
 
-	
 	// Water hemlock
 	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
 			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties().stacksTo(64)));

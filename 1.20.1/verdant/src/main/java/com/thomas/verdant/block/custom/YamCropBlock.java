@@ -28,7 +28,7 @@ public class YamCropBlock extends CropBlock {
 					// Repeat multiple times to grow more.
 					int repetitions = rand.nextInt(3);
 					for (int i = 0; i < repetitions; i++) {
-						this.growAndSpread(level, pos, state);
+						state = this.growAndSpread(level, pos, state);
 					}
 					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
 				}
@@ -42,7 +42,7 @@ public class YamCropBlock extends CropBlock {
 	public void growCrops(Level level, BlockPos pos, BlockState state) {
 		int bonemealGrowth = this.getBonemealAgeIncrease(level);
 		for (int i = 0; i < bonemealGrowth; i++) {
-			this.growAndSpread(level, pos, state);
+			state = this.growAndSpread(level, pos, state);
 		}
 	}
 
@@ -66,8 +66,15 @@ public class YamCropBlock extends CropBlock {
 		if (0 != xOffset || 0 != zOffset) {
 			BlockPos offset = pos.offset(xOffset, yOffset, zOffset);
 			BlockState otherState = level.getBlockState(offset);
-			BlockState setState = this.defaultBlockState().setValue(AGE, 0);
-			if (otherState.isAir() && this.canSurvive(setState, level, pos)) {
+
+			BlockState setState = null;
+			if (otherState.is(this)) {
+				setState = otherState.setValue(AGE, Math.min(otherState.getValue(AGE) + 1, MAX_AGE));
+			} else if (otherState.isAir() && this.canSurvive(this.defaultBlockState(), level, pos)) {
+				setState = this.defaultBlockState().setValue(AGE, 0);
+			}
+
+			if (setState != null) {
 				level.setBlockAndUpdate(offset, setState);
 			}
 		}

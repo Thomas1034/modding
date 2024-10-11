@@ -45,6 +45,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
 
+		cropBlock((CropBlock) ModBlocks.YAM_CROP.get(), "yam", "yam");
+
 		tumbledBlockWithItem(ModBlocks.DENSE_GRAVEL);
 		blockWithItem(ModBlocks.FISH_TRAP_BLOCK);
 
@@ -132,7 +134,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void verdantGroundBlock(Supplier<Block> blockSource, Supplier<Block> baseSource) {
-		// TODO Auto-generated method stub
 		String[] extensions = new String[] { "", "_thick", "_thin", "_thin2", "_wilted", "_very_thin",
 				"_very_thin_mixed"
 
@@ -157,7 +158,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void verdantGrassBlock(Supplier<Block> blockSource, Supplier<Block> baseSource) {
-		// TODO Auto-generated method stub
 		String[] extensions = new String[] { "", "_thick", "_thin", "_thin2", "_wilted", "_very_thin",
 				"_very_thin_mixed"
 
@@ -462,6 +462,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(),
 				new ResourceLocation("flower_pot_cross"), "plant", blockTexture(flower)).renderType("cutout"));
 
+	}
+
+	protected void cropBlock(CropBlock block, String modelName, String textureName) {
+		Function<BlockState, ConfiguredModel[]> function = (state) -> {
+			ConfiguredModel[] models = new ConfiguredModel[1];
+			String age = "_stage" + state.getValue(CropBlock.AGE);
+			models[0] = new ConfiguredModel(
+					models().crop(modelName + age, new ResourceLocation(Verdant.MOD_ID, "block/" + textureName + age))
+							.renderType("cutout"));
+			return models;
+		};
+		// Add all of the states
+		getVariantBuilder(block).forAllStates(function);
 	}
 
 	// The function to generate the model array for each state of the block.

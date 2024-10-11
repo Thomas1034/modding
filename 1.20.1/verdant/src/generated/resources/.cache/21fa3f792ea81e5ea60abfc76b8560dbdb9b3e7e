@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-08T17:08:26.9438834	Block States: verdant
+// 1.20.1	2024-10-10T21:47:08.7223242	Block States: verdant
 342dd2cf155c3b51ad77886446a1824fcaaa2f5b assets/verdant/blockstates/bitter_cassava_crop.json
 8937687c73ad1d5aa63b28513a79b059d6ac115b assets/verdant/blockstates/bitter_cassava_rooted_dirt.json
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
@@ -80,6 +80,7 @@ da64056f3cbaa9b83c96b30e68af27c834316928 assets/verdant/blockstates/verdant_wall
 321b2563c0417153a0479d812b09806658505bad assets/verdant/blockstates/water_hemlock.json
 cdb03c7123d1553c00931387465efa684f953964 assets/verdant/blockstates/wild_cassava.json
 7cc8ce856540d407bcac33040cf6761e39bc5167 assets/verdant/blockstates/wild_coffee.json
+55b705dc6ba0ef89f3b27aa5ff83742a7591c8f2 assets/verdant/blockstates/yam_crop.json
 eb2d6b0a76a195bc28e9e55b524314eda28b7ac7 assets/verdant/models/block/bitter_cassava_crop_0.json
 ffea56b579c4d27288f3b537f59e58b04061efa8 assets/verdant/models/block/bitter_cassava_crop_1.json
 7312489ed442231734e9a0c99ea010e558d2941c assets/verdant/models/block/bitter_cassava_crop_10.json
@@ -283,6 +284,14 @@ e4e212c08f10becac90e15b860302965b4314ef3 assets/verdant/models/block/water_hemlo
 bc77a93f5b310713819c0617cbd075adf5662b47 assets/verdant/models/block/water_hemlock_top.json
 aa7ebaf97f999c7d3a2e87ab532e5d45739c797a assets/verdant/models/block/wild_cassava.json
 4e4d79e32c3f18545edb968dde966cc6f89dffc3 assets/verdant/models/block/wild_coffee.json
+cc76230cd383d8e5973f345b87a8f30723567ea8 assets/verdant/models/block/yam_stage0.json
+a2fdeced7a2a9ddc00ab93beec1eb5575dae888e assets/verdant/models/block/yam_stage1.json
+1e4ea606855b5b63f5042d0cc0038aa3c6ba1348 assets/verdant/models/block/yam_stage2.json
+d5958e23777a1df94dc0993144ca51dadf73a97e assets/verdant/models/block/yam_stage3.json
+2e044939cd6a09d78e1621b230c01319e3bf1fec assets/verdant/models/block/yam_stage4.json
+d79204d249a3e9b88f6f8ec3129f00826badde69 assets/verdant/models/block/yam_stage5.json
+bd33a8c860f5a4d7a0722b6ed9017629f16733e6 assets/verdant/models/block/yam_stage6.json
+cb37b35f2d5fd94296546c1f66a8b0200f536ff8 assets/verdant/models/block/yam_stage7.json
 ddc88b4496b318b3ab2a3d0485ef812b375490bc assets/verdant/models/item/bitter_cassava_rooted_dirt.json
 b10b7fba40dfbd701734207280f01f4853e58018 assets/verdant/models/item/cassava_rooted_dirt.json
 ba7b4b15fe252679c2930416b094f4bc5fbeed56 assets/verdant/models/item/dense_gravel.json

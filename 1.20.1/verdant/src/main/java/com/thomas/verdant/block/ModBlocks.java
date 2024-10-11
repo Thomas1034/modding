@@ -33,6 +33,7 @@ import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.block.custom.WaterHemlockBlock;
 import com.thomas.verdant.block.custom.WildCoffeeBlock;
 import com.thomas.verdant.block.custom.WiltedVerdantLeavesBlock;
+import com.thomas.verdant.block.custom.YamCropBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.entity.ModEntityTypes;
@@ -392,6 +393,9 @@ public class ModBlocks {
 	public static final RegistryObject<Block> WILD_CASSAVA = registerBlockWithItem("wild_cassava",
 			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
 					.offsetType(OffsetType.XZ)));
+
+	public static final RegistryObject<Block> YAM_CROP = registerBlockWithItem("yam_crop",
+			() -> new YamCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
 
 	// Rope ladder
 	public static final RegistryObject<Block> ROPE_LADDER = registerBlockWithItem("rope_ladder",
