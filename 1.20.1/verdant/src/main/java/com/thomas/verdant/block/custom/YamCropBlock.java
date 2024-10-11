@@ -1,10 +1,6 @@
 package com.thomas.verdant.block.custom;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -55,58 +51,28 @@ public class YamCropBlock extends CropBlock {
 	// Select a block at random to grow or spread to.
 	// Can also grow other blocks of the same type!
 	// TODO
-	protected void growAndSpread(Level level, BlockPos pos, BlockState state) {
+	protected BlockState growAndSpread(Level level, BlockPos pos, BlockState state) {
+		BlockState toReturn = state;
+		int xOffset = level.random.nextIntBetweenInclusive(-1, 1);
+		int yOffset = 0;
+		int zOffset = level.random.nextIntBetweenInclusive(-1, 1);
 
-		boolean trySpread = level.getRandom().nextFloat() < this.getChanceToSpread();
-
-		if (!trySpread) {
-			level.setBlockAndUpdate(pos, this.getStateForAge(1));
-		} else {
-
-			// Find an adjacent square to grow to.
-			List<BlockPos> locations = new ArrayList<>(4);
-
-			BlockPos belowPos = pos.below();
-			BlockPos northPos = pos.north();
-			BlockPos southPos = pos.south();
-			BlockPos eastPos = pos.east();
-			BlockPos westPos = pos.west();
-			BlockPos northBelowPos = belowPos.north();
-			BlockPos southBelowPos = belowPos.south();
-			BlockPos eastBelowPos = belowPos.east();
-			BlockPos westBelowPos = belowPos.west();
-
-			BlockState northBelowState = level.getBlockState(northBelowPos);
-			BlockState southBelowState = level.getBlockState(southBelowPos);
-			BlockState eastBelowState = level.getBlockState(eastBelowPos);
-			BlockState westBelowState = level.getBlockState(westBelowPos);
-
-			if (level.getBlockState(northPos).isAir()) {
-				northBelowState.canSustainPlant(level, northPos, Direction.UP, this);
-				locations.add(northPos);
-			}
-			if (level.getBlockState(southPos).isAir()) {
-				southBelowState.canSustainPlant(level, southPos, Direction.UP, this);
-				locations.add(southPos);
-			}
-			if (level.getBlockState(eastPos).isAir()) {
-				eastBelowState.canSustainPlant(level, eastPos, Direction.UP, this);
-				locations.add(eastPos);
-			}
-			if (level.getBlockState(westPos).isAir()) {
-				westBelowState.canSustainPlant(level, westPos, Direction.UP, this);
-				locations.add(westPos);
-			}
-
-			// Get the position to spread to.
-			BlockPos spreadTo = locations.get(level.getRandom().nextInt(locations.size()));
-
-			level.setBlockAndUpdate(spreadTo, this.defaultBlockState());
+		int thisAge = this.getAge(state);
+		if (!(this.getMaxAge() == thisAge)) {
+			toReturn = this.getStateForAge(thisAge + 1);
+			level.setBlockAndUpdate(pos, toReturn);
 		}
-	}
 
-	private float getChanceToSpread() {
-		return 0.5f;
+		if (0 != xOffset || 0 != zOffset) {
+			BlockPos offset = pos.offset(xOffset, yOffset, zOffset);
+			BlockState otherState = level.getBlockState(offset);
+			BlockState setState = this.defaultBlockState().setValue(AGE, 0);
+			if (otherState.isAir() && this.canSurvive(setState, level, pos)) {
+				level.setBlockAndUpdate(offset, setState);
+			}
+		}
+
+		return toReturn;
 	}
 
 }

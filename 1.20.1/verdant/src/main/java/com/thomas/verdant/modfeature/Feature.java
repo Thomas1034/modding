@@ -252,9 +252,21 @@ public class Feature {
 		return simpleDoublePassableChecker(level, pos.above());
 	}
 
+	// Returns true if the two blocks above the given position are passable.
+	public static boolean simpleAboveDoublePassableChecker(Level level, BlockPos pos, BlockState above, BlockState at,
+			BlockState below) {
+		return simpleDoublePassableChecker(level, pos.above(), above);
+	}
+
 	// Returns true if the given position and the one above are passable.
 	public static boolean simpleDoublePassableChecker(Level level, BlockPos pos) {
 		return level.getBlockState(pos).isPathfindable(level, pos, PathComputationType.LAND)
+				&& level.getBlockState(pos.above()).isPathfindable(level, pos, PathComputationType.LAND);
+	}
+
+	// Returns true if the given position and the one above are passable.
+	public static boolean simpleDoublePassableChecker(Level level, BlockPos pos, BlockState at) {
+		return at.isPathfindable(level, pos, PathComputationType.LAND)
 				&& level.getBlockState(pos.above()).isPathfindable(level, pos, PathComputationType.LAND);
 	}
 

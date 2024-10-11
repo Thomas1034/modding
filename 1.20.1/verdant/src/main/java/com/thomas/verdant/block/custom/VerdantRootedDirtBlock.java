@@ -8,14 +8,11 @@ import javax.annotation.Nullable;
 import com.thomas.verdant.growth.VerdantBlockTransformer;
 import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.modfeature.FeaturePlacer;
-import com.thomas.verdant.util.FallingBlockHelper;
-import com.thomas.verdant.util.Utilities;
 import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
@@ -76,82 +73,6 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		return null;
 	}
 
-	private static boolean canSettle(ServerLevel level, BlockPos pos) {
-
-		// If the block has no block above it and no block below it, it should certainly
-		// settle.
-		// This makes 1 block thick floors (and floating blocks) cave in.
-		BlockState above = level.getBlockState(pos.above());
-		BlockState below = level.getBlockState(pos.below());
-		if (above.is(Blocks.AIR) && below.is(BlockTags.REPLACEABLE)) {
-			return true;
-		}
-
-		// If it has a block above it and a block below it, don't settle.
-		// This prevents ceilings from caving in.
-		if (!above.is(BlockTags.REPLACEABLE) && !below.is(Blocks.AIR)) {
-			return false;
-		}
-
-		// Check if it's supported from its sides.
-		// Keep track of how many sides can support.
-		int solidSides = 0;
-		// Loop over the horizontal directions.
-		for (Direction d : Utilities.HORIZONTAL_DIRECTIONS) {
-			// Check if the block in that direction has a sturdy face.
-			// If so, don't settle.
-			// Also don't settle if the block in that direction has a liquid.
-			BlockState relativeState = level.getBlockState(pos.relative(d));
-			if (relativeState.isFaceSturdy(level, pos, d.getOpposite()) || !relativeState.getFluidState().isEmpty()) {
-				// Found a solid side.
-				solidSides++;
-				// If it's supported by at least two sides, it's good.
-				if (solidSides >= 2) {
-					return false;
-				}
-			}
-		}
-
-		// If it's supported from below, and not supported from at least two sides,
-		// settle.
-		return true;
-	}
-
-	// Removes the block if it is not supported (as detailed in canSettle)
-	private boolean settle(ServerLevel level, BlockPos pos) {
-		// Check if the dirt should settle.
-		boolean shouldSettle = canSettle(level, pos);
-
-		if (shouldSettle) {
-			// If it has a block beneath it, try to find a place to move this block to.
-			if (!level.getBlockState(pos.below()).is(Blocks.AIR)) {
-				// Find the location.
-				BlockPos settleLocation = findSettleLocation(level, pos);
-				// Move the block if one was found.
-				if (settleLocation != null) {
-					level.setBlockAndUpdate(settleLocation, level.getBlockState(pos));
-					// If it's not supported underneath, fall.
-					// This prevents random "dripping" blocks from spikes, since that looked really
-					// ugly.
-					if (level.getBlockState(settleLocation.below()).isFaceSturdy(level, pos, Direction.UP)) {
-						FallingBlockHelper.fallNoDrops(level, settleLocation);
-					}
-				}
-				// Destroy it, if a settling location wasn't found.
-				// Don't drop resources, to avoid lag.
-				level.destroyBlock(pos, false);
-			}
-			// Otherwise fall.
-			else {
-				FallingBlockHelper.fallNoDrops(level, pos);
-			}
-		}
-		// Return whether it settled or not.
-		// I could return false here and true up above, but adding that many return
-		// statements might get a bit hard to read.
-		return shouldSettle;
-	}
-
 	// The heart and soul of the lag. Block! I meant block.
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
@@ -190,18 +111,9 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
-		// Update the state's distance
-		int distance = state.getValue(WATER_DISTANCE);
-		// We know that only otherState changed.
-		// So, that is the only value that needs to be checked.
-		int otherDistance = getDistanceAt(level, otherPos, otherState);
-
-		// Update this block's distance if need be.
-		if (otherDistance < (distance - 1)) {
-			distance = otherDistance + 1;
-		}
-
-		return updateHydrationState(state, distance).setValue(WATER_DISTANCE, distance);
+		// Unfortunately I can't use any fancy tricks.
+		state = updateDistance(state, level, pos);
+		return updateHydrationState(state, state.getValue(WATER_DISTANCE));
 	}
 
 	private static BlockState updateHydrationState(BlockState state, int distanceToWater) {
@@ -278,11 +190,7 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	public void grow(BlockState state, Level level, BlockPos pos) {
 		// System.out.println("Verdant Roots are calling the grow function.");
 
-		// Find a place to grow within three tries. Can use further tries to spread even
-		// more.
-		// Check for surrounding roots.
-		// See other file.
-		// boolean canGrow = VerdantGrower.checkForRoots(level, pos);
+		boolean isWet = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
 			BlockPos posToTry = VerdantGrower.withinDist(pos, 2, level.random);
@@ -291,15 +199,13 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 				break;
 			}
 			// Try to convert the nearby block.
-			if (!VerdantGrower.convertOrErodeGround(level, posToTry, state.getValue(WATER_DISTANCE) < MAX_DISTANCE)) {
+			if (!VerdantGrower.convertOrErodeGround(level, posToTry, isWet)) {
+				// Try to grow vegetation.
+				// This is a big source of lag, which I will cover separately.
+				FeaturePlacer.place(level, pos);
 				break;
 			}
-
 		}
-
-		// Try to grow vegetation.
-		// This is a big source of lag, which I will cover separately.
-		FeaturePlacer.place(level, pos);
 	}
 
 	@Nullable

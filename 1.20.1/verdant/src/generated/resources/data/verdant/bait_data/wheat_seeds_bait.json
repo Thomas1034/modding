@@ -1,5 +1,5 @@
 {
   "catchChance": 0.1,
-  "consumeChance": 0.2,
+  "consumeChance": 0.5,
   "item": "minecraft:wheat_seeds"
 }

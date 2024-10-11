@@ -57,6 +57,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Bush
 // Charred frame block
 // Lilypads will now grow on water that has verdant ground underneath.
+// Many texture updates!
 
 // Changes
 // Entities should try to avoid walking through spikes and thorn bushes

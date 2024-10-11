@@ -46,15 +46,17 @@ public class FishTrapMenu extends AbstractContainerMenu {
 			int outputOffsetIfEven = FishTrapScreen.SLOT_TEXTURE_OFFSET_X * ((FishTrapBlockEntity.OUTPUT_SLOTS + 1) % 2)
 					/ 2;
 			for (int i = 0; i < FishTrapBlockEntity.OUTPUT_SLOTS; i++) {
-				this.addSlot(new SlotItemHandler(iItemHandler, i, FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_X + 1
-						+ FishTrapScreen.SLOT_WIDTH * (i - FishTrapBlockEntity.OUTPUT_SLOTS / 2) + outputOffsetIfEven,
+				this.addSlot(new SlotItemHandler(iItemHandler, FishTrapBlockEntity.OUTPUT_SLOTS_ARRAY[i],
+						FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_X + 1
+								+ FishTrapScreen.SLOT_WIDTH * (i - FishTrapBlockEntity.OUTPUT_SLOTS / 2)
+								+ outputOffsetIfEven,
 						FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_Y + 1));
 			}
 
 			int inputOffsetIfEven = FishTrapScreen.SLOT_TEXTURE_OFFSET_X * ((FishTrapBlockEntity.BAIT_SLOTS + 1) % 2)
 					/ 2;
 			for (int i = 0; i < FishTrapBlockEntity.BAIT_SLOTS; i++) {
-				this.addSlot(new SlotItemHandler(iItemHandler, i + FishTrapBlockEntity.OUTPUT_SLOTS,
+				this.addSlot(new SlotItemHandler(iItemHandler, FishTrapBlockEntity.BAIT_SLOTS_ARRAY[i],
 						FishTrapScreen.INPUT_SLOT_BLIT_OFFSET_X + 1
 								+ FishTrapScreen.SLOT_WIDTH * (i - FishTrapBlockEntity.BAIT_SLOTS / 2)
 								+ inputOffsetIfEven,

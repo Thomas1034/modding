@@ -5,23 +5,33 @@ import java.util.Iterator;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
+import com.thomas.verdant.util.function.PentaPredicate;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class FeatureType implements Iterable<WeightedFeature> {
 	private final HashSet<WeightedFeature> holders = new HashSet<>();
 	private final BiPredicate<Level, BlockPos> condition;
+	private final PentaPredicate<Level, BlockPos, BlockState, BlockState, BlockState> extendedCondition;
 	private final String name;
 	private int totalWeight;
 
-	public FeatureType(BiPredicate<Level, BlockPos> condition, String name) {
+	public FeatureType(BiPredicate<Level, BlockPos> condition,
+			PentaPredicate<Level, BlockPos, BlockState, BlockState, BlockState> extendedCondition, String name) {
 		this.condition = condition;
+		this.extendedCondition = extendedCondition;
 		this.name = name;
 		this.totalWeight = 0;
 	}
 
 	public boolean checkForPlacement(Level level, BlockPos pos) {
 		return this.condition.test(level, pos);
+	}
+
+	public boolean checkForPlacement(Level level, BlockPos pos, BlockState above, BlockState at, BlockState below) {
+		return this.extendedCondition.test(level, pos, above, at, below);
 	}
 
 	public WeightedFeature addFeature(WeightedFeature holder) {

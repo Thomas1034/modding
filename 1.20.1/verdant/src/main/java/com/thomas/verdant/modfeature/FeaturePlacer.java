@@ -10,6 +10,7 @@ import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.entity.ModEntityTypes;
 import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
 import com.thomas.verdant.util.ModTags;
+import com.thomas.verdant.util.function.PentaPredicate;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,26 +30,33 @@ public class FeaturePlacer {
 
 	// Surface features will only check for placement if the block above their
 	// position is air.
-	private static final FeatureType SURFACE_FEATURES = create(FeaturePlacer::surfacePlacement, "surface_features");
+	public static final FeatureType SURFACE_FEATURES = create(FeaturePlacer::surfacePlacement,
+			FeaturePlacer::surfacePlacement, "surface_features");
 	// Surface replaceable features will only check for placement if the block above
 	// their position is replaceable.
-	private static final FeatureType VERDANT_VINE_FEATURES = create(FeaturePlacer::verdantVinePlacement,
-			"verdant_vine_features");
+			FeaturePlacer::verdantVinePlacement, "verdant_vine_features");
 	// Hanging features will only check for placement if the block below their
 	// position is air.
-	private static final FeatureType HANGING_FEATURES = create(FeaturePlacer::hangingPlacement, "hanging_features");
+	public static final FeatureType HANGING_FEATURES = create(FeaturePlacer::hangingPlacement,
+			FeaturePlacer::hangingPlacement, "hanging_features");
 	// Water features will only check for placement if the block above their
 	// position is water.
-	private static final FeatureType WATER_FEATURES = create(FeaturePlacer::waterPlacement, "water_features");
+	public static final FeatureType WATER_FEATURES = create(FeaturePlacer::waterPlacement,
+			FeaturePlacer::waterPlacement, "water_features");
 	// Entity features check for passable blocks above.
-	private static final FeatureType ENTITY_FEATURES = create(Feature::simpleAboveDoublePassableChecker,
-			"entity_features");
+	public static final FeatureType ENTITY_FEATURES = create(Feature::simpleAboveDoublePassableChecker,
+			Feature::simpleAboveDoublePassableChecker, "entity_features");
 	// Generic features always check for placement
-	private static final FeatureType GENERIC_FEATURES = create(FeaturePlacer::always, "generic_features");
+	public static final FeatureType GENERIC_FEATURES = create(FeaturePlacer::always, "generic_features");
 
 	// Creates a new class of features.
 	public static FeatureType create(BiPredicate<Level, BlockPos> condition, String name) {
 		return FEATURES.create(condition, name);
+	}
+
+	public static FeatureType create(BiPredicate<Level, BlockPos> condition,
+			PentaPredicate<Level, BlockPos, BlockState, BlockState, BlockState> extendedCondition, String name) {
+		return FEATURES.create(condition, extendedCondition, name);
 	}
 
 	public static void register(FeatureType type, WeightedFeature weightedFeature) {
@@ -200,12 +208,20 @@ public class FeaturePlacer {
 
 	// Places a random feature at the given position.
 	public static void place(Level level, BlockPos pos) {
+		BlockState above = level.getBlockState(pos.above());
+		BlockState at = level.getBlockState(pos);
+		BlockState below = level.getBlockState(pos.below());
+		place(level, pos, above, at, below);
+	}
+
+	// Places a random feature at the given position.
+	public static void place(Level level, BlockPos pos, BlockState above, BlockState at, BlockState below) {
 
 		List<FeatureType> features = new ArrayList<>();
 
 		int totalWeight = 0;
 		for (FeatureType type : FEATURES.iterate()) {
-			if (type.checkForPlacement(level, pos)) {
+			if (type.checkForPlacement(level, pos, above, at, below)) {
 				// System.out.println("Adding " + type);
 				features.add(type);
 				totalWeight += type.weight();
@@ -274,8 +290,19 @@ public class FeaturePlacer {
 				&& level.getBlockState(pos).isCollisionShapeFullBlock(level, pos);
 	}
 
+	public static boolean surfacePlacement(Level level, BlockPos pos, BlockState above, BlockState at,
+			BlockState below) {
+		return above.isAir() && at.isCollisionShapeFullBlock(level, pos);
+	}
+
 	public static boolean verdantVinePlacement(Level level, BlockPos pos) {
 		BlockState above = level.getBlockState(pos.above());
+		return above.is(ModTags.Blocks.VERDANT_VINE_REPLACABLES)
+				&& VerdantVineBlock.canGrowToAnyFace(level, pos.above());
+	}
+
+	public static boolean verdantVinePlacement(Level level, BlockPos pos, BlockState above, BlockState at,
+			BlockState below) {
 		return above.is(ModTags.Blocks.VERDANT_VINE_REPLACABLES)
 				&& VerdantVineBlock.canGrowToAnyFace(level, pos.above());
 	}
@@ -285,10 +312,20 @@ public class FeaturePlacer {
 				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.DOWN);
 	}
 
+	public static boolean hangingPlacement(Level level, BlockPos pos, BlockState above, BlockState at,
+			BlockState below) {
+		return below.isAir() && at.isFaceSturdy(level, pos, Direction.DOWN);
+	}
+
 	public static boolean waterPlacement(Level level, BlockPos pos) {
 		BlockState above = level.getBlockState(pos.above());
 		return above.is(Blocks.WATER) && above.getFluidState().isSourceOfType(Fluids.WATER)
 				&& level.getBlockState(pos).isFaceSturdy(level, pos, Direction.UP);
+	}
+
+	public static boolean waterPlacement(Level level, BlockPos pos, BlockState above, BlockState at, BlockState below) {
+		return above.is(Blocks.WATER) && above.getFluidState().isSourceOfType(Fluids.WATER)
+				&& at.isFaceSturdy(level, pos, Direction.UP);
 	}
 
 	public static boolean always(Level level, BlockPos pos) {

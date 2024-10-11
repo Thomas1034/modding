@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-04T23:36:50.0987787	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-10-10T18:19:00.4070856	Tags for minecraft:block mod id verdant
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences/wooden.json
 a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/forge/tags/blocks/fence_gates.json
@@ -14,7 +14,7 @@ c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/forge/tags/blocks/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/forge/tags/blocks/ores/redstone.json
 88a76af7c5398cfc30307af2a425ac3f217f4cb9 data/minecraft/tags/blocks/big_dripleaf_placeable.json
 a8ac9f19e1839fb7a6988b55f74fbf5ba68fc9e6 data/minecraft/tags/blocks/buttons.json
-ee1a6a36a26918e483d7afed33d14c201029d491 data/minecraft/tags/blocks/climbable.json
+e8485b991eff4850a68fc488cbbb5a5fec45b245 data/minecraft/tags/blocks/climbable.json
 a3f8b492d844fb8d26025c7efa716f9c086f2afb data/minecraft/tags/blocks/crops.json
 f629998718a58407d9720cc869c85538dff324fb data/minecraft/tags/blocks/dirt.json
 322cdd14ab2d1df8b1801b4589c34511d48a37fe data/minecraft/tags/blocks/doors.json
@@ -32,7 +32,7 @@ e59de92407dac17ebe9462bc450e8af1fea474e6 data/minecraft/tags/blocks/mushroom_gro
 9746dfa6dadab13ab1c8ba93f56be8893a68eb7b data/minecraft/tags/blocks/planks.json
 ed8944f5bcf3b97f15bcd32e8f5767576c49100b data/minecraft/tags/blocks/pressure_plates.json
 86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/blocks/replaceable.json
-9f049056d7c33d3044b4e7d463fca181ca7ff68d data/minecraft/tags/blocks/replaceable_by_trees.json
+060595a79b7eae5aed33b9a0c2aad6bce7c2dd27 data/minecraft/tags/blocks/replaceable_by_trees.json
 0fa6e95c8b7dcfe5b07515b65aca9c297c22e36e data/minecraft/tags/blocks/slabs.json
 88a76af7c5398cfc30307af2a425ac3f217f4cb9 data/minecraft/tags/blocks/small_dripleaf_placeable.json
 beb1989528e98e6c5464c2d8a0805f56271ae257 data/minecraft/tags/blocks/small_flowers.json

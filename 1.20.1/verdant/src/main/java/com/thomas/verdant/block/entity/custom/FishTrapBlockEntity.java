@@ -1,5 +1,6 @@
 package com.thomas.verdant.block.entity.custom;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
@@ -33,15 +34,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
 
-	protected static final Map<Item, BaitData> BAIT_MAP = DataRegistries.BAIT_DATA.parallelStream()
+	// OUTPUT SLOTS ARE LOW
+	public static final Map<Item, BaitData> BAIT_MAP = DataRegistries.BAIT_DATA.stream()
 			.collect(Collectors.toUnmodifiableMap((data) -> data.getItem(), (data) -> data));
 
 	public static final int BAIT_SLOTS = 3;
@@ -49,8 +57,14 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	public static final int TOTAL_SLOTS = OUTPUT_SLOTS + BAIT_SLOTS;
 	public static final IntPredicate IS_BAIT_SLOT = (i) -> i < BAIT_SLOTS;
 	public static final IntPredicate IS_OUTPUT_SLOT = (i) -> i >= BAIT_SLOTS && i < TOTAL_SLOTS;
+	public static final int[] BAIT_SLOTS_ARRAY = new int[] { 0, 1, 2 };
+	public static final int[] OUTPUT_SLOTS_ARRAY = new int[] { 3, 4, 5 };
 
-	private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS);
+	private final ItemStackHandler itemHandler=new ItemStackHandler(TOTAL_SLOTS){
+
+	@Override public boolean isItemValid(int slot,ItemStack stack){return(!IS_BAIT_SLOT.test(slot)||BAIT_MAP.containsKey(stack.getItem()))&&super.isItemValid(slot,stack);}
+
+	};
 
 	public static final String INVENTORY_TAG_NAME = "inventory";
 	public static final String PROGRESS_TAG_NAME = "fish_trap_progress";
@@ -58,6 +72,9 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	private static final double BASE_CATCH_CHANCE = 3 / (60 * 30);
 
 	private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+
+	net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers = net.minecraftforge.items.wrapper.SidedInvWrapper
+			.create(this, Direction.values());
 
 	protected final ContainerData data;
 	private int progress = 0;
@@ -91,7 +108,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 					break;
 				}
 				}
-				;
+
 			}
 
 			@Override
@@ -104,7 +121,10 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 		if (cap == ForgeCapabilities.ITEM_HANDLER) {
-			return this.lazyItemHandler.cast();
+			if (side == null) {
+				return this.lazyItemHandler.cast();
+			}
+			return this.handlers[side.ordinal()].cast();
 		}
 		return super.getCapability(cap, side);
 	}
@@ -118,7 +138,16 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	@Override
 	public void invalidateCaps() {
 		super.invalidateCaps();
-		lazyItemHandler.invalidate();
+		this.lazyItemHandler.invalidate();
+		for (int x = 0; x < handlers.length; x++)
+			handlers[x].invalidate();
+	}
+
+	@Override
+	public void reviveCaps() {
+		super.reviveCaps();
+		this.lazyItemHandler = LazyOptional.of(() -> this.itemHandler);
+		this.handlers = SidedInvWrapper.create(this, Direction.values());
 	}
 
 	@Override
@@ -168,28 +197,10 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	}
 
 	private boolean hasRecipe() {
-		ItemStack[] bait = this.getBait();
-
-		ItemStack[] output = this.getOutput();
-
 		return true;
 	}
 
-	// Returns the output slot that the item can be inserted into, or -1 if none are
-	// valid.
-	private int getOutputSlotToAddTo(Item item, int count) {
-		ItemStack[] output = this.getOutput();
-
-		for (int i = 0; i < output.length; i++) {
-			if (canInsertItemIntoSlot(i, output[i], item, count)) {
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
-	// Returns the slot that the item can be inserted into, or -1.
+	// Returns whether the item can be added to this slot.
 	private boolean canInsertItemIntoSlot(int slot, ItemStack contents, Item item, int count) {
 		boolean isBaitOrOutput = true;
 		if (IS_BAIT_SLOT.test(slot)) {
@@ -197,6 +208,16 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 		}
 		return isBaitOrOutput && (contents.isEmpty()
 				|| (contents.is(item) && contents.getCount() + count <= contents.getMaxStackSize()));
+	}
+
+	// Returns whether the item can be added to this slot.
+	private int openSpaceInSlot(int slot, ItemStack contents, Item item, int count) {
+		boolean isBaitOrOutput = true;
+		if (IS_BAIT_SLOT.test(slot)) {
+			isBaitOrOutput = BAIT_MAP.containsKey(item);
+		}
+		return isBaitOrOutput ? contents.isEmpty() ? item.getDefaultInstance().getMaxStackSize()
+				: contents.is(item) ? contents.getMaxStackSize() - contents.getCount() : 0 : 0;
 	}
 
 	private void resetProgress() {
@@ -213,14 +234,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	}
 
 	private void craftItem() {
-		// TODO Auto-generated method stub
-		System.out.println("Crafting!");
-
-		for (BaitData baitData : BAIT_MAP.values()) {
-
-			System.out.println(baitData);
-
-		}
+		// System.out.println("Fishing!");
 
 		// First, get the highest bait strength pair.
 		Pair<BaitData, ItemStack> bestBait = this.getHighestCatchChanceBait();
@@ -229,31 +243,78 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 		// Get the catch chance
 		double catchChance = BASE_CATCH_CHANCE;
+		double consumeChance = 0;
 		boolean hasBait = null != data && null != stack;
 		if (hasBait) {
-			catchChance = bestBait.getLeft().getCatchChance();
+			catchChance = data.getCatchChance();
+			consumeChance = data.getConsumeChance();
 		}
 
 		// Server only!
 		if (this.level instanceof ServerLevel serverLevel) {
-			float luck = 0;
-			// Get the loot table.
-			// LootParams lootparams = (new LootParams.Builder(serverLevel))
-			// .withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
-			// .withParameter(LootContextParams.BLOCK_STATE,
-			// this.getBlockState()).withLuck(luck)
-			// .create(LootContextParamSets.FISHING);
-			// LootTable loottable =
-			// serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
-			// List<ItemStack> list = loottable.getRandomItems(lootparams);
 
+			// Check if a fish should be caught.
+			double catchTarget = this.level.random.nextFloat();
+			boolean anySucceeded = catchTarget > catchChance;
+			while (catchChance > catchTarget) {
+				catchChance--;
+				// System.out.println("Catching!");
+				float luck = 0;
+				// Get the loot table.
+				LootParams lootparams = (new LootParams.Builder(serverLevel))
+						.withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
+						.withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+						.withParameter(LootContextParams.TOOL,
+								this.getBlockState().getBlock().asItem().getDefaultInstance())
+						.withLuck(luck).create(LootContextParamSets.FISHING);
+				LootTable loottable = serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
+				List<ItemStack> list = loottable.getRandomItems(lootparams);
+
+				for (ItemStack item : list) {
+					anySucceeded |= this.tryAddCatch(item);
+				}
+			}
+
+			// Check if a bait should be consumed.
+			if (consumeChance > this.level.random.nextFloat() && null != stack && anySucceeded) {
+				// System.out.println("Consuming!");
+				stack.shrink(1);
+			}
 		}
 	}
 
+	private boolean tryAddCatch(ItemStack item) {
+		boolean atLeastPartialSuccess = false;
+		for (int i = 0; i < OUTPUT_SLOTS; i++) {
+			int slot = OUTPUT_SLOTS_ARRAY[i];
+			ItemStack contents = this.getItem(slot);
+			int openSpace = openSpaceInSlot(slot, contents, item.getItem(), item.getCount());
+			if (openSpace > 0) {
+
+				if (openSpace >= item.getCount()) {
+					ItemStack copy = item.copy();
+					copy.setCount(copy.getCount() + contents.getCount());
+					this.setItem(slot, copy);
+					item.setCount(0);
+
+				} else {
+					ItemStack copy = item.copy();
+					copy.setCount(copy.getMaxStackSize());
+					this.setItem(slot, copy);
+					item.setCount(item.getCount() - openSpace);
+				}
+				atLeastPartialSuccess = true;
+			}
+		}
+
+		return atLeastPartialSuccess;
+	}
+
+	@SuppressWarnings("unused")
 	private ItemStack[] getOutput() {
 		ItemStack[] output = new ItemStack[OUTPUT_SLOTS];
 		for (int i = 0; i < OUTPUT_SLOTS; i++) {
-			output[i] = this.itemHandler.getStackInSlot(i);
+			output[i] = this.itemHandler.getStackInSlot(OUTPUT_SLOTS_ARRAY[i]);
 		}
 		return output;
 	}
@@ -261,7 +322,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	private ItemStack[] getBait() {
 		ItemStack[] bait = new ItemStack[BAIT_SLOTS];
 		for (int i = 0; i < BAIT_SLOTS; i++) {
-			bait[i] = this.itemHandler.getStackInSlot(i + OUTPUT_SLOTS);
+			bait[i] = this.itemHandler.getStackInSlot(BAIT_SLOTS_ARRAY[i]);
 		}
 		return bait;
 	}
@@ -291,7 +352,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < FishTrapBlockEntity.TOTAL_SLOTS; i++) {
 			if (!this.itemHandler.getStackInSlot(i).isEmpty()) {
 				return false;
@@ -302,7 +362,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	@Override
 	public ItemStack getItem(int slot) {
-		// TODO Auto-generated method stub
 		return this.itemHandler.getStackInSlot(slot);
 	}
 
@@ -313,7 +372,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	@Override
 	public ItemStack removeItemNoUpdate(int slot) {
-		// TODO Auto-generated method stub
 		ItemStack stack = this.itemHandler.getStackInSlot(slot);
 		this.itemHandler.setStackInSlot(slot, ItemStack.EMPTY);
 		return stack;
@@ -341,19 +399,12 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	@Override
 	public int[] getSlotsForFace(Direction face) {
-
 		if (Direction.DOWN == face) {
-			int[] sequence = new int[OUTPUT_SLOTS];
-			for (int i = 0; i < OUTPUT_SLOTS; i++) {
-				sequence[i] = i; // Fill the array with a sequence of integers
-			}
-			return sequence;
+
+			return OUTPUT_SLOTS_ARRAY;
 		} else {
-			int[] sequence = new int[BAIT_SLOTS];
-			for (int i = 0; i < BAIT_SLOTS; i++) {
-				sequence[i] = i + OUTPUT_SLOTS; // Fill the array with a sequence of integers
-			}
-			return sequence;
+
+			return BAIT_SLOTS_ARRAY;
 		}
 	}
 
@@ -364,12 +415,12 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	@Override
 	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, Direction face) {
-		return !IS_OUTPUT_SLOT.test(slot) && this.canPlaceItem(slot, stack);
+		return (Direction.DOWN != face) && IS_BAIT_SLOT.test(slot) && this.canPlaceItem(slot, stack);
 	}
 
 	@Override
 	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction face) {
-		return IS_OUTPUT_SLOT.test(slot) != (Direction.DOWN == face);
+		return IS_OUTPUT_SLOT.test(slot) && (Direction.DOWN == face);
 	}
 
 }
