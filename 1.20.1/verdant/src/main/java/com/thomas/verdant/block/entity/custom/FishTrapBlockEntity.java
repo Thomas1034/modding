@@ -32,6 +32,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -60,9 +61,13 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	public static final int[] BAIT_SLOTS_ARRAY = new int[] { 0, 1, 2 };
 	public static final int[] OUTPUT_SLOTS_ARRAY = new int[] { 3, 4, 5 };
 
-	private final ItemStackHandler itemHandler=new ItemStackHandler(TOTAL_SLOTS){
+	private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOTS) {
 
-	@Override public boolean isItemValid(int slot,ItemStack stack){return(!IS_BAIT_SLOT.test(slot)||BAIT_MAP.containsKey(stack.getItem()))&&super.isItemValid(slot,stack);}
+		@Override
+		public boolean isItemValid(int slot, ItemStack stack) {
+			return (!IS_BAIT_SLOT.test(slot) || BAIT_MAP.containsKey(stack.getItem()))
+					&& super.isItemValid(slot, stack);
+		}
 
 	};
 
@@ -252,6 +257,17 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 		// Server only!
 		if (this.level instanceof ServerLevel serverLevel) {
+			int waterCount = 0;
+			// Check for surrounding water.
+			for (int i = -1; i <= 1; i++) {
+				for (int j = 0; j <= 2; j++) {
+					for (int k = -1; k <= 1; k++) {
+						if (serverLevel.getBlockState(this.worldPosition.offset(i, j, k)).is(Blocks.WATER)) {
+							waterCount++;
+						}
+					}
+				}
+			}
 
 			// Check if a fish should be caught.
 			double catchTarget = this.level.random.nextFloat();

@@ -47,6 +47,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // register spawn eggs!
 // add recipes!
+// fix block picking on yams giving seeds
 
 // Additions
 // Rope ladders

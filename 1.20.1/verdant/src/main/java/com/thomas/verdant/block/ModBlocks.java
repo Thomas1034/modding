@@ -394,7 +394,7 @@ public class ModBlocks {
 			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
 					.offsetType(OffsetType.XZ)));
 
-	public static final RegistryObject<Block> YAM_CROP = registerBlockWithItem("yam_crop",
+	public static final RegistryObject<Block> YAM_CROP = registerBlockOnly("yam_crop",
 			() -> new YamCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
 
 	// Rope ladder
