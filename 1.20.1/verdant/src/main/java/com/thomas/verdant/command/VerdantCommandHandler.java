@@ -115,8 +115,8 @@ public class VerdantCommandHandler {
 		// Assemble spread command.
 		spread.then(spreadSpeed).then(spreadCheck);
 
-		// Assemble full command
-		command.then(spread).then(overgrowth);
+		// Assemble full command (skipping infection for now)
+		command.then(spread); //.then(overgrowth);
 
 		// command.then(Commands.argument("command",
 		// EnumArgument.enumArgument(InitialCommandOptions.class)));

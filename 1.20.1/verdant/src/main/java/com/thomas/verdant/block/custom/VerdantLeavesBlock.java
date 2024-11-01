@@ -59,7 +59,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
 		return SUPPORT_SHAPE;
 	}
-	
+
 	@Override
 	protected boolean decaying(BlockState state) {
 		return !state.getValue(PERSISTENT) && (state.getValue(VERDANT_DISTANCE) == VERDANT_DECAY_DISTANCE
@@ -94,7 +94,10 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-		level.setBlock(pos, updateDistance(state, level, pos), 3);
+		BlockState n = updateDistance(state, level, pos);
+		if (!n.equals(state)) {			
+			level.setBlock(pos, updateDistance(state, level, pos), 3);
+		}
 	}
 
 	public BlockState updateShape(BlockState state, Direction direction, BlockState otherState, LevelAccessor level,
@@ -413,27 +416,22 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			// {
 
 			// Ensure that this leaf has no more than two leaf blocks below it.
-			boolean hasNoMoreThanTwoBlocksBelow = getDistanceTillNonLeaf(level, pos, Direction.DOWN, 4) <= 2;
-			if (!hasNoMoreThanTwoBlocksBelow) {
+			int distanceTillNonLeaf = getDistanceTillNonLeaf(level, pos, Direction.DOWN, 4);
+			if (!(distanceTillNonLeaf <= 2)) {
 				return;
 			}
-
+			if (!hasTransparentOrPlantSpaceBeneath(level, pos.below(distanceTillNonLeaf), minDistFromGround)) {
+				return;
+			}
 			if (hasAirAbove(level, pos.above(), 4)) {
 				trySpreadLeafBlock(level, pos.above());
-			} // }
+			}
 
-			if (hasTransparentOrPlantSpaceBeneath(level, pos.north(), minDistFromGround)) {
-				trySpreadLeafBlock(level, pos.north());
-			}
-			if (hasTransparentOrPlantSpaceBeneath(level, pos.south(), minDistFromGround)) {
-				trySpreadLeafBlock(level, pos.south());
-			}
-			if (hasTransparentOrPlantSpaceBeneath(level, pos.east(), minDistFromGround)) {
-				trySpreadLeafBlock(level, pos.east());
-			}
-			if (hasTransparentOrPlantSpaceBeneath(level, pos.west(), minDistFromGround))
-				trySpreadLeafBlock(level, pos.west());
+			trySpreadLeafBlock(level, pos.north());
+			trySpreadLeafBlock(level, pos.south());
 
+			trySpreadLeafBlock(level, pos.east());
+			trySpreadLeafBlock(level, pos.west());
 		}
 	}
 

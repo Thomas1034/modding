@@ -113,7 +113,8 @@ public class ModEvents {
 		}
 	}
 
-	@SubscribeEvent
+	// Don't synchronize any more.
+	// @SubscribeEvent
 	public static void updateClientInfection(TickEvent.PlayerTickEvent event) {
 		if (event.side == LogicalSide.SERVER) {
 			event.player.getCapability(EntityOvergrowthProvider.ENTITY_OVERGROWTH).ifPresent(infection -> {

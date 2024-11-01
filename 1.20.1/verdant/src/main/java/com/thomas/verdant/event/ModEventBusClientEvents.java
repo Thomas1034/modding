@@ -12,8 +12,6 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -45,9 +43,10 @@ public class ModEventBusClientEvents {
 	public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
 		// event.register(DynamicColorBlock::skyColors, ModBlocks.SKY_BLOCK.get());
 	}
-
+	
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@SubscribeEvent
+	// @SubscribeEvent
 	public static void addVinesLayer(EntityRenderersEvent.AddLayers event) {
 		// This event gives access to the render layers.
 		// For example, this adds in a layer of vines over the player.

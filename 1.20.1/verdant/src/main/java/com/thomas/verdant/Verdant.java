@@ -111,6 +111,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Fixed a bug where verdant rooted dirt wouldn't always erode the entire area around it.
 // Frame blocks now have the proper block support shape (i.e. they can't support blocks like torches at all)
 // Drowned hemlock can no longer be eaten to restore the food value of a potato. Pretend that never happened, and don't ever eat hemlock!
+// Fixed underwater erosion; previously, it mysteriously stopped working. Now it works.
 
 // To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
 // Changed icon for food poisoning

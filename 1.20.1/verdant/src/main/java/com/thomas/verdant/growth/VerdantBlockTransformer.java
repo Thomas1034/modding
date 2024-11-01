@@ -154,6 +154,7 @@ public class VerdantBlockTransformer {
 	}
 
 	public static void registerErosionWet(BlockTransformer transformer) {
+		registerErosion(transformer);
 		transformer.register(Blocks.DIRT, Blocks.MUD);
 		transformer.register(Blocks.TERRACOTTA, Blocks.CLAY);
 		transformer.register(Blocks.RED_TERRACOTTA, Blocks.CLAY);
