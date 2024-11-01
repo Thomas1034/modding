@@ -1,8 +1,8 @@
 package com.thomas.cloudscape.item.custom;
 
 import java.util.Map;
-import java.util.UUID;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -38,7 +38,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 
 public class SpearItem extends TieredItem implements Vanishable {
-	
+
 	private final float attackDamage;
 	private final float baseChargeMultiplier;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -48,11 +48,11 @@ public class SpearItem extends TieredItem implements Vanishable {
 	public SpearItem(Tier tier, int damage, float useSpeed, Item.Properties properties) {
 		super(tier, properties);
 
-		// Override the attack damage. 
+		// Override the attack damage.
 		// Note that the spear doesn't get the full bonus from the tier.
 		// Given its unique benefits, this prevents it from becoming too unbalanced.
 		this.attackDamage = (float) damage + tier.getAttackDamageBonus() / 2;
-		// Create the new modifiers. 
+		// Create the new modifiers.
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		// Attack damage.
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier",
@@ -65,7 +65,7 @@ public class SpearItem extends TieredItem implements Vanishable {
 				BONUS_RANGE, AttributeModifier.Operation.ADDITION));
 		// Build and set the default modifiers.
 		this.defaultModifiers = builder.build();
-		
+
 		// Set the base bonus charge multiplier.
 		// Based on the damage bonus from the tier, ranked based on netherite, plus a
 		// flat bonus. This took careful balancing.
@@ -262,8 +262,9 @@ public class SpearItem extends TieredItem implements Vanishable {
 		} else if (enchantment == Enchantments.MOB_LOOTING) {
 			isValid = true;
 		}
-
+		
 		return isValid;
 	}
+
 
 }

@@ -1,4 +1,5 @@
-// 1.20.1	2024-10-05T23:45:42.1367665	Item Models: verdant
+// 1.20.1	2024-10-30T18:04:47.1084322	Item Models: verdant
+945960764cfa1c51691a46a5b5c222dbc4c81ecb assets/verdant/models/item/baked_yam.json
 6a73ef878a16b4651c7a8f9d8b6a298f8f2a9538 assets/verdant/models/item/bitter_bread.json
 84580abb9da85465b6dfcf271aef5aa57c7e73fa assets/verdant/models/item/bitter_cassava.json
 9968910aceb1564f60d29374c6979d7f904b5251 assets/verdant/models/item/bitter_cassava_cuttings.json
@@ -11,6 +12,7 @@ cbbdbe1acf3220825e1dfc90617ad3978be87441 assets/verdant/models/item/charred_fram
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 c6bcf2a05ecaaf51f6cb70e77d12c594bc82d8bf assets/verdant/models/item/cooked_cassava.json
 59e178767225e138acda193b87c473916fb55cbe assets/verdant/models/item/cooked_golden_cassava.json
+a3b690d463b7f5cf080782e0e688bf92609761b5 assets/verdant/models/item/fish_trap_block.json
 8b1235d4be877cb19fdfc973cef9e9f3475f2c06 assets/verdant/models/item/frame_block.json
 3c823437c5ded1eeaea81271864c45e6bcc20c3a assets/verdant/models/item/golden_cassava.json
 d3c1d30349b0d94398fba80db95b056b6d26464d assets/verdant/models/item/heart_fragment.json

@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_baked_yam": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:baked_yam"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_copper_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:copper_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_purple_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:purple_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:purple_dye_from_baked_yam_copper_ore_water_bucket"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_water_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:water_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_baked_yam",
+      "has_copper_ore",
+      "has_water_bucket",
+      "has_purple_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:purple_dye_from_baked_yam_copper_ore_water_bucket"
+    ]
+  },
+  "sends_telemetry_event": false
+}

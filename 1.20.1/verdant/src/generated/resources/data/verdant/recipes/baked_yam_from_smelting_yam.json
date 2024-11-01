@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "verdant:baked_yam",
+  "ingredient": {
+    "item": "verdant:yam"
+  },
+  "result": "verdant:baked_yam"
+}

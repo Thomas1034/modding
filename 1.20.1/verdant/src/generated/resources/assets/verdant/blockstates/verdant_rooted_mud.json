@@ -1,6 +1,6 @@
 {
   "variants": {
-    "water_distance=0": [
+    "active=false,water_distance=0": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -506,7 +506,7 @@
         "y": 270
       }
     ],
-    "water_distance=1": [
+    "active=false,water_distance=1": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -1012,7 +1012,7 @@
         "y": 270
       }
     ],
-    "water_distance=10": [
+    "active=false,water_distance=10": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -1518,7 +1518,7 @@
         "y": 270
       }
     ],
-    "water_distance=11": [
+    "active=false,water_distance=11": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -2024,7 +2024,7 @@
         "y": 270
       }
     ],
-    "water_distance=12": [
+    "active=false,water_distance=12": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -2530,7 +2530,7 @@
         "y": 270
       }
     ],
-    "water_distance=13": [
+    "active=false,water_distance=13": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -3036,7 +3036,7 @@
         "y": 270
       }
     ],
-    "water_distance=14": [
+    "active=false,water_distance=14": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -3542,7 +3542,7 @@
         "y": 270
       }
     ],
-    "water_distance=15": [
+    "active=false,water_distance=15": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -4048,7 +4048,7 @@
         "y": 270
       }
     ],
-    "water_distance=2": [
+    "active=false,water_distance=2": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -4554,7 +4554,7 @@
         "y": 270
       }
     ],
-    "water_distance=3": [
+    "active=false,water_distance=3": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -5060,7 +5060,7 @@
         "y": 270
       }
     ],
-    "water_distance=4": [
+    "active=false,water_distance=4": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -5566,7 +5566,7 @@
         "y": 270
       }
     ],
-    "water_distance=5": [
+    "active=false,water_distance=5": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -6072,7 +6072,7 @@
         "y": 270
       }
     ],
-    "water_distance=6": [
+    "active=false,water_distance=6": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -6578,7 +6578,7 @@
         "y": 270
       }
     ],
-    "water_distance=7": [
+    "active=false,water_distance=7": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -7084,7 +7084,7 @@
         "y": 270
       }
     ],
-    "water_distance=8": [
+    "active=false,water_distance=8": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },
@@ -7590,7 +7590,8103 @@
         "y": 270
       }
     ],
-    "water_distance=9": [
+    "active=false,water_distance=9": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=0": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=1": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=10": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=11": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=12": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=13": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=14": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=15": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=2": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=3": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=4": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=5": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=6": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=7": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=8": [
+      {
+        "model": "verdant:block/verdant_rooted_mud"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thick",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_thin2",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_wilted",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin",
+        "x": 270,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_mud_very_thin_mixed",
+        "x": 270,
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=9": [
       {
         "model": "verdant:block/verdant_rooted_mud"
       },

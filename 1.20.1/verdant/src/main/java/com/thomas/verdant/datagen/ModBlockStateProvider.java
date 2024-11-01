@@ -13,6 +13,7 @@ import com.thomas.verdant.block.custom.TrapBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +27,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -41,14 +43,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-
+		
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
 
 		cropBlock((CropBlock) ModBlocks.YAM_CROP.get(), "yam", "yam");
 
 		tumbledBlockWithItem(ModBlocks.DENSE_GRAVEL);
-		blockWithItem(ModBlocks.FISH_TRAP_BLOCK);
+
+		horizontalRotatedCustomModelBlock(ModBlocks.FISH_TRAP_BLOCK.get(), "block/fish_trap_block", "block/fish_trap");
 
 		hangingLadderBlock((HangingLadderBlock) ModBlocks.ROPE_LADDER.get(), "rope_ladder");
 
@@ -352,6 +355,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			int yRot = ((int) facing.toYRot()) + 90;
 			ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch_wall"))
 					.renderType("cutout").texture("torch", modLoc("block/" + texture));
+
+			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+		});
+	}
+
+	public void horizontalRotatedCustomModelBlock(Block block, String name, String customModel) {
+		getVariantBuilder(block).forAllStates(state -> {
+			Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+			int yRot = ((int) facing.toYRot()) + 180;
+			ModelFile model = models().withExistingParent(name, modLoc(customModel)).renderType("cutout");
 
 			return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
 		});

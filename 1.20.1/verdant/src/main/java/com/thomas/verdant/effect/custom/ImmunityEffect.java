@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
 public class ImmunityEffect extends MobEffect {
@@ -19,10 +18,11 @@ public class ImmunityEffect extends MobEffect {
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);
-
+		@SuppressWarnings("unused")
+		boolean removedAny = false;
 		// Remove listed effects
 		for (MobEffect effect : this.immuneTo) {		
-			entity.removeEffect(effect);
+			removedAny |= entity.removeEffect(effect);
 		}
 
 	}

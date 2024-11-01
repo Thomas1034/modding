@@ -14,20 +14,22 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements VerdantGrower {
 
 	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final Integer CUSTOM_MAX_AGE = 12;
 
 	public VerdantTendrilBlock(Properties properties) {
 		super(properties, Direction.DOWN, SHAPE, true, 1.0f);
 
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(AGE) < CUSTOM_MAX_AGE;
 	}
 
 	@Override
@@ -73,12 +75,6 @@ public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements Verdan
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(WATERLOGGED);
-	}
-
-	@Override
 	public float growthChance(Level level) {
 		return 0.5f * VerdantGrower.super.growthChance(level);
 	}
@@ -89,7 +85,7 @@ public class VerdantTendrilBlock extends GrowingPlantHeadBlock implements Verdan
 		if (VerdantGrower.convertGround(level, pos.below())) {
 		} else {
 			// Otherwise, try to erode it.
-			this.erode(level, pos.below(), state.getValue(WATERLOGGED));
+			this.erode(level, pos.below(), false);
 		}
 	}
 }

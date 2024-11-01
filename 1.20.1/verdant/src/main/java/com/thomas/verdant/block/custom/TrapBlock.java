@@ -7,14 +7,9 @@ import javax.annotation.Nullable;
 
 import com.thomas.verdant.damage.ModDamageSources;
 import com.thomas.verdant.effect.ModMobEffects;
-import com.thomas.verdant.network.DestroyEffectsPacket;
-import com.thomas.verdant.network.ModPacketHandler;
-import com.thomas.verdant.util.Utilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -226,6 +221,7 @@ public class TrapBlock extends Block {
 		p_49292_.updateNeighborsAt(p_49293_.below(), this);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Nullable
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,

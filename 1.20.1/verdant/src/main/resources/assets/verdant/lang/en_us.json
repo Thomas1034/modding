@@ -1,6 +1,6 @@
 {
 	
-	"block.verdant.water_hemlock": "Water Hemlock",
+	"block.verdant.water_hemlock": "Drowned Hemlock",
 	
 	"block.verdant.yam_crop": "Yam Crop",
 	"block.verdant.wild_cassava": "Wild Cassava",
@@ -70,6 +70,7 @@
 	"item.verdant.cooked_cassava": "Cooked Cassava",
 	"item.verdant.cooked_golden_cassava": "Cooked Golden Cassava",
 	"item.verdant.yam": "Yam",
+	"item.verdant.baked_yam": "Baked Yam",
 	
 	"block.verdant.thorn_spikes": "Thorn Spikes",
 	"block.verdant.iron_spikes": "Iron Spikes",
@@ -187,6 +188,19 @@
   "item.minecraft.tipped_arrow.effect.long_antidote": "Arrow of Antidote",
   "item.minecraft.tipped_arrow.effect.strong_antidote": "Arrow of Antidote",
 	
+	"item.minecraft.potion.effect.asphyxiating": "Potion of Asphyxiating",
+  "item.minecraft.splash_potion.effect.asphyxiating": "Splash Potion of Asphyxiating",
+  "item.minecraft.lingering_potion.effect.asphyxiating": "Lingering Potion of Asphyxiating",
+  "item.minecraft.potion.effect.strong_asphyxiating": "Potion of Asphyxiating",
+  "item.minecraft.splash_potion.effect.strong_asphyxiating": "Splash Potion of Asphyxiating",
+  "item.minecraft.lingering_potion.effect.strong_asphyxiating": "Lingering Potion of Asphyxiating",
+  "item.minecraft.potion.effect.long_asphyxiating": "Potion of Asphyxiating",
+  "item.minecraft.splash_potion.effect.long_asphyxiating": "Splash Potion of Asphyxiating",
+  "item.minecraft.lingering_potion.effect.long_asphyxiating": "Lingering Potion of Asphyxiating",
+  "item.minecraft.tipped_arrow.effect.asphyxiating": "Arrow of Asphyxiating",
+  "item.minecraft.tipped_arrow.effect.long_asphyxiating": "Arrow of Asphyxiating",
+  "item.minecraft.tipped_arrow.effect.strong_asphyxiating": "Arrow of Asphyxiating",
+	
 	"entity.verdant.verdant_boat": "Verdant Boat",
 	"entity.verdant.verdant_chest_boat": "Verdant Boat with Chest",
 	"entity.verdant.verdant_heartwood_boat": "Verdant Heartwood Boat",
@@ -201,6 +215,7 @@
 	"effect.verdant.colloid": "Colloid",
 	"effect.verdant.trapped": "Trapped",
 	"effect.verdant.antidote": "Antidote",
+	"effect.verdant.asphyxiating": "Asphyxiating",
 	
 	"command.verdant.spread_speed": "The Verdant Growth is spreading at a base rate of %s blocks per random tick.",
 	"command.verdant.spread_speed_random": "The Verdant Growth is spreading at a base rate of %s blocks per random tick, with a %s chance to grow an additional block.",
@@ -216,9 +231,9 @@
 	"command.verdant.reset_overgrowth_speed": "Resetting overgrowth progression speeds.",
 	"command.verdant.set_overgrowth_speed": "Setting overgrowth progression speed for stage %s to %s.",
 
-	"death.attack.thornBush": "%s sat on a thorn.",
-	"death.attack.thornBush.item": "%s was thrown into the briar patch by %s using %s.",
-	"death.attack.thornBush.player": "%s was thrown into the briar patch by %s.",
+	"death.attack.thorn_bush": "%s sat on a thorn.",
+	"death.attack.thorn_bush.item": "%s was thrown into the briar patch by %s using %s.",
+	"death.attack.thorn_bush.player": "%s was thrown into the briar patch by %s.",
 	
 	"death.attack.overgrowth": "%s is pushing up daisies.",
 	"death.attack.overgrowth.item": "%s is pushing up daisies thanks to %s.",

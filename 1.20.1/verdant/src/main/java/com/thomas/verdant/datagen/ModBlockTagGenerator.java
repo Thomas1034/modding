@@ -31,7 +31,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		// Mineables
 
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.LEAFY_VERDANT_VINE.get(), ModBlocks.VERDANT_VINE.get(),
-				ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get());
+				ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get(), ModBlocks.FISH_TRAP_BLOCK.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModBlocks.VERDANT_GRASS_BLOCK.get(),
 				ModBlocks.VERDANT_ROOTED_DIRT.get(), ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),

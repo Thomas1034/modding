@@ -37,8 +37,8 @@ public class HangingLadderBlock extends LadderBlock {
 	}
 
 	@Override
-	public BlockState updateShape(BlockState thisState, Direction p_54364_, BlockState p_54365_, LevelAccessor level,
-			BlockPos thisPosition, BlockPos p_54368_) {
+	public BlockState updateShape(BlockState thisState, Direction towardThat, BlockState thatState, LevelAccessor level,
+			BlockPos thisPosition, BlockPos thatPosition) {
 		if (!this.canSurvive(thisState, level, thisPosition)) {
 			return Blocks.AIR.defaultBlockState();
 		} else {

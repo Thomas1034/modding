@@ -14,6 +14,12 @@ public class ModPotions {
 	public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS,
 			Verdant.MOD_ID);
 
+	public static final RegistryObject<Potion> ASPHYXIATING = POTIONS.register("asphyxiating",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.ASPHYXIATING.get(), 3600, 0)));
+	public static final RegistryObject<Potion> LONG_ASPHYXIATING = POTIONS.register("long_asphyxiating",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.ASPHYXIATING.get(), 9600, 0)));
+	public static final RegistryObject<Potion> STRONG_ASPHYXIATING = POTIONS.register("strong_asphyxiating",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.ASPHYXIATING.get(), 1800, 1)));
 	public static final RegistryObject<Potion> CAFFEINE = POTIONS.register("caffeine",
 			() -> new Potion(new MobEffectInstance(ModMobEffects.CAFFEINATED.get(), 3600, 0)));
 	public static final RegistryObject<Potion> LONG_CAFFEINE = POTIONS.register("long_caffeine",

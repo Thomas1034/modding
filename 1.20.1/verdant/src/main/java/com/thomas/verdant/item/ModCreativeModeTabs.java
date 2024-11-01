@@ -44,6 +44,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.BITTER_BREAD.get());
 						pOutput.accept(ModItems.COOKED_CASSAVA.get());
 						pOutput.accept(ModItems.COOKED_GOLDEN_CASSAVA.get());
+						pOutput.accept(ModItems.YAM.get());
+						pOutput.accept(ModItems.BAKED_YAM.get());
 
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",

@@ -406,6 +406,11 @@ public class ModBlocks {
 	public static final RegistryObject<Block> FISH_TRAP_BLOCK = registerBlockWithItem("fish_trap_block",
 			() -> new FishTrapBlock(BlockBehaviour.Properties.copy(Blocks.LOOM).noOcclusion()));
 
+	// Yam cake
+	// public static final RegistryObject<Block> YAM_CAKE =
+	// registerBlockWithItem("yam_cake",
+	// () -> new CakeBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
+
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
 	}

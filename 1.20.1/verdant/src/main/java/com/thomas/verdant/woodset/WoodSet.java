@@ -31,7 +31,9 @@ import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -72,6 +74,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -103,12 +106,14 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -205,13 +210,19 @@ public class WoodSet {
 		this.registerEntities();
 
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
-
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
 	protected void registerBER(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(this.signBlockEntity.get(), SignRenderer::new);
 		event.registerBlockEntityRenderer(this.hangingSignBlockEntity.get(), HangingSignRenderer::new);
+	}
+
+	@SubscribeEvent
+	protected void registerDispenserBehaviors(FMLCommonSetupEvent event) {
+		DispenserBlock.registerBehavior(this.boatItem.get(), new WoodSetBoatDispenseItemBehavior());
+		DispenserBlock.registerBehavior(this.chestBoatItem.get(), new WoodSetBoatDispenseItemBehavior(true));
 	}
 
 	@SubscribeEvent
@@ -968,7 +979,7 @@ public class WoodSet {
 		add.run(this.wallHangingSign.get(), provider.createSingleItemTable(this.hangingSignItem.get()));
 
 	}
-	
+
 	protected static final String logName(String base) {
 		return base + "_log";
 	}
@@ -1043,6 +1054,52 @@ public class WoodSet {
 
 	protected static final String chestBoatName(String base) {
 		return base + "_chest_boat";
+	}
+
+	public class WoodSetBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {
+		private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+		private final boolean isChestBoat;
+
+		public WoodSetBoatDispenseItemBehavior() {
+			this(false);
+		}
+
+		public WoodSetBoatDispenseItemBehavior(boolean isChestBoat) {
+			this.isChestBoat = isChestBoat;
+		}
+
+		public ItemStack execute(BlockSource blockSource, ItemStack stack) {
+			Direction direction = blockSource.getBlockState().getValue(DispenserBlock.FACING);
+			Level level = blockSource.getLevel();
+			double d0 = 0.5625D + (double) EntityType.BOAT.getWidth() / 2.0D;
+			double d1 = blockSource.x() + (double) direction.getStepX() * d0;
+			double d2 = blockSource.y() + (double) ((float) direction.getStepY() * 1.125F);
+			double d3 = blockSource.z() + (double) direction.getStepZ() * d0;
+			BlockPos blockpos = blockSource.getPos().relative(direction);
+			Boat boat = (Boat) (this.isChestBoat ? new WoodSetChestBoatEntity(level, d0, d1, d2)
+					: new WoodSetBoatEntity(level, d0, d1, d2));
+			boat.setYRot(direction.toYRot());
+			double d4;
+			if (boat.canBoatInFluid(level.getFluidState(blockpos))) {
+				d4 = 1.0D;
+			} else {
+				if (!level.getBlockState(blockpos).isAir()
+						|| !boat.canBoatInFluid(level.getFluidState(blockpos.below()))) {
+					return this.defaultDispenseItemBehavior.dispense(blockSource, stack);
+				}
+
+				d4 = 0.0D;
+			}
+
+			boat.setPos(d1, d2 + d4, d3);
+			level.addFreshEntity(boat);
+			stack.shrink(1);
+			return stack;
+		}
+
+		protected void playSound(BlockSource blockSource) {
+			blockSource.getLevel().levelEvent(1000, blockSource.getPos(), 0);
+		}
 	}
 
 	public class Door extends DoorBlock {

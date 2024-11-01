@@ -6,10 +6,13 @@ import com.thomas.verdant.Verdant;
 import com.thomas.verdant.effect.custom.BoneMealEffect;
 import com.thomas.verdant.effect.custom.CaffeinatedEffect;
 import com.thomas.verdant.effect.custom.CassavaPoisoningEffect;
+import com.thomas.verdant.effect.custom.ChokingEffect;
 import com.thomas.verdant.effect.custom.ColloidEffect;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.effect.custom.GenericEffect;
+import com.thomas.verdant.effect.custom.HallucinatingEffect;
 import com.thomas.verdant.effect.custom.ImmunityEffect;
+import com.thomas.verdant.effect.custom.StenchEffect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -38,6 +41,12 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> ANTIDOTE = MOB_EFFECTS.register("antidote",
 			() -> new ImmunityEffect(MobEffectCategory.BENEFICIAL, 0x3dffb5,
 					List.of(MobEffects.CONFUSION, MobEffects.POISON, MobEffects.WITHER)));
+	public static final RegistryObject<MobEffect> ASPHYXIATING = MOB_EFFECTS.register("asphyxiating",
+			() -> new ChokingEffect(MobEffectCategory.HARMFUL, 0x0094ff));
+	public static final RegistryObject<MobEffect> HALLUCINATING = MOB_EFFECTS.register("hallucinating",
+			() -> new HallucinatingEffect(MobEffectCategory.HARMFUL, 0xFFFFFF));
+	public static final RegistryObject<MobEffect> STENCH = MOB_EFFECTS.register("stench",
+			() -> new StenchEffect(MobEffectCategory.BENEFICIAL, 0xAAE2B5));
 
 	public static void register(IEventBus eventBus) {
 		MOB_EFFECTS.register(eventBus);

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft:purple_dye",
+  "ingredients": [
+    {
+      "item": "verdant:baked_yam"
+    }
+  ],
+  "result": {
+    "item": "minecraft:purple_dye"
+  }
+}

@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -58,20 +59,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
 		return SUPPORT_SHAPE;
 	}
-
-//	@Override
-//	public void onProjectileHit(Level level, BlockState state, BlockHitResult result, Projectile projectile) {
-//		if (level.isClientSide) {
-//			return;
-//		}
-//		// System.out.println("Growing!");
-//		BlockPos pos = result.getBlockPos();
-//		BlockPos supportingLog = Utilities.gradientDescent(level, pos, VerdantLeavesBlock::getVerdantDistanceAt);
-//		double distanceToLog = Vec3.atCenterOf(supportingLog).subtract(Vec3.atCenterOf(pos)).multiply(1, 2, 1).length();
-//		// System.out.println("Distance is " + distanceToLog + ".");
-//		tryToSpreadBasedOnDistanceFromLog(level, pos, 3, 4, distanceToLog);
-//	}
-
+	
 	@Override
 	protected boolean decaying(BlockState state) {
 		return !state.getValue(PERSISTENT) && (state.getValue(VERDANT_DISTANCE) == VERDANT_DECAY_DISTANCE
@@ -82,17 +70,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		super.randomTick(state, level, pos, rand);
 		// System.out.println("Verdant leaves are ticking at " + pos + ".");
-		float growthChance = this.growthChance(null);
+		float growthChance = this.growthChance(level);
 		float randomChance = rand.nextFloat();
 		while (randomChance < growthChance) {
-			// System.out.println("Trying to spread.");
 			this.grow(state, level, pos);
 			growthChance--;
 		}
-
-		// Schedule an update tick, just in case.
-		// level.scheduleTick(pos, level.getBlockState(pos).getBlock(), 1);
-
 		// See if it should decay, since it's too close to the ground.
 		tryToDecay(level, pos);
 
@@ -183,7 +166,6 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	@Override
 	public void grow(BlockState state, Level level, BlockPos pos) {
 
-		// System.out.println("Verdant leaves are attempting to grow at " + pos + ".");
 		// It will not grow if artificially placed.
 		if (state.getValue(PERSISTENT)) {
 			return;
@@ -221,11 +203,10 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			return;
 		}
 
-		// Check if within support distance.
+		// Check if within support distance and outside of normal leaf decay distance.
 		int verdantDistance = state.getValue(VERDANT_DISTANCE);
 
 		if (verdantDistance >= DECAY_DISTANCE - 1 && verdantDistance < VERDANT_DECAY_DISTANCE) {
-			// System.out.println("Checking for tendril growth conditions.");
 			// Check if the block below can be grown into.
 			if (!level.getBlockState(pos.below()).isAir()) {
 				// System.out.println("Returning, since block below isn't air.");
@@ -379,8 +360,6 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		int numberOfBlocksAbove = getDistanceTillAir(level, pos, Direction.UP, maxShelfThickness + 2);
 		// Check the number of blocks till there's air, to compare to the shelf
 		// thickness.
-		// System.out.println("There are " + numberOfBlocksAbove + " blocks above this
-		// block.");
 		if (numberOfBlocksAbove > maxShelfThickness) {
 			// System.out.println("That's too many.");
 			return;
@@ -389,8 +368,6 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		int numberOfBlocksBelow = getDistanceTillAir(level, pos, Direction.DOWN, maxShelfThickness + 2);
 		// Check the number of blocks till there's air, to compare to the shelf
 		// thickness.
-		// System.out.println("There are " + numberOfBlocksBelow + " blocks below this
-		// block.");
 		if (numberOfBlocksBelow > maxShelfThickness) {
 			// System.out.println("That's too many.");
 			return;
@@ -400,8 +377,6 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 				minAirGap + 2);
 		// Check the number of blocks till there's air, to compare to the shelf
 		// thickness.
-		// System.out.println("There are " + numberOfAirBlocksAboveThat + " air blocks
-		// above this block.");
 		if (numberOfAirBlocksAboveThat < minAirGap) {
 			// System.out.println("That's too few.");
 			return;
@@ -418,24 +393,12 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 			return;
 		}
 
-		// System.out.println("The block above is leaves and has sky access above it
-		// or empty space below it.");
-		// If so, can grow one block outward and one block upward.
-		// So do so.
-		// System.out.println("Checking for growth sites.");
 		boolean successfullyPlaced = false;
 		for (Direction d : Utilities.HORIZONTAL_DIRECTIONS) {
 			BlockPos neighbor = pos.relative(d);
 			successfullyPlaced = successfullyPlaced || trySpreadLeafBlock(level, neighbor);
 		}
 		successfullyPlaced = successfullyPlaced || trySpreadLeafBlock(level, pos.above());
-		if (successfullyPlaced) {
-
-			// System.out.println(
-			// "Distance is " + distanceToLog + " and should be no more than " +
-			// GROWING_RADIUS + ".");
-		}
-
 	}
 
 	private static void tryToSpreadBasedOnDistanceFromLog(Level level, BlockPos pos, int maxDistFromLog,
@@ -576,7 +539,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
 		BlockState blockstate = this.defaultBlockState().setValue(PERSISTENT, Boolean.valueOf(true))
-				.setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+				.setValue(WATERLOGGED, fluidstate.is(FluidTags.WATER));
 		return updateDistance(blockstate, context.getLevel(), context.getClickedPos());
 	}
 

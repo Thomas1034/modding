@@ -20,7 +20,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class VerdantTendrilPlantBlock extends GrowingPlantBodyBlock {
 
 	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public VerdantTendrilPlantBlock(Properties properties) {
 		super(properties, Direction.DOWN, SHAPE, true);
@@ -61,6 +60,5 @@ public class VerdantTendrilPlantBlock extends GrowingPlantBodyBlock {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(WATERLOGGED);
 	}
 }

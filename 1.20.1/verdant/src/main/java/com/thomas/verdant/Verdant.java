@@ -10,11 +10,14 @@ import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.effect.custom.FoodPoisoningEffect;
 import com.thomas.verdant.enchantment.ModEnchantments;
 import com.thomas.verdant.entity.ModEntityTypes;
+import com.thomas.verdant.entity.client.renderer.HallucinatedCreeperRenderer;
 import com.thomas.verdant.entity.client.renderer.OvergrownSkeletonRenderer;
 import com.thomas.verdant.entity.client.renderer.OvergrownZombieRenderer;
 import com.thomas.verdant.entity.client.renderer.PoisonIvyArrowRenderer;
+import com.thomas.verdant.entity.custom.PoisonIvyArrowEntity;
 import com.thomas.verdant.item.ModCreativeModeTabs;
 import com.thomas.verdant.item.ModItems;
+import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.modfeature.FeaturePlacer;
 import com.thomas.verdant.network.ModPacketHandler;
 import com.thomas.verdant.painting.ModPaintings;
@@ -27,10 +30,18 @@ import com.thomas.verdant.util.data.DataRegistries;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -48,6 +59,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // register spawn eggs!
 // add recipes!
 // fix block picking on yams giving seeds
+// finish fish trap model and waterlogging
+// LivingEntity$getVisibilityPercent, maybe mixin to that for stench potion? 
+// Ah, use LivingVisibilityEvent
+
+
+// maybe add rooting station! block entity, turns bone meal into eroding/rooting the block in front
+// do you like green axe and wham? - get a heartwood tool
+// ready to em-bark achievement - get heartwood armor
+// rooting for you - craft a rooting station
 
 // Additions
 // Rope ladders
@@ -59,6 +79,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Charred frame block
 // Lilypads will now grow on water that has verdant ground underneath.
 // Many texture updates!
+// Antidote
+// Asphyxiation
 
 // Changes
 // Entities should try to avoid walking through spikes and thorn bushes
@@ -67,6 +89,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Rooted dirt will erode cobblestone into "dense gravel", which does not fall, but can drop up to three gravel items.
 // Dense Gravel will break when pushed by a piston.
 // Updated texture for poison ivy
+// Removed unnecessary waterlogged state for verdant tendril
+// Poison ivy no longer slows you down as much and won't trap you while you are flying.
+// Renamed Water Hemlock to Drowned Hemlock. 
+// - I did not change the item/block name in the code, just the display name. 
+// - Therefore, it will not cause them to disappear in old worlds. 
+// Drowned Hemlock now inflicts Asphyxiation, not Wither.
+// Colloid potions are now brewed from Thick potions, not Awkward potions.
 
 // Verdant rooted dirt will now immediately convert to mud (or vice versa) when placed, if appropriate.
 // Visual rework of verdant rooted dirt
@@ -81,6 +110,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // Reduced lag considerably
 // Fixed a bug where verdant rooted dirt wouldn't always erode the entire area around it.
 // Frame blocks now have the proper block support shape (i.e. they can't support blocks like torches at all)
+// Drowned hemlock can no longer be eaten to restore the food value of a potato. Pretend that never happened, and don't ever eat hemlock!
 
 // To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
 // Changed icon for food poisoning
@@ -153,7 +183,7 @@ public class Verdant {
 				new BetterBrewingRecipe(ModPotions.CAFFEINE.get(), Items.SUGAR, ModPotions.STRONG_CAFFEINE.get()));
 
 		BrewingRecipeRegistry.addRecipe(
-				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.SPARKLING_STARCH.get(), ModPotions.COLLOID.get()));
+				new BetterBrewingRecipe(Potions.THICK, ModItems.SPARKLING_STARCH.get(), ModPotions.COLLOID.get()));
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.REDSTONE, ModPotions.LONG_COLLOID.get()));
 		BrewingRecipeRegistry.addRecipe(
@@ -163,6 +193,13 @@ public class Verdant {
 				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.HEART_FRAGMENT.get(), ModPotions.ANTIDOTE.get()));
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.ANTIDOTE.get(), Items.REDSTONE, ModPotions.LONG_ANTIDOTE.get()));
+
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.WATER_HEMLOCK.get(), ModPotions.ASPHYXIATING.get()));
+		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(ModPotions.ASPHYXIATING.get(), Items.REDSTONE,
+				ModPotions.LONG_ASPHYXIATING.get()));
+		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(ModPotions.ASPHYXIATING.get(), Items.GLOWSTONE_DUST,
+				ModPotions.STRONG_ASPHYXIATING.get()));
 
 		// Register compostables.
 		ComposterBlock.COMPOSTABLES.put(ModBlocks.POISON_IVY_VERDANT_LEAVES.get().asItem(), 0.3f);
@@ -186,7 +223,34 @@ public class Verdant {
 		FoodPoisoningEffect.registerEffects();
 		FeaturePlacer.registerFeatures();
 
-		// FishingRodItem
+		DispenserBlock.registerBehavior(ModItems.POISON_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
+				PoisonIvyArrowEntity arrow = new PoisonIvyArrowEntity(level, position.x(), position.y(), position.z());
+				arrow.pickup = AbstractArrow.Pickup.ALLOWED;
+				return arrow;
+			}
+		});
+		DispenserBlock.registerBehavior(ModItems.SHORT_ROPE_COIL.get(), new AbstractProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
+				Item item = stack.getItem();
+				if (item instanceof RopeCoilItem coilItem) {
+					return coilItem.createThrownRope(level, null, stack);
+				}
+
+				return null;
+			}
+		});
+		DispenserBlock.registerBehavior(ModItems.ROPE_COIL.get(), new AbstractProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level level, Position position, ItemStack stack) {
+				Item item = stack.getItem();
+				if (item instanceof RopeCoilItem coilItem) {
+					return coilItem.createThrownRope(level, null, stack);
+				}
+
+				return null;
+			}
+		});
+
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -206,6 +270,7 @@ public class Verdant {
 			EntityRenderers.register(ModEntityTypes.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
 			EntityRenderers.register(ModEntityTypes.OVERGROWN_SKELETON.get(), OvergrownSkeletonRenderer::new);
 			EntityRenderers.register(ModEntityTypes.THROWN_ROPE.get(), ThrownItemRenderer::new);
+			EntityRenderers.register(ModEntityTypes.HALLUCINATED_CREEPER.get(), HallucinatedCreeperRenderer::new);
 
 			MenuScreens.register(ModMenuTypes.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 		}

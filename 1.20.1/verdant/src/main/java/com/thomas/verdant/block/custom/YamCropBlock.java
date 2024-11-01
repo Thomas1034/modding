@@ -1,8 +1,11 @@
 package com.thomas.verdant.block.custom;
 
+import com.thomas.verdant.item.ModItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,6 +14,10 @@ public class YamCropBlock extends CropBlock {
 
 	public YamCropBlock(Properties properties) {
 		super(properties);
+	}
+
+	protected ItemLike getBaseSeedId() {
+		return ModItems.YAM.get();
 	}
 
 	// Copy and override the random tick function from CropBlock
@@ -70,7 +77,7 @@ public class YamCropBlock extends CropBlock {
 			BlockState setState = null;
 			if (otherState.is(this)) {
 				setState = otherState.setValue(AGE, Math.min(otherState.getValue(AGE) + 1, MAX_AGE));
-			} else if (otherState.isAir() && this.canSurvive(this.defaultBlockState(), level, pos)) {
+			} else if (otherState.isAir() && this.canSurvive(this.defaultBlockState(), level, offset)) {
 				setState = this.defaultBlockState().setValue(AGE, 0);
 			}
 

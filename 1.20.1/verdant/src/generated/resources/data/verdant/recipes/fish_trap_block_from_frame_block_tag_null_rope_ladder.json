@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:fish_trap_block",
+  "key": {
+    "F": {
+      "item": "verdant:frame_block"
+    },
+    "L": {
+      "item": "verdant:rope_ladder"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "FPF",
+    "LLL",
+    "FPF"
+  ],
+  "result": {
+    "count": 2,
+    "item": "verdant:fish_trap_block"
+  },
+  "show_notification": true
+}

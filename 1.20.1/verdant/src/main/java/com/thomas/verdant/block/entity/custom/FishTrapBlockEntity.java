@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
+import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.screen.menu.FishTrapMenu;
 import com.thomas.verdant.util.baitdata.BaitData;
@@ -188,7 +189,8 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	}
 
 	public void tick(Level level, BlockPos pos, BlockState state) {
-		if (this.hasRecipe()) {
+
+		if (this.hasRecipe() && state.getValue(FishTrapBlock.ENABLED)) {
 			this.increaseCraftingProgress();
 			BlockEntity.setChanged(level, pos, state);
 
@@ -239,7 +241,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	}
 
 	private void craftItem() {
-		// System.out.println("Fishing!");
 
 		// First, get the highest bait strength pair.
 		Pair<BaitData, ItemStack> bestBait = this.getHighestCatchChanceBait();
@@ -257,17 +258,32 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 		// Server only!
 		if (this.level instanceof ServerLevel serverLevel) {
-			int waterCount = 0;
+			// Base assumed water count
+			int waterCount = 5;
 			// Check for surrounding water.
 			for (int i = -1; i <= 1; i++) {
-				for (int j = 0; j <= 2; j++) {
-					for (int k = -1; k <= 1; k++) {
-						if (serverLevel.getBlockState(this.worldPosition.offset(i, j, k)).is(Blocks.WATER)) {
+				for (int k = -1; k <= 1; k++) {
+					if ((i == 0 && k == 0)
+							|| serverLevel.getBlockState(this.worldPosition.offset(i, 0, k)).is(Blocks.WATER)) {
+						waterCount += 2;
+						if (serverLevel.getBlockState(this.worldPosition.offset(i, -1, k)).is(Blocks.WATER)) {
 							waterCount++;
+						}
+						for (int j = 1; j <= 2; j++) {
+
+							if (serverLevel.getBlockState(this.worldPosition.offset(i, j, k)).is(Blocks.WATER)) {
+								waterCount++;
+							}
 						}
 					}
 				}
 			}
+			int maxWater = 50;
+
+			// Scale catch and consume chance by water ratio
+			double waterRatio = ((double) waterCount) / ((double) maxWater);
+			catchChance *= waterRatio;
+			consumeChance *= 0.5 + 0.5 * waterRatio;
 
 			// Check if a fish should be caught.
 			double catchTarget = this.level.random.nextFloat();

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:baked_yam_from_smelting_yam"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_yam": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:yam"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_yam",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:baked_yam_from_smelting_yam"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:poison_ivy",
+  "ingredients": [
+    {
+      "item": "verdant:poison_ivy_block"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "verdant:poison_ivy"
+  }
+}

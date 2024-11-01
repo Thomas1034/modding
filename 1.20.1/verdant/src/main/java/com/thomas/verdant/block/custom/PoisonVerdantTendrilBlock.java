@@ -33,17 +33,24 @@ public class PoisonVerdantTendrilBlock extends GrowingPlantHeadBlock implements 
 
 	protected static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 100, 0);
 
+	public static final Integer CUSTOM_MAX_AGE = 8;
+	
 	public PoisonVerdantTendrilBlock(Properties properties) {
 		super(properties, Direction.DOWN, SHAPE, true, 1.0f);
 
 	}
 
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(AGE) < CUSTOM_MAX_AGE;
+	}
+	
 	// Inflicts poison on anything inside.
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && (livingEntity.getMobType() != MobType.ARTHROPOD
 				&& livingEntity.getType() != EntityType.RABBIT && !EntityOvergrowthEffects.isFriend(livingEntity))) {
-			livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
+			// livingEntity.makeStuckInBlock(state, new Vec3((double) 0.9F, 0.95D, (double) 0.9F));
 			if (!level.isClientSide) {
 				livingEntity.addEffect(POISON.get());
 			}

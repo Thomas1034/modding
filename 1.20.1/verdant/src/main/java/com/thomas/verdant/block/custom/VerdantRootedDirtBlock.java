@@ -1,6 +1,5 @@
 package com.thomas.verdant.block.custom;
 
-import java.util.ArrayList;
 import java.util.OptionalInt;
 
 import javax.annotation.Nullable;
@@ -21,9 +20,9 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
@@ -39,43 +38,26 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	public static final IntegerProperty WATER_DISTANCE = IntegerProperty.create("water_distance", MIN_DISTANCE,
 			MAX_DISTANCE);
 
+	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+
 	public VerdantRootedDirtBlock(Properties properties) {
 		super(properties);
 		// Registers the default state to be far away from water.
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
 	}
 
-	// If the block is going to settle, finds a location for it to settle to.
-	@Nullable
-	private static BlockPos findSettleLocation(ServerLevel level, BlockPos pos) {
-
-		// Keep a list of all valid locations.
-		ArrayList<BlockPos> locations = new ArrayList<>();
-		// Iterate over the 3x3 grid around it.
-		for (int i = -1; i <= 1; i++) {
-			for (int k = -1; k <= 1; k++) {
-				// At each position, check if the block has a clear path to fall to the y-level
-				// beneath it.
-				BlockPos offsetBelow = pos.offset(i, -1, k);
-				if (level.getBlockState(offsetBelow).is(Blocks.AIR)
-						&& level.getBlockState(offsetBelow.above()).is(Blocks.AIR)) {
-					locations.add(offsetBelow);
-				}
-			}
-		}
-
-		// If there is a place to fall to (or more than one) return one at random.
-		if (locations.size() > 0) {
-			return locations.get(level.random.nextInt(locations.size()));
-		}
-
-		// Return null if no place to fall to was found.
-		return null;
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(ACTIVE);
 	}
 
 	// The heart and soul of the lag. Block! I meant block.
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+
+		if (!state.getValue(ACTIVE)) {
+			return;
+		}
 
 		// Check if grass can survive.
 		boolean canBeGrass = VerdantGrower.canBeGrass(level, pos);
@@ -111,8 +93,42 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	@Override
 	public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
 			BlockPos pos, BlockPos otherPos) {
-		// Unfortunately I can't use any fancy tricks.
+		BlockTransformer roots = VerdantBlockTransformer.ROOTS.get();
+		BlockTransformer erode = VerdantBlockTransformer.EROSION.get();
+		BlockTransformer erodeWet = VerdantBlockTransformer.EROSION_WET.get();
+
+		// Unfortunately I can't use any fancy tricks to update the water.
 		state = updateDistance(state, level, pos);
+		// Now, update its activity
+		boolean isActive = state.getValue(ACTIVE);
+		boolean isNeighborVerdant = !(roots.hasInput(otherState.getBlock()) || erode.hasInput(otherState.getBlock())
+				|| erodeWet.hasInput(otherState.getBlock()) || !otherState.isCollisionShapeFullBlock(level, otherPos));
+		if (!isActive && !isNeighborVerdant) {
+			state = state.setValue(ACTIVE, true);
+		}
+		if (isActive && isNeighborVerdant) {
+			// Check all directions but the one that's already known.
+			Direction[] dirs = Direction.values();
+			boolean canBeActive = false;
+			for (int i = 0; i < dirs.length; i++) {
+				Direction adjacent = dirs[i];
+				if (adjacent == dir) {
+					continue;
+				}
+				BlockPos neighborPos = pos.relative(adjacent);
+				BlockState neighbor = level.getBlockState(neighborPos);
+				if (roots.hasInput(neighbor.getBlock()) || erode.hasInput(otherState.getBlock())
+						|| erodeWet.hasInput(otherState.getBlock())
+						|| !neighbor.isCollisionShapeFullBlock(level, otherPos)) {
+					canBeActive = true;
+					break;
+				}
+			}
+			if (!canBeActive) {
+				state = state.setValue(ACTIVE, false);
+			}
+		}
+
 		return updateHydrationState(state, state.getValue(WATER_DISTANCE));
 	}
 
@@ -146,8 +162,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 		// Should be less laggy, but doesn't count corners.
 		for (Direction direction : Direction.values()) {
 			blockpos$mutableblockpos.setWithOffset(pos, direction);
-			dist = Math.min(dist,
-					getDistanceAt(level, blockpos$mutableblockpos, level.getBlockState(blockpos$mutableblockpos)) + 1);
+			BlockState neighbor = level.getBlockState(blockpos$mutableblockpos);
+			dist = Math.min(dist, getDistanceAt(level, blockpos$mutableblockpos, neighbor) + 1);
 			if (dist == 1) {
 				break;
 			}
@@ -175,14 +191,14 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState blockstate = this.defaultBlockState();
-		blockstate = updateDistance(blockstate, context.getLevel(), context.getClickedPos());
+		blockstate = updateDistance(blockstate, context.getLevel(), context.getClickedPos()).setValue(ACTIVE, true);
 		return updateHydrationState(blockstate, blockstate.getValue(WATER_DISTANCE));
 	}
 
 	// Very important!
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(WATER_DISTANCE);
+		builder.add(WATER_DISTANCE, ACTIVE);
 	}
 
 	// This function causes the most lag.

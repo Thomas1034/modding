@@ -26,11 +26,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addItemModels(this);
 		ModBlocks.VERDANT.addItemModels(this);
 
+		evenSimplerBlockItem(ModBlocks.FISH_TRAP_BLOCK);
+
 		simpleBlockItemBlockTexture(ModBlocks.ROPE_LADDER);
 
 		simpleLogModel(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG);
 		simpleItem(ModItems.HEART_FRAGMENT);
 		simpleItem(ModItems.YAM);
+		simpleItem(ModItems.BAKED_YAM);
 
 		otherTextureItem(ModItems.WATER_HEMLOCK, "block/water_hemlock_top");
 		simpleItem(ModItems.GOLDEN_CASSAVA);

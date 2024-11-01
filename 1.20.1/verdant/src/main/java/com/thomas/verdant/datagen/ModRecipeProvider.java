@@ -18,6 +18,7 @@ import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -57,6 +58,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("PPP", "PSP", "PPP"), List.of('P', 'S'),
 				List.of(ModBlocks.POISON_IVY.get(), ModBlocks.FRAME_BLOCK.get()), RecipeCategory.BUILDING_BLOCKS,
 				ModBlocks.POISON_IVY_BLOCK.get(), 1);
+		shapeless(recipeWriter, List.of(ModBlocks.POISON_IVY_BLOCK.get()), List.of(1), RecipeCategory.MISC,
+				ModBlocks.POISON_IVY.get(), 6);
 		// Toxic ash block
 		smelting(recipeWriter, List.of(ModBlocks.POISON_IVY_BLOCK.get()), RecipeCategory.MISC,
 				ModBlocks.TOXIC_ASH_BLOCK.get(), 0.1f, 200, "toxic_ash_block_from_poison_ivy_block");
@@ -149,7 +152,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
 				List.of(ModBlocks.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE),
 				RecipeCategory.MISC, ModBlocks.IRON_TRAP.get(), 3);
-
+		shaped(recipeWriter, List.of("FPF", "LLL", "FPF"), List.of('F', 'P', 'L'), List
+				.of(ModBlocks.FRAME_BLOCK.get(), ItemTags.PLANKS, ModBlocks.ROPE_LADDER.get()),
+				RecipeCategory.MISC, ModBlocks.FISH_TRAP_BLOCK.get(), 2);
+		
 		// Imbued armor
 		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get()),
 				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(), 1);
@@ -196,6 +202,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		// Roasting cassava
 		foodCooking(recipeWriter, List.of(ModItems.CASSAVA.get()), RecipeCategory.FOOD, ModItems.COOKED_CASSAVA.get(),
 				0.1f, 200);
+
+		// Roasting yam
+		foodCooking(recipeWriter, List.of(ModItems.YAM.get()), RecipeCategory.FOOD, ModItems.BAKED_YAM.get(), 0.1f,
+				200);
+
+		// Purple dye from yams
+		shapeless(recipeWriter, List.of(ModItems.BAKED_YAM.get()), List.of(1), RecipeCategory.DECORATIONS,
+				Items.PURPLE_DYE, 1);
+
+		// Purple dye from yams with mordant
+		shapeless(recipeWriter, List.of(ModItems.BAKED_YAM.get(), Items.COPPER_ORE, Items.WATER_BUCKET),
+				List.of(4, 1, 1), RecipeCategory.DECORATIONS, Items.PURPLE_DYE, 12);
 
 		// TODO test
 		// stonecutting(recipeWriter, Items.GRASS_BLOCK, RecipeCategory.BUILDING_BLOCKS,

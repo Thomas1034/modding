@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -236,11 +237,8 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 			}
 		}
 		// Waterlog if possible
-		if (replaced.hasProperty(BlockStateProperties.WATERLOGGED)) {
-			if (replaced.getValue(BlockStateProperties.WATERLOGGED)) {
-				placed = placed.setValue(WATERLOGGED, true);
-			}
-		}
+		placed = placed.setValue(WATERLOGGED,
+				replaced.getOptionalValue(BlockStateProperties.WATERLOGGED).orElse(false));
 
 		// Update the block.
 		level.setBlockAndUpdate(pos, placed);
@@ -509,7 +507,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-
+		
 		// Check if any faces exist.
 		boolean anyFacesExist = false;
 		boolean needToUpdate = false;
@@ -576,7 +574,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 		BlockPos blockpos = context.getClickedPos();
 		Direction side = context.getClickedFace().getOpposite();
 		BlockState state = this.defaultBlockState()
-				.setValue(WATERLOGGED, Boolean.valueOf(accessor.getFluidState(blockpos).getType() == Fluids.WATER))
+				.setValue(WATERLOGGED, accessor.getFluidState(blockpos).is(FluidTags.WATER))
 				.setValue(SIDES.get(side), 1);
 		if (accessor instanceof Level level) {
 			if (VerdantVineBlock.canGrowToFace(level, blockpos, side)) {
@@ -597,7 +595,7 @@ public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWate
 
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState p_152045_) {
-		return p_152045_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152045_);
+		return p_152045_.getValue(WATERLOGGED) ? Fluids.EMPTY.defaultFluidState() : super.getFluidState(p_152045_);
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

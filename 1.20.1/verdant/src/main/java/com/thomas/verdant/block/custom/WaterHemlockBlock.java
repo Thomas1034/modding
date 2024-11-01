@@ -2,13 +2,13 @@ package com.thomas.verdant.block.custom;
 
 import java.util.function.Supplier;
 
+import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.overgrowth.EntityOvergrowthEffects;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class WaterHemlockBlock extends SmallDripleafBlock {
 
-	protected static final Supplier<MobEffectInstance> WITHER = () -> new MobEffectInstance(MobEffects.WITHER, 30, 1);
+	protected static final Supplier<MobEffectInstance> CHOKING = () -> new MobEffectInstance(ModMobEffects.ASPHYXIATING.get(), 30, 0);
 
 	public WaterHemlockBlock(Properties properties) {
 		super(properties);
@@ -34,7 +34,7 @@ public class WaterHemlockBlock extends SmallDripleafBlock {
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity livingEntity && !EntityOvergrowthEffects.isFriend(livingEntity)) {
 			if (!level.isClientSide) {
-				livingEntity.addEffect(WITHER.get());
+				livingEntity.addEffect(CHOKING.get());
 				//Blocks.SUNFLOWER;
 				
 			}

@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-10T18:19:00.4070856	Tags for minecraft:block mod id verdant
+// 1.20.1	2024-10-31T11:08:12.219893	Tags for minecraft:block mod id verdant
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences.json
 86d653c9ca8b70a4e61ab1cb8987d737935bbc2c data/forge/tags/blocks/fences/wooden.json
 a8dad8c9fd2634334ea9abcd174e8f359a1b391b data/forge/tags/blocks/fence_gates.json
@@ -24,7 +24,7 @@ c09ae1cebad652fc4b605238e7bfab25927bfd21 data/minecraft/tags/blocks/flower_pots.
 e9aee8ebf39418fb0d17448e7ffea3e4c3ada219 data/minecraft/tags/blocks/leaves.json
 3473aa247c81c8c58896f026d09d5393a061bf46 data/minecraft/tags/blocks/logs.json
 3473aa247c81c8c58896f026d09d5393a061bf46 data/minecraft/tags/blocks/logs_that_burn.json
-ed2e28066b87bf90deb7531cff3c89a8642f3b93 data/minecraft/tags/blocks/mineable/axe.json
+373d8294fd03f07f3561b29df5898634e018dc05 data/minecraft/tags/blocks/mineable/axe.json
 4d280bdd3358b06586181f644d6697d101631871 data/minecraft/tags/blocks/mineable/hoe.json
 9926f292a84961a8c3d58243dfd697cd4ebdb359 data/minecraft/tags/blocks/mineable/pickaxe.json
 5f874e8ae3ee5f017055c4d5d94e79bae501a078 data/minecraft/tags/blocks/mineable/shovel.json

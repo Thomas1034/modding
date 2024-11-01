@@ -178,9 +178,12 @@ public class ModItems {
 	public static final RegistryObject<Item> YAM = ITEMS.register("yam",
 			() -> new ItemNameBlockItem(ModBlocks.YAM_CROP.get(), new Item.Properties().stacksTo(64)));
 
+	public static final RegistryObject<Item> BAKED_YAM = ITEMS.register("baked_yam",
+			() -> new Item(new Item.Properties().food(Foods.BAKED_POTATO)));
+
 	// Water hemlock
 	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
-			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties().stacksTo(64)));
+			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties()));
 
 	// Boilerplate
 	@SuppressWarnings("unused")

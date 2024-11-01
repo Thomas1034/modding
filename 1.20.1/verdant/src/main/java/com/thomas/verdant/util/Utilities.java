@@ -537,7 +537,12 @@ public class Utilities {
 
 	public static void addParticlesAroundEntity(ServerLevel level, Entity entity, ParticleOptions particle,
 			double boxSize) {
-		addParticlesAroundPosition(level, entity.getEyePosition(), particle, boxSize);
+		addParticlesAroundEntity(level, entity, particle, boxSize, 5);
+	}
+
+	public static void addParticlesAroundEntity(ServerLevel level, Entity entity, ParticleOptions particle,
+			double boxSize, int count) {
+		addParticlesAroundPositionServer(level, entity.getEyePosition(), particle, boxSize, count);
 	}
 
 	public static void addParticlesAroundPosition(LevelAccessor level, Vec3 position, ParticleOptions particle,
