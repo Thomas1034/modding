@@ -32,6 +32,7 @@ public class ModTags {
 
 	public static class Structures {
 
+		@SuppressWarnings("unused")
 		private static TagKey<Structure> tag(String name) {
 			TagKey<Structure> tag = TagKey.create(Registries.STRUCTURE, new ResourceLocation(Verdant.MOD_ID, name));
 			// System.out.println("\n\n\nDEBUGGER TK: "+tag.toString()+" \n\n\n");
@@ -59,6 +60,7 @@ public class ModTags {
 
 	public static class Biomes {
 
+		@SuppressWarnings("unused")
 		private static TagKey<Biome> tag(String name) {
 			return TagKey.create(Registries.BIOME, new ResourceLocation(Verdant.MOD_ID, name));
 		}

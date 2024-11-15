@@ -44,7 +44,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VerdantVineBlock extends Block implements VerdantGrower, SimpleWaterloggedBlock {
 
-	public static final float IMBUED_LOG_CHANCE = 1.0f / 16.0f;
+	public static final float IMBUED_LOG_CHANCE = 1.0f / 64.0f;
 	private static final Function<RandomSource, BlockState> VERDANT_LOG = (rand) -> ModBlocks.VERDANT_WOOD.get()
 			.defaultBlockState();
 	private static final Function<RandomSource, BlockState> VERDANT_HEARTWOOD = (

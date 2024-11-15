@@ -15,9 +15,9 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 
 public class DataParserListener<T extends DataParseable<T>> extends SimpleJsonResourceReloadListener {
-	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
-	private final DataRegistry<T> registry;
-	private final Function<ResourceLocation, T> factory;
+	protected static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
+	protected final DataRegistry<T> registry;
+	protected final Function<ResourceLocation, T> factory;
 
 	public DataParserListener(DataRegistry<T> registry, String folder, Function<ResourceLocation, T> factory) {
 		super(GSON, folder);

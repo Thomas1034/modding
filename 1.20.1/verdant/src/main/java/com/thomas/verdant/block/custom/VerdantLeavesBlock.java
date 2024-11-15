@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.material.FluidState;
@@ -38,7 +39,15 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	public static final int VERDANT_DECAY_DISTANCE = (int) (GROWING_RADIUS * 2);
 	public static final IntegerProperty VERDANT_DISTANCE = IntegerProperty.create("verdant_distance", 1,
 			VERDANT_DECAY_DISTANCE);
+	// public static final IntegerProperty LOG_X_ENCODED =
+	// IntegerProperty.create("log_x", 0, VERDANT_DECAY_DISTANCE * 2 + 1);
+	// public static final IntegerProperty LOG_Y_ENCODED =
+	// IntegerProperty.create("log_y", 0, VERDANT_DECAY_DISTANCE * 2 + 1);
+	// public static final IntegerProperty LOG_Z_ENCODED =
+	// IntegerProperty.create("log_z", 0, VERDANT_DECAY_DISTANCE * 2 + 1);
 	private static final VoxelShape SUPPORT_SHAPE = Shapes.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
+
+	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
 	public static final Function<RandomSource, BlockState> LEAVES = (rand) -> {
 		float choice = rand.nextFloat();
@@ -89,13 +98,13 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 
 	@Override
 	public boolean isRandomlyTicking(BlockState state) {
-		return true;
+		return state.getValue(ACTIVE);
 	}
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		BlockState n = updateDistance(state, level, pos);
-		if (!n.equals(state)) {			
+		if (!n.equals(state)) {
 			level.setBlock(pos, updateDistance(state, level, pos), 3);
 		}
 	}
@@ -530,7 +539,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(VERDANT_DISTANCE);
+		builder.add(VERDANT_DISTANCE, ACTIVE);
 	}
 
 	@Override

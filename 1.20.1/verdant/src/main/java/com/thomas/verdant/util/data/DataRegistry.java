@@ -15,15 +15,15 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 
 public class DataRegistry<T extends DataParseable<T>> extends AbstractCollection<T> {
 
-	private final ResourceLocation name;
-	private final Map<ResourceLocation, T> contents;
-	private final Function<ResourceLocation, T> factory;
+	protected final ResourceLocation name;
+	protected final Map<ResourceLocation, T> contents;
+	protected final Function<ResourceLocation, T> factory;
 
 	public DataRegistry(ResourceLocation name, Function<ResourceLocation, T> factory) {
 		this.name = name;
 		this.contents = new HashMap<>();
 		this.factory = factory;
-		//System.out.println("Creating a new data register " + name);
+		// System.out.println("Creating a new data register " + name);
 		MinecraftForge.EVENT_BUS.addListener(this::onReload);
 	}
 
@@ -63,7 +63,7 @@ public class DataRegistry<T extends DataParseable<T>> extends AbstractCollection
 	}
 
 	public DataAccessor<T> register(ResourceLocation key, T value) {
-		//System.out.println("In " + this.name + ": registering new key " + key);
+		// System.out.println("In " + this.name + ": registering new key " + key);
 		this.contents.put(key, value);
 		return new DataAccessor<T>(this, key);
 	}
@@ -81,12 +81,12 @@ public class DataRegistry<T extends DataParseable<T>> extends AbstractCollection
 	}
 
 	public ResourceLocation getName() {
-		return name;
+		return this.name;
 	}
 
-	//@SubscribeEvent
+	// @SubscribeEvent
 	public void onReload(AddReloadListenerEvent event) {
-		//System.out.println("Adding listener here!");
+		// System.out.println("Adding listener here!");
 		event.addListener(new DataParserListener<T>(this, this.name.getPath(), this.factory));
 	}
 

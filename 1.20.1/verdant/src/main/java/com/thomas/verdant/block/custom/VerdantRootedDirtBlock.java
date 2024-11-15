@@ -117,8 +117,8 @@ public class VerdantRootedDirtBlock extends Block implements VerdantGrower {
 				}
 				BlockPos neighborPos = pos.relative(adjacent);
 				BlockState neighbor = level.getBlockState(neighborPos);
-				if (roots.hasInput(neighbor.getBlock()) || erode.hasInput(otherState.getBlock())
-						|| erodeWet.hasInput(otherState.getBlock())
+				if (roots.hasInput(neighbor.getBlock()) || erode.hasInput(neighbor.getBlock())
+						|| erodeWet.hasInput(neighbor.getBlock())
 						|| !neighbor.isCollisionShapeFullBlock(level, otherPos)) {
 					canBeActive = true;
 					break;

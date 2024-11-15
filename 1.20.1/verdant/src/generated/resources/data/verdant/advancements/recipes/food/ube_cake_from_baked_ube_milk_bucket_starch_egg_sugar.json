@@ -1,0 +1,100 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_baked_ube": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:baked_ube"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_egg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:egg"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_milk_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:milk_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_starch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:starch"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_sugar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sugar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:ube_cake_from_baked_ube_milk_bucket_starch_egg_sugar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_ube_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:ube_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_baked_ube",
+      "has_milk_bucket",
+      "has_starch",
+      "has_egg",
+      "has_sugar",
+      "has_ube_cake",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:ube_cake_from_baked_ube_milk_bucket_starch_egg_sugar"
+    ]
+  },
+  "sends_telemetry_event": false
+}

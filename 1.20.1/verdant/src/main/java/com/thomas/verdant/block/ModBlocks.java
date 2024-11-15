@@ -19,6 +19,7 @@ import com.thomas.verdant.block.custom.PoisonVerdantTendrilBlock;
 import com.thomas.verdant.block.custom.PoisonVerdantTendrilPlantBlock;
 import com.thomas.verdant.block.custom.RopeBlock;
 import com.thomas.verdant.block.custom.SpikesBlock;
+import com.thomas.verdant.block.custom.SpreadingCropBlock;
 import com.thomas.verdant.block.custom.StinkingBlossomBlock;
 import com.thomas.verdant.block.custom.ThornBushBlock;
 import com.thomas.verdant.block.custom.ThornyVerdantLeavesBlock;
@@ -33,7 +34,8 @@ import com.thomas.verdant.block.custom.VerdantVineBlock;
 import com.thomas.verdant.block.custom.WaterHemlockBlock;
 import com.thomas.verdant.block.custom.WildCoffeeBlock;
 import com.thomas.verdant.block.custom.WiltedVerdantLeavesBlock;
-import com.thomas.verdant.block.custom.YamCropBlock;
+import com.thomas.verdant.block.custom.extensible.ExtensibleCakeBlock;
+import com.thomas.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.entity.ModEntityTypes;
@@ -394,8 +396,20 @@ public class ModBlocks {
 			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
 					.offsetType(OffsetType.XZ)));
 
-	public static final RegistryObject<Block> YAM_CROP = registerBlockOnly("yam_crop",
-			() -> new YamCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
+	public static final RegistryObject<Block> POTTED_WILD_CASSAVA = registerBlockOnly("potted_wild_cassava",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WILD_CASSAVA,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
+	public static final RegistryObject<Block> WILD_UBE = registerBlockWithItem("wild_ube",
+			() -> new BushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion().instabreak()
+					.offsetType(OffsetType.XZ)));
+
+	public static final RegistryObject<Block> POTTED_WILD_UBE = registerBlockOnly("potted_wild_ube",
+			() -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.WILD_UBE,
+					BlockBehaviour.Properties.copy(Blocks.POTTED_BLUE_ORCHID).noOcclusion()));
+
+	public static final RegistryObject<Block> UBE_CROP = registerBlockOnly("ube_crop",
+			() -> new SpreadingCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES)));
 
 	// Rope ladder
 	public static final RegistryObject<Block> ROPE_LADDER = registerBlockWithItem("rope_ladder",
@@ -406,10 +420,61 @@ public class ModBlocks {
 	public static final RegistryObject<Block> FISH_TRAP_BLOCK = registerBlockWithItem("fish_trap_block",
 			() -> new FishTrapBlock(BlockBehaviour.Properties.copy(Blocks.LOOM).noOcclusion()));
 
-	// Yam cake
-	// public static final RegistryObject<Block> YAM_CAKE =
-	// registerBlockWithItem("yam_cake",
-	// () -> new CakeBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	// Ube cake
+	public static final RegistryObject<Block> UBE_CAKE = registerBlockOnly("ube_cake",
+			() -> new ExtensibleCakeBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
+
+	public static final RegistryObject<Block> CANDLE_UBE_CAKE = registerBlockOnly("candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> WHITE_CANDLE_UBE_CAKE = registerBlockOnly("white_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.WHITE_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> ORANGE_CANDLE_UBE_CAKE = registerBlockOnly("orange_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.ORANGE_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> MAGENTA_CANDLE_UBE_CAKE = registerBlockOnly("magenta_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.MAGENTA_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> LIGHT_BLUE_CANDLE_UBE_CAKE = registerBlockOnly(
+			"light_blue_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(Blocks.LIGHT_BLUE_CANDLE,
+					ModBlocks.UBE_CAKE, BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> YELLOW_CANDLE_UBE_CAKE = registerBlockOnly("yellow_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.YELLOW_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> LIME_CANDLE_UBE_CAKE = registerBlockOnly("lime_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.LIME_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> PINK_CANDLE_UBE_CAKE = registerBlockOnly("pink_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.PINK_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> GRAY_CANDLE_UBE_CAKE = registerBlockOnly("gray_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.GRAY_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> LIGHT_GRAY_CANDLE_UBE_CAKE = registerBlockOnly(
+			"light_gray_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(Blocks.LIGHT_GRAY_CANDLE,
+					ModBlocks.UBE_CAKE, BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> CYAN_CANDLE_UBE_CAKE = registerBlockOnly("cyan_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.CYAN_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> PURPLE_CANDLE_UBE_CAKE = registerBlockOnly("purple_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.PURPLE_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> BLUE_CANDLE_UBE_CAKE = registerBlockOnly("blue_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.BLUE_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> BROWN_CANDLE_UBE_CAKE = registerBlockOnly("brown_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.BROWN_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> GREEN_CANDLE_UBE_CAKE = registerBlockOnly("green_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.GREEN_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> RED_CANDLE_UBE_CAKE = registerBlockOnly("red_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.RED_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
+	public static final RegistryObject<Block> BLACK_CANDLE_UBE_CAKE = registerBlockOnly("black_candle_ube_cake",
+			() -> new ExtensibleCandleCakeBlock(Blocks.BLACK_CANDLE, ModBlocks.UBE_CAKE,
+					BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE)));
 
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.thomas.verdant.block.ModBlocks;
+import com.thomas.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.thomas.verdant.block.entity.ModBlockEntities;
 import com.thomas.verdant.datagen.ModLootModifiers;
 import com.thomas.verdant.effect.ModMobEffects;
@@ -56,70 +57,39 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // Remember 1:33
 
-// register spawn eggs!
+// bugfixes:
+// added lang string for verdant heartwood pickaxe
+
+// to do: 
+// make data add and override properly
+
+
+
 // add recipes!
-// fix block picking on yams giving seeds
-// finish fish trap model and waterlogging
-// LivingEntity$getVisibilityPercent, maybe mixin to that for stench potion? 
-// Ah, use LivingVisibilityEvent
 
-
-// maybe add rooting station! block entity, turns bone meal into eroding/rooting the block in front
-// do you like green axe and wham? - get a heartwood tool
+// 
 // ready to em-bark achievement - get heartwood armor
-// rooting for you - craft a rooting station
+// tree chugger - drink an antidote
+// shattered heart - collect a heart fragment, full of mysterious energy
+// 
 
-// Additions
-// Rope ladders
-// Traps
-// Iron Spikes
-// Heart fragment + heart recipe
-// Imbued armor
-// Bush
-// Charred frame block
-// Lilypads will now grow on water that has verdant ground underneath.
-// Many texture updates!
-// Antidote
-// Asphyxiation
+// List for next update:
+// Blowpipe - consumes air meter to fire darts; very short cooldown, mostly limited by suffocation
+// Blowdarts (maybe automatically register potions, like with arrows?)
+// Special blowdarts that aren't made with potions - specialized effects for different situations and monsters
+// 
+// Two new spider types.
+// Web-shooting spiders?
+// Trapdoor spiders?
 
-// Changes
-// Entities should try to avoid walking through spikes and thorn bushes
-// Significant changes to how verdant rooted dirt spreads, in an attempt to decrease lag.
-// Verdant rooted dirt will no longer collapse from cave ceilings or smooth out pillars.
-// Rooted dirt will erode cobblestone into "dense gravel", which does not fall, but can drop up to three gravel items.
-// Dense Gravel will break when pushed by a piston.
-// Updated texture for poison ivy
-// Removed unnecessary waterlogged state for verdant tendril
-// Poison ivy no longer slows you down as much and won't trap you while you are flying.
-// Renamed Water Hemlock to Drowned Hemlock. 
-// - I did not change the item/block name in the code, just the display name. 
-// - Therefore, it will not cause them to disappear in old worlds. 
-// Drowned Hemlock now inflicts Asphyxiation, not Wither.
-// Colloid potions are now brewed from Thick potions, not Awkward potions.
+// wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
+// monkshood (Causes paralysis, i.e. slowness, weakness, and mining fatigue).
 
-// Verdant rooted dirt will now immediately convert to mud (or vice versa) when placed, if appropriate.
-// Visual rework of verdant rooted dirt
-// The added recipe for arrows now requires a vine as fletching, in addition to the stick and the thorn.
-// - This is made in anticipation of a possible new weapon in the future that will include the original crafting recipe.
+// Scented effect; attracts animals. Higher levels cause them to spontaneously fall in love.
+// Made with a fermented spider eye into stench potion
 
-// Bugfixes
-// Removed debug text when the Cassava crop is bonemealed.
-// Fixed possible desync when a poison ivy arrow hits an entity.
-// Spikes can no longer be instantly replaced by other blocks.
-// Frame blocks are in the creative menu
-// Reduced lag considerably
-// Fixed a bug where verdant rooted dirt wouldn't always erode the entire area around it.
-// Frame blocks now have the proper block support shape (i.e. they can't support blocks like torches at all)
-// Drowned hemlock can no longer be eaten to restore the food value of a potato. Pretend that never happened, and don't ever eat hemlock!
-// Fixed underwater erosion; previously, it mysteriously stopped working. Now it works.
-
-// To add: yams. three growth stages, 75% chance to spread instead of growing from the second to the third stage.
-// Changed icon for food poisoning
-// Restoration potion, provides immunity to poison and wither
-
-// To add: wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
-// Maybe add monkshood? Causes paralysis.
 // Think about giant hogweed.
+
 // Levels of infection: sprouting, leafing, rooting, blooming.
 // sprouting: speed, regen, haste
 // leafing:   regen, haste, resistance, phototrophic (restores saturation based on light level)
@@ -136,6 +106,7 @@ public class Verdant {
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	public Verdant() {
+
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		ModCreativeModeTabs.register(modEventBus);
@@ -174,6 +145,8 @@ public class Verdant {
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WILD_COFFEE.getId(), ModBlocks.POTTED_WILD_COFFEE);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.THORN_BUSH.getId(), ModBlocks.POTTED_THORN_BUSH);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.BUSH.getId(), ModBlocks.POTTED_BUSH);
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WILD_UBE.getId(), ModBlocks.POTTED_WILD_UBE);
+		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WILD_CASSAVA.getId(), ModBlocks.POTTED_WILD_CASSAVA);
 
 		// Register potions
 		BrewingRecipeRegistry.addRecipe(
@@ -189,6 +162,13 @@ public class Verdant {
 				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.REDSTONE, ModPotions.LONG_COLLOID.get()));
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(ModPotions.COLLOID.get(), Items.GLOWSTONE, ModPotions.STRONG_COLLOID.get()));
+
+		BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.THICK,
+				ModBlocks.STINKING_BLOSSOM.get().asItem(), ModPotions.STENCH.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.STENCH.get(), Items.REDSTONE, ModPotions.LONG_STENCH.get()));
+		BrewingRecipeRegistry.addRecipe(
+				new BetterBrewingRecipe(ModPotions.STENCH.get(), Items.GLOWSTONE_DUST, ModPotions.STRONG_STENCH.get()));
 
 		BrewingRecipeRegistry.addRecipe(
 				new BetterBrewingRecipe(Potions.AWKWARD, ModItems.HEART_FRAGMENT.get(), ModPotions.ANTIDOTE.get()));
@@ -251,6 +231,26 @@ public class Verdant {
 				return null;
 			}
 		});
+
+		// Register candled cakes.
+		ExtensibleCakeBlock ubeCake = (ExtensibleCakeBlock) ModBlocks.UBE_CAKE.get();
+		ubeCake.addCandleCake(Blocks.CANDLE, ModBlocks.CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.BLACK_CANDLE, ModBlocks.BLACK_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.BLUE_CANDLE, ModBlocks.BLUE_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.BROWN_CANDLE, ModBlocks.BROWN_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.CYAN_CANDLE, ModBlocks.CYAN_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.GRAY_CANDLE, ModBlocks.GRAY_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.GREEN_CANDLE, ModBlocks.GREEN_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.LIGHT_BLUE_CANDLE, ModBlocks.LIGHT_BLUE_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.LIGHT_GRAY_CANDLE, ModBlocks.LIGHT_GRAY_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.LIME_CANDLE, ModBlocks.LIME_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.MAGENTA_CANDLE, ModBlocks.MAGENTA_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.ORANGE_CANDLE, ModBlocks.ORANGE_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.PINK_CANDLE, ModBlocks.PINK_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.PURPLE_CANDLE, ModBlocks.PURPLE_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.RED_CANDLE, ModBlocks.RED_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.WHITE_CANDLE, ModBlocks.WHITE_CANDLE_UBE_CAKE.get());
+		ubeCake.addCandleCake(Blocks.YELLOW_CANDLE, ModBlocks.YELLOW_CANDLE_UBE_CAKE.get());
 
 	}
 

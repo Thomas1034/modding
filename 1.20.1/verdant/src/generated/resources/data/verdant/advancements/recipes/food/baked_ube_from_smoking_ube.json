@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:baked_ube_from_smoking_ube"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_ube": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:ube"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ube",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:baked_ube_from_smoking_ube"
+    ]
+  },
+  "sends_telemetry_event": false
+}

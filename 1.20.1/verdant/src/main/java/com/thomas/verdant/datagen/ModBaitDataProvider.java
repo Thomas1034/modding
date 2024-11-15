@@ -34,15 +34,16 @@ public class ModBaitDataProvider extends DataParseableProvider<BaitData> {
 		this.addBait(Items.SUGAR, 0.4, 0.8);
 		this.addBait(ModItems.STARCH.get(), 0.4, 0.8);
 		this.addBait(Items.WHEAT, 0.5, 0.5);
-		this.addBait(Items.COD, 0.5, 0.3);
+		this.addBait(Items.COD, 0.5, 0.5);
 		this.addBait(Items.RABBIT, 0.5, 0.3);
-		this.addBait(Items.SALMON, 0.5, 0.2);
-		this.addBait(ModItems.BAKED_YAM.get(), 0.5, 0.25);
+		this.addBait(Items.SALMON, 0.5, 0.45);
+		this.addBait(ModItems.BAKED_UBE.get(), 0.5, 0.25);
 		this.addBait(Items.CHICKEN, 0.55, 0.3);
 		this.addBait(Items.MUTTON, 0.55, 0.3);
 		this.addBait(Items.PORKCHOP, 0.6, 0.3);
 		this.addBait(Items.BEEF, 0.55, 0.3);
 		this.addBait(Items.COOKIE, 0.6, 0.8);
+		this.addBait(ModItems.UBE_COOKIE.get(), 0.6, 0.8);
 		this.addBait(Items.BREAD, 0.6, 0.3);
 		this.addBait(Items.ENDER_PEARL, 0.6, 0.1);
 		this.addBait(ModItems.ROASTED_COFFEE.get(), 0.8, 0.4);
@@ -53,6 +54,8 @@ public class ModBaitDataProvider extends DataParseableProvider<BaitData> {
 		this.addBait(Items.COOKED_MUTTON, 0.85, 0.2);
 		this.addBait(Items.COOKED_PORKCHOP, 0.9, 0.2);
 		this.addBait(Items.COOKED_BEEF, 0.85, 0.2);
+		this.addBait(ModItems.UBE_CAKE.get(), 0.9, 0.2);
+		this.addBait(Items.CAKE, 0.9, 0.2);
 		this.addBait(Items.ENDER_EYE, 0.9, 0.05);
 		this.addBait(ModItems.SPARKLING_STARCH.get(), 1.2, 0.3);
 		this.addBait(ModItems.COOKED_GOLDEN_CASSAVA.get(), 1.2, 0.05);

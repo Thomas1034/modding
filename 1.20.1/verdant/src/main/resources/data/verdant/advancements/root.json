@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.verdant.root.description"
     },
-    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "background": "verdant:textures/block/verdant_rooted_dirt_old.png",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": false,

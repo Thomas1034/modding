@@ -14,10 +14,12 @@ public class ModProcessorLists {
 	// public static final ResourceKey<StructureProcessorList> VERDANT_PYRAMID =
 	// createKey("verdant_pyramid");
 
+	@SuppressWarnings("unused")
 	private static ResourceKey<StructureProcessorList> createKey(String name) {
 		return ResourceKey.create(Registries.PROCESSOR_LIST, new ResourceLocation(name));
 	}
 
+	@SuppressWarnings("unused")
 	private static void register(BootstapContext<StructureProcessorList> bootstapContext,
 			ResourceKey<StructureProcessorList> resourceKey, List<StructureProcessor> processors) {
 		bootstapContext.register(resourceKey, new StructureProcessorList(processors));

@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heart_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:heart_fragment"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_imbuement_smithing_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:imbuement_smithing_template"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:imbued_verdant_heartwood_boots_from_smithing_transform_of_verdant_heartwood_boots"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_verdant_heartwood_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "verdant:verdant_heartwood_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_imbuement_smithing_template",
+      "has_verdant_heartwood_boots",
+      "has_heart_fragment",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:imbued_verdant_heartwood_boots_from_smithing_transform_of_verdant_heartwood_boots"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.block.custom.CassavaCropBlock;
-import com.thomas.verdant.block.custom.YamCropBlock;
+import com.thomas.verdant.block.custom.SpreadingCropBlock;
 import com.thomas.verdant.item.ModItems;
 
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -43,12 +43,33 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
 		ModBlocks.VERDANT.addLootTables(this);
 
+		this.add(ModBlocks.UBE_CAKE.get(), noDrop());
+		this.add(ModBlocks.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
+		this.add(ModBlocks.WHITE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.WHITE_CANDLE));
+		this.add(ModBlocks.ORANGE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.ORANGE_CANDLE));
+		this.add(ModBlocks.MAGENTA_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.MAGENTA_CANDLE));
+		this.add(ModBlocks.LIGHT_BLUE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.LIGHT_BLUE_CANDLE));
+		this.add(ModBlocks.YELLOW_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.YELLOW_CANDLE));
+		this.add(ModBlocks.LIME_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.LIME_CANDLE));
+		this.add(ModBlocks.PINK_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.PINK_CANDLE));
+		this.add(ModBlocks.GRAY_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.GRAY_CANDLE));
+		this.add(ModBlocks.LIGHT_GRAY_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.LIGHT_GRAY_CANDLE));
+		this.add(ModBlocks.CYAN_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CYAN_CANDLE));
+		this.add(ModBlocks.PURPLE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.PURPLE_CANDLE));
+		this.add(ModBlocks.BLUE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BLUE_CANDLE));
+		this.add(ModBlocks.BROWN_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BROWN_CANDLE));
+		this.add(ModBlocks.GREEN_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.GREEN_CANDLE));
+		this.add(ModBlocks.RED_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.RED_CANDLE));
+		this.add(ModBlocks.BLACK_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BLACK_CANDLE));
+
 		requireSilkTouch(ModBlocks.DENSE_GRAVEL.get(), Blocks.GRAVEL, List.of(1, 3));
 
 		this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
 
 		this.add(ModBlocks.WILD_CASSAVA.get(),
 				this.createChanceDrops(ModBlocks.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.25f));
+		this.add(ModBlocks.WILD_UBE.get(),
+				this.createChanceDrops(ModBlocks.WILD_UBE.get(), ModItems.UBE.get(), 0.2f));
 
 		this.dropSelf(ModBlocks.FISH_TRAP_BLOCK.get());
 		this.dropSelf(ModBlocks.ROPE_LADDER.get());
@@ -109,7 +130,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.dropSelf(ModBlocks.WILD_COFFEE.get());
 		this.add(ModBlocks.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(ModBlocks.WILD_COFFEE.get()));
 		this.dropOther(ModBlocks.COFFEE_CROP.get(), ModItems.COFFEE_BERRIES.get());
-
+		this.add(ModBlocks.POTTED_WILD_CASSAVA.get(), createPotFlowerItemTable(ModBlocks.WILD_CASSAVA.get()));
+		this.add(ModBlocks.POTTED_WILD_UBE.get(), createPotFlowerItemTable(ModBlocks.WILD_UBE.get()));
+		
 		LootItemCondition.Builder cassavaCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
 				.hasBlockStateProperties(ModBlocks.CASSAVA_CROP.get()).setProperties(StatePropertiesPredicate.Builder
 						.properties().hasProperty(CassavaCropBlock.AGE, CassavaCropBlock.MAX_AGE));
@@ -152,16 +175,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		this.add(ModBlocks.BITTER_CASSAVA_CROP.get(), bitterCassavaLoot);
 
 		LootItemCondition.Builder yamCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
-				.hasBlockStateProperties(ModBlocks.YAM_CROP.get()).setProperties(StatePropertiesPredicate.Builder
-						.properties().hasProperty(CassavaCropBlock.AGE, YamCropBlock.MAX_AGE));
+				.hasBlockStateProperties(ModBlocks.UBE_CROP.get()).setProperties(StatePropertiesPredicate.Builder
+						.properties().hasProperty(CassavaCropBlock.AGE, SpreadingCropBlock.MAX_AGE));
 		LootTable.Builder yamLoot = LootTable.lootTable()
-				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.YAM.get())))
+				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.UBE.get())))
 				.withPool(LootPool.lootPool()
-						.add(LootItem.lootTableItem(ModItems.YAM.get())
+						.add(LootItem.lootTableItem(ModItems.UBE.get())
 								.apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
 										0.5714286F, 1)))
 						.setRolls(UniformGenerator.between(1, 2)).when(yamCropMaxAgeBuilder));
-		this.add(ModBlocks.YAM_CROP.get(), yamLoot);
+		this.add(ModBlocks.UBE_CROP.get(), yamLoot);
 
 		LootTable.Builder imbuedLogLoot = LootTable.lootTable()
 				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))

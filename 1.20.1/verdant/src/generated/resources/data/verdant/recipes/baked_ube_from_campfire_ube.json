@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 400,
+  "experience": 0.1,
+  "group": "verdant:baked_ube",
+  "ingredient": {
+    "item": "verdant:ube"
+  },
+  "result": "verdant:baked_ube"
+}

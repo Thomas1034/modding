@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
 public class ImmunityEffect extends MobEffect {
-	
+
 	private final List<MobEffect> immuneTo;
 
 	public ImmunityEffect(MobEffectCategory category, int color, List<MobEffect> immuneTo) {
@@ -18,11 +18,14 @@ public class ImmunityEffect extends MobEffect {
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);
-		@SuppressWarnings("unused")
 		boolean removedAny = false;
 		// Remove listed effects
-		for (MobEffect effect : this.immuneTo) {		
+		for (MobEffect effect : this.immuneTo) {
 			removedAny |= entity.removeEffect(effect);
+		}
+		if (removedAny && amplifier > 0) {
+			// entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60,
+			// amplifier));
 		}
 
 	}

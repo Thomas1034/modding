@@ -2,6 +2,7 @@ package com.thomas.verdant.screen.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.thomas.verdant.Verdant;
+import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.block.entity.custom.FishTrapBlockEntity;
 import com.thomas.verdant.screen.menu.FishTrapMenu;
 
@@ -61,11 +62,18 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
 		guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
 
 		this.renderProgressArrow(guiGraphics, x, y);
-		
-		String catchChance = "No bait";
-		
+
+		int catchPercent = this.menu.getCatchPercent();
+		Component catchPercentComponent = Component.literal(catchPercent + "%");
+		boolean isActive = this.menu.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
+		if (!isActive) {
+			catchPercentComponent = Component.translatable("block.verdant.fish_trap_block.gui.no_water");
+		} else if (catchPercent == 0) {
+			catchPercentComponent = Component.translatable("block.verdant.fish_trap_block.gui.no_bait");
+		}
+
 		this.renderText(guiGraphics, x + ARROW_BLIT_OFFSET_X + ARROW_WIDTH + SPACING,
-				y + ARROW_BLIT_OFFSET_Y + ARROW_HEIGHT / 2 - this.font.lineHeight / 2, "Test Text");
+				y + ARROW_BLIT_OFFSET_Y + ARROW_HEIGHT / 2 - this.font.lineHeight / 2, catchPercentComponent);
 
 		int inputOffsetIfEven = SLOT_TEXTURE_OFFSET_X * ((FishTrapBlockEntity.BAIT_SLOTS + 1) % 2) / 2;
 		int outputOffsetIfEven = SLOT_TEXTURE_OFFSET_X * ((FishTrapBlockEntity.OUTPUT_SLOTS + 1) % 2) / 2;
@@ -97,10 +105,16 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
 				SLOT_WIDTH, SLOT_HEIGHT);
 	}
 
+	@SuppressWarnings("unused")
 	private void renderText(GuiGraphics guiGraphics, int x, int y, String text) {
 		// Draw the slot
 		guiGraphics.drawString(this.font, text, x, y, 0x404040, false);
-		
+	}
+
+	@SuppressWarnings("unused")
+	private void renderText(GuiGraphics guiGraphics, int x, int y, Component text) {
+		// Draw the slot
+		guiGraphics.drawString(this.font, text, x, y, 0x404040, false);
 	}
 
 	@Override

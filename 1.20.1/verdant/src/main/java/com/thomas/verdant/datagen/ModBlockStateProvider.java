@@ -13,7 +13,6 @@ import com.thomas.verdant.block.custom.TrapBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
@@ -43,11 +42,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		
+
 		ModBlocks.VERDANT_HEARTWOOD.addBlockModels(this);
 		ModBlocks.VERDANT.addBlockModels(this);
 
-		cropBlock((CropBlock) ModBlocks.YAM_CROP.get(), "yam", "yam");
+		cake(ModBlocks.UBE_CAKE);
+		candleCake(Blocks.WHITE_CANDLE, ModBlocks.WHITE_CANDLE_UBE_CAKE);
+		candleCake(Blocks.ORANGE_CANDLE, ModBlocks.ORANGE_CANDLE_UBE_CAKE);
+		candleCake(Blocks.MAGENTA_CANDLE, ModBlocks.MAGENTA_CANDLE_UBE_CAKE);
+		candleCake(Blocks.LIGHT_BLUE_CANDLE, ModBlocks.LIGHT_BLUE_CANDLE_UBE_CAKE);
+		candleCake(Blocks.YELLOW_CANDLE, ModBlocks.YELLOW_CANDLE_UBE_CAKE);
+		candleCake(Blocks.LIME_CANDLE, ModBlocks.LIME_CANDLE_UBE_CAKE);
+		candleCake(Blocks.PINK_CANDLE, ModBlocks.PINK_CANDLE_UBE_CAKE);
+		candleCake(Blocks.GRAY_CANDLE, ModBlocks.GRAY_CANDLE_UBE_CAKE);
+		candleCake(Blocks.LIGHT_GRAY_CANDLE, ModBlocks.LIGHT_GRAY_CANDLE_UBE_CAKE);
+		candleCake(Blocks.CYAN_CANDLE, ModBlocks.CYAN_CANDLE_UBE_CAKE);
+		candleCake(Blocks.PURPLE_CANDLE, ModBlocks.PURPLE_CANDLE_UBE_CAKE);
+		candleCake(Blocks.BLUE_CANDLE, ModBlocks.BLUE_CANDLE_UBE_CAKE);
+		candleCake(Blocks.BROWN_CANDLE, ModBlocks.BROWN_CANDLE_UBE_CAKE);
+		candleCake(Blocks.GREEN_CANDLE, ModBlocks.GREEN_CANDLE_UBE_CAKE);
+		candleCake(Blocks.RED_CANDLE, ModBlocks.RED_CANDLE_UBE_CAKE);
+		candleCake(Blocks.BLACK_CANDLE, ModBlocks.BLACK_CANDLE_UBE_CAKE);
+		candleCake(Blocks.CANDLE, ModBlocks.CANDLE_UBE_CAKE);
+
+		cropBlock((CropBlock) ModBlocks.UBE_CROP.get(), "ube", "ube");
 
 		tumbledBlockWithItem(ModBlocks.DENSE_GRAVEL);
 
@@ -62,6 +80,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockWithItem(ModBlocks.WILD_CASSAVA.get(), models()
 				.cross(blockTexture(ModBlocks.WILD_CASSAVA.get()).getPath(), blockTexture(ModBlocks.WILD_CASSAVA.get()))
 				.renderType("cutout"));
+		simpleBlockWithItem(ModBlocks.WILD_UBE.get(),
+				models().cross(blockTexture(ModBlocks.WILD_UBE.get()).getPath(), blockTexture(ModBlocks.WILD_UBE.get()))
+						.renderType("cutout"));
 
 		tumbledBlockWithItem(ModBlocks.CASSAVA_ROOTED_DIRT);
 		tumbledBlockWithItem(ModBlocks.BITTER_CASSAVA_ROOTED_DIRT);
@@ -127,6 +148,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleFlowerWithPot(ModBlocks.THORN_BUSH.get(), ModBlocks.POTTED_THORN_BUSH.get());
 		simpleFlowerWithPot(ModBlocks.BUSH.get(), ModBlocks.POTTED_BUSH.get());
 
+		// Wild crops
+		simpleFlowerPot(ModBlocks.POTTED_WILD_CASSAVA.get(),
+				new ResourceLocation(Verdant.MOD_ID, "block/wild_cassava_potted"));
+		simpleFlowerPot(ModBlocks.POTTED_WILD_UBE.get(),
+				new ResourceLocation(Verdant.MOD_ID, "block/wild_ube_potted"));
+
 		// Coffee
 		makeCoffeeCrop((CoffeeCropBlock) ModBlocks.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
 		// Cassava
@@ -134,6 +161,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		makeCassavaCrop((CassavaCropBlock) ModBlocks.BITTER_CASSAVA_CROP.get(), "bitter_cassava_crop_",
 				"bitter_cassava_crop_");
 
+	}
+
+	private void cake(RegistryObject<Block> cake) {
+		ResourceLocation cakeLoc = cake.getId();
+		String cakeTextureBase = cakeLoc.getNamespace() + ":block/" + cakeLoc.getPath();
+		getVariantBuilder(cake.get()).forAllStates((state) -> {
+			int bites = state.getValue(BlockStateProperties.BITES);
+			String slice = ((bites == 0) ? "" : ("_slice" + bites));
+			String cakeModel = "block/cake" + slice;
+			ModelFile model = models().withExistingParent(cake.getId().getPath() + slice, mcLoc(cakeModel))
+					.texture("bottom", cakeTextureBase + "_bottom").texture("particle", cakeTextureBase + "_side")
+					.texture("inside", cakeTextureBase + "_inner").texture("side", cakeTextureBase + "_side")
+					.texture("top", cakeTextureBase + "_top");
+
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+	}
+
+	private void candleCake(Block candle, RegistryObject<Block> cake) {
+		@SuppressWarnings("deprecation")
+		ResourceLocation candleLoc = candle.builtInRegistryHolder().key().location();
+		String candleTexture = candleLoc.getNamespace() + ":block/" + candleLoc.getPath();
+		ResourceLocation cakeLoc = ModBlocks.UBE_CAKE.getId();
+		String cakeTextureBase = cakeLoc.getNamespace() + ":block/" + cakeLoc.getPath();
+
+		ModelFile model = models().withExistingParent(cake.getId().getPath(), mcLoc("block/template_cake_with_candle"))
+				.texture("bottom", cakeTextureBase + "_bottom").texture("candle", candleTexture)
+				.texture("inner", cakeTextureBase + "_inner").texture("particle", cakeTextureBase + "_side")
+				.texture("side", cakeTextureBase + "_side").texture("top", cakeTextureBase + "_top");
+		this.simpleBlock(cake.get(), model);
 	}
 
 	private void verdantGroundBlock(Supplier<Block> blockSource, Supplier<Block> baseSource) {
@@ -144,6 +201,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		Block block = blockSource.get();
 		Block base = baseSource.get();
+		@SuppressWarnings("deprecation")
 		ResourceLocation baseLocation = base.builtInRegistryHolder().key().location();
 
 		ModelFile[] files = new ModelFile[extensions.length];
@@ -168,6 +226,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		Block block = blockSource.get();
 		Block base = baseSource.get();
+		@SuppressWarnings("deprecation")
 		ResourceLocation baseLocation = base.builtInRegistryHolder().key().location();
 
 		ModelFile[] files = new ModelFile[extensions.length];
@@ -474,7 +533,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(flower, models().cross(blockTexture(flower).getPath(), blockTexture(flower)).renderType("cutout"));
 		simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(),
 				new ResourceLocation("flower_pot_cross"), "plant", blockTexture(flower)).renderType("cutout"));
+	}
 
+	protected void simpleFlowerPot(Block pottedFlower, ResourceLocation pottedFlowerTexture) {
+		simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(),
+				new ResourceLocation("flower_pot_cross"), "plant", pottedFlowerTexture).renderType("cutout"));
 	}
 
 	protected void cropBlock(CropBlock block, String modelName, String textureName) {

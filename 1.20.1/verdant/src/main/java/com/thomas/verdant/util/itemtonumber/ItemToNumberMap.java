@@ -130,6 +130,7 @@ public class ItemToNumberMap implements DataParseable<ItemToNumberMap> {
 			if (isTag) {
 				// It is a tag.
 				// Get the tag it corresponds to.
+				@SuppressWarnings("deprecation")
 				ITag<Item> keyTag = ForgeRegistries.ITEMS.tags()
 						.getTag(new TagKey<Item>(ForgeRegistries.ITEMS.getRegistryKey(), keyLocation));
 

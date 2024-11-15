@@ -1,9 +1,10 @@
-// 1.20.1	2024-10-31T11:08:12.219893	Bait Data
-f7106d5768431b3b8aace40998a32672c9e46e26 data/verdant/bait_data/baked_yam_bait.json
+// 1.20.1	2024-11-06T10:24:04.5167717	Bait Data
+eb3a1df01bd183fa8f337aa4225414482e9857b0 data/verdant/bait_data/baked_ube_bait.json
 cc692b877d5c60a51e0c9448ecef71a9df86baf7 data/verdant/bait_data/beef_bait.json
 2cd22c6b61fcc74b9a195dac6ebb96c5c09efdba data/verdant/bait_data/beetroot_seeds_bait.json
 4043b49d3808a1c11d4bc0ac2ed03e18b94fc846 data/verdant/bait_data/bread_bait.json
 b6419f97172e1852a6fde63b70fcc7d3892ec0e6 data/verdant/bait_data/brown_mushroom_bait.json
+e1fad4892dd0e5bba8672b04ade68735508ecaa0 data/verdant/bait_data/cake_bait.json
 ade6bac22521d39554ee3c8a9294394a404cd7b8 data/verdant/bait_data/chicken_bait.json
 f8d4ae9efb7940ba5c594cb5a9b9811a61cc7067 data/verdant/bait_data/chorus_fruit_bait.json
 7b730f72afca03515515f643f710068304f47864 data/verdant/bait_data/cod_bait.json
@@ -35,5 +36,7 @@ ea6e2de1b0f092c308ef6c8d09b1f0ba411651f8 data/verdant/bait_data/roasted_coffee_b
 02ac08b3684f8a58a1a45271b6a636cc4faa58c3 data/verdant/bait_data/sugar_bait.json
 926bab7e24742c1f1665b4ed275634544958940b data/verdant/bait_data/sugar_cane_bait.json
 415861350b385c96bb51cbd1f85560a44d23bc72 data/verdant/bait_data/sweet_berries_bait.json
+e272b1c45de89bcf262d937f316b704eb77569e2 data/verdant/bait_data/ube_cake_bait.json
+13a407318cec8eeb34de2630cd64a304267f2b1a data/verdant/bait_data/ube_cookie_bait.json
 262bcbd1fd4318807e59f9d531f0f7d20072fb33 data/verdant/bait_data/wheat_bait.json
 10e34fbb05cfb97edcf1d65e35c0eace48af0e5b data/verdant/bait_data/wheat_seeds_bait.json

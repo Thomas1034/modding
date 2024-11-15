@@ -164,6 +164,7 @@ public class BlockTransformer implements DataParseable<BlockTransformer> {
 			if (isTag) {
 				// It is a tag.
 				// Get the tag it corresponds to.
+				@SuppressWarnings("deprecation")
 				ITag<Block> startTag = ForgeRegistries.BLOCKS.tags()
 						.getTag(new TagKey<Block>(ForgeRegistries.BLOCKS.getRegistryKey(), startLocation));
 

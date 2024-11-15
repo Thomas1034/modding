@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "verdant:block/ube_stage0"
+    },
+    "age=1": {
+      "model": "verdant:block/ube_stage1"
+    },
+    "age=2": {
+      "model": "verdant:block/ube_stage2"
+    },
+    "age=3": {
+      "model": "verdant:block/ube_stage3"
+    },
+    "age=4": {
+      "model": "verdant:block/ube_stage4"
+    },
+    "age=5": {
+      "model": "verdant:block/ube_stage5"
+    },
+    "age=6": {
+      "model": "verdant:block/ube_stage6"
+    },
+    "age=7": {
+      "model": "verdant:block/ube_stage7"
+    }
+  }
+}

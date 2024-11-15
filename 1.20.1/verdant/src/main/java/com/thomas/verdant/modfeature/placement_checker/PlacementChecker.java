@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public abstract class PlacementChecker {
 	
+	@SuppressWarnings("unused")
 	private ResourceLocation location;
 	
 }

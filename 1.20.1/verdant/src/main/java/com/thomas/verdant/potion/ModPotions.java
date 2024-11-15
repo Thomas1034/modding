@@ -36,7 +36,13 @@ public class ModPotions {
 			() -> new Potion(new MobEffectInstance(ModMobEffects.ANTIDOTE.get(), 1800, 0)));
 	public static final RegistryObject<Potion> LONG_ANTIDOTE = POTIONS.register("long_antidote",
 			() -> new Potion(new MobEffectInstance(ModMobEffects.ANTIDOTE.get(), 4800, 0)));
-
+	public static final RegistryObject<Potion> STENCH = POTIONS.register("stench",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.STENCH.get(), 3600, 0)));
+	public static final RegistryObject<Potion> LONG_STENCH = POTIONS.register("long_stench",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.STENCH.get(), 9600, 0)));
+	public static final RegistryObject<Potion> STRONG_STENCH = POTIONS.register("strong_stench",
+			() -> new Potion(new MobEffectInstance(ModMobEffects.STENCH.get(), 1800, 1)));
+	
 	public static void register(IEventBus eventBus) {
 		POTIONS.register(eventBus);
 	}

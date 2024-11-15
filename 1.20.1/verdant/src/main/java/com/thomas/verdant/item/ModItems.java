@@ -5,6 +5,12 @@ import java.util.function.Supplier;
 import com.thomas.verdant.Verdant;
 import com.thomas.verdant.block.ModBlocks;
 import com.thomas.verdant.effect.ModMobEffects;
+import com.thomas.verdant.entity.ModEntityTypes;
+import com.thomas.verdant.item.custom.DurabilityChangingAxeItem;
+import com.thomas.verdant.item.custom.DurabilityChangingHoeItem;
+import com.thomas.verdant.item.custom.DurabilityChangingPickaxeItem;
+import com.thomas.verdant.item.custom.DurabilityChangingShovelItem;
+import com.thomas.verdant.item.custom.DurabilityChangingSwordItem;
 import com.thomas.verdant.item.custom.EffectBoostFoodItem;
 import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.PoisonIvyArrowItem;
@@ -29,12 +35,16 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
+
+	public static final int IMBUED_ITEMS_REGENERATE_EVERY = 100;
+
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Verdant.MOD_ID);
 
 	// TODO SWAP TO WoodSet
@@ -85,25 +95,29 @@ public class ModItems {
 					new Item.Properties().fireResistant(), 400));
 
 	// Heartwood armor
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HELMET = ITEMS.register(
-			"imbued_verdant_heartwood_helmet",
-			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.HELMET,
-					new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HELMET = ITEMS
+			.register("imbued_verdant_heartwood_helmet",
+					() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+							ArmorItem.Type.HELMET, new Item.Properties().fireResistant(),
+							IMBUED_ITEMS_REGENERATE_EVERY));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_CHESTPLATE = ITEMS.register(
-			"imbued_verdant_heartwood_chestplate",
-			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.CHESTPLATE,
-					new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_CHESTPLATE = ITEMS
+			.register("imbued_verdant_heartwood_chestplate",
+					() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+							ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant(),
+							IMBUED_ITEMS_REGENERATE_EVERY));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_LEGGINGS = ITEMS.register(
-			"imbued_verdant_heartwood_leggings",
-			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.LEGGINGS,
-					new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_LEGGINGS = ITEMS
+			.register("imbued_verdant_heartwood_leggings",
+					() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+							ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant(),
+							IMBUED_ITEMS_REGENERATE_EVERY));
 
-	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_BOOTS = ITEMS.register(
-			"imbued_verdant_heartwood_boots",
-			() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD, ArmorItem.Type.BOOTS,
-					new Item.Properties().fireResistant(), 100));
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_BOOTS = ITEMS
+			.register("imbued_verdant_heartwood_boots",
+					() -> new VerdantHeartwoodArmorItem(ModArmorMaterials.IMBUED_VERDANT_HEARTWOOD,
+							ArmorItem.Type.BOOTS, new Item.Properties().fireResistant(),
+							IMBUED_ITEMS_REGENERATE_EVERY));
 
 	// Heartwood weapons
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_SWORD = ITEMS.register("verdant_heartwood_sword",
@@ -120,6 +134,29 @@ public class ModItems {
 
 	public static final RegistryObject<Item> VERDANT_HEARTWOOD_HOE = ITEMS.register("verdant_heartwood_hoe",
 			() -> new HoeItem(ModToolTiers.VERDANT_HEARTWOOD, -2, -1.0F, new Item.Properties()));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_SWORD = ITEMS.register(
+			"imbued_verdant_heartwood_sword",
+			() -> new DurabilityChangingSwordItem(ModToolTiers.IMBUED_VERDANT_HEARTWOOD, 3, -2.4F, -1,
+					IMBUED_ITEMS_REGENERATE_EVERY, new Item.Properties()));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_SHOVEL = ITEMS.register(
+			"imbued_verdant_heartwood_shovel",
+			() -> new DurabilityChangingShovelItem(ModToolTiers.IMBUED_VERDANT_HEARTWOOD, 1.2F, -3.0F, -1,
+					IMBUED_ITEMS_REGENERATE_EVERY, new Item.Properties()));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_PICKAXE = ITEMS.register(
+			"imbued_verdant_heartwood_pickaxe",
+			() -> new DurabilityChangingPickaxeItem(ModToolTiers.IMBUED_VERDANT_HEARTWOOD, 1, -2.8F, -1,
+					IMBUED_ITEMS_REGENERATE_EVERY, new Item.Properties()));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_AXE = ITEMS.register(
+			"imbued_verdant_heartwood_axe", () -> new DurabilityChangingAxeItem(ModToolTiers.IMBUED_VERDANT_HEARTWOOD,
+					5.0F, -3.0F, -1, IMBUED_ITEMS_REGENERATE_EVERY, new Item.Properties()));
+
+	public static final RegistryObject<Item> IMBUED_VERDANT_HEARTWOOD_HOE = ITEMS.register(
+			"imbued_verdant_heartwood_hoe", () -> new DurabilityChangingHoeItem(ModToolTiers.IMBUED_VERDANT_HEARTWOOD,
+					-2, -1.0F, -1, IMBUED_ITEMS_REGENERATE_EVERY, new Item.Properties()));
 
 	public static final RegistryObject<Item> POISON_ARROW = ITEMS.register("poison_arrow",
 			() -> new PoisonIvyArrowItem(new Item.Properties()));
@@ -175,15 +212,33 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(64)));
 
 	// Yam stuff
-	public static final RegistryObject<Item> YAM = ITEMS.register("yam",
-			() -> new ItemNameBlockItem(ModBlocks.YAM_CROP.get(), new Item.Properties().stacksTo(64)));
+	public static final RegistryObject<Item> UBE = ITEMS.register("ube",
+			() -> new ItemNameBlockItem(ModBlocks.UBE_CROP.get(), new Item.Properties().stacksTo(64)));
 
-	public static final RegistryObject<Item> BAKED_YAM = ITEMS.register("baked_yam",
-			() -> new Item(new Item.Properties().food(Foods.BAKED_POTATO)));
+	public static final RegistryObject<Item> BAKED_UBE = ITEMS.register("baked_ube", () -> new Item(
+			new Item.Properties().food((new FoodProperties.Builder()).nutrition(5).saturationMod(0.7F).build())));
+
+	public static final RegistryObject<Item> UBE_CAKE = ITEMS.register("ube_cake",
+			() -> new ItemNameBlockItem(ModBlocks.UBE_CAKE.get(), new Item.Properties().stacksTo(1)));
+
+	public static final RegistryObject<Item> UBE_COOKIE = ITEMS.register("ube_cookie", () -> new Item(
+			new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0.2F).build())));
 
 	// Water hemlock
 	public static final RegistryObject<Item> WATER_HEMLOCK = ITEMS.register("water_hemlock",
 			() -> new DoubleHighBlockItem(ModBlocks.WATER_HEMLOCK.get(), new Item.Properties()));
+
+	// Imbuement template
+	public static final RegistryObject<Item> IMBUEMENT_SMITHING_TEMPLATE = ITEMS.register("imbuement_smithing_template",
+			() -> new Item(new Item.Properties()));
+
+	// Eggses
+	public static final RegistryObject<Item> OVERGROWN_SKELETON_SPAWN_EGG = ITEMS.register(
+			"overgrown_skeleton_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntityTypes.OVERGROWN_SKELETON, 0xc1c1c1, 0x145214, new Item.Properties()));
+
+	public static final RegistryObject<Item> OVERGROWN_ZOMBIE_SPAWN_EGG = ITEMS.register("overgrown_zombie_spawn_egg",
+			() -> new ForgeSpawnEggItem(ModEntityTypes.OVERGROWN_ZOMBIE, 0x145214, 0x799C65, new Item.Properties()));
 
 	// Boilerplate
 	@SuppressWarnings("unused")

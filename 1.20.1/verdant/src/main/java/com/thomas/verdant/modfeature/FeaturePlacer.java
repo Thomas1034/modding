@@ -134,6 +134,7 @@ public class FeaturePlacer {
 						.setValue(MultifaceBlock.getFaceProperty(Direction.DOWN), true)),
 				Rarity.RARE, "floor_glow_lichen");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_CASSAVA.get()), Rarity.RARE, "wild_cassava");
+		registerSurfaceFeature(Feature.smallPlant(ModBlocks.WILD_UBE.get()), Rarity.RARE, "wild_ube");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BLUE_ORCHID), Rarity.RARE, "blue_orchid");
 		registerSurfaceFeature(Feature.smallPlant(Blocks.BROWN_MUSHROOM), Rarity.RARE, "brown_mushroom");
 		registerSurfaceFeature(Feature.smallPlant(ModBlocks.STINKING_BLOSSOM.get()), Rarity.VERY_RARE,
@@ -181,7 +182,7 @@ public class FeaturePlacer {
 		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) Blocks.SMALL_DRIPLEAF), Rarity.UNCOMMON,
 				"small_dripleaf");
 		registerWaterFeature(Feature.tallUnderwaterPlant((DoublePlantBlock) ModBlocks.WATER_HEMLOCK.get()),
-				Rarity.VERY_UNCOMMON, "water_hemlock");
+				Rarity.EXTREMELY_UNCOMMON, "water_hemlock");
 		registerWaterFeature(Feature.aboveShallowWater(Blocks.LILY_PAD.defaultBlockState(), 4, 2), Rarity.VERY_UNCOMMON,
 				"lily_pad");
 

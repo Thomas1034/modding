@@ -32,20 +32,25 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.CASSAVA_CUTTINGS.get());
 						pOutput.accept(ModItems.BITTER_CASSAVA_CUTTINGS.get());
 						pOutput.accept(ModItems.THORN.get());
+						pOutput.accept(ModItems.IMBUEMENT_SMITHING_TEMPLATE.get());
 						pOutput.accept(ModItems.HEART_FRAGMENT.get());
 						pOutput.accept(ModItems.HEART_OF_THE_FOREST.get());
 						pOutput.accept(ModItems.TOXIC_ASH.get());
 						pOutput.accept(ModItems.TOXIC_ASH_BUCKET.get());
+						pOutput.accept(ModItems.OVERGROWN_SKELETON_SPAWN_EGG.get());
+						pOutput.accept(ModItems.OVERGROWN_ZOMBIE_SPAWN_EGG.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_FOODS = CREATIVE_MODE_TABS.register("verdant_foods",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COFFEE_BERRIES.get()))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COOKED_GOLDEN_CASSAVA.get()))
 					.title(Component.translatable("creativetab.verdant_food")).displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.COFFEE_BERRIES.get());
 						pOutput.accept(ModItems.BITTER_BREAD.get());
 						pOutput.accept(ModItems.COOKED_CASSAVA.get());
 						pOutput.accept(ModItems.COOKED_GOLDEN_CASSAVA.get());
-						pOutput.accept(ModItems.YAM.get());
-						pOutput.accept(ModItems.BAKED_YAM.get());
+						pOutput.accept(ModItems.UBE.get());
+						pOutput.accept(ModItems.BAKED_UBE.get());
+						pOutput.accept(ModItems.UBE_COOKIE.get());
+						pOutput.accept(ModItems.UBE_CAKE.get());
 
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_BLOCKS = CREATIVE_MODE_TABS.register("verdant_blocks",
@@ -125,6 +130,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModBlocks.WILD_COFFEE.get());
 						pOutput.accept(ModBlocks.BLEEDING_HEART.get());
 						pOutput.accept(ModBlocks.WATER_HEMLOCK.get());
+						pOutput.accept(ModBlocks.FISH_TRAP_BLOCK.get());
 					}).build());
 	public static final RegistryObject<CreativeModeTab> VERDANT_TOOLS = CREATIVE_MODE_TABS.register("verdant_tools",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VERDANT_HEARTWOOD_PICKAXE.get()))
@@ -133,6 +139,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_AXE.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_SHOVEL.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_HOE.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_PICKAXE.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_AXE.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_SHOVEL.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_HOE.get());
 						pOutput.accept(ModItems.SHORT_ROPE_COIL.get());
 						pOutput.accept(ModItems.ROPE_COIL.get());
 						pOutput.accept(ModItems.TOXIC_SOLUTION_BUCKET.get());
@@ -144,6 +154,8 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.POISON_ARROW.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_SWORD.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_AXE.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_SWORD.get());
+						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_AXE.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_HELMET.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get());
 						pOutput.accept(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get());
@@ -152,6 +164,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get());
 						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get());
 						pOutput.accept(ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
+						pOutput.accept(ModBlocks.THORN_SPIKES.get());
+						pOutput.accept(ModBlocks.IRON_SPIKES.get());
+						pOutput.accept(ModBlocks.THORN_TRAP.get());
+						pOutput.accept(ModBlocks.IRON_TRAP.get());
 					}).build());
 
 	public static void register(IEventBus eventBus) {

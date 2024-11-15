@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:imbuement_smithing_template",
+  "key": {
+    "#": {
+      "item": "verdant:verdant_heartwood_log"
+    },
+    "L": {
+      "item": "verdant:verdant_log"
+    },
+    "S": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "pattern": [
+    "#S#",
+    "#L#",
+    "###"
+  ],
+  "result": {
+    "item": "verdant:imbuement_smithing_template"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "verdant:item/imbued_verdant_heartwood_sword"
+  }
+}

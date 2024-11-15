@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "verdant:heart_fragment"
+  },
+  "base": {
+    "item": "verdant:verdant_heartwood_hoe"
+  },
+  "result": {
+    "item": "verdant:imbued_verdant_heartwood_hoe"
+  },
+  "template": {
+    "item": "verdant:imbuement_smithing_template"
+  }
+}

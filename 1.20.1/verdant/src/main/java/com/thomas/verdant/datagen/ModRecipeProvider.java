@@ -152,19 +152,65 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 		shaped(recipeWriter, List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'),
 				List.of(ModBlocks.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE),
 				RecipeCategory.MISC, ModBlocks.IRON_TRAP.get(), 3);
-		shaped(recipeWriter, List.of("FPF", "LLL", "FPF"), List.of('F', 'P', 'L'), List
-				.of(ModBlocks.FRAME_BLOCK.get(), ItemTags.PLANKS, ModBlocks.ROPE_LADDER.get()),
-				RecipeCategory.MISC, ModBlocks.FISH_TRAP_BLOCK.get(), 2);
-		
-		// Imbued armor
-		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get()),
-				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(), 1);
-		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.HEART_FRAGMENT.get()),
-				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), 1);
-		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(), ModItems.HEART_FRAGMENT.get()),
-				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(), 1);
-		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.HEART_FRAGMENT.get()),
-				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get(), 1);
+		shaped(recipeWriter, List.of("FPF", "LLL", "FPF"), List.of('F', 'P', 'L'),
+				List.of(ModBlocks.FRAME_BLOCK.get(), ItemTags.PLANKS, ModBlocks.ROPE_LADDER.get()), RecipeCategory.MISC,
+				ModBlocks.FISH_TRAP_BLOCK.get(), 2);
+
+//		// Imbued armor
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get(), 1);
+//
+//		// Imbued tools
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_AXE.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_AXE.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_HOE.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_HOE.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_PICKAXE.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_PICKAXE.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_SHOVEL.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_SHOVEL.get(), 1);
+//		shapeless(recipeWriter, List.of(ModItems.VERDANT_HEARTWOOD_SWORD.get(), ModItems.HEART_FRAGMENT.get()),
+//				List.of(1, 1), RecipeCategory.COMBAT, ModItems.IMBUED_VERDANT_HEARTWOOD_SWORD.get(), 1);
+
+		// Imbuing
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_AXE.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.TOOLS,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_AXE.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_HOE.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.TOOLS,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_HOE.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_PICKAXE.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.TOOLS,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_PICKAXE.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_SHOVEL.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.TOOLS,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_SHOVEL.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_SWORD.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.COMBAT,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_SWORD.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_HELMET.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.COMBAT,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_HELMET.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_CHESTPLATE.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.COMBAT,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_CHESTPLATE.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_LEGGINGS.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.COMBAT,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_LEGGINGS.get());
+		smithingTransform(recipeWriter, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(),
+				ModItems.VERDANT_HEARTWOOD_BOOTS.get(), ModItems.HEART_FRAGMENT.get(), RecipeCategory.COMBAT,
+				ModItems.IMBUED_VERDANT_HEARTWOOD_BOOTS.get());
+
+		// Imbuement smithing template.
+		shaped(recipeWriter, List.of("#S#", "#L#", "###"), List.of('#', 'S', 'L'),
+				List.of(ModBlocks.VERDANT_HEARTWOOD_LOG.get(), Items.EMERALD, ModBlocks.VERDANT_LOG.get()),
+				RecipeCategory.MISC, ModItems.IMBUEMENT_SMITHING_TEMPLATE.get(), 1);
 
 		// Roasting bitter cassava
 		foodCooking(recipeWriter, List.of(ModItems.BITTER_CASSAVA.get()), RecipeCategory.FOOD, ModItems.CASSAVA.get(),
@@ -204,17 +250,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 				0.1f, 200);
 
 		// Roasting yam
-		foodCooking(recipeWriter, List.of(ModItems.YAM.get()), RecipeCategory.FOOD, ModItems.BAKED_YAM.get(), 0.1f,
+		foodCooking(recipeWriter, List.of(ModItems.UBE.get()), RecipeCategory.FOOD, ModItems.BAKED_UBE.get(), 0.1f,
 				200);
 
 		// Purple dye from yams
-		shapeless(recipeWriter, List.of(ModItems.BAKED_YAM.get()), List.of(1), RecipeCategory.DECORATIONS,
+		shapeless(recipeWriter, List.of(ModItems.BAKED_UBE.get()), List.of(1), RecipeCategory.DECORATIONS,
 				Items.PURPLE_DYE, 1);
 
 		// Purple dye from yams with mordant
-		shapeless(recipeWriter, List.of(ModItems.BAKED_YAM.get(), Items.COPPER_ORE, Items.WATER_BUCKET),
+		shapeless(recipeWriter, List.of(ModItems.BAKED_UBE.get(), Items.RAW_COPPER, Items.WATER_BUCKET),
 				List.of(4, 1, 1), RecipeCategory.DECORATIONS, Items.PURPLE_DYE, 12);
 
+		// Purple cake
+		shaped(recipeWriter, List.of("UBU", "GEG", "SSS"), List.of('U', 'B', 'S', 'E', 'G'),
+				List.of(ModItems.BAKED_UBE.get(), Items.MILK_BUCKET, ModItems.STARCH.get(), Items.EGG, Items.SUGAR),
+				RecipeCategory.FOOD, ModItems.UBE_CAKE.get(), 1);
+		shaped(recipeWriter, List.of("UBU", "GEG", "SSS"), List.of('U', 'B', 'S', 'E', 'G'),
+				List.of(ModItems.BAKED_UBE.get(), Items.MILK_BUCKET, Items.WHEAT, Items.EGG, Items.SUGAR),
+				RecipeCategory.FOOD, ModItems.UBE_CAKE.get(), 1);
+
+		// Purple cookies
+		shaped(recipeWriter, List.of("SUS"), List.of('U', 'S'),
+				List.of(ModItems.BAKED_UBE.get(), ModItems.STARCH.get()), RecipeCategory.FOOD,
+				ModItems.UBE_COOKIE.get(), 8);
+
+		// Purple cookies
+		shaped(recipeWriter, List.of("SUS"), List.of('U', 'S'), List.of(ModItems.BAKED_UBE.get(), Items.WHEAT),
+				RecipeCategory.FOOD, ModItems.UBE_COOKIE.get(), 8);
 		// TODO test
 		// stonecutting(recipeWriter, Items.GRASS_BLOCK, RecipeCategory.BUILDING_BLOCKS,
 		// Items.EMERALD, 16);

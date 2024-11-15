@@ -26,14 +26,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 		ModBlocks.VERDANT_HEARTWOOD.addItemModels(this);
 		ModBlocks.VERDANT.addItemModels(this);
 
+		withExistingParent(ModItems.OVERGROWN_ZOMBIE_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+		withExistingParent(ModItems.OVERGROWN_SKELETON_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 		evenSimplerBlockItem(ModBlocks.FISH_TRAP_BLOCK);
 
 		simpleBlockItemBlockTexture(ModBlocks.ROPE_LADDER);
 
 		simpleLogModel(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG);
 		simpleItem(ModItems.HEART_FRAGMENT);
-		simpleItem(ModItems.YAM);
-		simpleItem(ModItems.BAKED_YAM);
+		simpleItem(ModItems.UBE_COOKIE);
+		simpleItem(ModItems.UBE_CAKE);
+		simpleItem(ModItems.UBE);
+		simpleItem(ModItems.BAKED_UBE);
 
 		otherTextureItem(ModItems.WATER_HEMLOCK, "block/water_hemlock_top");
 		simpleItem(ModItems.GOLDEN_CASSAVA);
@@ -47,6 +51,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.CASSAVA_CUTTINGS);
 		simpleItem(ModItems.BITTER_CASSAVA);
 		simpleItem(ModItems.CASSAVA);
+		simpleBlockItemBlockTexture(ModBlocks.WILD_UBE);
 		simpleBlockItemBlockTexture(ModBlocks.WILD_CASSAVA);
 		simpleBlockItemBlockTexture(ModBlocks.FRAME_BLOCK);
 		simpleBlockItemBlockTexture(ModBlocks.CHARRED_FRAME_BLOCK);
@@ -100,7 +105,15 @@ public class ModItemModelProvider extends ItemModelProvider {
 		handheldItem(ModItems.VERDANT_HEARTWOOD_HOE);
 		handheldItem(ModItems.VERDANT_HEARTWOOD_SHOVEL);
 
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_SWORD);
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_AXE);
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_PICKAXE);
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_SHOVEL);
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_HOE);
+		handheldItem(ModItems.IMBUED_VERDANT_HEARTWOOD_SHOVEL);
+		
 		simpleItem(ModItems.HEART_OF_THE_FOREST);
+		simpleItem(ModItems.IMBUEMENT_SMITHING_TEMPLATE);
 
 		simpleBlockItem(ModBlocks.THORN_TRAP);
 		simpleBlockItem(ModBlocks.IRON_TRAP);

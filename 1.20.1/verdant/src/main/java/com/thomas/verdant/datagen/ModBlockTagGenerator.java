@@ -42,11 +42,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				ModBlocks.BITTER_CASSAVA_ROOTED_DIRT.get(), ModBlocks.VERDANT_CONDUIT.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.WILTED_VERDANT_LEAVES.get(), ModBlocks.VERDANT_LEAVES.get(),
 				ModBlocks.THORNY_VERDANT_LEAVES.get(), ModBlocks.POISON_IVY_VERDANT_LEAVES.get(),
-				ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(),
-				ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
-		this.tag(BlockTags.SWORD_EFFICIENT).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
-				ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(),
+				ModBlocks.THORN_BUSH.get(), ModBlocks.BUSH.get(), ModBlocks.VERDANT_TENDRIL.get(),
 				ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.POISON_IVY.get(), ModBlocks.POISON_IVY_PLANT.get());
+		this.tag(BlockTags.SWORD_EFFICIENT).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
+				ModBlocks.POISON_IVY_VERDANT_LEAVES.get(), ModBlocks.THORN_BUSH.get(), ModBlocks.BUSH.get(),
+				ModBlocks.VERDANT_TENDRIL.get(), ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.POISON_IVY.get(),
+				ModBlocks.POISON_IVY_PLANT.get());
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.IRON_SPIKES.get(), ModBlocks.IRON_TRAP.get());
 
 		this.tag(BlockTags.LEAVES).add(ModBlocks.VERDANT_LEAVES.get(), ModBlocks.THORNY_VERDANT_LEAVES.get(),
@@ -79,6 +80,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(ModBlocks.VERDANT_ROOTED_MUD.get(),
 				ModBlocks.VERDANT_MUD_GRASS_BLOCK.get(), ModBlocks.VERDANT_ROOTED_CLAY.get(),
 				ModBlocks.VERDANT_CLAY_GRASS_BLOCK.get());
+
+		this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.CANDLE_UBE_CAKE.get(), ModBlocks.WHITE_CANDLE_UBE_CAKE.get(),
+				ModBlocks.ORANGE_CANDLE_UBE_CAKE.get(), ModBlocks.MAGENTA_CANDLE_UBE_CAKE.get(),
+				ModBlocks.LIGHT_BLUE_CANDLE_UBE_CAKE.get(), ModBlocks.YELLOW_CANDLE_UBE_CAKE.get(),
+				ModBlocks.LIME_CANDLE_UBE_CAKE.get(), ModBlocks.PINK_CANDLE_UBE_CAKE.get(),
+				ModBlocks.GRAY_CANDLE_UBE_CAKE.get(), ModBlocks.LIGHT_GRAY_CANDLE_UBE_CAKE.get(),
+				ModBlocks.CYAN_CANDLE_UBE_CAKE.get(), ModBlocks.PURPLE_CANDLE_UBE_CAKE.get(),
+				ModBlocks.BLUE_CANDLE_UBE_CAKE.get(), ModBlocks.BROWN_CANDLE_UBE_CAKE.get(),
+				ModBlocks.GREEN_CANDLE_UBE_CAKE.get(), ModBlocks.RED_CANDLE_UBE_CAKE.get(),
+				ModBlocks.BLACK_CANDLE_UBE_CAKE.get());
 
 		// Anvil
 		// this.tag(BlockTags.ANVIL).add();

@@ -26,13 +26,15 @@ public class FishTrapMenu extends AbstractContainerMenu {
 	private final ContainerData data;
 
 	public FishTrapMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-		this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+		this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()),
+				new SimpleContainerData(FishTrapBlockEntity.SYNCHED_DATA_SIZE));
 	}
 
 	public FishTrapMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
 		super(ModMenuTypes.FISH_TRAP_MENU.get(), containerId);
 
 		checkContainerSize(inv, FishTrapBlockEntity.TOTAL_SLOTS);
+		checkContainerDataCount(data, FishTrapBlockEntity.SYNCHED_DATA_SIZE);
 
 		this.blockEntity = ((FishTrapBlockEntity) entity);
 		this.level = inv.player.level();
@@ -65,11 +67,14 @@ public class FishTrapMenu extends AbstractContainerMenu {
 		});
 
 		this.addDataSlots(data);
-
 	}
 
 	public boolean isCrafting() {
 		return this.data.get(0) > 0;
+	}
+	
+	public int getCatchPercent() {
+		return this.data.get(2);
 	}
 
 	public int getScaledProgress() {

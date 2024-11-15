@@ -1,9 +1,7 @@
 package com.thomas.verdant.block.entity.custom;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.IntPredicate;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -51,9 +49,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
 
 	// OUTPUT SLOTS ARE LOW
-	public static final Map<Item, BaitData> BAIT_MAP = DataRegistries.BAIT_DATA.stream()
-			.collect(Collectors.toUnmodifiableMap((data) -> data.getItem(), (data) -> data));
-
+	public static final int SYNCHED_DATA_SIZE = 3;
 	public static final int BAIT_SLOTS = 3;
 	public static final int OUTPUT_SLOTS = 3;
 	public static final int TOTAL_SLOTS = OUTPUT_SLOTS + BAIT_SLOTS;
@@ -66,7 +62,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 		@Override
 		public boolean isItemValid(int slot, ItemStack stack) {
-			return (!IS_BAIT_SLOT.test(slot) || BAIT_MAP.containsKey(stack.getItem()))
+			return (!IS_BAIT_SLOT.test(slot) || DataRegistries.BAIT_DATA.hasMappedKey(stack.getItem()))
 					&& super.isItemValid(slot, stack);
 		}
 
@@ -85,6 +81,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	protected final ContainerData data;
 	private int progress = 0;
 	private int maxProgress = 60;
+	private int catchPercent = 0;
 
 	public FishTrapBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.FISH_TRAP_BLOCK_ENTITY.get(), pos, state);
@@ -96,7 +93,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 				return switch (index) {
 				case 0 -> FishTrapBlockEntity.this.progress;
 				case 1 -> FishTrapBlockEntity.this.maxProgress;
-				case 2 -> 0;
+				case 2 -> FishTrapBlockEntity.this.catchPercent;
 				default -> 0;
 				};
 
@@ -113,15 +110,27 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 					FishTrapBlockEntity.this.maxProgress = value;
 					break;
 				}
+				case 2: {
+					System.out.println("Setting catch percent to " + value);
+					FishTrapBlockEntity.this.catchPercent = value;
+					break;
+				}
 				}
 
 			}
 
 			@Override
 			public int getCount() {
-				return 2;
+				return SYNCHED_DATA_SIZE;
 			}
 		};
+	}
+
+	public int getCatchPercent() {
+		// System.out.println("Getting the catch percent on the " +
+		// (this.level.isClientSide ? "client" : "server") + ".");
+		// System.out.println("It is " + this.catchPercent);
+		return this.catchPercent;
 	}
 
 	@Override
@@ -192,12 +201,12 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 		if (this.hasRecipe() && state.getValue(FishTrapBlock.ENABLED)) {
 			this.increaseCraftingProgress();
-			BlockEntity.setChanged(level, pos, state);
 
 			if (this.hasProgressFinished()) {
 				this.craftItem();
 				this.resetProgress();
 			}
+			BlockEntity.setChanged(level, pos, state);
 		} else {
 			this.resetProgress();
 		}
@@ -211,7 +220,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	private boolean canInsertItemIntoSlot(int slot, ItemStack contents, Item item, int count) {
 		boolean isBaitOrOutput = true;
 		if (IS_BAIT_SLOT.test(slot)) {
-			isBaitOrOutput = BAIT_MAP.containsKey(item);
+			isBaitOrOutput = DataRegistries.BAIT_DATA.hasMappedKey(item);
 		}
 		return isBaitOrOutput && (contents.isEmpty()
 				|| (contents.is(item) && contents.getCount() + count <= contents.getMaxStackSize()));
@@ -221,7 +230,7 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	private int openSpaceInSlot(int slot, ItemStack contents, Item item, int count) {
 		boolean isBaitOrOutput = true;
 		if (IS_BAIT_SLOT.test(slot)) {
-			isBaitOrOutput = BAIT_MAP.containsKey(item);
+			isBaitOrOutput = DataRegistries.BAIT_DATA.hasMappedKey(item);
 		}
 		return isBaitOrOutput ? contents.isEmpty() ? item.getDefaultInstance().getMaxStackSize()
 				: contents.is(item) ? contents.getMaxStackSize() - contents.getCount() : 0 : 0;
@@ -242,10 +251,19 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 
 	private void craftItem() {
 
+		if (!(this.level instanceof ServerLevel serverLevel)) {
+			return;
+		}
+
+		// System.out.println("This level is " + this.level.getClass());
+		// System.out.println("This is " + this);
+
 		// First, get the highest bait strength pair.
 		Pair<BaitData, ItemStack> bestBait = this.getHighestCatchChanceBait();
 		BaitData data = bestBait.getLeft();
 		ItemStack stack = bestBait.getRight();
+		// System.out.println("The data is " + data);
+		// System.out.println("The stack is " + stack);
 
 		// Get the catch chance
 		double catchChance = BASE_CATCH_CHANCE;
@@ -255,63 +273,64 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 			catchChance = data.getCatchChance();
 			consumeChance = data.getConsumeChance();
 		}
+		// Base assumed water count
+		int waterCount = 5;
+		// Check for surrounding water.
+		for (int i = -1; i <= 1; i++) {
+			for (int k = -1; k <= 1; k++) {
+				if ((i == 0 && k == 0)
+						|| serverLevel.getBlockState(this.worldPosition.offset(i, 0, k)).is(Blocks.WATER)) {
+					waterCount += 2;
+					if (serverLevel.getBlockState(this.worldPosition.offset(i, -1, k)).is(Blocks.WATER)) {
+						waterCount++;
+					}
+					for (int j = 1; j <= 2; j++) {
 
-		// Server only!
-		if (this.level instanceof ServerLevel serverLevel) {
-			// Base assumed water count
-			int waterCount = 5;
-			// Check for surrounding water.
-			for (int i = -1; i <= 1; i++) {
-				for (int k = -1; k <= 1; k++) {
-					if ((i == 0 && k == 0)
-							|| serverLevel.getBlockState(this.worldPosition.offset(i, 0, k)).is(Blocks.WATER)) {
-						waterCount += 2;
-						if (serverLevel.getBlockState(this.worldPosition.offset(i, -1, k)).is(Blocks.WATER)) {
+						if (serverLevel.getBlockState(this.worldPosition.offset(i, j, k)).is(Blocks.WATER)) {
 							waterCount++;
-						}
-						for (int j = 1; j <= 2; j++) {
-
-							if (serverLevel.getBlockState(this.worldPosition.offset(i, j, k)).is(Blocks.WATER)) {
-								waterCount++;
-							}
 						}
 					}
 				}
 			}
-			int maxWater = 50;
+		}
+		int maxWater = 50;
 
-			// Scale catch and consume chance by water ratio
-			double waterRatio = ((double) waterCount) / ((double) maxWater);
-			catchChance *= waterRatio;
-			consumeChance *= 0.5 + 0.5 * waterRatio;
+		// Scale catch and consume chance by water ratio
+		double waterRatio = ((double) waterCount) / ((double) maxWater);
+		// System.out.println("The raw catch chance is " + catchChance);
+		// System.out.println("The water ratio is " + waterRatio);
+		catchChance *= waterRatio;
+		consumeChance *= 0.5 + 0.5 * waterRatio;
+		// Set the catch percent
+		this.catchPercent = (int) (catchChance * 100);
+		// System.out.println("Setting the catch percent to " + this.catchPercent);
 
-			// Check if a fish should be caught.
-			double catchTarget = this.level.random.nextFloat();
-			boolean anySucceeded = catchTarget > catchChance;
-			while (catchChance > catchTarget) {
-				catchChance--;
-				// System.out.println("Catching!");
-				float luck = 0;
-				// Get the loot table.
-				LootParams lootparams = (new LootParams.Builder(serverLevel))
-						.withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
-						.withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
-						.withParameter(LootContextParams.TOOL,
-								this.getBlockState().getBlock().asItem().getDefaultInstance())
-						.withLuck(luck).create(LootContextParamSets.FISHING);
-				LootTable loottable = serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
-				List<ItemStack> list = loottable.getRandomItems(lootparams);
+		// Check if a fish should be caught.
+		double catchTarget = this.level.random.nextFloat();
+		boolean anySucceeded = catchTarget > catchChance;
+		while (catchChance > catchTarget) {
+			catchChance--;
+			// System.out.println("Catching!");
+			float luck = 0;
+			// Get the loot table.
+			LootParams lootparams = (new LootParams.Builder(serverLevel))
+					.withParameter(LootContextParams.ORIGIN, this.getBlockPos().getCenter())
+					.withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+					.withParameter(LootContextParams.TOOL,
+							this.getBlockState().getBlock().asItem().getDefaultInstance())
+					.withLuck(luck).create(LootContextParamSets.FISHING);
+			LootTable loottable = serverLevel.getServer().getLootData().getLootTable(BuiltInLootTables.FISHING);
+			List<ItemStack> list = loottable.getRandomItems(lootparams);
 
-				for (ItemStack item : list) {
-					anySucceeded |= this.tryAddCatch(item);
-				}
+			for (ItemStack item : list) {
+				anySucceeded |= this.tryAddCatch(item);
 			}
+		}
 
-			// Check if a bait should be consumed.
-			if (consumeChance > this.level.random.nextFloat() && null != stack && anySucceeded) {
-				// System.out.println("Consuming!");
-				stack.shrink(1);
-			}
+		// Check if a bait should be consumed.
+		if (consumeChance > this.level.random.nextFloat() && null != stack && anySucceeded) {
+			// System.out.println("Consuming!");
+			stack.shrink(1);
 		}
 	}
 
@@ -342,14 +361,13 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 		return atLeastPartialSuccess;
 	}
 
-	@SuppressWarnings("unused")
-	private ItemStack[] getOutput() {
-		ItemStack[] output = new ItemStack[OUTPUT_SLOTS];
-		for (int i = 0; i < OUTPUT_SLOTS; i++) {
-			output[i] = this.itemHandler.getStackInSlot(OUTPUT_SLOTS_ARRAY[i]);
-		}
-		return output;
-	}
+//	private ItemStack[] getOutput() {
+//		ItemStack[] output = new ItemStack[OUTPUT_SLOTS];
+//		for (int i = 0; i < OUTPUT_SLOTS; i++) {
+//			output[i] = this.itemHandler.getStackInSlot(OUTPUT_SLOTS_ARRAY[i]);
+//		}
+//		return output;
+//	}
 
 	private ItemStack[] getBait() {
 		ItemStack[] bait = new ItemStack[BAIT_SLOTS];
@@ -362,12 +380,14 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider, Wo
 	private Pair<BaitData, ItemStack> getHighestCatchChanceBait() {
 		BaitData best = null;
 		ItemStack bestStack = null;
+		// System.out.println("Getting best bait out of " +
+		// Arrays.toString(this.getBait()));
 		for (ItemStack stack : this.getBait()) {
 			if (null == best) {
-				best = BAIT_MAP.get(stack.getItem());
+				best = DataRegistries.BAIT_DATA.getMappedValue(stack.getItem());
 				bestStack = stack;
 			} else {
-				BaitData other = BAIT_MAP.get(stack.getItem());
+				BaitData other = DataRegistries.BAIT_DATA.getMappedValue(stack.getItem());
 				if (null != other && best.getCatchChance() < other.getCatchChance()) {
 					best = other;
 					bestStack = stack;
