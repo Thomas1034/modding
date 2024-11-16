@@ -25,7 +25,7 @@ public class MappedDataParserListener<S, T extends DataParseable<T>> extends Dat
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> inputMap, ResourceManager resourceManager,
 			ProfilerFiller profiler) {
-
+		System.out.println("Applying for 0");
 		// Erase the existing data
 		this.registry.clear();
 
@@ -44,7 +44,7 @@ public class MappedDataParserListener<S, T extends DataParseable<T>> extends Dat
 				// Register the new registry object.
 				T t = factory.apply(location).parse(GSON, element);
 				if (null == t) {
-					throw new NullPointerException("Unable to register " + location + ", element is null.");
+					throw new NullPointerException("Unable to register " + location + ", factory returne null.");
 				}
 				// Get the map key.
 				S s = mapKeyGetter.apply(t);
