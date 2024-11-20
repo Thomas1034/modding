@@ -192,7 +192,6 @@ public class VerdantBlockTransformer {
 		transformer.register(Blocks.MYCELIUM, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		transformer.register(Blocks.GRASS_BLOCK, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		transformer.register(Blocks.DIRT, ModBlocks.VERDANT_ROOTED_DIRT.get());
-		transformer.register(Blocks.GRASS_BLOCK, ModBlocks.VERDANT_ROOTED_DIRT.get());
 		transformer.register(Blocks.MUD, ModBlocks.VERDANT_ROOTED_MUD.get());
 		transformer.register(Blocks.CLAY, ModBlocks.VERDANT_ROOTED_CLAY.get());
 	}

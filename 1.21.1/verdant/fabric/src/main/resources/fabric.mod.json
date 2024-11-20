@@ -16,7 +16,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.thomas.verdant.ExampleMod"
+            "com.thomas.verdant.Verdant"
         ]
     },
     "depends": {

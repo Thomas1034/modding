@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/verdant_base_grass_block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/clay",
+    "overlay": "verdant:block/verdant_overlay_very_thin",
+    "side": "verdant:block/verdant_grass_block_side",
+    "top": "verdant:block/verdant_grass_block_top"
+  }
+}

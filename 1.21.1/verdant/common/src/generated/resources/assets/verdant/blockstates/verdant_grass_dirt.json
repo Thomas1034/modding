@@ -1,0 +1,3214 @@
+{
+  "variants": {
+    "active=false,water_distance=1": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=10": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=11": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=12": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=13": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=14": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=15": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=2": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=3": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=4": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=5": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=6": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=7": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=8": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=false,water_distance=9": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=1": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=10": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=11": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=12": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=13": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=14": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=15": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=2": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=3": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=4": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=5": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=6": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=7": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=8": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ],
+    "active=true,water_distance=9": [
+      {
+        "model": "verdant:block/verdant_grass_dirt"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed"
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_dirt_very_thin_mixed",
+        "y": 270
+      }
+    ]
+  }
+}

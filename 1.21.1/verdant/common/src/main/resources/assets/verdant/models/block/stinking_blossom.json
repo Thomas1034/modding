@@ -1,0 +1,220 @@
+{
+  "parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "verdant:block/stinking_blossom",
+    "flower": "verdant:block/stinking_blossom",
+    "base": "verdant:block/stinking_blossom_base"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0.1,
+        1
+      ],
+      "to": [
+        15,
+        0.1,
+        15
+      ],
+      "shade": false,
+      "faces": {
+        "up": {
+          "texture": "#base",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#base",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        0.3,
+        0
+      ],
+      "to": [
+        24,
+        0.3,
+        16
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          0,
+          0
+        ],
+        "axis": "z",
+        "angle": 22.5,
+        "rescale": false
+      },
+      "shade": false,
+      "faces": {
+        "up": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 90
+        },
+        "down": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 270
+        }
+      }
+    },
+    {
+      "from": [
+        -8,
+        0.3,
+        0
+      ],
+      "to": [
+        8,
+        0.3,
+        16
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          0,
+          0
+        ],
+        "axis": "z",
+        "angle": -22.5,
+        "rescale": false
+      },
+      "shade": false,
+      "faces": {
+        "up": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "rotation": 270
+        },
+        "down": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "rotation": 90
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0.3,
+        8
+      ],
+      "to": [
+        16,
+        0.3,
+        24
+      ],
+      "rotation": {
+        "origin": [
+          0,
+          0,
+          8
+        ],
+        "axis": "x",
+        "angle": -22.5,
+        "rescale": false
+      },
+      "shade": false,
+      "faces": {
+        "up": {
+          "texture": "#flower",
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ]
+        },
+        "down": {
+          "texture": "#flower",
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0.3,
+        -8
+      ],
+      "to": [
+        16,
+        0.3,
+        8
+      ],
+      "rotation": {
+        "origin": [
+          0,
+          0,
+          8
+        ],
+        "axis": "x",
+        "angle": 22.5,
+        "rescale": false
+      },
+      "shade": false,
+      "faces": {
+        "up": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#flower",
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "vertical_direction": "up"
+      },
+      "apply": {
+        "model": "verdant:block/stinking_blossom"
+      }
+    },
+    {
+      "when": {
+        "vertical_direction": "down"
+      },
+      "apply": {
+        "model": "verdant:block/stinking_blossom",
+        "x": 180
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "display": {
+    "icon": {
+      "item": "verdant:verdant_rooted_dirt"
+    },
+    "title": {
+      "translate": "advancements.verdant.stand_on_verdant_ground.title"
+    },
+    "description": {
+      "translate": "advancements.verdant.stand_on_verdant_ground.description"
+    },
+    "background": "verdant:textures/block/verdant_rooted_dirt.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "verdant:root",
+  "criteria": {
+    "stand_on_verdant_ground": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "stepping_on": {
+                "block": {
+                  "tag": "verdant:verdant_ground"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stand_on_verdant_ground"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

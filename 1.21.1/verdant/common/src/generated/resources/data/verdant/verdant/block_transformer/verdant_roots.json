@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "block": "minecraft:dirt",
+      "result": "verdant:verdant_rooted_dirt"
+    },
+    {
+      "block": "minecraft:podzol",
+      "result": "verdant:verdant_grass_dirt"
+    },
+    {
+      "block": "minecraft:mud",
+      "result": "verdant:verdant_rooted_mud"
+    },
+    {
+      "block": "minecraft:clay",
+      "result": "verdant:verdant_rooted_clay"
+    }
+  ]
+}

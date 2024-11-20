@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "verdant:block/dirt_redstone_oreredstone_ore_overlay"
+    },
+    "lit=true": {
+      "model": "verdant:block/dirt_redstone_oreredstone_ore_overlay"
+    }
+  }
+}
