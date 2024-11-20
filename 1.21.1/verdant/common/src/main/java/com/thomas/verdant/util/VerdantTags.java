@@ -13,9 +13,8 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 public class VerdantTags {
     public static class Blocks {
 
-        public static final TagKey<Block> VERDANT_ROOTS = tag("verdant_logs");
         public static final TagKey<Block> VERDANT_LOGS = tag("verdant_logs");
-        public static final TagKey<Block> VERDANT_VINE_REPLACABLES = tag("verdant_vine_replacables");
+        public static final TagKey<Block> VERDANT_VINE_REPLACEABLES = tag("verdant_vine_replacables");
         public static final TagKey<Block> MATURE_VERDANT_LOGS = tag("mature_verdant_logs");
         public static final TagKey<Block> VERDANT_LEAFY_BLOCKS = tag("verdant_leafy_blocks");
         public static final TagKey<Block> VERDANT_VINES = tag("verdant_vines");

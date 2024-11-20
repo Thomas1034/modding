@@ -37,17 +37,17 @@ public class BlockTransformer {
         });
         return list;
     }, list -> list);
-    public static final Codec<BlockTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(DATA_LIST_CODEC.fieldOf("values").forGetter(BlockTransformer::asData)).apply(instance, BlockTransformer::new));
+    public static final Codec<BlockTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(DATA_LIST_CODEC.fieldOf("values").forGetter(BlockTransformer::asData), ResourceLocation.CODEC.fieldOf("name").forGetter(bt->bt.name)).apply(instance, BlockTransformer::new));
     private final Map<TagKey<Block>, Function<RandomSource, Block>> tagMap;
     private final Object2IntMap<TagKey<Block>> tagPriorityMap;
     private final Map<Block, Function<RandomSource, Block>> directMap;
     private final List<ResourceLocation> fallbacks;
     private final List<BlockTransformerData> rawData;
     private final Map<ResourceLocation, BlockTransformer> cachedFallbacks;
-    private final Set<BlockTransformer> previousVisited = new HashSet<>();
     private int numTagsAdded;
+    public final ResourceLocation name;
 
-    public BlockTransformer(List<BlockTransformerData> values) {
+    public BlockTransformer(List<BlockTransformerData> values, ResourceLocation name) {
         this.tagMap = new HashMap<>();
         this.tagPriorityMap = new Object2IntOpenHashMap<>();
         this.tagPriorityMap.defaultReturnValue(-1);
@@ -56,11 +56,12 @@ public class BlockTransformer {
         this.fallbacks = new ArrayList<>();
         this.cachedFallbacks = new HashMap<>();
         this.rawData = values;
+        this.name = name;
 
         this.fillData(this.rawData);
 
         // Reverse the list of fallbacks; this makes ones added last have higher priority.
-        List<ResourceLocation> reversedCallbacks = this.fallbacks.reversed();
+        List<ResourceLocation> reversedCallbacks = new ArrayList<>(this.fallbacks.reversed());
         this.fallbacks.clear();
         this.fallbacks.addAll(reversedCallbacks);
     }
@@ -75,7 +76,6 @@ public class BlockTransformer {
         for (BlockTransformerData toLoad : values) {
             // First, check if it's giving a transformer override.
             if (toLoad.transformer != null) {
-                // If so, add it and skip
                 this.fallbacks.add(toLoad.transformer);
             }
             // If it's adding a block as the key, it could either be a direct mapping or a random chance.
@@ -134,7 +134,7 @@ public class BlockTransformer {
         this.tagMap.put(input, AliasBuilder.build(probabilities));
     }
 
-    private Function<RandomSource, Block> getRaw(Block input, ServerLevelAccessor level, Set<BlockTransformer> previousFallbacks) {
+    private Function<RandomSource, Block> getRaw(Block input, ServerLevelAccessor level) {
 
         Function<RandomSource, Block> result = this.directMap.get(input);
 
@@ -142,13 +142,11 @@ public class BlockTransformer {
             @SuppressWarnings("deprecation") List<TagKey<Block>> tags = input.builtInRegistryHolder().tags().toList();
             result = this.getHighestPriorityTagMapping(tags);
         }
-        // If no result was found yet, and this block transformer has not yet been run (to prevent infinite loops),
-        if (result == null && !previousFallbacks.contains(this)) {
-            // Mark this block transformer as having been run.
-            previousFallbacks.add(this);
+        // If no result was found yet,
+        if (result == null) {
             for (ResourceLocation fallback : this.fallbacks) {
                 // Iterate until a valid option is found; then stop.
-                result = this.getFallback(level, fallback).getRaw(input, level, previousFallbacks);
+                result = this.getFallback(level, fallback).getRaw(input, level);
             }
         }
         return result;
@@ -156,8 +154,7 @@ public class BlockTransformer {
 
     // Storing the set of previously visited block transformers prevents infinite loops.
     public Block get(Block input, ServerLevelAccessor level) {
-        this.previousVisited.clear();
-        Function<RandomSource, Block> raw = this.getRaw(input, level, this.previousVisited);
+        Function<RandomSource, Block> raw = this.getRaw(input, level);
         return raw == null ? null : raw.apply(level.getRandom());
     }
 
@@ -218,6 +215,8 @@ public class BlockTransformer {
         BlockTransformer transformer = transformers.get(location);
         if (transformer != null) {
             this.cachedFallbacks.put(location, transformer);
+        } else {
+            Constants.LOG.error("Unable to get Block Transformer: {}\nPlease report this error to the developer, including what other mods and data packs (if any) you were using.", location);
         }
         return transformer;
     }

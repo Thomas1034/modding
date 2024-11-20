@@ -1,4 +1,5 @@
 {
+  "name": "verdant:erosion",
   "values": [
     {
       "block": "minecraft:stone",
@@ -18,11 +19,11 @@
     },
     {
       "block": "minecraft:cobblestone",
-      "result": "verdant:dense_gravel"
+      "result": "verdant:packed_gravel"
     },
     {
       "block": "minecraft:mossy_cobblestone",
-      "result": "verdant:dense_gravel"
+      "result": "verdant:packed_gravel"
     },
     {
       "block": "minecraft:deepslate",
@@ -33,7 +34,7 @@
       "result": "minecraft:cobblestone"
     },
     {
-      "block": "verdant:dense_gravel",
+      "block": "verdant:packed_gravel",
       "result": "minecraft:coarse_dirt"
     },
     {
@@ -90,7 +91,7 @@
     },
     {
       "block": "minecraft:stone_bricks",
-      "result": "minecraft:cracked_stone_bricks"
+      "result": "minecraft:mossy_stone_bricks"
     },
     {
       "block": "minecraft:stone_brick_stairs",

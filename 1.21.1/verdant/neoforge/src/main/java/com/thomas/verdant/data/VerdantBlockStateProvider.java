@@ -33,7 +33,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         verdantGrassBlock(BlockRegistry.VERDANT_GRASS_MUD, () -> Blocks.MUD);
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_CLAY, () -> Blocks.CLAY);
         verdantGrassBlock(BlockRegistry.VERDANT_GRASS_CLAY, () -> Blocks.CLAY);
-        tumbledBlockWithItem(BlockRegistry.DENSE_GRAVEL);
+        tumbledBlockWithItem(BlockRegistry.PACKED_GRAVEL);
         overlayBlockWithItem(BlockRegistry.DIRT_COAL_ORE, () -> Blocks.DIRT, new String[]{"coal_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_COPPER_ORE, () -> Blocks.DIRT, new String[]{"copper_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_IRON_ORE, () -> Blocks.DIRT, new String[]{"iron_ore_overlay"});

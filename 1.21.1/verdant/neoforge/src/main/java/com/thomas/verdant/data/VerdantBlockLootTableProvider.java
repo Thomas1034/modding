@@ -52,7 +52,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // this.add(ModBlocks.RED_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.RED_CANDLE));
         // this.add(ModBlocks.BLACK_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BLACK_CANDLE));
 
-        requireSilkTouch(BlockRegistry.DENSE_GRAVEL.get(), Blocks.GRAVEL, List.of(1, 3));
+        requireSilkTouch(BlockRegistry.PACKED_GRAVEL.get(), Blocks.GRAVEL, List.of(1, 3));
 
         // this.add(ModBlocks.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(ModBlocks.WATER_HEMLOCK.get()));
 

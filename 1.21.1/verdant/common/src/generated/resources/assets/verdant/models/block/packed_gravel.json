@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "verdant:block/dense_gravel"
+    "all": "verdant:block/packed_gravel"
   }
 }

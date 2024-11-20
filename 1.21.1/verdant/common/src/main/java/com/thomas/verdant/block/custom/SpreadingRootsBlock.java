@@ -16,11 +16,14 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -32,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.OptionalInt;
 import java.util.function.Supplier;
 
-public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable {
+public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
 
     // The maximum distance the block can be from water.
     public static final int MAX_DISTANCE = 15;
@@ -70,6 +73,22 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
     }
 
+    public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
+        if (dist < 0 || dist > 127) {
+            throw new IllegalArgumentException("Offset must be in range 0 to 127.");
+        }
+
+        int range = 2 * dist + 1;
+        // Generate a single random 32-bit number
+        int num = rand.nextInt();
+        // Extract offsets from different parts of the number
+        int offsetX = (num & 0x7F) % range - dist;       // Lowest 7 bits
+        int offsetY = ((num >> 7) & 0x7F) % range - dist; // Next 7 bits
+        int offsetZ = ((num >> 14) & 0x7F) % range - dist; // Following 7 bits
+
+        return pos.offset(offsetX, offsetY, offsetZ);
+    }
+
     // Updates the block whenever there is a change next to it.
     @Override
     @NotNull
@@ -82,13 +101,14 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         BlockTransformer roots = blockTransformers.get(BlockTransformerRegistry.VERDANT_ROOTS);
         // If the block transformers were not gotten successfully, print an error and take no action.
         if (erode == null || erodeWet == null || roots == null) {
+            // Log an error, telling the user to report this.
             Constants.LOG.error("Unable to get Block Transformers in SpreadingRootsBlock. Please report this error to the developer, along with a list of the mods and data packs you are using.");
             Constants.LOG.error("Level class is {}", level.getClass());
             Constants.LOG.error("This block is {}", this);
             Constants.LOG.error("Erode is {}", erode);
             Constants.LOG.error("Erode Wet is {}", erodeWet);
             Constants.LOG.error("Roots is {}", roots);
-
+            Constants.LOG.error("Please include this entire error in your report, so I can resolve the problem more quickly.");
             return state;
         }
 
@@ -105,7 +125,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
 
         // Checking every neighbor:
-        for (Direction direction : Direction.values()) {
+        Direction[] directions = Direction.values();
+        int numDirections = directions.length;
+        Direction direction;
+        for (int i = 0; i < numDirections; i++) {
+            direction = directions[i];
             // Get the neighboring block state in that direction.
             if (direction != dir) {
                 // If we don't know what's in that direction, check it.
@@ -117,29 +141,24 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 neighbor = otherState;
             }
 
-            // First, handle wetness.
-            // Update the distance to be the minimum of the current lowest and the distance gotten from the neighbor
-            // (plus one).
-            distance = Math.min(distance, getDistanceAt(level, neighborPos, neighbor) + 1);
-            // If the distance is the minimum possible, then we can break out of the loop.
-            // It can't get better than it is now.
-            if (distance == MIN_DISTANCE) {
-                break;
-            }
-
-            // Second, check whether the neighbor can either be eroded or rooted.
+            // First, check whether the neighbor can either be eroded or rooted.
             // Silently skip this part if it isn't a server level; it's probably being placed in a structure or worldgen or something.
             // It'll figure itself out sooner or later, when it starts eroding something once it's fully loaded into the world.
             boolean canBeErodedOrRooted = true;
             if (levelAccessor != null) {
                 canBeErodedOrRooted = erode.isValidInput(levelAccessor, neighbor) || erodeWet.isValidInput(levelAccessor, neighbor) || roots.isValidInput(levelAccessor, neighbor);
-
             }
             boolean isFullBlock = neighbor.isCollisionShapeFullBlock(level, neighborPos);
-
             // If the block can be rooted, be eroded, or is not a full block, it should not prevent the roots from growing.
-            canBeActive |= canBeErodedOrRooted || isFullBlock;
+            canBeActive = canBeActive || canBeErodedOrRooted || !isFullBlock;
+
+            // Second, handle wetness.
+            // Update the distance to be the minimum of the current lowest and the distance gotten from the neighbor
+            // (plus one).
+            distance = Math.min(distance, getDistanceAt(level, neighborPos, neighbor) + 1);
+            // DO NOT break out of the loop since the rest still needs to run.
         }
+
 
         return state.setValue(WATER_DISTANCE, distance).setValue(ACTIVE, canBeActive);
     }
@@ -175,7 +194,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         boolean isWet = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
         for (int tries = 0; tries < 3; tries++) {
             // The range to check is constant.
-            BlockPos posToTry = withinDist(pos, 2, level.random);
+            BlockPos posToTry = withinDist(pos, tries + 1, level.random);
             // Try to convert the nearby block.
             if (this.erodeOrGrow(level, posToTry, isWet)) {
                 // Try to grow vegetation.
@@ -184,21 +203,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 break;
             }
         }
-    }
-
-    // Returns an offset block position. Works for distances less than 2^7. Behavior is undefined above that.
-    public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
-        int num = rand.nextInt();
-        int range = 2 * dist + 1;
-        int int1 = num & 0xFF; // Use the lowest 7 bits
-        int int2 = (num >> 7) & 0xFF; // Use the next 7 bits
-        int int3 = (num >> 14) & 0xFF; // Use the next 7 bits after that
-
-        int offset1 = (int1 * range) / 0xFF - dist;
-        int offset2 = (int2 * range) / 0xFF - dist;
-        int offset3 = (int3 * range) / 0xFF - dist;
-
-        return pos.offset(offset1, offset2, offset3);
     }
 
     // Applies custom hoeing logic; I feel like this should be easier.
@@ -231,9 +235,56 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
     }
 
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        return state.getValue(ACTIVE);
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+        return this.isValidBonemealTarget(level, pos, state);
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+        this.grow(state, level, pos);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState state = this.defaultBlockState();
+        BlockPos pos = context.getClickedPos();
+        Level level = context.getLevel();
+        // Repeating myself to some degree, but significantly saving on efficiency otherwise.
+        BlockPos.MutableBlockPos neighborPos = new BlockPos.MutableBlockPos();
+        BlockState neighbor;
+        int distance = MAX_DISTANCE;
+        // Checking every neighbor:
+        Direction[] directions = Direction.values();
+        int numDirections = directions.length;
+        Direction direction;
+        for (int i = 0; i < numDirections; i++) {
+            direction = directions[i];
+            neighborPos = neighborPos.setWithOffset(pos, direction);
+            neighbor = level.getBlockState(neighborPos);
+            // First, handle wetness.
+            // Update the distance to be the minimum of the current lowest and the distance gotten from the neighbor
+            // (plus one).
+            distance = Math.min(distance, getDistanceAt(level, neighborPos, neighbor) + 1);
+            // If the distance is the minimum possible, then we can break out of the loop.
+            // It can't get better than it is now.
+            if (distance == MIN_DISTANCE) {
+                break;
+            }
+        }
+        return state.setValue(WATER_DISTANCE, distance).setValue(ACTIVE, true);
+
+    }
+
     // Very important!
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATER_DISTANCE, ACTIVE);
     }
+
 }

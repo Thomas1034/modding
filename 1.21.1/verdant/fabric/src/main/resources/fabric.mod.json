@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "com.thomas.verdant.Verdant"
+        ],
+        "client": [
+            "com.thomas.verdant.VerdantClient"
         ]
     },
     "depends": {

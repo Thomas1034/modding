@@ -1,10 +1,7 @@
 package com.thomas.verdant;
 
 
-import com.thomas.verdant.data.VerdantBlockLootTableProvider;
-import com.thomas.verdant.data.VerdantBlockStateProvider;
-import com.thomas.verdant.data.VerdantBlockTransformerProvider;
-import com.thomas.verdant.data.VerdantItemModelProvider;
+import com.thomas.verdant.data.*;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -48,6 +45,7 @@ public class Verdant {
             generator.addProvider(true, new VerdantItemModelProvider(output, existingFileHelper));
             generator.addProvider(true, new VerdantBlockStateProvider(output, existingFileHelper));
             generator.addProvider(true, new VerdantBlockTransformerProvider(output, lookupProvider));
+            generator.addProvider(true, new VerdantBlockTagProvider(output, lookupProvider, existingFileHelper));
             generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
                     List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 

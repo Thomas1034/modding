@@ -1,5 +1,4 @@
-// 1.21	2024-11-19T18:25:56.9630586	Loot Tables
-795f48426df1e1490d4f4993c143421fd732ba80 data/verdant/loot_table/blocks/dense_gravel.json
+// 1.21	2024-11-19T21:40:46.5275042	Loot Tables
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json
 1088f89ba19b23616567aeb15ec41cde9665ea52 data/verdant/loot_table/blocks/dirt_diamond_ore.json
@@ -8,6 +7,7 @@ a5b866f3970cc254649b588a56d59b68969237c5 data/verdant/loot_table/blocks/dirt_eme
 bd9c4bac8ad7334061ead3e709a36a8eb0092e4e data/verdant/loot_table/blocks/dirt_iron_ore.json
 3c278634d3faed9af5cafeb6de33bb5bfcca6131 data/verdant/loot_table/blocks/dirt_lapis_ore.json
 91b20868d9e806640005ed9e186048e2e8d4e466 data/verdant/loot_table/blocks/dirt_redstone_ore.json
+264139e38a04461a2666c5c99e69c3e83e13d613 data/verdant/loot_table/blocks/packed_gravel.json
 070bc7098696a3455a5affc82c1374fc0d1e48b5 data/verdant/loot_table/blocks/verdant_grass_clay.json
 310149df546f6f106e9d407e6650616b81437cd4 data/verdant/loot_table/blocks/verdant_grass_dirt.json
 a904488e8c0ac438f202dde2b2f1642340b6dea4 data/verdant/loot_table/blocks/verdant_grass_mud.json

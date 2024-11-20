@@ -1,4 +1,5 @@
 {
+  "name": "verdant:erosion_wet",
   "values": [
     {
       "transformer": "verdant:erosion"

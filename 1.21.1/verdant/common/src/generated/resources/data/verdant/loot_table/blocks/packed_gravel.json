@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "verdant:dense_gravel"
+              "name": "verdant:packed_gravel"
             },
             {
               "type": "minecraft:item",
@@ -57,5 +57,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/dense_gravel"
+  "random_sequence": "verdant:blocks/packed_gravel"
 }

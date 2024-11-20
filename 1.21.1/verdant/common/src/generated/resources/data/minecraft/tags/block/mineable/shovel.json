@@ -1,0 +1,18 @@
+{
+  "values": [
+    "verdant:verdant_grass_dirt",
+    "verdant:verdant_rooted_dirt",
+    "verdant:verdant_rooted_mud",
+    "verdant:verdant_grass_mud",
+    "verdant:verdant_rooted_clay",
+    "verdant:verdant_grass_clay",
+    "verdant:dirt_coal_ore",
+    "verdant:dirt_copper_ore",
+    "verdant:dirt_diamond_ore",
+    "verdant:dirt_emerald_ore",
+    "verdant:dirt_gold_ore",
+    "verdant:dirt_iron_ore",
+    "verdant:dirt_lapis_ore",
+    "verdant:dirt_redstone_ore"
+  ]
+}

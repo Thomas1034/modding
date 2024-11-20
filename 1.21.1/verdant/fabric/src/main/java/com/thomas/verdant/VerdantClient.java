@@ -14,6 +14,7 @@ public class VerdantClient implements ClientModInitializer {
     // Handles client-only code.
     @Override
     public void onInitializeClient() {
+
         // Mark some blocks as cutout.
         markCutout(BlockRegistry.DIRT_COAL_ORE, BlockRegistry.DIRT_COPPER_ORE, BlockRegistry.DIRT_DIAMOND_ORE,
                 BlockRegistry.DIRT_EMERALD_ORE, BlockRegistry.DIRT_GOLD_ORE, BlockRegistry.DIRT_IRON_ORE,

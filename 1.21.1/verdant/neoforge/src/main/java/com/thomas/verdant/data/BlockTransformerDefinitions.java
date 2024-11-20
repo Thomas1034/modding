@@ -2,7 +2,9 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.data.blocktransformer.BlockTransformerData;
+import com.thomas.verdant.data.blocktransformer.BlockTransformerResultOption;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.BlockTransformerRegistry;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BlockTransformerDefinitions {
 
@@ -23,11 +26,11 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.STONE_SLAB, Blocks.COBBLESTONE_SLAB));
         data.add(direct(Blocks.STONE_STAIRS, Blocks.COBBLESTONE_STAIRS));
         data.add(direct(Blocks.INFESTED_STONE, Blocks.AIR));
-        data.add(direct(Blocks.COBBLESTONE, BlockRegistry.DENSE_GRAVEL.get()));
-        data.add(direct(Blocks.MOSSY_COBBLESTONE, BlockRegistry.DENSE_GRAVEL.get()));
+        data.add(direct(Blocks.COBBLESTONE, BlockRegistry.PACKED_GRAVEL.get()));
+        data.add(direct(Blocks.MOSSY_COBBLESTONE, BlockRegistry.PACKED_GRAVEL.get()));
         data.add(direct(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE));
         data.add(direct(Blocks.COBBLED_DEEPSLATE, Blocks.COBBLESTONE));
-        data.add(direct(BlockRegistry.DENSE_GRAVEL.get(), Blocks.COARSE_DIRT));
+        data.add(direct(BlockRegistry.PACKED_GRAVEL.get(), Blocks.COARSE_DIRT));
         data.add(direct(Blocks.GRAVEL, Blocks.COARSE_DIRT));
         data.add(direct(Blocks.COARSE_DIRT, Blocks.DIRT));
         data.add(direct(Blocks.DIRT_PATH, Blocks.DIRT));
@@ -43,7 +46,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.GRAVEL));
         data.add(direct(Blocks.MOSSY_COBBLESTONE_WALL, Blocks.GRAVEL));
         // Stone bricks (smooth stone is now immune)
-        data.add(direct(Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS));
+        data.add(direct(Blocks.STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS));
         data.add(direct(Blocks.STONE_BRICK_STAIRS, Blocks.COBBLESTONE_STAIRS));
         data.add(direct(Blocks.STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB));
         data.add(direct(Blocks.STONE_BRICK_WALL, Blocks.COBBLESTONE_WALL));
@@ -88,8 +91,12 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.LAPIS_ORE, BlockRegistry.DIRT_LAPIS_ORE.get()));
         data.add(direct(Blocks.EMERALD_ORE, BlockRegistry.DIRT_EMERALD_ORE.get()));
         data.add(direct(Blocks.DIAMOND_ORE, BlockRegistry.DIRT_DIAMOND_ORE.get()));
+        // Glass to stained glass, mostly a joke
+        // Maybe make a common tag?
+        data.add(probability(Blocks.GLASS, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS, 1, Blocks.GREEN_STAINED_GLASS, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS, 7)));
+        data.add(probability(Blocks.GLASS_PANE, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS_PANE, 1, Blocks.GREEN_STAINED_GLASS_PANE, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS_PANE, 7)));
 
-        return new BlockTransformer(data);
+        return new BlockTransformer(data, BlockTransformerRegistry.EROSION);
     }
 
     public static BlockTransformer erosionWet() {
@@ -98,7 +105,7 @@ public class BlockTransformerDefinitions {
 
         data.add(transformer("erosion"));
 
-        return new BlockTransformer(data);
+        return new BlockTransformer(data, BlockTransformerRegistry.EROSION_WET);
     }
 
     public static BlockTransformer verdantRoots() {
@@ -110,7 +117,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.MUD, BlockRegistry.VERDANT_ROOTED_MUD.get()));
         data.add(direct(Blocks.CLAY, BlockRegistry.VERDANT_ROOTED_CLAY.get()));
 
-        return new BlockTransformer(data);
+        return new BlockTransformer(data, BlockTransformerRegistry.VERDANT_ROOTS);
     }
 
     public static BlockTransformer hoeing() {
@@ -124,7 +131,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY));
         data.add(direct(BlockRegistry.VERDANT_GRASS_CLAY.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get()));
 
-        return new BlockTransformer(data);
+        return new BlockTransformer(data, BlockTransformerRegistry.HOEING);
     }
 
     private static ResourceLocation name(Block block) {
@@ -133,6 +140,10 @@ public class BlockTransformerDefinitions {
 
     private static BlockTransformerData direct(Block from, Block to) {
         return new BlockTransformerData(null, name(to), null, null, name(from));
+    }
+
+    private static BlockTransformerData probability(Block from, Map<Block, Integer> to) {
+        return new BlockTransformerData(null, null, to.entrySet().stream().map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue())).toList(), null, name(from));
     }
 
     private static BlockTransformerData tag(TagKey<Block> from, Block to) {
