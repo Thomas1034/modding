@@ -252,6 +252,48 @@
     {
       "block": "minecraft:diamond_ore",
       "result": "verdant:dirt_diamond_ore"
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:lime_stained_glass"
+        },
+        {
+          "name": "minecraft:green_stained_glass",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:brown_stained_glass",
+          "weight": 7
+        }
+      ],
+      "tag": {
+        "location": "c:glass_blocks/cheap"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:green_stained_glass_pane",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:lime_stained_glass_pane"
+        },
+        {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
+        }
+      ],
+      "tag": {
+        "location": "c:glass_panes"
+      }
     }
   ]
 }

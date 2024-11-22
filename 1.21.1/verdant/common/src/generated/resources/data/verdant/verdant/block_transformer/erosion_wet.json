@@ -3,6 +3,78 @@
   "values": [
     {
       "transformer": "verdant:erosion"
+    },
+    {
+      "block": "minecraft:dirt",
+      "result": "minecraft:mud"
+    },
+    {
+      "block": "minecraft:terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:red_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:orange_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:yellow_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:lime_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:green_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:cyan_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:light_blue_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:blue_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:purple_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:magenta_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:brown_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:black_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:gray_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:light_gray_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:white_terracotta",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "minecraft:pink_terracotta",
+      "result": "minecraft:clay"
     }
   ]
 }

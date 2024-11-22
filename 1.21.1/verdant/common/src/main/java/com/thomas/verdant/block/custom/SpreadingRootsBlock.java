@@ -4,7 +4,9 @@ import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.Hoeable;
 import com.thomas.verdant.block.VerdantGrower;
 import com.thomas.verdant.registry.BlockTransformerRegistry;
+import com.thomas.verdant.registry.FeatureSetRegistry;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
+import com.thomas.verdant.util.featureset.FeatureSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -20,7 +22,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -32,50 +33,84 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.OptionalInt;
 import java.util.function.Supplier;
 
+@SuppressWarnings("NullableProblems")
 public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
 
     // The maximum distance the block can be from water.
-    public static final int MAX_DISTANCE = 15;
+    public static final int MAX_DISTANCE = 7;
     // The minimum distance the block can be from water.
     public static final int MIN_DISTANCE = 1;
 
     // A property storing how far the block is from the nearest water source.
-    public static final IntegerProperty WATER_DISTANCE = IntegerProperty.create("water_distance", MIN_DISTANCE,
-            MAX_DISTANCE);
+    public static final IntegerProperty WATER_DISTANCE = IntegerProperty.create("water_distance", MIN_DISTANCE, MAX_DISTANCE);
 
+    // Properties that aren't reflected in what the user sees.
+    // These are used for caching surrounding blocks, to optimize spreading mechanics.
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty AIR_ABOVE = BooleanProperty.create("air_above");
+    public static final BooleanProperty AIR_BELOW = BooleanProperty.create("air_below");
 
+    // These store properties of the block internally; this allows me to reuse this class
+    // for six blocks (at the moment) and possibly more in the future.
+    // Whether this block can swap to a "wet" version; for instance, dirt to mud.
+    private final boolean hasAlternateWetness;
+    // Whether this block is a wet version.
+    private final boolean isWet;
+    // Using multiple indirection, gets the dry version if the block is wet and the wet version if the block is dry.
+    // Multiple indirection is necessary due to registration problems.
+    private final Supplier<Supplier<Block>> alternateWet;
+    // Whether this block is grassy.
     private final boolean isGrassy;
+    // Gets the grassy version if the block is not grassy and the non-grassy version if the block is grassy.
     private final Supplier<Supplier<Block>> alternateGrassy;
 
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy) {
+    // Sets all the properties.
+    // The other constructors below are preferred.
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy, boolean isWet, Supplier<Supplier<Block>> alternateWet, boolean hasAlternateWetness) {
         super(properties);
         // Set the default state to be non-hydrated.
         this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
         this.isGrassy = isGrassy;
         this.alternateGrassy = alternateGrassy;
+        this.isWet = isWet;
+        this.alternateWet = alternateWet;
+        this.hasAlternateWetness = hasAlternateWetness;
+    }
+
+    // Specialized versions of the constructor.
+    // This one is for blocks with a wet/dry state.
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy, boolean isWet, Supplier<Supplier<Block>> alternateWet) {
+        this(properties, isGrassy, alternateGrassy, isWet, alternateWet, true);
+    }
+
+    // This one is for blocks without a wet/dry state.
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy) {
+        this(properties, isGrassy, alternateGrassy, false, null, false);
     }
 
     // Returns the distance to the nearest available water, as stored in the given state.
-    protected static int getDistanceAt(LevelAccessor level, BlockPos pos, BlockState state) {
-        return getOptionalDistanceAt(state).orElse(MAX_DISTANCE);
-    }
-
-    private static OptionalInt getOptionalDistanceAt(BlockState state) {
+    // Very similar to how leaf blocks work; just changed to check for water instead of logs.
+    // Also doesn't bother redirecting through an optional, to save on computational resources.
+    // There's no need to make that many extra objects.
+    protected static int getDistanceAt(BlockState state) {
         if (state.getFluidState().is(FluidTags.WATER) || state.is(Blocks.WATER)) {
-            return OptionalInt.of(0);
+            return 0;
         } else {
-            return state.hasProperty(WATER_DISTANCE) ? OptionalInt.of(state.getValue(WATER_DISTANCE))
-                    : OptionalInt.empty();
+            return state.hasProperty(WATER_DISTANCE) ? state.getValue(WATER_DISTANCE) : MAX_DISTANCE;
         }
     }
 
+    // Generates a random position within the given distance of the block.
+    // dist is the maximum Chebyshev distance, bounded between 0 and 128.
+    // To avoid expensive random calls, this uses bit shifting to
+    // extract the data from only one integer.
+    // I probably don't need to do this, but I'm keeping it around. It can't hurt.
     public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
+        // Throw an error if it's outside the bounds.
         if (dist < 0 || dist > 127) {
-            throw new IllegalArgumentException("Offset must be in range 0 to 127.");
+            throw new IllegalArgumentException("Chebyshev must be in range 0 to 127.");
         }
 
         int range = 2 * dist + 1;
@@ -92,9 +127,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Updates the block whenever there is a change next to it.
     @Override
     @NotNull
-    public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level,
-                                  BlockPos pos, BlockPos otherPos) {
+    public BlockState updateShape(BlockState state, Direction dir, BlockState otherState, LevelAccessor level, BlockPos pos, BlockPos otherPos) {
         // First, get the block transformer. As usual, this is a moderately involved process.
+        // These registers are synced; therefore, this works on the client and server equally well.
+        // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
+        // cross that bridge when I come to it.
         Registry<BlockTransformer> blockTransformers = level.registryAccess().registryOrThrow(BlockTransformer.KEY);
         BlockTransformer erode = blockTransformers.get(BlockTransformerRegistry.EROSION);
         BlockTransformer erodeWet = blockTransformers.get(BlockTransformerRegistry.EROSION_WET);
@@ -112,17 +149,18 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             return state;
         }
 
-        // Now, update its activity and wetness.
+        // Now, update the state's activity and wetness.
         // But first, set up some variables that will be needed.
-        boolean isActive = state.getValue(ACTIVE);
+        // The current least distance to water. Will be decreased as it goes.
         int distance = MAX_DISTANCE;
+        // To hold the position of the neighbor, to avoid having to
+        // create new BlockPos objects unnecessarily.
         BlockPos.MutableBlockPos neighborPos = new BlockPos.MutableBlockPos();
+        // To store the position of the neighbor.
         BlockState neighbor;
-        boolean canBeActive = false;
-        ServerLevelAccessor levelAccessor = null;
-        if (level instanceof ServerLevelAccessor sla) {
-            levelAccessor = sla;
-        }
+        // Calculates whether this block should be able to be active.
+        // If it's grassy, or should be able to switch its wetness, it can stay active until that is done.
+        boolean canBeActive = this.isGrassy || (this.hasAlternateWetness && (this.isWet != this.canBeWet(state, level, pos)));
 
         // Checking every neighbor:
         Direction[] directions = Direction.values();
@@ -141,25 +179,44 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 neighbor = otherState;
             }
 
-            // First, check whether the neighbor can either be eroded or rooted.
-            // Silently skip this part if it isn't a server level; it's probably being placed in a structure or worldgen or something.
-            // It'll figure itself out sooner or later, when it starts eroding something once it's fully loaded into the world.
-            boolean canBeErodedOrRooted = true;
-            if (levelAccessor != null) {
-                canBeErodedOrRooted = erode.isValidInput(levelAccessor, neighbor) || erodeWet.isValidInput(levelAccessor, neighbor) || roots.isValidInput(levelAccessor, neighbor);
+            // Special cases.
+            // These check for air above and below.
+            if (direction == Direction.UP) {
+                if (neighbor.isAir()) {
+                    state = state.setValue(AIR_ABOVE, true);
+                } else {
+                    state = state.setValue(AIR_ABOVE, false);
+                }
+            } else if (direction == Direction.DOWN) {
+                if (neighbor.isAir()) {
+                    state = state.setValue(AIR_BELOW, true);
+                } else {
+                    state = state.setValue(AIR_BELOW, false);
+                }
             }
-            boolean isFullBlock = neighbor.isCollisionShapeFullBlock(level, neighborPos);
-            // If the block can be rooted, be eroded, or is not a full block, it should not prevent the roots from growing.
-            canBeActive = canBeActive || canBeErodedOrRooted || !isFullBlock;
 
-            // Second, handle wetness.
-            // Update the distance to be the minimum of the current lowest and the distance gotten from the neighbor
-            // (plus one).
-            distance = Math.min(distance, getDistanceAt(level, neighborPos, neighbor) + 1);
-            // DO NOT break out of the loop since the rest still needs to run.
+            // If the block has not been marked as able to be active, check its neighbor
+            // for the criteria.
+            if (!canBeActive) {
+                // First, check whether the neighbor can either be eroded or rooted.
+                boolean canBeErodedOrRooted = erode.isValidInput(level, neighbor) || erodeWet.isValidInput(level, neighbor) || roots.isValidInput(level, neighbor);
+                boolean isFullBlock = neighbor.isCollisionShapeFullBlock(level, neighborPos);
+                // If the block can be rooted, be eroded, or is not a full block, it should not prevent the roots from
+                // growing.
+                canBeActive = canBeErodedOrRooted || !isFullBlock;
+            }
+
+            // Second, handle updating wetness.
+            if (distance > MIN_DISTANCE) {
+                // Update the distance to be the minimum of the current lowest and the distance gotten from the
+                // neighbor (plus one).
+                distance = Math.min(distance, getDistanceAt(neighbor) + 1);
+                // DO NOT break out of the loop since the rest still needs to run.
+                // (Note to self: did this originally; it didn't go well. Recheck legacy code before copying it!)
+            }
         }
-
-
+        // Update and return the state.
+        // The air values were already set above.
         return state.setValue(WATER_DISTANCE, distance).setValue(ACTIVE, canBeActive);
     }
 
@@ -169,11 +226,14 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return state.getValue(ACTIVE);
     }
 
+    // Handles spreading and updating wetness/grassiness.
+    // This is anticipated to cause the most lag.
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         // If it is ticking while inactive, there is a problem. Log an error and report back.
         if (!state.getValue(ACTIVE)) {
-            Constants.LOG.error("SpreadingRootsBlock ticking while inactive. Please report this error to the developer of the mod.");
+            Constants.LOG.warn("SpreadingRootsBlock is ticking while inactive ({}).", state);
+            Constants.LOG.warn("Please report this warning to the developer of the mod.");
             return;
         }
         // If it is grassy and should not be, or it is not grassy but should be, swap.
@@ -182,30 +242,54 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateGrassy.get().get());
         }
-        // Set the state
+
+        // If it is wet and should not be, or it is not wet but should be, swap.
+        // Not-equal is being used as XOR here, to report a mismatch.
+        else if (this.hasAlternateWetness && (this.isWet != this.canBeWet(state, level, pos))) {
+            // Update the state, copying all applicable properties.
+            state = BlockTransformer.copyProperties(state, this.alternateWet.get().get());
+        }
+
+        // Set the state in the world.
         level.setBlockAndUpdate(pos, state);
         // Erode or spread, and grow.
         this.grow(state, level, pos);
     }
 
+    // This handles erosion, growth, and (eventually) placing features like
+    // grass, bushes, vines, and monsters.
     public void grow(BlockState state, ServerLevel level, BlockPos pos) {
-        // System.out.println("Verdant Roots are calling the "grow" function.");
-
+        // First, check if the state is wet.
+        // This is important for erosion; some things can only be
+        // eroded with access to water.
         boolean isWet = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
         for (int tries = 0; tries < 3; tries++) {
             // The range to check is constant.
             BlockPos posToTry = withinDist(pos, tries + 1, level.random);
             // Try to convert the nearby block.
-            if (this.erodeOrGrow(level, posToTry, isWet)) {
-                // Try to grow vegetation.
-                // This is a big source of lag, which I will cover separately.
-                // FeaturePlacer.place(level, pos);
+            if (!this.erodeOrGrow(level, posToTry, isWet)) {
+                this.placeFeature(state, level, pos);
                 break;
             }
         }
     }
 
-    // Applies custom hoeing logic; I feel like this should be easier.
+    public void placeFeature(BlockState state, ServerLevel level, BlockPos pos) {
+        Registry<FeatureSet> features = level.registryAccess().registryOrThrow(FeatureSet.KEY);
+
+        if (state.getValue(AIR_ABOVE)) {
+            FeatureSet set = features.get(FeatureSetRegistry.ABOVE_GROUND);
+            if (set != null) {
+                set.place(level, pos);
+            } else {
+                Constants.LOG.warn("set is null");
+            }
+        }
+
+
+    }
+
+    // Applies custom hoeing logic; I feel like doing this should be much easier.
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
@@ -221,7 +305,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Returns true if the block at the given position can be grassy.
     // For now, just checks if it has a non-liquid, non-full block above it.
-    protected boolean canBeGrassy(BlockState state, Level level, BlockPos pos) {
+    protected boolean canBeGrassy(BlockState state, LevelAccessor level, BlockPos pos) {
+        // Take the shortcut!
+        if (state.getValue(AIR_ABOVE)) {
+            return true;
+        }
         // Get the position above the block.
         BlockPos abovePos = pos.above();
         // Get the state above the block.
@@ -235,6 +323,13 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
     }
 
+    // Returns true if the block at the given position can be switched to a wet state.
+    // I.E., if it is anywhere near water.
+    protected boolean canBeWet(BlockState state, @SuppressWarnings("unused") LevelAccessor level, @SuppressWarnings("unused") BlockPos pos) {
+        return state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
+    }
+
+    // Handles bone mealing. Fairly straightforward.
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return state.getValue(ACTIVE);
@@ -250,6 +345,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         this.grow(state, level, pos);
     }
 
+    // Handles getting the placement state. This unfortunately copies a lot of logic from the
+    // updateShape function, which I'll try to simplify now that I've got that one working.
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState();
@@ -267,10 +364,24 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             direction = directions[i];
             neighborPos = neighborPos.setWithOffset(pos, direction);
             neighbor = level.getBlockState(neighborPos);
-            // First, handle wetness.
+            // Special cases
+            if (direction == Direction.UP) {
+                if (neighbor.isAir()) {
+                    state = state.setValue(AIR_ABOVE, true);
+                } else {
+                    state = state.setValue(AIR_ABOVE, false);
+                }
+            } else if (direction == Direction.DOWN) {
+                if (neighbor.isAir()) {
+                    state = state.setValue(AIR_BELOW, true);
+                } else {
+                    state = state.setValue(AIR_BELOW, false);
+                }
+            }
+
             // Update the distance to be the minimum of the current lowest and the distance gotten from the neighbor
             // (plus one).
-            distance = Math.min(distance, getDistanceAt(level, neighborPos, neighbor) + 1);
+            distance = Math.min(distance, getDistanceAt(neighbor) + 1);
             // If the distance is the minimum possible, then we can break out of the loop.
             // It can't get better than it is now.
             if (distance == MIN_DISTANCE) {
@@ -282,9 +393,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     // Very important!
+    // Defines the properties for the block.
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATER_DISTANCE, ACTIVE);
+        builder.add(WATER_DISTANCE, ACTIVE, AIR_ABOVE, AIR_BELOW);
     }
 
 }

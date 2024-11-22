@@ -1,4 +1,4 @@
-package com.thomas.verdant.data;
+package com.thomas.verdant.data.definitions;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.data.blocktransformer.BlockTransformerData;
@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +94,8 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.DIAMOND_ORE, BlockRegistry.DIRT_DIAMOND_ORE.get()));
         // Glass to stained glass, mostly a joke
         // Maybe make a common tag?
-        data.add(probability(Blocks.GLASS, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS, 1, Blocks.GREEN_STAINED_GLASS, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS, 7)));
-        data.add(probability(Blocks.GLASS_PANE, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS_PANE, 1, Blocks.GREEN_STAINED_GLASS_PANE, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS_PANE, 7)));
+        data.add(probabilityTag(Tags.Blocks.GLASS_BLOCKS_CHEAP, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS, 1, Blocks.GREEN_STAINED_GLASS, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS, 7)));
+        data.add(probabilityTag(Tags.Blocks.GLASS_PANES, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS_PANE, 1, Blocks.GREEN_STAINED_GLASS_PANE, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS_PANE, 7)));
 
         return new BlockTransformer(data, BlockTransformerRegistry.EROSION);
     }
@@ -104,6 +105,24 @@ public class BlockTransformerDefinitions {
         List<BlockTransformerData> data = new ArrayList<>();
 
         data.add(transformer("erosion"));
+        data.add(direct(Blocks.DIRT, Blocks.MUD));
+        data.add(direct(Blocks.TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.RED_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.ORANGE_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.YELLOW_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.LIME_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.GREEN_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.CYAN_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.LIGHT_BLUE_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.BLUE_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.PURPLE_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.MAGENTA_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.BROWN_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.BLACK_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.GRAY_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.WHITE_TERRACOTTA, Blocks.CLAY));
+        data.add(direct(Blocks.PINK_TERRACOTTA, Blocks.CLAY));
 
         return new BlockTransformer(data, BlockTransformerRegistry.EROSION_WET);
     }
@@ -146,7 +165,11 @@ public class BlockTransformerDefinitions {
         return new BlockTransformerData(null, null, to.entrySet().stream().map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue())).toList(), null, name(from));
     }
 
-    private static BlockTransformerData tag(TagKey<Block> from, Block to) {
+    private static BlockTransformerData probabilityTag(TagKey<Block> from, Map<Block, Integer> to) {
+        return new BlockTransformerData(null, null, to.entrySet().stream().map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue())).toList(), from, null);
+    }
+
+    private static BlockTransformerData directTag(TagKey<Block> from, Block to) {
         return new BlockTransformerData(null, name(to), null, from, null);
     }
 

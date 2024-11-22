@@ -29,13 +29,13 @@
               "name": "verdant:verdant_rooted_mud"
             },
             {
-              "type": "minecraft:item",
+              "type": "minecraft:loot_table",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:mud"
+              "value": "minecraft:blocks/mud"
             }
           ]
         }

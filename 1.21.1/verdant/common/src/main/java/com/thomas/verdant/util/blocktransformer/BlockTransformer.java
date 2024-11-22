@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -134,13 +135,12 @@ public class BlockTransformer {
         this.tagMap.put(input, AliasBuilder.build(probabilities));
     }
 
-    private Function<RandomSource, Block> getRaw(Block input, ServerLevelAccessor level) {
+    private Function<RandomSource, Block> getRaw(Block input, LevelAccessor level) {
 
         Function<RandomSource, Block> result = this.directMap.get(input);
 
         if (result == null) {
-            @SuppressWarnings("deprecation") List<TagKey<Block>> tags = input.builtInRegistryHolder().tags().toList();
-            result = this.getHighestPriorityTagMapping(tags);
+            result = this.getHighestPriorityTagMapping(input);
         }
         // If no result was found yet,
         if (result == null) {
@@ -162,13 +162,14 @@ public class BlockTransformer {
         return copyProperties(input, this.get(input.getBlock(), level));
     }
 
-    private Function<RandomSource, Block> getHighestPriorityTagMapping(List<TagKey<Block>> tags) {
+    private Function<RandomSource, Block> getHighestPriorityTagMapping(Block block) {
         int highestPriority = -1;
         Function<RandomSource, Block> result = null;
 
-        for (TagKey<Block> tag : tags) {
-            int tagPriority = this.tagPriorityMap.getInt(tag);
-            if (tagPriority > highestPriority) {
+        for (Object2IntMap.Entry<TagKey<Block>> entry : this.tagPriorityMap.object2IntEntrySet()) {
+            int tagPriority = entry.getIntValue();
+            TagKey<Block> tag = entry.getKey();
+            if (tagPriority > highestPriority && block.builtInRegistryHolder().is(tag)) {
                 result = this.tagMap.get(tag);
                 highestPriority = tagPriority;
             }
@@ -177,25 +178,27 @@ public class BlockTransformer {
         return result;
     }
 
-    public boolean isValidInput(ServerLevelAccessor level, @NotNull BlockState input) {
+
+    public boolean isValidInput(LevelAccessor level, @NotNull BlockState input) {
         return this.isValidInput(level, input.getBlock());
     }
 
-    public boolean isValidInput(ServerLevelAccessor level, Block input) {
+    public boolean isValidInput(LevelAccessor level, Block input) {
         return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(level, input);
     }
 
     private boolean hasValidTagMapping(@NotNull Block input) {
-        @SuppressWarnings("deprecation") List<TagKey<Block>> tags = input.builtInRegistryHolder().tags().toList();
+        Set<TagKey<Block>> tags = this.tagMap.keySet();
         for (TagKey<Block> tag : tags) {
-            if (this.tagMap.containsKey(tag)) {
+            if (input.builtInRegistryHolder().is(tag)) {
                 return true;
             }
         }
+
         return false;
     }
 
-    private boolean hasValidFallbackMapping(ServerLevelAccessor level, @NotNull Block input) {
+    private boolean hasValidFallbackMapping(LevelAccessor level, @NotNull Block input) {
         for (ResourceLocation location : this.fallbacks) {
             if (this.getFallback(level, location).isValidInput(level, input)) {
                 return true;
@@ -205,7 +208,7 @@ public class BlockTransformer {
     }
 
     // Note: this could cause an infinite loop if a fallback of this registry at any point lists this as a fallback.
-    private BlockTransformer getFallback(ServerLevelAccessor level, ResourceLocation location) {
+    private BlockTransformer getFallback(LevelAccessor level, ResourceLocation location) {
         BlockTransformer cached = this.cachedFallbacks.get(location);
         if (cached != null) {
             return cached;

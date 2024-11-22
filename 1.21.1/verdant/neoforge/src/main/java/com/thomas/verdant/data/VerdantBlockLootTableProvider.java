@@ -4,6 +4,8 @@ import com.thomas.verdant.registry.BlockRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -13,10 +15,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -103,12 +107,13 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // this.add(ModBlocks.LEAFY_VERDANT_VINE.get(),
         //         this.createMultifaceBlockDrops(ModBlocks.LEAFY_VERDANT_VINE.get(), HAS_SILK_TOUCH));
 
-        requireSilkTouch(BlockRegistry.VERDANT_GRASS_DIRT.get(), Blocks.DIRT);
-        requireSilkTouch(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
-        requireSilkTouch(BlockRegistry.VERDANT_GRASS_MUD.get(), Blocks.MUD);
-        requireSilkTouch(BlockRegistry.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
-        requireSilkTouch(BlockRegistry.VERDANT_GRASS_CLAY.get(), Blocks.CLAY);
-        requireSilkTouch(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_DIRT.get(), Blocks.DIRT);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_MUD.get(), Blocks.MUD);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_CLAY.get(), Blocks.CLAY);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+
         // this.dropOther(ModBlocks.VERDANT_TENDRIL_PLANT.get(), ModBlocks.VERDANT_TENDRIL.get());
         // this.dropSelf(ModBlocks.VERDANT_TENDRIL.get());
         // this.dropOther(ModBlocks.POISON_IVY_PLANT.get(), ModBlocks.POISON_IVY.get());
@@ -219,8 +224,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     @Override
+    @NotNull
     protected Iterable<Block> getKnownBlocks() {
-        return BlockRegistry.BLOCKS.getEntries().stream().map(ro -> (Block)ro.get())::iterator;
+        return BlockRegistry.BLOCKS.getEntries().stream().map(ro -> (Block) ro.get())::iterator;
     }
 
     protected void requireSilkTouch(Block base, ItemLike withoutSilk) {
@@ -239,8 +245,18 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(base, block -> createOreDrops(base, withoutSilk.asItem(), range));
     }
 
+    protected void requireSilkTouchDropsOther(Block base, Block source) {
+        ResourceLocation sourceLoc = source.builtInRegistryHolder().key().location().withPrefix("blocks/");
+        this.add(base, block -> this.createSilkTouchOrOtherDrop(block, sourceLoc));
+    }
+
     protected void oreDrop(Block base, ItemLike drop, List<Integer> range) {
         this.add(base, block -> createOreDrops(base, drop, range));
     }
+
+    protected LootTable.Builder createSilkTouchOrOtherDrop(Block block, ResourceLocation source) {
+        return createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, source))));
+    }
+
 }
 

@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.data.definitions.BlockTransformerDefinitions;
 import com.thomas.verdant.registry.BlockTransformerRegistry;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.HolderLookup;
@@ -10,6 +11,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -35,4 +37,9 @@ public class VerdantBlockTransformerProvider extends DatapackBuiltinEntriesProvi
         return ResourceKey.create(BlockTransformer.KEY, location);
     }
 
+    @Override
+    @NotNull
+    public String getName() {
+        return "Block Transformers";
+    }
 }

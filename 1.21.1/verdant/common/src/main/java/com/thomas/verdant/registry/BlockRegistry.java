@@ -44,10 +44,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
 
     static {
-        VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_DIRT));
-        VERDANT_GRASS_DIRT = registerBlockWithItem("verdant_grass_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_GRASS, true, () -> BlockRegistry.VERDANT_ROOTED_DIRT));
-        VERDANT_ROOTED_MUD = registerBlockWithItem("verdant_rooted_mud", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_MUD));
-        VERDANT_GRASS_MUD = registerBlockWithItem("verdant_grass_mud", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_GRASS, true, () -> BlockRegistry.VERDANT_ROOTED_MUD));
+        VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_DIRT, false, () -> BlockRegistry.VERDANT_ROOTED_MUD));
+        VERDANT_GRASS_DIRT = registerBlockWithItem("verdant_grass_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_GRASS, true, () -> BlockRegistry.VERDANT_ROOTED_DIRT, false, () -> BlockRegistry.VERDANT_GRASS_MUD));
+        VERDANT_ROOTED_MUD = registerBlockWithItem("verdant_rooted_mud", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_MUD, true, () -> BlockRegistry.VERDANT_ROOTED_DIRT));
+        VERDANT_GRASS_MUD = registerBlockWithItem("verdant_grass_mud", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_GRASS, true, () -> BlockRegistry.VERDANT_ROOTED_MUD, true, () -> BlockRegistry.VERDANT_GRASS_MUD));
         VERDANT_ROOTED_CLAY = registerBlockWithItem("verdant_rooted_clay", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_CLAY));
         VERDANT_GRASS_CLAY = registerBlockWithItem("verdant_grass_clay", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_GRASS, true, () -> BlockRegistry.VERDANT_ROOTED_CLAY));
         PACKED_GRAVEL = registerBlockWithItem("packed_gravel", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).pushReaction(PushReaction.DESTROY)));

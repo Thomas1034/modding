@@ -13,13 +13,12 @@ import java.util.Optional;
 public class BlockTransformerData {
     public static final Codec<TagKey<Block>> TAG_CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.fieldOf("location").forGetter(TagKey::location)).apply(instance, location -> TagKey.create(Registries.BLOCK, location)));
     // Codec for TransformerData
-    public static final Codec<BlockTransformerData> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.optionalFieldOf("transformer").forGetter(data -> data.transformer == null ? Optional.<ResourceLocation>empty() : Optional.of(data.transformer)), ResourceLocation.CODEC.optionalFieldOf("result").forGetter(data -> data.result == null ? Optional.<ResourceLocation>empty() : Optional.of(data.result)), Codec.list(BlockTransformerResultOption.CODEC).optionalFieldOf("results").forGetter(data -> data.results == null ? Optional.<List<BlockTransformerResultOption>>empty() : Optional.of(data.results)), TAG_CODEC.optionalFieldOf("tag").forGetter(data -> data.tag == null ? Optional.<TagKey<Block>>empty() : Optional.of(data.tag)), ResourceLocation.CODEC.optionalFieldOf("block").forGetter(data -> data.block == null ? Optional.<ResourceLocation>empty() : Optional.of(data.block))).apply(instance, BlockTransformerData::new));
+    public static final Codec<BlockTransformerData> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.optionalFieldOf("transformer").forGetter(data -> data.transformer == null ? Optional.empty() : Optional.of(data.transformer)), ResourceLocation.CODEC.optionalFieldOf("result").forGetter(data -> data.result == null ? Optional.empty() : Optional.of(data.result)), Codec.list(BlockTransformerResultOption.CODEC).optionalFieldOf("results").forGetter(data -> data.results == null ? Optional.empty() : Optional.of(data.results)), TAG_CODEC.optionalFieldOf("tag").forGetter(data -> data.tag == null ? Optional.empty() : Optional.of(data.tag)), ResourceLocation.CODEC.optionalFieldOf("block").forGetter(data -> data.block == null ? Optional.empty() : Optional.of(data.block))).apply(instance, BlockTransformerData::new));
     public final ResourceLocation transformer;
     public final ResourceLocation result;
     public final List<BlockTransformerResultOption> results;
     public final TagKey<Block> tag;
     public final ResourceLocation block;
-
 
     public BlockTransformerData(Optional<ResourceLocation> transformer, Optional<ResourceLocation> result, Optional<List<BlockTransformerResultOption>> results, Optional<TagKey<Block>> tag, Optional<ResourceLocation> block) {
         this(transformer.orElse(null), result.orElse(null), results.orElse(null), tag.orElse(null), block.orElse(null));

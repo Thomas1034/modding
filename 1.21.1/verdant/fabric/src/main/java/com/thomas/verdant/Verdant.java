@@ -1,6 +1,7 @@
 package com.thomas.verdant;
 
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
+import com.thomas.verdant.util.featureset.FeatureSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 
@@ -17,8 +18,6 @@ public class Verdant implements ModInitializer {
         CommonClass.init();
 
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
-
-
-
+        DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
     }
 }
