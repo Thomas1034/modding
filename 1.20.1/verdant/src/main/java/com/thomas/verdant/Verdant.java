@@ -85,6 +85,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 // wild parsnip (inflicts photosensitive, causes some damage in sky access in the day, effect strength determines how often damage occurs)
 // monkshood (Causes paralysis, i.e. slowness, weakness, and mining fatigue).
 
+// Frame blocks:
+// Paper frame, dyable arbitrary colors?
+// Phantom frame, mimics block that's right-clicked on it? Drops that block when broken.
+// 
+
+
 // Scented effect; attracts animals. Higher levels cause them to spontaneously fall in love.
 // Made with a fermented spider eye into stench potion
 

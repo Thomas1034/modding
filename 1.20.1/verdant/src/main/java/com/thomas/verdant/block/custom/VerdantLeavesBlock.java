@@ -509,7 +509,7 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		return distance;
 	}
 
-	public static void growLeaves(Level level, BlockPos pos) {
+	public static boolean growLeaves(Level level, BlockPos pos) {
 
 		// System.out.println("growLeaves is being called by " +
 		// level.getBlockState(pos) + " at " + pos + ".");
@@ -517,15 +517,17 @@ public class VerdantLeavesBlock extends LeavesBlock implements VerdantGrower {
 		// Try to convert nearby leaves.
 		// Find a place to grow within three tries. Can use further tries to spread even
 		// more.
+		boolean success = false;
 		for (int tries = 0; tries < 3; tries++) {
 			// The range to check is constant.
 			BlockPos posToTry = VerdantGrower.withinDist(pos, 3, level.random);
 			// If it converted successfully, break.
 			if (VerdantGrower.convertLeaves(level, posToTry)) {
 				// System.out.println("Successfully grew.");
-				// break;
+				success = true;
 			}
 		}
+		return success;
 
 		// System.out.println("Done growing leaves.");
 	}
