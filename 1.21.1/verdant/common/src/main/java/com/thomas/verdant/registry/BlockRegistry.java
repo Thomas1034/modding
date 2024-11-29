@@ -1,12 +1,8 @@
 package com.thomas.verdant.registry;
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.SpreadingRootsBlock;
 import com.thomas.verdant.block.custom.StranglerVineBlock;
-import com.thomas.verdant.registration.RegistrationProvider;
-import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.properties.BlockProperties;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -16,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.PushReaction;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
@@ -28,25 +23,25 @@ import java.util.function.ToIntFunction;
 
 
 public class BlockRegistry {
-    public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, Constants.MOD_ID);
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_DIRT;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_DIRT;
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_MUD;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_MUD;
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_CLAY;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_CLAY;
-    public static final RegistryObject<Block, Block> PACKED_GRAVEL;
-    public static final RegistryObject<Block, Block> DIRT_COAL_ORE;
-    public static final RegistryObject<Block, Block> DIRT_COPPER_ORE;
-    public static final RegistryObject<Block, Block> DIRT_IRON_ORE;
-    public static final RegistryObject<Block, Block> DIRT_GOLD_ORE;
-    public static final RegistryObject<Block, Block> DIRT_LAPIS_ORE;
-    public static final RegistryObject<Block, Block> DIRT_REDSTONE_ORE;
-    public static final RegistryObject<Block, Block> DIRT_EMERALD_ORE;
-    public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
-    public static final RegistryObject<Block, Block> TEST_BLOCK;
-    public static final RegistryObject<Block, Block> TEST_LOG;
-    public static final RegistryObject<Block, Block> STRANGLER_VINE;
+
+    public static final Supplier<Block> VERDANT_ROOTED_DIRT;
+    public static final Supplier<Block> VERDANT_GRASS_DIRT;
+    public static final Supplier<Block> VERDANT_ROOTED_MUD;
+    public static final Supplier<Block> VERDANT_GRASS_MUD;
+    public static final Supplier<Block> VERDANT_ROOTED_CLAY;
+    public static final Supplier<Block> VERDANT_GRASS_CLAY;
+    public static final Supplier<Block> PACKED_GRAVEL;
+    public static final Supplier<Block> DIRT_COAL_ORE;
+    public static final Supplier<Block> DIRT_COPPER_ORE;
+    public static final Supplier<Block> DIRT_IRON_ORE;
+    public static final Supplier<Block> DIRT_GOLD_ORE;
+    public static final Supplier<Block> DIRT_LAPIS_ORE;
+    public static final Supplier<Block> DIRT_REDSTONE_ORE;
+    public static final Supplier<Block> DIRT_EMERALD_ORE;
+    public static final Supplier<Block> DIRT_DIAMOND_ORE;
+    public static final Supplier<Block> TEST_BLOCK;
+    public static final Supplier<Block> TEST_LOG;
+    public static final Supplier<Block> STRANGLER_VINE;
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_DIRT, false, () -> BlockRegistry.VERDANT_ROOTED_MUD));
@@ -72,14 +67,19 @@ public class BlockRegistry {
     public static void init() {
     }
 
-    public static <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block) {
-        return registerBlockWithItem(name, block, b -> () -> new BlockItem(b.get(), ItemRegistry.getItemProperties()));
+    public static <T extends Block> Supplier<T> registerBlockWithItem(String name, Supplier<T> block) {
+        return registerBlockWithItem(name, block, () -> new BlockItem(block.get(), ItemRegistry.getItemProperties()));
     }
 
-    protected static <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block, Function<RegistryObject<Block, T>, Supplier<? extends BlockItem>> item) {
-        var reg = BLOCKS.register(name, block);
-        ItemRegistry.ITEMS.register(name, () -> item.apply(reg).get());
-        return reg;
+    protected static <T extends Block> Supplier<T> registerBlockWithItem(String name, Supplier<T> block, Supplier<? extends BlockItem> item) {
+        VerdantRegistryHelpers.BLOCK.add(name, block);
+        VerdantRegistryHelpers.ITEM.add(name, item);
+        return block;
+    }
+
+    protected static <T extends Block> Supplier<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        VerdantRegistryHelpers.BLOCK.add(name, block);
+        return block;
     }
 
     private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {

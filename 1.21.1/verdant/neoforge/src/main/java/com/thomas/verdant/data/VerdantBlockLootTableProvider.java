@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.VerdantRegistryHelpers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -230,7 +231,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     @NotNull
     protected Iterable<Block> getKnownBlocks() {
-        return BlockRegistry.BLOCKS.getEntries().stream().map(ro -> (Block) ro.get())::iterator;
+        return VerdantRegistryHelpers.BLOCK.getEntries().stream().map(ro -> (Block) ro.get())::iterator;
     }
 
     protected void requireSilkTouch(Block base, ItemLike withoutSilk) {

@@ -2,6 +2,8 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
+import com.thomas.verdant.registry.NeoForgeBlockRegistry;
+import com.thomas.verdant.registry.NeoForgeItemRegistry;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import net.minecraft.core.HolderLookup;
@@ -39,6 +41,9 @@ public class Verdant {
 
         eventBus.addListener(Verdant::registerDatapackRegistries);
         eventBus.addListener(Verdant::gatherData);
+
+        NeoForgeBlockRegistry.register(eventBus);
+        NeoForgeItemRegistry.register(eventBus);
     }
 
     public static void gatherData(GatherDataEvent event) {
