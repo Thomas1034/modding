@@ -38,14 +38,9 @@ public class ConfiguredFeatureSetEntry extends FeatureSet.Entry {
     @Override
     public void place(ServerLevel level, BlockPos pos) {
         if (this.configuredFeature == null) {
-            this.configuredFeature = level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).get(this.configuredFeatureLocation);
+            this.configuredFeature = level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(this.configuredFeatureLocation).orElseThrow().value();
         }
         // If it's still null, throw.
-        if (this.configuredFeature == null) {
-            Constants.LOG.error("Unable to get feature {}", this.configuredFeatureLocation);
-            Constants.LOG.error("Please report this to the mod developer, along with a list of the other mods or data packs you were using at the time");
-            return;
-        }
         this.configuredFeature.place(level, level.getChunkSource().getGenerator(), level.getRandom(), pos);
     }
 

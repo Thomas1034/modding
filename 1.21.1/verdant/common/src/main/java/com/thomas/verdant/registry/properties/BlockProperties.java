@@ -32,7 +32,7 @@ public class BlockProperties {
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_HANGING_SIGN = verdantHeartwoodBase().forceSolidOn()
             .noCollission().strength(1.0F);
 
-    private static final BlockBehaviour.Properties verdantHeartwoodBase() {
+    private static BlockBehaviour.Properties verdantHeartwoodBase() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS)
                 .strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava();
     }

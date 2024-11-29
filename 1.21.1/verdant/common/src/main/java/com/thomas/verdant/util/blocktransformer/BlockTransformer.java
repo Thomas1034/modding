@@ -68,9 +68,9 @@ public class BlockTransformer {
     }
 
     private static Block getBlock(ResourceLocation location) {
-        Block block = BuiltInRegistries.BLOCK.get(location);
+        Block block = BuiltInRegistries.BLOCK.get(location).orElseThrow().value();
         Objects.requireNonNull(block, "Unrecognized block " + location + "in BlockTransformer");
-        return BuiltInRegistries.BLOCK.get(location);
+        return block;
     }
 
     private void fillData(List<BlockTransformerData> values) {
@@ -214,13 +214,9 @@ public class BlockTransformer {
             return cached;
         }
 
-        Registry<BlockTransformer> transformers = level.registryAccess().registryOrThrow(BlockTransformer.KEY);
-        BlockTransformer transformer = transformers.get(location);
-        if (transformer != null) {
-            this.cachedFallbacks.put(location, transformer);
-        } else {
-            Constants.LOG.error("Unable to get Block Transformer: {}\nPlease report this error to the developer, including what other mods and data packs (if any) you were using.", location);
-        }
+        Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
+        BlockTransformer transformer = transformers.get(location).orElseThrow().value();
+        this.cachedFallbacks.put(location, transformer);
         return transformer;
     }
 

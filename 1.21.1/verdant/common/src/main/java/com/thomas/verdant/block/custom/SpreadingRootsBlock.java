@@ -15,7 +15,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -35,7 +35,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("NullableProblems")
+// Problems: it's always grass - fix detection of air above and below.
+
 public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
 
     // The maximum distance the block can be from water.
@@ -179,15 +180,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     public void placeFeature(BlockState state, ServerLevel level, BlockPos pos) {
-        Registry<FeatureSet> features = level.registryAccess().registryOrThrow(FeatureSet.KEY);
+        Registry<FeatureSet> features = level.registryAccess().lookupOrThrow(FeatureSet.KEY);
 
         if (state.getValue(AIR_ABOVE)) {
-            FeatureSet set = features.get(FeatureSetRegistry.ABOVE_GROUND);
-            if (set != null) {
-                set.place(level, pos);
-            } else {
-                Constants.LOG.warn("set is null");
-            }
+            FeatureSet set = features.get(FeatureSetRegistry.ABOVE_GROUND).orElseThrow().value();
+            set.place(level, pos);
         }
 
 
@@ -195,13 +192,13 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Applies custom hoeing logic; I feel like doing this should be much easier.
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
         if (level instanceof ServerLevel serverLevel) {
             if (stack.is(ItemTags.HOES)) {
                 BlockState hoedTo = this.hoe(state, serverLevel, pos, stack);
                 serverLevel.setBlockAndUpdate(pos, hoedTo);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
@@ -259,22 +256,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         // These registers are synced; therefore, this works on the client and server equally well.
         // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
         // cross that bridge when I come to it.
-        Registry<BlockTransformer> blockTransformers = level.registryAccess().registryOrThrow(BlockTransformer.KEY);
-        BlockTransformer erode = blockTransformers.get(BlockTransformerRegistry.EROSION);
-        BlockTransformer erodeWet = blockTransformers.get(BlockTransformerRegistry.EROSION_WET);
-        BlockTransformer roots = blockTransformers.get(BlockTransformerRegistry.VERDANT_ROOTS);
-        // If the block transformers were not gotten successfully, print an error and take no action.
-        if (erode == null || erodeWet == null || roots == null) {
-            // Log an error, telling the user to report this.
-            Constants.LOG.error("Unable to get Block Transformers in SpreadingRootsBlock. Please report this error to the developer, along with a list of the mods and data packs you are using.");
-            Constants.LOG.error("Level class is {}", level.getClass());
-            Constants.LOG.error("This block is {}", this);
-            Constants.LOG.error("Erode is {}", erode);
-            Constants.LOG.error("Erode Wet is {}", erodeWet);
-            Constants.LOG.error("Roots is {}", roots);
-            Constants.LOG.error("Please include this entire error in your report, so I can resolve the problem more quickly.");
-            return state;
-        }
+        Registry<BlockTransformer> blockTransformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
+        BlockTransformer erode = blockTransformers.get(BlockTransformerRegistry.EROSION).orElseThrow().value();
+        BlockTransformer erodeWet = blockTransformers.get(BlockTransformerRegistry.EROSION_WET).orElseThrow().value();
+        BlockTransformer roots = blockTransformers.get(BlockTransformerRegistry.VERDANT_ROOTS).orElseThrow().value();
 
         // Now, update the state's activity and wetness.
         // But first, set up some variables that will be needed.

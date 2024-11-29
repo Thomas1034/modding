@@ -13,11 +13,11 @@ public interface Hoeable {
 
     default BlockState hoe(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack) {
         // Retrieves the registry for hoeing.
-        Registry<BlockTransformer> transformers = level.registryAccess().registryOrThrow(BlockTransformer.KEY);
-        BlockTransformer hoeing = transformers.get(BlockTransformerRegistry.HOEING);
+        Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
+        BlockTransformer hoeing = transformers.get(BlockTransformerRegistry.HOEING).orElseThrow().value();
 
         // Transforms the state and returns it
-        return hoeing != null ? hoeing.get(state, level) : null;
+        return hoeing.get(state, level);
     }
 
     @SuppressWarnings("unused")

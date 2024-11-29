@@ -36,13 +36,7 @@ public class RecursiveFeatureSetEntry extends FeatureSet.Entry{
     @Override
     public void place(ServerLevel level, BlockPos pos) {
         if (this.featureSet == null) {
-            this.featureSet = level.registryAccess().registryOrThrow(FeatureSet.KEY).get(this.featureSetLocation);
-        }
-        // If it's still null, throw.
-        if (this.featureSet == null) {
-            Constants.LOG.error("Unable to get feature set {}", this.featureSetLocation);
-            Constants.LOG.error("Please report this to the mod developer, along with a list of the other mods or data packs you were using at the time");
-            return;
+            this.featureSet = level.registryAccess().lookupOrThrow(FeatureSet.KEY).get(this.featureSetLocation).orElseThrow().value();
         }
         this.featureSet.place(level, pos);
     }

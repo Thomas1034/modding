@@ -81,7 +81,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
     private boolean hasTransparentOrPlantSpaceBeneath(Level level, BlockPos pos, int distanceToCheck) {
         // Check for nearby blocks
 
-        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown(level, pos) || stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS));
+        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS));
         int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
 
         return distance > distanceToCheck;

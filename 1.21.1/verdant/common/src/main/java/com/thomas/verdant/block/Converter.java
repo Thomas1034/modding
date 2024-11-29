@@ -18,11 +18,11 @@ public interface Converter {
 
     default boolean convert(BlockState state, ServerLevel level, BlockPos pos) {
         // Retrieves the registry for block transformers.
-        Registry<BlockTransformer> transformers = level.registryAccess().registryOrThrow(BlockTransformer.KEY);
+        Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
         // Selects which converter to use, depending on whether there is access to water.
-        BlockTransformer converter = transformers.get(this.getTransformer());
+        BlockTransformer converter = transformers.get(this.getTransformer()).orElseThrow().value();
         // Gets the result of conversion. This could be null.
-        BlockState newState = converter != null ? converter.get(state, level) : null;
+        BlockState newState = converter.get(state, level);
         // Check if the result is either unchanged or null.
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {
