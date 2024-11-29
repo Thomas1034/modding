@@ -13,13 +13,15 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 public class VerdantTags {
     public static class Blocks {
 
-        public static final TagKey<Block> VERDANT_LOGS = tag("verdant_logs");
+        public static final TagKey<Block> SUPPORTS_TEST_LEAVES = tag("supports_verdant_leaves");
+        public static final TagKey<Block> STRANGLER_LOGS = tag("verdant_logs");
+        public static final TagKey<Block> SUPPORTS_STRANGLER_VINES = tag("supports_strangler_vines");
         public static final TagKey<Block> VERDANT_VINE_REPLACEABLES = tag("verdant_vine_replacables");
-        public static final TagKey<Block> MATURE_VERDANT_LOGS = tag("mature_verdant_logs");
+        public static final TagKey<Block> MATURE_STRANGLER_LOGS = tag("mature_verdant_logs");
         public static final TagKey<Block> VERDANT_LEAFY_BLOCKS = tag("verdant_leafy_blocks");
-        public static final TagKey<Block> VERDANT_VINES = tag("verdant_vines");
+        public static final TagKey<Block> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Block> VERDANT_GROUND = tag("verdant_ground");
-        public static final TagKey<Block> NEEDS_VERDANT_HEARTWOOD_TOOL = tag("needs_verdant_heartwood_tool");
+        public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
 
         private static TagKey<Block> tag(String name) {
 

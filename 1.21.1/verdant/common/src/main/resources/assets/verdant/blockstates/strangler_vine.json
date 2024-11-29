@@ -5,7 +5,7 @@
         "up": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_0"
+        "model": "verdant:block/strangler_vine/up_0"
       }
     },
     {
@@ -13,7 +13,7 @@
         "up": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_1"
+        "model": "verdant:block/strangler_vine/up_1"
       }
     },
     {
@@ -21,7 +21,7 @@
         "up": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_2"
+        "model": "verdant:block/strangler_vine/up_2"
       }
     },
     {
@@ -29,7 +29,7 @@
         "up": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_3"
+        "model": "verdant:block/strangler_vine/up_3"
       }
     },
     {
@@ -37,7 +37,7 @@
         "down": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_0",
+        "model": "verdant:block/strangler_vine/up_0",
         "x": 180
       }
     },
@@ -46,7 +46,7 @@
         "down": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_1",
+        "model": "verdant:block/strangler_vine/up_1",
         "x": 180
       }
     },
@@ -55,7 +55,7 @@
         "down": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_2",
+        "model": "verdant:block/strangler_vine/up_2",
         "x": 180
       }
     },
@@ -64,7 +64,7 @@
         "down": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/up_3",
+        "model": "verdant:block/strangler_vine/up_3",
         "x": 180
       }
     },
@@ -73,7 +73,7 @@
         "north": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_0"
+        "model": "verdant:block/strangler_vine/north_0"
       }
     },
     {
@@ -81,7 +81,7 @@
         "north": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_1"
+        "model": "verdant:block/strangler_vine/north_1"
       }
     },
     {
@@ -89,7 +89,7 @@
         "north": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_2"
+        "model": "verdant:block/strangler_vine/north_2"
       }
     },
     {
@@ -97,7 +97,7 @@
         "north": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_3"
+        "model": "verdant:block/strangler_vine/north_3"
       }
     },
     {
@@ -105,7 +105,7 @@
         "south": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_0",
+        "model": "verdant:block/strangler_vine/north_0",
         "y": 180
       }
     },
@@ -114,7 +114,7 @@
         "south": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_1",
+        "model": "verdant:block/strangler_vine/north_1",
         "y": 180
       }
     },
@@ -123,7 +123,7 @@
         "south": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_2",
+        "model": "verdant:block/strangler_vine/north_2",
         "y": 180
       }
     },
@@ -132,7 +132,7 @@
         "south": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/north_3",
+        "model": "verdant:block/strangler_vine/north_3",
         "y": 180
       }
     },
@@ -141,7 +141,7 @@
         "east": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_0",
+        "model": "verdant:block/strangler_vine/east_0",
         "y": 180
       }
     },
@@ -150,7 +150,7 @@
         "east": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_1",
+        "model": "verdant:block/strangler_vine/east_1",
         "y": 180
       }
     },
@@ -159,7 +159,7 @@
         "east": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_2",
+        "model": "verdant:block/strangler_vine/east_2",
         "y": 180
       }
     },
@@ -168,7 +168,7 @@
         "east": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_3",
+        "model": "verdant:block/strangler_vine/east_3",
         "y": 180
       }
     },
@@ -177,7 +177,7 @@
         "west": "0"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_0"
+        "model": "verdant:block/strangler_vine/east_0"
       }
     },
     {
@@ -185,7 +185,7 @@
         "west": "1"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_1"
+        "model": "verdant:block/strangler_vine/east_1"
       }
     },
     {
@@ -193,7 +193,7 @@
         "west": "2"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_2"
+        "model": "verdant:block/strangler_vine/east_2"
       }
     },
     {
@@ -201,7 +201,7 @@
         "west": "3"
       },
       "apply": {
-        "model": "verdant:block/verdant_vine/east_3"
+        "model": "verdant:block/strangler_vine/east_3"
       }
     }
   ]

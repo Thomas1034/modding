@@ -37,6 +37,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
         // ModBlocks.VERDANT.addLootTables(this);
 
+        this.add(BlockRegistry.TEST_BLOCK.get(), noDrop());
+        this.add(BlockRegistry.TEST_LOG.get(), noDrop());
+        this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
+
         // this.add(ModBlocks.UBE_CAKE.get(), noDrop());
         // this.add(ModBlocks.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
         // this.add(ModBlocks.WHITE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.WHITE_CANDLE));

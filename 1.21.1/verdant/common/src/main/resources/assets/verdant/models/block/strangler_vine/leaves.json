@@ -2,6 +2,6 @@
   "parent": "verdant:block/cube_all_inset",
   "render_type": "minecraft:cutout",
   "textures": {
-    "all": "verdant:block/verdant_leaves"
+    "all": "verdant:block/strangler_leaves"
   }
 }

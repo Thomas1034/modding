@@ -1,7 +1,6 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
-import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,6 +26,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
+        logBlockWithItem((RotatedPillarBlock)BlockRegistry.TEST_LOG.get());
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_DIRT, () -> Blocks.DIRT);
         verdantGrassBlock(BlockRegistry.VERDANT_GRASS_DIRT, () -> Blocks.DIRT);
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_MUD, () -> Blocks.MUD);
@@ -52,6 +53,11 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
 
+
+    protected void simpleBlockWithItem(Block block) {
+        simpleBlockWithItem(block, cubeAll(block));
+    }
+
     protected void overlayBlockWithItem(@NotNull Supplier<Block> blockSource, Supplier<Block> baseSource, String[] overlays) {
 
         Block block = blockSource.get();
@@ -73,12 +79,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         blockWithItem(blockSource, files);
     }
 
-    ;
-
     protected void verdantGroundBlock(@NotNull Supplier<Block> blockSource, Supplier<Block> baseSource) {
         String[] extensions = new String[]{"", "_thick", "_thin", "_thin2", "_wilted", "_very_thin",
                 "_very_thin_mixed"
-
         };
 
         Block block = blockSource.get();
@@ -201,7 +204,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         return models;
     }
 
-    protected void cubeBlockWithItem(RegistryObject<Block, Block> blockRegistryObject, String name) {
+    protected void cubeBlockWithItem(Supplier<Block> blockRegistryObject, String name) {
         ResourceLocation down = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name + "_down");
         ResourceLocation up = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name + "_up");
         ResourceLocation north = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name + "_north");
@@ -214,7 +217,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(blockRegistryObject.get(), cubeModel);
     }
 
-    protected void sidedBlockWithItem(RegistryObject<Block, Block> blockRegistryObject, String name) {
+    protected void sidedBlockWithItem(Supplier<Block> blockRegistryObject, String name) {
         ResourceLocation down = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name + "_bottom");
         ResourceLocation up = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name + "_top");
         ResourceLocation side = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + name);
@@ -481,5 +484,12 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         });
 
         simpleBlockItem(blockSupplier.get(), models[0]);
+    }
+
+    // From @random832 on the NeoForge server
+    // https://discord.com/channels/313125603924639766/1249305774987939900/1311358871604035695
+    private void logBlockWithItem(RotatedPillarBlock block) {
+        logBlock(block);
+        simpleBlockItem(block, models().getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath()));
     }
 }

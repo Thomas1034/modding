@@ -89,7 +89,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 //                BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
 
         // TODO
-        this.tag(VerdantTags.Blocks.MATURE_VERDANT_LOGS)/*.add(BlockRegistry.VERDANT_HEARTWOOD_LOG.get(),
+        this.tag(VerdantTags.Blocks.MATURE_STRANGLER_LOGS)/*.add(BlockRegistry.VERDANT_HEARTWOOD_LOG.get(),
                 BlockRegistry.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.VERDANT_HEARTWOOD_WOOD.get(),
                 BlockRegistry.STRIPPED_VERDANT_HEARTWOOD_WOOD.get(), BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get())*/;
 
@@ -128,6 +128,12 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get());
+
+        // Verdant leaves
+        this.tag(VerdantTags.Blocks.STRANGLER_VINES).addTags();
+
+        // Verdant ground
+        this.tag(VerdantTags.Blocks.SUPPORTS_TEST_LEAVES).addTags(BlockTags.LOGS_THAT_BURN, VerdantTags.Blocks.STRANGLER_VINES);
 
 //        // Flowers
 //        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());

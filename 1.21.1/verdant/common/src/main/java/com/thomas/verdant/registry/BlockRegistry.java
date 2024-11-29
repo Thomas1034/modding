@@ -2,6 +2,7 @@ package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.SpreadingRootsBlock;
+import com.thomas.verdant.block.custom.StranglerVineBlock;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.properties.BlockProperties;
@@ -9,10 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.RedStoneOreBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -22,11 +20,15 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
+
+// NEXT UP:
+// Rework block and item registration.
+// Registration helper classes:
+// Supply
+
+
 public class BlockRegistry {
-    public static void init() {}
-
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, Constants.MOD_ID);
-
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_GRASS_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_MUD;
@@ -42,6 +44,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> DIRT_REDSTONE_ORE;
     public static final RegistryObject<Block, Block> DIRT_EMERALD_ORE;
     public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
+    public static final RegistryObject<Block, Block> TEST_BLOCK;
+    public static final RegistryObject<Block, Block> TEST_LOG;
+    public static final RegistryObject<Block, Block> STRANGLER_VINE;
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS, false, () -> BlockRegistry.VERDANT_GRASS_DIRT, false, () -> BlockRegistry.VERDANT_ROOTED_MUD));
@@ -59,6 +64,12 @@ public class BlockRegistry {
         DIRT_REDSTONE_ORE = registerBlockWithItem("dirt_redstone_ore", () -> new RedStoneOreBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT).lightLevel(litBlockEmission(9))));
         DIRT_EMERALD_ORE = registerBlockWithItem("dirt_emerald_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT)));
         DIRT_DIAMOND_ORE = registerBlockWithItem("dirt_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT)));
+        STRANGLER_VINE = registerBlockWithItem("strangler_vine", () -> new StranglerVineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).noOcclusion().randomTicks()));
+        TEST_BLOCK = registerBlockWithItem("test_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).randomTicks()));
+        TEST_LOG = registerBlockWithItem("test_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+    }
+
+    public static void init() {
     }
 
     public static <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block) {

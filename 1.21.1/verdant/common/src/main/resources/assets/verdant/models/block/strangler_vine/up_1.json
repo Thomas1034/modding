@@ -2,8 +2,8 @@
   "ambientocclusion": false,
   "render_type": "minecraft:cutout",
   "textures": {
-    "0": "verdant:block/verdant_vine_1",
-    "particle": "verdant:block/verdant_vine_1"
+    "0": "verdant:block/strangler_vine_1",
+    "particle": "verdant:block/strangler_vine_1"
   },
   "elements": [
     {

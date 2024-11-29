@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "0": "verdant:block/verdant_vine_3",
-    "particle": "verdant:block/verdant_vine_3"
+    "0": "verdant:block/strangler_vine_3",
+    "particle": "verdant:block/strangler_vine_3"
   },
   "elements": [
     {

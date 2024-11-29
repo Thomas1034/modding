@@ -55,7 +55,8 @@ public class Verdant {
             generator.addProvider(true, new VerdantBlockTagProvider(output, lookupProvider, existingFileHelper));
             generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
                     List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
-                protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext validationcontext, ProblemReporter.Collector problemreporter$collector) {
+                @Override
+                protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
                     // Do not validate at all, per what people online said.
                 }
             });

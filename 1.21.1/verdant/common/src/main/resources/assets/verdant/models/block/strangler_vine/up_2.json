@@ -1,31 +1,21 @@
 {
   "ambientocclusion": false,
-  "render_type": "minecraft:cutout",
   "textures": {
-    "0": "verdant:block/verdant_vine_3",
-    "particle": "verdant:block/verdant_vine_3"
+    "0": "verdant:block/strangler_vine_2",
+    "particle": "verdant:block/strangler_vine_2"
   },
   "elements": [
     {
       "from": [
-        0,
         0.001,
-        0.003
+        12,
+        0.001
       ],
       "to": [
-        8,
         15.999,
-        15.997
+        16,
+        15.999
       ],
-      "rotation": {
-        "origin": [
-          8,
-          8,
-          8
-        ],
-        "axis": "z",
-        "angle": 0
-      },
       "faces": {
         "north": {
           "texture": "#0",
@@ -33,59 +23,53 @@
             8,
             0,
             16,
-            4
-          ],
-          "rotation": 90
+            2
+          ]
         },
         "east": {
           "texture": "#0",
           "uv": [
             8,
-            8,
-            0,
-            16
-          ],
-          "rotation": 270
+            2,
+            16,
+            4
+          ]
         },
         "south": {
           "texture": "#0",
           "uv": [
             8,
-            8,
+            4,
             16,
-            12
-          ],
-          "rotation": 270
+            6
+          ]
         },
         "west": {
+          "texture": "#0",
+          "uv": [
+            8,
+            6,
+            16,
+            8
+          ]
+        },
+        "up": {
           "texture": "#0",
           "uv": [
             8,
             8,
             0,
             0
-          ],
-          "rotation": 270
-        },
-        "up": {
-          "texture": "#0",
-          "uv": [
-            8,
-            4,
-            16,
-            8
-          ],
-          "rotation": 270
+          ]
         },
         "down": {
           "texture": "#0",
           "uv": [
             8,
-            12,
-            16,
+            8,
+            0,
             16
-          ],
-          "rotation": 270
+          ]
         }
       }
     }

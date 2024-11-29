@@ -2,8 +2,8 @@
   "ambientocclusion": false,
   "render_type": "minecraft:cutout",
   "textures": {
-    "0": "verdant:block/verdant_vine_2",
-    "particle": "verdant:block/verdant_vine_2"
+    "0": "verdant:block/strangler_vine_3",
+    "particle": "verdant:block/strangler_vine_3"
   },
   "elements": [
     {
@@ -13,7 +13,7 @@
         0.003
       ],
       "to": [
-        4,
+        8,
         15.999,
         15.997
       ],
@@ -33,7 +33,7 @@
             8,
             0,
             16,
-            2
+            4
           ],
           "rotation": 90
         },
@@ -51,9 +51,9 @@
           "texture": "#0",
           "uv": [
             8,
-            4,
+            8,
             16,
-            6
+            12
           ],
           "rotation": 270
         },
@@ -71,9 +71,9 @@
           "texture": "#0",
           "uv": [
             8,
-            2,
+            4,
             16,
-            4
+            8
           ],
           "rotation": 270
         },
@@ -81,9 +81,9 @@
           "texture": "#0",
           "uv": [
             8,
-            6,
+            12,
             16,
-            8
+            16
           ],
           "rotation": 270
         }

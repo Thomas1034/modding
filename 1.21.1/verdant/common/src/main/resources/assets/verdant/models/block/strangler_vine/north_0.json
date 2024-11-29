@@ -2,20 +2,20 @@
   "ambientocclusion": false,
   "render_type": "minecraft:cutout",
   "textures": {
-    "0": "verdant:block/verdant_vine_0",
-    "particle": "verdant:block/verdant_vine_0"
+    "0": "verdant:block/strangler_vine_0",
+    "particle": "verdant:block/strangler_vine_0"
   },
   "elements": [
     {
       "from": [
-        15.975,
+        0.025,
         0.025,
         0.025
       ],
       "to": [
         15.975,
         15.975,
-        15.975
+        0.025
       ],
       "rotation": {
         "origin": [
@@ -23,41 +23,31 @@
           8,
           8
         ],
-        "axis": "z",
+        "axis": "y",
         "angle": 0
       },
       "faces": {
         "north": {
           "texture": "#0",
           "uv": [
-            0,
-            0,
             8,
+            8,
+            0,
             0
           ],
-          "rotation": 270
+          "rotation": 90
         },
         "east": {
           "texture": "#0",
           "uv": [
-            8,
-            8,
             0,
+            0,
+            8,
             0
           ],
           "rotation": 90
         },
         "south": {
-          "texture": "#0",
-          "uv": [
-            0,
-            0,
-            8,
-            0
-          ],
-          "rotation": 90
-        },
-        "west": {
           "texture": "#0",
           "uv": [
             8,
@@ -67,7 +57,7 @@
           ],
           "rotation": 90
         },
-        "up": {
+        "west": {
           "texture": "#0",
           "uv": [
             0,
@@ -75,7 +65,16 @@
             8,
             0
           ],
-          "rotation": 90
+          "rotation": 270
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            8,
+            0
+          ]
         },
         "down": {
           "texture": "#0",
@@ -85,7 +84,7 @@
             8,
             0
           ],
-          "rotation": 90
+          "rotation": 180
         }
       }
     }
