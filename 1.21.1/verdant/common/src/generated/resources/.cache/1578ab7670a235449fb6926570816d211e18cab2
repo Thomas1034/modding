@@ -1,0 +1,10 @@
+// 1.21.3	2024-11-30T09:57:30.688218	Tags for minecraft:item mod id verdant
+b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/item/ores.json
+3483190da3c649a3e8f7b7aba7976f4591697a7a data/c/tags/item/ores/coal.json
+cb89d15702ec273344f347e1ea4ff705107400fe data/c/tags/item/ores/copper.json
+c2545e338a7a87cb553d009c619db4c6d8047d4b data/c/tags/item/ores/diamond.json
+dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/item/ores/emerald.json
+9edfa994faa12416b54d6967881c25f1a6efa8ce data/c/tags/item/ores/gold.json
+3bcdac3c19b310abd9ffa6e47fceead01a082447 data/c/tags/item/ores/iron.json
+c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/item/ores/lapis.json
+0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/item/ores/redstone.json

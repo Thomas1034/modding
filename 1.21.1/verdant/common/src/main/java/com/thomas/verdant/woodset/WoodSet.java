@@ -46,14 +46,14 @@ public class WoodSet {
     protected RegistryObject<Block, Block> stairs;
     protected RegistryObject<Block, Block> fence;
     protected RegistryObject<Block, Block> fenceGate;
-    protected RegistryObject<Block, Block> sign;
-    protected RegistryObject<Block, Block> wallSign;
-    protected RegistryObject<Block, Block> hangingSign;
-    protected RegistryObject<Block, Block> wallHangingSign;
     protected RegistryObject<Block, Block> button;
     protected RegistryObject<Block, Block> pressurePlate;
     protected RegistryObject<Block, Block> door;
     protected RegistryObject<Block, Block> trapdoor;
+    protected RegistryObject<Block, Block> sign;
+    protected RegistryObject<Block, Block> wallSign;
+    protected RegistryObject<Block, Block> hangingSign;
+    protected RegistryObject<Block, Block> wallHangingSign;
     // The items created
     protected RegistryObject<Item, Item> signItem;
     protected RegistryObject<Item, Item> hangingSignItem;
@@ -92,6 +92,7 @@ public class WoodSet {
         this.sign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
         this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
         */
+        this.button = registerBlockWithItem(typeName("_button"), () -> new ButtonBlock(this.woodType, 30, this.buttonProperties(typeName("_button"))));
     }
 
     // Use StrippableBlockRegistry for Fabric, not sure for NeoForge.

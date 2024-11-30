@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
@@ -44,24 +45,32 @@ public class Verdant {
     public static void gatherData(GatherDataEvent event) {
         try {
             DataGenerator generator = event.getGenerator();
-            PackOutput output = generator.getPackOutput();
+            PackOutput packOutput = generator.getPackOutput();
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            generator.addProvider(true, new VerdantBlockStateProvider(output, existingFileHelper));
-            generator.addProvider(true, new VerdantItemModelProvider(output, existingFileHelper));
-            generator.addProvider(true, new VerdantBlockTransformerProvider(output, lookupProvider));
-            generator.addProvider(true, new VerdantFeatureSetProvider(output, lookupProvider));
-            VerdantBlockTagProvider blockTagProvider = generator.addProvider(true, new VerdantBlockTagProvider(output, lookupProvider, existingFileHelper));
 
-            generator.addProvider(true, new VerdantItemTagProvider(output, lookupProvider, blockTagProvider, existingFileHelper));
-            generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
+
+            generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                     List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
                 @Override
                 protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
                     // Do not validate at all, per what people online said.
                 }
             });
+
+            // generator.addProvider(event.includeServer(), new VerdantRecipeProvider(packOutput, lookupProvider));
+
+            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+            generator.addProvider(event.includeServer(), blockTagsProvider);
+            generator.addProvider(event.includeServer(), new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+            generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
+
+            generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
+
+
+            generator.addProvider(true, new VerdantBlockTransformerProvider(packOutput, lookupProvider));
+            generator.addProvider(true, new VerdantFeatureSetProvider(packOutput, lookupProvider));
 
         } catch (RuntimeException e) {
             Constants.LOG.error("Failed to generate data.", e);
