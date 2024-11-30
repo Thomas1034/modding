@@ -19,5 +19,6 @@ public class Verdant implements ModInitializer {
 
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
         DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
+
     }
 }
