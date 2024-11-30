@@ -48,11 +48,13 @@ public class Verdant {
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            generator.addProvider(true, new VerdantItemModelProvider(output, existingFileHelper));
             generator.addProvider(true, new VerdantBlockStateProvider(output, existingFileHelper));
+            generator.addProvider(true, new VerdantItemModelProvider(output, existingFileHelper));
             generator.addProvider(true, new VerdantBlockTransformerProvider(output, lookupProvider));
             generator.addProvider(true, new VerdantFeatureSetProvider(output, lookupProvider));
-            generator.addProvider(true, new VerdantBlockTagProvider(output, lookupProvider, existingFileHelper));
+            VerdantBlockTagProvider blockTagProvider = generator.addProvider(true, new VerdantBlockTagProvider(output, lookupProvider, existingFileHelper));
+
+            generator.addProvider(true, new VerdantItemTagProvider(output, lookupProvider, blockTagProvider, existingFileHelper));
             generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
                     List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
                 @Override

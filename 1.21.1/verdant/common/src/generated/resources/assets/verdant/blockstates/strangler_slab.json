@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verdant:block/strangler_slab"
+    },
+    "type=double": {
+      "model": "verdant:block/strangler_planks"
+    },
+    "type=top": {
+      "model": "verdant:block/strangler_slab_top"
+    }
+  }
+}

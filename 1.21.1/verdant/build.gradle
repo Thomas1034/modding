@@ -6,7 +6,6 @@ plugins {
     // helps with multiloader registration
     id 'com.matyrobbrt.mc.registrationutils' version '1.21.3-0.1.0'
 }
-
 registrationUtils {
     group 'com.thomas.verdant.registration'
     projects {

@@ -2,7 +2,9 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.properties.WoodSets;
 import com.thomas.verdant.util.VerdantTags;
+import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -15,13 +17,15 @@ import java.util.concurrent.CompletableFuture;
 
 public class VerdantBlockTagProvider extends BlockTagsProvider {
     public VerdantBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                ExistingFileHelper existingFileHelper) {
+                                   ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, Constants.MOD_ID, existingFileHelper);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
+
+        this.addBlockTags(WoodSets.STRANGLER);
         // BlockRegistry.VERDANT_HEARTWOOD.addBlockTags(this);
         // BlockRegistry.VERDANT.addBlockTags(this);
 
@@ -143,7 +147,13 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
 //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
 
-        // Add in ores.
+        // REMOVE vines from tree replaceables.
+        // this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.VERDANT_VINES);
+
+        addDirtOres();
+    }
+
+    private void addDirtOres() {
         this.tag(Tags.Blocks.ORES).add(BlockRegistry.DIRT_COAL_ORE.get(), BlockRegistry.DIRT_COPPER_ORE.get(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get(), BlockRegistry.DIRT_EMERALD_ORE.get(), BlockRegistry.DIRT_GOLD_ORE.get(),
                 BlockRegistry.DIRT_IRON_ORE.get(), BlockRegistry.DIRT_LAPIS_ORE.get(), BlockRegistry.DIRT_REDSTONE_ORE.get());
@@ -155,8 +165,30 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.ORES_IRON).add(BlockRegistry.DIRT_IRON_ORE.get());
         this.tag(Tags.Blocks.ORES_LAPIS).add(BlockRegistry.DIRT_LAPIS_ORE.get());
         this.tag(Tags.Blocks.ORES_REDSTONE).add(BlockRegistry.DIRT_REDSTONE_ORE.get());
+    }
 
-        // REMOVE vines from tree replaceables.
-        // this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.VERDANT_VINES);
+
+    public void addBlockTags(WoodSet woodSet) {
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
+                woodSet.getStrippedWood().get(), woodSet.getPlanks().get(), woodSet.getSlab().get(), woodSet.getStairs().get(), woodSet.getFence().get(),
+                woodSet.getFenceGate().get()/*, woodSet.getSign().get(), woodSet.getWallSign().get(), woodSet.getHangingSign().get(),
+                woodSet.getWallHangingSign().get(), woodSet.getButton().get(), woodSet.getPressurePlate().get(), woodSet.getDoor().get(),
+                woodSet.getTrapdoor().get()*/);
+//        this.tag(BlockTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get());
+//        this.tag(BlockTags.WOODEN_DOORS).add(woodSet.getDoor().get());
+        this.tag(BlockTags.WOODEN_SLABS).add(woodSet.getSlab().get());
+        this.tag(BlockTags.WOODEN_STAIRS).add(woodSet.getStairs().get());
+//        this.tag(BlockTags.WOODEN_BUTTONS).add(woodSet.getButton().get());
+//        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get());
+        this.tag(BlockTags.WOODEN_FENCES).add(woodSet.getFence().get());
+        this.tag(BlockTags.PLANKS).add(woodSet.getPlanks().get());
+        this.tag(BlockTags.LOGS).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
+//        if (woodSet.getFlammability() > 0) {
+//            this.tag(BlockTags.LOGS_THAT_BURN).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
+//                    woodSet.getStrippedWood().get());
+//        }
+        this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodSet.getFenceGate().get());
+        this.tag(Tags.Blocks.FENCES_WOODEN).add(woodSet.getFence().get());
     }
 }

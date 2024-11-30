@@ -1,4 +1,6 @@
-// 1.21.3	2024-11-29T14:34:05.2791921	Tags for minecraft:block mod id verdant
+// 1.21.3	2024-11-30T01:09:37.7952393	Tags for minecraft:block mod id verdant
+d1e59060aad75b880ce23173eee11c9600030ffe data/c/tags/block/fences/wooden.json
+349cb47ddd06ffbfecb4b3552dacaa609ea4a0fc data/c/tags/block/fence_gates/wooden.json
 b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores.json
 3483190da3c649a3e8f7b7aba7976f4591697a7a data/c/tags/block/ores/coal.json
 cb89d15702ec273344f347e1ea4ff705107400fe data/c/tags/block/ores/copper.json
@@ -9,8 +11,14 @@ dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/block/ores/emerald.json
 c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/block/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/block/ores/redstone.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/dirt.json
+b882fcc87ee1e11b353599ee660a0f508225b174 data/minecraft/tags/block/logs.json
+e9e4dd140bb7a1d071e716097b3a72759507a80c data/minecraft/tags/block/mineable/axe.json
 ac73af9594d0d95262eb6f9593ad705fda0ca171 data/minecraft/tags/block/mineable/shovel.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/mushroom_grow_block.json
+973e433e2988bd3f72472aa56ca8c586b7adb0f5 data/minecraft/tags/block/planks.json
+d1e59060aad75b880ce23173eee11c9600030ffe data/minecraft/tags/block/wooden_fences.json
+c01532e938531c6016b2a8937526b8a008b38397 data/minecraft/tags/block/wooden_slabs.json
+03818f188d34fe52cfe182fd2dd55e2580209559 data/minecraft/tags/block/wooden_stairs.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/verdant/tags/block/mature_verdant_logs.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/verdant/tags/block/strangler_vines.json
 175d3f86069f148b80603e7b2dd2b076cd96d72f data/verdant/tags/block/supports_verdant_leaves.json
