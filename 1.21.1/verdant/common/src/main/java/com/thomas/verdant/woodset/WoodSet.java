@@ -11,11 +11,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -36,6 +40,7 @@ public class WoodSet {
     // Registration helpers
     protected final RegistrationProvider<Block> blocks;
     protected final RegistrationProvider<Item> items;
+    protected final RegistrationProvider<BlockEntityType<?>> blockEntities;
     // The blocks created
     protected RegistryObject<Block, Block> log;
     protected RegistryObject<Block, Block> wood;
@@ -64,16 +69,25 @@ public class WoodSet {
         this.modid = modid;
         this.setName = setName;
         this.base = baseProperties;
-        this.blocks = RegistrationProvider.get(Registries.BLOCK, modid);
-        this.items = RegistrationProvider.get(Registries.ITEM, modid);
+        this.blocks = RegistrationProvider.get(Registries.BLOCK, this.modid);
+        this.items = RegistrationProvider.get(Registries.ITEM, this.modid);
+        this.blockEntities = RegistrationProvider.get(Registries.BLOCK_ENTITY_TYPE, this.modid);
         this.setType = new BlockSetType(this.setName);
         this.woodType = new WoodType(this.setName, this.setType);
 
         registerBlocks();
+        registerBlockEntities();
     }
 
     public String getType() {
         return this.setName;
+    }
+
+    protected void registerBlockEntities() {
+
+        this.blockEntities.register(typeName("_sign"), () -> new BlockEntityType<>(SignBlockEntity::new, Set.of(this.sign.get(), this.wallSign.get())));
+        this.blockEntities.register(typeName("_hanging_sign"), () -> new BlockEntityType<>(HangingSignBlockEntity::new, Set.of(this.hangingSign.get(), this.wallHangingSign.get())));
+
     }
 
     protected void registerBlocks() {
@@ -86,13 +100,15 @@ public class WoodSet {
         this.stairs = registerBlockWithItem(typeName("_stairs"), () -> new StairBlock(this.planks.get().defaultBlockState(), this.stairsProperties(typeName("_stairs"))));
         this.fence = registerBlockWithItem(typeName("_fence"), () -> new FenceBlock(this.fenceProperties(typeName("_fence"))));
         this.fenceGate = registerBlockWithItem(typeName("_fence_gate"), () -> new FenceGateBlock(this.woodType, this.fenceGateProperties(typeName("_fence_gate"))));
-        /*
-        this.sign = registerBlockWithoutItem(typeName("_sign"), () -> new StandingSignBlock(this.woodType, this.signProperties(typeName("_sign"))));
+        this.button = registerBlockWithItem(typeName("_button"), () -> new ButtonBlock(this.setType, 30, this.buttonProperties(typeName("_button"))));
+        this.pressurePlate = registerBlockWithItem(typeName("_pressure_plate"), () -> new PressurePlateBlock(this.setType, this.pressurePlateProperties(typeName("_pressure_plate"))));
+        this.sign = registerBlockWithoutItem(typeName("_sign"), () -> new StandingSignBlock(this.woodType, this.signProperties(typeName("_sign"))) {
+            // TODO Override block entity type here?
+        });
         this.wallSign = registerBlockWithoutItem(typeName("_wall_sign"), () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign"))));
-        this.sign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
+        this.hangingSign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
         this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
-        */
-        this.button = registerBlockWithItem(typeName("_button"), () -> new ButtonBlock(this.woodType, 30, this.buttonProperties(typeName("_button"))));
+
     }
 
     // Use StrippableBlockRegistry for Fabric, not sure for NeoForge.

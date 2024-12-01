@@ -28,6 +28,8 @@ public interface Converter {
         if (state != newState && newState != null) {
             // Set the block iff it changed and is not null.
             level.setBlockAndUpdate(pos, newState);
+            // Schedule a tick.
+            level.scheduleTick(pos, newState.getBlock(), 1);
             // Return true since conversion succeeded.
             return true;
         }

@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -193,7 +194,12 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
 
-    protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
+    protected void generateFor(WoodSet woodSet) {
+
+    }
+
+
+        protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
         return createShearsDispatchTable(block,
                 this.applyExplosionDecay(block,
                         LootItem.lootTableItem(item).when(LootItemRandomChanceCondition.randomChance(chance))

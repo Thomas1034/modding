@@ -22,6 +22,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -154,7 +155,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateWet.get().get());
         }
-
         // Set the state in the world.
         level.setBlockAndUpdate(pos, state);
         // Erode or spread, and grow.
@@ -326,9 +326,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return state.setValue(WATER_DISTANCE, distance).setValue(ACTIVE, canBeActive);
     }
 
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+
+    @Override
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
         // Logic is too complicated to duplicate, most likely.
-        level.scheduleTick(currentPos, this, 1);
+        tickAccess.scheduleTick(currentPos, this, 1);
 
         return state;
     }

@@ -25,7 +25,11 @@ public class VerdantItemModelProvider extends ItemModelProvider {
 
     protected void generateFor(WoodSet woodSet) {
         fenceItem(woodSet.getFence(), woodSet.getPlanks());
+        evenSimplerBlockItem(woodSet.getStairs());
+        evenSimplerBlockItem(woodSet.getSlab());
         evenSimplerBlockItem(woodSet.getFenceGate());
+        buttonItem(woodSet.getButton(), woodSet.getPlanks());
+        evenSimplerBlockItem(woodSet.getPressurePlate());
     }
 
     public void trapdoorItem(RegistryObject<Block, Block> block) {
