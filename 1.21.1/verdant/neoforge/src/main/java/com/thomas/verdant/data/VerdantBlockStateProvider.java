@@ -69,9 +69,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         SlabBlock slab = (SlabBlock) woodSet.getSlab().get();
         slabBlock(slab, blockTexture(planks), blockTexture(planks));
         StairBlock stairs = (StairBlock) woodSet.getStairs().get();
-        stairsBlock(stairs, woodSet.getType(), blockTexture(planks));
+        stairsBlock(stairs, woodSet.getName(), blockTexture(planks));
         fenceBlock((FenceBlock) woodSet.getFence().get(), blockTexture(planks));
-        fenceGateBlock((FenceGateBlock) woodSet.getFenceGate().get(), woodSet.getType(), blockTexture(planks));
+        fenceGateBlock((FenceGateBlock) woodSet.getFenceGate().get(), woodSet.getName(), blockTexture(planks));
         buttonBlock((ButtonBlock) woodSet.getButton().get(), blockTexture(planks));
         pressurePlateBlock((PressurePlateBlock) woodSet.getPressurePlate().get(), blockTexture(planks));
     }

@@ -5,16 +5,19 @@ import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.ItemRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
@@ -65,6 +68,10 @@ public class WoodSet {
     protected RegistryObject<Item, Item> boatItem;
     protected RegistryObject<Item, Item> chestBoatItem;
 
+    // The block entity types for signs.
+    private RegistryObject<BlockEntityType<?>, BlockEntityType<SignBlockEntity>> signBlockEntity;
+    private RegistryObject<BlockEntityType<?>, BlockEntityType<HangingSignBlockEntity>> hangingSignBlockEntity;
+
     public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties) {
         this.modid = modid;
         this.setName = setName;
@@ -79,14 +86,18 @@ public class WoodSet {
         registerBlockEntities();
     }
 
-    public String getType() {
+    public String getName() {
         return this.setName;
+    }
+
+    public WoodType getType() {
+        return this.woodType;
     }
 
     protected void registerBlockEntities() {
 
-        this.blockEntities.register(typeName("_sign"), () -> new BlockEntityType<>(SignBlockEntity::new, Set.of(this.sign.get(), this.wallSign.get())));
-        this.blockEntities.register(typeName("_hanging_sign"), () -> new BlockEntityType<>(HangingSignBlockEntity::new, Set.of(this.hangingSign.get(), this.wallHangingSign.get())));
+        this.signBlockEntity = this.blockEntities.register(typeName("_sign"), () -> new BlockEntityType<>(SignBlockEntity::new, Set.of(this.sign.get(), this.wallSign.get())));
+        this.hangingSignBlockEntity = this.blockEntities.register(typeName("_hanging_sign"), () -> new BlockEntityType<>(HangingSignBlockEntity::new, Set.of(this.hangingSign.get(), this.wallHangingSign.get())));
 
     }
 
@@ -103,11 +114,33 @@ public class WoodSet {
         this.button = registerBlockWithItem(typeName("_button"), () -> new ButtonBlock(this.setType, 30, this.buttonProperties(typeName("_button"))));
         this.pressurePlate = registerBlockWithItem(typeName("_pressure_plate"), () -> new PressurePlateBlock(this.setType, this.pressurePlateProperties(typeName("_pressure_plate"))));
         this.sign = registerBlockWithoutItem(typeName("_sign"), () -> new StandingSignBlock(this.woodType, this.signProperties(typeName("_sign"))) {
+            @Override
+            public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+                return new SignBlockEntity(WoodSet.this.signBlockEntity.get(), pos, state);
+            }
             // TODO Override block entity type here?
         });
-        this.wallSign = registerBlockWithoutItem(typeName("_wall_sign"), () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign"))));
-        this.hangingSign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
-        this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
+        this.wallSign = registerBlockWithoutItem(typeName("_wall_sign"), () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign"))) {
+            @Override
+            public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+                return new SignBlockEntity(WoodSet.this.signBlockEntity.get(), pos, state);
+            }
+            // TODO Override block entity type here?
+        });
+        this.hangingSign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))) {
+            @Override
+            public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+                return new SignBlockEntity(WoodSet.this.hangingSignBlockEntity.get(), pos, state);
+            }
+            // TODO Override block entity type here?
+        });
+        this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))) {
+            @Override
+            public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+                return new SignBlockEntity(WoodSet.this.hangingSignBlockEntity.get(), pos, state);
+            }
+            // TODO Override block entity type here?
+        });
 
     }
 
@@ -230,6 +263,14 @@ public class WoodSet {
 
     public RegistryObject<Item, Item> getChestBoatItem() {
         return chestBoatItem;
+    }
+
+    public RegistryObject<BlockEntityType<?>, BlockEntityType<SignBlockEntity>> getSignBlockEntity() {
+        return signBlockEntity;
+    }
+
+    public RegistryObject<BlockEntityType<?>, BlockEntityType<HangingSignBlockEntity>> getHangingSignBlockEntity() {
+        return hangingSignBlockEntity;
     }
 
     private BlockBehaviour.Properties blockProperties(String name) {

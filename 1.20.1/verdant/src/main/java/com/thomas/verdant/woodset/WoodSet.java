@@ -1520,7 +1520,6 @@ public class WoodSet {
 
 		public WoodSetHangingSignBlockEntity(BlockPos pos, BlockState state) {
 			super(pos, state);
-
 		}
 
 		@Override
