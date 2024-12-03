@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-@Mod(value = "examplemod", dist = Dist.CLIENT)
+@Mod(value = "verdant", dist = Dist.CLIENT)
 public class VerdantClient {
     public VerdantClient(IEventBus modBus) {
 
