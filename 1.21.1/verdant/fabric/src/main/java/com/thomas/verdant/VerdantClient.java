@@ -1,13 +1,13 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.client.renderer.WoodSetHangingSignRenderer;
-import com.thomas.verdant.client.renderer.WoodSetSignRenderer;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.properties.WoodSets;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -26,13 +26,13 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.VERDANT_GRASS_DIRT, BlockRegistry.VERDANT_ROOTED_MUD, BlockRegistry.VERDANT_GRASS_MUD,
                 BlockRegistry.VERDANT_ROOTED_CLAY, BlockRegistry.VERDANT_GRASS_CLAY, BlockRegistry.STRANGLER_VINE);
 
-        BlockEntityRenderers.register(WoodSets.STRANGLER.getSignBlockEntity().get(), (ctx) -> new WoodSetSignRenderer(ctx, WoodSets.STRANGLER));
-        BlockEntityRenderers.register(WoodSets.STRANGLER.getHangingSignBlockEntity().get(), (ctx) -> new WoodSetHangingSignRenderer(ctx, WoodSets.STRANGLER));
+        BlockEntityRenderers.register(WoodSets.STRANGLER.getSignBlockEntity().get(), SignRenderer::new);
+        BlockEntityRenderers.register(WoodSets.STRANGLER.getHangingSignBlockEntity().get(), HangingSignRenderer::new);
 
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutout(Supplier... blocks) {
-        Arrays.stream(blocks).forEach(block ->  BlockRenderLayerMapImpl.INSTANCE.putBlock(((Supplier<Block>) block).get(), RenderType.cutout()));
+        Arrays.stream(blocks).forEach(block -> BlockRenderLayerMapImpl.INSTANCE.putBlock(((Supplier<Block>) block).get(), RenderType.cutout()));
     }
 }

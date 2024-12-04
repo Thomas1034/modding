@@ -80,7 +80,8 @@ public class WoodSet {
         this.items = RegistrationProvider.get(Registries.ITEM, this.modid);
         this.blockEntities = RegistrationProvider.get(Registries.BLOCK_ENTITY_TYPE, this.modid);
         this.setType = new BlockSetType(this.setName);
-        this.woodType = new WoodType(this.setName, this.setType);
+        this.woodType = WoodType.register(new WoodType(this.setName, this.setType));
+
 
         registerBlocks();
         registerBlockEntities();
@@ -96,9 +97,8 @@ public class WoodSet {
 
     protected void registerBlockEntities() {
 
-        this.signBlockEntity = this.blockEntities.register(typeName("_sign"), () -> new BlockEntityType<>(SignBlockEntity::new, Set.of(this.sign.get(), this.wallSign.get())));
+        this.signBlockEntity = this.blockEntities.register(typeName("_sign"), () -> new BlockEntityType<>((BlockPos pos, BlockState state) -> new SignBlockEntity(this.signBlockEntity.get(), pos, state), Set.of(this.sign.get(), this.wallSign.get())));
         this.hangingSignBlockEntity = this.blockEntities.register(typeName("_hanging_sign"), () -> new BlockEntityType<>(HangingSignBlockEntity::new, Set.of(this.hangingSign.get(), this.wallHangingSign.get())));
-
     }
 
     protected void registerBlocks() {
