@@ -27,5 +27,4 @@ public class Verdant implements ModInitializer {
         BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getHangingSign().get());
         BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getWallHangingSign().get());
     }
-
 }
