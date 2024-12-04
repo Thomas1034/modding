@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
+import com.thomas.verdant.registry.properties.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import net.minecraft.core.HolderLookup;
@@ -10,6 +11,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -18,6 +20,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,6 +43,13 @@ public class Verdant {
 
         eventBus.addListener(Verdant::registerDatapackRegistries);
         eventBus.addListener(Verdant::gatherData);
+        eventBus.addListener(Verdant::addBlocksToBlockEntities);
+    }
+
+
+    public static void addBlocksToBlockEntities(BlockEntityTypeAddBlocksEvent event) {
+        event.modify(BlockEntityType.SIGN, WoodSets.STRANGLER.getSign().get(), WoodSets.STRANGLER.getWallSign().get());
+        event.modify(BlockEntityType.HANGING_SIGN, WoodSets.STRANGLER.getHangingSign().get(), WoodSets.STRANGLER.getWallHangingSign().get());
     }
 
     public static void gatherData(GatherDataEvent event) {
@@ -48,8 +58,6 @@ public class Verdant {
             PackOutput packOutput = generator.getPackOutput();
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-
-
 
             generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                     List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
