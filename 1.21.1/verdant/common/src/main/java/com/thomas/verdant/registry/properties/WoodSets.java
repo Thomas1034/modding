@@ -9,7 +9,7 @@ import net.minecraft.world.level.material.MapColor;
 
 public class WoodSets {
 
-    public static final WoodSet STRANGLER = new WoodSet(Constants.MOD_ID, "strangler", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava());
+    public static final WoodSet STRANGLER = new WoodSet(Constants.MOD_ID, "strangler", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava(), 1, true);
 
 
     public static void init() {

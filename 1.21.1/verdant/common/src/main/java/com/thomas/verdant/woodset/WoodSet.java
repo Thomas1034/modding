@@ -1,7 +1,6 @@
 package com.thomas.verdant.woodset;
 
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -9,12 +8,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
+import org.apache.commons.lang3.function.TriConsumer;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -36,6 +39,11 @@ public class WoodSet {
     // Registration helpers
     protected final RegistrationProvider<Block> blocks;
     protected final RegistrationProvider<Item> items;
+    // Whether the set is flammable
+    private final boolean isFlammable;
+    // The burn time factor of the set
+    private final float burnTimeFactor;
+
     // The blocks created
     protected RegistryObject<Block, Block> log;
     protected RegistryObject<Block, Block> wood;
@@ -60,7 +68,7 @@ public class WoodSet {
     protected RegistryObject<Item, Item> boatItem;
     protected RegistryObject<Item, Item> chestBoatItem;
 
-    public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties) {
+    public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeFactor, boolean isFlammable) {
         this.modid = modid;
         this.setName = setName;
         this.base = baseProperties;
@@ -68,9 +76,50 @@ public class WoodSet {
         this.items = RegistrationProvider.get(Registries.ITEM, this.modid);
         this.setType = new BlockSetType(this.setName);
         this.woodType = WoodType.register(new WoodType(this.setName, this.setType));
-
+        this.isFlammable = isFlammable;
+        this.burnTimeFactor = burnTimeFactor;
 
         registerBlocks();
+        registerItems();
+    }
+
+    public boolean isFlammable() {
+        return isFlammable;
+    }
+
+    public void registerFlammability(TriConsumer<Block, Integer, Integer> registrar) {
+        if (isFlammable) {
+            registrar.accept(this.log.get(), 5, 5);
+            registrar.accept(this.wood.get(), 5, 5);
+            registrar.accept(this.strippedLog.get(), 5, 5);
+            registrar.accept(this.strippedWood.get(), 5, 5);
+            registrar.accept(this.planks.get(), 5, 20);
+            registrar.accept(this.slab.get(), 5, 20);
+            registrar.accept(this.stairs.get(), 5, 20);
+            registrar.accept(this.fence.get(), 5, 20);
+            registrar.accept(this.fenceGate.get(), 5, 20);
+            registrar.accept(this.door.get(), 5, 20);
+            registrar.accept(this.trapdoor.get(), 5, 20);
+        }
+    }
+
+    public void registerFuels(BiConsumer<ItemLike, Integer> registrar) {
+
+        registrar.accept(this.log.get(), (int) (BurnTimes.LOG * this.burnTimeFactor));
+        registrar.accept(this.wood.get(), (int) (BurnTimes.LOG * this.burnTimeFactor));
+        registrar.accept(this.strippedLog.get(), (int) (BurnTimes.LOG * this.burnTimeFactor));
+        registrar.accept(this.strippedWood.get(), (int) (BurnTimes.LOG * this.burnTimeFactor));
+        registrar.accept(this.planks.get(), (int) (BurnTimes.PLANKS * this.burnTimeFactor));
+        registrar.accept(this.stairs.get(), (int) (BurnTimes.STAIRS * this.burnTimeFactor));
+        registrar.accept(this.slab.get(), (int) (BurnTimes.SLAB * this.burnTimeFactor));
+        registrar.accept(this.fence.get(), (int) (BurnTimes.FENCE * this.burnTimeFactor));
+        registrar.accept(this.fenceGate.get(), (int) (BurnTimes.FENCE_GATE * this.burnTimeFactor));
+        registrar.accept(this.pressurePlate.get(), (int) (BurnTimes.PRESSURE_PLATE * this.burnTimeFactor));
+        registrar.accept(this.button.get(), (int) (BurnTimes.BUTTON * this.burnTimeFactor));
+        registrar.accept(this.door.get(), (int) (BurnTimes.DOOR * this.burnTimeFactor));
+        registrar.accept(this.trapdoor.get(), (int) (BurnTimes.TRAPDOOR * this.burnTimeFactor));
+        registrar.accept(this.signItem.get(), (int) (BurnTimes.SIGN * this.burnTimeFactor));
+        registrar.accept(this.hangingSignItem.get(), (int) (BurnTimes.HANGING_SIGN * this.burnTimeFactor));
     }
 
     public String getName() {
@@ -81,11 +130,17 @@ public class WoodSet {
         return this.woodType;
     }
 
+
+    protected void registerItems() {
+        this.signItem = register(typeName("_sign"), () -> new SignItem(this.sign.get(), this.wallSign.get(), itemProperties(typeName("_sign"))));
+        this.hangingSignItem = register(typeName("_hanging_sign"), () -> new HangingSignItem(this.hangingSign.get(), this.wallHangingSign.get(), itemProperties(typeName("_hanging_sign"))));
+    }
+
     protected void registerBlocks() {
         this.log = registerBlockWithItem(typeName("_log"), () -> new RotatedPillarBlock(this.logProperties(typeName("_log"))));
         this.wood = registerBlockWithItem(typeName("_wood"), () -> new RotatedPillarBlock(this.logProperties(typeName("_wood"))));
-        this.strippedLog = registerBlockWithItem(splitName("stripped_", "_log"), () -> new RotatedPillarBlock(this.logProperties(typeName("_log"))));
-        this.strippedWood = registerBlockWithItem(splitName("stripped_", "_wood"), () -> new RotatedPillarBlock(this.logProperties(typeName("_wood"))));
+        this.strippedLog = registerBlockWithItem(splitName("stripped_", "_log"), () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_log"))));
+        this.strippedWood = registerBlockWithItem(splitName("stripped_", "_wood"), () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_wood"))));
         this.planks = registerBlockWithItem(typeName("_planks"), () -> new Block(this.planksProperties(typeName("_planks"))));
         this.slab = registerBlockWithItem(typeName("_slab"), () -> new SlabBlock(this.slabProperties(typeName("_slab"))));
         this.stairs = registerBlockWithItem(typeName("_stairs"), () -> new StairBlock(this.planks.get().defaultBlockState(), this.stairsProperties(typeName("_stairs"))));
@@ -97,6 +152,8 @@ public class WoodSet {
         this.wallSign = registerBlockWithoutItem(typeName("_wall_sign"), () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign"))));
         this.hangingSign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
         this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
+        this.trapdoor = registerBlockWithItem(typeName("_trapdoor"), () -> new TrapDoorBlock(this.setType, this.trapdoorProperties(typeName("_trapdoor"))));
+        this.door = registerBlockWithItem(typeName("_door"), () -> new DoorBlock(this.setType, this.doorProperties(typeName("_door"))));
 
     }
 
@@ -221,6 +278,10 @@ public class WoodSet {
         return chestBoatItem;
     }
 
+    public RegistrationProvider<Block> getBlockProvider() {
+        return this.blocks;
+    }
+
     private BlockBehaviour.Properties blockProperties(String name) {
         return this.base.get().setId(id(name));
     }
@@ -286,7 +347,26 @@ public class WoodSet {
     }
 
     private ResourceKey<Block> id(String name) {
-        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(this.modid, name));
+    }
+
+    public static class BurnTimes {
+        public static final int SINGLE_ITEM = 200;
+        // The burn times of common items, in ticks.
+        public static final int LOG = 300;
+        public static final int PLANKS = 300;
+        public static final int BUTTON = 100;
+        public static final int STICK = 100;
+        public static final int FENCE = 300;
+        public static final int FENCE_GATE = 300;
+        public static final int SLAB = 150;
+        public static final int DOOR = 200;
+        public static final int TRAPDOOR = 300;
+        public static final int STAIRS = 300;
+        public static final int PRESSURE_PLATE = 300;
+        public static final int COAL = 1600;
+        public static final int SIGN = 200;
+        public static final int HANGING_SIGN = 800;
     }
 
 }

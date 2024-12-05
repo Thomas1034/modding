@@ -5,7 +5,10 @@ import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.FuelValues;
 
 public class Verdant implements ModInitializer {
     
@@ -26,5 +29,16 @@ public class Verdant implements ModInitializer {
         BlockEntityType.SIGN.addSupportedBlock(WoodSets.STRANGLER.getWallSign().get());
         BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getHangingSign().get());
         BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getWallHangingSign().get());
+
+        FuelRegistryEvents.BUILD.register(new FuelRegistryEvents.BuildCallback() {
+            @Override
+            public void build(FuelValues.Builder builder, FuelRegistryEvents.Context context) {
+                WoodSets.STRANGLER.registerFuels((builder::add));
+            }
+        });
+
+        WoodSets.STRANGLER.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
+
+
     }
 }

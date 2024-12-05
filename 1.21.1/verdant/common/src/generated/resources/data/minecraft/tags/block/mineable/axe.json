@@ -8,6 +8,14 @@
     "verdant:strangler_slab",
     "verdant:strangler_stairs",
     "verdant:strangler_fence",
-    "verdant:strangler_fence_gate"
+    "verdant:strangler_fence_gate",
+    "verdant:strangler_sign",
+    "verdant:strangler_wall_sign",
+    "verdant:strangler_hanging_sign",
+    "verdant:strangler_wall_hanging_sign",
+    "verdant:strangler_button",
+    "verdant:strangler_pressure_plate",
+    "verdant:strangler_door",
+    "verdant:strangler_trapdoor"
   ]
 }

@@ -1,8 +1,12 @@
-// 1.21.3	2024-11-30T21:42:07.2054441	Item Models: verdant
+// 1.21.3	2024-12-04T17:09:21.1278101	Item Models: verdant
 9cf955adb5f99d83854928dfd011d6894c093048 assets/verdant/models/item/roasted_coffee.json
 ab2a9b92f2dad01da72c6398da009717a8ef2d46 assets/verdant/models/item/strangler_button.json
+bd9666215fe77cebfdba2d4b188180b4d47c113f assets/verdant/models/item/strangler_door.json
 622a9b460276bde3bbb84bee55d6d28b80bba16b assets/verdant/models/item/strangler_fence.json
 47d2f58d4b5609a38e162724c47db74de81e568c assets/verdant/models/item/strangler_fence_gate.json
+ee56e8b907878c6dc5ad45493b0aab10aefb585a assets/verdant/models/item/strangler_hanging_sign.json
 af75588e6a6810128260d627f3eae90f9f9f7d02 assets/verdant/models/item/strangler_pressure_plate.json
+42825d4271f58c4d69225e2e5ae7963f3c559b0a assets/verdant/models/item/strangler_sign.json
 61aa7913a413eb5c79962e08107d3f716c0a1662 assets/verdant/models/item/strangler_slab.json
 f845c9ce2c1a6dea17725a1af727905e60bf6936 assets/verdant/models/item/strangler_stairs.json
+33c4015e9438d0858781c19723a3bfba998651ae assets/verdant/models/item/strangler_trapdoor.json

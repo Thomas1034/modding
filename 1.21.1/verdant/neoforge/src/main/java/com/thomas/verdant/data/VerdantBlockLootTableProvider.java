@@ -1,6 +1,8 @@
 package com.thomas.verdant.data;
 
+import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.properties.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -23,18 +25,27 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
+
+    protected final Set<Block> knownBlocks;
+
     public VerdantBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+        this.knownBlocks = new HashSet<>();
     }
 
     @Override
     protected void generate() {
 
+        this.knownBlocks.addAll(BlockRegistry.BLOCKS.getEntries().stream().map(RegistryObject::get).collect(Collectors.toSet()));
+
         // For the wood set
+        generateFor(WoodSets.STRANGLER);
         // ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
         // ModBlocks.VERDANT.addLootTables(this);
 
@@ -196,6 +207,25 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
     protected void generateFor(WoodSet woodSet) {
 
+        this.knownBlocks.addAll(woodSet.getBlockProvider().getEntries().stream().map(RegistryObject::get).collect(Collectors.toSet()));
+
+        this.dropSelf(woodSet.getPlanks().get());
+        this.dropSelf(woodSet.getLog().get());
+        this.dropSelf(woodSet.getWood().get());
+        this.dropSelf(woodSet.getStrippedLog().get());
+        this.dropSelf(woodSet.getStrippedWood().get());
+        this.dropSelf(woodSet.getFence().get());
+        this.dropSelf(woodSet.getFenceGate().get());
+        this.dropSelf(woodSet.getStairs().get());
+        this.dropSelf(woodSet.getButton().get());
+        this.dropSelf(woodSet.getPressurePlate().get());
+        this.dropSelf(woodSet.getTrapdoor().get());
+        this.dropOther(woodSet.getWallSign().get(), woodSet.getSignItem().get());
+        this.dropOther(woodSet.getSign().get(), woodSet.getSignItem().get());
+        this.dropOther(woodSet.getWallHangingSign().get(), woodSet.getHangingSignItem().get());
+        this.dropOther(woodSet.getHangingSign().get(), woodSet.getHangingSignItem().get());
+        this.add(woodSet.getSlab().get(), this.createSlabItemTable(woodSet.getSlab().get()));
+        this.add(woodSet.getDoor().get(), this.createDoorTable(woodSet.getDoor().get()));
     }
 
 
@@ -236,7 +266,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     @NotNull
     protected Iterable<Block> getKnownBlocks() {
-        return BlockRegistry.BLOCKS.getEntries().stream().map(ro -> (Block) ro.get())::iterator;
+        return this.knownBlocks;
     }
 
     protected void requireSilkTouch(Block base, ItemLike withoutSilk) {

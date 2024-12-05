@@ -25,7 +25,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
 
 
-        this.addBlockTags(WoodSets.STRANGLER);
+        this.generateFor(WoodSets.STRANGLER);
         // BlockRegistry.VERDANT_HEARTWOOD.addBlockTags(this);
         // BlockRegistry.VERDANT.addBlockTags(this);
 
@@ -168,26 +168,25 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     }
 
 
-    public void addBlockTags(WoodSet woodSet) {
-
+    public void generateFor(WoodSet woodSet) {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
                 woodSet.getStrippedWood().get(), woodSet.getPlanks().get(), woodSet.getSlab().get(), woodSet.getStairs().get(), woodSet.getFence().get(),
-                woodSet.getFenceGate().get()/*, woodSet.getSign().get(), woodSet.getWallSign().get(), woodSet.getHangingSign().get(),
+                woodSet.getFenceGate().get(), woodSet.getSign().get(), woodSet.getWallSign().get(), woodSet.getHangingSign().get(),
                 woodSet.getWallHangingSign().get(), woodSet.getButton().get(), woodSet.getPressurePlate().get(), woodSet.getDoor().get(),
-                woodSet.getTrapdoor().get()*/);
-//        this.tag(BlockTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get());
-//        this.tag(BlockTags.WOODEN_DOORS).add(woodSet.getDoor().get());
+                woodSet.getTrapdoor().get());
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get());
+        this.tag(BlockTags.WOODEN_DOORS).add(woodSet.getDoor().get());
         this.tag(BlockTags.WOODEN_SLABS).add(woodSet.getSlab().get());
         this.tag(BlockTags.WOODEN_STAIRS).add(woodSet.getStairs().get());
-//        this.tag(BlockTags.WOODEN_BUTTONS).add(woodSet.getButton().get());
-//        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get());
+        this.tag(BlockTags.WOODEN_BUTTONS).add(woodSet.getButton().get());
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get());
         this.tag(BlockTags.WOODEN_FENCES).add(woodSet.getFence().get());
         this.tag(BlockTags.PLANKS).add(woodSet.getPlanks().get());
         this.tag(BlockTags.LOGS).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
-//        if (woodSet.getFlammability() > 0) {
-//            this.tag(BlockTags.LOGS_THAT_BURN).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
-//                    woodSet.getStrippedWood().get());
-//        }
+        if (woodSet.isFlammable()) {
+            this.tag(BlockTags.LOGS_THAT_BURN).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
+                    woodSet.getStrippedWood().get());
+        }
         this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodSet.getFenceGate().get());
         this.tag(Tags.Blocks.FENCES_WOODEN).add(woodSet.getFence().get());
     }

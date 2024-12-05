@@ -74,6 +74,12 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         fenceGateBlock((FenceGateBlock) woodSet.getFenceGate().get(), woodSet.getName(), blockTexture(planks));
         buttonBlock((ButtonBlock) woodSet.getButton().get(), blockTexture(planks));
         pressurePlateBlock((PressurePlateBlock) woodSet.getPressurePlate().get(), blockTexture(planks));
+        signBlock((StandingSignBlock) woodSet.getSign().get(), (WallSignBlock) woodSet.getWallSign().get(), blockTexture(planks));
+        hangingSignBlock(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), blockTexture(planks));
+        trapdoorBlockWithRenderType((TrapDoorBlock) woodSet.getTrapdoor().get(), blockTexture(woodSet.getTrapdoor().get()), true, "cutout");
+        DoorBlock door = (DoorBlock) woodSet.getDoor().get();
+        doorBlockWithRenderType(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"), "cutout");
+
     }
 
     protected void simpleBlockWithItem(Block block) {

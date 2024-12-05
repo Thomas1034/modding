@@ -30,6 +30,10 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(woodSet.getFenceGate());
         buttonItem(woodSet.getButton(), woodSet.getPlanks());
         evenSimplerBlockItem(woodSet.getPressurePlate());
+        basicItem(woodSet.getSignItem().get());
+        basicItem(woodSet.getHangingSignItem().get());
+        basicItem(woodSet.getDoor().get().asItem());
+        trapdoorItem(woodSet.getTrapdoor());
     }
 
     public void trapdoorItem(RegistryObject<Block, Block> block) {

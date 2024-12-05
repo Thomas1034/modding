@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "verdant:block/strangler_door_bottom",
+    "top": "verdant:block/strangler_door_top"
+  }
+}

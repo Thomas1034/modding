@@ -12,7 +12,7 @@
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
     "license": "${license}",
-    "icon": "${mod_id}.png",
+    "icon": "verdant.png",
     "environment": "*",
     "accessWidener" : "verdant.accesswidener",
     "entrypoints": {

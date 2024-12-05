@@ -79,6 +79,7 @@ public class Verdant {
 
             generator.addProvider(true, new VerdantBlockTransformerProvider(packOutput, lookupProvider));
             generator.addProvider(true, new VerdantFeatureSetProvider(packOutput, lookupProvider));
+            generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));
 
         } catch (RuntimeException e) {
             Constants.LOG.error("Failed to generate data.", e);

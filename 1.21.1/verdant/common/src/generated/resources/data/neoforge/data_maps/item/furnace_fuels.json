@@ -1,0 +1,49 @@
+{
+  "values": {
+    "verdant:strangler_button": {
+      "burn_time": 100
+    },
+    "verdant:strangler_door": {
+      "burn_time": 200
+    },
+    "verdant:strangler_fence": {
+      "burn_time": 300
+    },
+    "verdant:strangler_fence_gate": {
+      "burn_time": 300
+    },
+    "verdant:strangler_hanging_sign": {
+      "burn_time": 800
+    },
+    "verdant:strangler_log": {
+      "burn_time": 300
+    },
+    "verdant:strangler_planks": {
+      "burn_time": 300
+    },
+    "verdant:strangler_pressure_plate": {
+      "burn_time": 300
+    },
+    "verdant:strangler_sign": {
+      "burn_time": 200
+    },
+    "verdant:strangler_slab": {
+      "burn_time": 150
+    },
+    "verdant:strangler_stairs": {
+      "burn_time": 300
+    },
+    "verdant:strangler_trapdoor": {
+      "burn_time": 300
+    },
+    "verdant:strangler_wood": {
+      "burn_time": 300
+    },
+    "verdant:stripped_strangler_log": {
+      "burn_time": 300
+    },
+    "verdant:stripped_strangler_wood": {
+      "burn_time": 300
+    }
+  }
+}
