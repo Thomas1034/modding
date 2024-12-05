@@ -7,10 +7,11 @@ import com.thomas.verdant.registry.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -23,7 +24,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// WIP TODO data gen
+// WIP TODO recipes
+// TODO boats: mixin to layer definitions?
+// TODO items
 public class WoodSet {
 
     // The mod id
@@ -39,6 +42,7 @@ public class WoodSet {
     // Registration helpers
     protected final RegistrationProvider<Block> blocks;
     protected final RegistrationProvider<Item> items;
+    protected final RegistrationProvider<EntityType<?>> entities;
     // Whether the set is flammable
     private final boolean isFlammable;
     // The burn time factor of the set
@@ -67,6 +71,9 @@ public class WoodSet {
     protected RegistryObject<Item, Item> hangingSignItem;
     protected RegistryObject<Item, Item> boatItem;
     protected RegistryObject<Item, Item> chestBoatItem;
+    // The entities created
+    protected RegistryObject<EntityType<?>, EntityType<? extends Boat>> boat;
+    protected RegistryObject<EntityType<?>, EntityType<? extends ChestBoat>> chestBoat;
 
     public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeFactor, boolean isFlammable) {
         this.modid = modid;
@@ -74,13 +81,23 @@ public class WoodSet {
         this.base = baseProperties;
         this.blocks = RegistrationProvider.get(Registries.BLOCK, this.modid);
         this.items = RegistrationProvider.get(Registries.ITEM, this.modid);
+        this.entities = RegistrationProvider.get(Registries.ENTITY_TYPE, this.modid);
         this.setType = new BlockSetType(this.setName);
         this.woodType = WoodType.register(new WoodType(this.setName, this.setType));
         this.isFlammable = isFlammable;
         this.burnTimeFactor = burnTimeFactor;
 
         registerBlocks();
+        registerEntities();
         registerItems();
+    }
+
+    private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> p_376580_) {
+        return (p_375558_, p_375559_) -> new Boat(p_375558_, p_375559_, p_376580_);
+    }
+
+    private static EntityType.EntityFactory<ChestBoat> chestBoatFactory(Supplier<Item> p_376578_) {
+        return (p_375555_, p_375556_) -> new ChestBoat(p_375555_, p_375556_, p_376578_);
     }
 
     public boolean isFlammable() {
@@ -101,6 +118,14 @@ public class WoodSet {
             registrar.accept(this.door.get(), 5, 20);
             registrar.accept(this.trapdoor.get(), 5, 20);
         }
+    }
+
+    public RegistryObject<EntityType<?>, EntityType<? extends Boat>> getBoat() {
+        return boat;
+    }
+
+    public RegistryObject<EntityType<?>, EntityType<? extends ChestBoat>> getChestBoat() {
+        return chestBoat;
     }
 
     public void registerFuels(BiConsumer<ItemLike, Integer> registrar) {
@@ -130,10 +155,25 @@ public class WoodSet {
         return this.woodType;
     }
 
+    protected void registerEntities() {
+        this.boat = this.entities.register(typeName("_boat"), () -> EntityType.Builder.of(boatFactory(() -> this.boatItem.get()), MobCategory.MISC)
+                .noLootTable()
+                .sized(1.375F, 0.5625F)
+                .eyeHeight(0.5625F)
+                .clientTrackingRange(10).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_boat")))));
+        this.chestBoat = this.entities.register(typeName("_chest_boat"), () -> EntityType.Builder.of(chestBoatFactory(() -> this.chestBoatItem.get()), MobCategory.MISC)
+                .noLootTable()
+                .sized(1.375F, 0.5625F)
+                .eyeHeight(0.5625F)
+                .clientTrackingRange(10).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_chest_boat")))));
+
+    }
 
     protected void registerItems() {
         this.signItem = register(typeName("_sign"), () -> new SignItem(this.sign.get(), this.wallSign.get(), itemProperties(typeName("_sign"))));
         this.hangingSignItem = register(typeName("_hanging_sign"), () -> new HangingSignItem(this.hangingSign.get(), this.wallHangingSign.get(), itemProperties(typeName("_hanging_sign"))));
+        this.boatItem = register(typeName("_boat"), () -> new BoatItem(this.boat.get(), itemProperties(typeName("_boat"))));
+        this.chestBoatItem = register(typeName("_chest_boat"), () -> new BoatItem(this.chestBoat.get(), itemProperties(typeName("_chest_boat"))));
     }
 
     protected void registerBlocks() {
@@ -154,7 +194,6 @@ public class WoodSet {
         this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
         this.trapdoor = registerBlockWithItem(typeName("_trapdoor"), () -> new TrapDoorBlock(this.setType, this.trapdoorProperties(typeName("_trapdoor"))));
         this.door = registerBlockWithItem(typeName("_door"), () -> new DoorBlock(this.setType, this.doorProperties(typeName("_door"))));
-
     }
 
     // Use StrippableBlockRegistry for Fabric, not sure for NeoForge.
