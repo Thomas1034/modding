@@ -1,7 +1,7 @@
 package com.thomas.verdant;
 
 import com.thomas.verdant.registration.RegistryObject;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -31,24 +31,28 @@ public class VerdantClient {
 
     public VerdantClient(IEventBus modBus) {
 
-        WOOD_SETS.add(WoodSets.STRANGLER);
-        for (WoodSet set : WOOD_SETS) {
-            registerLayersForWoodSet(set);
+        // Add boat renderers
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            registerBoatRenderers(woodSet);
         }
         modBus.addListener(VerdantClient::onClientSetup);
         modBus.addListener(VerdantClient::onRegisterLayerDefinitions);
     }
 
+
+    protected void registerBoatRenderers(WoodSet woodSet) {
+        WOOD_SETS.add(woodSet);
+        registerLayersForWoodSet(woodSet);
+    }
+
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         for (WoodSet woodSet : WOOD_SETS) {
-            Constants.LOG.warn("Registering layer definitions for wood set {}", woodSet.getName());
             event.registerLayerDefinition(locationForBoat.get(woodSet.getBoat()), BoatModel::createBoatModel);
             event.registerLayerDefinition(locationForChestBoat.get(woodSet.getChestBoat()), BoatModel::createChestBoatModel);
         }
     }
 
     public static void registerLayersForWoodSet(WoodSet woodSet) {
-        Constants.LOG.warn("Registering layers for wood set {}", woodSet.getName());
         ModelLayerLocation boat = new ModelLayerLocation(ResourceLocation.withDefaultNamespace("boat/" + woodSet.getName()), "main");
         // ModelLayers.register("boat/" + woodSet.getName());
         ModelLayerLocation chestBoat = new ModelLayerLocation(ResourceLocation.withDefaultNamespace("chest_boat/" + woodSet.getName()), "main");

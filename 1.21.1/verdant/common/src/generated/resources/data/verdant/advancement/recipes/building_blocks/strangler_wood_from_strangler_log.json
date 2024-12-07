@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_strangler_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:strangler_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_strangler_wood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:strangler_wood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:strangler_wood_from_strangler_log"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_strangler_log",
+      "has_strangler_wood"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:strangler_wood_from_strangler_log"
+    ]
+  }
+}

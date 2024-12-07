@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "verdant:block/heartwood_planks",
+    "side": "verdant:block/heartwood_planks",
+    "top": "verdant:block/heartwood_planks"
+  }
+}

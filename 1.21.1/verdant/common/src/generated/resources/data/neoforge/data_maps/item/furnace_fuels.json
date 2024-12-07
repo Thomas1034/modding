@@ -1,5 +1,44 @@
 {
   "values": {
+    "verdant:heartwood_button": {
+      "burn_time": 200
+    },
+    "verdant:heartwood_door": {
+      "burn_time": 400
+    },
+    "verdant:heartwood_fence": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_fence_gate": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_hanging_sign": {
+      "burn_time": 1600
+    },
+    "verdant:heartwood_log": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_planks": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_pressure_plate": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_sign": {
+      "burn_time": 400
+    },
+    "verdant:heartwood_slab": {
+      "burn_time": 300
+    },
+    "verdant:heartwood_stairs": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_trapdoor": {
+      "burn_time": 600
+    },
+    "verdant:heartwood_wood": {
+      "burn_time": 600
+    },
     "verdant:strangler_button": {
       "burn_time": 100
     },
@@ -38,6 +77,12 @@
     },
     "verdant:strangler_wood": {
       "burn_time": 300
+    },
+    "verdant:stripped_heartwood_log": {
+      "burn_time": 600
+    },
+    "verdant:stripped_heartwood_wood": {
+      "burn_time": 600
     },
     "verdant:stripped_strangler_log": {
       "burn_time": 300

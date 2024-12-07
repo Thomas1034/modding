@@ -2,7 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
@@ -24,8 +24,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            generateFor(woodSet);
+        }
 
-        this.generateFor(WoodSets.STRANGLER);
         // BlockRegistry.VERDANT_HEARTWOOD.addBlockTags(this);
         // BlockRegistry.VERDANT.addBlockTags(this);
 
@@ -68,9 +70,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_CLAY.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get());
 
-//        this.tag(BlockTags.CLIMBABLE).add(BlockRegistry.VERDANT_VINE.get(), BlockRegistry.VERDANT_TENDRIL_PLANT.get(),
-//                BlockRegistry.VERDANT_TENDRIL.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get(),
-//                BlockRegistry.ROPE.get(), BlockRegistry.ROPE_LADDER.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.STRANGLER_VINE.get());
+        this.tag(BlockTags.CLIMBABLE).add(BlockRegistry.STRANGLER_VINE.get()/*, BlockRegistry.VERDANT_TENDRIL_PLANT.get(), BlockRegistry.VERDANT_TENDRIL.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get(), BlockRegistry.ROPE.get(), BlockRegistry.ROPE_LADDER.get()*/);
+
 //        this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
 //        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get(),
 //                BlockRegistry.VERDANT_TENDRIL_PLANT.get(), BlockRegistry.VERDANT_TENDRIL.get());
@@ -92,29 +94,26 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 //                BlockRegistry.GREEN_CANDLE_UBE_CAKE.get(), BlockRegistry.RED_CANDLE_UBE_CAKE.get(),
 //                BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
 
-        // TODO
-        this.tag(VerdantTags.Blocks.MATURE_STRANGLER_LOGS)/*.add(BlockRegistry.VERDANT_HEARTWOOD_LOG.get(),
-                BlockRegistry.STRIPPED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.VERDANT_HEARTWOOD_WOOD.get(),
-                BlockRegistry.STRIPPED_VERDANT_HEARTWOOD_WOOD.get(), BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get())*/;
-
         // All vine replacable blocks.
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.REPLACEABLE);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.REPLACEABLE_BY_TREES);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.FLOWERS);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.SNOW);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.SIGNS);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.WOOL_CARPETS);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.STONE_BUTTONS);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.WOODEN_BUTTONS);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.STONE_PRESSURE_PLATES);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).addTag(BlockTags.WOODEN_PRESSURE_PLATES);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.VINE);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.CAVE_VINES);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.CAVE_VINES_PLANT);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.AIR);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.CAVE_AIR);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.VOID_AIR);
-        this.tag(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES).add(Blocks.WATER);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.REPLACEABLE);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.LEAVES);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.REPLACEABLE_BY_TREES);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.FLOWERS);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.SNOW);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.SIGNS);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.WOOL_CARPETS);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.STONE_BUTTONS);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.WOODEN_BUTTONS);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.STONE_PRESSURE_PLATES);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(BlockTags.WOODEN_PRESSURE_PLATES);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.VINE);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.CAVE_VINES);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.CAVE_VINES_PLANT);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.AIR);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.CAVE_AIR);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.VOID_AIR);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.WATER);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).remove(BlockTags.FIRE);
 
 //        // Leafy blocks
 //        this.tag(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS).add(BlockRegistry.WILTED_VERDANT_LEAVES.get(),
@@ -134,10 +133,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_CLAY.get());
 
         // Verdant leaves
-        this.tag(VerdantTags.Blocks.STRANGLER_VINES).addTags();
+        this.tag(VerdantTags.Blocks.STRANGLER_VINES).add(BlockRegistry.STRANGLER_VINE.get());
 
         // Verdant ground
-        this.tag(VerdantTags.Blocks.SUPPORTS_TEST_LEAVES).addTags(BlockTags.LOGS_THAT_BURN, VerdantTags.Blocks.STRANGLER_VINES);
+        this.tag(VerdantTags.Blocks.SUPPORTS_STRANGLER_LEAVES).addTags(BlockTags.LOGS_THAT_BURN, VerdantTags.Blocks.STRANGLER_VINES);
 
 //        // Flowers
 //        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
@@ -169,6 +168,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
 
     public void generateFor(WoodSet woodSet) {
+        this.tag(woodSet.getLogs()).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(),
                 woodSet.getStrippedWood().get(), woodSet.getPlanks().get(), woodSet.getSlab().get(), woodSet.getStairs().get(), woodSet.getFence().get(),
                 woodSet.getFenceGate().get(), woodSet.getSign().get(), woodSet.getWallSign().get(), woodSet.getHangingSign().get(),

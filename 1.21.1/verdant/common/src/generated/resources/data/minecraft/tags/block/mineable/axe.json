@@ -1,5 +1,22 @@
 {
   "values": [
+    "verdant:heartwood_log",
+    "verdant:heartwood_wood",
+    "verdant:stripped_heartwood_log",
+    "verdant:stripped_heartwood_wood",
+    "verdant:heartwood_planks",
+    "verdant:heartwood_slab",
+    "verdant:heartwood_stairs",
+    "verdant:heartwood_fence",
+    "verdant:heartwood_fence_gate",
+    "verdant:heartwood_sign",
+    "verdant:heartwood_wall_sign",
+    "verdant:heartwood_hanging_sign",
+    "verdant:heartwood_wall_hanging_sign",
+    "verdant:heartwood_button",
+    "verdant:heartwood_pressure_plate",
+    "verdant:heartwood_door",
+    "verdant:heartwood_trapdoor",
     "verdant:strangler_log",
     "verdant:strangler_wood",
     "verdant:stripped_strangler_log",
@@ -16,6 +33,7 @@
     "verdant:strangler_button",
     "verdant:strangler_pressure_plate",
     "verdant:strangler_door",
-    "verdant:strangler_trapdoor"
+    "verdant:strangler_trapdoor",
+    "verdant:strangler_vine"
   ]
 }

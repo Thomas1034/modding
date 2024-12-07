@@ -2,7 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -45,7 +45,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.knownBlocks.addAll(BlockRegistry.BLOCKS.getEntries().stream().map(RegistryObject::get).collect(Collectors.toSet()));
 
         // For the wood set
-        generateFor(WoodSets.STRANGLER);
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            generateFor(woodSet);
+        }
         // ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
         // ModBlocks.VERDANT.addLootTables(this);
 

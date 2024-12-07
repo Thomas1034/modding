@@ -1,6 +1,6 @@
 package com.thomas.verdant.data;
 
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -19,8 +19,9 @@ public class VerdantDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-
-        generateFor(WoodSets.STRANGLER);
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            generateFor(woodSet);
+        }
     }
 
     @SuppressWarnings({"nullable", "deprecation"})

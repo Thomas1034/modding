@@ -1,20 +1,21 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
+import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.FuelValues;
 
 public class Verdant implements ModInitializer {
-    
+
     @Override
     public void onInitialize() {
-        
+
         // This method is invoked by the Fabric mod loader when it is ready
         // to load your mod. You can access Fabric and Common code in this
         // project.
@@ -25,20 +26,17 @@ public class Verdant implements ModInitializer {
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
         DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
 
-        BlockEntityType.SIGN.addSupportedBlock(WoodSets.STRANGLER.getSign().get());
-        BlockEntityType.SIGN.addSupportedBlock(WoodSets.STRANGLER.getWallSign().get());
-        BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getHangingSign().get());
-        BlockEntityType.HANGING_SIGN.addSupportedBlock(WoodSets.STRANGLER.getWallHangingSign().get());
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            BlockEntityType.SIGN.addSupportedBlock(woodSet.getSign().get());
+            BlockEntityType.SIGN.addSupportedBlock(woodSet.getWallSign().get());
+            BlockEntityType.HANGING_SIGN.addSupportedBlock(woodSet.getHangingSign().get());
+            BlockEntityType.HANGING_SIGN.addSupportedBlock(woodSet.getWallHangingSign().get());
 
-        FuelRegistryEvents.BUILD.register(new FuelRegistryEvents.BuildCallback() {
-            @Override
-            public void build(FuelValues.Builder builder, FuelRegistryEvents.Context context) {
-                WoodSets.STRANGLER.registerFuels((builder::add));
-            }
-        });
+            FuelRegistryEvents.BUILD.register((builder, context) -> woodSet.registerFuels((builder::add)));
+            StrippableBlockRegistry.register(woodSet.getLog().get(), woodSet.getStrippedLog().get());
+            StrippableBlockRegistry.register(woodSet.getWood().get(), woodSet.getStrippedWood().get());
 
-        WoodSets.STRANGLER.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
-
-
+            woodSet.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
+        }
     }
 }

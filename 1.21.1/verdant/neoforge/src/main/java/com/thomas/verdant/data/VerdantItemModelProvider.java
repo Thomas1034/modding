@@ -3,7 +3,7 @@ package com.thomas.verdant.data;
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.ItemRegistry;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -19,7 +19,9 @@ public class VerdantItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generateFor(WoodSets.STRANGLER);
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            generateFor(woodSet);
+        }
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
     }
 
@@ -33,6 +35,8 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         basicItem(woodSet.getSignItem().get());
         basicItem(woodSet.getHangingSignItem().get());
         basicItem(woodSet.getDoor().get().asItem());
+        basicItem(woodSet.getBoatItem().get());
+        basicItem(woodSet.getChestBoatItem().get());
         trapdoorItem(woodSet.getTrapdoor());
     }
 
@@ -53,8 +57,7 @@ public class VerdantItemModelProvider extends ItemModelProvider {
     }
 
     public void evenSimplerBlockItem(RegistryObject<Block, Block> block) {
-        this.withExistingParent(Constants.MOD_ID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
-                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath()));
+        this.withExistingParent(Constants.MOD_ID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath()));
     }
 
 }

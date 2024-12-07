@@ -1,6 +1,20 @@
-// 1.21.3	2024-12-04T17:09:21.1278101	Item Models: verdant
+// 1.21.3	2024-12-05T22:23:03.4708001	Item Models: verdant
+6de63570ddc112d61282e39477a22357d52823fe assets/verdant/models/item/heartwood_boat.json
+2e673a5be1cbb71976a7a56c6094bb0081bebc5d assets/verdant/models/item/heartwood_button.json
+b111cff03e6c123846e3561060a023388493003b assets/verdant/models/item/heartwood_chest_boat.json
+6ef7e7814828936cb11615ab9ddce9da47671765 assets/verdant/models/item/heartwood_door.json
+730ed505dab2527ca3bffc123c2499998af75a3b assets/verdant/models/item/heartwood_fence.json
+7af65fb5675def4ab2399a4125eb94d398388bc4 assets/verdant/models/item/heartwood_fence_gate.json
+f4af4eb3ddbf9eb9fcd2b7dcfcb6509cb286abcd assets/verdant/models/item/heartwood_hanging_sign.json
+1d9f8244c27bbe889d69cd80f814d5d0ac39d1ce assets/verdant/models/item/heartwood_pressure_plate.json
+ab8f008a08b6494c57a9e3e587c3a552699abc74 assets/verdant/models/item/heartwood_sign.json
+776b552a291eba5aa60355e57b030fafbded4bd8 assets/verdant/models/item/heartwood_slab.json
+24e1f29d1e45dd074e39f3acb423da2de50452b6 assets/verdant/models/item/heartwood_stairs.json
+f7428a7629555333a09c612a0f44736e93254813 assets/verdant/models/item/heartwood_trapdoor.json
 9cf955adb5f99d83854928dfd011d6894c093048 assets/verdant/models/item/roasted_coffee.json
+2781ad81f97d16a1bc0c0ff622935f683d282029 assets/verdant/models/item/strangler_boat.json
 ab2a9b92f2dad01da72c6398da009717a8ef2d46 assets/verdant/models/item/strangler_button.json
+50aa7d015d2635f906f4739f0a78da9c210a05e9 assets/verdant/models/item/strangler_chest_boat.json
 bd9666215fe77cebfdba2d4b188180b4d47c113f assets/verdant/models/item/strangler_door.json
 622a9b460276bde3bbb84bee55d6d28b80bba16b assets/verdant/models/item/strangler_fence.json
 47d2f58d4b5609a38e162724c47db74de81e568c assets/verdant/models/item/strangler_fence_gate.json

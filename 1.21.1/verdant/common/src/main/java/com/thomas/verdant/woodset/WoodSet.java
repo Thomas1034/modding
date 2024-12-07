@@ -1,12 +1,14 @@
 package com.thomas.verdant.woodset;
 
 
+import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
-import com.thomas.verdant.registry.ItemRegistry;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -25,8 +27,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 // WIP TODO recipes
-// TODO boats: mixin to layer definitions?
-// TODO items
 public class WoodSet {
 
     // The mod id
@@ -43,6 +43,7 @@ public class WoodSet {
     protected final RegistrationProvider<Block> blocks;
     protected final RegistrationProvider<Item> items;
     protected final RegistrationProvider<EntityType<?>> entities;
+    protected final RegistrationProvider<CreativeModeTab> tabs;
     // Whether the set is flammable
     private final boolean isFlammable;
     // The burn time factor of the set
@@ -74,6 +75,10 @@ public class WoodSet {
     // The entities created
     protected RegistryObject<EntityType<?>, EntityType<? extends Boat>> boat;
     protected RegistryObject<EntityType<?>, EntityType<? extends ChestBoat>> chestBoat;
+    // The tag for the logs
+    protected TagKey<Block> logs;
+    // The tag for the log items
+    protected TagKey<Item> logItems;
 
     public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeFactor, boolean isFlammable) {
         this.modid = modid;
@@ -81,6 +86,7 @@ public class WoodSet {
         this.base = baseProperties;
         this.blocks = RegistrationProvider.get(Registries.BLOCK, this.modid);
         this.items = RegistrationProvider.get(Registries.ITEM, this.modid);
+        this.tabs = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, this.modid);
         this.entities = RegistrationProvider.get(Registries.ENTITY_TYPE, this.modid);
         this.setType = new BlockSetType(this.setName);
         this.woodType = WoodType.register(new WoodType(this.setName, this.setType));
@@ -90,6 +96,9 @@ public class WoodSet {
         registerBlocks();
         registerEntities();
         registerItems();
+        registerTabs();
+        this.logs = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs"));
+        this.logItems = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs"));
     }
 
     private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> p_376580_) {
@@ -126,6 +135,32 @@ public class WoodSet {
 
     public RegistryObject<EntityType<?>, EntityType<? extends ChestBoat>> getChestBoat() {
         return chestBoat;
+    }
+
+    public void registerTabs() {
+        this.tabs.register(this.modid + ".wood_set." + this.setName, () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                .icon(() -> new ItemStack(this.log.get()))
+                .displayItems(
+                        (itemDisplayParameters, output) -> {
+                            output.accept(this.log.get());
+                            output.accept(this.wood.get());
+                            output.accept(this.strippedLog.get());
+                            output.accept(this.strippedWood.get());
+                            output.accept(this.planks.get());
+                            output.accept(this.slab.get());
+                            output.accept(this.stairs.get());
+                            output.accept(this.fence.get());
+                            output.accept(this.fenceGate.get());
+                            output.accept(this.door.get());
+                            output.accept(this.trapdoor.get());
+                            output.accept(this.button.get());
+                            output.accept(this.pressurePlate.get());
+                            output.accept(this.signItem.get());
+                            output.accept(this.hangingSignItem.get());
+                            output.accept(this.boatItem.get());
+                            output.accept(this.chestBoatItem.get());
+                        }).title(Component.translatable("creativetab." + this.modid + ".wood_set." + this.setName))
+                .build());
     }
 
     public void registerFuels(BiConsumer<ItemLike, Integer> registrar) {
@@ -166,7 +201,6 @@ public class WoodSet {
                 .sized(1.375F, 0.5625F)
                 .eyeHeight(0.5625F)
                 .clientTrackingRange(10).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_chest_boat")))));
-
     }
 
     protected void registerItems() {
@@ -196,12 +230,6 @@ public class WoodSet {
         this.door = registerBlockWithItem(typeName("_door"), () -> new DoorBlock(this.setType, this.doorProperties(typeName("_door"))));
     }
 
-    // Use StrippableBlockRegistry for Fabric, not sure for NeoForge.
-    protected void registerStrippableBlocks(BiConsumer<Block, Block> registrar) {
-        registrar.accept(this.log.get(), this.strippedLog.get());
-        registrar.accept(this.wood.get(), this.strippedWood.get());
-    }
-
     protected String typeName(String suffix) {
         return this.setName + suffix;
     }
@@ -211,7 +239,7 @@ public class WoodSet {
     }
 
     protected <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block) {
-        return registerBlockWithItem(name, block, b -> () -> new BlockItem(b.get(), ItemRegistry.properties(name)));
+        return registerBlockWithItem(name, block, b -> () -> new BlockItem(b.get(), itemProperties(name).useBlockDescriptionPrefix()));
     }
 
     protected <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block, Function<RegistryObject<Block, T>, Supplier<? extends BlockItem>> item) {
@@ -232,6 +260,13 @@ public class WoodSet {
         return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(this.modid, name)));
     }
 
+    public TagKey<Block> getLogs() {
+        return logs;
+    }
+
+    public TagKey<Item> getLogItems() {
+        return logItems;
+    }
 
     public RegistryObject<Block, Block> getLog() {
         return log;

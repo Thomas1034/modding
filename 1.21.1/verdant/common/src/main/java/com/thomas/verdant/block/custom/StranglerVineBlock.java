@@ -1,17 +1,19 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.Constants;
+import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.VerdantTags;
+import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -41,31 +43,46 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
     public static final IntegerProperty NORTH = IntegerProperty.create("north", MIN_AGE, MAX_AGE);
     public static final IntegerProperty[] FACES = new IntegerProperty[]{EAST, WEST, UP, DOWN, SOUTH, NORTH};
     public static final Map<Direction, IntegerProperty> PROPERTY_FOR_FACE = Map.of(Direction.EAST, EAST, Direction.WEST, WEST, Direction.UP, UP, Direction.DOWN, DOWN, Direction.SOUTH, SOUTH, Direction.NORTH, NORTH);
-
     public static final List<VoxelShape> UP_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 15.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 12.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 8.0f, 0.0f, 16.0f, 16.0f, 16.0f));
-
     public static final List<VoxelShape> DOWN_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 1.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 4.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 16.0f));
-
     public static final List<VoxelShape> NORTH_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 1.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 8.0f));
-
     public static final List<VoxelShape> SOUTH_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 15.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 12.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 8.0f, 16.0f, 16.0f, 16.0f));
-
     public static final List<VoxelShape> WEST_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 1.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 4.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 8.0f, 16.0f, 16.0f));
-
     public static final List<VoxelShape> EAST_SHAPE = List.of(Shapes.empty(), Block.box(15.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f));
-
     private static final Map<BlockState, VoxelShape> CACHED_SHAPES = new HashMap<>();
 
-    private final Function<RandomSource, BlockState> log = (rand) -> Blocks.DIAMOND_BLOCK.defaultBlockState();
+    protected final double leafGrowthRadius = 3.2;
+    protected final boolean[][][] leafPattern;
+
+    private final Function<RandomSource, Block> log = (rand) -> WoodSets.STRANGLER.getLog().get();
 
     private final Supplier<BlockState> leafyVine = this::defaultBlockState;
 
     private final Function<RandomSource, Block> rottenWood = (rand) -> Blocks.COAL_BLOCK;
 
-    private final Function<RandomSource, Block> heartwood = (rand) -> Blocks.DEEPSLATE_EMERALD_ORE;
+    private final Function<RandomSource, Block> heartwood = (rand) -> WoodSets.HEARTWOOD.getLog().get();
 
     public StranglerVineBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(BlockStateProperties.WATERLOGGED, false));
+
+        int center = (int) (Math.ceil(this.leafGrowthRadius));
+        int arraySize = (2 * center) + 1;
+        this.leafPattern = new boolean[arraySize][arraySize][arraySize];
+
+        for (int i = 0; i < arraySize; i++) {
+            for (int j = 0; j < arraySize; j++) {
+                for (int k = 0; k < arraySize; k++) {
+                    if (((i - center)*(i - center) + 4 * (j - center)*(j - center) + (k - center)*(k - center)) < this.leafGrowthRadius * this.leafGrowthRadius) {
+                        this.leafPattern[i][j][k] = true;
+                    }
+
+                }
+            }
+        }
+
+
+        ((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
     }
 
     // Spreads the vine to a nearby block.
@@ -102,7 +119,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
                     // Get the block state at that position.
                     BlockState hereBlockState = level.getBlockState(here);
                     // Check if it is replaceable.
-                    if (!hereBlockState.is(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES)) {
+                    if (!hereBlockState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) {
                         continue;
                     }
                     // Get the fluid state at that position.
@@ -174,8 +191,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         }
         if (!hasAnyFace) {
             // TODO
-            // Don't hardcode air as the default?
-            state = Blocks.AIR.defaultBlockState();
+            // Don't hardcode air/water as the default?
+            state = state.getValue(BlockStateProperties.WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
         }
 
         return state;
@@ -188,7 +205,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         // grow to connect the two.
         BlockState above = level.getBlockState(pos.above());
         BlockState below = level.getBlockState(pos.below());
-        if (above.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS) && below.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS)) {
+        if (above.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && below.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
             // System.out.println("There was heartwood both above and below the block.");
             return false;
         }
@@ -198,7 +215,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             BlockPos neighborPos = pos.relative(d);
             BlockState neighbor = level.getBlockState(neighborPos);
 
-            if (neighbor.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS)) {
+            if (neighbor.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
                 // System.out.println("Found verdant heartwood on the " + d + " side.");
                 return true;
             }
@@ -212,7 +229,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
         for (Direction d : Direction.values()) {
             BlockState state = level.getBlockState(pos.relative(d));
-            if (state.is(BlockTags.LOGS) || state.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS) || state.is(VerdantTags.Blocks.STRANGLER_LOGS) || state.is(this.rottenWood.apply(level.random))) {
+            if (state.is(BlockTags.LOGS) || state.is(VerdantTags.Blocks.HEARTWOOD_LOGS) || state.is(VerdantTags.Blocks.STRANGLER_LOGS) || state.is(this.rottenWood.apply(level.random))) {
                 return true;
             }
         }
@@ -225,33 +242,28 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
     // Returns true if it succeeds.
     private boolean tryConsumeLog(Level level, BlockPos pos) {
 
-        Constants.LOG.warn("Trying to consume a log.");
 
         BlockState host = level.getBlockState(pos);
         boolean shouldDecayToAir = false;
 
         // First, check if the host is a log.
         if (!host.is(BlockTags.LOGS_THAT_BURN)) {
-            Constants.LOG.warn("Host is non-inflammable.");
             return false;
         }
 
         // Then, check if this log is a mature verdant log.
-        if (host.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS)) {
-            Constants.LOG.warn("Host is a mature strangler log.");
+        if (host.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
             return false;
         }
 
         // Then, check if this log is a verdant log and has a mature neighbor.
         // If so, return early.
         if (host.is(VerdantTags.Blocks.STRANGLER_LOGS) && this.hasMatureVerdantLogNeighbors(level, pos)) {
-            Constants.LOG.warn("Host is a strangler log with mature neighbors.");
             return false;
         }
 
         // Check if this log has neighboring logs or decayed wood.
         if (!host.is(VerdantTags.Blocks.STRANGLER_LOGS) && !this.hasLogNeighbors(level, pos)) {
-            Constants.LOG.warn("Host is not a strangler log and does not have log neighbors; decaying to air.");
             shouldDecayToAir = true;
         }
 
@@ -272,12 +284,10 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
                 }
                 // If not, do not proceed.
                 else {
-                    Constants.LOG.warn("Host has an immature strangler vine to its {}", d);
                     canConsume = false;
                     break;
                 }
-            } else if (neighbor.is(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES) || neighbor.is(BlockTags.LEAVES)) {
-                Constants.LOG.warn("Host has {} strangler vine to its {}, which is either leaves or replaceable.", neighbor, d);
+            } else if (neighbor.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) {
                 canConsume = false;
                 break;
             }
@@ -285,10 +295,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         // If it can consume the log, does so.
         if (canConsume && !shouldDecayToAir) {
 
-            Constants.LOG.warn("Consuming the host.");
             for (BlockPos toGrow : positionsToGrow) {
-                Constants.LOG.warn("Growing vines into logs at {}", toGrow);
-                level.setBlockAndUpdate(toGrow, this.log.apply(level.random));
+                level.setBlockAndUpdate(toGrow, this.log.apply(level.random).defaultBlockState());
             }
 
             // Add particle and sound effect.
@@ -296,16 +304,13 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             // Save the host state.
             // If the host is verdant, mature it.
             if (host.is(VerdantTags.Blocks.STRANGLER_LOGS)) {
-                Constants.LOG.warn("Maturing the host.");
                 level.setBlockAndUpdate(pos, this.heartwood.apply(level.random).defaultBlockState());
             }
             // Otherwise rot it.
             else {
-                Constants.LOG.warn("Rotting the host.");
                 level.setBlockAndUpdate(pos, this.rottenWood.apply(level.random).defaultBlockState());
             }
         } else if (shouldDecayToAir) {
-            Constants.LOG.warn("Decaying the host to air.");
             level.destroyBlock(pos, false);
 
             // Add particle and sound effect.
@@ -362,7 +367,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
             } else if (maturity == MAX_AGE && oppositeMaturity == MAX_AGE) {
                 // If it's fully grown on both sides, grow to a log.
-                state = this.log.apply(level.random).trySetValue(RotatedPillarBlock.AXIS, d.getAxis());
+                state = this.log.apply(level.random).defaultBlockState().trySetValue(RotatedPillarBlock.AXIS, d.getAxis());
                 grownIntoLog = true;
                 break;
             }
@@ -371,8 +376,19 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             level.addDestroyBlockEffect(pos, state);
             level.setBlockAndUpdate(pos, state);
         }
+        if (isMature && !grownIntoLog && state.getValue(DOWN) == MAX_AGE) {
+            level.setBlockAndUpdate(pos, BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get()));
+            // TODO Temporary I hope
+            // Pending leaf rework.
+            this.growLeafCluster(level, pos);
+        }
 
         return isMature;
+    }
+
+    private void growLeafCluster(Level level, BlockPos pos) {
+        Block leaves = BlockRegistry.STRANGLER_LEAVES.get();
+        // TODO
     }
 
     // Places a Verdant Vine at that block.

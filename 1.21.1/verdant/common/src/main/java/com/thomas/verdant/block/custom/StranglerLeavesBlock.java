@@ -28,8 +28,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         this.registerDefaultState(this.getStateDefinition().any().setValue(BlockStateProperties.WATERLOGGED, false).setValue(BlockStateProperties.PERSISTENT, false).setValue(GradientLeavesBlock.GRADIENT, OptionalDirection.EMPTY).setValue(GradientLeavesBlock.DISTANCE, GradientLeavesBlock.MAX_DISTANCE));
     }
 
-
-
     // Returns the number of blocks to move in that direction to find an air block.
     // Negative max values are ignored.
     public static int getDistanceTillAir(Level level, BlockPos initial, Direction direction, int max) {
@@ -81,7 +79,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
     private boolean hasTransparentOrPlantSpaceBeneath(Level level, BlockPos pos, int distanceToCheck) {
         // Check for nearby blocks
 
-        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS));
+        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES));
         int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
 
         return distance > distanceToCheck;
@@ -221,7 +219,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         BlockState state = level.getBlockState(pos);
 
         // If it's already leaves, return early.
-        if (state.is(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS)) {
+        if (state.is(VerdantTags.Blocks.STRANGLER_LEAVES)) {
             return false;
         }
 
@@ -251,14 +249,14 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
                     }
 
                     BlockState stateToCheck = level.getBlockState(pos);
-                    if (!stateToCheck.isAir() && !stateToCheck.is(BlockTags.REPLACEABLE) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.MATURE_STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.VERDANT_LEAFY_BLOCKS) && !stateToCheck.is(BlockTags.LEAVES) && !stateToCheck.is(BlockTags.LOGS)) {
+                    if (!stateToCheck.isAir() && !stateToCheck.is(BlockTags.REPLACEABLE) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES) && !stateToCheck.is(BlockTags.LEAVES) && !stateToCheck.is(BlockTags.LOGS)) {
                         return false;
                     }
                 }
             }
         }
 
-        if (state.is(VerdantTags.Blocks.VERDANT_VINE_REPLACEABLES)) {
+        if (state.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) {
             BlockState placed = this.updateDistance(this.defaultBlockState(), level, pos);
             level.setBlockAndUpdate(pos, placed);
             return true;

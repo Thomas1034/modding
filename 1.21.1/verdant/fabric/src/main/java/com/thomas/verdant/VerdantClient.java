@@ -1,12 +1,12 @@
 package com.thomas.verdant;
 
 import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -32,9 +32,11 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.VERDANT_GRASS_DIRT, BlockRegistry.VERDANT_ROOTED_MUD, BlockRegistry.VERDANT_GRASS_MUD,
                 BlockRegistry.VERDANT_ROOTED_CLAY, BlockRegistry.VERDANT_GRASS_CLAY, BlockRegistry.STRANGLER_VINE);
 
-        markCutout(WoodSets.STRANGLER.getDoor(), WoodSets.STRANGLER.getTrapdoor());
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            markCutout(woodSet.getDoor(), woodSet.getTrapdoor());
+            registerBoatRenderers(woodSet);
+        }
 
-        registerBoatRenderers(WoodSets.STRANGLER);
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {
@@ -48,7 +50,7 @@ public class VerdantClient implements ClientModInitializer {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutout(Supplier... blocks) {
-        Arrays.stream(blocks).forEach(block -> BlockRenderLayerMapImpl.INSTANCE.putBlock(((Supplier<Block>) block).get(), RenderType.cutout()));
+        Arrays.stream(blocks).forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(((Supplier<Block>) block).get(), RenderType.cutout()));
     }
 
 }

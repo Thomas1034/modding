@@ -2,7 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.properties.WoodSets;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -29,7 +29,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        generateFor(WoodSets.STRANGLER);
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            generateFor(woodSet);
+        }
 
         simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
         logBlockWithItem((RotatedPillarBlock) BlockRegistry.TEST_LOG.get());

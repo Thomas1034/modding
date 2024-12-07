@@ -1,6 +1,7 @@
 package com.thomas.verdant.util;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.registry.WoodSets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -13,15 +14,16 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 public class VerdantTags {
     public static class Blocks {
 
-        public static final TagKey<Block> SUPPORTS_TEST_LEAVES = tag("supports_verdant_leaves");
-        public static final TagKey<Block> STRANGLER_LOGS = tag("verdant_logs");
+        public static final TagKey<Block> SUPPORTS_STRANGLER_LEAVES = tag("supports_strangler_leaves");
+        public static final TagKey<Block> STRANGLER_LOGS = WoodSets.STRANGLER.getLogs();
         public static final TagKey<Block> SUPPORTS_STRANGLER_VINES = tag("supports_strangler_vines");
-        public static final TagKey<Block> VERDANT_VINE_REPLACEABLES = tag("verdant_vine_replacables");
-        public static final TagKey<Block> MATURE_STRANGLER_LOGS = tag("mature_verdant_logs");
-        public static final TagKey<Block> VERDANT_LEAFY_BLOCKS = tag("verdant_leafy_blocks");
+        public static final TagKey<Block> STRANGLER_VINE_REPLACEABLES = tag("strangler_vine_replacables");
+        public static final TagKey<Block> HEARTWOOD_LOGS = WoodSets.HEARTWOOD.getLogs();
+        public static final TagKey<Block> STRANGLER_LEAVES = tag("strangler_leaves");
         public static final TagKey<Block> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Block> VERDANT_GROUND = tag("verdant_ground");
         public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
+        public static final TagKey<Block> NEEDS_IMBUED_HEARTWOOD_TOOL = tag("needs_imbued_heartwood_tool");
 
         private static TagKey<Block> tag(String name) {
 

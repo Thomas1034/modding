@@ -60,7 +60,7 @@ public class GradientLeavesBlock extends Block {
     // Also doesn't bother redirecting through an optional, to save on computational resources.
     // There's no need to make that many extra objects.
     protected int getDistanceAt(BlockState state) {
-        if (state.is(VerdantTags.Blocks.SUPPORTS_TEST_LEAVES)) {
+        if (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_LEAVES)) {
             return 0;
         } else {
             return state.hasProperty(DISTANCE) ? state.getValue(DISTANCE) : MAX_DISTANCE;
