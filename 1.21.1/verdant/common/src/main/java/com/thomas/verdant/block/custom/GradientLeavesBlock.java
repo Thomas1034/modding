@@ -1,6 +1,5 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.util.OptionalDirection;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -35,6 +34,7 @@ public class GradientLeavesBlock extends Block {
     }
 
     // May have an infinite loop if the gradient is not well-defined or has non-zero curl.
+    // If so, returns null.
     public BlockPos gradientDescent(BlockPos pos, LevelAccessor level, BlockState state) {
         int counter = 0;
         int maxIterations = MAX_DISTANCE + 2;
@@ -47,8 +47,7 @@ public class GradientLeavesBlock extends Block {
             pos = pos.relative(gradient);
             state = level.getBlockState(pos);
             if (counter > maxIterations) {
-                Constants.LOG.warn("Warning: gradient descent exceeded {} iterations. Please report this error to the mod developer, along with a description of what was happening at the time.", maxIterations);
-                break;
+                return null;
             }
         }
 

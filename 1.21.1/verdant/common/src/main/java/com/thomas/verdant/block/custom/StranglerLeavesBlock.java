@@ -1,6 +1,5 @@
 package com.thomas.verdant.block.custom;
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.util.OptionalDirection;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -99,8 +98,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
             return;
         }
 
-        Constants.LOG.warn("Ticking at {}", pos);
-
         this.spreadLeaves(level, pos);
 
     }
@@ -120,7 +117,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         BlockPos supportingLog = this.gradientDescent(pos, level, state);
         // Find the distance to that log.
         // Vertical scale is more important.
-        double distanceToLog = Vec3.atCenterOf(supportingLog).subtract(Vec3.atCenterOf(pos)).multiply(1, 2, 1).length();
+        double distanceToLog = supportingLog != null ? Vec3.atCenterOf(supportingLog).subtract(Vec3.atCenterOf(pos)).multiply(1, 2, 1).length() : Double.MAX_VALUE;
 
         // Ensure that this block is within the growing radius.
         if ((distanceToLog < GROWING_RADIUS)) {
@@ -138,13 +135,12 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
     }
 
     private void tryToGrowShelf(Level level, BlockPos pos, int maxShelfThickness, int minAirGap) {
-        Constants.LOG.warn("Trying to grow shelf");
+
         int numberOfBlocksAbove = getDistanceTillAir(level, pos, Direction.UP, maxShelfThickness + 2);
         // Check the number of blocks till there's air, to compare to the shelf
         // thickness.
         if (numberOfBlocksAbove > maxShelfThickness) {
             // System.out.println("That's too many.");
-            Constants.LOG.warn("Failing as there are {} blocks above (more than {})", numberOfBlocksAbove, maxShelfThickness);
             return;
         }
 
@@ -153,7 +149,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // thickness.
         if (numberOfBlocksBelow > maxShelfThickness) {
             // System.out.println("That's too many.");
-            Constants.LOG.warn("Failing as there are {} blocks below (more than {})", numberOfBlocksBelow, maxShelfThickness);
             return;
         }
 
@@ -162,7 +157,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // thickness.
         if (numberOfAirBlocksAboveThat < minAirGap) {
             // System.out.println("That's too few.");
-            Constants.LOG.warn("Failing as the air gap above is {} blocks (less than {})", numberOfAirBlocksAboveThat, minAirGap);
             return;
         }
 
@@ -173,7 +167,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // above this block.");
         if (numberOfAirBlocksBelowThat < minAirGap) {
             // System.out.println("That's too few.");
-            Constants.LOG.warn("Failing as the air gap below is {} blocks (less than {})", numberOfAirBlocksBelowThat, minAirGap);
             return;
         }
 

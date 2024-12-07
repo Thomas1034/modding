@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "verdant:block/dirt_coal_orecoal_ore_overlay"
+      "model": "verdant:block/dirt_coal_ore"
     }
   }
 }

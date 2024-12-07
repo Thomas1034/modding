@@ -19,6 +19,9 @@ public class ModBaitDataProvider extends DataParseableProvider<BaitData> {
 	protected void addParseables() {
 
 		/*
+		 * Idea from womp6 on the Fabric Discord 
+		 * who makes https://www.curseforge.com/minecraft/mc-mods/womps-shellfish-mod
+		 * Make chorus fruit have a chance to remove an already-caught item.
 		 */
 		this.addBait(Items.CHORUS_FRUIT, 0.025, 0.005);
 		this.addBait(Items.MELON_SEEDS, 0.05, 0.5);

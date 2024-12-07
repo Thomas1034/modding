@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "verdant:block/dirt_gold_oregold_ore_overlay"
+      "model": "verdant:block/dirt_gold_ore"
     }
   }
 }

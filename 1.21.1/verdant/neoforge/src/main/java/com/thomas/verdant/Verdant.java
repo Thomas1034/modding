@@ -13,6 +13,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
@@ -39,7 +42,7 @@ import java.util.concurrent.CompletableFuture;
 @Mod(Constants.MOD_ID)
 public class Verdant {
 
-    public Verdant(IEventBus eventBus) {
+    public Verdant(final IEventBus eventBus) {
         // This method is invoked by the NeoForge mod loader when it is ready
         // to load your mod. You can access NeoForge and Common code in this
         // project.
@@ -52,10 +55,19 @@ public class Verdant {
         eventBus.addListener(Verdant::gatherData);
         // For wood sets.
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
+        eventBus.addListener(Verdant::onFinishSetup);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
+
+
     }
 
-    public static void registerStrippingLogs(BlockEvent.BlockToolModificationEvent event) {
+    public static void onFinishSetup(final FMLCommonSetupEvent event) {
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
+        }
+    }
+
+    public static void registerStrippingLogs(final BlockEvent.BlockToolModificationEvent event) {
         ItemStack stack = event.getHeldItemStack();
         ItemAbility ability = event.getItemAbility();
         // If it isn't stripping, or if it can't do the action, return.
@@ -69,8 +81,7 @@ public class Verdant {
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             if (state.is(woodSet.getLog().get())) {
                 finalState = woodSet.getStrippedLog().get().defaultBlockState();
-            }
-            else if (state.is(woodSet.getWood().get())) {
+            } else if (state.is(woodSet.getWood().get())) {
                 finalState = woodSet.getStrippedWood().get().defaultBlockState().setValue(BlockStateProperties.AXIS, state.getValue(BlockStateProperties.AXIS));
             }
             if (finalState != null) {
@@ -85,22 +96,21 @@ public class Verdant {
     }
 
 
-    public static void addBlocksToBlockEntities(BlockEntityTypeAddBlocksEvent event) {
+    public static void addBlocksToBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             event.modify(BlockEntityType.SIGN, woodSet.getSign().get(), woodSet.getWallSign().get());
             event.modify(BlockEntityType.HANGING_SIGN, woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get());
         }
     }
 
-    public static void gatherData(GatherDataEvent event) {
+    public static void gatherData(final GatherDataEvent event) {
         try {
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
-                    List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
+            generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
                 @Override
                 protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
                     // Do not validate at all, per what people online said.
@@ -125,18 +135,10 @@ public class Verdant {
         }
     }
 
-    public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+    public static void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
         // System.out.println(BlockTransformer.CODEC);
-        event.dataPackRegistry(
-                BlockTransformer.KEY,
-                BlockTransformer.CODEC,
-                BlockTransformer.CODEC
-        );
+        event.dataPackRegistry(BlockTransformer.KEY, BlockTransformer.CODEC, BlockTransformer.CODEC);
 
-        event.dataPackRegistry(
-                FeatureSet.KEY,
-                FeatureSet.CODEC,
-                FeatureSet.CODEC
-        );
+        event.dataPackRegistry(FeatureSet.KEY, FeatureSet.CODEC, FeatureSet.CODEC);
     }
 }

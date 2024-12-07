@@ -1,4 +1,8 @@
 {
+  "remove": [
+    "#minecraft:fire",
+    "#verdant:strangler_vine_replacables"
+  ],
   "values": [
     "#minecraft:replaceable",
     "#minecraft:leaves",

@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-05T22:23:03.4576788	Loot Tables
+// 1.21.3	2024-12-06T23:59:33.5338905	Loot Tables
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json
 1088f89ba19b23616567aeb15ec41cde9665ea52 data/verdant/loot_table/blocks/dirt_diamond_ore.json
@@ -22,12 +22,14 @@ b85788f9d752fc835e31ecea6edbd08939c77e99 data/verdant/loot_table/blocks/heartwoo
 6796e5423b3f36293e209e4306cc575d5a48f9ff data/verdant/loot_table/blocks/heartwood_wall_hanging_sign.json
 c60d1d26577d97575cd4c2873ca8bcfa8f369f2f data/verdant/loot_table/blocks/heartwood_wall_sign.json
 528f69d274c5b42d4aeedba73ed073a18ea3e882 data/verdant/loot_table/blocks/heartwood_wood.json
+42efb2f7f8e9d7718eb01c46e313c2290b20228c data/verdant/loot_table/blocks/leafy_strangler_vine.json
 264139e38a04461a2666c5c99e69c3e83e13d613 data/verdant/loot_table/blocks/packed_gravel.json
 84575b4354dfa1674630988a034caac0690c7378 data/verdant/loot_table/blocks/strangler_button.json
 3824973eda229d44101a921a6ad648e5c4ed6c1f data/verdant/loot_table/blocks/strangler_door.json
 36e1185d18a34f457d52d9b74d4365862ae5f356 data/verdant/loot_table/blocks/strangler_fence.json
 f80c2bc4271046e01c685ba005fd676716d8b009 data/verdant/loot_table/blocks/strangler_fence_gate.json
 7631db6adf9fafe4a2195d6057bda4d7df970439 data/verdant/loot_table/blocks/strangler_hanging_sign.json
+0cd1f9fec80547277f17fc9ae28e0d2c86efb92e data/verdant/loot_table/blocks/strangler_leaves.json
 6f43d06d33ec0659e5061e5d60a1d7d81404f042 data/verdant/loot_table/blocks/strangler_log.json
 516388e652686b52768f4c3c8e32f31bf19d2a6f data/verdant/loot_table/blocks/strangler_planks.json
 1441badd711269ad570bff97ad1c68e75b58101d data/verdant/loot_table/blocks/strangler_pressure_plate.json

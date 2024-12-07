@@ -42,6 +42,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_CLAY, () -> Blocks.CLAY);
         verdantGrassBlock(BlockRegistry.VERDANT_GRASS_CLAY, () -> Blocks.CLAY);
         tumbledBlockWithItem(BlockRegistry.PACKED_GRAVEL);
+        tumbledBlockWithItem(BlockRegistry.STRANGLER_LEAVES, "cutout");
         overlayBlockWithItem(BlockRegistry.DIRT_COAL_ORE, () -> Blocks.DIRT, new String[]{"coal_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_COPPER_ORE, () -> Blocks.DIRT, new String[]{"copper_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_IRON_ORE, () -> Blocks.DIRT, new String[]{"iron_ore_overlay"});
@@ -97,7 +98,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         ModelFile[] files = new ModelFile[overlays.length];
 
         for (int i = 0; i < overlays.length; i++) {
-            files[i] = models().withExistingParent(name(block) + overlays[i], ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + overlays[i])).renderType("cutout");
+            files[i] = models().withExistingParent(name(block) + (overlays.length == 1 ? "" : "_" + overlays[i]), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + overlays[i])).renderType("cutout");
         }
 
         blockWithItem(blockSource, files);
@@ -343,6 +344,10 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     }
 
     protected void tumbledBlockWithItem(Supplier<Block> blockSupplier) {
+        tumbledBlockWithItem(blockSupplier, (String) null);
+    }
+
+    protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, String renderType) {
         ModelFile simple = cubeAll(blockSupplier.get());
         tumbledBlockWithItem(blockSupplier, simple);
     }
@@ -363,7 +368,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, ModelFile model) {
         // Every possible unique rotation of the model.
         // With most simple blocks, many of these states are superfluous. However, it
-        // doesn't hurt to have them.
+        // doesn't hurt (much) to have them.
         getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder().modelFile(model).rotationX(0).rotationY(0).nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel().modelFile(model).rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270).nextModel().modelFile(model).rotationX(90).rotationY(0).nextModel().modelFile(model).rotationX(90).rotationY(90).nextModel().modelFile(model).rotationX(90).rotationY(180).nextModel().modelFile(model).rotationX(90).rotationY(270).nextModel().modelFile(model).rotationX(180).rotationY(0).nextModel().modelFile(model).rotationX(180).rotationY(90).nextModel().modelFile(model).rotationX(180).rotationY(180).nextModel().modelFile(model).rotationX(180).rotationY(270).nextModel().modelFile(model).rotationX(270).rotationY(0).nextModel().modelFile(model).rotationX(270).rotationY(90).nextModel().modelFile(model).rotationX(270).rotationY(180).nextModel().modelFile(model).rotationX(270).rotationY(270).build());
         simpleBlockItem(blockSupplier.get(), model);
     }

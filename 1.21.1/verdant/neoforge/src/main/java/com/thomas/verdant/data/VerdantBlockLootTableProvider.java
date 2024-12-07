@@ -54,6 +54,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.TEST_BLOCK.get(), noDrop());
         this.add(BlockRegistry.TEST_LOG.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
+        this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
+        this.add(BlockRegistry.STRANGLER_LEAVES.get(), noDrop());
 
         // this.add(ModBlocks.UBE_CAKE.get(), noDrop());
         // this.add(ModBlocks.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
