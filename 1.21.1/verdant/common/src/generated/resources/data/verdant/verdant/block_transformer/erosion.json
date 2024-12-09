@@ -130,6 +130,54 @@
       "result": "minecraft:cobblestone_wall"
     },
     {
+      "block": "minecraft:cobbled_deepslate_stairs",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate_slab",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate_wall",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:deepslate_bricks",
+      "result": "minecraft:deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_brick_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:deepslate_brick_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:deepslate_brick_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    },
+    {
+      "block": "minecraft:deepslate_bricks",
+      "result": "minecraft:deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_tiles",
+      "result": "minecraft:deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_tile_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:deepslate_tile_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:deepslate_tile_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    },
+    {
       "block": "minecraft:smooth_sandstone",
       "result": "minecraft:sandstone"
     },
@@ -163,6 +211,10 @@
     },
     {
       "block": "minecraft:sandstone_slab",
+      "result": "minecraft:sand"
+    },
+    {
+      "block": "minecraft:sandstone_wall",
       "result": "minecraft:sand"
     },
     {
@@ -256,17 +308,17 @@
     {
       "results": [
         {
-          "name": "minecraft:brown_stained_glass",
+          "name": "minecraft:green_stained_glass",
           "weight": 7
-        },
-        {
-          "name": "minecraft:air"
         },
         {
           "name": "minecraft:lime_stained_glass"
         },
         {
-          "name": "minecraft:green_stained_glass",
+          "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:brown_stained_glass",
           "weight": 7
         }
       ],
@@ -277,10 +329,6 @@
     {
       "results": [
         {
-          "name": "minecraft:brown_stained_glass_pane",
-          "weight": 7
-        },
-        {
           "name": "minecraft:green_stained_glass_pane",
           "weight": 7
         },
@@ -289,6 +337,10 @@
         },
         {
           "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
         }
       ],
       "tag": {

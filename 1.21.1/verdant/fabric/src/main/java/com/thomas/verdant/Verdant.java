@@ -1,5 +1,6 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.registry.Flammables;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
@@ -23,9 +24,14 @@ public class Verdant implements ModInitializer {
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
 
+        // Register Fire
+        Flammables.init(FlammableBlockRegistry.getDefaultInstance()::add);
+
+        // Set up dynamic registries
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
         DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
 
+        // Add wood sets.
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             BlockEntityType.SIGN.addSupportedBlock(woodSet.getSign().get());
             BlockEntityType.SIGN.addSupportedBlock(woodSet.getWallSign().get());

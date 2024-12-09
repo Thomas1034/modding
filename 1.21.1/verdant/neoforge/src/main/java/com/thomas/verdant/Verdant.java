@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
+import com.thomas.verdant.registry.Flammables;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
@@ -13,6 +14,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -57,11 +59,16 @@ public class Verdant {
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
         eventBus.addListener(Verdant::onFinishSetup);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
-
-
     }
 
+    public static void registerFlammability(Block block, int flammability, int spreadSpeed) {
+        ((FireBlock) Blocks.FIRE).setFlammable(block, flammability, spreadSpeed);
+    }
+
+
+
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
+        Flammables.init(((FireBlock) Blocks.FIRE)::setFlammable);
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
         }

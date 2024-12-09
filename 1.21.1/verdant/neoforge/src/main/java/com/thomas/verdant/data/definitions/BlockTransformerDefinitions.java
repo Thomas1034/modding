@@ -57,6 +57,19 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.MOSSY_STONE_BRICK_STAIRS, Blocks.COBBLESTONE_STAIRS));
         data.add(direct(Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB));
         data.add(direct(Blocks.MOSSY_STONE_BRICK_WALL, Blocks.COBBLESTONE_WALL));
+        // Deepslate partial blocks.
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.GRAVEL));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_SLAB, Blocks.GRAVEL));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_WALL, Blocks.GRAVEL));
+        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.DEEPSLATE));
+        data.add(direct(Blocks.DEEPSLATE_BRICK_SLAB, Blocks.COBBLED_DEEPSLATE_SLAB));
+        data.add(direct(Blocks.DEEPSLATE_BRICK_STAIRS, Blocks.COBBLED_DEEPSLATE_STAIRS));
+        data.add(direct(Blocks.DEEPSLATE_BRICK_WALL, Blocks.COBBLED_DEEPSLATE_WALL));
+        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.DEEPSLATE));
+        data.add(direct(Blocks.DEEPSLATE_TILES, Blocks.DEEPSLATE));
+        data.add(direct(Blocks.DEEPSLATE_TILE_SLAB, Blocks.COBBLED_DEEPSLATE_SLAB));
+        data.add(direct(Blocks.DEEPSLATE_TILE_STAIRS, Blocks.COBBLED_DEEPSLATE_STAIRS));
+        data.add(direct(Blocks.DEEPSLATE_TILE_WALL, Blocks.COBBLED_DEEPSLATE_WALL));
         // Sandstones.
         data.add(direct(Blocks.SMOOTH_SANDSTONE, Blocks.SANDSTONE));
         data.add(direct(Blocks.SMOOTH_SANDSTONE_STAIRS, Blocks.SANDSTONE_STAIRS));
@@ -67,6 +80,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.SANDSTONE, Blocks.SAND));
         data.add(direct(Blocks.SANDSTONE_STAIRS, Blocks.SAND));
         data.add(direct(Blocks.SANDSTONE_SLAB, Blocks.SAND));
+        data.add(direct(Blocks.SANDSTONE_WALL, Blocks.SAND));
         data.add(direct(Blocks.SAND, Blocks.COARSE_DIRT));
         // Mud
         data.add(direct(Blocks.PACKED_MUD, Blocks.COARSE_DIRT));

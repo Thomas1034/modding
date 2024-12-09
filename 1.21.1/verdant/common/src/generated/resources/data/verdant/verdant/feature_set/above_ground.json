@@ -3,15 +3,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:flower_swamp",
-        "weight": 1
+        "configured_feature": "minecraft:patch_grass_jungle",
+        "weight": 3
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_grass_jungle",
-        "weight": 3
+        "configured_feature": "minecraft:flower_swamp",
+        "weight": 1
       }
     }
   ],

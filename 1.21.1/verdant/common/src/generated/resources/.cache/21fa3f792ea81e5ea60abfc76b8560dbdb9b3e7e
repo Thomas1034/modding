@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-07T01:01:40.8719266	Block States: verdant
+// 1.21.3	2024-12-07T14:15:28.7010777	Block States: verdant
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
 d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond_ore.json
@@ -110,7 +110,7 @@ af173d7e706ed587d76fb626f81ed33f1c6e2c81 assets/verdant/models/block/strangler_f
 12dbe792cc6ea2334fba6aaba6b80c680f59c9e6 assets/verdant/models/block/strangler_fence_post.json
 2a9e268e8d0f16f1cc274e06df35dcbe1128e468 assets/verdant/models/block/strangler_fence_side.json
 c2b2d5ab9d88fd9d58d5faedcc20eef8a161e9ae assets/verdant/models/block/strangler_hanging_sign.json
-7b28556866c21bf213ae3dde2c0214c3f31ae26e assets/verdant/models/block/strangler_leaves.json
+595f9c57c332e950cc139c8bd3f581109de7cd38 assets/verdant/models/block/strangler_leaves.json
 0d3c83f310b134143db0fe81d836f132fecff99c assets/verdant/models/block/strangler_log.json
 71360b907b6f36e033e4df9c2008dc895f8ac809 assets/verdant/models/block/strangler_log_horizontal.json
 319597dde07b07a401e3f2bb879df775f3ad18d8 assets/verdant/models/block/strangler_planks.json

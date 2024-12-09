@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -348,7 +349,10 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     }
 
     protected void tumbledBlockWithItem(Supplier<Block> blockSupplier, String renderType) {
-        ModelFile simple = cubeAll(blockSupplier.get());
+        BlockModelBuilder simple = models().cubeAll(name(blockSupplier.get()), blockTexture(blockSupplier.get()));
+        if (renderType != null) {
+            simple = simple.renderType(renderType);
+        }
         tumbledBlockWithItem(blockSupplier, simple);
     }
 

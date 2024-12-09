@@ -1,5 +1,6 @@
 package com.thomas.verdant.block.custom;
 
+import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.util.OptionalDirection;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -111,6 +112,21 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         int distance = state.hasProperty(DISTANCE) ? state.getValue(DISTANCE) : MAX_DISTANCE;
         if (distance >= MAX_DISTANCE - 1) {
             return;
+        }
+        LeafyStranglerVineBlock leafyVine = (LeafyStranglerVineBlock) BlockRegistry.LEAFY_STRANGLER_VINE.get();
+        // Find every direction it can grow there.
+        BlockState newVine = leafyVine.defaultBlockState();
+        boolean canPlace = false;
+        for (Direction d : Direction.allShuffled(level.random)) {
+            // Place it there.
+            if (leafyVine.canGrowToFace(level, pos, d)) {
+                canPlace = true;
+                newVine = newVine.setValue(LeafyStranglerVineBlock.PROPERTY_FOR_FACE.get(d), 1);
+            }
+        }
+        if (canPlace) {
+            state = newVine;
+            level.setBlockAndUpdate(pos, state);
         }
 
         // Find the log supporting this leaf block.
