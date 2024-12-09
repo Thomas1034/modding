@@ -16,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
@@ -56,6 +57,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_LEAVES.get(), noDrop());
+
+
+        // Proudly written by ChatGPT 4o
+        Block rottenWood = BlockRegistry.ROTTEN_WOOD.get();
+        LootTable.Builder rottenWoodLoot = LootTable.lootTable().withPool(LootPool.lootPool()
+                // Add conditions for silk touch mining
+                .when(this.hasSilkTouch()).add(LootItem.lootTableItem(rottenWood))).withPool(LootPool.lootPool()
+                // No silk touch: Drops sticks and mushrooms
+                .when(this.hasSilkTouch().invert()).add(LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))).add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))).add(LootItem.lootTableItem(Items.RED_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))));
+        this.add(rottenWood, rottenWoodLoot);
+
 
         // this.add(ModBlocks.UBE_CAKE.get(), noDrop());
         // this.add(ModBlocks.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
@@ -233,18 +245,12 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
 
-        protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
-        return createShearsDispatchTable(block,
-                this.applyExplosionDecay(block,
-                        LootItem.lootTableItem(item).when(LootItemRandomChanceCondition.randomChance(chance))
-                                .apply(ApplyBonusCount.addUniformBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE), 2))));
+    protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
+        return createShearsDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).when(LootItemRandomChanceCondition.randomChance(chance)).apply(ApplyBonusCount.addUniformBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE), 2))));
     }
 
     protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
-        return createSilkTouchDispatchTable(block,
-                this.applyExplosionDecay(block, LootItem.lootTableItem(item)
-                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1))))
-                        .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
+        return createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1)))).apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
     }
 
     protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {
@@ -252,15 +258,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createSilkTouchOrShearsOreDrops(Block block, Item item, List<Integer> range) {
-        return createSilkTouchOrShearsDispatchTable(block,
-                this.applyExplosionDecay(block, LootItem.lootTableItem(item)
-                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1))))
-                        .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
+        return createSilkTouchOrShearsDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1)))).apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item) {
-        return createSilkTouchOrShearsDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
+        return createSilkTouchOrShearsDispatchTable(pBlock, this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item, List<Integer> range) {

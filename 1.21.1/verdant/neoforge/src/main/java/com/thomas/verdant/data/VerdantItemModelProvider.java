@@ -2,6 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistryObject;
+import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
@@ -10,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class VerdantItemModelProvider extends ItemModelProvider {
@@ -22,7 +24,9 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             generateFor(woodSet);
         }
+
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
+        getBuilder(BlockRegistry.STRANGLER_VINE.get().asItem().toString()).parent(new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/strangler_vine/north_3")));
     }
 
     protected void generateFor(WoodSet woodSet) {

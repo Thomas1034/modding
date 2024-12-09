@@ -312,14 +312,14 @@
           "weight": 7
         },
         {
-          "name": "minecraft:lime_stained_glass"
+          "name": "minecraft:brown_stained_glass",
+          "weight": 7
         },
         {
           "name": "minecraft:air"
         },
         {
-          "name": "minecraft:brown_stained_glass",
-          "weight": 7
+          "name": "minecraft:lime_stained_glass"
         }
       ],
       "tag": {
@@ -329,6 +329,10 @@
     {
       "results": [
         {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
+        },
+        {
           "name": "minecraft:green_stained_glass_pane",
           "weight": 7
         },
@@ -337,10 +341,6 @@
         },
         {
           "name": "minecraft:air"
-        },
-        {
-          "name": "minecraft:brown_stained_glass_pane",
-          "weight": 7
         }
       ],
       "tag": {

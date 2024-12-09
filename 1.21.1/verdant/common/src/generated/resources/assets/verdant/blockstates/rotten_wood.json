@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "verdant:block/rotten_wood"
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/rotten_wood",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-05T22:23:03.4708001	Item Models: verdant
+// 1.21.3	2024-12-09T00:28:37.6169636	Item Models: verdant
 6de63570ddc112d61282e39477a22357d52823fe assets/verdant/models/item/heartwood_boat.json
 2e673a5be1cbb71976a7a56c6094bb0081bebc5d assets/verdant/models/item/heartwood_button.json
 b111cff03e6c123846e3561060a023388493003b assets/verdant/models/item/heartwood_chest_boat.json
@@ -24,3 +24,4 @@ af75588e6a6810128260d627f3eae90f9f9f7d02 assets/verdant/models/item/strangler_pr
 61aa7913a413eb5c79962e08107d3f716c0a1662 assets/verdant/models/item/strangler_slab.json
 f845c9ce2c1a6dea17725a1af727905e60bf6936 assets/verdant/models/item/strangler_stairs.json
 33c4015e9438d0858781c19723a3bfba998651ae assets/verdant/models/item/strangler_trapdoor.json
+483efb4d44c61aec3da67eb95a0f311f495208f8 assets/verdant/models/item/strangler_vine.json

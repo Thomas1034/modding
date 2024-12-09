@@ -34,6 +34,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             generateFor(woodSet);
         }
 
+        tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD, "cutout");
         simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
         logBlockWithItem((RotatedPillarBlock) BlockRegistry.TEST_LOG.get());
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_DIRT, () -> Blocks.DIRT);

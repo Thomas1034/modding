@@ -1,10 +1,7 @@
 package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
-import com.thomas.verdant.block.custom.LeafyStranglerVineBlock;
-import com.thomas.verdant.block.custom.SpreadingRootsBlock;
-import com.thomas.verdant.block.custom.StranglerLeavesBlock;
-import com.thomas.verdant.block.custom.StranglerVineBlock;
+import com.thomas.verdant.block.custom.*;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.properties.BlockProperties;
@@ -18,6 +15,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 import java.util.function.Function;
@@ -53,6 +51,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> STRANGLER_VINE;
     public static final RegistryObject<Block, Block> LEAFY_STRANGLER_VINE;
     public static final RegistryObject<Block, Block> STRANGLER_LEAVES;
+    public static final RegistryObject<Block, Block> ROTTEN_WOOD;
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS.setId(id("verdant_rooted_dirt")), false, () -> BlockRegistry.VERDANT_GRASS_DIRT, false, () -> BlockRegistry.VERDANT_ROOTED_MUD));
@@ -72,9 +71,13 @@ public class BlockRegistry {
         DIRT_DIAMOND_ORE = registerBlockWithItem("dirt_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), properties(Blocks.COARSE_DIRT, "dirt_diamond_ore")));
         STRANGLER_VINE = registerBlockWithItem("strangler_vine", () -> new StranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "strangler_vine").strength(1.0f, 1.5f).noOcclusion().randomTicks()));
         LEAFY_STRANGLER_VINE = registerBlockWithItem("leafy_strangler_vine", () -> new LeafyStranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "leafy_strangler_vine").strength(1.0f, 1.5f).noOcclusion().randomTicks()));
-        TEST_BLOCK = registerBlockWithItem("test_block", () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "test_block").randomTicks()));
-        STRANGLER_LEAVES = registerBlockWithItem("strangler_leaves", () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").randomTicks()));
+        STRANGLER_LEAVES = registerBlockWithItem("strangler_leaves", () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").noOcclusion().randomTicks()));
+        ROTTEN_WOOD = registerBlockWithItem("rotten_wood", () -> new FragileBlock(properties(Blocks.DARK_OAK_PLANKS, "rotten_wood").instabreak().ignitedByLava().noOcclusion().isRedstoneConductor((s, l, p) -> false).mapColor(MapColor.TERRACOTTA_BROWN).strength(0, 0).randomTicks()));
+
+
         TEST_LOG = registerBlockWithItem("test_log", () -> new RotatedPillarBlock(properties(Blocks.GLASS, "test_log")));
+        TEST_BLOCK = registerBlockWithItem("test_block", () -> new Block(properties(Blocks.GLASS, "test_block").randomTicks()));
+
     }
 
     public static void init() {

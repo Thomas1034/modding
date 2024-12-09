@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-
+// TODO handle logic when placed by the player.
 public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final int MIN_AGE = 0;
@@ -282,7 +282,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             if (neighbor.is(VerdantTags.Blocks.STRANGLER_VINES)) {
 
                 // If the vines are mature, keep checking.
-                if (neighbor.getValue(PROPERTY_FOR_FACE.get(d.getOpposite())) == MAX_AGE && distantNeighbor.isAir()) {
+                if (neighbor.getValue(PROPERTY_FOR_FACE.get(d.getOpposite())) == MAX_AGE && distantNeighbor.is(BlockTags.REPLACEABLE_BY_TREES)) {
                     positionsToGrow.add(neighborPos);
                 }
                 // If not, do not proceed.
