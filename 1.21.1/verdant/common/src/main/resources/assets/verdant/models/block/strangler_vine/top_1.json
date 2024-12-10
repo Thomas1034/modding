@@ -1,0 +1,54 @@
+{
+  "ambientocclusion": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "verdant:block/strangler_log",
+    "overlay": "verdant:block/strangler_vine_overlay",
+    "particle": "verdant:block/strangler_vine_overlay"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        15.875,
+        0
+      ],
+      "to": [
+        16,
+        15.875,
+        16
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 0
+      },
+      "faces": {
+        "north": {
+          "texture": "#overlay",
+          "uv": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "rotation": 270
+        },
+				"south": {
+          "texture": "#overlay",
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "rotation": 270
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:strangler_log",
+  "key": {
+    "v": "#verdant:strangler_vines"
+  },
+  "pattern": [
+    "vv",
+    "vv"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:strangler_log"
+  }
+}

@@ -11,7 +11,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class VerdantItemModelProvider extends ItemModelProvider {
@@ -26,7 +25,9 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         }
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
-        getBuilder(BlockRegistry.STRANGLER_VINE.get().asItem().toString()).parent(new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/strangler_vine/north_3")));
+        basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());
+        basicItem(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
+
     }
 
     protected void generateFor(WoodSet woodSet) {

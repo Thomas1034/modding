@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:leafy_strangler_vine",
+  "ingredients": [
+    "verdant:strangler_vine"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:leafy_strangler_vine"
+  }
+}

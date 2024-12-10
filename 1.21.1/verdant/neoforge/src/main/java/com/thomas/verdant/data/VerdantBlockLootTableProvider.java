@@ -1,9 +1,11 @@
 package com.thomas.verdant.data;
 
+import com.thomas.verdant.block.custom.StranglerVineBlock;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
@@ -60,12 +64,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
 
         // Proudly written by ChatGPT 4o
+        BiFunction<Block, Item, LootTable.Builder> stranglerVineLoot = (stranglerVine, stranglerItem) -> LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.DOWN, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.UP, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.NORTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.EAST, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.SOUTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.WEST, StranglerVineBlock.MAX_AGE)))));
+        this.add(BlockRegistry.STRANGLER_VINE.get(), stranglerVineLoot.apply(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.STRANGLER_VINE.get().asItem()));
+        this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), stranglerVineLoot.apply(BlockRegistry.LEAFY_STRANGLER_VINE.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()));
+
+        // Proudly written by ChatGPT 4o
         Block rottenWood = BlockRegistry.ROTTEN_WOOD.get();
         LootTable.Builder rottenWoodLoot = LootTable.lootTable().withPool(LootPool.lootPool()
                 // Add conditions for silk touch mining
                 .when(this.hasSilkTouch()).add(LootItem.lootTableItem(rottenWood))).withPool(LootPool.lootPool()
                 // No silk touch: Drops sticks and mushrooms
-                .when(this.hasSilkTouch().invert()).add(LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))).add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))).add(LootItem.lootTableItem(Items.RED_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))));
+                .when(this.hasSilkTouch().invert()).add(LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(6)).add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))).setWeight(3)).add(LootItem.lootTableItem(Items.RED_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))).setWeight(1)).setRolls(UniformGenerator.between(1, 3)));
         this.add(rottenWood, rottenWoodLoot);
 
 
@@ -201,21 +210,21 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         // this.add(ModBlocks.BITTER_CASSAVA_CROP.get(), bitterCassavaLoot);
 
-//        LootItemCondition.Builder yamCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
-//                .hasBlockStateProperties(ModBlocks.UBE_CROP.get()).setProperties(StatePropertiesPredicate.Builder
-//                        .properties().hasProperty(CassavaCropBlock.AGE, SpreadingCropBlock.MAX_AGE));
-//        LootTable.Builder yamLoot = LootTable.lootTable()
-//                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.UBE.get())))
-//                .withPool(LootPool.lootPool()
-//                        .add(LootItem.lootTableItem(ModItems.UBE.get())
-//                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
-//                                        0.5714286F, 1)))
-//                        .setRolls(UniformGenerator.between(1, 2)).when(yamCropMaxAgeBuilder));
-//        this.add(ModBlocks.UBE_CROP.get(), yamLoot);
+        //        LootItemCondition.Builder yamCropMaxAgeBuilder = LootItemBlockStatePropertyCondition
+        //                .hasBlockStateProperties(ModBlocks.UBE_CROP.get()).setProperties(StatePropertiesPredicate.Builder
+        //                        .properties().hasProperty(CassavaCropBlock.AGE, SpreadingCropBlock.MAX_AGE));
+        //        LootTable.Builder yamLoot = LootTable.lootTable()
+        //                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.UBE.get())))
+        //                .withPool(LootPool.lootPool()
+        //                        .add(LootItem.lootTableItem(ModItems.UBE.get())
+        //                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE,
+        //                                        0.5714286F, 1)))
+        //                        .setRolls(UniformGenerator.between(1, 2)).when(yamCropMaxAgeBuilder));
+        //        this.add(ModBlocks.UBE_CROP.get(), yamLoot);
 
-//        LootTable.Builder imbuedLogLoot = LootTable.lootTable()
-//                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))
-//                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModBlocks.VERDANT_HEARTWOOD_LOG.get())));
+        //        LootTable.Builder imbuedLogLoot = LootTable.lootTable()
+        //                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))
+        //                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModBlocks.VERDANT_HEARTWOOD_LOG.get())));
 
         // this.add(ModBlocks.IMBUED_VERDANT_HEARTWOOD_LOG.get(), imbuedLogLoot);
     }

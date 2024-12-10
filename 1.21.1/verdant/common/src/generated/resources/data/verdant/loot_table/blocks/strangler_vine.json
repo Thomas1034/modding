@@ -1,4 +1,120 @@
 {
   "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "down": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "up": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "north": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "east": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "south": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "verdant:strangler_vine",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "west": "3"
+              }
+            }
+          ],
+          "name": "verdant:strangler_vine"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
   "random_sequence": "verdant:blocks/strangler_vine"
 }

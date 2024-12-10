@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -59,7 +60,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
     private final Supplier<BlockState> leafyVine = this::defaultBlockState;
 
-    private final Function<RandomSource, Block> rottenWood = (rand) -> Blocks.COAL_BLOCK;
+    private final Function<RandomSource, Block> rottenWood = (rand) -> BlockRegistry.ROTTEN_WOOD.get();
 
     private final Function<RandomSource, Block> heartwood = (rand) -> WoodSets.HEARTWOOD.getLog().get();
 
@@ -227,11 +228,12 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
     }
 
     // Returns true if a block has any log neighbors.
-    private boolean hasLogNeighbors(Level level, BlockPos pos) {
+    private boolean hasLogOrVineNeighbors(Level level, BlockPos pos) {
 
         for (Direction d : Direction.values()) {
+            int dValue = d.getAxis().getNegative().get3DDataValue();
             BlockState state = level.getBlockState(pos.relative(d));
-            if (state.is(BlockTags.LOGS) || state.is(VerdantTags.Blocks.HEARTWOOD_LOGS) || state.is(VerdantTags.Blocks.STRANGLER_LOGS) || state.is(this.rottenWood.apply(level.random))) {
+            if (state.is(BlockTags.LOGS) || (state.is(VerdantTags.Blocks.STRANGLER_VINES) && (state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 2))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 3))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 4))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 5))) > MIN_AGE)) || state.is(VerdantTags.Blocks.ROTTEN_WOOD)) {
                 return true;
             }
         }
@@ -265,11 +267,12 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         }
 
         // Check if this log has neighboring logs or decayed wood.
-        if (!host.is(VerdantTags.Blocks.STRANGLER_LOGS) && !this.hasLogNeighbors(level, pos)) {
+        if (!host.is(VerdantTags.Blocks.STRANGLER_LOGS) && !this.hasLogOrVineNeighbors(level, pos)) {
             shouldDecayToAir = true;
         }
 
         boolean canConsume = true;
+        int allowedOccupiedDistantNeighbors = 2;
         // Check each of the sides. Keep track of the ones that need to be grown.
         ArrayList<BlockPos> positionsToGrow = new ArrayList<>();
         for (Direction d : Direction.values()) {
@@ -279,10 +282,17 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             BlockState distantNeighbor = level.getBlockState(neighborPos.relative(d));
             // If the side is a fully grown vine, it's good to proceed after growing it to a
             // log.
-            if (neighbor.is(VerdantTags.Blocks.STRANGLER_VINES)) {
+            if (neighbor.is(VerdantTags.Blocks.STRANGLER_VINES) && !distantNeighbor.is(VerdantTags.Blocks.STRANGLER_VINES)) {
 
                 // If the vines are mature, keep checking.
-                if (neighbor.getValue(PROPERTY_FOR_FACE.get(d.getOpposite())) == MAX_AGE && distantNeighbor.is(BlockTags.REPLACEABLE_BY_TREES)) {
+                if (neighbor.getValue(PROPERTY_FOR_FACE.get(d.getOpposite())) == MAX_AGE) {
+                    if (!(distantNeighbor.is(BlockTags.REPLACEABLE_BY_TREES) || d.getAxis() == Direction.Axis.Y)) {
+                        allowedOccupiedDistantNeighbors--;
+                    }
+                    if (allowedOccupiedDistantNeighbors <= 0) {
+                        canConsume = false;
+                        break;
+                    }
                     positionsToGrow.add(neighborPos);
                 }
                 // If not, do not proceed.
@@ -427,30 +437,42 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
                 }
             }
         }
-
-
     }
 
     // Places a Verdant Vine at that block.
     public void placeVine(Level level, BlockPos pos) {
+        level.setBlockAndUpdate(pos, this.getStateForPlacement(level, pos));
+
+    }
+
+    // Places a Verdant Vine at that block.
+    public BlockState getStateForPlacement(Level level, BlockPos pos) {
         // Store the previous block there.
         BlockState replaced = level.getBlockState(pos);
         // Place the vine block there. Leafy if it is replacing leaves.
         BlockState placed = replaced.is(BlockTags.LEAVES) ? this.leafyVine.get() : BlockRegistry.STRANGLER_VINE.get().defaultBlockState();
 
         // Find every direction it can grow there.
-        for (Direction d : Direction.allShuffled(level.random)) {
+        boolean canGrowToAnyFace = false;
+        for (Direction d : Direction.values()) {
             // Place it there.
             if (canGrowToFace(level, pos, d)) {
                 placed = placed.setValue(PROPERTY_FOR_FACE.get(d), 1);
+                canGrowToAnyFace = true;
             }
         }
         // Water-log if possible
         placed = placed.setValue(BlockStateProperties.WATERLOGGED, replaced.getOptionalValue(BlockStateProperties.WATERLOGGED).orElse(false));
 
         // Update the block.
-        level.setBlockAndUpdate(pos, placed);
+        return canGrowToAnyFace ? placed : null;
     }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.getStateForPlacement(context.getLevel(), context.getClickedPos());
+    }
+
 
     // Very important!
     // Defines the properties for the block.

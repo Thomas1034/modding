@@ -1,7 +1,9 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -187,6 +189,11 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             this.generateFor(woodSet);
         }
+
+        shaped(List.of("vv", "vv"), List.of('v'), List.of(VerdantTags.Items.STRANGLER_VINES), RecipeCategory.BUILDING_BLOCKS, WoodSets.STRANGLER.getLog().get(), 1);
+
+        shapeless(List.of(BlockRegistry.STRANGLER_VINE.get().asItem()), List.of(1), RecipeCategory.MISC, BlockRegistry.LEAFY_STRANGLER_VINE.get(), 1);
+        shapeless(List.of(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()), List.of(1), RecipeCategory.MISC, BlockRegistry.STRANGLER_VINE.get(), 1);
     }
 
     protected void generateFor(WoodSet woodSet) {

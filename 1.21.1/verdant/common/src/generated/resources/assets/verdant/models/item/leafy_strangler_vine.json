@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "verdant:item/strangler_vine"
+    "layer0": "verdant:item/leafy_strangler_vine"
   }
 }

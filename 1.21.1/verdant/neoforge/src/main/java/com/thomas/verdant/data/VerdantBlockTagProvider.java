@@ -112,9 +112,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // Verdant ground
         this.tag(VerdantTags.Blocks.VERDANT_GROUND).add(BlockRegistry.VERDANT_GRASS_DIRT.get(), BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
 
-        // Verdant ground
-        this.tag(VerdantTags.Blocks.SUPPORTS_STRANGLER_LEAVES).addTag(BlockTags.LOGS_THAT_BURN);
-        this.tag(VerdantTags.Blocks.SUPPORTS_STRANGLER_LEAVES).addTag(VerdantTags.Blocks.STRANGLER_VINES);
+        // Verdant logs
+        this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(BlockTags.LOGS_THAT_BURN);
+        this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(VerdantTags.Blocks.STRANGLER_VINES);
 
 //        // Flowers
 //        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());

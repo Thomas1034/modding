@@ -1,0 +1,36 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"base": "verdant:block/strangler_log",
+		"particle": "verdant:block/strangler_vine_overlay",
+		"overlay": "verdant:block/strangler_vine_overlay"
+	},
+	"elements": [
+		{
+			"from": [8, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 16], "texture": "#overlay"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#overlay"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#overlay"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#overlay"},
+				"up": {"uv": [0, 0, 8, 16], "texture": "#overlay"},
+				"down": {"uv": [0, 0, 8, 16], "texture": "#overlay"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 16], "texture": "#base"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#base"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#base"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#base"},
+				"up": {"uv": [0, 0, 8, 16], "texture": "#base"},
+				"down": {"uv": [0, 0, 8, 16], "texture": "#base"}
+			}
+		}
+	]
+}

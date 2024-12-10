@@ -3,6 +3,7 @@ package com.thomas.verdant.data;
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -29,12 +30,13 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         }
         addDirtOres();
 
+        this.tag(VerdantTags.Items.STRANGLER_VINES).add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
+
+
     }
 
     private void addDirtOres() {
-        this.tag(Tags.Items.ORES).add(BlockRegistry.DIRT_COAL_ORE.get().asItem(), BlockRegistry.DIRT_COPPER_ORE.get().asItem(),
-                BlockRegistry.DIRT_DIAMOND_ORE.get().asItem(), BlockRegistry.DIRT_EMERALD_ORE.get().asItem(), BlockRegistry.DIRT_GOLD_ORE.get().asItem(),
-                BlockRegistry.DIRT_IRON_ORE.get().asItem(), BlockRegistry.DIRT_LAPIS_ORE.get().asItem(), BlockRegistry.DIRT_REDSTONE_ORE.get().asItem());
+        this.tag(Tags.Items.ORES).add(BlockRegistry.DIRT_COAL_ORE.get().asItem(), BlockRegistry.DIRT_COPPER_ORE.get().asItem(), BlockRegistry.DIRT_DIAMOND_ORE.get().asItem(), BlockRegistry.DIRT_EMERALD_ORE.get().asItem(), BlockRegistry.DIRT_GOLD_ORE.get().asItem(), BlockRegistry.DIRT_IRON_ORE.get().asItem(), BlockRegistry.DIRT_LAPIS_ORE.get().asItem(), BlockRegistry.DIRT_REDSTONE_ORE.get().asItem());
         this.tag(Tags.Items.ORES_COAL).add(BlockRegistry.DIRT_COAL_ORE.get().asItem());
         this.tag(Tags.Items.ORES_COPPER).add(BlockRegistry.DIRT_COPPER_ORE.get().asItem());
         this.tag(Tags.Items.ORES_DIAMOND).add(BlockRegistry.DIRT_DIAMOND_ORE.get().asItem());
@@ -56,8 +58,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.PLANKS).add(woodSet.getPlanks().get().asItem());
         this.tag(ItemTags.LOGS).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(), woodSet.getStrippedWood().get().asItem());
         if (woodSet.isFlammable()) {
-            this.tag(ItemTags.LOGS_THAT_BURN).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(),
-                    woodSet.getStrippedWood().get().asItem());
+            this.tag(ItemTags.LOGS_THAT_BURN).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(), woodSet.getStrippedWood().get().asItem());
         }
         this.tag(ItemTags.SIGNS).add(woodSet.getSignItem().get());
         this.tag(ItemTags.HANGING_SIGNS).add(woodSet.getHangingSignItem().get());

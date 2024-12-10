@@ -1,93 +1,29 @@
 {
   "ambientocclusion": false,
-  "render_type": "minecraft:cutout",
   "textures": {
-    "0": "verdant:block/strangler_vine_2",
-    "particle": "verdant:block/strangler_vine_2"
+    "base": "verdant:block/strangler_log",
+    "overlay": "verdant:block/strangler_vine_overlay",
+    "particle": "verdant:block/strangler_vine_overlay"
   },
-  "elements": [
-    {
-      "from": [
-        0,
-        0.001,
-        0.003
-      ],
-      "to": [
-        4,
-        15.999,
-        15.997
-      ],
-      "rotation": {
-        "origin": [
-          8,
-          8,
-          8
-        ],
-        "axis": "z",
-        "angle": 0
-      },
-      "faces": {
-        "north": {
-          "texture": "#0",
-          "uv": [
-            8,
-            0,
-            16,
-            2
-          ],
-          "rotation": 90
-        },
-        "east": {
-          "texture": "#0",
-          "uv": [
-            8,
-            8,
-            0,
-            16
-          ],
-          "rotation": 270
-        },
-        "south": {
-          "texture": "#0",
-          "uv": [
-            8,
-            4,
-            16,
-            6
-          ],
-          "rotation": 270
-        },
-        "west": {
-          "texture": "#0",
-          "uv": [
-            8,
-            8,
-            0,
-            0
-          ],
-          "rotation": 270
-        },
-        "up": {
-          "texture": "#0",
-          "uv": [
-            8,
-            2,
-            16,
-            4
-          ],
-          "rotation": 270
-        },
-        "down": {
-          "texture": "#0",
-          "uv": [
-            8,
-            6,
-            16,
-            8
-          ],
-          "rotation": 270
-        }
-      }
-    }
-  ]
+	"elements": [
+		{
+			"from": [12, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 16], "texture": "#base", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "east"},
+				"south": {"uv": [12, 0, 16, 16], "texture": "#base", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#base"},
+				"up": {"uv": [12, 0, 16, 16], "texture": "#base", "cullface": "up"},
+				"down": {"uv": [12, 0, 16, 16], "texture": "#base", "cullface": "down"}
+			}
+		},
+		{
+			"from": [12, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"west": {"uv": [0, 0, 16, 16], "texture": "#overlay"}
+			}
+		}
+	]
 }

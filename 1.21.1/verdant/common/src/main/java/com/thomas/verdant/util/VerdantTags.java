@@ -14,13 +14,14 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 public class VerdantTags {
     public static class Blocks {
 
-        public static final TagKey<Block> SUPPORTS_STRANGLER_LEAVES = tag("supports_strangler_leaves");
+        public static final TagKey<Block> SUSTAINS_STRANGLER_LEAVES = tag("sustains_strangler_leaves");
         public static final TagKey<Block> STRANGLER_LOGS = WoodSets.STRANGLER.getLogs();
         public static final TagKey<Block> SUPPORTS_STRANGLER_VINES = tag("supports_strangler_vines");
-        public static final TagKey<Block> STRANGLER_VINE_REPLACEABLES = tag("strangler_vine_replacables");
+        public static final TagKey<Block> STRANGLER_VINE_REPLACEABLES = tag("strangler_vine_replaceables");
         public static final TagKey<Block> HEARTWOOD_LOGS = WoodSets.HEARTWOOD.getLogs();
         public static final TagKey<Block> STRANGLER_LEAVES = tag("strangler_leaves");
         public static final TagKey<Block> STRANGLER_VINES = tag("strangler_vines");
+        public static final TagKey<Block> ROTTEN_WOOD = tag("rotten_wood");
         public static final TagKey<Block> VERDANT_GROUND = tag("verdant_ground");
         public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
         public static final TagKey<Block> NEEDS_IMBUED_HEARTWOOD_TOOL = tag("needs_imbued_heartwood_tool");
@@ -42,6 +43,7 @@ public class VerdantTags {
 
     public static class Items {
         public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
+        public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");
 
         private static TagKey<Item> tag(String name) {
 
@@ -51,7 +53,7 @@ public class VerdantTags {
 
     public static class EntityTypes {
 
-        public static final TagKey<EntityType<?>> VERDANT_ENTITIES = tag("verdant_entities");
+        public static final TagKey<EntityType<?>> VERDANT_FRIENDLY_ENTITIES = tag("verdant_friendly_entities");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

@@ -115,10 +115,10 @@
 	"block.verdant.charred_frame_block": "Charred Frame Block",
 	"block.verdant.poison_ivy_block": "Poison Ivy Block",
 	"block.verdant.toxic_ash_block": "Toxic Ash Block",
-	"block.verdant.verdant_vine": "Verdant Vine",
-	"block.verdant.leafy_verdant_vine": "Leafy Verdant Vine",
-	"block.verdant.verdant_tendril": "Verdant Tendril",
-	"block.verdant.verdant_tendril_plant": "Verdant Tendril Plant",
+	"block.verdant.strangler_vine": "Strangler Vine",
+	"block.verdant.leafy_strangler_vine": "Leafy Strangler Vine",
+	"block.verdant.strangler_tendril": "Strangler Tendril",
+	"block.verdant.strangler_tendril_plant": "Strangler Tendril Plant",
 	"block.verdant.poison_ivy": "Poison Ivy",
 	"block.verdant.poison_ivy_plant": "Poison Ivy Plant",
 	"block.verdant.poison_ivy_strangler_leaves": "Poison Ivy Covered Strangler Leaves",
@@ -178,6 +178,8 @@
 	"block.verdant.heartwood_button": "Heartwood Button",
 	"block.verdant.heartwood_hanging_sign": "Heartwood Hanging Sign",
 	"block.verdant.heartwood_sign": "Heartwood Sign",
+	"item.verdant.heartwood_hanging_sign": "Heartwood Hanging Sign",
+	"item.verdant.heartwood_sign": "Heartwood Sign",
 	"entity.verdant.heartwood_boat": "Heartwood Boat",
 	"item.verdant.heartwood_boat": "Heartwood Boat",
 	"item.verdant.heartwood_chest_boat": "Heartwood Boat with Chest",
@@ -327,12 +329,19 @@
 	"creativetab.verdant.tools": "Verdant Tools & Utilities",
 	"creativetab.verdant.combat": "Verdant Combat",
 	
-	"tag.item.verdant.supports_strangler_leaves" : "Sustains Strangler Leaves",
-	"tag.item.verdant.supports_strangler_vines" : "Supports Strangler Vines",
-	"tag.item.verdant.strangler_vine_replaceables" : "Replaceable by Strangler Vines",
-	"tag.item.verdant.strangler_leaves" : "Strangler Leaves",
+	"tag.block.verdant.sustains_strangler_leaves" : "Sustains Strangler Leaves",
+	"tag.block.verdant.supports_strangler_vines" : "Supports Strangler Vines",
+	"tag.block.verdant.strangler_vine_replaceables" : "Replaceable by Strangler Vines",
+	"tag.block.verdant.strangler_leaves" : "Strangler Leaves",
+	"tag.block.verdant.strangler_vines" : "Strangler Vines",
+	"tag.block.verdant.rotten_wood" : "Rotten Wood",
+	"tag.block.verdant.verdant_ground" : "Verdant Ground",
+	
+	
 	"tag.item.verdant.strangler_vines" : "Strangler Vines",
-	"tag.item.verdant.verdant_ground" : "Verdant Ground",
+	"tag.item.verdant.verdant_friendly_armors" : "Verdant Friendly Armors",
+	
+	"tag.entity_type.verdant.verdant_friendly_entities" : "Verdant Friendly Entities",
 	
 	"dummy.verdant.last_entry": "Last Entry"
 }
