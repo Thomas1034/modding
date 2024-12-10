@@ -1,0 +1,7 @@
+{
+  "death_message_type": "intentional_game_design",
+  "effects": "poking",
+  "exhaustion": 0.02,
+  "message_id": "verdant.briar",
+  "scaling": "always"
+}

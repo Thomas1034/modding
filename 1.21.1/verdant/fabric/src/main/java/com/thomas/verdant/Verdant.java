@@ -1,6 +1,6 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.registry.Flammables;
+import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
@@ -10,6 +10,8 @@ import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class Verdant implements ModInitializer {
@@ -24,8 +26,8 @@ public class Verdant implements ModInitializer {
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
 
-        // Register Fire
-        Flammables.init(FlammableBlockRegistry.getDefaultInstance()::add);
+
+        CommonClass.initCompostables();
 
         // Set up dynamic registries
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
@@ -37,12 +39,15 @@ public class Verdant implements ModInitializer {
             BlockEntityType.SIGN.addSupportedBlock(woodSet.getWallSign().get());
             BlockEntityType.HANGING_SIGN.addSupportedBlock(woodSet.getHangingSign().get());
             BlockEntityType.HANGING_SIGN.addSupportedBlock(woodSet.getWallHangingSign().get());
-
             FuelRegistryEvents.BUILD.register((builder, context) -> woodSet.registerFuels((builder::add)));
             StrippableBlockRegistry.register(woodSet.getLog().get(), woodSet.getStrippedLog().get());
             StrippableBlockRegistry.register(woodSet.getWood().get(), woodSet.getStrippedWood().get());
-
+            DispenserBlock.registerBehavior(woodSet.getBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+            DispenserBlock.registerBehavior(woodSet.getChestBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
             woodSet.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
         }
+
+        // Register Fire
+        FlammablesRegistry.init(FlammableBlockRegistry.getDefaultInstance()::add);
     }
 }

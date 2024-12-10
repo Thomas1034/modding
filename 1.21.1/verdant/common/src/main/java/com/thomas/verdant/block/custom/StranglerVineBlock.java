@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 // TODO handle logic when placed by the player.
 public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock {
@@ -58,11 +57,20 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
     private final Function<RandomSource, Block> log = (rand) -> WoodSets.STRANGLER.getLog().get();
 
-    private final Supplier<BlockState> leafyVine = this::defaultBlockState;
-
     private final Function<RandomSource, Block> rottenWood = (rand) -> BlockRegistry.ROTTEN_WOOD.get();
 
     private final Function<RandomSource, Block> heartwood = (rand) -> WoodSets.HEARTWOOD.getLog().get();
+
+    private final Function<RandomSource, Block> leaves = (random) -> {
+        float chance = random.nextFloat();
+        if (chance < 0.1) {
+            return BlockRegistry.THORNY_STRANGLER_LEAVES.get();
+        } else if (chance < 0.2) {
+            return BlockRegistry.POISON_STRANGLER_LEAVES.get();
+        } else {
+            return BlockRegistry.STRANGLER_LEAVES.get();
+        }
+    };
 
     public StranglerVineBlock(Properties properties) {
         super(properties);
@@ -409,7 +417,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
     }
 
     private void growLeafCluster(Level level, BlockPos pos) {
-        Block leaves = BlockRegistry.STRANGLER_LEAVES.get();
 
         // Iterate over the leaf pattern and place them.
         int center = (int) (Math.ceil(this.leafGrowthRadius));
@@ -429,7 +436,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
                             level.setBlockAndUpdate(localPos, BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get()));
                         } else
                             */
-                        if (localState.is(BlockTags.REPLACEABLE) && !localState.is(VerdantTags.Blocks.STRANGLER_VINES)) {
+                        if ((localState.is(BlockTags.REPLACEABLE) || localState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) && !localState.is(VerdantTags.Blocks.STRANGLER_VINES)) {
+                            Block leaves = this.leaves.apply(level.random);
                             level.setBlockAndUpdate(localPos, leaves.defaultBlockState());
                             level.scheduleTick(localPos, leaves, 1);
                         }
@@ -450,7 +458,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         // Store the previous block there.
         BlockState replaced = level.getBlockState(pos);
         // Place the vine block there. Leafy if it is replacing leaves.
-        BlockState placed = replaced.is(BlockTags.LEAVES) ? this.leafyVine.get() : BlockRegistry.STRANGLER_VINE.get().defaultBlockState();
+        BlockState placed = BlockRegistry.STRANGLER_VINE.get().defaultBlockState();
 
         // Find every direction it can grow there.
         boolean canGrowToAnyFace = false;

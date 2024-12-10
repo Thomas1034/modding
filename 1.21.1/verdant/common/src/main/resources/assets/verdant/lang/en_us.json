@@ -294,17 +294,17 @@
 	"command.verdant.reset_overgrowth_speed": "Resetting overgrowth progression speeds.",
 	"command.verdant.set_overgrowth_speed": "Setting overgrowth progression speed for stage %s to %s.",
 
-	"death.attack.thorn_bush": "%s sat on a thorn.",
-	"death.attack.thorn_bush.item": "%s was thrown into the briar patch by %s using %s.",
-	"death.attack.thorn_bush.player": "%s was thrown into the briar patch by %s.",
+	"death.attack.verdant.briar.message": "%s sat on a thorn.",
+	"death.attack.verdant.item.message": "%s was thrown into the briar patch by %s using %s.",
+	"death.attack.verdant.player.message": "%s was thrown into the briar patch by %s.",
 	
 	"death.attack.overgrowth": "%s is pushing up daisies.",
 	"death.attack.overgrowth.item": "%s is pushing up daisies thanks to %s.",
 	"death.attack.overgrowth.player": "%s is pushing up daisies thanks to %s.",
 	
-	"death.attack.overgrowth": "%s got a sunburn.",
-	"death.attack.overgrowth.item": "%s got a sunburn thanks to %s.",
-	"death.attack.overgrowth.player": "%s got a sunburn thanks to %s.",
+	"death.attack.photosensitive": "%s got a sunburn.",
+	"death.attack.photosensitive.item": "%s got a sunburn thanks to %s.",
+	"death.attack.photosensitive.player": "%s got a sunburn thanks to %s.",
 	
 	"advancements.verdant.root.title": "The Verdant Growth",
 	"advancements.verdant.root.description": "A spreading plague of greenery is sealed in this world.",
@@ -336,6 +336,7 @@
 	"tag.block.verdant.strangler_vines" : "Strangler Vines",
 	"tag.block.verdant.rotten_wood" : "Rotten Wood",
 	"tag.block.verdant.verdant_ground" : "Verdant Ground",
+	"tag.block.verdant.tendrils" : "Tendrils",
 	
 	
 	"tag.item.verdant.strangler_vines" : "Strangler Vines",

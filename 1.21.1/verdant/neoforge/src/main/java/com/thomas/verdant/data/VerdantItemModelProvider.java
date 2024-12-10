@@ -25,9 +25,11 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         }
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
+        basicItem(ItemRegistry.THORN.get());
         basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());
         basicItem(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
-
+        basicItem(BlockRegistry.STRANGLER_TENDRIL.get().asItem());
+        basicItem(BlockRegistry.POISON_IVY.get().asItem());
     }
 
     protected void generateFor(WoodSet woodSet) {

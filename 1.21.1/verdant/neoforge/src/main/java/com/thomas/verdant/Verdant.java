@@ -2,13 +2,16 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
-import com.thomas.verdant.registry.Flammables;
+import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
+import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -16,6 +19,7 @@ import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,6 +34,7 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
@@ -39,6 +44,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(Constants.MOD_ID)
@@ -66,11 +72,15 @@ public class Verdant {
     }
 
 
-
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
-        Flammables.init(((FireBlock) Blocks.FIRE)::setFlammable);
+
+        CommonClass.initCompostables();
+
+        FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
+            DispenserBlock.registerBehavior(woodSet.getBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+            DispenserBlock.registerBehavior(woodSet.getChestBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
         }
     }
 
@@ -124,7 +134,7 @@ public class Verdant {
                 }
             });
 
-            generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, event.getLookupProvider()));
+            generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
             BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
             generator.addProvider(event.includeServer(), blockTagsProvider);
@@ -132,6 +142,7 @@ public class Verdant {
             generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
             generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
 
+            generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, new VerdantDamageSourceProvider()), Set.of(Constants.MOD_ID)));
 
             generator.addProvider(true, new VerdantBlockTransformerProvider(packOutput, lookupProvider));
             generator.addProvider(true, new VerdantFeatureSetProvider(packOutput, lookupProvider));

@@ -1,6 +1,9 @@
 {
   "values": [
+    "verdant:wilted_strangler_leaves",
     "verdant:strangler_leaves",
+    "verdant:thorny_strangler_leaves",
+    "verdant:poison_strangler_leaves",
     "verdant:leafy_strangler_vine"
   ]
 }

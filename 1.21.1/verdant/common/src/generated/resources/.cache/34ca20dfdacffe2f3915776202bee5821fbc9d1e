@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-09T18:35:29.4410071	Tags for minecraft:block mod id verdant
+// 1.21.3	2024-12-10T16:28:59.342378	Tags for minecraft:block mod id verdant
 e5df598552db116caaa9321d780a2c14346fefe8 data/c/tags/block/fences/wooden.json
 0b1c8916e407acd9b4cce4d0428a9665ab6c4d4b data/c/tags/block/fence_gates/wooden.json
 b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores.json
@@ -11,19 +11,20 @@ dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/block/ores/emerald.json
 c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/block/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/block/ores/redstone.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
-a4700e39f358f00bdae7ed055dffe10dc75823a0 data/minecraft/tags/block/climbable.json
+521ea3ab392115d199f503804a8e6e8c9d12b9c1 data/minecraft/tags/block/climbable.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/dirt.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
 5ca866375e77118d27e0945d9a7067c85acb9613 data/minecraft/tags/block/logs.json
 5ca866375e77118d27e0945d9a7067c85acb9613 data/minecraft/tags/block/logs_that_burn.json
 a07e13c0028108eec78d186da2287d7eaf3a12ec data/minecraft/tags/block/mineable/axe.json
-4b2be83b13e5f290b7c10ffe02b21a145a9c60cd data/minecraft/tags/block/mineable/hoe.json
+65dc0281bbcc22bc0fea63ed3b30ba09dba7f2fb data/minecraft/tags/block/mineable/hoe.json
 ac73af9594d0d95262eb6f9593ad705fda0ca171 data/minecraft/tags/block/mineable/shovel.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/mushroom_grow_block.json
 6163d4a064c612798a4df13d19a8eefdd875a4af data/minecraft/tags/block/planks.json
-426684294f5e88586b0025cc85418aacefab5606 data/minecraft/tags/block/replaceable_by_trees.json
+86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/block/replaceable.json
+ab8813394e83c3801cfcd7e0e0db374d34d0e46e data/minecraft/tags/block/replaceable_by_trees.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/small_dripleaf_placeable.json
-e91e49d80b1ef9e0c2843d9c4564ee26abaeb210 data/minecraft/tags/block/sword_efficient.json
+b8e3131928c2f8b0bfa1e049724e6b3d6e23d82e data/minecraft/tags/block/sword_efficient.json
 4cb0e75eca272749b9b48c9613fe4e29b14b90b7 data/minecraft/tags/block/wooden_buttons.json
 c34e8b6b47ba33c8d8542d6bf51281b1cf3aa277 data/minecraft/tags/block/wooden_doors.json
 e5df598552db116caaa9321d780a2c14346fefe8 data/minecraft/tags/block/wooden_fences.json
@@ -32,9 +33,10 @@ e5df598552db116caaa9321d780a2c14346fefe8 data/minecraft/tags/block/wooden_fences
 05919066022767a4d2f806b59fb6cf55b3384eef data/minecraft/tags/block/wooden_stairs.json
 d13852c806fcf6d98e5829fc7d976afb2548b6af data/minecraft/tags/block/wooden_trapdoors.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/verdant/tags/block/heartwood_logs.json
-26c87ff9d1088d44605e65f71c55e6f28b66e369 data/verdant/tags/block/strangler_leaves.json
+271575023c6445c4a3ce150f19c9721228f1ed8f data/verdant/tags/block/strangler_leaves.json
 b882fcc87ee1e11b353599ee660a0f508225b174 data/verdant/tags/block/strangler_logs.json
 cf05a9ccc0106bfe2011fb84a387bb49a083387f data/verdant/tags/block/strangler_vines.json
-0541b248c371adbf44631b2e30edbbc9005a38c8 data/verdant/tags/block/strangler_vine_replaceables.json
+fa80cb636fa60e99078d5fc3c8a032e5df2e65af data/verdant/tags/block/strangler_vine_replaceables.json
 175d3f86069f148b80603e7b2dd2b076cd96d72f data/verdant/tags/block/sustains_strangler_leaves.json
+fb839ea28f8f6f6a24733085b5f663a30be4704e data/verdant/tags/block/tendrils.json
 0848c106146f2947559af669db12ed150056263e data/verdant/tags/block/verdant_ground.json

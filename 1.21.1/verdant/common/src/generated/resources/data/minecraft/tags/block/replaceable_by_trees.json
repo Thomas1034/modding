@@ -2,5 +2,10 @@
   "remove": [
     "#verdant:strangler_vines"
   ],
-  "values": []
+  "values": [
+    "verdant:poison_ivy",
+    "verdant:poison_ivy_plant",
+    "verdant:strangler_tendril_plant",
+    "verdant:strangler_tendril"
+  ]
 }

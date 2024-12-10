@@ -51,7 +51,14 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> STRANGLER_VINE;
     public static final RegistryObject<Block, Block> LEAFY_STRANGLER_VINE;
     public static final RegistryObject<Block, Block> STRANGLER_LEAVES;
+    public static final RegistryObject<Block, Block> POISON_STRANGLER_LEAVES;
+    public static final RegistryObject<Block, Block> THORNY_STRANGLER_LEAVES;
+    public static final RegistryObject<Block, Block> WILTED_STRANGLER_LEAVES;
     public static final RegistryObject<Block, Block> ROTTEN_WOOD;
+    public static final RegistryObject<Block, Block> STRANGLER_TENDRIL;
+    public static final RegistryObject<Block, Block> STRANGLER_TENDRIL_PLANT;
+    public static final RegistryObject<Block, Block> POISON_IVY;
+    public static final RegistryObject<Block, Block> POISON_IVY_PLANT;
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem("verdant_rooted_dirt", () -> new SpreadingRootsBlock(BlockProperties.VERDANT_ROOTS.setId(id("verdant_rooted_dirt")), false, () -> BlockRegistry.VERDANT_GRASS_DIRT, false, () -> BlockRegistry.VERDANT_ROOTED_MUD));
@@ -72,7 +79,14 @@ public class BlockRegistry {
         STRANGLER_VINE = registerBlockWithItem("strangler_vine", () -> new StranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "strangler_vine").strength(1.0f, 1.5f).noOcclusion().randomTicks()));
         LEAFY_STRANGLER_VINE = registerBlockWithItem("leafy_strangler_vine", () -> new LeafyStranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "leafy_strangler_vine").strength(1.0f, 1.5f).noOcclusion().randomTicks()));
         STRANGLER_LEAVES = registerBlockWithItem("strangler_leaves", () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").noOcclusion().randomTicks()));
+        WILTED_STRANGLER_LEAVES = registerBlockWithItem("wilted_strangler_leaves", () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").noOcclusion().randomTicks()));
+        POISON_STRANGLER_LEAVES = registerBlockWithItem("poison_strangler_leaves", () -> new PoisonStranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "poison_strangler_leaves").noOcclusion().randomTicks()));
+        THORNY_STRANGLER_LEAVES = registerBlockWithItem("thorny_strangler_leaves", () -> new ThornyStranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "thorny_strangler_leaves").noOcclusion().randomTicks()));
         ROTTEN_WOOD = registerBlockWithItem("rotten_wood", () -> new FragileBlock(properties(Blocks.DARK_OAK_PLANKS, "rotten_wood").instabreak().ignitedByLava().noOcclusion().isRedstoneConductor((s, l, p) -> false).mapColor(MapColor.TERRACOTTA_BROWN).strength(0, 0).randomTicks()));
+        STRANGLER_TENDRIL = registerBlockWithItem("strangler_tendril", () -> new StranglerTendrilBlock(properties(Blocks.WEEPING_VINES, "strangler_tendril").offsetType(BlockBehaviour.OffsetType.XZ).noOcclusion().randomTicks()));
+        STRANGLER_TENDRIL_PLANT = registerBlockWithoutItem("strangler_tendril_plant", () -> new StranglerTendrilPlantBlock(properties(Blocks.WEEPING_VINES_PLANT, "strangler_tendril_plant").offsetType(BlockBehaviour.OffsetType.XZ).noOcclusion().randomTicks()));
+        POISON_IVY = registerBlockWithItem("poison_ivy", () -> new PoisonIvyBlock(properties(Blocks.WEEPING_VINES, "poison_ivy").offsetType(BlockBehaviour.OffsetType.XZ).noOcclusion().randomTicks()));
+        POISON_IVY_PLANT = registerBlockWithoutItem("poison_ivy_plant", () -> new PoisonIvyPlantBlock(properties(Blocks.WEEPING_VINES_PLANT, "poison_ivy_plant").offsetType(BlockBehaviour.OffsetType.XZ).noOcclusion().randomTicks()));
 
 
         TEST_LOG = registerBlockWithItem("test_log", () -> new RotatedPillarBlock(properties(Blocks.GLASS, "test_log")));
@@ -90,6 +104,11 @@ public class BlockRegistry {
     protected static <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block, Function<RegistryObject<Block, T>, Supplier<? extends BlockItem>> item) {
         var reg = BLOCKS.register(name, block);
         ItemRegistry.ITEMS.register(name, () -> item.apply(reg).get());
+        return reg;
+    }
+
+    protected static <T extends Block> RegistryObject<Block, T> registerBlockWithoutItem(String name, Supplier<T> block) {
+        var reg = BLOCKS.register(name, block);
         return reg;
     }
 

@@ -1,6 +1,13 @@
 {
   "values": [
     "#verdant:strangler_leaves",
-    "#verdant:strangler_vines"
+    "#verdant:strangler_vines",
+    "verdant:strangler_leaves",
+    "verdant:thorny_strangler_leaves",
+    "verdant:poison_strangler_leaves",
+    "verdant:strangler_tendril",
+    "verdant:strangler_tendril_plant",
+    "verdant:poison_ivy",
+    "verdant:poison_ivy_plant"
   ]
 }

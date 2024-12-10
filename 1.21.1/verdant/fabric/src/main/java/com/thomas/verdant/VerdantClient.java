@@ -30,7 +30,7 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.DIRT_EMERALD_ORE, BlockRegistry.DIRT_GOLD_ORE, BlockRegistry.DIRT_IRON_ORE,
                 BlockRegistry.DIRT_LAPIS_ORE, BlockRegistry.DIRT_REDSTONE_ORE, BlockRegistry.VERDANT_ROOTED_DIRT,
                 BlockRegistry.VERDANT_GRASS_DIRT, BlockRegistry.VERDANT_ROOTED_MUD, BlockRegistry.VERDANT_GRASS_MUD,
-                BlockRegistry.VERDANT_ROOTED_CLAY, BlockRegistry.VERDANT_GRASS_CLAY, BlockRegistry.STRANGLER_VINE, BlockRegistry.STRANGLER_LEAVES, BlockRegistry.LEAFY_STRANGLER_VINE, BlockRegistry.ROTTEN_WOOD);
+                BlockRegistry.VERDANT_ROOTED_CLAY, BlockRegistry.VERDANT_GRASS_CLAY, BlockRegistry.STRANGLER_VINE, BlockRegistry.STRANGLER_LEAVES, BlockRegistry.WILTED_STRANGLER_LEAVES, BlockRegistry.THORNY_STRANGLER_LEAVES, BlockRegistry.POISON_STRANGLER_LEAVES, BlockRegistry.LEAFY_STRANGLER_VINE, BlockRegistry.ROTTEN_WOOD, BlockRegistry.POISON_IVY, BlockRegistry.POISON_IVY_PLANT, BlockRegistry.STRANGLER_TENDRIL, BlockRegistry.STRANGLER_TENDRIL_PLANT);
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             markCutout(woodSet.getDoor(), woodSet.getTrapdoor());

@@ -61,7 +61,13 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_LEAVES.get(), noDrop());
-
+        this.add(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), noDrop());
+        this.add(BlockRegistry.POISON_STRANGLER_LEAVES.get(), noDrop());
+        this.add(BlockRegistry.THORNY_STRANGLER_LEAVES.get(), noDrop());
+        this.dropOther(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.STRANGLER_TENDRIL.get());
+        this.dropSelf(BlockRegistry.STRANGLER_TENDRIL.get());
+        this.dropOther(BlockRegistry.POISON_IVY_PLANT.get(), BlockRegistry.POISON_IVY.get());
+        this.dropSelf(BlockRegistry.POISON_IVY.get());
 
         // Proudly written by ChatGPT 4o
         BiFunction<Block, Item, LootTable.Builder> stranglerVineLoot = (stranglerVine, stranglerItem) -> LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.DOWN, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.UP, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.NORTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.EAST, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.SOUTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.WEST, StranglerVineBlock.MAX_AGE)))));

@@ -18,6 +18,8 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> ROASTED_COFFEE = register("roasted_coffee",
             () -> new Item(properties("roasted_coffee")));
+    public static final RegistryObject<Item, Item> THORN = register("thorn",
+            () -> new Item(properties("thorn")));
 
     public static RegistryObject<Item, Item> register(String name, Supplier<Item> supplier) {
         return ITEMS.register(name, supplier);

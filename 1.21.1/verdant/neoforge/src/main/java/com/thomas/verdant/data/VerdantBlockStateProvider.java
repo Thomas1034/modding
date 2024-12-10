@@ -44,7 +44,10 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         verdantGroundBlock(BlockRegistry.VERDANT_ROOTED_CLAY, () -> Blocks.CLAY);
         verdantGrassBlock(BlockRegistry.VERDANT_GRASS_CLAY, () -> Blocks.CLAY);
         tumbledBlockWithItem(BlockRegistry.PACKED_GRAVEL);
+        tumbledBlockWithItem(BlockRegistry.WILTED_STRANGLER_LEAVES, "cutout");
         tumbledBlockWithItem(BlockRegistry.STRANGLER_LEAVES, "cutout");
+        tumbledBlockWithItem(BlockRegistry.POISON_STRANGLER_LEAVES, "cutout");
+        tumbledBlockWithItem(BlockRegistry.THORNY_STRANGLER_LEAVES, "cutout");
         overlayBlockWithItem(BlockRegistry.DIRT_COAL_ORE, () -> Blocks.DIRT, new String[]{"coal_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_COPPER_ORE, () -> Blocks.DIRT, new String[]{"copper_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_IRON_ORE, () -> Blocks.DIRT, new String[]{"iron_ore_overlay"});
@@ -53,6 +56,16 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         overlayBlockWithItem(BlockRegistry.DIRT_REDSTONE_ORE, () -> Blocks.DIRT, new String[]{"redstone_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE, () -> Blocks.DIRT, new String[]{"emerald_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE, () -> Blocks.DIRT, new String[]{"diamond_ore_overlay"});
+
+
+        // Tendrils
+        simpleBlockWithItem(BlockRegistry.STRANGLER_TENDRIL.get(), models().cross(blockTexture(BlockRegistry.STRANGLER_TENDRIL.get()).getPath(), blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())).renderType("cutout"));
+        simpleBlockWithItem(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), models().cross(blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get()).getPath(), blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get())).renderType("cutout"));
+
+        // Poison ivy
+        simpleBlockWithItem(BlockRegistry.POISON_IVY.get(), models().cross(blockTexture(BlockRegistry.POISON_IVY.get()).getPath(), blockTexture(BlockRegistry.POISON_IVY.get())).renderType("cutout"));
+        simpleBlockWithItem(BlockRegistry.POISON_IVY_PLANT.get(), models().cross(blockTexture(BlockRegistry.POISON_IVY_PLANT.get()).getPath(), blockTexture(BlockRegistry.POISON_IVY_PLANT.get())).renderType("cutout"));
+
     }
 
     private String name(Block block) {

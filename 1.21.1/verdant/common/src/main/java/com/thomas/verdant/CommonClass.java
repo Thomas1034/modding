@@ -5,6 +5,7 @@ import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.CreativeModeTabRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import net.minecraft.world.level.block.ComposterBlock;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
@@ -33,12 +34,15 @@ public class CommonClass {
         BlockRegistry.init();
         WoodSets.init();
         CreativeModeTabRegistry.init();
-
-        CommonClass.initSpecial();
     }
 
-    protected static void initSpecial() {
-
-        // DispenserBlock.registerBehavior(null, null);
+    public static void initCompostables() {
+        ComposterBlock.COMPOSTABLES.put(BlockRegistry.POISON_STRANGLER_LEAVES.get().asItem(), 0.3f);
+        ComposterBlock.COMPOSTABLES.put(BlockRegistry.THORNY_STRANGLER_LEAVES.get().asItem(), 0.3f);
+        ComposterBlock.COMPOSTABLES.put(BlockRegistry.STRANGLER_LEAVES.get().asItem(), 0.3f);
+        ComposterBlock.COMPOSTABLES.put(BlockRegistry.WILTED_STRANGLER_LEAVES.get().asItem(), 0.3f);
+        ComposterBlock.COMPOSTABLES.put(BlockRegistry.STRANGLER_TENDRIL.get().asItem(), 0.2f);
     }
+
+
 }

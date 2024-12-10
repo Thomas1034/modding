@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-09T14:41:12.7885428	Item Models: verdant
+// 1.21.3	2024-12-10T13:12:25.8860234	Item Models: verdant
 6de63570ddc112d61282e39477a22357d52823fe assets/verdant/models/item/heartwood_boat.json
 2e673a5be1cbb71976a7a56c6094bb0081bebc5d assets/verdant/models/item/heartwood_button.json
 b111cff03e6c123846e3561060a023388493003b assets/verdant/models/item/heartwood_chest_boat.json
@@ -12,6 +12,7 @@ ab8f008a08b6494c57a9e3e587c3a552699abc74 assets/verdant/models/item/heartwood_si
 24e1f29d1e45dd074e39f3acb423da2de50452b6 assets/verdant/models/item/heartwood_stairs.json
 f7428a7629555333a09c612a0f44736e93254813 assets/verdant/models/item/heartwood_trapdoor.json
 e267d8b9df7b7f521a5a9b16c2e013487f58d80f assets/verdant/models/item/leafy_strangler_vine.json
+3abba40e5e8c408d39b204cfddd6b99f8671cea1 assets/verdant/models/item/poison_ivy.json
 9cf955adb5f99d83854928dfd011d6894c093048 assets/verdant/models/item/roasted_coffee.json
 2781ad81f97d16a1bc0c0ff622935f683d282029 assets/verdant/models/item/strangler_boat.json
 ab2a9b92f2dad01da72c6398da009717a8ef2d46 assets/verdant/models/item/strangler_button.json
@@ -24,5 +25,7 @@ af75588e6a6810128260d627f3eae90f9f9f7d02 assets/verdant/models/item/strangler_pr
 42825d4271f58c4d69225e2e5ae7963f3c559b0a assets/verdant/models/item/strangler_sign.json
 61aa7913a413eb5c79962e08107d3f716c0a1662 assets/verdant/models/item/strangler_slab.json
 f845c9ce2c1a6dea17725a1af727905e60bf6936 assets/verdant/models/item/strangler_stairs.json
+d9baba3781488b814b439a672acd8356461d4388 assets/verdant/models/item/strangler_tendril.json
 33c4015e9438d0858781c19723a3bfba998651ae assets/verdant/models/item/strangler_trapdoor.json
 0a0e0dac145f579e8fad7dc896ac265f3c357cd9 assets/verdant/models/item/strangler_vine.json
+25d1af81b4d10d807cddabf99f1ce9750eef0576 assets/verdant/models/item/thorn.json

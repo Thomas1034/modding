@@ -1,5 +1,6 @@
 {
 	"ambientocclusion": false,
+  "render_type": "minecraft:cutout",
   "textures": {
     "base": "verdant:block/strangler_log",
     "overlay": "verdant:block/strangler_vine_overlay",

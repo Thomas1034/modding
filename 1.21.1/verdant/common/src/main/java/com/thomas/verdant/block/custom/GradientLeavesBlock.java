@@ -1,5 +1,6 @@
 package com.thomas.verdant.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import com.thomas.verdant.util.OptionalDirection;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
 public class GradientLeavesBlock extends Block {
+    public static final MapCodec<GradientLeavesBlock> CODEC = simpleCodec(GradientLeavesBlock::new);
 
     public static final EnumProperty<OptionalDirection> GRADIENT = EnumProperty.create("gradient", OptionalDirection.class);
     public static final int MIN_DISTANCE = 1;
@@ -33,12 +35,17 @@ public class GradientLeavesBlock extends Block {
         super(properties);
     }
 
+    @Override
+    public MapCodec<? extends GradientLeavesBlock> codec() {
+        return CODEC;
+    }
+
     // May have an infinite loop if the gradient is not well-defined or has non-zero curl.
     // If so, returns null.
     public BlockPos gradientDescent(BlockPos pos, LevelAccessor level, BlockState state) {
         int counter = 0;
         int maxIterations = MAX_DISTANCE + 2;
-        while(true) {
+        while (true) {
             counter++;
             Direction gradient = state.getOptionalValue(GRADIENT).orElse(OptionalDirection.EMPTY).direction();
             if (gradient == null) {

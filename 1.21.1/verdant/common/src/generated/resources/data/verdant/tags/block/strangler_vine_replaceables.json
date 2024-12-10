@@ -4,6 +4,7 @@
     "#verdant:strangler_vine_replaceables"
   ],
   "values": [
+    "#verdant:tendrils",
     "#minecraft:replaceable",
     "#minecraft:leaves",
     "#minecraft:replaceable_by_trees",

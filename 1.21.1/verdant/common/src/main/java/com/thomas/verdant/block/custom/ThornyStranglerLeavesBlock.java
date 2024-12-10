@@ -1,8 +1,11 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.VerdantIFF;
+import com.thomas.verdant.registry.DamageSourceRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -16,11 +19,11 @@ import java.util.function.Supplier;
 
 // TODO Implement damage types, with data generation!
 // https://docs.neoforged.net/docs/resources/server/damagetypes/
-public class ThornStranglerLeavesBlock extends StranglerLeavesBlock {
+public class ThornyStranglerLeavesBlock extends StranglerLeavesBlock {
 
     protected static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 100, 0);
 
-    public ThornStranglerLeavesBlock(Properties properties) {
+    public ThornyStranglerLeavesBlock(Properties properties) {
         super(properties);
     }
 
@@ -33,7 +36,8 @@ public class ThornStranglerLeavesBlock extends StranglerLeavesBlock {
                 && !VerdantIFF.isFriend(le)) {
             entity.makeStuckInBlock(state, new Vec3((double) 0.9F, 1.0D, (double) 0.9F));
             if (!level.isClientSide) {
-                DamageSource source = ModDamageSources.get(level, ModDamageSources.THORN_BUSH);
+                Holder<DamageType> type = DamageSourceRegistry.get(level.registryAccess(), DamageSourceRegistry.BRIAR);
+                DamageSource source = new DamageSource(type, (Entity) null);
                 entity.hurt(source, 2.0F);
             }
         }
