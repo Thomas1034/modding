@@ -1,4 +1,5 @@
 {
+	"ambientocclusion": false,
   "textures": {
     "base": "verdant:block/strangler_log",
     "overlay": "verdant:block/strangler_vine_overlay",

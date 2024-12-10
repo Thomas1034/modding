@@ -34,5 +34,4 @@ public class PoisonVerdantLeavesBlock extends VerdantLeavesBlock {
 			}
 		}
 	}
-
 }
