@@ -4,6 +4,7 @@ package com.thomas.verdant;
 import com.thomas.verdant.data.*;
 import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import com.thomas.verdant.woodset.WoodSet;
@@ -158,5 +159,7 @@ public class Verdant {
         event.dataPackRegistry(BlockTransformer.KEY, BlockTransformer.CODEC, BlockTransformer.CODEC);
 
         event.dataPackRegistry(FeatureSet.KEY, FeatureSet.CODEC, FeatureSet.CODEC);
+
+        event.dataPackRegistry(BaitData.KEY, BaitData.CODEC, BaitData.CODEC);
     }
 }
