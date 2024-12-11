@@ -128,5 +128,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
     }
 
     public void drops() {
+
     }
 }

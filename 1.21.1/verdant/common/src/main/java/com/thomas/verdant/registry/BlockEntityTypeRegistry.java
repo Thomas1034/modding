@@ -11,7 +11,6 @@ public class BlockEntityTypeRegistry {
 
     public static final RegistrationProvider<BlockEntityType<?>> BLOCK_ENTITIES = RegistrationProvider.get(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<FishTrapBlockEntity>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY = BLOCK_ENTITIES
-            .register("fish_trap", () -> new BlockEntityType<>(FishTrapBlockEntity::new, BlockRegistry.FISH_TRAP_BLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<FishTrapBlockEntity>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY = null; //BLOCK_ENTITIES.register("fish_trap", () -> new BlockEntityType<>(FishTrapBlockEntity::new, BlockRegistry.FISH_TRAP_BLOCK.get()).build(null));
 
 }
