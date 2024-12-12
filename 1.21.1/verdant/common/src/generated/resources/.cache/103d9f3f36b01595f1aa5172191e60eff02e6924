@@ -1,3 +1,7 @@
-// 1.21.3	2024-12-10T11:21:10.0438238	Registries
+// 1.21.3	2024-12-11T23:24:51.0814856	Registries
 340c4c798f6871d84f3210b4567bbec079c07fa6 data/verdant/damage_type/briar.json
 6fec246622dadd76af8d7986ac97dde65c155531 data/verdant/damage_type/photosensitive.json
+77333b622c7a6ba64c3dd25bebfdd70954da662f data/verdant/verdant/block_transformer/erosion.json
+3e7c98c6034a9b8f379369a968c95541797e5a4e data/verdant/verdant/block_transformer/erosion_wet.json
+299b6f79c72923d7b82174b14706136197453274 data/verdant/verdant/block_transformer/verdant_roots.json
+2190d370ae7df41abc04515a7ad5ce83bf4855bb data/verdant/verdant/feature_set/above_ground.json

@@ -80,8 +80,12 @@ public class Verdant {
         FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
-            DispenserBlock.registerBehavior(woodSet.getBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getBoat().get()));
-            DispenserBlock.registerBehavior(woodSet.getChestBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
+            DispenserBlock.registerBehavior(
+                    woodSet.getBoatItem().get(),
+                    new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+            DispenserBlock.registerBehavior(
+                    woodSet.getChestBoatItem().get(),
+                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
         }
     }
 
@@ -100,7 +104,10 @@ public class Verdant {
             if (state.is(woodSet.getLog().get())) {
                 finalState = woodSet.getStrippedLog().get().defaultBlockState();
             } else if (state.is(woodSet.getWood().get())) {
-                finalState = woodSet.getStrippedWood().get().defaultBlockState().setValue(BlockStateProperties.AXIS, state.getValue(BlockStateProperties.AXIS));
+                finalState = woodSet.getStrippedWood()
+                        .get()
+                        .defaultBlockState()
+                        .setValue(BlockStateProperties.AXIS, state.getValue(BlockStateProperties.AXIS));
             }
             if (finalState != null) {
                 finalState = finalState.setValue(BlockStateProperties.AXIS, state.getValue(BlockStateProperties.AXIS));
@@ -117,7 +124,10 @@ public class Verdant {
     public static void addBlocksToBlockEntities(final BlockEntityTypeAddBlocksEvent event) {
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             event.modify(BlockEntityType.SIGN, woodSet.getSign().get(), woodSet.getWallSign().get());
-            event.modify(BlockEntityType.HANGING_SIGN, woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get());
+            event.modify(
+                    BlockEntityType.HANGING_SIGN,
+                    woodSet.getHangingSign().get(),
+                    woodSet.getWallHangingSign().get());
         }
     }
 
@@ -128,25 +138,47 @@ public class Verdant {
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(VerdantBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider) {
-                @Override
-                protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
-                    // Do not validate at all, per what people online said.
-                }
-            });
+            generator.addProvider(
+                    event.includeServer(), new LootTableProvider(
+                            packOutput,
+                            Collections.emptySet(),
+                            List.of(new LootTableProvider.SubProviderEntry(
+                                    VerdantBlockLootTableProvider::new,
+                                    LootContextParamSets.BLOCK)),
+                            lookupProvider) {
+                        @Override
+                        protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
+                            // Do not validate at all, per what people online said.
+                        }
+                    });
 
             generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
-            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
+            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(
+                    packOutput,
+                    lookupProvider,
+                    existingFileHelper);
             generator.addProvider(event.includeServer(), blockTagsProvider);
-            generator.addProvider(event.includeServer(), new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+            generator.addProvider(
+                    event.includeServer(),
+                    new VerdantItemTagProvider(
+                            packOutput,
+                            lookupProvider,
+                            blockTagsProvider.contentsGetter(),
+                            existingFileHelper));
             generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
             generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
 
-            generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(packOutput, lookupProvider, new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, new VerdantDamageSourceProvider()), Set.of(Constants.MOD_ID)));
+            generator.addProvider(
+                    event.includeServer(), new DatapackBuiltinEntriesProvider(
+                            packOutput,
+                            lookupProvider,
+                            new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)
+                                    .add(BaitData.KEY, VerdantBaitDataProvider::register)
+                                    .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
+                                    .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
+                            Set.of(Constants.MOD_ID)));
 
-            generator.addProvider(true, new VerdantBlockTransformerProvider(packOutput, lookupProvider));
-            generator.addProvider(true, new VerdantFeatureSetProvider(packOutput, lookupProvider));
             generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));
 
         } catch (RuntimeException e) {

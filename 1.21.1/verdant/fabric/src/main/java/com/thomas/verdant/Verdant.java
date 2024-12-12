@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import com.thomas.verdant.woodset.WoodSet;
@@ -30,6 +31,7 @@ public class Verdant implements ModInitializer {
         CommonClass.initCompostables();
 
         // Set up dynamic registries
+        DynamicRegistries.registerSynced(BaitData.KEY, BaitData.CODEC);
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
         DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
 

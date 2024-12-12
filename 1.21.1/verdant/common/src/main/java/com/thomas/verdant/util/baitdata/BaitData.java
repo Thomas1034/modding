@@ -18,8 +18,7 @@ public record BaitData(ResourceLocation location, BaitData.InnerData data, boole
 
     public static final ResourceKey<Registry<BaitData>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "bait_data"));
 
-
-    public static Codec<BaitData> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.optionalFieldOf("item").forGetter(data -> !data.isTag() ? Optional.of(data.location()) : Optional.empty()), ResourceLocation.CODEC.optionalFieldOf("tag").forGetter(data -> data.isTag() ? Optional.of(data.location()) : Optional.empty()), InnerData.CODEC.fieldOf("data").forGetter(BaitData::data)).apply(instance, BaitData::create));
+    public static Codec<BaitData> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.optionalFieldOf("item").forGetter(data -> {Constants.LOG.warn("Getting item field for {}", data); return !data.isTag() ? Optional.of(data.location()) : Optional.empty(); }), ResourceLocation.CODEC.optionalFieldOf("tag").forGetter(data -> data.isTag() ? Optional.of(data.location()) : Optional.empty()), InnerData.CODEC.fieldOf("data").forGetter(BaitData::data)).apply(instance, BaitData::create));
 
     public static BaitData create(Optional<ResourceLocation> item, Optional<ResourceLocation> tag, InnerData data) {
         if (item.isPresent() && tag.isPresent()) {
@@ -29,6 +28,10 @@ public record BaitData(ResourceLocation location, BaitData.InnerData data, boole
         }
 
         return item.map(resourceLocation -> new BaitData(resourceLocation, data, false)).orElseGet(() -> new BaitData(tag.get(), data, true));
+    }
+
+    public static int compare(BaitData a, BaitData b) {
+        return a.data.compareTo(b.data);
     }
 
     public boolean matches(Item item) {
@@ -41,19 +44,15 @@ public record BaitData(ResourceLocation location, BaitData.InnerData data, boole
         return this.location.equals(tag.location());
     }
 
-    public static int compare(BaitData a, BaitData b) {
-        return a.data.compareTo(b.data);
-    }
-
-    public record InnerData(float catchChance, float consumeChance) implements Comparable<InnerData>{
+    public record InnerData(float catchChance, float consumeChance) implements Comparable<InnerData> {
         public static Codec<InnerData> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.FLOAT.fieldOf("catch_chance").forGetter(InnerData::catchChance), Codec.FLOAT.fieldOf("consume_chance").forGetter(InnerData::consumeChance)).apply(instance, InnerData::new));
 
-        public static Comparator<InnerData> COMPARATOR = Comparator.comparing(InnerData::catchChance).thenComparing(InnerData::consumeChance);;
+        public static Comparator<InnerData> COMPARATOR = Comparator.comparing(InnerData::catchChance).thenComparing(InnerData::consumeChance);
+        ;
 
         @Override
         public int compareTo(@NotNull BaitData.InnerData o) {
             return COMPARATOR.compare(this, o);
         }
     }
-
 }
