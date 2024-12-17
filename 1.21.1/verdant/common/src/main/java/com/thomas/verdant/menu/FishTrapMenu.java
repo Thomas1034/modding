@@ -1,6 +1,7 @@
 package com.thomas.verdant.menu;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.block.custom.entity.FishTrapBlockEntity;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registry.BlockRegistry;
@@ -134,11 +135,11 @@ public class FishTrapMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting() {
-        return true; // TODO
+        return this.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
     }
 
     public int getCatchPercent() {
-        return (int) ((0.5f) * 100); // TODO
+        return this.blockEntity.getCatchPercent();
     }
 
     public int getNumOutputSlots() {

@@ -19,6 +19,7 @@ public class BaitDataAccess {
 
 
     public static BaitData.InnerData lookupOrCache(RegistryAccess access, Item item) {
+
         if (MAP.containsKey(item)) {
             return MAP.get(item);
         } else {
@@ -41,7 +42,7 @@ public class BaitDataAccess {
         }
     }
 
-    public static BaitData.InnerData lookupItemOrCache(RegistryAccess access, Item item) {
+    protected static BaitData.InnerData lookupItemOrCache(RegistryAccess access, Item item) {
         if (ITEM_MAP.containsKey(item)) {
             return ITEM_MAP.get(item);
         } else {
@@ -60,7 +61,7 @@ public class BaitDataAccess {
         }
     }
 
-    public static BaitData.InnerData lookupTagOrCache(RegistryAccess access, TagKey<Item> tag) {
+    protected static BaitData.InnerData lookupTagOrCache(RegistryAccess access, TagKey<Item> tag) {
         if (TAG_MAP.containsKey(tag)) {
             return TAG_MAP.get(tag);
         } else {

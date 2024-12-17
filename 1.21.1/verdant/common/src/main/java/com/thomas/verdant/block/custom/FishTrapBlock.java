@@ -64,7 +64,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new FishTrapBlockEntity(pos, state);
     }
-
+    
     @Override
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
         return BLOCK_SUPPORT_SHAPE;
