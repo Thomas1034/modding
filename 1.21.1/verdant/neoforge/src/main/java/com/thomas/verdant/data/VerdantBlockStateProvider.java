@@ -34,6 +34,11 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             generateFor(woodSet);
         }
 
+        horizontalRotatedCustomModelBlock(
+                BlockRegistry.FISH_TRAP_BLOCK.get(),
+                "block/fish_trap",
+                "block/fish_trap_base");
+        tumbledBlockWithItem(BlockRegistry.ANTIGORITE);
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD, "cutout");
         simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
         logBlockWithItem((RotatedPillarBlock) BlockRegistry.TEST_LOG.get());
@@ -59,12 +64,27 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
 
         // Tendrils
-        simpleBlockWithItem(BlockRegistry.STRANGLER_TENDRIL.get(), models().cross(blockTexture(BlockRegistry.STRANGLER_TENDRIL.get()).getPath(), blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())).renderType("cutout"));
-        simpleBlockWithItem(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), models().cross(blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get()).getPath(), blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get())).renderType("cutout"));
+        simpleBlockWithItem(
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                models().cross(
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL.get()).getPath(),
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())).renderType("cutout"));
+        simpleBlockWithItem(
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                models().cross(
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get()).getPath(),
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get())).renderType("cutout"));
 
         // Poison ivy
-        simpleBlockWithItem(BlockRegistry.POISON_IVY.get(), models().cross(blockTexture(BlockRegistry.POISON_IVY.get()).getPath(), blockTexture(BlockRegistry.POISON_IVY.get())).renderType("cutout"));
-        simpleBlockWithItem(BlockRegistry.POISON_IVY_PLANT.get(), models().cross(blockTexture(BlockRegistry.POISON_IVY_PLANT.get()).getPath(), blockTexture(BlockRegistry.POISON_IVY_PLANT.get())).renderType("cutout"));
+        simpleBlockWithItem(
+                BlockRegistry.POISON_IVY.get(), models().cross(
+                        blockTexture(BlockRegistry.POISON_IVY.get()).getPath(),
+                        blockTexture(BlockRegistry.POISON_IVY.get())).renderType("cutout"));
+        simpleBlockWithItem(
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                models().cross(
+                        blockTexture(BlockRegistry.POISON_IVY_PLANT.get()).getPath(),
+                        blockTexture(BlockRegistry.POISON_IVY_PLANT.get())).renderType("cutout"));
 
     }
 
@@ -92,11 +112,22 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         fenceGateBlock((FenceGateBlock) woodSet.getFenceGate().get(), woodSet.getName(), blockTexture(planks));
         buttonBlock((ButtonBlock) woodSet.getButton().get(), blockTexture(planks));
         pressurePlateBlock((PressurePlateBlock) woodSet.getPressurePlate().get(), blockTexture(planks));
-        signBlock((StandingSignBlock) woodSet.getSign().get(), (WallSignBlock) woodSet.getWallSign().get(), blockTexture(planks));
+        signBlock(
+                (StandingSignBlock) woodSet.getSign().get(),
+                (WallSignBlock) woodSet.getWallSign().get(),
+                blockTexture(planks));
         hangingSignBlock(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), blockTexture(planks));
-        trapdoorBlockWithRenderType((TrapDoorBlock) woodSet.getTrapdoor().get(), blockTexture(woodSet.getTrapdoor().get()), true, "cutout");
+        trapdoorBlockWithRenderType(
+                (TrapDoorBlock) woodSet.getTrapdoor().get(),
+                blockTexture(woodSet.getTrapdoor().get()),
+                true,
+                "cutout");
         DoorBlock door = (DoorBlock) woodSet.getDoor().get();
-        doorBlockWithRenderType(door, blockTexture(door).withSuffix("_bottom"), blockTexture(door).withSuffix("_top"), "cutout");
+        doorBlockWithRenderType(
+                door,
+                blockTexture(door).withSuffix("_bottom"),
+                blockTexture(door).withSuffix("_top"),
+                "cutout");
 
     }
 
@@ -113,7 +144,12 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         ModelFile[] files = new ModelFile[overlays.length];
 
         for (int i = 0; i < overlays.length; i++) {
-            files[i] = models().withExistingParent(name(block) + (overlays.length == 1 ? "" : "_" + overlays[i]), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + overlays[i])).renderType("cutout");
+            files[i] = models().withExistingParent(
+                            name(block) + (overlays.length == 1 ? "" : "_" + overlays[i]),
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block"))
+                    .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
+                    .texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + overlays[i]))
+                    .renderType("cutout");
         }
 
         blockWithItem(blockSource, files);
@@ -129,7 +165,16 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         ModelFile[] files = new ModelFile[extensions.length];
 
         for (int i = 0; i < extensions.length; i++) {
-            files[i] = models().withExistingParent(name(block) + extensions[i], ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_overlay" + extensions[i])).renderType("cutout");
+            files[i] = models().withExistingParent(
+                            name(block) + extensions[i],
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block"))
+                    .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
+                    .texture(
+                            "overlay",
+                            ResourceLocation.fromNamespaceAndPath(
+                                    Constants.MOD_ID,
+                                    "block/verdant_overlay" + extensions[i]))
+                    .renderType("cutout");
         }
 
         blockWithItem(blockSource, files);
@@ -147,7 +192,22 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         ModelFile[] files = new ModelFile[extensions.length];
 
         for (int i = 0; i < extensions.length; i++) {
-            files[i] = models().withExistingParent(name(block) + extensions[i], ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_base_grass_block")).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_overlay" + extensions[i])).texture("top", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_top")).texture("side", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_side")).renderType("cutout");
+            files[i] = models().withExistingParent(
+                            name(block) + extensions[i],
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_base_grass_block"))
+                    .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
+                    .texture(
+                            "overlay",
+                            ResourceLocation.fromNamespaceAndPath(
+                                    Constants.MOD_ID,
+                                    "block/verdant_overlay" + extensions[i]))
+                    .texture(
+                            "top",
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_top"))
+                    .texture(
+                            "side",
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_side"))
+                    .renderType("cutout");
         }
 
         spunBlockWithItem(blockSource, files);
@@ -166,11 +226,27 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     }
 
     public void axisBlock(RotatedPillarBlock block, ResourceLocation side, ResourceLocation end, String renderType) {
-        axisBlock(block, models().cubeColumn(name(block), side, end).renderType(renderType), models().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
+        axisBlock(
+                block,
+                models().cubeColumn(name(block), side, end).renderType(renderType),
+                models().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
     }
 
     public void doubleSidedAxisBlock(RotatedPillarBlock block, String renderType) {
-        axisBlock(block, models().withExistingParent(name(block), ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/double_sided_cube_column")).texture("side", blockTexture(block)).texture("end", extend(blockTexture(block), "_top")).renderType(renderType), models().withExistingParent(name(block) + "_horizontal", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/double_sided_cube_column_horizontal")).texture("side", blockTexture(block)).texture("end", extend(blockTexture(block), "_top")).renderType(renderType));
+        axisBlock(
+                block, models().withExistingParent(
+                                name(block),
+                                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/double_sided_cube_column"))
+                        .texture("side", blockTexture(block))
+                        .texture("end", extend(blockTexture(block), "_top"))
+                        .renderType(renderType), models().withExistingParent(
+                                name(block) + "_horizontal",
+                                ResourceLocation.fromNamespaceAndPath(
+                                        Constants.MOD_ID,
+                                        "block/double_sided_cube_column_horizontal"))
+                        .texture("side", blockTexture(block))
+                        .texture("end", extend(blockTexture(block), "_top"))
+                        .renderType(renderType));
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -191,7 +267,12 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
             ModelFile model;
 
-            model = models().withExistingParent(blockTexture(block).toString(), ResourceLocation.withDefaultNamespace("block/template_anvil")).texture("particle", blockTexture(block).toString()).texture("body", blockTexture(block).toString()).texture("top", blockTexture(block) + "_top");
+            model = models().withExistingParent(
+                            blockTexture(block).toString(),
+                            ResourceLocation.withDefaultNamespace("block/template_anvil"))
+                    .texture("particle", blockTexture(block).toString())
+                    .texture("body", blockTexture(block).toString())
+                    .texture("top", blockTexture(block) + "_top");
 
             return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
         });
@@ -202,9 +283,15 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         ConfiguredModel lanternModel;
 
         if (state.getValue(LanternBlock.HANGING)) {
-            lanternModel = new ConfiguredModel(models().withExistingParent(modelName + "_hanging", mcLoc("template_hanging_lantern")).texture("lantern", modLoc("block/" + modelName)).renderType("cutout"));
+            lanternModel = new ConfiguredModel(models().withExistingParent(
+                            modelName + "_hanging",
+                            mcLoc("template_hanging_lantern"))
+                    .texture("lantern", modLoc("block/" + modelName))
+                    .renderType("cutout"));
         } else {
-            lanternModel = new ConfiguredModel(models().withExistingParent(modelName, mcLoc("template_lantern")).texture("lantern", modLoc("block/" + modelName)).renderType("cutout"));
+            lanternModel = new ConfiguredModel(models().withExistingParent(modelName, mcLoc("template_lantern"))
+                    .texture("lantern", modLoc("block/" + modelName))
+                    .renderType("cutout"));
         }
 
         models[0] = lanternModel;
@@ -247,9 +334,13 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             ConfiguredModel model;
 
             if (state.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER) {
-                model = new ConfiguredModel(models().withExistingParent(name + "_bottom", mcLoc("block/cross")).texture("cross", modLoc("block/" + name + "_bottom")).renderType("cutout"));
+                model = new ConfiguredModel(models().withExistingParent(name + "_bottom", mcLoc("block/cross"))
+                        .texture("cross", modLoc("block/" + name + "_bottom"))
+                        .renderType("cutout"));
             } else {
-                model = new ConfiguredModel(models().withExistingParent(name + "_top", mcLoc("block/cross")).texture("cross", modLoc("block/" + name + "_top")).renderType("cutout"));
+                model = new ConfiguredModel(models().withExistingParent(name + "_top", mcLoc("block/cross"))
+                        .texture("cross", modLoc("block/" + name + "_top"))
+                        .renderType("cutout"));
             }
 
             models[0] = model;
@@ -264,7 +355,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block).forAllStates(state -> {
             Direction facing = state.getValue(WallTorchBlock.FACING);
             int yRot = ((int) facing.toYRot()) + 90;
-            ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch_wall")).renderType("cutout").texture("torch", modLoc("block/" + texture));
+            ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch_wall"))
+                    .renderType("cutout")
+                    .texture("torch", modLoc("block/" + texture));
 
             return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
         });
@@ -284,7 +377,10 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block).forAllStates(state -> {
             Direction facing = state.getValue(LadderBlock.FACING);
             int yRot = ((int) facing.toYRot()) + 180;
-            ModelFile model = models().withExistingParent(texture, mcLoc("block/ladder")).renderType("cutout").texture("texture", modLoc("block/" + texture)).texture("particle", modLoc("block/" + texture));
+            ModelFile model = models().withExistingParent(texture, mcLoc("block/ladder"))
+                    .renderType("cutout")
+                    .texture("texture", modLoc("block/" + texture))
+                    .texture("particle", modLoc("block/" + texture));
 
             return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
         });
@@ -292,7 +388,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
     public void torchBlock(TorchBlock block, String modelName, String texture) {
         getVariantBuilder(block).forAllStates(state -> {
-            ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch")).renderType("cutout").texture("torch", modLoc("block/" + texture));
+            ModelFile model = models().withExistingParent(modelName, mcLoc("block/template_torch"))
+                    .renderType("cutout")
+                    .texture("torch", modLoc("block/" + texture));
 
             return ConfiguredModel.builder().modelFile(model).build();
         });
@@ -303,7 +401,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             Direction facing = state.getValue(AmethystClusterBlock.FACING);
             int yRot = (((int) facing.toYRot()) + 180) % 360;
             int xRot = 90;
-            ModelFile model = models().withExistingParent(blockTexture(block).toString(), mcLoc("block/cross")).renderType("cutout").texture("cross", blockTexture(block));
+            ModelFile model = models().withExistingParent(blockTexture(block).toString(), mcLoc("block/cross"))
+                    .renderType("cutout")
+                    .texture("cross", blockTexture(block));
             if (facing == Direction.UP) {
                 xRot = 0;
             } else if (facing == Direction.DOWN) {
@@ -322,12 +422,22 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             ModelFile model;
             if (facing == Direction.UP) {
                 xRot = 0;
-                model = models().withExistingParent(blockTexture(block) + "_up", mcLoc("block/orientable_vertical")).renderType(renderType).texture("front", blockTexture(block) + "_front").texture("side", blockTexture(block) + "_side");
+                model = models().withExistingParent(blockTexture(block) + "_up", mcLoc("block/orientable_vertical"))
+                        .renderType(renderType)
+                        .texture("front", blockTexture(block) + "_front")
+                        .texture("side", blockTexture(block) + "_side");
             } else if (facing == Direction.DOWN) {
                 xRot = 180;
-                model = models().withExistingParent(blockTexture(block) + "_down", mcLoc("block/orientable_vertical")).renderType(renderType).texture("front", blockTexture(block) + "_front").texture("side", blockTexture(block) + "_side");
+                model = models().withExistingParent(blockTexture(block) + "_down", mcLoc("block/orientable_vertical"))
+                        .renderType(renderType)
+                        .texture("front", blockTexture(block) + "_front")
+                        .texture("side", blockTexture(block) + "_side");
             } else {
-                model = models().withExistingParent(blockTexture(block) + "_horizontal", mcLoc("block/orientable")).renderType(renderType).texture("front", blockTexture(block) + "_front").texture("side", blockTexture(block) + "_side").texture("top", blockTexture(block) + "_top");
+                model = models().withExistingParent(blockTexture(block) + "_horizontal", mcLoc("block/orientable"))
+                        .renderType(renderType)
+                        .texture("front", blockTexture(block) + "_front")
+                        .texture("side", blockTexture(block) + "_side")
+                        .texture("top", blockTexture(block) + "_top");
             }
 
             return ConfiguredModel.builder().modelFile(model).rotationY(yRot).rotationX(xRot).build();
@@ -340,18 +450,31 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
     protected void simpleFlowerWithPot(Block flower, Block pottedFlower) {
         simpleBlock(flower, models().cross(blockTexture(flower).getPath(), blockTexture(flower)).renderType("cutout"));
-        simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(), ResourceLocation.withDefaultNamespace("flower_pot_cross"), "plant", blockTexture(flower)).renderType("cutout"));
+        simpleBlock(
+                pottedFlower, models().singleTexture(
+                        blockTexture(pottedFlower).getPath(),
+                        ResourceLocation.withDefaultNamespace("flower_pot_cross"),
+                        "plant",
+                        blockTexture(flower)).renderType("cutout"));
     }
 
     protected void simpleFlowerPot(Block pottedFlower, ResourceLocation pottedFlowerTexture) {
-        simpleBlock(pottedFlower, models().singleTexture(blockTexture(pottedFlower).getPath(), ResourceLocation.withDefaultNamespace("flower_pot_cross"), "plant", pottedFlowerTexture).renderType("cutout"));
+        simpleBlock(
+                pottedFlower, models().singleTexture(
+                        blockTexture(pottedFlower).getPath(),
+                        ResourceLocation.withDefaultNamespace("flower_pot_cross"),
+                        "plant",
+                        pottedFlowerTexture).renderType("cutout"));
     }
 
     protected void cropBlock(CropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = (state) -> {
             ConfiguredModel[] models = new ConfiguredModel[1];
             String age = "_stage" + state.getValue(CropBlock.AGE);
-            models[0] = new ConfiguredModel(models().crop(modelName + age, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + textureName + age)).renderType("cutout"));
+            models[0] = new ConfiguredModel(models().crop(
+                            modelName + age,
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + textureName + age))
+                    .renderType("cutout"));
             return models;
         };
         // Add all the states
@@ -387,7 +510,71 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         // Every possible unique rotation of the model.
         // With most simple blocks, many of these states are superfluous. However, it
         // doesn't hurt (much) to have them.
-        getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder().modelFile(model).rotationX(0).rotationY(0).nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel().modelFile(model).rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270).nextModel().modelFile(model).rotationX(90).rotationY(0).nextModel().modelFile(model).rotationX(90).rotationY(90).nextModel().modelFile(model).rotationX(90).rotationY(180).nextModel().modelFile(model).rotationX(90).rotationY(270).nextModel().modelFile(model).rotationX(180).rotationY(0).nextModel().modelFile(model).rotationX(180).rotationY(90).nextModel().modelFile(model).rotationX(180).rotationY(180).nextModel().modelFile(model).rotationX(180).rotationY(270).nextModel().modelFile(model).rotationX(270).rotationY(0).nextModel().modelFile(model).rotationX(270).rotationY(90).nextModel().modelFile(model).rotationX(270).rotationY(180).nextModel().modelFile(model).rotationX(270).rotationY(270).build());
+        getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(0)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(90)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(180)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(270)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(90)
+                .rotationY(0)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(90)
+                .rotationY(90)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(90)
+                .rotationY(180)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(90)
+                .rotationY(270)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(180)
+                .rotationY(0)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(180)
+                .rotationY(90)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(180)
+                .rotationY(180)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(180)
+                .rotationY(270)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(270)
+                .rotationY(0)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(270)
+                .rotationY(90)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(270)
+                .rotationY(180)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(270)
+                .rotationY(270)
+                .build());
         simpleBlockItem(blockSupplier.get(), model);
     }
 
@@ -438,7 +625,23 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
     protected void spunBlockWithItem(Supplier<Block> blockSupplier, ModelFile model) {
         // Every possible y-rotation of the model.
-        getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder().modelFile(model).rotationX(0).rotationY(0).nextModel().modelFile(model).rotationX(0).rotationY(90).nextModel().modelFile(model).rotationX(0).rotationY(180).nextModel().modelFile(model).rotationX(0).rotationY(270).build());
+        getVariantBuilder(blockSupplier.get()).forAllStates((state) -> ConfiguredModel.builder()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(0)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(90)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(180)
+                .nextModel()
+                .modelFile(model)
+                .rotationX(0)
+                .rotationY(270)
+                .build());
         simpleBlockItem(blockSupplier.get(), model);
     }
 

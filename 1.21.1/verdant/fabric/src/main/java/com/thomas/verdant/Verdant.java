@@ -26,14 +26,12 @@ public class Verdant implements ModInitializer {
         // Use Fabric to bootstrap the Common mod.
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
-
-
         CommonClass.initCompostables();
 
         // Set up dynamic registries
-        DynamicRegistries.registerSynced(BaitData.KEY, BaitData.CODEC);
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
         DynamicRegistries.registerSynced(FeatureSet.KEY, FeatureSet.CODEC);
+        DynamicRegistries.registerSynced(BaitData.KEY, BaitData.CODEC);
 
         // Add wood sets.
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
@@ -44,8 +42,12 @@ public class Verdant implements ModInitializer {
             FuelRegistryEvents.BUILD.register((builder, context) -> woodSet.registerFuels((builder::add)));
             StrippableBlockRegistry.register(woodSet.getLog().get(), woodSet.getStrippedLog().get());
             StrippableBlockRegistry.register(woodSet.getWood().get(), woodSet.getStrippedWood().get());
-            DispenserBlock.registerBehavior(woodSet.getBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getBoat().get()));
-            DispenserBlock.registerBehavior(woodSet.getChestBoatItem().get(), new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
+            DispenserBlock.registerBehavior(
+                    woodSet.getBoatItem().get(),
+                    new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+            DispenserBlock.registerBehavior(
+                    woodSet.getChestBoatItem().get(),
+                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
             woodSet.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
         }
 

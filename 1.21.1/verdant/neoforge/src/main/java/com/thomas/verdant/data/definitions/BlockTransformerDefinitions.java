@@ -108,8 +108,26 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.DIAMOND_ORE, BlockRegistry.DIRT_DIAMOND_ORE.get()));
         // Glass to stained glass, mostly a joke
         // Maybe make a common tag?
-        data.add(probabilityTag(Tags.Blocks.GLASS_BLOCKS_CHEAP, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS, 1, Blocks.GREEN_STAINED_GLASS, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS, 7)));
-        data.add(probabilityTag(Tags.Blocks.GLASS_PANES, Map.<Block, Integer>of(Blocks.LIME_STAINED_GLASS_PANE, 1, Blocks.GREEN_STAINED_GLASS_PANE, 7, Blocks.AIR, 1, Blocks.BROWN_STAINED_GLASS_PANE, 7)));
+        data.add(probabilityTag(
+                Tags.Blocks.GLASS_BLOCKS_CHEAP, Map.<Block, Integer>of(
+                        Blocks.LIME_STAINED_GLASS,
+                        1,
+                        Blocks.GREEN_STAINED_GLASS,
+                        7,
+                        Blocks.AIR,
+                        1,
+                        Blocks.BROWN_STAINED_GLASS,
+                        7)));
+        data.add(probabilityTag(
+                Tags.Blocks.GLASS_PANES, Map.<Block, Integer>of(
+                        Blocks.LIME_STAINED_GLASS_PANE,
+                        1,
+                        Blocks.GREEN_STAINED_GLASS_PANE,
+                        7,
+                        Blocks.AIR,
+                        1,
+                        Blocks.BROWN_STAINED_GLASS_PANE,
+                        7)));
 
         return new BlockTransformer(data, BlockTransformerRegistry.EROSION);
     }
@@ -176,11 +194,27 @@ public class BlockTransformerDefinitions {
     }
 
     private static BlockTransformerData probability(Block from, Map<Block, Integer> to) {
-        return new BlockTransformerData(null, null, to.entrySet().stream().map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue())).toList(), null, name(from));
+        return new BlockTransformerData(
+                null,
+                null,
+                to.entrySet()
+                        .stream()
+                        .map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue()))
+                        .toList(),
+                null,
+                name(from));
     }
 
     private static BlockTransformerData probabilityTag(TagKey<Block> from, Map<Block, Integer> to) {
-        return new BlockTransformerData(null, null, to.entrySet().stream().map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue())).toList(), from, null);
+        return new BlockTransformerData(
+                null,
+                null,
+                to.entrySet()
+                        .stream()
+                        .map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue()))
+                        .toList(),
+                from,
+                null);
     }
 
     private static BlockTransformerData directTag(TagKey<Block> from, Block to) {
@@ -188,6 +222,11 @@ public class BlockTransformerDefinitions {
     }
 
     private static BlockTransformerData transformer(String transformer) {
-        return new BlockTransformerData(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, transformer), null, null, null, null);
+        return new BlockTransformerData(
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, transformer),
+                null,
+                null,
+                null,
+                null);
     }
 }

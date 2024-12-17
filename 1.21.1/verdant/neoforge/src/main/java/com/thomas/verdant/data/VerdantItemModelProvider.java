@@ -24,6 +24,7 @@ public class VerdantItemModelProvider extends ItemModelProvider {
             generateFor(woodSet);
         }
 
+        evenSimplerBlockItem(BlockRegistry.FISH_TRAP_BLOCK);
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
         basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());

@@ -2,33 +2,57 @@ package com.thomas.verdant.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.thomas.verdant.block.custom.entity.FishTrapBlockEntity;
+import com.thomas.verdant.platform.Services;
+import com.thomas.verdant.registry.BlockEntityTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class FishTrapBlock extends BaseEntityBlock {
-    public static final MapCodec<? extends FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
-
+public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
-    private static final VoxelShape BLOCK_SUPPORT_SHAPE = Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final MapCodec<? extends FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
+    private static final VoxelShape BLOCK_SUPPORT_SHAPE = Shapes.or(
+            Block.box(0, 0, 0, 16, 1, 16),
             Block.box(0, 15, 0, 16, 16, 16));
 
     public FishTrapBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition()
+                .any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(ENABLED, false)
+                .setValue(WATERLOGGED, false));
+    }
+
+    // From DoublePlantBlock
+    public static BlockState copyWaterloggedFrom(LevelReader level, BlockPos pos, BlockState state) {
+        return state.hasProperty(BlockStateProperties.WATERLOGGED) ? state.setValue(
+                BlockStateProperties.WATERLOGGED,
+                level.isWaterAt(pos)) : state;
     }
 
     @Override
@@ -51,14 +75,27 @@ public class FishTrapBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false)
-                : super.getFluidState(state);
+        return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(
+                state);
     }
 
-    @SuppressWarnings("deprecation")
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if (level.isClientSide()) {
+            return null;
+        }
+
+        return createTickerHelper(
+                blockEntityType,
+                BlockEntityTypeRegistry.FISH_TRAP_BLOCK_ENTITY.get(),
+                (lambdaLevel, lambdaPos, lambdaState, lambdaBlockEntity) -> lambdaBlockEntity.tick(
+                        lambdaLevel,
+                        lambdaPos,
+                        lambdaState));
+    }
+
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
@@ -67,7 +104,81 @@ public class FishTrapBlock extends BaseEntityBlock {
                 ((FishTrapBlockEntity) blockEntity).drops();
             }
         }
-
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+
+        if (!(level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrap) || !(player.level() instanceof ServerLevel serverLevel) || !(player instanceof ServerPlayer serverPlayer)) {
+            return InteractionResult.SUCCESS;
+        }
+        MenuProvider provider = state.getMenuProvider(serverLevel, pos);
+        if (null != provider) {
+            Services.FISH_TRAP_MENU_OPENER.openMenu(serverPlayer, provider, fishTrap);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    public BlockState setEnabled(LevelReader level, BlockState original, BlockPos pos) {
+        BlockState result = original;
+        if (!result.getValue(BlockStateProperties.WATERLOGGED)) {
+            return result.setValue(ENABLED, false);
+        }
+        BlockState inFront = level.getBlockState(pos.relative(result.getValue(FACING)));
+        if (inFront.is(Blocks.WATER)) {
+            result = result.setValue(ENABLED, true);
+        } else {
+            result = result.setValue(ENABLED, false);
+        }
+        return result;
+    }
+
+    // From DoublePlantBlock
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState blockstate = super.getStateForPlacement(context);
+        if (blockstate == null) {
+            return null;
+        }
+        Direction facing = context.getHorizontalDirection().getOpposite();
+        BlockState afterWaterlogged = copyWaterloggedFrom(
+                context.getLevel(),
+                context.getClickedPos(),
+                blockstate.setValue(FACING, facing));
+        return setEnabled(context.getLevel(), afterWaterlogged, context.getClickedPos());
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        if (state.getValue(BlockStateProperties.WATERLOGGED)) {
+            tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
+        return this.setEnabled(level, state, currentPos);
+    }
+
+    @Override
+    public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluid) {
+        boolean placed = SimpleWaterloggedBlock.super.placeLiquid(level, pos, state, fluid);
+        if (placed && !level.isClientSide()) {
+            level.setBlock(pos, this.setEnabled(level, level.getBlockState(pos), pos), 3);
+        }
+        return placed;
+    }
+
+    @Override
+    public ItemStack pickupBlock(Player player, LevelAccessor level, BlockPos pos, BlockState state) {
+        ItemStack stack = SimpleWaterloggedBlock.super.pickupBlock(player, level, pos, state);
+        if (!stack.isEmpty() && !level.isClientSide()) {
+            level.setBlock(pos, this.setEnabled(level, level.getBlockState(pos), pos), 3);
+        }
+        return stack;
+    }
+
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(FACING, WATERLOGGED, ENABLED);
     }
 }

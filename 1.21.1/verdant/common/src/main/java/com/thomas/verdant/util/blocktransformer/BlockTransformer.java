@@ -26,18 +26,24 @@ import java.util.function.Function;
 
 public class BlockTransformer {
 
-    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block_transformer"));
+    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "block_transformer"));
 
-    public static final Codec<List<BlockTransformerData>> DATA_LIST_CODEC = Codec.list(BlockTransformerData.CODEC).xmap(list -> {
-        // Validation: Ensure that all objects in the list pass the required field check
-        list.forEach(data -> {
-            if (!BlockTransformerData.validateRequiredFields(data)) {
-                throw new IllegalStateException("Block Transformer Data failed to validate");
-            }
-        });
-        return list;
-    }, list -> list);
-    public static final Codec<BlockTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(DATA_LIST_CODEC.fieldOf("values").forGetter(BlockTransformer::asData), ResourceLocation.CODEC.fieldOf("name").forGetter(bt->bt.name)).apply(instance, BlockTransformer::new));
+    public static final Codec<List<BlockTransformerData>> DATA_LIST_CODEC = Codec.list(BlockTransformerData.CODEC).xmap(
+            list -> {
+                // Validation: Ensure that all objects in the list pass the required field check
+                list.forEach(data -> {
+                    if (!BlockTransformerData.validateRequiredFields(data)) {
+                        throw new IllegalStateException("Block Transformer Data failed to validate");
+                    }
+                });
+                return list;
+            }, list -> list);
+    public static final Codec<BlockTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            DATA_LIST_CODEC.fieldOf("values").forGetter(BlockTransformer::asData),
+            ResourceLocation.CODEC.fieldOf("name").forGetter(bt -> bt.name)).apply(instance, BlockTransformer::new));
+    public final ResourceLocation name;
     private final Map<TagKey<Block>, Function<RandomSource, Block>> tagMap;
     private final Object2IntMap<TagKey<Block>> tagPriorityMap;
     private final Map<Block, Function<RandomSource, Block>> directMap;
@@ -45,7 +51,6 @@ public class BlockTransformer {
     private final List<BlockTransformerData> rawData;
     private final Map<ResourceLocation, BlockTransformer> cachedFallbacks;
     private int numTagsAdded;
-    public final ResourceLocation name;
 
     public BlockTransformer(List<BlockTransformerData> values, ResourceLocation name) {
         this.tagMap = new HashMap<>();
@@ -70,6 +75,29 @@ public class BlockTransformer {
         Block block = BuiltInRegistries.BLOCK.get(location).orElseThrow().value();
         Objects.requireNonNull(block, "Unrecognized block " + location + "in BlockTransformer");
         return block;
+    }
+
+    // Copies the properties of one block state onto the default state of another block, to whatever degree is possible.
+    @SuppressWarnings("unchecked")
+    public static BlockState copyProperties(BlockState input, Block to) {
+        // Don't do unnecessary work.
+        if (to == null || input.is(to)) {
+            return input;
+        }
+        // Get the default state to copy properties onto.
+        BlockState output = to.defaultBlockState();
+        // Copy every property, if applicable.
+        // Properties have type-parameters, but that sufficiently confuses the compiler here such that
+        // raw types must be used.
+        for (@SuppressWarnings("rawtypes") Property property : input.getProperties()) {
+            // Skip if the output state does not have the desired property.
+            if (output.hasProperty(property)) {
+                // If it does, set it.
+                output = output.trySetValue(property, input.getValue(property));
+            }
+        }
+
+        return output;
     }
 
     private void fillData(List<BlockTransformerData> values) {
@@ -177,13 +205,14 @@ public class BlockTransformer {
         return result;
     }
 
-
     public boolean isValidInput(LevelAccessor level, @NotNull BlockState input) {
         return this.isValidInput(level, input.getBlock());
     }
 
     public boolean isValidInput(LevelAccessor level, Block input) {
-        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(level, input);
+        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(
+                level,
+                input);
     }
 
     private boolean hasValidTagMapping(@NotNull Block input) {
@@ -221,29 +250,6 @@ public class BlockTransformer {
 
     public List<BlockTransformerData> asData() {
         return this.rawData;
-    }
-
-    // Copies the properties of one block state onto the default state of another block, to whatever degree is possible.
-    @SuppressWarnings("unchecked")
-    public static BlockState copyProperties(BlockState input, Block to) {
-        // Don't do unnecessary work.
-        if (to == null || input.is(to)) {
-            return input;
-        }
-        // Get the default state to copy properties onto.
-        BlockState output = to.defaultBlockState();
-        // Copy every property, if applicable.
-        // Properties have type-parameters, but that sufficiently confuses the compiler here such that
-        // raw types must be used.
-        for (@SuppressWarnings("rawtypes") Property property : input.getProperties()) {
-            // Skip if the output state does not have the desired property.
-            if (output.hasProperty(property)) {
-                // If it does, set it.
-                output = output.trySetValue(property, input.getValue(property));
-            }
-        }
-
-        return output;
     }
 
 }

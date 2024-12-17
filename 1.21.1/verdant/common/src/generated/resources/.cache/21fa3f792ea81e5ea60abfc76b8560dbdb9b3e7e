@@ -1,4 +1,5 @@
-// 1.21.3	2024-12-10T15:41:37.9960388	Block States: verdant
+// 1.21.3	2024-12-16T19:15:38.4988705	Block States: verdant
+baca52875be35cc899e5dc7b59e7263f26d74a3e assets/verdant/blockstates/antigorite.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
 d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond_ore.json
@@ -7,6 +8,7 @@ d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond
 b94488830d17b35540d30baca2bd4b3625fab160 assets/verdant/blockstates/dirt_iron_ore.json
 322e5b4163b6fae277664eb0e07fc8b7f1d02e2f assets/verdant/blockstates/dirt_lapis_ore.json
 e52b1e470df46717a1b99a915604d36ddf6e14af assets/verdant/blockstates/dirt_redstone_ore.json
+a7db6b8cbaa7068d09a3264224340628c28fbc22 assets/verdant/blockstates/fish_trap.json
 547fa0e882e79be2ab22f0ad97bbed75ca6892a7 assets/verdant/blockstates/heartwood_button.json
 42ac6c4f47d2088ec98115d0c90b8b613a8298ba assets/verdant/blockstates/heartwood_door.json
 ce704cc15c3a6bdfbcee2882e9a7821fc6f58e4c assets/verdant/blockstates/heartwood_fence.json
@@ -59,6 +61,7 @@ a27e98c6a0b35fa306036e55dcb9cd196e9acbf0 assets/verdant/blockstates/verdant_gras
 87460fae9863d4f831d5abdb1adfcb07d2abcd31 assets/verdant/blockstates/verdant_rooted_dirt.json
 976a36b3dacb637ce9a9a8789eddf38be02d12a1 assets/verdant/blockstates/verdant_rooted_mud.json
 018bd997fba867873d09c11c0e71a7ad0b35e3ab assets/verdant/blockstates/wilted_strangler_leaves.json
+1d681440bacb52f70b1ba7764f08742ec6a97ff6 assets/verdant/models/block/antigorite.json
 ba49cadfdb2deee5160eaae862324751e23afa68 assets/verdant/models/block/dirt_coal_ore.json
 e30ff7b0558062e0e70d4e6c9f14b7f48daa527e assets/verdant/models/block/dirt_copper_ore.json
 9862bd1f0e1a7ecd4e0741f01f1c13eedc0cabb8 assets/verdant/models/block/dirt_diamond_ore.json
@@ -67,6 +70,7 @@ c5be4f05d411932059eaedea338e2ebe0de0b891 assets/verdant/models/block/dirt_gold_o
 eb37c929ad6d38ba7702357c25207b607b63cf2a assets/verdant/models/block/dirt_iron_ore.json
 d2d20be98eaf744fabc92ae3143d602443ca8fa6 assets/verdant/models/block/dirt_lapis_ore.json
 738389826f719bf66ceaf7f5e8f17e05306d5a27 assets/verdant/models/block/dirt_redstone_ore.json
+fff01cb5874cc73ce2ff129537d460164f0f36f3 assets/verdant/models/block/fish_trap.json
 f01fd04caa4f62c17367fe880de0e7b9a327aeed assets/verdant/models/block/heartwood_button.json
 85977931d6aeb38ee79af557810d0ad35b1e8844 assets/verdant/models/block/heartwood_button_pressed.json
 376eec52ed54534fd5537854f8eeb61a2094d013 assets/verdant/models/block/heartwood_door_bottom_left.json
@@ -196,6 +200,7 @@ ed670da981f30669c2dcc9f58f7bdcc6d1bb39bb assets/verdant/models/block/verdant_roo
 6e7389d9671194456ab557a059b1c880ffd80f2a assets/verdant/models/block/verdant_rooted_mud_very_thin_mixed.json
 e0e152c486b5d8082d9553e807863779afe30adb assets/verdant/models/block/verdant_rooted_mud_wilted.json
 7dacd058e4af5b87ebd34bda46e0cbe5e1754aa1 assets/verdant/models/block/wilted_strangler_leaves.json
+2f2d7daeca192aca695762e1712d67281cc76644 assets/verdant/models/item/antigorite.json
 4f84d6ecacbcedae63a14f8eb901ff3835132e92 assets/verdant/models/item/dirt_coal_ore.json
 5767d3d16165e0b8c893f33b1862cd64e088ec80 assets/verdant/models/item/dirt_copper_ore.json
 af7e8d5aa110c73386bd150d6b5eb48509b2b172 assets/verdant/models/item/dirt_diamond_ore.json

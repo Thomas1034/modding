@@ -1,4 +1,5 @@
-// 1.21.3	2024-12-10T13:12:25.8780155	Loot Tables
+// 1.21.3	2024-12-16T12:53:46.7189077	Loot Tables
+58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json
 1088f89ba19b23616567aeb15ec41cde9665ea52 data/verdant/loot_table/blocks/dirt_diamond_ore.json
@@ -7,6 +8,7 @@ a5b866f3970cc254649b588a56d59b68969237c5 data/verdant/loot_table/blocks/dirt_eme
 bd9c4bac8ad7334061ead3e709a36a8eb0092e4e data/verdant/loot_table/blocks/dirt_iron_ore.json
 3c278634d3faed9af5cafeb6de33bb5bfcca6131 data/verdant/loot_table/blocks/dirt_lapis_ore.json
 91b20868d9e806640005ed9e186048e2e8d4e466 data/verdant/loot_table/blocks/dirt_redstone_ore.json
+d27de00356674d043796e3b835f1a9aaf83a5beb data/verdant/loot_table/blocks/fish_trap.json
 a6d6686fe5202779c2de058b44b909d03986e357 data/verdant/loot_table/blocks/heartwood_button.json
 b3cfd94059ae500f14951c437adc0fbdcc302cea data/verdant/loot_table/blocks/heartwood_door.json
 93ee4be3f66fd3634f832a544f78c84024464c18 data/verdant/loot_table/blocks/heartwood_fence.json

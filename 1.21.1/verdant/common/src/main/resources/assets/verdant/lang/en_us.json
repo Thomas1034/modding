@@ -27,11 +27,10 @@
 	"block.verdant.wild_cassava": "Wild Cassava",
 	"block.verdant.rope": "Rope",
 	"block.verdant.rope_ladder": "Rope Ladder",
-	
-	"block.verdant.fish_trap_block": "Fish Trap",
-	"block.verdant.fish_trap_block.gui.no_water": "No Water",
-	"block.verdant.fish_trap_block.gui.no_bait": "No Bait",
-	"block.verdant.fish_trap_block.gui.bait": "%s%%",
+	"block.verdant.fish_trap": "Fish Trap",
+	"block.verdant.fish_trap.gui.no_water": "No Water",
+	"block.verdant.fish_trap.gui.no_bait": "No Bait",
+	"block.verdant.fish_trap.gui.bait": "%s%%",
 	
 	"block.verdant.dirt_coal_ore": "Dirt Coal Ore",
 	"block.verdant.dirt_copper_ore": "Dirt Copper Ore",
@@ -337,7 +336,6 @@
 	"tag.block.verdant.rotten_wood" : "Rotten Wood",
 	"tag.block.verdant.verdant_ground" : "Verdant Ground",
 	"tag.block.verdant.tendrils" : "Tendrils",
-	
 	
 	"tag.item.verdant.strangler_vines" : "Strangler Vines",
 	"tag.item.verdant.verdant_friendly_armors" : "Verdant Friendly Armors",

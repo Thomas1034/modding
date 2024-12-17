@@ -47,7 +47,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
 
-        this.knownBlocks.addAll(BlockRegistry.BLOCKS.getEntries().stream().map(RegistryObject::get).collect(Collectors.toSet()));
+        this.knownBlocks.addAll(BlockRegistry.BLOCKS.getEntries()
+                .stream()
+                .map(RegistryObject::get)
+                .collect(Collectors.toSet()));
 
         // For the wood set
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
@@ -56,6 +59,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
         // ModBlocks.VERDANT.addLootTables(this);
 
+        this.dropSelf(BlockRegistry.FISH_TRAP_BLOCK.get());
+        this.dropSelf(BlockRegistry.ANTIGORITE.get());
         this.add(BlockRegistry.TEST_BLOCK.get(), noDrop());
         this.add(BlockRegistry.TEST_LOG.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
@@ -70,9 +75,47 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.POISON_IVY.get());
 
         // Proudly written by ChatGPT 4o
-        BiFunction<Block, Item, LootTable.Builder> stranglerVineLoot = (stranglerVine, stranglerItem) -> LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.DOWN, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.UP, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.NORTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.EAST, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.SOUTH, StranglerVineBlock.MAX_AGE))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(stranglerItem).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StranglerVineBlock.WEST, StranglerVineBlock.MAX_AGE)))));
-        this.add(BlockRegistry.STRANGLER_VINE.get(), stranglerVineLoot.apply(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.STRANGLER_VINE.get().asItem()));
-        this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), stranglerVineLoot.apply(BlockRegistry.LEAFY_STRANGLER_VINE.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()));
+        BiFunction<Block, Item, LootTable.Builder> stranglerVineLoot = (stranglerVine, stranglerItem) -> LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.DOWN, StranglerVineBlock.MAX_AGE)))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.UP, StranglerVineBlock.MAX_AGE)))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.NORTH, StranglerVineBlock.MAX_AGE)))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.EAST, StranglerVineBlock.MAX_AGE)))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.SOUTH, StranglerVineBlock.MAX_AGE)))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(stranglerItem)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(stranglerVine)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(StranglerVineBlock.WEST, StranglerVineBlock.MAX_AGE)))));
+        this.add(
+                BlockRegistry.STRANGLER_VINE.get(),
+                stranglerVineLoot.apply(
+                        BlockRegistry.STRANGLER_VINE.get(),
+                        BlockRegistry.STRANGLER_VINE.get().asItem()));
+        this.add(
+                BlockRegistry.LEAFY_STRANGLER_VINE.get(),
+                stranglerVineLoot.apply(
+                        BlockRegistry.LEAFY_STRANGLER_VINE.get(),
+                        BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()));
 
         // Proudly written by ChatGPT 4o
         Block rottenWood = BlockRegistry.ROTTEN_WOOD.get();
@@ -80,7 +123,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 // Add conditions for silk touch mining
                 .when(this.hasSilkTouch()).add(LootItem.lootTableItem(rottenWood))).withPool(LootPool.lootPool()
                 // No silk touch: Drops sticks and mushrooms
-                .when(this.hasSilkTouch().invert()).add(LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(6)).add(LootItem.lootTableItem(Items.BROWN_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))).setWeight(3)).add(LootItem.lootTableItem(Items.RED_MUSHROOM).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1))).setWeight(1)).setRolls(UniformGenerator.between(1, 3)));
+                .when(this.hasSilkTouch().invert())
+                .add(LootItem.lootTableItem(Items.STICK)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2)))
+                        .setWeight(6))
+                .add(LootItem.lootTableItem(Items.BROWN_MUSHROOM)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
+                        .setWeight(3))
+                .add(LootItem.lootTableItem(Items.RED_MUSHROOM)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
+                        .setWeight(1))
+                .setRolls(UniformGenerator.between(1, 3)));
         this.add(rottenWood, rottenWoodLoot);
 
 
@@ -131,7 +184,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         oreDrop(BlockRegistry.DIRT_IRON_ORE.get(), Items.RAW_IRON, List.of(1, 2));
         oreDrop(BlockRegistry.DIRT_GOLD_ORE.get(), Items.RAW_GOLD, List.of(1, 2));
         this.add(BlockRegistry.DIRT_LAPIS_ORE.get(), this.createLapisOreDrops(BlockRegistry.DIRT_LAPIS_ORE.get()));
-        this.add(BlockRegistry.DIRT_REDSTONE_ORE.get(), this.createRedstoneOreDrops(BlockRegistry.DIRT_REDSTONE_ORE.get()));
+        this.add(
+                BlockRegistry.DIRT_REDSTONE_ORE.get(),
+                this.createRedstoneOreDrops(BlockRegistry.DIRT_REDSTONE_ORE.get()));
         oreDrop(BlockRegistry.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 3));
         oreDrop(BlockRegistry.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
 
@@ -238,7 +293,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
     protected void generateFor(WoodSet woodSet) {
 
-        this.knownBlocks.addAll(woodSet.getBlockProvider().getEntries().stream().map(RegistryObject::get).collect(Collectors.toSet()));
+        this.knownBlocks.addAll(woodSet.getBlockProvider()
+                .getEntries()
+                .stream()
+                .map(RegistryObject::get)
+                .collect(Collectors.toSet()));
 
         this.dropSelf(woodSet.getPlanks().get());
         this.dropSelf(woodSet.getLog().get());
@@ -261,11 +320,28 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
 
     protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
-        return createShearsDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).when(LootItemRandomChanceCondition.randomChance(chance)).apply(ApplyBonusCount.addUniformBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE), 2))));
+        return createShearsDispatchTable(
+                block, this.applyExplosionDecay(
+                        block,
+                        LootItem.lootTableItem(item)
+                                .when(LootItemRandomChanceCondition.randomChance(chance))
+                                .apply(ApplyBonusCount.addUniformBonusCount(
+                                        registries.lookup(Registries.ENCHANTMENT)
+                                                .orElseThrow()
+                                                .getOrThrow(Enchantments.FORTUNE), 2))));
     }
 
     protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
-        return createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1)))).apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
+        return createSilkTouchDispatchTable(
+                block, this.applyExplosionDecay(
+                        block,
+                        LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(
+                                        range.get(0),
+                                        range.get(1))))
+                                .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT)
+                                        .orElseThrow()
+                                        .getOrThrow(Enchantments.FORTUNE)))));
     }
 
     protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {
@@ -273,11 +349,22 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createSilkTouchOrShearsOreDrops(Block block, Item item, List<Integer> range) {
-        return createSilkTouchOrShearsDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(UniformGenerator.between(range.get(0), range.get(1)))).apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT).orElseThrow().getOrThrow(Enchantments.FORTUNE)))));
+        return createSilkTouchOrShearsDispatchTable(
+                block, this.applyExplosionDecay(
+                        block,
+                        LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(
+                                        range.get(0),
+                                        range.get(1))))
+                                .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT)
+                                        .orElseThrow()
+                                        .getOrThrow(Enchantments.FORTUNE)))));
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item) {
-        return createSilkTouchOrShearsDispatchTable(pBlock, this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
+        return createSilkTouchOrShearsDispatchTable(
+                pBlock,
+                this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item, List<Integer> range) {
@@ -316,7 +403,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createSilkTouchOrOtherDrop(Block block, ResourceLocation source) {
-        return createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, source))));
+        return createSilkTouchDispatchTable(
+                block,
+                this.applyExplosionDecay(
+                        block,
+                        NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, source))));
     }
 
 }

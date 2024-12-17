@@ -62,6 +62,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
         this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
 
+        this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
         //        this.tag(BlockTags.CANDLE_CAKES).add(BlockRegistry.CANDLE_UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
         //                BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(), BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),

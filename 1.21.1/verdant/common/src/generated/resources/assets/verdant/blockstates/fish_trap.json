@@ -1,0 +1,68 @@
+{
+  "variants": {
+    "enabled=false,facing=east,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 450
+    },
+    "enabled=false,facing=east,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 450
+    },
+    "enabled=false,facing=north,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 360
+    },
+    "enabled=false,facing=north,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 360
+    },
+    "enabled=false,facing=south,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 180
+    },
+    "enabled=false,facing=south,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 180
+    },
+    "enabled=false,facing=west,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 270
+    },
+    "enabled=false,facing=west,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 270
+    },
+    "enabled=true,facing=east,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 450
+    },
+    "enabled=true,facing=east,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 450
+    },
+    "enabled=true,facing=north,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 360
+    },
+    "enabled=true,facing=north,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 360
+    },
+    "enabled=true,facing=south,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 180
+    },
+    "enabled=true,facing=south,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 180
+    },
+    "enabled=true,facing=west,waterlogged=false": {
+      "model": "verdant:block/fish_trap",
+      "y": 270
+    },
+    "enabled=true,facing=west,waterlogged=true": {
+      "model": "verdant:block/fish_trap",
+      "y": 270
+    }
+  }
+}

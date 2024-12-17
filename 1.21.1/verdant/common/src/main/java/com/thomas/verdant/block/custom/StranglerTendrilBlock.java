@@ -1,11 +1,9 @@
 package com.thomas.verdant.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.thomas.verdant.block.VerdantGrower;
 import com.thomas.verdant.registry.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
@@ -16,11 +14,11 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class StranglerTendrilBlock extends GrowingPlantHeadBlock implements VerdantGrower {
-    protected int maxAge;
+public class StranglerTendrilBlock extends GrowingPlantHeadBlock {
     public static final Integer CUSTOM_MAX_AGE = 12;
     protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
     public static final MapCodec<StranglerTendrilBlock> CODEC = simpleCodec(StranglerTendrilBlock::new);
+    protected int maxAge;
 
     public StranglerTendrilBlock(Properties properties) {
         this(properties, SHAPE);
@@ -57,13 +55,7 @@ public class StranglerTendrilBlock extends GrowingPlantHeadBlock implements Verd
         return state.getFluidState().isEmpty()
                 && (state.isAir() || state.is(BlockTags.REPLACEABLE));
     }
-
-    @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-        super.randomTick(state, level, pos, rand);
-        this.erodeOrGrow(state, level, pos.below(), false);
-    }
-
+    
     @Override
     protected Block getBodyBlock() {
         return BlockRegistry.STRANGLER_TENDRIL_PLANT.get();

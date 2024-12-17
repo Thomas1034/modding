@@ -1,0 +1,7 @@
+{
+  "data": {
+    "catch_chance": 1.5,
+    "consume_chance": 0.2
+  },
+  "item": "minecraft:golden_carrot"
+}

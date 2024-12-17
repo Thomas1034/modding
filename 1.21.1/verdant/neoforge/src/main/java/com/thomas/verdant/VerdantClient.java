@@ -1,6 +1,8 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
+import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.client.model.BoatModel;
@@ -16,6 +18,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,25 +40,26 @@ public class VerdantClient {
         }
         modBus.addListener(VerdantClient::onClientSetup);
         modBus.addListener(VerdantClient::onRegisterLayerDefinitions);
-    }
-
-
-    protected void registerBoatRenderers(WoodSet woodSet) {
-        WOOD_SETS.add(woodSet);
-        registerLayersForWoodSet(woodSet);
+        modBus.addListener(VerdantClient::registerScreens);
     }
 
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         for (WoodSet woodSet : WOOD_SETS) {
             event.registerLayerDefinition(locationForBoat.get(woodSet.getBoat()), BoatModel::createBoatModel);
-            event.registerLayerDefinition(locationForChestBoat.get(woodSet.getChestBoat()), BoatModel::createChestBoatModel);
+            event.registerLayerDefinition(
+                    locationForChestBoat.get(woodSet.getChestBoat()),
+                    BoatModel::createChestBoatModel);
         }
     }
 
     public static void registerLayersForWoodSet(WoodSet woodSet) {
-        ModelLayerLocation boat = new ModelLayerLocation(ResourceLocation.withDefaultNamespace("boat/" + woodSet.getName()), "main");
+        ModelLayerLocation boat = new ModelLayerLocation(
+                ResourceLocation.withDefaultNamespace("boat/" + woodSet.getName()),
+                "main");
         // ModelLayers.register("boat/" + woodSet.getName());
-        ModelLayerLocation chestBoat = new ModelLayerLocation(ResourceLocation.withDefaultNamespace("chest_boat/" + woodSet.getName()), "main");
+        ModelLayerLocation chestBoat = new ModelLayerLocation(
+                ResourceLocation.withDefaultNamespace("chest_boat/" + woodSet.getName()),
+                "main");
         // ModelLayers.register("chest_boat/" + woodSet.getName());
         locationForBoat.put(woodSet.getBoat(), boat);
         locationForChestBoat.put(woodSet.getChestBoat(), chestBoat);
@@ -63,8 +67,22 @@ public class VerdantClient {
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         for (WoodSet woodSet : WOOD_SETS) {
-            EntityRenderers.register(woodSet.getBoat().get(), (context) -> new BoatRenderer(context, locationForBoat.get(woodSet.getBoat())));
-            EntityRenderers.register(woodSet.getChestBoat().get(), (context) -> new BoatRenderer(context, locationForChestBoat.get(woodSet.getChestBoat())));
+            EntityRenderers.register(
+                    woodSet.getBoat().get(),
+                    (context) -> new BoatRenderer(context, locationForBoat.get(woodSet.getBoat())));
+            EntityRenderers.register(
+                    woodSet.getChestBoat().get(),
+                    (context) -> new BoatRenderer(context, locationForChestBoat.get(woodSet.getChestBoat())));
         }
+    }
+
+    private static void registerScreens(RegisterMenuScreensEvent event) {
+
+        event.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
+    }
+
+    protected void registerBoatRenderers(WoodSet woodSet) {
+        WOOD_SETS.add(woodSet);
+        registerLayersForWoodSet(woodSet);
     }
 }

@@ -1,6 +1,8 @@
 package com.thomas.verdant.platform;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.platform.services.IFishTrapMenuCreator;
+import com.thomas.verdant.platform.services.IFishTrapMenuOpener;
 import com.thomas.verdant.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
@@ -14,6 +16,12 @@ public class Services {
     // For example this can be used to check if the code is running on Forge vs Fabric, or to ask the modloader if another
     // mod is loaded.
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
+
+    // This provides a menu type for the fish trap menu, with per-platform extended functionality to sync extra data.
+    public static final IFishTrapMenuCreator FISH_TRAP_MENU_CREATOR = load(IFishTrapMenuCreator.class);
+
+    // This actually opens the fish trap menu, since that varies per-platform.
+    public static final IFishTrapMenuOpener FISH_TRAP_MENU_OPENER = load(IFishTrapMenuOpener.class);
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.

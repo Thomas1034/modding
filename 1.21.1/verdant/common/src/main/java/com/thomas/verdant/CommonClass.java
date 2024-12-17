@@ -1,16 +1,25 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.platform.Services;
-import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.CreativeModeTabRegistry;
-import com.thomas.verdant.registry.ItemRegistry;
-import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.registry.*;
 import net.minecraft.world.level.block.ComposterBlock;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
+// TODO:
+// Look into connected textures for Antigorite, and make polished, brick, and chiseled variants.
+// https://www.curseforge.com/minecraft/mc-mods/continuity
+// Finish up fish trap block
+//
+// Ideas for new effects:
+// Photosensitivity - sky light causes damage during the daytime
+// Numbness - healthbar displays as full no matter what
+// Nettled - walking hurts
+// Cyclopegia - apply blur filter over entire screen, with varying severity based on the strength
+//
 public class CommonClass {
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
@@ -33,6 +42,8 @@ public class CommonClass {
         ItemRegistry.init();
         BlockRegistry.init();
         WoodSets.init();
+        BlockEntityTypeRegistry.init();
+        MenuRegistry.init();
         CreativeModeTabRegistry.init();
     }
 

@@ -12,13 +12,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FireBlock;
@@ -67,11 +67,6 @@ public class Verdant {
         eventBus.addListener(Verdant::onFinishSetup);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
     }
-
-    public static void registerFlammability(Block block, int flammability, int spreadSpeed) {
-        ((FireBlock) Blocks.FIRE).setFlammable(block, flammability, spreadSpeed);
-    }
-
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
 
@@ -133,11 +128,18 @@ public class Verdant {
 
     public static void gatherData(final GatherDataEvent event) {
         try {
+
+
+            // Store some frequently-used fields for later use.
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();
             ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+            BuiltInRegistries.REGISTRY.stream()
+                    .forEach(registry -> Constants.LOG.warn("Found registry {} ", registry.key().location()));
+
+            // Loot tables.
             generator.addProvider(
                     event.includeServer(), new LootTableProvider(
                             packOutput,
@@ -152,8 +154,10 @@ public class Verdant {
                         }
                     });
 
+            // Generate data for the recipes
             generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
+            // Generate data for the block and item tags
             BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(
                     packOutput,
                     lookupProvider,
@@ -166,19 +170,22 @@ public class Verdant {
                             lookupProvider,
                             blockTagsProvider.contentsGetter(),
                             existingFileHelper));
+            // Generate block and item models.
             generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
             generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
 
+            // Generate dynamic registries
             generator.addProvider(
                     event.includeServer(), new DatapackBuiltinEntriesProvider(
                             packOutput,
                             lookupProvider,
                             new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)
-                                    .add(BaitData.KEY, VerdantBaitDataProvider::register)
                                     .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
+                                    .add(BaitData.KEY, BaitDataProvider::register)
                                     .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
-                            Set.of(Constants.MOD_ID)));
+                            Set.of(Constants.MOD_ID, "minecraft")));
 
+            // Generate data maps for furnace fuel; only used on the NeoForge side.
             generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));
 
         } catch (RuntimeException e) {
@@ -187,11 +194,13 @@ public class Verdant {
     }
 
     public static void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
+
+        Constants.LOG.warn("Registering datapack registries");
         // System.out.println(BlockTransformer.CODEC);
         event.dataPackRegistry(BlockTransformer.KEY, BlockTransformer.CODEC, BlockTransformer.CODEC);
 
-        event.dataPackRegistry(FeatureSet.KEY, FeatureSet.CODEC, FeatureSet.CODEC);
-
         event.dataPackRegistry(BaitData.KEY, BaitData.CODEC, BaitData.CODEC);
+
+        event.dataPackRegistry(FeatureSet.KEY, FeatureSet.CODEC, FeatureSet.CODEC);
     }
 }

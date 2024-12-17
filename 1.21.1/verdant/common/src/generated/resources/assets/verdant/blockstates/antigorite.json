@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "verdant:block/antigorite"
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 180
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 270
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/antigorite",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}

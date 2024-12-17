@@ -1,12 +1,15 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -26,17 +29,40 @@ public class VerdantClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         // Mark some blocks as cutout.
-        markCutout(BlockRegistry.DIRT_COAL_ORE, BlockRegistry.DIRT_COPPER_ORE, BlockRegistry.DIRT_DIAMOND_ORE,
-                BlockRegistry.DIRT_EMERALD_ORE, BlockRegistry.DIRT_GOLD_ORE, BlockRegistry.DIRT_IRON_ORE,
-                BlockRegistry.DIRT_LAPIS_ORE, BlockRegistry.DIRT_REDSTONE_ORE, BlockRegistry.VERDANT_ROOTED_DIRT,
-                BlockRegistry.VERDANT_GRASS_DIRT, BlockRegistry.VERDANT_ROOTED_MUD, BlockRegistry.VERDANT_GRASS_MUD,
-                BlockRegistry.VERDANT_ROOTED_CLAY, BlockRegistry.VERDANT_GRASS_CLAY, BlockRegistry.STRANGLER_VINE, BlockRegistry.STRANGLER_LEAVES, BlockRegistry.WILTED_STRANGLER_LEAVES, BlockRegistry.THORNY_STRANGLER_LEAVES, BlockRegistry.POISON_STRANGLER_LEAVES, BlockRegistry.LEAFY_STRANGLER_VINE, BlockRegistry.ROTTEN_WOOD, BlockRegistry.POISON_IVY, BlockRegistry.POISON_IVY_PLANT, BlockRegistry.STRANGLER_TENDRIL, BlockRegistry.STRANGLER_TENDRIL_PLANT);
+        markCutout(
+                BlockRegistry.DIRT_COAL_ORE,
+                BlockRegistry.DIRT_COPPER_ORE,
+                BlockRegistry.DIRT_DIAMOND_ORE,
+                BlockRegistry.DIRT_EMERALD_ORE,
+                BlockRegistry.DIRT_GOLD_ORE,
+                BlockRegistry.DIRT_IRON_ORE,
+                BlockRegistry.DIRT_LAPIS_ORE,
+                BlockRegistry.DIRT_REDSTONE_ORE,
+                BlockRegistry.VERDANT_ROOTED_DIRT,
+                BlockRegistry.VERDANT_GRASS_DIRT,
+                BlockRegistry.VERDANT_ROOTED_MUD,
+                BlockRegistry.VERDANT_GRASS_MUD,
+                BlockRegistry.VERDANT_ROOTED_CLAY,
+                BlockRegistry.VERDANT_GRASS_CLAY,
+                BlockRegistry.STRANGLER_VINE,
+                BlockRegistry.STRANGLER_LEAVES,
+                BlockRegistry.WILTED_STRANGLER_LEAVES,
+                BlockRegistry.THORNY_STRANGLER_LEAVES,
+                BlockRegistry.POISON_STRANGLER_LEAVES,
+                BlockRegistry.LEAFY_STRANGLER_VINE,
+                BlockRegistry.ROTTEN_WOOD,
+                BlockRegistry.POISON_IVY,
+                BlockRegistry.POISON_IVY_PLANT,
+                BlockRegistry.STRANGLER_TENDRIL,
+                BlockRegistry.STRANGLER_TENDRIL_PLANT,
+                BlockRegistry.FISH_TRAP_BLOCK);
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             markCutout(woodSet.getDoor(), woodSet.getTrapdoor());
             registerBoatRenderers(woodSet);
         }
 
+        MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {
@@ -45,12 +71,17 @@ public class VerdantClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(boat, BoatModel::createBoatModel);
         EntityModelLayerRegistry.registerModelLayer(chestBoat, BoatModel::createChestBoatModel);
         EntityRendererRegistry.register(woodSet.getBoat().get(), (context) -> new BoatRenderer(context, boat));
-        EntityRendererRegistry.register(woodSet.getChestBoat().get(), (context) -> new BoatRenderer(context, chestBoat));
+        EntityRendererRegistry.register(
+                woodSet.getChestBoat().get(),
+                (context) -> new BoatRenderer(context, chestBoat));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutout(Supplier... blocks) {
-        Arrays.stream(blocks).forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(((Supplier<Block>) block).get(), RenderType.cutout()));
+        Arrays.stream(blocks)
+                .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
+                        ((Supplier<Block>) block).get(),
+                        RenderType.cutout()));
     }
 
 }

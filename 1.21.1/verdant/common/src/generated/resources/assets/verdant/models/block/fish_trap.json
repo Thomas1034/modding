@@ -1,0 +1,4 @@
+{
+  "parent": "verdant:block/fish_trap_base",
+  "render_type": "minecraft:cutout"
+}

@@ -2,6 +2,7 @@ package com.thomas.verdant.util.baitdata;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -16,13 +17,18 @@ public class BaitDataAccess {
     protected static final Map<TagKey<Item>, BaitData.InnerData> TAG_MAP = new HashMap<>();
     protected static final Map<Item, BaitData.InnerData> MAP = new HashMap<>();
 
+
     public static BaitData.InnerData lookupOrCache(RegistryAccess access, Item item) {
         if (MAP.containsKey(item)) {
             return MAP.get(item);
         } else {
             BaitData.InnerData result = lookupItemOrCache(access, item);
             if (result == null) {
-                List<BaitData.InnerData> values = new java.util.ArrayList<>(item.builtInRegistryHolder().tags().map(tag -> lookupTagOrCache(access, tag)).filter(Objects::nonNull).toList());
+                List<BaitData.InnerData> values = new java.util.ArrayList<>(BuiltInRegistries.ITEM.wrapAsHolder(item)
+                        .tags()
+                        .map(tag -> lookupTagOrCache(access, tag))
+                        .filter(Objects::nonNull)
+                        .toList());
 
                 if (!values.isEmpty()) {
                     values.sort(BaitData.InnerData.COMPARATOR);
@@ -38,12 +44,13 @@ public class BaitDataAccess {
     public static BaitData.InnerData lookupItemOrCache(RegistryAccess access, Item item) {
         if (ITEM_MAP.containsKey(item)) {
             return ITEM_MAP.get(item);
-        }
-        else {
+        } else {
             BaitData.InnerData result = null;
             Registry<BaitData> registry = access.lookupOrThrow(BaitData.KEY);
             // Iterate over all values.
-            List<BaitData> values = new java.util.ArrayList<>(registry.stream().filter(data -> data.matches(item)).toList());
+            List<BaitData> values = new java.util.ArrayList<>(registry.stream()
+                    .filter(data -> data.matches(item))
+                    .toList());
             if (!values.isEmpty()) {
                 values.sort(BaitData::compare);
                 result = values.getFirst().data();
@@ -56,13 +63,14 @@ public class BaitDataAccess {
     public static BaitData.InnerData lookupTagOrCache(RegistryAccess access, TagKey<Item> tag) {
         if (TAG_MAP.containsKey(tag)) {
             return TAG_MAP.get(tag);
-        }
-        else {
+        } else {
             BaitData.InnerData result = null;
             Registry<BaitData> registry = access.lookupOrThrow(BaitData.KEY);
 
             // Iterate over all values.
-            List<BaitData> values = new java.util.ArrayList<>(registry.stream().filter(data -> data.matches(tag)).toList());
+            List<BaitData> values = new java.util.ArrayList<>(registry.stream()
+                    .filter(data -> data.matches(tag))
+                    .toList());
 
             if (!values.isEmpty()) {
                 values.sort(BaitData::compare);
