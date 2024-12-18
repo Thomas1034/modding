@@ -1,6 +1,5 @@
 package com.thomas.verdant.menu;
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.block.custom.entity.FishTrapBlockEntity;
 import com.thomas.verdant.client.screen.FishTrapScreen;
@@ -57,13 +56,6 @@ public class FishTrapMenu extends AbstractContainerMenu {
         this.access = access;
         this.playerInventory = playerInventory;
         this.fishTrapSlotCount = this.data.get(0) + this.data.get(1);
-
-        Constants.LOG.warn(
-                "Printing container data on the {}:",
-                playerInventory.player.level().isClientSide ? "client" : "server");
-        for (int i = 0; i < this.data.getCount(); i++) {
-            Constants.LOG.warn("{}: {}", i, this.data.get(i));
-        }
 
         this.addThisInventorySlots();
         this.addStandardInventorySlots(this.playerInventory, 8, 84);

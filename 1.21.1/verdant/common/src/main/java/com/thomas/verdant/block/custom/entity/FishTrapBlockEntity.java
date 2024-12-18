@@ -1,12 +1,12 @@
 package com.thomas.verdant.block.custom.entity;
 
-import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.FishTrapBlock;
 import com.thomas.verdant.menu.FishTrapMenu;
 import com.thomas.verdant.registry.BlockEntityTypeRegistry;
 import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.baitdata.BaitDataAccess;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +17,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
@@ -33,11 +34,13 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class FishTrapBlockEntity extends BaseContainerBlockEntity {
+public class FishTrapBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
     /**
      * The number of container data slots that this block entity has.
      * Stored statically so it can be updated once and changed everywhere
@@ -80,6 +83,8 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
      * A restricted view of the items placed in the slots of the fish trap. Only has access to the output items.
      */
     private final List<ItemStack> output;
+    private final int[] baitSlots;
+    private final int[] outputSlots;
     /**
      * The number of bait slots this fish trap has. Bait slots come before output slots.
      */
@@ -170,6 +175,8 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
         super(BlockEntityTypeRegistry.FISH_TRAP_BLOCK_ENTITY.get(), pos, blockState);
         this.numBaitSlots = 3;
         this.numOutputSlots = 4;
+        this.baitSlots = IntStream.range(0, this.numBaitSlots).map(this::absoluteIndexForBaitSlot).toArray();
+        this.outputSlots = IntStream.range(0, this.numOutputSlots).map(this::absoluteIndexForOutputSlot).toArray();
         this.cycleTime = 30;
         this.items = NonNullList.withSize(this.numBaitSlots + this.numOutputSlots, ItemStack.EMPTY);
         this.bait = items.subList(0, numBaitSlots);
@@ -299,9 +306,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
     }
 
     public int getCatchProgress() {
-        if (this.level.isClientSide) {
-            Constants.LOG.warn("Catch progress is {}", this.dataAccess.get(CATCH_PROGRESS_INDEX));
-        }
         return this.dataAccess.get(CATCH_PROGRESS_INDEX);
     }
 
@@ -322,7 +326,10 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
                 this.craftItem();
                 this.resetProgress();
             }
+            // This is probably important?
             BlockEntity.setChanged(level, pos, state);
+            // This actually marks it as updated.
+            level.sendBlockUpdated(pos, state, state, 3);
         } else {
             this.resetProgress();
         }
@@ -428,7 +435,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
             LootParams lootparams = (new LootParams.Builder(serverLevel)).withParameter(
                             LootContextParams.ORIGIN,
                             this.getBlockPos().getCenter())
-                    .withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
                     .withParameter(
                             LootContextParams.TOOL,
                             this.getBlockState().getBlock().asItem().getDefaultInstance())
@@ -485,5 +491,20 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity {
         }
 
         return atLeastPartialSuccess;
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        return side == Direction.DOWN ? this.outputSlots : this.baitSlots;
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
+        return direction != Direction.DOWN && this.isBaitSlot(index);
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+        return direction == Direction.DOWN && this.isOutputSlot(index);
     }
 }

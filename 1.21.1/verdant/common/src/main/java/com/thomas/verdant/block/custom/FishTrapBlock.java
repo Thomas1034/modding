@@ -27,20 +27,41 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.Map;
 
 public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final MapCodec<? extends FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
-    private static final VoxelShape BLOCK_SUPPORT_SHAPE = Shapes.or(
-            Block.box(0, 0, 0, 16, 1, 16),
-            Block.box(0, 15, 0, 16, 16, 16));
+    private static final Map<Direction, VoxelShape> BLOCK_SUPPORT_SHAPE = Map.of(
+            Direction.NORTH, Shapes.join(
+                    Shapes.join(Shapes.block(), Block.box(3, 3, 0, 13, 13, 2), BooleanOp.ONLY_FIRST),
+                    Block.box(5, 5, 2, 11, 11, 4),
+                    BooleanOp.ONLY_FIRST
+            ), Direction.SOUTH, Shapes.join(
+                    Shapes.join(Shapes.block(), Block.box(13, 3, 14, 13, 13, 16), BooleanOp.ONLY_FIRST),
+                    Block.box(5, 5, 12, 11, 11, 14),
+                    BooleanOp.ONLY_FIRST
+            ), Direction.EAST, Shapes.join(
+                    Shapes.join(Shapes.block(), Block.box(14, 3, 3, 16, 13, 13), BooleanOp.ONLY_FIRST),
+                    Block.box(12, 5, 5, 14, 11, 11),
+                    BooleanOp.ONLY_FIRST
+            ), Direction.WEST, Shapes.join(
+                    Shapes.join(Shapes.block(), Block.box(0, 3, 3, 2, 13, 13), BooleanOp.ONLY_FIRST),
+                    Block.box(2, 5, 5, 4, 11, 11),
+                    BooleanOp.ONLY_FIRST
+            )
+    );
 
     public FishTrapBlock(Properties properties) {
         super(properties);
+
         this.registerDefaultState(this.getStateDefinition()
                 .any()
                 .setValue(FACING, Direction.NORTH)
@@ -52,7 +73,8 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public static BlockState copyWaterloggedFrom(LevelReader level, BlockPos pos, BlockState state) {
         return state.hasProperty(BlockStateProperties.WATERLOGGED) ? state.setValue(
                 BlockStateProperties.WATERLOGGED,
-                level.isWaterAt(pos)) : state;
+                level.isWaterAt(pos)
+        ) : state;
     }
 
     @Override
@@ -64,11 +86,16 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new FishTrapBlockEntity(pos, state);
     }
-    
-    @Override
-    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
-        return BLOCK_SUPPORT_SHAPE;
+
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        Shapes.join(
+                Shapes.join(Shapes.block(), Block.box(3, 3, 0, 13, 13, 2), BooleanOp.ONLY_FIRST),
+                Block.box(5, 5, 2, 11, 11, 4),
+                BooleanOp.ONLY_FIRST
+        );
+        return BLOCK_SUPPORT_SHAPE.get(state.getValue(FACING));
     }
+
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
@@ -93,7 +120,9 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
                 (lambdaLevel, lambdaPos, lambdaState, lambdaBlockEntity) -> lambdaBlockEntity.tick(
                         lambdaLevel,
                         lambdaPos,
-                        lambdaState));
+                        lambdaState
+                )
+        );
     }
 
     @Override
@@ -144,7 +173,8 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
         BlockState afterWaterlogged = copyWaterloggedFrom(
                 context.getLevel(),
                 context.getClickedPos(),
-                blockstate.setValue(FACING, facing));
+                blockstate.setValue(FACING, facing)
+        );
         return setEnabled(context.getLevel(), afterWaterlogged, context.getClickedPos());
     }
 

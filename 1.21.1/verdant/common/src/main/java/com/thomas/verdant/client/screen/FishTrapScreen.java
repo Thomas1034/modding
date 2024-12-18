@@ -14,7 +14,8 @@ import net.minecraft.world.entity.player.Inventory;
 public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
             Constants.MOD_ID,
-            "textures/gui/fish_trap_gui.png");
+            "textures/gui/fish_trap_gui.png"
+    );
     public static final int ARROW_WIDTH = 8;
     public static final int ARROW_HEIGHT = 26;
     public static final int ARROW_TEXTURE_OFFSET_X = 176;
@@ -68,12 +69,16 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                 this.imageWidth,
                 this.imageHeight,
                 BACKGROUND_TEXTURE_WIDTH,
-                BACKGROUND_TEXTURE_HEIGHT);
+                BACKGROUND_TEXTURE_HEIGHT
+        );
 
         this.renderProgressArrow(guiGraphics, x, y);
 
         int catchPercent = this.menu.getCatchPercent();
-        Component catchPercentComponent = Component.literal(catchPercent + "%");
+        Component catchPercentComponent = Component.translatable(
+                "block.verdant.fish_trap.gui.bait",
+                catchPercent
+        ); // Component.literal(catchPercent + "%");
         boolean isActive = true; //TODO this.menu.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
         if (!isActive) {
             catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_water");
@@ -85,7 +90,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                 guiGraphics,
                 x + ARROW_BLIT_OFFSET_X + ARROW_WIDTH + SPACING,
                 y + ARROW_BLIT_OFFSET_Y + ARROW_HEIGHT / 2 - this.font.lineHeight / 2,
-                catchPercentComponent);
+                catchPercentComponent
+        );
 
         int numOutputSlots = this.menu.getNumOutputSlots();
         int numBaitSlots = this.menu.getNumBaitSlots();
@@ -98,7 +104,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                     x,
                     y,
                     BAIT_SLOT_BLIT_OFFSET_X + SLOT_WIDTH * (i - numBaitSlots / 2) + inputOffsetIfEven,
-                    BAIT_SLOT_BLIT_OFFSET_Y);
+                    BAIT_SLOT_BLIT_OFFSET_Y
+            );
         }
         for (int i = 0; i < numOutputSlots; i++) {
             this.renderSlot(
@@ -106,7 +113,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                     x,
                     y,
                     OUTPUT_SLOT_BLIT_OFFSET_X + SLOT_WIDTH * (i - numOutputSlots / 2) + outputOffsetIfEven,
-                    OUTPUT_SLOT_BLIT_OFFSET_Y);
+                    OUTPUT_SLOT_BLIT_OFFSET_Y
+            );
         }
     }
 
@@ -123,7 +131,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                     ARROW_WIDTH,
                     (int) (this.menu.getProgress() * ARROW_HEIGHT),
                     BACKGROUND_TEXTURE_WIDTH,
-                    BACKGROUND_TEXTURE_HEIGHT);
+                    BACKGROUND_TEXTURE_HEIGHT
+            );
         }
     }
 
@@ -139,7 +148,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                 SLOT_WIDTH,
                 SLOT_HEIGHT,
                 BACKGROUND_TEXTURE_WIDTH,
-                BACKGROUND_TEXTURE_HEIGHT);
+                BACKGROUND_TEXTURE_HEIGHT
+        );
     }
 
     @SuppressWarnings("unused")
