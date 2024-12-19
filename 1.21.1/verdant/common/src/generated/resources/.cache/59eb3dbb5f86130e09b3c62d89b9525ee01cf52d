@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-16T12:53:46.7189077	Loot Tables
+// 1.21.3	2024-12-18T15:53:25.3223468	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json
@@ -29,6 +29,8 @@ c60d1d26577d97575cd4c2873ca8bcfa8f369f2f data/verdant/loot_table/blocks/heartwoo
 36324f8f9a402711d549954ed8a4016d5fda102c data/verdant/loot_table/blocks/poison_ivy.json
 2cd031d0c32651de82e841d772ada96c708bd5d2 data/verdant/loot_table/blocks/poison_ivy_plant.json
 22f0718c45a4ddc21757f169633b1572f9a6129b data/verdant/loot_table/blocks/poison_strangler_leaves.json
+a6542bf0cb4c56f2c57770fb14b4b34966f02cad data/verdant/loot_table/blocks/rope.json
+5fd51335e0c7e81ac0079379e5825a7483b4cbfe data/verdant/loot_table/blocks/rope_hook.json
 4006974032d90840bbc73da0e4c6ae4f9c089b20 data/verdant/loot_table/blocks/rotten_wood.json
 84575b4354dfa1674630988a034caac0690c7378 data/verdant/loot_table/blocks/strangler_button.json
 3824973eda229d44101a921a6ad648e5c4ed6c1f data/verdant/loot_table/blocks/strangler_door.json

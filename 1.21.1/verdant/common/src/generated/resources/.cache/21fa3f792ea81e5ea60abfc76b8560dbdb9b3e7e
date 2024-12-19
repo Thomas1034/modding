@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-16T19:15:38.4988705	Block States: verdant
+// 1.21.3	2024-12-18T13:28:16.7141358	Block States: verdant
 baca52875be35cc899e5dc7b59e7263f26d74a3e assets/verdant/blockstates/antigorite.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
@@ -28,6 +28,7 @@ ba9087edb9108a311b1e687dc3d8a85b8f334e94 assets/verdant/blockstates/heartwood_sl
 67e7df13c27b70a4120b13f6bbf8d1b323865f2a assets/verdant/blockstates/poison_ivy.json
 52fdfa3fd047e2d840e111ef8f6e3851da49a5ac assets/verdant/blockstates/poison_ivy_plant.json
 d45a019c37876f19dfc775d244ec27f14b07b7d0 assets/verdant/blockstates/poison_strangler_leaves.json
+cbb96d3943b949bf149a48ac7b442a578e4caa2d assets/verdant/blockstates/rope.json
 e4c248dcfc56f2bbf3c8a1a3085c02a1c3e88425 assets/verdant/blockstates/rotten_wood.json
 be55ae8c407c267cdfbb4b153c2a003292176ff3 assets/verdant/blockstates/strangler_button.json
 5d8a6a63d23ed855bf8adc415253c055d909462f assets/verdant/blockstates/strangler_door.json
@@ -108,6 +109,7 @@ f84eb499952c89e99262ac10c940640f063e9df6 assets/verdant/models/block/heartwood_w
 2e7f7cf49a671afa4e9fb8fc7f4417f98ffd9d7a assets/verdant/models/block/poison_ivy.json
 b0aec62b42aadc86b393db8b596de71f218de441 assets/verdant/models/block/poison_ivy_plant.json
 71bb11c53ee79bc103cf57e3dd3dc7cbd28a919e assets/verdant/models/block/poison_strangler_leaves.json
+4956a565decad29d53c6769225dd0be28056b8c0 assets/verdant/models/block/rope.json
 aceebbbced126fdd57054d3912dcb844c86522f6 assets/verdant/models/block/rotten_wood.json
 b773b1467831aca3f6964496d99f99b78cf6c810 assets/verdant/models/block/strangler_button.json
 37c78d5686bdf72d9e10ea12253844843ec17cdf assets/verdant/models/block/strangler_button_pressed.json

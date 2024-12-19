@@ -45,7 +45,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
                     Block.box(5, 5, 2, 11, 11, 4),
                     BooleanOp.ONLY_FIRST
             ), Direction.SOUTH, Shapes.join(
-                    Shapes.join(Shapes.block(), Block.box(13, 3, 14, 13, 13, 16), BooleanOp.ONLY_FIRST),
+                    Shapes.join(Shapes.block(), Block.box(3, 3, 14, 13, 13, 16), BooleanOp.ONLY_FIRST),
                     Block.box(5, 5, 12, 11, 11, 14),
                     BooleanOp.ONLY_FIRST
             ), Direction.EAST, Shapes.join(

@@ -37,7 +37,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         horizontalRotatedCustomModelBlock(
                 BlockRegistry.FISH_TRAP_BLOCK.get(),
                 "block/fish_trap",
-                "block/fish_trap_base");
+                "block/fish_trap_base"
+        );
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE);
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD, "cutout");
         simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
@@ -62,30 +63,42 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         overlayBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE, () -> Blocks.DIRT, new String[]{"emerald_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE, () -> Blocks.DIRT, new String[]{"diamond_ore_overlay"});
 
+        simpleBlock(
+                BlockRegistry.ROPE.get(),
+                models().cross(blockTexture(BlockRegistry.ROPE.get()).getPath(), blockTexture(BlockRegistry.ROPE.get()))
+                        .renderType("cutout")
+        );
 
         // Tendrils
         simpleBlockWithItem(
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 models().cross(
                         blockTexture(BlockRegistry.STRANGLER_TENDRIL.get()).getPath(),
-                        blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())).renderType("cutout"));
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())
+                ).renderType("cutout")
+        );
         simpleBlockWithItem(
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 models().cross(
                         blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get()).getPath(),
-                        blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get())).renderType("cutout"));
+                        blockTexture(BlockRegistry.STRANGLER_TENDRIL_PLANT.get())
+                ).renderType("cutout")
+        );
 
         // Poison ivy
         simpleBlockWithItem(
                 BlockRegistry.POISON_IVY.get(), models().cross(
                         blockTexture(BlockRegistry.POISON_IVY.get()).getPath(),
-                        blockTexture(BlockRegistry.POISON_IVY.get())).renderType("cutout"));
+                        blockTexture(BlockRegistry.POISON_IVY.get())
+                ).renderType("cutout")
+        );
         simpleBlockWithItem(
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 models().cross(
                         blockTexture(BlockRegistry.POISON_IVY_PLANT.get()).getPath(),
-                        blockTexture(BlockRegistry.POISON_IVY_PLANT.get())).renderType("cutout"));
-
+                        blockTexture(BlockRegistry.POISON_IVY_PLANT.get())
+                ).renderType("cutout")
+        );
     }
 
     private String name(Block block) {
@@ -115,19 +128,22 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         signBlock(
                 (StandingSignBlock) woodSet.getSign().get(),
                 (WallSignBlock) woodSet.getWallSign().get(),
-                blockTexture(planks));
+                blockTexture(planks)
+        );
         hangingSignBlock(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), blockTexture(planks));
         trapdoorBlockWithRenderType(
                 (TrapDoorBlock) woodSet.getTrapdoor().get(),
                 blockTexture(woodSet.getTrapdoor().get()),
                 true,
-                "cutout");
+                "cutout"
+        );
         DoorBlock door = (DoorBlock) woodSet.getDoor().get();
         doorBlockWithRenderType(
                 door,
                 blockTexture(door).withSuffix("_bottom"),
                 blockTexture(door).withSuffix("_top"),
-                "cutout");
+                "cutout"
+        );
 
     }
 
@@ -146,7 +162,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         for (int i = 0; i < overlays.length; i++) {
             files[i] = models().withExistingParent(
                             name(block) + (overlays.length == 1 ? "" : "_" + overlays[i]),
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block"))
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")
+                    )
                     .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
                     .texture("overlay", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + overlays[i]))
                     .renderType("cutout");
@@ -156,7 +173,13 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     }
 
     protected void verdantGroundBlock(@NotNull Supplier<Block> blockSource, Supplier<Block> baseSource) {
-        String[] extensions = new String[]{"", "_thick", "_thin", "_thin2", "_wilted", "_very_thin", "_very_thin_mixed"};
+        String[] extensions = new String[]{"",
+                "_thick",
+                "_thin",
+                "_thin2",
+                "_wilted",
+                "_very_thin",
+                "_very_thin_mixed"};
 
         Block block = blockSource.get();
         Block base = baseSource.get();
@@ -166,15 +189,12 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
         for (int i = 0; i < extensions.length; i++) {
             files[i] = models().withExistingParent(
-                            name(block) + extensions[i],
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block"))
-                    .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
-                    .texture(
-                            "overlay",
-                            ResourceLocation.fromNamespaceAndPath(
-                                    Constants.MOD_ID,
-                                    "block/verdant_overlay" + extensions[i]))
-                    .renderType("cutout");
+                    name(block) + extensions[i],
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/bilayer_block")
+            ).texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath()).texture(
+                    "overlay",
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_overlay" + extensions[i])
+            ).renderType("cutout");
         }
 
         blockWithItem(blockSource, files);
@@ -194,19 +214,24 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         for (int i = 0; i < extensions.length; i++) {
             files[i] = models().withExistingParent(
                             name(block) + extensions[i],
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_base_grass_block"))
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_base_grass_block")
+                    )
                     .texture("base", baseLocation.getNamespace() + ":block/" + baseLocation.getPath())
                     .texture(
                             "overlay",
                             ResourceLocation.fromNamespaceAndPath(
                                     Constants.MOD_ID,
-                                    "block/verdant_overlay" + extensions[i]))
+                                    "block/verdant_overlay" + extensions[i]
+                            )
+                    )
                     .texture(
                             "top",
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_top"))
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_top")
+                    )
                     .texture(
                             "side",
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_side"))
+                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/verdant_grass_block_side")
+                    )
                     .renderType("cutout");
         }
 
@@ -229,24 +254,29 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         axisBlock(
                 block,
                 models().cubeColumn(name(block), side, end).renderType(renderType),
-                models().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType));
+                models().cubeColumnHorizontal(name(block) + "_horizontal", side, end).renderType(renderType)
+        );
     }
 
     public void doubleSidedAxisBlock(RotatedPillarBlock block, String renderType) {
         axisBlock(
                 block, models().withExistingParent(
                                 name(block),
-                                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/double_sided_cube_column"))
+                                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/double_sided_cube_column")
+                        )
                         .texture("side", blockTexture(block))
                         .texture("end", extend(blockTexture(block), "_top"))
                         .renderType(renderType), models().withExistingParent(
                                 name(block) + "_horizontal",
                                 ResourceLocation.fromNamespaceAndPath(
                                         Constants.MOD_ID,
-                                        "block/double_sided_cube_column_horizontal"))
+                                        "block/double_sided_cube_column_horizontal"
+                                )
+                        )
                         .texture("side", blockTexture(block))
                         .texture("end", extend(blockTexture(block), "_top"))
-                        .renderType(renderType));
+                        .renderType(renderType)
+        );
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -269,7 +299,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
             model = models().withExistingParent(
                             blockTexture(block).toString(),
-                            ResourceLocation.withDefaultNamespace("block/template_anvil"))
+                            ResourceLocation.withDefaultNamespace("block/template_anvil")
+                    )
                     .texture("particle", blockTexture(block).toString())
                     .texture("body", blockTexture(block).toString())
                     .texture("top", blockTexture(block) + "_top");
@@ -285,7 +316,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         if (state.getValue(LanternBlock.HANGING)) {
             lanternModel = new ConfiguredModel(models().withExistingParent(
                             modelName + "_hanging",
-                            mcLoc("template_hanging_lantern"))
+                            mcLoc("template_hanging_lantern")
+                    )
                     .texture("lantern", modLoc("block/" + modelName))
                     .renderType("cutout"));
         } else {
@@ -455,7 +487,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
                         blockTexture(pottedFlower).getPath(),
                         ResourceLocation.withDefaultNamespace("flower_pot_cross"),
                         "plant",
-                        blockTexture(flower)).renderType("cutout"));
+                        blockTexture(flower)
+                ).renderType("cutout")
+        );
     }
 
     protected void simpleFlowerPot(Block pottedFlower, ResourceLocation pottedFlowerTexture) {
@@ -464,7 +498,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
                         blockTexture(pottedFlower).getPath(),
                         ResourceLocation.withDefaultNamespace("flower_pot_cross"),
                         "plant",
-                        pottedFlowerTexture).renderType("cutout"));
+                        pottedFlowerTexture
+                ).renderType("cutout")
+        );
     }
 
     protected void cropBlock(CropBlock block, String modelName, String textureName) {
@@ -472,9 +508,9 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
             ConfiguredModel[] models = new ConfiguredModel[1];
             String age = "_stage" + state.getValue(CropBlock.AGE);
             models[0] = new ConfiguredModel(models().crop(
-                            modelName + age,
-                            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + textureName + age))
-                    .renderType("cutout"));
+                    modelName + age,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + textureName + age)
+            ).renderType("cutout"));
             return models;
         };
         // Add all the states

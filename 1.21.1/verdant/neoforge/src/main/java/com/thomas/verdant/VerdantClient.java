@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
+import com.thomas.verdant.registry.EntityTypeRegistry;
 import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
@@ -9,6 +10,7 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -48,18 +50,21 @@ public class VerdantClient {
             event.registerLayerDefinition(locationForBoat.get(woodSet.getBoat()), BoatModel::createBoatModel);
             event.registerLayerDefinition(
                     locationForChestBoat.get(woodSet.getChestBoat()),
-                    BoatModel::createChestBoatModel);
+                    BoatModel::createChestBoatModel
+            );
         }
     }
 
     public static void registerLayersForWoodSet(WoodSet woodSet) {
         ModelLayerLocation boat = new ModelLayerLocation(
                 ResourceLocation.withDefaultNamespace("boat/" + woodSet.getName()),
-                "main");
+                "main"
+        );
         // ModelLayers.register("boat/" + woodSet.getName());
         ModelLayerLocation chestBoat = new ModelLayerLocation(
                 ResourceLocation.withDefaultNamespace("chest_boat/" + woodSet.getName()),
-                "main");
+                "main"
+        );
         // ModelLayers.register("chest_boat/" + woodSet.getName());
         locationForBoat.put(woodSet.getBoat(), boat);
         locationForChestBoat.put(woodSet.getChestBoat(), chestBoat);
@@ -69,11 +74,15 @@ public class VerdantClient {
         for (WoodSet woodSet : WOOD_SETS) {
             EntityRenderers.register(
                     woodSet.getBoat().get(),
-                    (context) -> new BoatRenderer(context, locationForBoat.get(woodSet.getBoat())));
+                    (context) -> new BoatRenderer(context, locationForBoat.get(woodSet.getBoat()))
+            );
             EntityRenderers.register(
                     woodSet.getChestBoat().get(),
-                    (context) -> new BoatRenderer(context, locationForChestBoat.get(woodSet.getChestBoat())));
+                    (context) -> new BoatRenderer(context, locationForChestBoat.get(woodSet.getChestBoat()))
+            );
         }
+
+        EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {

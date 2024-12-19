@@ -31,6 +31,8 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         basicItem(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         basicItem(BlockRegistry.STRANGLER_TENDRIL.get().asItem());
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
+        basicItem(BlockRegistry.ROPE.get().asItem());
+        basicItem(ItemRegistry.ROPE_COIL.get());
     }
 
     protected void generateFor(WoodSet woodSet) {
@@ -49,23 +51,50 @@ public class VerdantItemModelProvider extends ItemModelProvider {
     }
 
     public void trapdoorItem(RegistryObject<Block, Block> block) {
-        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath() + "_bottom"));
+        this.withExistingParent(
+                BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
+                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath() + "_bottom")
+        );
     }
 
     public void fenceItem(RegistryObject<Block, Block> block, RegistryObject<Block, Block> baseBlock) {
-        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/fence_inventory")).texture("texture", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/fence_inventory"))
+                .texture(
+                        "texture",
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()
+                        )
+                );
     }
 
     public void buttonItem(RegistryObject<Block, Block> block, RegistryObject<Block, Block> baseBlock) {
-        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/button_inventory")).texture("texture", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
+                .texture(
+                        "texture",
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()
+                        )
+                );
     }
 
     public void buttonItem(RegistryObject<Block, Block> block, Block baseBlock) {
-        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/button_inventory")).texture("texture", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock).getPath()));
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
+                .texture(
+                        "texture",
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock).getPath()
+                        )
+                );
     }
 
     public void evenSimplerBlockItem(RegistryObject<Block, Block> block) {
-        this.withExistingParent(Constants.MOD_ID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath()));
+        this.withExistingParent(
+                Constants.MOD_ID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
+                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath())
+        );
     }
 
 }

@@ -59,6 +59,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // ModBlocks.VERDANT_HEARTWOOD.addLootTables(this);
         // ModBlocks.VERDANT.addLootTables(this);
 
+        this.dropOther(BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
         this.dropSelf(BlockRegistry.FISH_TRAP_BLOCK.get());
         this.dropSelf(BlockRegistry.ANTIGORITE.get());
         this.add(BlockRegistry.TEST_BLOCK.get(), noDrop());
@@ -108,14 +109,15 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                                                 .hasProperty(StranglerVineBlock.WEST, StranglerVineBlock.MAX_AGE)))));
         this.add(
                 BlockRegistry.STRANGLER_VINE.get(),
-                stranglerVineLoot.apply(
-                        BlockRegistry.STRANGLER_VINE.get(),
-                        BlockRegistry.STRANGLER_VINE.get().asItem()));
+                stranglerVineLoot.apply(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.STRANGLER_VINE.get().asItem())
+        );
         this.add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
                 stranglerVineLoot.apply(
                         BlockRegistry.LEAFY_STRANGLER_VINE.get(),
-                        BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()));
+                        BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()
+                )
+        );
 
         // Proudly written by ChatGPT 4o
         Block rottenWood = BlockRegistry.ROTTEN_WOOD.get();
@@ -174,7 +176,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // this.dropSelf(ModBlocks.IRON_TRAP.get());
         // this.dropSelf(ModBlocks.THORN_SPIKES.get());
         // this.dropSelf(ModBlocks.IRON_SPIKES.get());
-        // this.dropSelf(ModBlocks.ROPE.get());
+        this.dropSelf(BlockRegistry.ROPE.get());
         // this.dropSelf(ModBlocks.POISON_IVY_BLOCK.get());
         // this.dropSelf(ModBlocks.TOXIC_ASH_BLOCK.get());
         // requireSilkTouch(ModBlocks.VERDANT_CONDUIT.get(), Blocks.AIR);
@@ -186,7 +188,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.DIRT_LAPIS_ORE.get(), this.createLapisOreDrops(BlockRegistry.DIRT_LAPIS_ORE.get()));
         this.add(
                 BlockRegistry.DIRT_REDSTONE_ORE.get(),
-                this.createRedstoneOreDrops(BlockRegistry.DIRT_REDSTONE_ORE.get()));
+                this.createRedstoneOreDrops(BlockRegistry.DIRT_REDSTONE_ORE.get())
+        );
         oreDrop(BlockRegistry.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 3));
         oreDrop(BlockRegistry.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
 
@@ -328,7 +331,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                                 .apply(ApplyBonusCount.addUniformBonusCount(
                                         registries.lookup(Registries.ENCHANTMENT)
                                                 .orElseThrow()
-                                                .getOrThrow(Enchantments.FORTUNE), 2))));
+                                                .getOrThrow(Enchantments.FORTUNE), 2
+                                ))
+                )
+        );
     }
 
     protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
@@ -338,10 +344,13 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(
                                         range.get(0),
-                                        range.get(1))))
+                                        range.get(1)
+                                )))
                                 .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT)
                                         .orElseThrow()
-                                        .getOrThrow(Enchantments.FORTUNE)))));
+                                        .getOrThrow(Enchantments.FORTUNE)))
+                )
+        );
     }
 
     protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {
@@ -355,16 +364,20 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(
                                         range.get(0),
-                                        range.get(1))))
+                                        range.get(1)
+                                )))
                                 .apply(ApplyBonusCount.addOreBonusCount(registries.lookup(Registries.ENCHANTMENT)
                                         .orElseThrow()
-                                        .getOrThrow(Enchantments.FORTUNE)))));
+                                        .getOrThrow(Enchantments.FORTUNE)))
+                )
+        );
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item) {
         return createSilkTouchOrShearsDispatchTable(
                 pBlock,
-                this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item)));
+                this.applyExplosionDecay(pBlock, LootItem.lootTableItem(item))
+        );
     }
 
     protected LootTable.Builder createSilkTouchOrShearsDrop(Block pBlock, Item item, List<Integer> range) {
@@ -407,7 +420,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 block,
                 this.applyExplosionDecay(
                         block,
-                        NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, source))));
+                        NestedLootTable.lootTableReference(ResourceKey.create(Registries.LOOT_TABLE, source))
+                )
+        );
     }
 
 }

@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/rope_down"
+			}
+    },
+		{
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "verdant:block/rope_hook",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "verdant:block/rope_hook"
+      }
+    },
+		{
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "verdant:block/rope_hook",
+        "y": 180
+      }
+    },
+		{
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "verdant:block/rope_hook",
+        "y": 270
+      }
+    }
+  ]
+}

@@ -24,11 +24,12 @@ public class VerdantTags {
         public static final TagKey<Block> ROTTEN_WOOD = tag("rotten_wood");
         public static final TagKey<Block> VERDANT_GROUND = tag("verdant_ground");
         public static final TagKey<Block> TENDRILS = tag("tendrils");
+        public static final TagKey<Block> ROPE_HOOKS = tag("rope_hooks");
+        public static final TagKey<Block> ROPES_EXTEND = tag("ropes_extend");
         public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
         public static final TagKey<Block> NEEDS_IMBUED_HEARTWOOD_TOOL = tag("needs_imbued_heartwood_tool");
 
         private static TagKey<Block> tag(String name) {
-
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
     }
@@ -37,7 +38,10 @@ public class VerdantTags {
 
         @SuppressWarnings("unused")
         private static TagKey<Structure> tag(String name) {
-            TagKey<Structure> tag = TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<Structure> tag = TagKey.create(
+                    Registries.STRUCTURE,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
             return tag;
         }
     }

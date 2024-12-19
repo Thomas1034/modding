@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.EntityTypeRegistry;
 import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
@@ -15,6 +16,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -55,7 +57,10 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POISON_IVY_PLANT,
                 BlockRegistry.STRANGLER_TENDRIL,
                 BlockRegistry.STRANGLER_TENDRIL_PLANT,
-                BlockRegistry.FISH_TRAP_BLOCK);
+                BlockRegistry.FISH_TRAP_BLOCK,
+                BlockRegistry.ROPE,
+                BlockRegistry.ROPE_HOOK
+        );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             markCutout(woodSet.getDoor(), woodSet.getTrapdoor());
@@ -63,6 +68,8 @@ public class VerdantClient implements ClientModInitializer {
         }
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
+
+        EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {
@@ -73,7 +80,8 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(woodSet.getBoat().get(), (context) -> new BoatRenderer(context, boat));
         EntityRendererRegistry.register(
                 woodSet.getChestBoat().get(),
-                (context) -> new BoatRenderer(context, chestBoat));
+                (context) -> new BoatRenderer(context, chestBoat)
+        );
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -81,7 +89,8 @@ public class VerdantClient implements ClientModInitializer {
         Arrays.stream(blocks)
                 .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
                         ((Supplier<Block>) block).get(),
-                        RenderType.cutout()));
+                        RenderType.cutout()
+                ));
     }
 
 }

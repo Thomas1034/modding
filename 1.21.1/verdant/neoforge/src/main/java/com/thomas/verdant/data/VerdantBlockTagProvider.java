@@ -28,15 +28,46 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         }
 
         // Mineables
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), BlockRegistry.STRANGLER_VINE.get()/*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.FISH_TRAP_BLOCK.get()*/);
-        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockRegistry.VERDANT_GRASS_DIRT.get(), BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get(), BlockRegistry.DIRT_COAL_ORE.get(), BlockRegistry.DIRT_COPPER_ORE.get(), BlockRegistry.DIRT_DIAMOND_ORE.get(), BlockRegistry.DIRT_EMERALD_ORE.get(), BlockRegistry.DIRT_GOLD_ORE.get(), BlockRegistry.DIRT_IRON_ORE.get(), BlockRegistry.DIRT_LAPIS_ORE.get(), BlockRegistry.DIRT_REDSTONE_ORE.get()/*, BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
-                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(), BlockRegistry.VERDANT_CONDUIT.get()*/);
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                BlockRegistry.LEAFY_STRANGLER_VINE.get(),
+                BlockRegistry.STRANGLER_VINE.get()/*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.FISH_TRAP_BLOCK.get()*/
+        );
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
+                BlockRegistry.VERDANT_GRASS_DIRT.get(),
+                BlockRegistry.VERDANT_ROOTED_DIRT.get(),
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.DIRT_COAL_ORE.get(),
+                BlockRegistry.DIRT_COPPER_ORE.get(),
+                BlockRegistry.DIRT_DIAMOND_ORE.get(),
+                BlockRegistry.DIRT_EMERALD_ORE.get(),
+                BlockRegistry.DIRT_GOLD_ORE.get(),
+                BlockRegistry.DIRT_IRON_ORE.get(),
+                BlockRegistry.DIRT_LAPIS_ORE.get(),
+                BlockRegistry.DIRT_REDSTONE_ORE.get()/*, BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
+                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(), BlockRegistry.VERDANT_CONDUIT.get()*/
+        );
         this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
-        this.tag(BlockTags.MINEABLE_WITH_HOE).add(/*BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get(),*/BlockRegistry.STRANGLER_TENDRIL.get(), BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
+        this.tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(/*BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get(),*/BlockRegistry.STRANGLER_TENDRIL.get(),
+                        BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                        BlockRegistry.POISON_IVY.get(),
+                        BlockRegistry.POISON_IVY_PLANT.get()
+                );
 
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_VINES);
-        this.tag(BlockTags.SWORD_EFFICIENT).add(BlockRegistry.STRANGLER_LEAVES.get(), BlockRegistry.THORNY_STRANGLER_LEAVES.get(), BlockRegistry.POISON_STRANGLER_LEAVES.get(), BlockRegistry.STRANGLER_TENDRIL.get(), BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get()/*, BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get()*/);
+        this.tag(BlockTags.SWORD_EFFICIENT).add(
+                BlockRegistry.STRANGLER_LEAVES.get(),
+                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
+                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get()/*, BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get()*/
+        );
 
         //        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.IRON_SPIKES.get(), BlockRegistry.IRON_TRAP.get());
 
@@ -49,18 +80,57 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         //        // Mechanical.
         //        this.tag(BlockTags.CROPS).add(BlockRegistry.CASSAVA_CROP.get(), BlockRegistry.BITTER_CASSAVA_CROP.get(),
         //                BlockRegistry.COFFEE_CROP.get());
-        this.tag(BlockTags.DIRT).add(BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_GRASS_DIRT.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_CLAY.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get()/*,
-                BlockRegistry.CASSAVA_ROOTED_DIRT.get(), BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()*/);
-        this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_GRASS_DIRT.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_CLAY.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get());
+        this.tag(BlockTags.DIRT).add(
+                BlockRegistry.VERDANT_ROOTED_DIRT.get(),
+                BlockRegistry.VERDANT_GRASS_DIRT.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get()/*,
+                BlockRegistry.CASSAVA_ROOTED_DIRT.get(), BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()*/
+        );
+        this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
+                BlockRegistry.VERDANT_ROOTED_DIRT.get(),
+                BlockRegistry.VERDANT_GRASS_DIRT.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get()
+        );
 
-        this.tag(BlockTags.CLIMBABLE).add(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.STRANGLER_TENDRIL.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get()/*, BlockRegistry.ROPE.get(), BlockRegistry.ROPE_LADDER.get()*/);
+        this.tag(BlockTags.CLIMBABLE).add(
+                BlockRegistry.STRANGLER_VINE.get(),
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                BlockRegistry.ROPE.get(),
+                BlockRegistry.ROPE_HOOK.get()/*, BlockRegistry.ROPE_LADDER.get()*/
+        );
 
         this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
-        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get(), BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.STRANGLER_TENDRIL.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                BlockRegistry.STRANGLER_TENDRIL.get()
+        );
 
+        this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get()
+        );
+        this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get()
+        );
 
-        this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
-        this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
+        this.tag(VerdantTags.Blocks.ROPES_EXTEND).add(BlockRegistry.ROPE.get(), BlockRegistry.ROPE_HOOK.get());
+        this.tag(VerdantTags.Blocks.ROPE_HOOKS).add(Blocks.TRIPWIRE_HOOK, BlockRegistry.ROPE_HOOK.get());
 
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
@@ -98,16 +168,38 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).remove(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES);
 
         // Leafy blocks
-        this.tag(VerdantTags.Blocks.STRANGLER_LEAVES).add(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), BlockRegistry.STRANGLER_LEAVES.get(), BlockRegistry.THORNY_STRANGLER_LEAVES.get(), BlockRegistry.POISON_STRANGLER_LEAVES.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get());
+        this.tag(VerdantTags.Blocks.STRANGLER_LEAVES).add(
+                BlockRegistry.WILTED_STRANGLER_LEAVES.get(),
+                BlockRegistry.STRANGLER_LEAVES.get(),
+                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
+                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
+                BlockRegistry.LEAFY_STRANGLER_VINE.get()
+        );
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
 
         // Vines
-        this.tag(VerdantTags.Blocks.STRANGLER_VINES).add(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get());
+        this.tag(VerdantTags.Blocks.STRANGLER_VINES)
+                .add(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get());
 
-        this.tag(VerdantTags.Blocks.TENDRILS).add(BlockRegistry.STRANGLER_TENDRIL.get(), BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get(), Blocks.VINE, Blocks.CAVE_VINES, Blocks.CAVE_VINES_PLANT);
+        this.tag(VerdantTags.Blocks.TENDRILS).add(
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                Blocks.VINE,
+                Blocks.CAVE_VINES,
+                Blocks.CAVE_VINES_PLANT
+        );
 
         // Verdant ground
-        this.tag(VerdantTags.Blocks.VERDANT_GROUND).add(BlockRegistry.VERDANT_GRASS_DIRT.get(), BlockRegistry.VERDANT_ROOTED_DIRT.get(), BlockRegistry.VERDANT_ROOTED_MUD.get(), BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get(), BlockRegistry.VERDANT_GRASS_CLAY.get());
+        this.tag(VerdantTags.Blocks.VERDANT_GROUND).add(
+                BlockRegistry.VERDANT_GRASS_DIRT.get(),
+                BlockRegistry.VERDANT_ROOTED_DIRT.get(),
+                BlockRegistry.VERDANT_ROOTED_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get()
+        );
 
         // Verdant logs
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(BlockTags.LOGS_THAT_BURN);
@@ -128,7 +220,16 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     }
 
     private void addDirtOres() {
-        this.tag(Tags.Blocks.ORES).add(BlockRegistry.DIRT_COAL_ORE.get(), BlockRegistry.DIRT_COPPER_ORE.get(), BlockRegistry.DIRT_DIAMOND_ORE.get(), BlockRegistry.DIRT_EMERALD_ORE.get(), BlockRegistry.DIRT_GOLD_ORE.get(), BlockRegistry.DIRT_IRON_ORE.get(), BlockRegistry.DIRT_LAPIS_ORE.get(), BlockRegistry.DIRT_REDSTONE_ORE.get());
+        this.tag(Tags.Blocks.ORES).add(
+                BlockRegistry.DIRT_COAL_ORE.get(),
+                BlockRegistry.DIRT_COPPER_ORE.get(),
+                BlockRegistry.DIRT_DIAMOND_ORE.get(),
+                BlockRegistry.DIRT_EMERALD_ORE.get(),
+                BlockRegistry.DIRT_GOLD_ORE.get(),
+                BlockRegistry.DIRT_IRON_ORE.get(),
+                BlockRegistry.DIRT_LAPIS_ORE.get(),
+                BlockRegistry.DIRT_REDSTONE_ORE.get()
+        );
         this.tag(Tags.Blocks.ORES_COAL).add(BlockRegistry.DIRT_COAL_ORE.get());
         this.tag(Tags.Blocks.ORES_COPPER).add(BlockRegistry.DIRT_COPPER_ORE.get());
         this.tag(Tags.Blocks.ORES_DIAMOND).add(BlockRegistry.DIRT_DIAMOND_ORE.get());
@@ -141,8 +242,31 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
 
     public void generateFor(WoodSet woodSet) {
-        this.tag(woodSet.getLogs()).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get(), woodSet.getPlanks().get(), woodSet.getSlab().get(), woodSet.getStairs().get(), woodSet.getFence().get(), woodSet.getFenceGate().get(), woodSet.getSign().get(), woodSet.getWallSign().get(), woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), woodSet.getButton().get(), woodSet.getPressurePlate().get(), woodSet.getDoor().get(), woodSet.getTrapdoor().get());
+        this.tag(woodSet.getLogs()).add(
+                woodSet.getLog().get(),
+                woodSet.getWood().get(),
+                woodSet.getStrippedLog().get(),
+                woodSet.getStrippedWood().get()
+        );
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                woodSet.getLog().get(),
+                woodSet.getWood().get(),
+                woodSet.getStrippedLog().get(),
+                woodSet.getStrippedWood().get(),
+                woodSet.getPlanks().get(),
+                woodSet.getSlab().get(),
+                woodSet.getStairs().get(),
+                woodSet.getFence().get(),
+                woodSet.getFenceGate().get(),
+                woodSet.getSign().get(),
+                woodSet.getWallSign().get(),
+                woodSet.getHangingSign().get(),
+                woodSet.getWallHangingSign().get(),
+                woodSet.getButton().get(),
+                woodSet.getPressurePlate().get(),
+                woodSet.getDoor().get(),
+                woodSet.getTrapdoor().get()
+        );
         this.tag(BlockTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get());
         this.tag(BlockTags.WOODEN_DOORS).add(woodSet.getDoor().get());
         this.tag(BlockTags.WOODEN_SLABS).add(woodSet.getSlab().get());
@@ -151,9 +275,19 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get());
         this.tag(BlockTags.WOODEN_FENCES).add(woodSet.getFence().get());
         this.tag(BlockTags.PLANKS).add(woodSet.getPlanks().get());
-        this.tag(BlockTags.LOGS).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
+        this.tag(BlockTags.LOGS).add(
+                woodSet.getLog().get(),
+                woodSet.getWood().get(),
+                woodSet.getStrippedLog().get(),
+                woodSet.getStrippedWood().get()
+        );
         if (woodSet.isFlammable()) {
-            this.tag(BlockTags.LOGS_THAT_BURN).add(woodSet.getLog().get(), woodSet.getWood().get(), woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
+            this.tag(BlockTags.LOGS_THAT_BURN).add(
+                    woodSet.getLog().get(),
+                    woodSet.getWood().get(),
+                    woodSet.getStrippedLog().get(),
+                    woodSet.getStrippedWood().get()
+            );
         }
         this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodSet.getFenceGate().get());
         this.tag(Tags.Blocks.FENCES_WOODEN).add(woodSet.getFence().get());

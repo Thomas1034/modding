@@ -336,6 +336,8 @@
 	"tag.block.verdant.rotten_wood" : "Rotten Wood",
 	"tag.block.verdant.verdant_ground" : "Verdant Ground",
 	"tag.block.verdant.tendrils" : "Tendrils",
+	"tag.block.verdant.rope_hooks" : "Rope Hooks",
+	"tag.block.verdant.ropes_extend" : "Ropes Can Extend",
 	
 	"tag.item.verdant.strangler_vines" : "Strangler Vines",
 	"tag.item.verdant.verdant_friendly_armors" : "Verdant Friendly Armors",
