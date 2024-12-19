@@ -1,7 +1,7 @@
 package com.thomas.verdant.item.custom;
 
 import com.thomas.verdant.entity.custom.ThrownRopeEntity;
-import com.thomas.verdant.item.component.ThrownRopeComponent;
+import com.thomas.verdant.item.component.RopeCoilData;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.server.level.ServerLevel;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 
 public class RopeCoilItem extends Item implements ProjectileItem {
 
-    public static final ThrownRopeComponent DEFAULT_DATA_COMPONENT = new ThrownRopeComponent(8, false);
+    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(8, true);
 
     public RopeCoilItem(Properties properties) {
         super(properties);

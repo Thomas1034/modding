@@ -31,7 +31,7 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         basicItem(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         basicItem(BlockRegistry.STRANGLER_TENDRIL.get().asItem());
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
-        basicItem(BlockRegistry.ROPE.get().asItem());
+        basicItem(ItemRegistry.ROPE.get());
         basicItem(ItemRegistry.ROPE_COIL.get());
     }
 

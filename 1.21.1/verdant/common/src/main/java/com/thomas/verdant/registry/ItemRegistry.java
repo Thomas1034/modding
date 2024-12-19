@@ -2,6 +2,7 @@ package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.item.custom.RopeCoilItem;
+import com.thomas.verdant.item.custom.RopeItem;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -22,9 +23,13 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> ROPE_COIL = register(
             "rope_coil",
             () -> new RopeCoilItem(properties("rope_coil").component(
-                    DataComponentRegistry.ROPE_LENGTH.get(),
+                    DataComponentRegistry.ROPE_COIL.get(),
                     RopeCoilItem.DEFAULT_DATA_COMPONENT
             ))
+    );
+    public static final RegistryObject<Item, Item> ROPE = register(
+            "rope",
+            () -> new RopeItem(BlockRegistry.ROPE.get(), properties("rope"))
     );
 
     public static void init() {

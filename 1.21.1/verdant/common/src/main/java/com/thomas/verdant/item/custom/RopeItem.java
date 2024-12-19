@@ -6,11 +6,9 @@ import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -58,8 +56,14 @@ public class RopeItem extends BlockItem {
                     pos = pos.below();
                     // At least one block placed.
                     anySucceeded = true;
+                    break;
                 }
             }
+        }
+
+        // If it hit a rope, move downward.
+        while (level.getBlockState(pos).is(VerdantTags.Blocks.ROPES_EXTEND)) {
+            pos = pos.below();
         }
 
         // The current block where the top of the rope is trying to be placed.
@@ -123,34 +127,17 @@ public class RopeItem extends BlockItem {
         level.setBlockAndUpdate(pos, rope);
     }
 
+    @Override
     public InteractionResult useOn(UseOnContext context) {
-        Player player = context.getPlayer();
         ItemStack stack = context.getItemInHand();
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-
-        // Start scanning for blocks, if it is server side.
-        boolean hasFound = false;
-        BlockPos.MutableBlockPos scanPos = new BlockPos.MutableBlockPos().set(pos);
-        while (level.getBlockState(scanPos).is(VerdantTags.Blocks.ROPES_EXTEND)) {
-            hasFound = true;
-            scanPos.move(Direction.DOWN);
-        }
-        if (hasFound && level.getBlockState(scanPos).is(BlockTags.REPLACEABLE) && level.getFluidState(scanPos)
-                .isEmpty()) {
-            if (level instanceof ServerLevel serverLevel) {
-                serverLevel.setBlockAndUpdate(scanPos, this.getBlock().defaultBlockState());
-                serverLevel.addDestroyBlockEffect(scanPos, this.getBlock().defaultBlockState());
-                if (!player.getAbilities().instabuild) {
-                    stack.shrink(1);
-                    return InteractionResult.CONSUME;
-                }
-            }
-            // On success
+        boolean succeeded = tryPlaceRope(level, pos, 1, false, false);
+        if (succeeded) {
+            stack.shrink(1);
             return InteractionResult.SUCCESS;
+        } else {
+            return super.useOn(context);
         }
-
-        return super.useOn(context);
     }
-
 }

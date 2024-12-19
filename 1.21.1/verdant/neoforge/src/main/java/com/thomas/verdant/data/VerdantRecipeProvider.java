@@ -2,6 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
@@ -54,7 +55,8 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
                 recipeName.append("_").append(getItemName((ItemLike) ingredients.get(i)));
                 recipe = recipe.define(tokens.get(i), (ItemLike) ingredients.get(i));
             } else if (ingredients.get(i) instanceof TagKey<?> tag) {
-                Ingredient ingredient = Ingredient.of(this.registries.lookupOrThrow(Registries.ITEM).getOrThrow((TagKey<Item>) tag));
+                Ingredient ingredient = Ingredient.of(this.registries.lookupOrThrow(Registries.ITEM)
+                        .getOrThrow((TagKey<Item>) tag));
                 recipeName.append("_tag_").append(tag.location().toDebugFileName());
                 recipe = recipe.define(tokens.get(i), ingredient);
             } else {
@@ -108,9 +110,9 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
         SingleItemRecipeBuilder recipe = SingleItemRecipeBuilder.stonecutting(toAdd, recipeCategory, result, count);
 
         // Adds in the unlock trigger for the ingredient.
-        if (ingredient instanceof ItemLike)
+        if (ingredient instanceof ItemLike) {
             recipe = recipe.unlockedBy(getHasName((ItemLike) ingredient), has((ItemLike) ingredient));
-        else if (ingredient instanceof TagKey) {
+        } else if (ingredient instanceof TagKey) {
             String name = "has" + ((TagKey<Item>) ingredient).registry().registry().toDebugFileName();
             recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredient));
         } else {
@@ -149,7 +151,8 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
                 recipe = recipe.requires((ItemLike) ingredients.get(i), counts.get(i));
             } else if (ingredients.get(i) instanceof TagKey<?> tag) {
                 recipeName.append("_tag_").append(tag.location().toDebugFileName());
-                Ingredient ingredient = Ingredient.of(this.registries.lookupOrThrow(Registries.ITEM).getOrThrow((TagKey<Item>) tag));
+                Ingredient ingredient = Ingredient.of(this.registries.lookupOrThrow(Registries.ITEM)
+                        .getOrThrow((TagKey<Item>) tag));
                 recipe = recipe.requires(ingredient, counts.get(i));
             } else {
                 throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredients.get(i));
@@ -158,9 +161,12 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
 
         // Adds in the unlock triggers for the ingredients.
         for (int i = 0; i < ingredients.size(); i++) {
-            if (ingredients.get(i) instanceof ItemLike)
-                recipe = recipe.unlockedBy(getHasName((ItemLike) ingredients.get(i)), has((ItemLike) ingredients.get(i)));
-            else if (ingredients.get(i) instanceof TagKey) {
+            if (ingredients.get(i) instanceof ItemLike) {
+                recipe = recipe.unlockedBy(
+                        getHasName((ItemLike) ingredients.get(i)),
+                        has((ItemLike) ingredients.get(i))
+                );
+            } else if (ingredients.get(i) instanceof TagKey) {
                 String name = "has" + ((TagKey<Item>) ingredients.get(i)).registry().registry().toDebugFileName();
                 recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredients.get(i)));
             } else {
@@ -184,47 +190,124 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
         smoking(ingredients, category, result, experience, cookingTime / 2, group);
     }
 
+    // TODO
     @Override
     protected void buildRecipes() {
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             this.generateFor(woodSet);
         }
 
-        shaped(List.of("vv", "vv"), List.of('v'), List.of(VerdantTags.Items.STRANGLER_VINES), RecipeCategory.BUILDING_BLOCKS, WoodSets.STRANGLER.getLog().get(), 1);
+        shaped(
+                List.of("vv", "vv"),
+                List.of('v'),
+                List.of(VerdantTags.Items.STRANGLER_VINES),
+                RecipeCategory.BUILDING_BLOCKS,
+                WoodSets.STRANGLER.getLog().get(),
+                1
+        );
 
-        shapeless(List.of(BlockRegistry.STRANGLER_VINE.get().asItem()), List.of(1), RecipeCategory.MISC, BlockRegistry.LEAFY_STRANGLER_VINE.get(), 1);
-        shapeless(List.of(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()), List.of(1), RecipeCategory.MISC, BlockRegistry.STRANGLER_VINE.get(), 1);
+        shapeless(
+                List.of(BlockRegistry.STRANGLER_VINE.get().asItem()),
+                List.of(1),
+                RecipeCategory.MISC,
+                BlockRegistry.LEAFY_STRANGLER_VINE.get(),
+                1
+        );
+        shapeless(
+                List.of(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()),
+                List.of(1),
+                RecipeCategory.MISC,
+                BlockRegistry.STRANGLER_VINE.get(),
+                1
+        );
+        shaped(
+                List.of("v", "v"),
+                List.of('v'),
+                List.of(BlockRegistry.STRANGLER_TENDRIL.get().asItem()),
+                RecipeCategory.MISC,
+                ItemRegistry.ROPE.get(),
+                2
+        );
+
     }
 
     protected void generateFor(WoodSet woodSet) {
 
-        shapeless(List.of(woodSet.getLogItems()), List.of(1), RecipeCategory.BUILDING_BLOCKS, woodSet.getPlanks().get(), 4, "planks");
+        shapeless(
+                List.of(woodSet.getLogItems()),
+                List.of(1),
+                RecipeCategory.BUILDING_BLOCKS,
+                woodSet.getPlanks().get(),
+                4,
+                "planks"
+        );
 
-        shaped(List.of("ll", "ll"), List.of('l'), List.of(woodSet.getLog().get()), RecipeCategory.BUILDING_BLOCKS, woodSet.getWood().get(), 3);
+        shaped(
+                List.of("ll", "ll"),
+                List.of('l'),
+                List.of(woodSet.getLog().get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                woodSet.getWood().get(),
+                3
+        );
 
-        stairBuilder(woodSet.getStairs().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_stairs").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        stairBuilder(woodSet.getStairs().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_stairs")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
-        this.slabBuilder(RecipeCategory.BUILDING_BLOCKS, woodSet.getSlab().get(), Ingredient.of(woodSet.getPlanks().get())).unlockedBy(hasPlanks(woodSet), this.has(woodSet.getPlanks().get())).group("wooden_slab").save(this.output);
+        this.slabBuilder(
+                        RecipeCategory.BUILDING_BLOCKS,
+                        woodSet.getSlab().get(),
+                        Ingredient.of(woodSet.getPlanks().get())
+                )
+                .unlockedBy(hasPlanks(woodSet), this.has(woodSet.getPlanks().get()))
+                .group("wooden_slab")
+                .save(this.output);
 
-        buttonBuilder(woodSet.getButton().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_button").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        buttonBuilder(woodSet.getButton().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_button")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
         pressurePlate(woodSet.getPressurePlate().get(), woodSet.getPlanks().get());
 
-        fenceBuilder(woodSet.getFence().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_fence").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        fenceBuilder(woodSet.getFence().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_fence")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
-        fenceGateBuilder(woodSet.getFenceGate().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_fence_gate").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        fenceGateBuilder(woodSet.getFenceGate().get(), Ingredient.of(woodSet.getPlanks().get())).group(
+                "wooden_fence_gate").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
 
-        doorBuilder(woodSet.getDoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_door").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        doorBuilder(woodSet.getDoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_door")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
-        trapdoorBuilder(woodSet.getTrapdoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_trapdoor").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        trapdoorBuilder(woodSet.getTrapdoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_trapdoor")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
-        signBuilder(woodSet.getSignItem().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_sign").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
+        signBuilder(woodSet.getSignItem().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_sign")
+                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
+                .save(this.output);
 
         hangingSign(woodSet.getHangingSignItem().get(), woodSet.getStrippedLog().get());
 
-        shaped(List.of("p p", "ppp"), List.of('p'), List.of(woodSet.getPlanks().get()), RecipeCategory.TRANSPORTATION, woodSet.getBoatItem().get(), 1);
+        shaped(
+                List.of("p p", "ppp"),
+                List.of('p'),
+                List.of(woodSet.getPlanks().get()),
+                RecipeCategory.TRANSPORTATION,
+                woodSet.getBoatItem().get(),
+                1
+        );
 
-        shapeless(List.of(Items.CHEST, woodSet.getBoatItem().get()), List.of(1, 1), RecipeCategory.TRANSPORTATION, woodSet.getChestBoatItem().get(), 1, "chest_boat");
+        shapeless(
+                List.of(Items.CHEST, woodSet.getBoatItem().get()),
+                List.of(1, 1),
+                RecipeCategory.TRANSPORTATION,
+                woodSet.getChestBoatItem().get(),
+                1,
+                "chest_boat"
+        );
     }
 
     protected String hasPlanks(WoodSet woodSet) {
@@ -265,24 +348,78 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
     }
 
     protected void campfire(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTIme, String group) {
-        cooking(RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, ingredients, category, result, experience, cookingTIme, group, "_from_campfire");
+        cooking(
+                RecipeSerializer.CAMPFIRE_COOKING_RECIPE,
+                CampfireCookingRecipe::new,
+                ingredients,
+                category,
+                result,
+                experience,
+                cookingTIme,
+                group,
+                "_from_campfire"
+        );
     }
 
     protected void smoking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTIme, String group) {
-        cooking(RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, ingredients, category, result, experience, cookingTIme, group, "_from_smelting");
+        cooking(
+                RecipeSerializer.SMOKING_RECIPE,
+                SmokingRecipe::new,
+                ingredients,
+                category,
+                result,
+                experience,
+                cookingTIme,
+                group,
+                "_from_smelting"
+        );
     }
 
     protected void smelting(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
-        cooking(RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, ingredients, category, result, experience, cookingTime, group, "_from_smelting");
+        cooking(
+                RecipeSerializer.SMELTING_RECIPE,
+                SmeltingRecipe::new,
+                ingredients,
+                category,
+                result,
+                experience,
+                cookingTime,
+                group,
+                "_from_smelting"
+        );
     }
 
     protected void blasting(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
-        cooking(RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, ingredients, category, result, experience, cookingTime, group, "_from_blasting");
+        cooking(
+                RecipeSerializer.BLASTING_RECIPE,
+                BlastingRecipe::new,
+                ingredients,
+                category,
+                result,
+                experience,
+                cookingTime,
+                group,
+                "_from_blasting"
+        );
     }
 
     protected <T extends AbstractCookingRecipe> void cooking(RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> factory, List<ItemLike> ingredients, RecipeCategory category, ItemLike pResult, float experience, int cookingTime, String group, String recipeName) {
         for (ItemLike itemlike : ingredients) {
-            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), category, pResult, experience, cookingTime, cookingSerializer, factory).group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(this.output, this.modid + ":" + getItemName(pResult) + recipeName + "_" + getItemName(itemlike));
+            SimpleCookingRecipeBuilder.generic(
+                            Ingredient.of(itemlike),
+                            category,
+                            pResult,
+                            experience,
+                            cookingTime,
+                            cookingSerializer,
+                            factory
+                    )
+                    .group(group)
+                    .unlockedBy(getHasName(itemlike), has(itemlike))
+                    .save(
+                            this.output,
+                            this.modid + ":" + getItemName(pResult) + recipeName + "_" + getItemName(itemlike)
+                    );
         }
     }
 

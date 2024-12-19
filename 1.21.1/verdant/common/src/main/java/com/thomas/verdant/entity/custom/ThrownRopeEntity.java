@@ -1,26 +1,23 @@
 package com.thomas.verdant.entity.custom;
 
-import com.thomas.verdant.block.custom.RopeBlock;
-import com.thomas.verdant.item.component.ThrownRopeComponent;
+import com.thomas.verdant.item.component.RopeCoilData;
 import com.thomas.verdant.item.custom.RopeCoilItem;
+import com.thomas.verdant.item.custom.RopeItem;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.DataComponentRegistry;
 import com.thomas.verdant.registry.EntityTypeRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
+import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 
 public class ThrownRopeEntity extends ThrowableItemProjectile {
 
@@ -58,8 +55,8 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
 
         // Get the item stack.
         ItemStack stack = this.getItem();
-        ThrownRopeComponent dataComponent = stack.getOrDefault(
-                DataComponentRegistry.ROPE_LENGTH.get(),
+        RopeCoilData dataComponent = stack.getOrDefault(
+                DataComponentRegistry.ROPE_COIL.get(),
                 RopeCoilItem.DEFAULT_DATA_COMPONENT
         );
 
@@ -67,10 +64,10 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
         BlockPos hitpos = hitResult.getBlockPos();
         BlockState hitState = level.getBlockState(hitpos);
         BlockPos pos;
-        if (hitState.is(BlockRegistry.ROPE.get())) {
+        if (hitState.is(VerdantTags.Blocks.ROPES_EXTEND)) {
             // Extend the rope, find its bottom.
             pos = hitpos.below();
-            while (level.getBlockState(pos).is(BlockRegistry.ROPE.get())) {
+            while (level.getBlockState(pos).is(VerdantTags.Blocks.ROPES_EXTEND)) {
                 pos = pos.below();
             }
         } else {
@@ -78,40 +75,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
             pos = hitResult.getBlockPos().relative(hitResult.getDirection());
         }
 
-        // The state of the block it was in when it hit.
-        BlockState state = level.getBlockState(pos);
-        // Rope block
-        RopeBlock rope = ((RopeBlock) BlockRegistry.ROPE.get());
-
-        // Check if it can place a rope at the given position.
-        boolean canPlace = this.level().getBlockState(pos).isAir() && rope.canSurvive(state, this.level(), pos);
-
-        // Store the maximum length of the rope.
-        int remainingLength = dataComponent.length();
-
-        // The end of the line.
-        BlockPos.MutableBlockPos mutpos = new BlockPos.MutableBlockPos().set(pos);
-
-        if (canPlace) {
-
-            // If a rope can be placed, continue placing them downwards.
-
-            while (level.getBlockState(mutpos).is(BlockTags.REPLACEABLE) && remainingLength > 0) {
-                setRope(level, mutpos);
-                remainingLength--;
-                mutpos.move(Direction.DOWN);
-            }
-        }
-
-        Vec3 dropPos = canPlace ? mutpos.above().getCenter() : mutpos.getCenter();
-        // Drop leftover rope.
-        level.addFreshEntity(new ItemEntity(
-                level,
-                dropPos.x,
-                dropPos.y,
-                dropPos.z,
-                new ItemStack(BlockRegistry.ROPE.get(), remainingLength)
-        ));
+        RopeItem.tryPlaceRope(level, pos, dataComponent.length(), true, dataComponent.hasHook());
 
         // Discard the entity
         this.discard();

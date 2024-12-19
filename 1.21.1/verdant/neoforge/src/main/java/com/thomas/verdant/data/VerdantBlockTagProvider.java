@@ -129,7 +129,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_CLAY.get()
         );
 
-        this.tag(VerdantTags.Blocks.ROPES_EXTEND).add(BlockRegistry.ROPE.get(), BlockRegistry.ROPE_HOOK.get());
+        this.tag(VerdantTags.Blocks.ROPES_EXTEND)
+                .add(BlockRegistry.ROPE.get(), BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
+        
         this.tag(VerdantTags.Blocks.ROPE_HOOKS).add(Blocks.TRIPWIRE_HOOK, BlockRegistry.ROPE_HOOK.get());
 
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());

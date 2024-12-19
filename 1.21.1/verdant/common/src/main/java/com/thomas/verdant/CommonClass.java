@@ -50,6 +50,7 @@ public class CommonClass {
         BlockEntityTypeRegistry.init();
         MenuRegistry.init();
         CreativeModeTabRegistry.init();
+        RecipeSerializerRegistry.init();
     }
 
     public static void initCompostables() {

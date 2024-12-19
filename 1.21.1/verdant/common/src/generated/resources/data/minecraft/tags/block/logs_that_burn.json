@@ -1,13 +1,13 @@
 {
   "values": [
-    "verdant:heartwood_log",
-    "verdant:heartwood_wood",
-    "verdant:stripped_heartwood_log",
-    "verdant:stripped_heartwood_wood",
     "verdant:strangler_log",
     "verdant:strangler_wood",
     "verdant:stripped_strangler_log",
     "verdant:stripped_strangler_wood",
+    "verdant:heartwood_log",
+    "verdant:heartwood_wood",
+    "verdant:stripped_heartwood_log",
+    "verdant:stripped_heartwood_wood",
     "verdant:rotten_wood"
   ]
 }

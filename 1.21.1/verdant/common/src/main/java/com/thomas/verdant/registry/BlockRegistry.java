@@ -239,7 +239,7 @@ public class BlockRegistry {
                         .isViewBlocking((s, l, p) -> false))
         );
         ANTIGORITE = registerBlockWithItem("antigorite", () -> new Block(properties(Blocks.STONE, "antigorite")));
-        ROPE = registerBlockWithItem(
+        ROPE = registerBlockWithoutItem(
                 "rope",
                 () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL))
         );

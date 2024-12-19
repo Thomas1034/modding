@@ -7,13 +7,8 @@ import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -22,17 +17,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RopeBlock extends Block {
 
-    private static final VoxelShape SHAPE = Block.box(7, 0, 7, 9, 16, 9);
+    private static final VoxelShape SHAPE = Block.box(6, 0, 6, 10, 16, 10);
     private static final VoxelShape LARGE_SHAPE = Block.box(4, 0, 4, 12, 16, 12);
-    private static final BooleanProperty IS_TALL = BooleanProperty.create("is_tall");
 
     public RopeBlock(Properties properties) {
         super(properties);
@@ -108,39 +100,4 @@ public class RopeBlock extends Block {
         }
         return super.updateShape(state, level, tickAccess, pos, direction, otherPos, otherState, random);
     }
-
-    @Override
-    public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-
-        // Check if the user is holding this item.
-        // If not, return.
-        if (!player.getItemInHand(hand).is(this.asItem())) {
-            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
-        }
-
-        // Start scanning for blocks, if it is server side.
-        boolean hasFound = false;
-        BlockPos.MutableBlockPos scanPos = new BlockPos.MutableBlockPos().set(pos);
-        while (level.getBlockState(scanPos).is(VerdantTags.Blocks.ROPES_EXTEND)) {
-            hasFound = true;
-            scanPos.move(Direction.DOWN);
-        }
-        if (hasFound && level.getBlockState(scanPos).is(BlockTags.REPLACEABLE) && level.getFluidState(scanPos)
-                .isEmpty()) {
-            if (level instanceof ServerLevel serverLevel) {
-                serverLevel.setBlockAndUpdate(scanPos, this.defaultBlockState());
-                serverLevel.addDestroyBlockEffect(scanPos, this.defaultBlockState());
-                if (!player.getAbilities().instabuild) {
-                    stack.shrink(1);
-                    return InteractionResult.CONSUME;
-                }
-            }
-            // On success
-            return InteractionResult.SUCCESS;
-        }
-
-        // On failure
-        return InteractionResult.TRY_WITH_EMPTY_HAND;
-    }
-
 }

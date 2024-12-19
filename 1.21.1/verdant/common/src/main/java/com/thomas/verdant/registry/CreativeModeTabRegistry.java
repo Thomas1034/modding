@@ -10,19 +10,27 @@ import net.minecraft.world.item.ItemStack;
 
 public class CreativeModeTabRegistry {
 
-    public static final RegistrationProvider<CreativeModeTab> CREATIVE_MODE_TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
-    public static final RegistryObject<CreativeModeTab, CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register(Constants.MOD_ID + "_items_tab", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-            .icon(() -> new ItemStack(ItemRegistry.THORN.get()))
-            .displayItems(
-                    (itemDisplayParameters, output) -> {
+    public static final RegistrationProvider<CreativeModeTab> CREATIVE_MODE_TABS = RegistrationProvider.get(
+            Registries.CREATIVE_MODE_TAB,
+            Constants.MOD_ID
+    );
+    public static final RegistryObject<CreativeModeTab, CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register(
+            Constants.MOD_ID + "_items_tab",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                    .icon(() -> new ItemStack(ItemRegistry.THORN.get()))
+                    .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ItemRegistry.THORN.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
-                    }).title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
-            .build());
-    public static final RegistryObject<CreativeModeTab, CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register(Constants.MOD_ID + "_blocks_tab", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-            .icon(() -> new ItemStack(BlockRegistry.VERDANT_ROOTED_DIRT.get()))
-            .displayItems(
-                    (itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.ROPE_COIL.get());
+                    })
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
+                    .build()
+    );
+    public static final RegistryObject<CreativeModeTab, CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register(
+            Constants.MOD_ID + "_blocks_tab",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                    .icon(() -> new ItemStack(BlockRegistry.VERDANT_ROOTED_DIRT.get()))
+                    .displayItems((itemDisplayParameters, output) -> {
                         output.accept(BlockRegistry.VERDANT_ROOTED_DIRT.get());
                         output.accept(BlockRegistry.VERDANT_GRASS_DIRT.get());
                         output.accept(BlockRegistry.VERDANT_ROOTED_MUD.get());
@@ -45,8 +53,14 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.LEAFY_STRANGLER_VINE.get());
                         output.accept(BlockRegistry.STRANGLER_VINE.get());
                         output.accept(BlockRegistry.ROTTEN_WOOD.get());
-                    }).title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
-            .build());
+                        output.accept(BlockRegistry.POISON_IVY.get());
+                        output.accept(BlockRegistry.STRANGLER_TENDRIL.get());
+                        output.accept(BlockRegistry.ROPE.get());
+                        output.accept(BlockRegistry.FISH_TRAP_BLOCK.get());
+                    })
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
+                    .build()
+    );
 
     public static void init() {
     }

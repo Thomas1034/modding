@@ -64,7 +64,16 @@ public class RopeHookBlock extends Block {
         if (direction == Direction.DOWN && !otherState.is(BlockRegistry.ROPE.get())) {
             return BlockTransformer.copyProperties(state, Blocks.TRIPWIRE_HOOK);
         }
-        return super.updateShape(state, level, tickAccess, pos, direction, otherPos, otherState, random);
+        return this.canSurvive(state, level, pos) ? super.updateShape(
+                state,
+                level,
+                tickAccess,
+                pos,
+                direction,
+                otherPos,
+                otherState,
+                random
+        ) : Blocks.AIR.defaultBlockState();
     }
 
     @Nullable
@@ -110,7 +119,8 @@ public class RopeHookBlock extends Block {
             hasFound = true;
             scanPos.move(Direction.DOWN);
         }
-        if (hasFound && level.getBlockState(scanPos).is(BlockTags.REPLACEABLE) && level.getFluidState(scanPos).isEmpty()) {
+        if (hasFound && level.getBlockState(scanPos).is(BlockTags.REPLACEABLE) && level.getFluidState(scanPos)
+                .isEmpty()) {
             if (level instanceof ServerLevel serverLevel) {
                 serverLevel.setBlockAndUpdate(scanPos, ropeBlock.defaultBlockState());
                 serverLevel.addDestroyBlockEffect(scanPos, ropeBlock.defaultBlockState());
