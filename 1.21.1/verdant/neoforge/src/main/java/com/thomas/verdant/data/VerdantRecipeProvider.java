@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.recipe.RopeCoilUpgradeRecipe;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
@@ -27,6 +28,49 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
     public VerdantRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
         super(provider, output);
         this.modid = Constants.MOD_ID;
+    }
+
+
+    // TODO marking the place since IntelliJ sorts this file (partially and arbitrarily)
+    @Override
+    protected void buildRecipes() {
+        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+            this.generateFor(woodSet);
+        }
+
+        shaped(
+                List.of("vv", "vv"),
+                List.of('v'),
+                List.of(VerdantTags.Items.STRANGLER_VINES),
+                RecipeCategory.BUILDING_BLOCKS,
+                WoodSets.STRANGLER.getLog().get(),
+                1
+        );
+
+        shapeless(
+                List.of(BlockRegistry.STRANGLER_VINE.get().asItem()),
+                List.of(1),
+                RecipeCategory.MISC,
+                BlockRegistry.LEAFY_STRANGLER_VINE.get(),
+                1
+        );
+        shapeless(
+                List.of(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()),
+                List.of(1),
+                RecipeCategory.MISC,
+                BlockRegistry.STRANGLER_VINE.get(),
+                1
+        );
+        shaped(
+                List.of("v", "v"),
+                List.of('v'),
+                List.of(BlockRegistry.STRANGLER_TENDRIL.get().asItem()),
+                RecipeCategory.MISC,
+                ItemRegistry.ROPE.get(),
+                2
+        );
+        // Register rope upgrading.
+        new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
     }
 
     protected void shaped(List<String> pattern, List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result, int count) {
@@ -188,47 +232,6 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
         campfire(ingredients, category, result, experience, 2 * cookingTime, group);
         smelting(ingredients, category, result, experience, cookingTime, group);
         smoking(ingredients, category, result, experience, cookingTime / 2, group);
-    }
-
-    // TODO
-    @Override
-    protected void buildRecipes() {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            this.generateFor(woodSet);
-        }
-
-        shaped(
-                List.of("vv", "vv"),
-                List.of('v'),
-                List.of(VerdantTags.Items.STRANGLER_VINES),
-                RecipeCategory.BUILDING_BLOCKS,
-                WoodSets.STRANGLER.getLog().get(),
-                1
-        );
-
-        shapeless(
-                List.of(BlockRegistry.STRANGLER_VINE.get().asItem()),
-                List.of(1),
-                RecipeCategory.MISC,
-                BlockRegistry.LEAFY_STRANGLER_VINE.get(),
-                1
-        );
-        shapeless(
-                List.of(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()),
-                List.of(1),
-                RecipeCategory.MISC,
-                BlockRegistry.STRANGLER_VINE.get(),
-                1
-        );
-        shaped(
-                List.of("v", "v"),
-                List.of('v'),
-                List.of(BlockRegistry.STRANGLER_TENDRIL.get().asItem()),
-                RecipeCategory.MISC,
-                ItemRegistry.ROPE.get(),
-                2
-        );
-
     }
 
     protected void generateFor(WoodSet woodSet) {

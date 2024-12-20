@@ -20,6 +20,7 @@ public class RecipeSerializerRegistry {
     );
 
     public static void init() {
+
     }
 
 }

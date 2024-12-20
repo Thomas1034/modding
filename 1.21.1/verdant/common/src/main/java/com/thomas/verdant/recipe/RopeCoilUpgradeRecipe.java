@@ -4,15 +4,24 @@ import com.thomas.verdant.item.component.RopeCoilData;
 import com.thomas.verdant.registry.DataComponentRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.RecipeSerializerRegistry;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.CustomRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class RopeCoilUpgradeRecipe extends CustomRecipe {
 
@@ -118,5 +127,53 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
     @Override
     public RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return RecipeSerializerRegistry.ROPE_COIL_SERIALIZER.get();
+    }
+
+
+    // Inspired by the implementation here: https://docs.neoforged.net/docs/resources/server/recipes/custom/#data-generation
+    public static class Builder implements RecipeBuilder {
+        protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+        @Nullable
+        protected String group;
+        private CraftingBookCategory category;
+
+        public Builder() {
+        }
+
+        @Override
+        public Builder unlockedBy(String name, Criterion<?> criterion) {
+            this.criteria.put(name, criterion);
+            return this;
+        }
+
+        @Override
+        public Builder group(@Nullable String group) {
+            this.group = group;
+            return this;
+        }
+
+        public Builder category(CraftingBookCategory category) {
+            this.category = category;
+            return this;
+        }
+
+        @Override
+        public Item getResult() {
+            return ItemRegistry.ROPE_COIL.get();
+        }
+
+        @Override
+        public void save(RecipeOutput output, ResourceKey<Recipe<?>> key) {
+            Advancement.Builder advancement = output.advancement()
+                    .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
+                    .rewards(AdvancementRewards.Builder.recipe(key))
+                    .requirements(AdvancementRequirements.Strategy.OR);
+            this.criteria.forEach(advancement::addCriterion);
+            output.accept(
+                    key,
+                    new RopeCoilUpgradeRecipe(this.category),
+                    advancement.build(key.location().withPrefix("recipes/"))
+            );
+        }
     }
 }

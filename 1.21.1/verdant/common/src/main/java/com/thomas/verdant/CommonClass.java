@@ -9,9 +9,11 @@ import net.minecraft.world.level.block.ComposterBlock;
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
 // TODO:
+//
+// TODO Next time: Make lanterns be able to hang on ropes!
+//
 // Look into connected textures for Antigorite, and make polished, brick, and chiseled variants.
 // https://www.curseforge.com/minecraft/mc-mods/continuity
-// Finish up fish trap block
 //
 // Ideas for new effects:
 // Photosensitivity - sky light causes damage during the daytime
@@ -19,6 +21,18 @@ import net.minecraft.world.level.block.ComposterBlock;
 // Nettled - walking hurts
 // Cyclopegia - apply blur filter over entire screen, with varying severity based on the strength
 //
+// TODO Ideas for future improvements:
+// Make the rope coil recipe more customizable.
+// Don't hard-code the items; instead, have them be defined in the JSON
+// along with a list of operations they can perform on the input stack.
+// For example, setting length, adding/subtracting length, adding a hook,
+// removing a hook, etc., etc., all defined as JSON objects.
+// Then build the result based on these as if they're tiny lambdas.
+// Order of operations would be important, especially with operations
+// that involve setting the length.
+// Think of other properties for the rope coil. Dyes? That might
+// be excessive, and would require dyed ropes.
+// Lantern? That could actually be useful!
 public class CommonClass {
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
