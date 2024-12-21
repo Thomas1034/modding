@@ -60,8 +60,10 @@
 	"item.verdant.coffee_berries": "Coffee Berries",
 	"item.verdant.roasted_coffee": "Roasted Coffee",
 	"item.verdant.thorn": "Thorn",
-	"item.verdant.short_rope_coil": "Short Rope Coil",
 	"item.verdant.rope_coil": "Rope Coil",
+	"item.verdant.rope_coil.length": "Length: %s",
+	"item.verdant.rope_coil.hook": "Has Hook",
+	"item.verdant.rope_coil.glow": "Glow: %s",
 	"item.verdant.poison_arrow": "Poison Arrow",
 	
 	"item.verdant.heartwood_helmet": "Heartwood Helmet",

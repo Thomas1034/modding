@@ -17,17 +17,23 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RopeBlock extends Block {
 
+    public static final int GLOW_MIN = 0;
+    public static final int GLOW_MAX = 4;
+    public static final IntegerProperty GLOW_LEVEL = IntegerProperty.create("glow_level", GLOW_MIN, GLOW_MAX);
     private static final VoxelShape SHAPE = Block.box(6.5, 0.0, 6.5, 9.5, 16.0, 9.5);
     private static final VoxelShape LARGE_SHAPE = Block.box(4.5, 0, 4.5, 11.5, 16, 11.5);
 
     public RopeBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(GLOW_LEVEL, GLOW_MIN));
     }
 
     @Override
@@ -105,5 +111,10 @@ public class RopeBlock extends Block {
             tickAccess.scheduleTick(pos, this, 1);
         }
         return super.updateShape(state, level, tickAccess, pos, direction, otherPos, otherState, random);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(GLOW_LEVEL);
     }
 }

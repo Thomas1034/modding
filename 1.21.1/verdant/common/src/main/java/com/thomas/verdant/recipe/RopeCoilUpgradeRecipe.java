@@ -1,5 +1,6 @@
 package com.thomas.verdant.recipe;
 
+import com.thomas.verdant.block.custom.RopeBlock;
 import com.thomas.verdant.item.component.RopeCoilData;
 import com.thomas.verdant.registry.DataComponentRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -62,10 +63,13 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         }
         // The maximum allowed length that can be added to the coil.
         int remainingAllowedLength = RopeCoilData.MAX_LENGTH_FROM_CRAFTING - component.length();
+        int remainingAllowedLightLevel = RopeBlock.GLOW_MAX - component.lightLevel();
         int resultLength = component.length();
+        int resultLightLevel = component.lightLevel();
         // Whether adding a hook is allowed.
         boolean canAddHook = !component.hasHook();
         boolean resultHasHook = component.hasHook();
+        RopeCoilData.LanternOptions resultLantern = component.lantern();
         for (int i = 0; i < input.size(); i++) {
             // Skip the rope coil, it's allowed.
             if (i == ropeIndex) {
@@ -89,6 +93,39 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     canAddHook = false;
                     resultHasHook = true;
                 } else {
+                    return ItemStack.EMPTY;
+                }
+            } else if (item == Items.LANTERN) {
+                // If it is a hook, check if a hook can be added.
+                // If not, fail. If so, disallow further hooks.
+                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
+                    resultLantern = RopeCoilData.LanternOptions.LANTERN;
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            } else if (item == Items.SOUL_LANTERN) {
+                // If it is a hook, check if a hook can be added.
+                // If not, fail. If so, disallow further hooks.
+                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
+                    resultLantern = RopeCoilData.LanternOptions.SOUL_LANTERN;
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            } else if (item == Items.BELL) {
+                // If it is a hook, check if a hook can be added.
+                // If not, fail. If so, disallow further hooks.
+                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
+                    resultLantern = RopeCoilData.LanternOptions.BELL;
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            } else if (item == Items.GLOW_INK_SAC) {
+                // If it is rope, decrement the amount of rope that can be added further.
+                if (remainingAllowedLightLevel > 0) {
+                    remainingAllowedLightLevel--;
+                    resultLightLevel++;
+                } else {
+                    // If no more rope can be added, the recipe fails.
                     return ItemStack.EMPTY;
                 }
             } else if (stack.has(DataComponentRegistry.ROPE_COIL.get())) {
@@ -117,10 +154,27 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                         return ItemStack.EMPTY;
                     }
                 }
+                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
+                    resultLantern = data.lantern();
+                } else {
+                    if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                if (data.lightLevel() <= remainingAllowedLightLevel) {
+                    remainingAllowedLightLevel -= data.lightLevel();
+                    resultLightLevel += data.lightLevel();
+                } else {
+                    // It's too long to be combined.
+                    return ItemStack.EMPTY;
+                }
             }
         }
         ItemStack result = new ItemStack(ItemRegistry.ROPE_COIL.get());
-        result.set(DataComponentRegistry.ROPE_COIL.get(), new RopeCoilData(resultLength, resultHasHook));
+        result.set(
+                DataComponentRegistry.ROPE_COIL.get(),
+                new RopeCoilData(resultLength, resultHasHook, resultLightLevel, resultLantern)
+        );
         return result;
     }
 

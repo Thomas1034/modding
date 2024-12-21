@@ -1,7 +1,9 @@
 package com.thomas.verdant;
 
 import com.thomas.verdant.client.item.VerdantItemProperties;
+import com.thomas.verdant.client.item.properties.RopeGlowPropertyFunction;
 import com.thomas.verdant.client.item.properties.RopeHasHookPropertyFunction;
+import com.thomas.verdant.client.item.properties.RopeLanternOptionPropertyFunction;
 import com.thomas.verdant.client.item.properties.RopeLengthPropertyFunction;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
@@ -108,6 +110,16 @@ public class VerdantClient {
                 ItemRegistry.ROPE_COIL.get(),
                 VerdantItemProperties.HAS_HOOK,
                 new RopeHasHookPropertyFunction()
+        );
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.ROPE_GLOW,
+                new RopeGlowPropertyFunction()
+        );
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.LANTERN_OPTION,
+                new RopeLanternOptionPropertyFunction()
         );
     }
 

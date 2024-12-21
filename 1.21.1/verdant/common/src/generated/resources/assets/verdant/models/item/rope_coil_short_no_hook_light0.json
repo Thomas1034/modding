@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:item/short_rope_coil",
+    "layer1": "verdant:item/empty_overlay",
+    "layer2": "verdant:item/empty_overlay",
+    "layer3": "verdant:item/empty_overlay"
+  }
+}

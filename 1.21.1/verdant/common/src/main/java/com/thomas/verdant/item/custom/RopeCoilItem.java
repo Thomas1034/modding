@@ -2,8 +2,11 @@ package com.thomas.verdant.item.custom;
 
 import com.thomas.verdant.entity.custom.ThrownRopeEntity;
 import com.thomas.verdant.item.component.RopeCoilData;
+import com.thomas.verdant.registry.DataComponentRegistry;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,14 +18,41 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 public class RopeCoilItem extends Item implements ProjectileItem {
 
-    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(8, false);
+    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(
+            4,
+            false,
+            0,
+            RopeCoilData.LanternOptions.NONE
+    );
 
     public RopeCoilItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
+        if (data != null) {
+            String baseKey = this.descriptionId;
+            if (data.length() > 0) {
+                tooltipComponents.add(Component.translatable(baseKey + ".length", data.length())
+                        .withStyle(ChatFormatting.GRAY));
+            }
+            if (data.hasHook()) {
+                tooltipComponents.add(Component.translatable(baseKey + ".hook").withStyle(ChatFormatting.GRAY));
+            }
+            if (data.lightLevel() > 0) {
+                tooltipComponents.add(Component.translatable(baseKey + ".glow", data.lightLevel())
+                        .withStyle(ChatFormatting.GRAY));
+            }
+        }
     }
 
     @Override

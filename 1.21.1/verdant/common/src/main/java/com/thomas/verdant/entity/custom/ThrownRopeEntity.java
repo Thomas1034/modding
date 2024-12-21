@@ -1,5 +1,6 @@
 package com.thomas.verdant.entity.custom;
 
+import com.thomas.verdant.block.custom.RopeBlock;
 import com.thomas.verdant.item.component.RopeCoilData;
 import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.RopeItem;
@@ -75,7 +76,15 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
             pos = hitResult.getBlockPos().relative(hitResult.getDirection());
         }
 
-        RopeItem.tryPlaceRope(level, pos, dataComponent.length(), true, dataComponent.hasHook());
+        RopeItem.tryPlaceRope(
+                level,
+                pos,
+                dataComponent.length(),
+                true,
+                BlockRegistry.ROPE.get().defaultBlockState().setValue(RopeBlock.GLOW_LEVEL, dataComponent.lightLevel()),
+                dataComponent.hasHook() ? BlockRegistry.ROPE_HOOK.get() : null,
+                dataComponent.lantern().state
+        );
 
         // Discard the entity
         this.discard();

@@ -69,6 +69,14 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
                 ItemRegistry.ROPE.get(),
                 2
         );
+        shaped(
+                List.of(" r ", "r r", " r "),
+                List.of('r'),
+                List.of(ItemRegistry.ROPE.get()),
+                RecipeCategory.MISC,
+                ItemRegistry.ROPE_COIL.get(),
+                1
+        );
         // Register rope upgrading.
         new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
     }

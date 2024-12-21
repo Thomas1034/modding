@@ -241,7 +241,9 @@ public class BlockRegistry {
         ANTIGORITE = registerBlockWithItem("antigorite", () -> new Block(properties(Blocks.STONE, "antigorite")));
         ROPE = registerBlockWithoutItem(
                 "rope",
-                () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL))
+                () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL)
+
+                        .lightLevel((state) -> 2 * state.getValue(RopeBlock.GLOW_LEVEL)))
         );
         ROPE_HOOK = registerBlockWithoutItem(
                 "rope_hook",

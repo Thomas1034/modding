@@ -2,6 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.client.item.VerdantItemProperties;
+import com.thomas.verdant.item.component.RopeCoilData;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -9,6 +10,7 @@ import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -16,6 +18,11 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import oshi.util.tuples.Triplet;
+
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class VerdantItemModelProvider extends ItemModelProvider {
     public VerdantItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -107,31 +114,120 @@ public class VerdantItemModelProvider extends ItemModelProvider {
 
         ItemModelBuilder builder = basicItem(item.get());
 
-        builder.override().model(createBasicItemModel(
-                name.withSuffix("_short_no_hook"),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/short_rope_coil")
-        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0).predicate(VerdantItemProperties.HAS_HOOK, 0);
+        PropertyDispatch.QuadFunction<Boolean, Boolean, Integer, RopeCoilData.LanternOptions, ResourceLocation> namer = (isShort, hasHook, light, lantern) -> {
 
-        builder.override().model(createBasicItemModel(
-                name.withSuffix("_short_hook"),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/short_rope_coil"),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/hook_overlay")
-        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0).predicate(VerdantItemProperties.HAS_HOOK, 1);
+            StringBuilder fileExtension = new StringBuilder();
 
-        builder.override()
-                .model(createBasicItemModel(
-                        name.withSuffix("_no_hook"),
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/rope_coil")
+            if (isShort) {
+                fileExtension.append("_short");
+            }
+            if (!hasHook) {
+                fileExtension.append("_no");
+            }
+            fileExtension.append("_hook");
+            fileExtension.append("_light");
+            fileExtension.append(light);
+            if (lantern != RopeCoilData.LanternOptions.NONE) {
+                fileExtension.append("_");
+                fileExtension.append(lantern.typeName);
+            }
+            return name.withSuffix(fileExtension.toString());
+        };
+
+        // Stores a consumer that creates the predicate and the name of the corresponding texture.
+        List<Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Boolean>> lengthOptions = List.of(
+                new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_LENGTH, 0),
+                        "short_rope_coil",
+                        true
+                ), new Triplet<>(
+                        // 0.4999f for floating point uncertainties.
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_LENGTH, 0.499f),
+                        "rope_coil",
+                        false
+                )
+        );
+
+        List<Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Boolean>> hookOptions = List.of(
+                new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.HAS_HOOK, 0),
+                        "empty_overlay",
+                        false
+                ), new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.HAS_HOOK, 1),
+                        "hook_overlay",
+                        true
+                )
+        );
+
+        List<Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Integer>> lightOptions = List.of(
+                new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_GLOW, 0),
+                        "empty_overlay",
+                        0
+                ), new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_GLOW, 0.2499f),
+                        "light_1_overlay",
+                        1
+                ), new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_GLOW, 0.4999f),
+                        "light_2_overlay",
+                        2
+                ), new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_GLOW, 0.7499f),
+                        "light_3_overlay",
+                        3
+                ), new Triplet<>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.ROPE_GLOW, 0.9999f),
+                        "light_4_overlay",
+                        4
+                )
+        );
+
+        List<Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, RopeCoilData.LanternOptions>> lanternOptions = Stream.of(
+                        RopeCoilData.LanternOptions.values())
+                .map(option -> new Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, RopeCoilData.LanternOptions>(
+                        lambdaBuilder -> lambdaBuilder.predicate(VerdantItemProperties.LANTERN_OPTION, option.cutoff),
+                        option.overlay,
+                        option
                 ))
-                .predicate(VerdantItemProperties.ROPE_LENGTH, 0.49f)
-                .predicate(VerdantItemProperties.HAS_HOOK, 0);
+                .toList();
 
-        builder.override().model(createBasicItemModel(
-                name.withSuffix("_hook"),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/rope_coil"),
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/hook_overlay")
-        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0.49f).predicate(VerdantItemProperties.HAS_HOOK, 1);
+        for (Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Boolean> lengthOption : lengthOptions) {
+            for (Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Boolean> hookOption : hookOptions) {
+                for (Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, Integer> lightOption : lightOptions) {
+                    for (Triplet<Consumer<ItemModelBuilder.OverrideBuilder>, String, RopeCoilData.LanternOptions> lanternOption : lanternOptions) {
+                        // Get the override builder.
+                        ItemModelBuilder.OverrideBuilder overrideBuilder = builder.override()
+                                .model(createBasicItemModel(
+                                        namer.apply(
+                                                lengthOption.getC(),
+                                                hookOption.getC(),
+                                                lightOption.getC(),
+                                                lanternOption.getC()
+                                        ), Stream.of(
+                                                        lengthOption.getB(),
+                                                        hookOption.getB(),
+                                                        lightOption.getB(),
+                                                        lanternOption.getB()
+                                                )
+                                                .map(str -> str == null ? null : ResourceLocation.fromNamespaceAndPath(
+                                                        Constants.MOD_ID,
+                                                        "item/" + str
+                                                ))
+                                                .toArray(ResourceLocation[]::new)
+                                ));
 
+                        // Apply all the predicates.
+                        lengthOption.getA().accept(overrideBuilder);
+                        hookOption.getA().accept(overrideBuilder);
+                        lightOption.getA().accept(overrideBuilder);
+                        lanternOption.getA().accept(overrideBuilder);
+
+                    }
+                }
+            }
+        }
     }
 
     protected ItemModelBuilder createBasicItemModel(ResourceLocation location, ResourceLocation... layers) {
@@ -139,8 +235,10 @@ public class VerdantItemModelProvider extends ItemModelProvider {
                 "item/generated"));
         int i = 0;
         for (ResourceLocation layer : layers) {
-            builder.texture("layer" + i, layer);
-            i++;
+            if (layer != null) {
+                builder.texture("layer" + i, layer);
+                i++;
+            }
         }
         return builder;
     }
