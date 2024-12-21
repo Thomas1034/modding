@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
 	"render_type": "minecraft:cutout",
-	"ambientocclusion": false,
+	"ambientocclusion": true,
 	"textures": {
 		"particle": "verdant:block/fish_trap_slats",
 		"slats": "verdant:block/fish_trap_slats",

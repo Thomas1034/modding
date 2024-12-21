@@ -1,11 +1,13 @@
 {
 	"render_type": "minecraft:cutout",
+	"ambientocclusion": true,
 	"parent": "minecraft:block/tripwire_hook",
 	"textures": {
 		"hook": "minecraft:block/tripwire_hook",
 		"particle": "minecraft:block/oak_planks",
 		"wood": "minecraft:block/oak_planks",
-		"rope": "verdant:block/rope_full"
+		"rope": "verdant:block/rope_full",
+    "cross": "verdant:block/rope_down"
 	},
 	"elements": [
 		{
@@ -35,6 +37,26 @@
 				"down": {"uv": [5, 3, 7, 7], "texture": "#rope"}
 			}
 		},
+    {
+      "from": [ 0.8, 0, 8 ],
+      "to": [ 15.2, 16, 8 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
+      "shade": true,
+      "faces": {
+          "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
+          "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
+      }
+    },
+    {
+      "from": [ 8, 0, 0.8 ],
+      "to": [ 8, 16, 15.2 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
+      "shade": true,
+      "faces": {
+          "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
+          "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
+      }
+    },
 		{
 			"from": [7.4, 3.8, 10.3],
 			"to": [8.6, 4.6, 10.3],

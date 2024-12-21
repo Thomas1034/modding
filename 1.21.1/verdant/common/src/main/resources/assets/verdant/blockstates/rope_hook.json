@@ -1,10 +1,5 @@
 {
   "multipart": [
-    {
-      "apply": {
-        "model": "verdant:block/rope_down"
-			}
-    },
 		{
       "when": {
         "facing": "east"

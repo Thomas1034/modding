@@ -2,6 +2,7 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
+import com.thomas.verdant.registry.BlockEntityTypeRegistry;
 import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.baitdata.BaitData;
@@ -18,6 +19,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -31,6 +34,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
@@ -40,6 +45,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -62,6 +69,7 @@ public class Verdant {
 
         eventBus.addListener(Verdant::registerDatapackRegistries);
         eventBus.addListener(Verdant::gatherData);
+        eventBus.addListener(Verdant::registerContainerCapabilities);
         // For wood sets.
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
         eventBus.addListener(Verdant::onFinishSetup);
@@ -77,10 +85,12 @@ public class Verdant {
             woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
             DispenserBlock.registerBehavior(
                     woodSet.getBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+                    new BoatDispenseItemBehavior(woodSet.getBoat().get())
+            );
             DispenserBlock.registerBehavior(
                     woodSet.getChestBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
+                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
+            );
         }
     }
 
@@ -122,14 +132,39 @@ public class Verdant {
             event.modify(
                     BlockEntityType.HANGING_SIGN,
                     woodSet.getHangingSign().get(),
-                    woodSet.getWallHangingSign().get());
+                    woodSet.getWallHangingSign().get()
+            );
+        }
+    }
+
+
+    public static void registerContainerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                BlockEntityTypeRegistry.FISH_TRAP_BLOCK_ENTITY.get(),
+                (sidedContainer, side) -> side == null ? new InvWrapper(sidedContainer) : new SidedInvWrapper(
+                        sidedContainer,
+                        side
+                )
+        );
+
+
+        // Boats, modified from CapabilityHooks.
+        List<? extends EntityType<? extends Container>> woodSetChestBoats = WoodSets.WOOD_SETS.stream()
+                .map(woodSet -> woodSet.getChestBoat().get())
+                .toList();
+        for (EntityType<? extends Container> entityType : woodSetChestBoats) {
+            event.registerEntity(Capabilities.ItemHandler.ENTITY, entityType, (entity, ctx) -> new InvWrapper(entity));
+            event.registerEntity(
+                    Capabilities.ItemHandler.ENTITY_AUTOMATION,
+                    entityType,
+                    (entity, ctx) -> new InvWrapper(entity)
+            );
         }
     }
 
     public static void gatherData(final GatherDataEvent event) {
         try {
-
-
             // Store some frequently-used fields for later use.
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();
@@ -146,13 +181,16 @@ public class Verdant {
                             Collections.emptySet(),
                             List.of(new LootTableProvider.SubProviderEntry(
                                     VerdantBlockLootTableProvider::new,
-                                    LootContextParamSets.BLOCK)),
-                            lookupProvider) {
+                                    LootContextParamSets.BLOCK
+                            )),
+                            lookupProvider
+                    ) {
                         @Override
                         protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
                             // Do not validate at all, per what people online said.
                         }
-                    });
+                    }
+            );
 
             // Generate data for the recipes
             generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
@@ -161,7 +199,8 @@ public class Verdant {
             BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(
                     packOutput,
                     lookupProvider,
-                    existingFileHelper);
+                    existingFileHelper
+            );
             generator.addProvider(event.includeServer(), blockTagsProvider);
             generator.addProvider(
                     event.includeServer(),
@@ -169,7 +208,9 @@ public class Verdant {
                             packOutput,
                             lookupProvider,
                             blockTagsProvider.contentsGetter(),
-                            existingFileHelper));
+                            existingFileHelper
+                    )
+            );
             // Generate block and item models.
             generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
             generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
@@ -183,7 +224,9 @@ public class Verdant {
                                     .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
                                     .add(BaitData.KEY, BaitDataProvider::register)
                                     .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
-                            Set.of(Constants.MOD_ID, "minecraft")));
+                            Set.of(Constants.MOD_ID, "minecraft")
+                    )
+            );
 
             // Generate data maps for furnace fuel; only used on the NeoForge side.
             generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));

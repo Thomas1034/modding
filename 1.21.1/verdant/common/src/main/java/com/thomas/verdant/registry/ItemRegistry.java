@@ -22,10 +22,8 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> THORN = register("thorn", () -> new Item(properties("thorn")));
     public static final RegistryObject<Item, Item> ROPE_COIL = register(
             "rope_coil",
-            () -> new RopeCoilItem(properties("rope_coil").component(
-                    DataComponentRegistry.ROPE_COIL.get(),
-                    RopeCoilItem.DEFAULT_DATA_COMPONENT
-            ))
+            () -> new RopeCoilItem(properties("rope_coil").stacksTo(8)
+                    .component(DataComponentRegistry.ROPE_COIL.get(), RopeCoilItem.DEFAULT_DATA_COMPONENT))
     );
     public static final RegistryObject<Item, Item> ROPE = register(
             "rope",

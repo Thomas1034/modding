@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-18T13:51:03.6314172	Item Models: verdant
+// 1.21.3	2024-12-20T18:51:25.1718171	Item Models: verdant
 a5498d2bf5c3dcda7540395eab29070917d3995c assets/verdant/models/item/fish_trap.json
 6de63570ddc112d61282e39477a22357d52823fe assets/verdant/models/item/heartwood_boat.json
 2e673a5be1cbb71976a7a56c6094bb0081bebc5d assets/verdant/models/item/heartwood_button.json
@@ -16,7 +16,11 @@ e267d8b9df7b7f521a5a9b16c2e013487f58d80f assets/verdant/models/item/leafy_strang
 3abba40e5e8c408d39b204cfddd6b99f8671cea1 assets/verdant/models/item/poison_ivy.json
 9cf955adb5f99d83854928dfd011d6894c093048 assets/verdant/models/item/roasted_coffee.json
 18c019f416c001e208c8f59dee42912852a6d99a assets/verdant/models/item/rope.json
-bc3206357af33f43bb8c6e3498a83e5a352b3899 assets/verdant/models/item/rope_coil.json
+1c35dcf918b941418755ed1d00cb50b32c5bc7d3 assets/verdant/models/item/rope_coil.json
+cc1040a86b7ed52d33d33fb3f716dc3a67f2d1a2 assets/verdant/models/item/rope_coil_hook.json
+bc3206357af33f43bb8c6e3498a83e5a352b3899 assets/verdant/models/item/rope_coil_no_hook.json
+19087aead68d2d287790ec83466bc4d968da7ec1 assets/verdant/models/item/rope_coil_short_hook.json
+2485107bcd9e35ae1a09d8ee222a6d484d1e52d8 assets/verdant/models/item/rope_coil_short_no_hook.json
 2781ad81f97d16a1bc0c0ff622935f683d282029 assets/verdant/models/item/strangler_boat.json
 ab2a9b92f2dad01da72c6398da009717a8ef2d46 assets/verdant/models/item/strangler_button.json
 50aa7d015d2635f906f4739f0a78da9c210a05e9 assets/verdant/models/item/strangler_chest_boat.json

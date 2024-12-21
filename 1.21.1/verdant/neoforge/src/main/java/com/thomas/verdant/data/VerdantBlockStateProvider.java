@@ -63,12 +63,6 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
         overlayBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE, () -> Blocks.DIRT, new String[]{"emerald_ore_overlay"});
         overlayBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE, () -> Blocks.DIRT, new String[]{"diamond_ore_overlay"});
 
-        simpleBlock(
-                BlockRegistry.ROPE.get(),
-                models().cross(blockTexture(BlockRegistry.ROPE.get()).getPath(), blockTexture(BlockRegistry.ROPE.get()))
-                        .renderType("cutout")
-        );
-
         // Tendrils
         simpleBlockWithItem(
                 BlockRegistry.STRANGLER_TENDRIL.get(),

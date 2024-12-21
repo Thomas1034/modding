@@ -1,5 +1,6 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.item.VerdantItemProperties;
 import com.thomas.verdant.platform.Services;
 import com.thomas.verdant.registry.*;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -65,6 +66,7 @@ public class CommonClass {
         MenuRegistry.init();
         CreativeModeTabRegistry.init();
         RecipeSerializerRegistry.init();
+        VerdantItemProperties.init();
     }
 
     public static void initCompostables() {

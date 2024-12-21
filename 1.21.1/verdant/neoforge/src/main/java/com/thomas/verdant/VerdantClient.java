@@ -1,8 +1,12 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.item.VerdantItemProperties;
+import com.thomas.verdant.client.item.properties.RopeHasHookPropertyFunction;
+import com.thomas.verdant.client.item.properties.RopeLengthPropertyFunction;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.EntityTypeRegistry;
+import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
@@ -11,6 +15,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -43,6 +48,7 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::onClientSetup);
         modBus.addListener(VerdantClient::onRegisterLayerDefinitions);
         modBus.addListener(VerdantClient::registerScreens);
+
     }
 
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -83,11 +89,26 @@ public class VerdantClient {
         }
 
         EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+
+        registerItemProperties();
     }
 
     private static void registerScreens(RegisterMenuScreensEvent event) {
 
         event.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
+    }
+
+    protected static void registerItemProperties() {
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.ROPE_LENGTH,
+                new RopeLengthPropertyFunction()
+        );
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.HAS_HOOK,
+                new RopeHasHookPropertyFunction()
+        );
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {

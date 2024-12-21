@@ -25,8 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
-
 /**
  * Mostly copied from TripWireHookBlock, since this is a reduced-functionality version.
  * It doesn't actually attach to strings.
@@ -76,7 +74,6 @@ public class RopeHookBlock extends Block {
         ) : Blocks.AIR.defaultBlockState();
     }
 
-    @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState();

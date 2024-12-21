@@ -1,5 +1,35 @@
 {
   "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "verdant:item/rope_coil_short_no_hook",
+      "predicate": {
+        "verdant:has_hook": 0.0,
+        "verdant:rope_length": 0.0
+      }
+    },
+    {
+      "model": "verdant:item/rope_coil_short_hook",
+      "predicate": {
+        "verdant:has_hook": 1.0,
+        "verdant:rope_length": 0.0
+      }
+    },
+    {
+      "model": "verdant:item/rope_coil_no_hook",
+      "predicate": {
+        "verdant:has_hook": 0.0,
+        "verdant:rope_length": 0.49
+      }
+    },
+    {
+      "model": "verdant:item/rope_coil_hook",
+      "predicate": {
+        "verdant:has_hook": 1.0,
+        "verdant:rope_length": 0.49
+      }
+    }
+  ],
   "textures": {
     "layer0": "verdant:item/rope_coil"
   }

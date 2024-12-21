@@ -23,8 +23,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RopeBlock extends Block {
 
-    private static final VoxelShape SHAPE = Block.box(6, 0, 6, 10, 16, 10);
-    private static final VoxelShape LARGE_SHAPE = Block.box(4, 0, 4, 12, 16, 12);
+    private static final VoxelShape SHAPE = Block.box(6.5, 0.0, 6.5, 9.5, 16.0, 9.5);
+    private static final VoxelShape LARGE_SHAPE = Block.box(4.5, 0, 4.5, 11.5, 16, 11.5);
 
     public RopeBlock(Properties properties) {
         super(properties);
@@ -35,9 +35,15 @@ public class RopeBlock extends Block {
         return SHAPE;
     }
 
+    @Override
+    protected VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return SHAPE;
+    }
+
     // Thrown ropes can hit this.
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+
         if (context instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
 

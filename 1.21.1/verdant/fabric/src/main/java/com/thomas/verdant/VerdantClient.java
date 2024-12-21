@@ -1,10 +1,10 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.item.VerdantItemProperties;
+import com.thomas.verdant.client.item.properties.RopeHasHookPropertyFunction;
+import com.thomas.verdant.client.item.properties.RopeLengthPropertyFunction;
 import com.thomas.verdant.client.screen.FishTrapScreen;
-import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.EntityTypeRegistry;
-import com.thomas.verdant.registry.MenuRegistry;
-import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.registry.*;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -17,6 +17,7 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -70,6 +71,21 @@ public class VerdantClient implements ClientModInitializer {
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+
+        registerItemProperties();
+    }
+
+    protected void registerItemProperties() {
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.ROPE_LENGTH,
+                new RopeLengthPropertyFunction()
+        );
+        ItemProperties.register(
+                ItemRegistry.ROPE_COIL.get(),
+                VerdantItemProperties.HAS_HOOK,
+                new RopeHasHookPropertyFunction()
+        );
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {

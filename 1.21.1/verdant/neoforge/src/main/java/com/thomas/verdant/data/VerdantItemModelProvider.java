@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.client.item.VerdantItemProperties;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -9,8 +10,11 @@ import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class VerdantItemModelProvider extends ItemModelProvider {
@@ -32,7 +36,7 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         basicItem(BlockRegistry.STRANGLER_TENDRIL.get().asItem());
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
-        basicItem(ItemRegistry.ROPE_COIL.get());
+        ropeCoilItem(ItemRegistry.ROPE_COIL);
     }
 
     protected void generateFor(WoodSet woodSet) {
@@ -95,6 +99,50 @@ public class VerdantItemModelProvider extends ItemModelProvider {
                 Constants.MOD_ID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
                 modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath())
         );
+    }
+
+    public void ropeCoilItem(RegistryObject<Item, Item> item) {
+
+        ResourceLocation name = item.getId();
+
+        ItemModelBuilder builder = basicItem(item.get());
+
+        builder.override().model(createBasicItemModel(
+                name.withSuffix("_short_no_hook"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/short_rope_coil")
+        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0).predicate(VerdantItemProperties.HAS_HOOK, 0);
+
+        builder.override().model(createBasicItemModel(
+                name.withSuffix("_short_hook"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/short_rope_coil"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/hook_overlay")
+        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0).predicate(VerdantItemProperties.HAS_HOOK, 1);
+
+        builder.override()
+                .model(createBasicItemModel(
+                        name.withSuffix("_no_hook"),
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/rope_coil")
+                ))
+                .predicate(VerdantItemProperties.ROPE_LENGTH, 0.49f)
+                .predicate(VerdantItemProperties.HAS_HOOK, 0);
+
+        builder.override().model(createBasicItemModel(
+                name.withSuffix("_hook"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/rope_coil"),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/hook_overlay")
+        )).predicate(VerdantItemProperties.ROPE_LENGTH, 0.49f).predicate(VerdantItemProperties.HAS_HOOK, 1);
+
+    }
+
+    protected ItemModelBuilder createBasicItemModel(ResourceLocation location, ResourceLocation... layers) {
+        ItemModelBuilder builder = getBuilder(location.toString()).parent(new ModelFile.UncheckedModelFile(
+                "item/generated"));
+        int i = 0;
+        for (ResourceLocation layer : layers) {
+            builder.texture("layer" + i, layer);
+            i++;
+        }
+        return builder;
     }
 
 }

@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 
 public class RopeCoilItem extends Item implements ProjectileItem {
 
-    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(8, true);
+    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(8, false);
 
     public RopeCoilItem(Properties properties) {
         super(properties);

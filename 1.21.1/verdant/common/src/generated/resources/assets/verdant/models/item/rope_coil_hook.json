@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:item/rope_coil",
+    "layer1": "verdant:item/hook_overlay"
+  }
+}
