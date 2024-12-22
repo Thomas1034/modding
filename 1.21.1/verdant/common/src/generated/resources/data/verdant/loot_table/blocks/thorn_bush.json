@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "verdant:thorny_strangler_leaves"
+              "name": "verdant:thorn_bush"
             },
             {
               "type": "minecraft:item",
@@ -57,5 +57,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/thorny_strangler_leaves"
+  "random_sequence": "verdant:blocks/thorn_bush"
 }

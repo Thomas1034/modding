@@ -103,5 +103,4 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 		return this.defaultBlockState().setValue(VERTICAL_DIRECTION,
 				context.getNearestLookingVerticalDirection().getOpposite());
 	}
-
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "verdant:block/stripped_heartwood_wood_top",
-    "side": "verdant:block/stripped_heartwood_wood"
+    "end": "verdant:block/heartwood_log_top",
+    "side": "verdant:block/heartwood_log"
   }
 }

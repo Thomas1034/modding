@@ -93,6 +93,11 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
                         blockTexture(BlockRegistry.POISON_IVY_PLANT.get())
                 ).renderType("cutout")
         );
+
+        // Thorn and normal bushes.
+
+        simpleFlowerWithPot(BlockRegistry.BUSH.get(), BlockRegistry.POTTED_BUSH.get());
+        simpleFlowerWithPot(BlockRegistry.THORN_BUSH.get(), BlockRegistry.POTTED_THORN_BUSH.get());
     }
 
     private String name(Block block) {
@@ -107,8 +112,8 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
 
         logBlockWithItem((RotatedPillarBlock) woodSet.getLog().get());
         logBlockWithItem((RotatedPillarBlock) woodSet.getStrippedLog().get());
-        logBlockWithItem((RotatedPillarBlock) woodSet.getWood().get());
-        logBlockWithItem((RotatedPillarBlock) woodSet.getStrippedWood().get());
+        woodBlockWithItem((RotatedPillarBlock) woodSet.getWood().get(), woodSet.getLog().get());
+        woodBlockWithItem((RotatedPillarBlock) woodSet.getStrippedWood().get(), woodSet.getLog().get());
         Block planks = woodSet.getPlanks().get();
         simpleBlockWithItem(planks);
         SlabBlock slab = (SlabBlock) woodSet.getSlab().get();
@@ -705,5 +710,10 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     private void logBlockWithItem(RotatedPillarBlock block) {
         logBlock(block);
         simpleBlockItem(block, models().getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath()));
+    }
+
+    private void woodBlockWithItem(RotatedPillarBlock wood, Block log) {
+        axisBlock(wood, blockTexture(log), extend(blockTexture(log), "_top"));
+        simpleBlockItem(wood, models().getBuilder(BuiltInRegistries.BLOCK.getKey(wood).getPath()));
     }
 }

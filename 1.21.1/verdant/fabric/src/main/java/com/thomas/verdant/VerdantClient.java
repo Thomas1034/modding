@@ -62,7 +62,12 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.STRANGLER_TENDRIL_PLANT,
                 BlockRegistry.FISH_TRAP_BLOCK,
                 BlockRegistry.ROPE,
-                BlockRegistry.ROPE_HOOK
+                BlockRegistry.ROPE_HOOK,
+                BlockRegistry.THORN_BUSH,
+                BlockRegistry.BUSH,
+                BlockRegistry.POTTED_THORN_BUSH,
+                BlockRegistry.POTTED_BUSH,
+                BlockRegistry.STINKING_BLOSSOM
         );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {

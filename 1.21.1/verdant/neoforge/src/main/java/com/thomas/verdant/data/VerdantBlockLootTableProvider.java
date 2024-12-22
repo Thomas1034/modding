@@ -3,6 +3,7 @@ package com.thomas.verdant.data;
 import com.thomas.verdant.block.custom.StranglerVineBlock;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -66,10 +67,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.TEST_LOG.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
-        this.add(BlockRegistry.STRANGLER_LEAVES.get(), noDrop());
-        this.add(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), noDrop());
-        this.add(BlockRegistry.POISON_STRANGLER_LEAVES.get(), noDrop());
-        this.add(BlockRegistry.THORNY_STRANGLER_LEAVES.get(), noDrop());
+        requireSilkTouch(BlockRegistry.STRANGLER_LEAVES.get(), Items.VINE, List.of(0, 1));
+        requireSilkTouch(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), Items.STICK, List.of(0, 1));
+        requireSilkTouch(BlockRegistry.POISON_STRANGLER_LEAVES.get(), BlockRegistry.POISON_IVY.get(), List.of(1, 3));
+        requireSilkTouch(BlockRegistry.THORNY_STRANGLER_LEAVES.get(), ItemRegistry.THORN.get(), List.of(1, 3));
         this.dropOther(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockRegistry.STRANGLER_TENDRIL.get());
         this.dropSelf(BlockRegistry.STRANGLER_TENDRIL.get());
         this.dropOther(BlockRegistry.POISON_IVY_PLANT.get(), BlockRegistry.POISON_IVY.get());
@@ -137,6 +138,13 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                         .setWeight(1))
                 .setRolls(UniformGenerator.between(1, 3)));
         this.add(rottenWood, rottenWoodLoot);
+
+        this.dropSelf(BlockRegistry.STINKING_BLOSSOM.get());
+
+        requireSilkTouch(BlockRegistry.THORN_BUSH.get(), ItemRegistry.THORN.get(), List.of(1, 3));
+        this.add(BlockRegistry.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(BlockRegistry.THORN_BUSH.get()));
+        requireSilkTouch(BlockRegistry.BUSH.get(), Items.STICK, List.of(2, 4));
+        this.add(BlockRegistry.POTTED_BUSH.get(), createPotFlowerItemTable(BlockRegistry.BUSH.get()));
 
 
         // this.add(ModBlocks.UBE_CAKE.get(), noDrop());

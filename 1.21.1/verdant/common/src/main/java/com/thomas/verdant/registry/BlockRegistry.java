@@ -66,6 +66,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> ANTIGORITE;
     public static final RegistryObject<Block, Block> ROPE;
     public static final RegistryObject<Block, Block> ROPE_HOOK;
+    public static final RegistryObject<Block, Block> STINKING_BLOSSOM;
+    public static final RegistryObject<Block, Block> BUSH;
+    public static final RegistryObject<Block, Block> POTTED_BUSH;
+    public static final RegistryObject<Block, Block> THORN_BUSH;
+    public static final RegistryObject<Block, Block> POTTED_THORN_BUSH;
+    // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem(
@@ -240,8 +246,7 @@ public class BlockRegistry {
         );
         ANTIGORITE = registerBlockWithItem("antigorite", () -> new Block(properties(Blocks.STONE, "antigorite")));
         ROPE = registerBlockWithoutItem(
-                "rope",
-                () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL)
+                "rope", () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL)
 
                         .lightLevel((state) -> 2 * state.getValue(RopeBlock.GLOW_LEVEL)))
         );
@@ -249,6 +254,36 @@ public class BlockRegistry {
                 "rope_hook",
                 () -> new RopeHookBlock(properties(Blocks.TRIPWIRE_HOOK, "rope_hook"))
         );
+        BUSH = registerBlockWithItem(
+                "bush",
+                () -> new ThornBushBlock(properties(Blocks.SWEET_BERRY_BUSH, "bush").noOcclusion().strength(0.5F), 0.0f)
+        );
+        POTTED_BUSH = registerBlockWithItem(
+                "potted_bush",
+                () -> new FlowerPotBlock(
+                        BlockRegistry.BUSH.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_bush").noOcclusion()
+                )
+        );
+        THORN_BUSH = registerBlockWithItem(
+                "thorn_bush",
+                () -> new ThornBushBlock(
+                        properties(Blocks.SWEET_BERRY_BUSH, "thorn_bush").noOcclusion()
+                                .strength(0.75F), 2.0f
+                )
+        );
+        POTTED_THORN_BUSH = registerBlockWithItem(
+                "potted_thorn_bush",
+                () -> new FlowerPotBlock(
+                        BlockRegistry.THORN_BUSH.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_thorn_bush").noOcclusion()
+                )
+        );
+        STINKING_BLOSSOM = registerBlockWithItem(
+                "stinking_blossom",
+                () -> new StinkingBlossomBlock(properties(Blocks.SPORE_BLOSSOM, "stinking_blossom"))
+        );
+
 
 
         TEST_LOG = registerBlockWithItem(

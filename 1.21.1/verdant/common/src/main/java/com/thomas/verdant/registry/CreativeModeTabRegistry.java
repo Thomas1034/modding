@@ -57,6 +57,9 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.STRANGLER_TENDRIL.get());
                         output.accept(BlockRegistry.ROPE.get());
                         output.accept(BlockRegistry.FISH_TRAP_BLOCK.get());
+                        output.accept(BlockRegistry.STINKING_BLOSSOM.get());
+                        output.accept(BlockRegistry.BUSH.get());
+                        output.accept(BlockRegistry.THORN_BUSH.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
                     .build()

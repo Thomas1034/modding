@@ -44,7 +44,18 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
         ropeCoilItem(ItemRegistry.ROPE_COIL);
+        evenSimplerBlockItem(BlockRegistry.STINKING_BLOSSOM);
+        simpleBlockItemBlockTexture(BlockRegistry.BUSH);
+        simpleBlockItemBlockTexture(BlockRegistry.THORN_BUSH);
     }
+
+    private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block, Block> item) {
+        return withExistingParent(
+                item.getId().getPath(),
+                ResourceLocation.withDefaultNamespace("item/generated")
+        ).texture("layer0", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + item.getId().getPath()));
+    }
+
 
     protected void generateFor(WoodSet woodSet) {
         fenceItem(woodSet.getFence(), woodSet.getPlanks());
