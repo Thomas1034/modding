@@ -1,7 +1,0 @@
-{
-	"render_type": "minecraft:cutout",
-  "parent": "verdant:block/rope",
-  "textures": {
-    "cross": "verdant:block/rope_down"
-  }
-}

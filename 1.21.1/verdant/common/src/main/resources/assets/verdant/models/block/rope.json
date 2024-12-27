@@ -2,28 +2,21 @@
   "render_type": "minecraft:cutout",
 	"ambientocclusion": true,
   "textures": {
-    "cross": "verdant:block/rope",
-      "particle": "#cross"
+    "rope": "verdant:block/rope",
+    "particle": "#rope"
   },
   "elements": [
     {
-      "from": [ 0.8, 0, 8 ],
-      "to": [ 15.2, 16, 8 ],
-      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
-      "shade": false,
+      "from": [ 7, 0, 7 ],
+      "to": [ 9, 16, 9 ],
+      "shade": true,
       "faces": {
-          "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
-          "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
-      }
-    },
-    {
-      "from": [ 8, 0, 0.8 ],
-      "to": [ 8, 16, 15.2 ],
-      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
-      "shade": false,
-      "faces": {
-          "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" },
-          "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
+          "north": { "uv": [ 2, 0, 0, 16 ], "texture": "#rope" },
+          "east": { "uv": [ 6, 0, 4, 16 ], "texture": "#rope" },
+          "south": { "uv": [ 10, 0, 8, 16 ], "texture": "#rope" },
+          "west": { "uv": [ 14, 0, 12, 16 ], "texture": "#rope" },
+          "up": { "uv": [ 0, 0, 2, 2 ], "texture": "#rope" },
+          "down": { "uv": [ 0, 14, 2, 16 ], "texture": "#rope" }
       }
     }
   ]
