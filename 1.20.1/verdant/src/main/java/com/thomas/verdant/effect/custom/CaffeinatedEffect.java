@@ -10,7 +10,9 @@ import net.minecraft.world.entity.LivingEntity;
 public class CaffeinatedEffect extends AddictiveEffect {
 
 	public CaffeinatedEffect(MobEffectCategory mobEffectCategory, int color) {
-		super(mobEffectCategory, color);
+		super(mobEffectCategory, color, 100);
+		this.effects.add(MobEffects.DIG_SPEED);
+		this.effects.add(MobEffects.MOVEMENT_SPEED);
 	}
 
 	// This effect gives speed, haste, and slowness.
@@ -20,7 +22,7 @@ public class CaffeinatedEffect extends AddictiveEffect {
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
 		super.applyEffectTick(entity, amplifier);
 
-		// Ensure only runs on the client.
+		// Ensure only runs on the server.
 		if (entity.level().isClientSide) {
 			return;
 		}

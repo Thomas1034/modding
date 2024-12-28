@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 // however it will be compatible with all supported mod loaders.
 // TODO:
 //
-// TODO Next time: Make lanterns be able to hang on ropes!
+// TODO When achievements are added: Why would you do that? for eating rotten compost.
 //
 // Look into connected textures for Antigorite, and make polished, brick, and chiseled variants.
 // https://www.curseforge.com/minecraft/mc-mods/continuity
@@ -62,6 +62,7 @@ public class CommonClass {
         ItemRegistry.init();
         EntityTypeRegistry.init();
         BlockRegistry.init();
+        MobEffectRegistry.init();
         WoodSets.init();
         BlockEntityTypeRegistry.init();
         MenuRegistry.init();

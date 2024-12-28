@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
@@ -71,6 +72,7 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
                         blockTexture(BlockRegistry.STRANGLER_TENDRIL.get())
                 ).renderType("cutout")
         );
+
         simpleBlockWithItem(
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 models().cross(
@@ -94,10 +96,18 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
                 ).renderType("cutout")
         );
 
-        // Thorn and normal bushes.
-
+        // Flowers and bushes.
         simpleFlowerWithPot(BlockRegistry.BUSH.get(), BlockRegistry.POTTED_BUSH.get());
         simpleFlowerWithPot(BlockRegistry.THORN_BUSH.get(), BlockRegistry.POTTED_THORN_BUSH.get());
+        simpleFlowerWithPot(BlockRegistry.WILD_COFFEE.get(), BlockRegistry.POTTED_WILD_COFFEE.get());
+        simpleFlowerPot(
+                BlockRegistry.POTTED_COFFEE_CROP.get(),
+                blockTexture(BlockRegistry.COFFEE_CROP.get()).withSuffix("_" + CoffeeCropBlock.MAX_AGE)
+        );
+        simpleFlowerWithPot(BlockRegistry.BLEEDING_HEART.get(), BlockRegistry.POTTED_BLEEDING_HEART.get());
+
+        // Coffee crop
+        makeCoffeeCrop((CoffeeCropBlock) BlockRegistry.COFFEE_CROP.get(), "coffee_crop_", "coffee_crop_");
     }
 
     private String name(Block block) {
@@ -715,5 +725,37 @@ public class VerdantBlockStateProvider extends BlockStateProvider {
     private void woodBlockWithItem(RotatedPillarBlock wood, Block log) {
         axisBlock(wood, blockTexture(log), extend(blockTexture(log), "_top"));
         simpleBlockItem(wood, models().getBuilder(BuiltInRegistries.BLOCK.getKey(wood).getPath()));
+    }
+
+
+    // The function to generate the model array for each state of the block.
+    private ConfiguredModel[] coffeeStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        // Create a (very small) array to hold the model in.
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        // Set the model to a new configured model.
+        models[0] = new ConfiguredModel(
+                // Get the list of builtin model templates
+                models()
+                        // Create a new crop model.
+                        .crop(
+                                // Add the age of the state to the name, so it's unique
+                                modelName + state.getValue(((CoffeeCropBlock) block).getAgeProperty()),
+                                // Create the texture location by adding the age of the state to the name
+                                ResourceLocation.fromNamespaceAndPath(
+                                        Constants.MOD_ID,
+                                        "block/" + textureName + state.getValue(((CoffeeCropBlock) block).getAgeProperty())
+                                )
+                        )
+                        // The render type is "cutout", since it is a crop
+                        .renderType("cutout"));
+        // Return the (small) array
+        return models;
+    }
+
+    protected void makeCoffeeCrop(CropBlock block, String modelName, String textureName) {
+        // Call the above function to create the models, with the data passed in
+        Function<BlockState, ConfiguredModel[]> function = state -> coffeeStates(state, block, modelName, textureName);
+        // Add all the states
+        getVariantBuilder(block).forAllStates(function);
     }
 }

@@ -7,22 +7,25 @@ import java.util.function.Function;
 
 /**
  * Alias Method for Weighted Random Selection
- *
+ * <p>
  * This class implements the Alias Method, which efficiently selects an item
  * from a set based on weighted probabilities. The Alias Method allows for
  * constant time selection (O(1)) after an initial preprocessing step (O(n)),
  * making it ideal for scenarios with repeated weighted random selections.
- *
+ * <p>
  * The method preprocesses the weights into two tables:
  * 1. A probability table containing normalized probabilities for each item.
  * 2. An alias table, which maps items with probabilities greater than 1 to
- *    an alias, ensuring the selection process remains efficient.
- *
+ * an alias, ensuring the selection process remains efficient.
+ * <p>
  * After preprocessing, selecting an item based on its weight is done in O(1) time.
- *
+ * <p>
  * Credit: Implementation by ChatGPT (OpenAI).
  */
 public class AliasBuilder {
+
+    private AliasBuilder() {
+    }
 
     /**
      * Creates a weighted random selection function using the Alias Method.

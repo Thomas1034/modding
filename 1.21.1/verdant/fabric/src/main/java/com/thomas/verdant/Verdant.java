@@ -19,7 +19,7 @@ public class Verdant implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
+        
         // This method is invoked by the Fabric mod loader when it is ready
         // to load your mod. You can access Fabric and Common code in this
         // project.
@@ -44,10 +44,12 @@ public class Verdant implements ModInitializer {
             StrippableBlockRegistry.register(woodSet.getWood().get(), woodSet.getStrippedWood().get());
             DispenserBlock.registerBehavior(
                     woodSet.getBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getBoat().get()));
+                    new BoatDispenseItemBehavior(woodSet.getBoat().get())
+            );
             DispenserBlock.registerBehavior(
                     woodSet.getChestBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get()));
+                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
+            );
             woodSet.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
         }
 

@@ -5,6 +5,7 @@ import com.thomas.verdant.registry.WoodSets;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
@@ -12,6 +13,17 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
 public class VerdantTags {
+
+    public static class MobEffects {
+
+        public static final TagKey<MobEffect> AIRLESS_BREATHING = tag("airless_breathing");
+
+        private static TagKey<MobEffect> tag(String name) {
+            return TagKey.create(Registries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        }
+
+    }
+
     public static class Blocks {
 
         public static final TagKey<Block> SUSTAINS_STRANGLER_LEAVES = tag("sustains_strangler_leaves");

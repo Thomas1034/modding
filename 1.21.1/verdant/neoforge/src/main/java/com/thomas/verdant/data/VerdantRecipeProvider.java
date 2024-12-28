@@ -17,9 +17,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 public class VerdantRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -37,6 +40,23 @@ public class VerdantRecipeProvider extends RecipeProvider implements IConditionB
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             this.generateFor(woodSet);
         }
+
+        suspiciousStew(
+                BlockRegistry.WILD_COFFEE.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.WILD_COFFEE.get()))
+        );
+        suspiciousStew(
+                BlockRegistry.BLEEDING_HEART.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.BLEEDING_HEART.get()))
+        );
+
+        shapeless(
+                List.of(Items.ROTTEN_FLESH, BlockRegistry.POISON_IVY.get(), Tags.Items.SEEDS),
+                List.of(1, 1, 1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.ROTTEN_COMPOST.get(),
+                2
+        );
 
         shaped(
                 List.of("vv", "vv"),

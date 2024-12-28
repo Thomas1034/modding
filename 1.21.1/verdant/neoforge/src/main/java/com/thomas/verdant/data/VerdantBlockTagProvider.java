@@ -131,7 +131,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         this.tag(VerdantTags.Blocks.ROPES_EXTEND)
                 .add(BlockRegistry.ROPE.get(), BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
-        
+
         this.tag(VerdantTags.Blocks.ROPE_HOOKS).add(Blocks.TRIPWIRE_HOOK, BlockRegistry.ROPE_HOOK.get());
 
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
@@ -207,13 +207,14 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(BlockTags.LOGS_THAT_BURN);
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(VerdantTags.Blocks.STRANGLER_VINES);
 
-        //        // Flowers
-        //        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
-        //        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_COFFEE.get());
-        //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
-        //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
-        //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
-        //        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
+        // Flowers
+        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
+        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_COFFEE.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
 
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);

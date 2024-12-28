@@ -2,6 +2,7 @@ package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
@@ -30,13 +31,31 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         }
         addDirtOres();
 
-        this.tag(VerdantTags.Items.STRANGLER_VINES).add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
+        this.tag(VerdantTags.Items.STRANGLER_VINES)
+                .add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
+        tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get());
 
+        this.tag(ItemTags.SMALL_FLOWERS)
+                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem());
+        this.tag(ItemTags.FLOWERS)
+                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem());
 
+        this.tag(Tags.Items.CROPS).add(ItemRegistry.COFFEE_BERRIES.get());
+        this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());
+        this.tag(Tags.Items.FOODS_FOOD_POISONING).add(ItemRegistry.ROTTEN_COMPOST.get());
     }
 
     private void addDirtOres() {
-        this.tag(Tags.Items.ORES).add(BlockRegistry.DIRT_COAL_ORE.get().asItem(), BlockRegistry.DIRT_COPPER_ORE.get().asItem(), BlockRegistry.DIRT_DIAMOND_ORE.get().asItem(), BlockRegistry.DIRT_EMERALD_ORE.get().asItem(), BlockRegistry.DIRT_GOLD_ORE.get().asItem(), BlockRegistry.DIRT_IRON_ORE.get().asItem(), BlockRegistry.DIRT_LAPIS_ORE.get().asItem(), BlockRegistry.DIRT_REDSTONE_ORE.get().asItem());
+        this.tag(Tags.Items.ORES).add(
+                BlockRegistry.DIRT_COAL_ORE.get().asItem(),
+                BlockRegistry.DIRT_COPPER_ORE.get().asItem(),
+                BlockRegistry.DIRT_DIAMOND_ORE.get().asItem(),
+                BlockRegistry.DIRT_EMERALD_ORE.get().asItem(),
+                BlockRegistry.DIRT_GOLD_ORE.get().asItem(),
+                BlockRegistry.DIRT_IRON_ORE.get().asItem(),
+                BlockRegistry.DIRT_LAPIS_ORE.get().asItem(),
+                BlockRegistry.DIRT_REDSTONE_ORE.get().asItem()
+        );
         this.tag(Tags.Items.ORES_COAL).add(BlockRegistry.DIRT_COAL_ORE.get().asItem());
         this.tag(Tags.Items.ORES_COPPER).add(BlockRegistry.DIRT_COPPER_ORE.get().asItem());
         this.tag(Tags.Items.ORES_DIAMOND).add(BlockRegistry.DIRT_DIAMOND_ORE.get().asItem());
@@ -49,16 +68,31 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
 
     public void generateFor(WoodSet woodSet) {
-        this.tag(woodSet.getLogItems()).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(), woodSet.getStrippedWood().get().asItem());
+        this.tag(woodSet.getLogItems()).add(
+                woodSet.getLog().get().asItem(),
+                woodSet.getWood().get().asItem(),
+                woodSet.getStrippedLog().get().asItem(),
+                woodSet.getStrippedWood().get().asItem()
+        );
         this.tag(ItemTags.WOODEN_SLABS).add(woodSet.getSlab().get().asItem());
         this.tag(ItemTags.WOODEN_STAIRS).add(woodSet.getStairs().get().asItem());
         this.tag(ItemTags.WOODEN_BUTTONS).add(woodSet.getButton().get().asItem());
         this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get().asItem());
         this.tag(ItemTags.WOODEN_FENCES).add(woodSet.getFence().get().asItem());
         this.tag(ItemTags.PLANKS).add(woodSet.getPlanks().get().asItem());
-        this.tag(ItemTags.LOGS).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(), woodSet.getStrippedWood().get().asItem());
+        this.tag(ItemTags.LOGS).add(
+                woodSet.getLog().get().asItem(),
+                woodSet.getWood().get().asItem(),
+                woodSet.getStrippedLog().get().asItem(),
+                woodSet.getStrippedWood().get().asItem()
+        );
         if (woodSet.isFlammable()) {
-            this.tag(ItemTags.LOGS_THAT_BURN).add(woodSet.getLog().get().asItem(), woodSet.getWood().get().asItem(), woodSet.getStrippedLog().get().asItem(), woodSet.getStrippedWood().get().asItem());
+            this.tag(ItemTags.LOGS_THAT_BURN).add(
+                    woodSet.getLog().get().asItem(),
+                    woodSet.getWood().get().asItem(),
+                    woodSet.getStrippedLog().get().asItem(),
+                    woodSet.getStrippedWood().get().asItem()
+            );
         }
         this.tag(ItemTags.SIGNS).add(woodSet.getSignItem().get());
         this.tag(ItemTags.HANGING_SIGNS).add(woodSet.getHangingSignItem().get());

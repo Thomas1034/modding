@@ -95,8 +95,6 @@ public class FoodPoisoningEffect extends MobEffect {
 		// Poison
 		register(5, 200, MobEffects.POISON);
 		//System.out.println("Registered " + EFFECTS.size() + " food poisoning effects.");
-
-
 	}
 
 	public static class WeightedEffectHolder {

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:suspicious_stew_from_wild_coffee"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wild_coffee": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:wild_coffee"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wild_coffee"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:suspicious_stew_from_wild_coffee"
+    ]
+  }
+}

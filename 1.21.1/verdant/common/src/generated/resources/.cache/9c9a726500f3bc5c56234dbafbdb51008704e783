@@ -1,5 +1,7 @@
-// 1.21.3	2024-12-21T23:17:25.4271593	Item Models: verdant
+// 1.21.3	2024-12-27T23:32:27.5522033	Item Models: verdant
+3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
 e12bb8f93070b36ea19965ae3b880f6ea15492ff assets/verdant/models/item/bush.json
+3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 a5498d2bf5c3dcda7540395eab29070917d3995c assets/verdant/models/item/fish_trap.json
 6de63570ddc112d61282e39477a22357d52823fe assets/verdant/models/item/heartwood_boat.json
 2e673a5be1cbb71976a7a56c6094bb0081bebc5d assets/verdant/models/item/heartwood_button.json
@@ -98,6 +100,7 @@ a0ab948f4e828eacb18e9c752575816e1549615f assets/verdant/models/item/rope_coil_sh
 f6fa9b32a24351facb714d51aca337b7d7675521 assets/verdant/models/item/rope_coil_short_no_hook_light4_bell.json
 4664e8b32fd38943104feff733f4f762e2b1af6c assets/verdant/models/item/rope_coil_short_no_hook_light4_lantern.json
 809da408f82e1ae352da74aab288b46bf0677dd8 assets/verdant/models/item/rope_coil_short_no_hook_light4_soul_lantern.json
+0129a5e4e176f0c4830f5133df91b32ecaa0c1f4 assets/verdant/models/item/rotten_compost.json
 b0e14af9179206824fc293ef31f881becc6a0f0e assets/verdant/models/item/stinking_blossom.json
 2781ad81f97d16a1bc0c0ff622935f683d282029 assets/verdant/models/item/strangler_boat.json
 ab2a9b92f2dad01da72c6398da009717a8ef2d46 assets/verdant/models/item/strangler_button.json
@@ -115,3 +118,4 @@ d9baba3781488b814b439a672acd8356461d4388 assets/verdant/models/item/strangler_te
 0a0e0dac145f579e8fad7dc896ac265f3c357cd9 assets/verdant/models/item/strangler_vine.json
 25d1af81b4d10d807cddabf99f1ce9750eef0576 assets/verdant/models/item/thorn.json
 56971747583a4b1f9bdedba4a27af87290cc782a assets/verdant/models/item/thorn_bush.json
+29437b96327f5d9d54846050c12f44221c980dca assets/verdant/models/item/wild_coffee.json

@@ -36,6 +36,7 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         }
 
         evenSimplerBlockItem(BlockRegistry.FISH_TRAP_BLOCK);
+        basicItem(ItemRegistry.COFFEE_BERRIES.get());
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
         basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());
@@ -47,13 +48,19 @@ public class VerdantItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.STINKING_BLOSSOM);
         simpleBlockItemBlockTexture(BlockRegistry.BUSH);
         simpleBlockItemBlockTexture(BlockRegistry.THORN_BUSH);
+        simpleBlockItemBlockTexture(BlockRegistry.WILD_COFFEE);
+        simpleBlockItemBlockTexture(BlockRegistry.BLEEDING_HEART);
+        basicItem(ItemRegistry.ROTTEN_COMPOST.get());
     }
 
     private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block, Block> item) {
         return withExistingParent(
                 item.getId().getPath(),
                 ResourceLocation.withDefaultNamespace("item/generated")
-        ).texture("layer0", ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + item.getId().getPath()));
+        ).texture(
+                "layer0",
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/" + item.getId().getPath())
+        );
     }
 
 

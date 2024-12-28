@@ -202,6 +202,13 @@ public class Verdant {
                     existingFileHelper
             );
             generator.addProvider(event.includeServer(), blockTagsProvider);
+            MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(
+                    packOutput,
+                    lookupProvider,
+                    existingFileHelper
+            );
+            generator.addProvider(event.includeServer(), mobEffectTagsProvider);
+
             generator.addProvider(
                     event.includeServer(),
                     new VerdantItemTagProvider(

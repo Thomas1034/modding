@@ -71,6 +71,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> POTTED_BUSH;
     public static final RegistryObject<Block, Block> THORN_BUSH;
     public static final RegistryObject<Block, Block> POTTED_THORN_BUSH;
+    public static final RegistryObject<Block, Block> WILD_COFFEE;
+    public static final RegistryObject<Block, Block> POTTED_COFFEE_CROP;
+    public static final RegistryObject<Block, Block> POTTED_WILD_COFFEE;
+    public static final RegistryObject<Block, Block> COFFEE_CROP;
+    public static final RegistryObject<Block, Block> BLEEDING_HEART;
+    public static final RegistryObject<Block, Block> POTTED_BLEEDING_HEART;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -258,7 +264,7 @@ public class BlockRegistry {
                 "bush",
                 () -> new ThornBushBlock(properties(Blocks.SWEET_BERRY_BUSH, "bush").noOcclusion().strength(0.5F), 0.0f)
         );
-        POTTED_BUSH = registerBlockWithItem(
+        POTTED_BUSH = registerBlockWithoutItem(
                 "potted_bush",
                 () -> new FlowerPotBlock(
                         BlockRegistry.BUSH.get(),
@@ -272,9 +278,8 @@ public class BlockRegistry {
                                 .strength(0.75F), 2.0f
                 )
         );
-        POTTED_THORN_BUSH = registerBlockWithItem(
-                "potted_thorn_bush",
-                () -> new FlowerPotBlock(
+        POTTED_THORN_BUSH = registerBlockWithoutItem(
+                "potted_thorn_bush", () -> new FlowerPotBlock(
                         BlockRegistry.THORN_BUSH.get(),
                         properties(Blocks.POTTED_BLUE_ORCHID, "potted_thorn_bush").noOcclusion()
                 )
@@ -283,8 +288,42 @@ public class BlockRegistry {
                 "stinking_blossom",
                 () -> new StinkingBlossomBlock(properties(Blocks.SPORE_BLOSSOM, "stinking_blossom"))
         );
-
-
+        WILD_COFFEE = registerBlockWithItem(
+                "wild_coffee", () -> new WildCoffeeBlock(
+                        MobEffectRegistry.CAFFEINATED.asHolder(),
+                        25,
+                        properties(Blocks.BLUE_ORCHID, "wild_coffee").noOcclusion().noCollission()
+                )
+        );
+        POTTED_WILD_COFFEE = registerBlockWithoutItem(
+                "potted_wild_coffee", () -> new FlowerPotBlock(
+                        BlockRegistry.WILD_COFFEE.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_wild_coffee").noOcclusion()
+                )
+        );
+        COFFEE_CROP = registerBlockWithoutItem(
+                "coffee_crop",
+                () -> new CoffeeCropBlock(properties(Blocks.SWEET_BERRY_BUSH, "coffee_crop"))
+        );
+        POTTED_COFFEE_CROP = registerBlockWithoutItem(
+                "potted_coffee_crop", () -> new FlowerPotBlock(
+                        BlockRegistry.COFFEE_CROP.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_coffee_crop").noOcclusion()
+                )
+        );
+        BLEEDING_HEART = registerBlockWithItem(
+                "bleeding_heart", () -> new FlowerBlock(
+                        MobEffectRegistry.FOOD_POISONING.asHolder(),
+                        40,
+                        properties(Blocks.BLUE_ORCHID, "bleeding_heart")
+                )
+        );
+        POTTED_BLEEDING_HEART = registerBlockWithoutItem(
+                "potted_bleeding_heart", () -> new FlowerPotBlock(
+                        BlockRegistry.BLEEDING_HEART.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_bleeding_heart").noOcclusion()
+                )
+        );
 
         TEST_LOG = registerBlockWithItem(
                 "test_log",
@@ -294,7 +333,6 @@ public class BlockRegistry {
                 "test_block",
                 () -> new Block(properties(Blocks.GLASS, "test_block").randomTicks())
         );
-
     }
 
     public static void init() {

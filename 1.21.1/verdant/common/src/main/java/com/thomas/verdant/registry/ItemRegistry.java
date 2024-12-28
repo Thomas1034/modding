@@ -5,9 +5,13 @@ import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.RopeItem;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
+import com.thomas.verdant.registry.properties.ConsumablesList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
@@ -19,6 +23,24 @@ public class ItemRegistry {
             "roasted_coffee",
             () -> new Item(properties("roasted_coffee"))
     );
+
+    // Feed to goats?
+    public static final RegistryObject<Item, Item> COFFEE_BERRIES = ITEMS.register(
+            "coffee_berries", () -> new BlockItem(
+                    BlockRegistry.COFFEE_CROP.get(), properties("coffee_berries").food(
+                    new FoodProperties.Builder().nutrition(1).saturationModifier(0.02F).alwaysEdible().build(),
+                    ConsumablesList.COFFEE_BERRY
+            )
+            )
+    );
+
+    public static final RegistryObject<Item, Item> ROTTEN_COMPOST = ITEMS.register(
+            "rotten_compost", () -> new BoneMealItem(properties("rotten_compost").food(
+                    new FoodProperties.Builder().nutrition(2).saturationModifier(0.02F).build(),
+                    ConsumablesList.ROTTEN_COMPOST
+            ))
+    );
+
     public static final RegistryObject<Item, Item> THORN = register("thorn", () -> new Item(properties("thorn")));
     public static final RegistryObject<Item, Item> ROPE_COIL = register(
             "rope_coil",
