@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "verdant:block/stripped_heartwood_wood_horizontal",
+      "model": "verdant:block/stripped_heartwood_wood",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "verdant:block/stripped_heartwood_wood"
     },
     "axis=z": {
-      "model": "verdant:block/stripped_heartwood_wood_horizontal",
+      "model": "verdant:block/stripped_heartwood_wood",
       "x": 90
     }
   }

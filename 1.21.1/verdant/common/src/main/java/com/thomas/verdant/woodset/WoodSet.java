@@ -5,6 +5,7 @@ import com.thomas.verdant.Constants;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +27,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// WIP TODO recipes
 public class WoodSet {
 
     // The mod id
@@ -79,6 +79,8 @@ public class WoodSet {
     protected TagKey<Block> logs;
     // The tag for the log items
     protected TagKey<Item> logItems;
+    // The block family
+    protected BlockFamily family = null;
 
     public WoodSet(String modid, String setName, Supplier<BlockBehaviour.Properties> baseProperties, float burnTimeFactor, boolean isFlammable) {
         this.modid = modid;
@@ -97,8 +99,14 @@ public class WoodSet {
         registerEntities();
         registerItems();
         registerTabs();
-        this.logs = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs"));
-        this.logItems = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs"));
+        this.logs = TagKey.create(
+                Registries.BLOCK,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs")
+        );
+        this.logItems = TagKey.create(
+                Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, this.setName + "_logs")
+        );
     }
 
     private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> p_376580_) {
@@ -107,6 +115,24 @@ public class WoodSet {
 
     private static EntityType.EntityFactory<ChestBoat> chestBoatFactory(Supplier<Item> p_376578_) {
         return (p_375555_, p_375556_) -> new ChestBoat(p_375555_, p_375556_, p_376578_);
+    }
+
+    public BlockFamily getFamily() {
+
+        if (this.family == null) {
+            this.family = new BlockFamily.Builder(this.getPlanks().get()).fence(this.getFence().get())
+                    .fenceGate(this.getFenceGate().get())
+                    .slab(this.getSlab().get())
+                    .stairs(this.getStairs().get())
+                    .pressurePlate(this.getPressurePlate().get())
+                    .sign(this.getSign().get(), this.getWallSign().get())
+                    .button(this.getButton().get())
+                    .door(this.getDoor().get())
+                    .trapdoor(this.getTrapdoor().get())
+                    .getFamily();
+        }
+
+        return this.family;
     }
 
     public boolean isFlammable() {
@@ -138,10 +164,11 @@ public class WoodSet {
     }
 
     public void registerTabs() {
-        this.tabs.register(this.modid + ".wood_set." + this.setName, () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-                .icon(() -> new ItemStack(this.log.get()))
-                .displayItems(
-                        (itemDisplayParameters, output) -> {
+        this.tabs.register(
+                this.modid + ".wood_set." + this.setName,
+                () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                        .icon(() -> new ItemStack(this.log.get()))
+                        .displayItems((itemDisplayParameters, output) -> {
                             output.accept(this.log.get());
                             output.accept(this.wood.get());
                             output.accept(this.strippedLog.get());
@@ -159,8 +186,10 @@ public class WoodSet {
                             output.accept(this.hangingSignItem.get());
                             output.accept(this.boatItem.get());
                             output.accept(this.chestBoatItem.get());
-                        }).title(Component.translatable("creativetab." + this.modid + ".wood_set." + this.setName))
-                .build());
+                        })
+                        .title(Component.translatable("creativetab." + this.modid + ".wood_set." + this.setName))
+                        .build()
+        );
     }
 
     public void registerFuels(BiConsumer<ItemLike, Integer> registrar) {
@@ -191,43 +220,127 @@ public class WoodSet {
     }
 
     protected void registerEntities() {
-        this.boat = this.entities.register(typeName("_boat"), () -> EntityType.Builder.of(boatFactory(() -> this.boatItem.get()), MobCategory.MISC)
-                .noLootTable()
-                .sized(1.375F, 0.5625F)
-                .eyeHeight(0.5625F)
-                .clientTrackingRange(10).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_boat")))));
-        this.chestBoat = this.entities.register(typeName("_chest_boat"), () -> EntityType.Builder.of(chestBoatFactory(() -> this.chestBoatItem.get()), MobCategory.MISC)
-                .noLootTable()
-                .sized(1.375F, 0.5625F)
-                .eyeHeight(0.5625F)
-                .clientTrackingRange(10).build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_chest_boat")))));
+        this.boat = this.entities.register(
+                typeName("_boat"),
+                () -> EntityType.Builder.of(boatFactory(() -> this.boatItem.get()), MobCategory.MISC)
+                        .noLootTable()
+                        .sized(1.375F, 0.5625F)
+                        .eyeHeight(0.5625F)
+                        .clientTrackingRange(10)
+                        .build(ResourceKey.create(
+                                Registries.ENTITY_TYPE,
+                                ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_boat"))
+                        ))
+        );
+        this.chestBoat = this.entities.register(
+                typeName("_chest_boat"),
+                () -> EntityType.Builder.of(chestBoatFactory(() -> this.chestBoatItem.get()), MobCategory.MISC)
+                        .noLootTable()
+                        .sized(1.375F, 0.5625F)
+                        .eyeHeight(0.5625F)
+                        .clientTrackingRange(10)
+                        .build(ResourceKey.create(
+                                Registries.ENTITY_TYPE,
+                                ResourceLocation.fromNamespaceAndPath(this.modid, typeName("_chest_boat"))
+                        ))
+        );
     }
 
     protected void registerItems() {
-        this.signItem = register(typeName("_sign"), () -> new SignItem(this.sign.get(), this.wallSign.get(), itemProperties(typeName("_sign"))));
-        this.hangingSignItem = register(typeName("_hanging_sign"), () -> new HangingSignItem(this.hangingSign.get(), this.wallHangingSign.get(), itemProperties(typeName("_hanging_sign"))));
-        this.boatItem = register(typeName("_boat"), () -> new BoatItem(this.boat.get(), itemProperties(typeName("_boat"))));
-        this.chestBoatItem = register(typeName("_chest_boat"), () -> new BoatItem(this.chestBoat.get(), itemProperties(typeName("_chest_boat"))));
+        this.signItem = register(
+                typeName("_sign"),
+                () -> new SignItem(this.sign.get(), this.wallSign.get(), itemProperties(typeName("_sign")))
+        );
+        this.hangingSignItem = register(
+                typeName("_hanging_sign"),
+                () -> new HangingSignItem(
+                        this.hangingSign.get(),
+                        this.wallHangingSign.get(),
+                        itemProperties(typeName("_hanging_sign"))
+                )
+        );
+        this.boatItem = register(
+                typeName("_boat"),
+                () -> new BoatItem(this.boat.get(), itemProperties(typeName("_boat")))
+        );
+        this.chestBoatItem = register(
+                typeName("_chest_boat"),
+                () -> new BoatItem(this.chestBoat.get(), itemProperties(typeName("_chest_boat")))
+        );
     }
 
     protected void registerBlocks() {
-        this.log = registerBlockWithItem(typeName("_log"), () -> new RotatedPillarBlock(this.logProperties(typeName("_log"))));
-        this.wood = registerBlockWithItem(typeName("_wood"), () -> new RotatedPillarBlock(this.logProperties(typeName("_wood"))));
-        this.strippedLog = registerBlockWithItem(splitName("stripped_", "_log"), () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_log"))));
-        this.strippedWood = registerBlockWithItem(splitName("stripped_", "_wood"), () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_wood"))));
-        this.planks = registerBlockWithItem(typeName("_planks"), () -> new Block(this.planksProperties(typeName("_planks"))));
-        this.slab = registerBlockWithItem(typeName("_slab"), () -> new SlabBlock(this.slabProperties(typeName("_slab"))));
-        this.stairs = registerBlockWithItem(typeName("_stairs"), () -> new StairBlock(this.planks.get().defaultBlockState(), this.stairsProperties(typeName("_stairs"))));
-        this.fence = registerBlockWithItem(typeName("_fence"), () -> new FenceBlock(this.fenceProperties(typeName("_fence"))));
-        this.fenceGate = registerBlockWithItem(typeName("_fence_gate"), () -> new FenceGateBlock(this.woodType, this.fenceGateProperties(typeName("_fence_gate"))));
-        this.button = registerBlockWithItem(typeName("_button"), () -> new ButtonBlock(this.setType, 30, this.buttonProperties(typeName("_button"))));
-        this.pressurePlate = registerBlockWithItem(typeName("_pressure_plate"), () -> new PressurePlateBlock(this.setType, this.pressurePlateProperties(typeName("_pressure_plate"))));
-        this.sign = registerBlockWithoutItem(typeName("_sign"), () -> new StandingSignBlock(this.woodType, this.signProperties(typeName("_sign"))));
-        this.wallSign = registerBlockWithoutItem(typeName("_wall_sign"), () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign"))));
-        this.hangingSign = registerBlockWithoutItem(typeName("_hanging_sign"), () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign"))));
-        this.wallHangingSign = registerBlockWithoutItem(typeName("_wall_hanging_sign"), () -> new WallHangingSignBlock(this.woodType, this.wallHangingSignProperties(typeName("_wall_hanging_sign"))));
-        this.trapdoor = registerBlockWithItem(typeName("_trapdoor"), () -> new TrapDoorBlock(this.setType, this.trapdoorProperties(typeName("_trapdoor"))));
-        this.door = registerBlockWithItem(typeName("_door"), () -> new DoorBlock(this.setType, this.doorProperties(typeName("_door"))));
+        this.log = registerBlockWithItem(
+                typeName("_log"),
+                () -> new RotatedPillarBlock(this.logProperties(typeName("_log")))
+        );
+        this.wood = registerBlockWithItem(
+                typeName("_wood"),
+                () -> new RotatedPillarBlock(this.logProperties(typeName("_wood")))
+        );
+        this.strippedLog = registerBlockWithItem(
+                splitName("stripped_", "_log"),
+                () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_log")))
+        );
+        this.strippedWood = registerBlockWithItem(
+                splitName("stripped_", "_wood"),
+                () -> new RotatedPillarBlock(this.logProperties(splitName("stripped_", "_wood")))
+        );
+        this.planks = registerBlockWithItem(
+                typeName("_planks"),
+                () -> new Block(this.planksProperties(typeName("_planks")))
+        );
+        this.slab = registerBlockWithItem(
+                typeName("_slab"),
+                () -> new SlabBlock(this.slabProperties(typeName("_slab")))
+        );
+        this.stairs = registerBlockWithItem(
+                typeName("_stairs"),
+                () -> new StairBlock(this.planks.get().defaultBlockState(), this.stairsProperties(typeName("_stairs")))
+        );
+        this.fence = registerBlockWithItem(
+                typeName("_fence"),
+                () -> new FenceBlock(this.fenceProperties(typeName("_fence")))
+        );
+        this.fenceGate = registerBlockWithItem(
+                typeName("_fence_gate"),
+                () -> new FenceGateBlock(this.woodType, this.fenceGateProperties(typeName("_fence_gate")))
+        );
+        this.button = registerBlockWithItem(
+                typeName("_button"),
+                () -> new ButtonBlock(this.setType, 30, this.buttonProperties(typeName("_button")))
+        );
+        this.pressurePlate = registerBlockWithItem(
+                typeName("_pressure_plate"),
+                () -> new PressurePlateBlock(this.setType, this.pressurePlateProperties(typeName("_pressure_plate")))
+        );
+        this.sign = registerBlockWithoutItem(
+                typeName("_sign"),
+                () -> new StandingSignBlock(this.woodType, this.signProperties(typeName("_sign")))
+        );
+        this.wallSign = registerBlockWithoutItem(
+                typeName("_wall_sign"),
+                () -> new WallSignBlock(this.woodType, this.wallSignProperties(typeName("_wall_sign")))
+        );
+        this.hangingSign = registerBlockWithoutItem(
+                typeName("_hanging_sign"),
+                () -> new CeilingHangingSignBlock(this.woodType, this.signProperties(typeName("_hanging_sign")))
+        );
+        this.wallHangingSign = registerBlockWithoutItem(
+                typeName("_wall_hanging_sign"),
+                () -> new WallHangingSignBlock(
+                        this.woodType,
+                        this.wallHangingSignProperties(typeName("_wall_hanging_sign"))
+                )
+        );
+        this.trapdoor = registerBlockWithItem(
+                typeName("_trapdoor"),
+                () -> new TrapDoorBlock(this.setType, this.trapdoorProperties(typeName("_trapdoor")))
+        );
+        this.door = registerBlockWithItem(
+                typeName("_door"),
+                () -> new DoorBlock(this.setType, this.doorProperties(typeName("_door")))
+        );
     }
 
     protected String typeName(String suffix) {
@@ -239,7 +352,11 @@ public class WoodSet {
     }
 
     protected <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block) {
-        return registerBlockWithItem(name, block, b -> () -> new BlockItem(b.get(), itemProperties(name).useBlockDescriptionPrefix()));
+        return registerBlockWithItem(
+                name,
+                block,
+                b -> () -> new BlockItem(b.get(), itemProperties(name).useBlockDescriptionPrefix())
+        );
     }
 
     protected <T extends Block> RegistryObject<Block, T> registerBlockWithItem(String name, Supplier<T> block, Function<RegistryObject<Block, T>, Supplier<? extends BlockItem>> item) {
@@ -257,7 +374,10 @@ public class WoodSet {
     }
 
     protected Item.Properties itemProperties(String name) {
-        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(this.modid, name)));
+        return new Item.Properties().setId(ResourceKey.create(
+                Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(this.modid, name)
+        ));
     }
 
     public TagKey<Block> getLogs() {
@@ -409,7 +529,11 @@ public class WoodSet {
     }
 
     protected BlockBehaviour.Properties pressurePlateProperties(String name) {
-        return this.blockProperties(name).forceSolidOn().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY);
+        return this.blockProperties(name)
+                .forceSolidOn()
+                .noCollission()
+                .strength(0.5F)
+                .pushReaction(PushReaction.DESTROY);
     }
 
     protected BlockBehaviour.Properties trapdoorProperties(String name) {

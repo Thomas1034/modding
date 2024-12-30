@@ -11,18 +11,16 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class VerdantBlockTagProvider extends BlockTagsProvider {
-    public VerdantBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, Constants.MOD_ID, existingFileHelper);
+    public VerdantBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, Constants.MOD_ID);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             generateFor(woodSet);
         }

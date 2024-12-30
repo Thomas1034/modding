@@ -20,8 +20,10 @@ public class ItemRegistry {
 
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
     public static final RegistryObject<Item, Item> ROASTED_COFFEE = register(
-            "roasted_coffee",
-            () -> new Item(properties("roasted_coffee"))
+            "roasted_coffee", () -> new Item(properties("roasted_coffee").food(
+                    new FoodProperties.Builder().nutrition(1).saturationModifier(0.02F).alwaysEdible().build(),
+                    ConsumablesList.COFFEE_BERRY
+            ))
     );
 
     // Feed to goats?
@@ -35,7 +37,8 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> ROTTEN_COMPOST = ITEMS.register(
-            "rotten_compost", () -> new BoneMealItem(properties("rotten_compost").food(
+            "rotten_compost",
+            () -> new BoneMealItem(properties("rotten_compost").food(
                     new FoodProperties.Builder().nutrition(2).saturationModifier(0.02F).build(),
                     ConsumablesList.ROTTEN_COMPOST
             ))

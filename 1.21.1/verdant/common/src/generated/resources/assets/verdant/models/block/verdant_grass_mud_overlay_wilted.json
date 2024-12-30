@@ -1,0 +1,12 @@
+{
+  "parent": "verdant:block/top_overlaid_cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/mud",
+    "bottom": "verdant:block/verdant_grass_bottom",
+    "overlay": "verdant:block/overlay_wilted",
+    "particle": "minecraft:block/mud",
+    "side": "verdant:block/verdant_grass_side",
+    "top": "verdant:block/verdant_grass_top"
+  }
+}

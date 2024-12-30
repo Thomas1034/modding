@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/overlaid_cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/mud",
+    "overlay": "verdant:block/overlay_wilted_thin",
+    "particle": "minecraft:block/mud"
+  }
+}

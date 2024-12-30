@@ -13,14 +13,12 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
 public class VerdantItemTagProvider extends ItemTagsProvider {
-    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, blockTags, Constants.MOD_ID, existingFileHelper);
+    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags) {
+        super(output, lookupProvider, blockTags, Constants.MOD_ID);
     }
 
 
@@ -37,12 +35,12 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.SMALL_FLOWERS)
                 .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem());
-        this.tag(ItemTags.FLOWERS)
-                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem());
 
         this.tag(Tags.Items.CROPS).add(ItemRegistry.COFFEE_BERRIES.get());
         this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());
         this.tag(Tags.Items.FOODS_FOOD_POISONING).add(ItemRegistry.ROTTEN_COMPOST.get());
+
+        this.tag(Tags.Items.FOODS).add(ItemRegistry.ROASTED_COFFEE.get());
     }
 
     private void addDirtOres() {

@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/door_bottom_right",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "verdant:block/heartwood_door_bottom",
     "top": "verdant:block/heartwood_door_top"

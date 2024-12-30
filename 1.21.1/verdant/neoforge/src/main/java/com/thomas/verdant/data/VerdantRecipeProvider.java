@@ -19,13 +19,12 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
-public class VerdantRecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class VerdantRecipeProvider extends RecipeProvider {
     protected final String modid;
 
     public VerdantRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {

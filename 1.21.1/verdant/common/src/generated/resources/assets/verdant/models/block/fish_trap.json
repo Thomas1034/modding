@@ -1,4 +1,11 @@
 {
   "parent": "verdant:block/fish_trap_base",
-  "render_type": "minecraft:cutout"
+  "textures": {
+    "front": "verdant:block/fish_trap_front",
+    "inset_high": "verdant:block/fish_trap_inset_high",
+    "inset_low": "verdant:block/fish_trap_inset_low",
+    "particle": "verdant:block/fish_trap_side",
+    "side": "verdant:block/fish_trap_side",
+    "top": "verdant:block/fish_trap_top"
+  }
 }

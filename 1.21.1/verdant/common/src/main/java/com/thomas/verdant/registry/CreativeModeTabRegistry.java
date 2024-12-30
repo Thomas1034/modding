@@ -20,8 +20,10 @@ public class CreativeModeTabRegistry {
                     .icon(() -> new ItemStack(ItemRegistry.THORN.get()))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ItemRegistry.THORN.get());
+                        output.accept(ItemRegistry.COFFEE_BERRIES.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
+                        output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
@@ -60,6 +62,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
+                        output.accept(BlockRegistry.WILD_COFFEE.get());
+                        output.accept(BlockRegistry.BLEEDING_HEART.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
                     .build()

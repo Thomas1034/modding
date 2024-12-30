@@ -40,24 +40,6 @@ public class RopeHookBlock extends Block {
         super(properties);
     }
 
-    @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return switch (state.getValue(FACING)) {
-            case WEST -> WEST_AABB;
-            case SOUTH -> SOUTH_AABB;
-            case NORTH -> NORTH_AABB;
-            default -> EAST_AABB;
-        };
-    }
-
-    @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        Direction facing = state.getValue(FACING);
-        BlockPos behind = pos.relative(facing.getOpposite());
-        BlockState stateBehind = level.getBlockState(behind);
-        return facing.getAxis().isHorizontal() && stateBehind.isFaceSturdy(level, behind, facing);
-    }
-
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos pos, Direction direction, BlockPos otherPos, BlockState otherState, RandomSource random) {
         if (direction == Direction.DOWN && !otherState.is(BlockRegistry.ROPE.get())) {
             return BlockTransformer.copyProperties(state, Blocks.TRIPWIRE_HOOK);
@@ -72,31 +54,6 @@ public class RopeHookBlock extends Block {
                 otherState,
                 random
         ) : Blocks.AIR.defaultBlockState();
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = this.defaultBlockState();
-        LevelReader level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        Direction[] nearestDirections = context.getNearestLookingDirections();
-
-        for (Direction direction : nearestDirections) {
-            if (direction.getAxis().isHorizontal()) {
-                Direction direction1 = direction.getOpposite();
-                state = state.setValue(FACING, direction1);
-                if (state.canSurvive(level, pos)) {
-                    return state;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        return new ItemStack(Blocks.TRIPWIRE_HOOK);
     }
 
     @Override
@@ -142,6 +99,49 @@ public class RopeHookBlock extends Block {
     @Override
     protected BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        Direction facing = state.getValue(FACING);
+        BlockPos behind = pos.relative(facing.getOpposite());
+        BlockState stateBehind = level.getBlockState(behind);
+        return facing.getAxis().isHorizontal() && stateBehind.isFaceSturdy(level, behind, facing);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return switch (state.getValue(FACING)) {
+            case WEST -> WEST_AABB;
+            case SOUTH -> SOUTH_AABB;
+            case NORTH -> NORTH_AABB;
+            default -> EAST_AABB;
+        };
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+        return new ItemStack(Blocks.TRIPWIRE_HOOK);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState state = this.defaultBlockState();
+        LevelReader level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction[] nearestDirections = context.getNearestLookingDirections();
+
+        for (Direction direction : nearestDirections) {
+            if (direction.getAxis().isHorizontal()) {
+                Direction direction1 = direction.getOpposite();
+                state = state.setValue(FACING, direction1);
+                if (state.canSurvive(level, pos)) {
+                    return state;
+                }
+            }
+        }
+
+        return null;
     }
 
     @Override

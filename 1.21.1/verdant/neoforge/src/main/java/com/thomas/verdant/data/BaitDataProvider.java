@@ -31,14 +31,15 @@ public class BaitDataProvider {
         add(bootstrap, Items.SUGAR, 0.4, 0.8);
         // add(bootstrap, ItemRegistry.STARCH.get(), 0.4, 0.8);
         add(bootstrap, Items.WHEAT, 0.5, 0.5);
+        add(bootstrap, ItemRegistry.COFFEE_BERRIES.get(), 0.5, 0.5);
         add(bootstrap, Items.COD, 0.5, 0.5);
         add(bootstrap, Items.RABBIT, 0.5, 0.3);
         add(bootstrap, Items.SALMON, 0.5, 0.45);
         // add(bootstrap, ItemRegistry.BAKED_UBE.get(), 0.5, 0.25);
         add(bootstrap, Items.CHICKEN, 0.55, 0.3);
         add(bootstrap, Items.MUTTON, 0.55, 0.3);
-        add(bootstrap, Items.PORKCHOP, 0.6, 0.3);
         add(bootstrap, Items.BEEF, 0.55, 0.3);
+        add(bootstrap, Items.PORKCHOP, 0.6, 0.3);
         add(bootstrap, Items.COOKIE, 0.6, 0.8);
         // add(bootstrap, ItemRegistry.UBE_COOKIE.get(), 0.6, 0.8);
         add(bootstrap, Items.BREAD, 0.6, 0.3);
@@ -69,7 +70,8 @@ public class BaitDataProvider {
         return new BaitData(
                 BuiltInRegistries.ITEM.getKey(item),
                 new BaitData.InnerData(catchChance, consumeChance),
-                false);
+                false
+        );
     }
 
     public static ResourceKey<BaitData> key(ResourceLocation location) {

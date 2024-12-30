@@ -13,7 +13,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -41,7 +40,6 @@ import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -163,20 +161,22 @@ public class Verdant {
         }
     }
 
-    public static void gatherData(final GatherDataEvent event) {
+    public static void gatherData(final GatherDataEvent.Client event) {
         try {
             // Store some frequently-used fields for later use.
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();
-            ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+            /*
+            Debugging purposes only.
             BuiltInRegistries.REGISTRY.stream()
                     .forEach(registry -> Constants.LOG.warn("Found registry {} ", registry.key().location()));
+            */
 
             // Loot tables.
             generator.addProvider(
-                    event.includeServer(), new LootTableProvider(
+                    true, new LootTableProvider(
                             packOutput,
                             Collections.emptySet(),
                             List.of(new LootTableProvider.SubProviderEntry(
@@ -193,38 +193,24 @@ public class Verdant {
             );
 
             // Generate data for the recipes
-            generator.addProvider(event.includeClient(), new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
+            generator.addProvider(true, new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
             // Generate data for the block and item tags
-            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(
-                    packOutput,
-                    lookupProvider,
-                    existingFileHelper
-            );
-            generator.addProvider(event.includeServer(), blockTagsProvider);
-            MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(
-                    packOutput,
-                    lookupProvider,
-                    existingFileHelper
-            );
-            generator.addProvider(event.includeServer(), mobEffectTagsProvider);
+            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider);
+            generator.addProvider(true, blockTagsProvider);
+            MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(packOutput, lookupProvider);
+            generator.addProvider(true, mobEffectTagsProvider);
 
             generator.addProvider(
-                    event.includeServer(),
-                    new VerdantItemTagProvider(
-                            packOutput,
-                            lookupProvider,
-                            blockTagsProvider.contentsGetter(),
-                            existingFileHelper
-                    )
+                    true,
+                    new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter())
             );
             // Generate block and item models.
-            generator.addProvider(event.includeClient(), new VerdantBlockStateProvider(packOutput, existingFileHelper));
-            generator.addProvider(event.includeClient(), new VerdantItemModelProvider(packOutput, existingFileHelper));
+            generator.addProvider(true, new VerdantModelProvider(packOutput));
 
             // Generate dynamic registries
             generator.addProvider(
-                    event.includeServer(), new DatapackBuiltinEntriesProvider(
+                    true, new DatapackBuiltinEntriesProvider(
                             packOutput,
                             lookupProvider,
                             new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)

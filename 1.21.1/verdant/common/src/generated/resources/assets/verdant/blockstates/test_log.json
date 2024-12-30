@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "verdant:block/test_log_horizontal",
+      "model": "verdant:block/test_log",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "verdant:block/test_log"
     },
     "axis=z": {
-      "model": "verdant:block/test_log_horizontal",
+      "model": "verdant:block/test_log",
       "x": 90
     }
   }

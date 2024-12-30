@@ -1,8 +1,0 @@
-{
-  "parent": "verdant:block/bilayer_block",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "base": "minecraft:block/dirt",
-    "overlay": "verdant:block/verdant_overlay_wilted"
-  }
-}

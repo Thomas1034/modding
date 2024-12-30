@@ -1,12 +1,10 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.client.item.VerdantItemProperties;
-import com.thomas.verdant.client.item.properties.RopeGlowPropertyFunction;
-import com.thomas.verdant.client.item.properties.RopeHasHookPropertyFunction;
-import com.thomas.verdant.client.item.properties.RopeLanternOptionPropertyFunction;
-import com.thomas.verdant.client.item.properties.RopeLengthPropertyFunction;
 import com.thomas.verdant.client.screen.FishTrapScreen;
-import com.thomas.verdant.registry.*;
+import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.EntityTypeRegistry;
+import com.thomas.verdant.registry.MenuRegistry;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -19,7 +17,6 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -50,10 +47,6 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.VERDANT_ROOTED_CLAY,
                 BlockRegistry.VERDANT_GRASS_CLAY,
                 BlockRegistry.STRANGLER_VINE,
-                BlockRegistry.STRANGLER_LEAVES,
-                BlockRegistry.WILTED_STRANGLER_LEAVES,
-                BlockRegistry.THORNY_STRANGLER_LEAVES,
-                BlockRegistry.POISON_STRANGLER_LEAVES,
                 BlockRegistry.LEAFY_STRANGLER_VINE,
                 BlockRegistry.ROTTEN_WOOD,
                 BlockRegistry.POISON_IVY,
@@ -75,6 +68,12 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.BLEEDING_HEART,
                 BlockRegistry.POTTED_BLEEDING_HEART
         );
+        markCutoutMipped(
+                BlockRegistry.STRANGLER_LEAVES,
+                BlockRegistry.WILTED_STRANGLER_LEAVES,
+                BlockRegistry.THORNY_STRANGLER_LEAVES,
+                BlockRegistry.POISON_STRANGLER_LEAVES
+        );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             markCutout(woodSet.getDoor(), woodSet.getTrapdoor());
@@ -89,26 +88,7 @@ public class VerdantClient implements ClientModInitializer {
     }
 
     protected void registerItemProperties() {
-        ItemProperties.register(
-                ItemRegistry.ROPE_COIL.get(),
-                VerdantItemProperties.ROPE_LENGTH,
-                new RopeLengthPropertyFunction()
-        );
-        ItemProperties.register(
-                ItemRegistry.ROPE_COIL.get(),
-                VerdantItemProperties.HAS_HOOK,
-                new RopeHasHookPropertyFunction()
-        );
-        ItemProperties.register(
-                ItemRegistry.ROPE_COIL.get(),
-                VerdantItemProperties.ROPE_GLOW,
-                new RopeGlowPropertyFunction()
-        );
-        ItemProperties.register(
-                ItemRegistry.ROPE_COIL.get(),
-                VerdantItemProperties.LANTERN_OPTION,
-                new RopeLanternOptionPropertyFunction()
-        );
+
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {
@@ -129,6 +109,14 @@ public class VerdantClient implements ClientModInitializer {
                 .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
                         ((Supplier<Block>) block).get(),
                         RenderType.cutout()
+                ));
+    }
+
+    public void markCutoutMipped(Supplier... blocks) {
+        Arrays.stream(blocks)
+                .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
+                        ((Supplier<Block>) block).get(),
+                        RenderType.cutoutMipped()
                 ));
     }
 

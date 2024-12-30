@@ -1,3 +1,4 @@
+
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
@@ -6,7 +7,7 @@ plugins {
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
-    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
@@ -23,8 +24,8 @@ neoForge {
             client()
         }
         data {
-            data()
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('../common/src/generated/resources').getAbsolutePath(), '--existing', file('../common/src/main/resources/').getAbsolutePath()
+            clientData()
+            programArguments.addAll '--mod', project.mod_id, '--output', file('../common/src/generated/resources/').getAbsolutePath(), '--existing', file('../common/src/main/resources/').getAbsolutePath()
         }
         server {
             server()

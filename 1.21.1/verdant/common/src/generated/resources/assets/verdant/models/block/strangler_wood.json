@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "verdant:block/strangler_log_top",
-    "side": "verdant:block/strangler_log"
+    "end": "verdant:block/strangler_wood_top",
+    "side": "verdant:block/strangler_wood_side"
   }
 }

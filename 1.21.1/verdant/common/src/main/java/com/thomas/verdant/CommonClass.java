@@ -1,6 +1,5 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.client.item.VerdantItemProperties;
 import com.thomas.verdant.platform.Services;
 import com.thomas.verdant.registry.*;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -9,7 +8,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
-// TODO:
+// TODO: add dispenser behavior to wood set boats.
 //
 // TODO When achievements are added: Why would you do that? for eating rotten compost.
 //
@@ -34,7 +33,10 @@ import net.minecraft.world.level.block.ComposterBlock;
  that involve setting the length.
 
  */
+// Credits: (other direct contributors only)
+/*
 
+ */
 public class CommonClass {
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
@@ -68,7 +70,6 @@ public class CommonClass {
         MenuRegistry.init();
         CreativeModeTabRegistry.init();
         RecipeSerializerRegistry.init();
-        VerdantItemProperties.init();
     }
 
     public static void initCompostables() {

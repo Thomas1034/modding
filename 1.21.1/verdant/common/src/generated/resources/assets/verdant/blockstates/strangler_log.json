@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "verdant:block/strangler_log_horizontal",
+      "model": "verdant:block/strangler_log",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "verdant:block/strangler_log"
     },
     "axis=z": {
-      "model": "verdant:block/strangler_log_horizontal",
+      "model": "verdant:block/strangler_log",
       "x": 90
     }
   }

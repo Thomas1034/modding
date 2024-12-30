@@ -3,11 +3,11 @@
 	"render_type": "minecraft:cutout",
 	"ambientocclusion": true,
 	"textures": {
-		"particle": "verdant:block/fish_trap_slats",
-		"slats": "verdant:block/fish_trap_slats",
-		"inset_low": "verdant:block/fish_trap_inset_low",
+		"particle": "verdant:block/fish_trap_side",
+		"side": "verdant:block/fish_trap_side",
 		"front": "verdant:block/fish_trap_front",
 		"top": "verdant:block/fish_trap_top",
+		"inset_low": "verdant:block/fish_trap_inset_low",
 		"inset_high": "verdant:block/fish_trap_inset_high"
 	},
 	"elements": [
@@ -53,8 +53,8 @@
 			"from": [0, 1, 1],
 			"to": [0.05, 15, 15],
 			"faces": {
-				"east": {"uv": [1, 1, 15, 15], "texture": "#slats"},
-				"west": {"uv": [1, 1, 15, 15], "texture": "#slats", "cullface": "west"}
+				"east": {"uv": [1, 1, 15, 15], "texture": "#side"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#side", "cullface": "west"}
 			}
 		},
 		{
@@ -63,8 +63,8 @@
 			"to": [16, 15, 15],
 			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
 			"faces": {
-				"east": {"uv": [1, 1, 15, 15], "texture": "#slats", "cullface": "east"},
-				"west": {"uv": [1, 1, 15, 15], "texture": "#slats"}
+				"east": {"uv": [1, 1, 15, 15], "texture": "#side", "cullface": "east"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#side"}
 			}
 		},
 		{
@@ -73,8 +73,8 @@
 			"to": [15, 15, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 14]},
 			"faces": {
-				"north": {"uv": [1, 1, 15, 15], "texture": "#slats"},
-				"south": {"uv": [1, 1, 15, 15], "texture": "#slats", "cullface": "south"}
+				"north": {"uv": [1, 1, 15, 15], "texture": "#side"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#side", "cullface": "south"}
 			}
 		},
 		{
@@ -82,10 +82,10 @@
 			"from": [0, 1, 0],
 			"to": [1, 15, 1],
 			"faces": {
-				"north": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "north"},
-				"east": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"south": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"west": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "west"}
+				"north": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"south": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "west"}
 			}
 		},
 		{
@@ -94,10 +94,10 @@
 			"to": [16, 15, 1],
 			"rotation": {"angle": 0, "axis": "y", "origin": [15, 0, 0]},
 			"faces": {
-				"north": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "north"},
-				"east": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "east"},
-				"south": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"west": {"uv": [0, 1, 1, 15], "texture": "#slats"}
+				"north": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#side"}
 			}
 		},
 		{
@@ -106,10 +106,10 @@
 			"to": [1, 15, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 15]},
 			"faces": {
-				"north": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"east": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"south": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "south"},
-				"west": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "west"}
+				"north": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"east": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"south": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "west"}
 			}
 		},
 		{
@@ -118,10 +118,10 @@
 			"to": [16, 15, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [15, 0, 15]},
 			"faces": {
-				"north": {"uv": [0, 1, 1, 15], "texture": "#slats"},
-				"east": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "east"},
-				"south": {"uv": [0, 1, 1, 15], "texture": "#slats", "cullface": "south"},
-				"west": {"uv": [0, 1, 1, 15], "texture": "#slats"}
+				"north": {"uv": [0, 1, 1, 15], "texture": "#side"},
+				"east": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [0, 1, 1, 15], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#side"}
 			}
 		},
 		{

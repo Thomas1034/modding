@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/overlaid_cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/dirt",
+    "overlay": "verdant:block/emerald_ore_overlay",
+    "particle": "minecraft:block/dirt"
+  }
+}

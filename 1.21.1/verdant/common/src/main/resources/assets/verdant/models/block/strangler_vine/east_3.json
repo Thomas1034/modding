@@ -1,11 +1,5 @@
 {
-  "ambientocclusion": false,
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "base": "verdant:block/strangler_log",
-    "overlay": "verdant:block/strangler_vine_overlay",
-    "particle": "verdant:block/strangler_vine_overlay"
-  },
+  "parent": "verdant:block/strangler_vine/parent_vine",
 	"elements": [
 		{
 			"from": [8, 0, 0],
