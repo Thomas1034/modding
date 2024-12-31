@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -77,6 +78,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> COFFEE_CROP;
     public static final RegistryObject<Block, Block> BLEEDING_HEART;
     public static final RegistryObject<Block, Block> POTTED_BLEEDING_HEART;
+    public static final RegistryObject<Block, Block> TIGER_LILY;
+    public static final RegistryObject<Block, Block> POTTED_TIGER_LILY;
+    public static final RegistryObject<Block, Block> DROWNED_HEMLOCK;
+    public static final RegistryObject<Block, Block> DROWNED_HEMLOCK_PLANT;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -323,6 +328,24 @@ public class BlockRegistry {
                         BlockRegistry.BLEEDING_HEART.get(),
                         properties(Blocks.POTTED_BLUE_ORCHID, "potted_bleeding_heart").noOcclusion()
                 )
+        );
+        TIGER_LILY = registerBlockWithItem(
+                "tiger_lily",
+                () -> new FlowerBlock(MobEffects.DAMAGE_BOOST, 3.0f, properties(Blocks.BLUE_ORCHID, "tiger_lily"))
+        );
+        POTTED_TIGER_LILY = registerBlockWithoutItem(
+                "potted_tiger_lily", () -> new FlowerPotBlock(
+                        BlockRegistry.TIGER_LILY.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_tiger_lily").noOcclusion()
+                )
+        );
+        DROWNED_HEMLOCK = registerBlockWithItem(
+                "drowned_hemlock",
+                () -> new HemlockBlock(properties(Blocks.KELP, "drowned_hemlock"))
+        );
+        DROWNED_HEMLOCK_PLANT = registerBlockWithoutItem(
+                "drowned_hemlock_plant",
+                () -> new HemlockPlantBlock(properties(Blocks.KELP_PLANT, "drowned_hemlock_plant"))
         );
 
         TEST_LOG = registerBlockWithItem(

@@ -66,13 +66,15 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.COFFEE_CROP,
                 BlockRegistry.POTTED_COFFEE_CROP,
                 BlockRegistry.BLEEDING_HEART,
-                BlockRegistry.POTTED_BLEEDING_HEART
-        );
-        markCutoutMipped(
+                BlockRegistry.POTTED_BLEEDING_HEART,
+                BlockRegistry.TIGER_LILY,
+                BlockRegistry.POTTED_TIGER_LILY,
                 BlockRegistry.STRANGLER_LEAVES,
                 BlockRegistry.WILTED_STRANGLER_LEAVES,
                 BlockRegistry.THORNY_STRANGLER_LEAVES,
-                BlockRegistry.POISON_STRANGLER_LEAVES
+                BlockRegistry.POISON_STRANGLER_LEAVES,
+                BlockRegistry.DROWNED_HEMLOCK,
+                BlockRegistry.DROWNED_HEMLOCK_PLANT
         );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {

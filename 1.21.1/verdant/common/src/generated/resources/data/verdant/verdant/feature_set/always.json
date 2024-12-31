@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:no_op",
+        "weight": 5
+      }
+    }
+  ],
+  "name": "verdant:always"
+}

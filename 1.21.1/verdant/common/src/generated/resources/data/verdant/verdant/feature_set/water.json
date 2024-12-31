@@ -1,0 +1,40 @@
+{
+  "entries": [
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:seagrass_mid",
+        "weight": 100
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:seagrass_tall",
+        "weight": 50
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_waterlily",
+        "weight": 5
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:drowned_hemlock",
+        "weight": 5
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:seagrass_short",
+        "weight": 25
+      }
+    }
+  ],
+  "name": "verdant:water"
+}

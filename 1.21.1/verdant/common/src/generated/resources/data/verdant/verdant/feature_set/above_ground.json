@@ -4,14 +4,49 @@
       "type": "configured",
       "entry": {
         "configured_feature": "minecraft:patch_grass_jungle",
-        "weight": 3
+        "weight": 150
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:flower_swamp",
-        "weight": 1
+        "configured_feature": "verdant:mixed_mushrooms",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:stinking_blossom_floor",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_large_fern",
+        "weight": 50
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mixed_flowers",
+        "weight": 50
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mixed_bushes",
+        "weight": 100
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_tall_grass",
+        "weight": 100
       }
     }
   ],

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:replace_single_block",
+  "config": {
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:air"
+        },
+        "state": {
+          "Name": "minecraft:glow_lichen",
+          "Properties": {
+            "up": "true"
+          }
+        }
+      }
+    ]
+  }
+}

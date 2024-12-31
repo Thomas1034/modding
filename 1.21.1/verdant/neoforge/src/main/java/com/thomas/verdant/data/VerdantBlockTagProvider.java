@@ -3,6 +3,7 @@ package com.thomas.verdant.data;
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.util.CommonTags;
 import com.thomas.verdant.util.VerdantTags;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
@@ -134,6 +135,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
+
         //        this.tag(BlockTags.CANDLE_CAKES).add(BlockRegistry.CANDLE_UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
         //                BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(), BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),
         //                BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get(), BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get(),
@@ -208,11 +210,13 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // Flowers
         this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_COFFEE.get());
+        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.TIGER_LILY.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_TIGER_LILY.get());
 
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);
@@ -221,7 +225,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     }
 
     private void addDirtOres() {
-        this.tag(Tags.Blocks.ORES).add(
+        this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_DIRT);
+        this.tag(CommonTags.Blocks.ORES_IN_GROUND_DIRT).add(
                 BlockRegistry.DIRT_COAL_ORE.get(),
                 BlockRegistry.DIRT_COPPER_ORE.get(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get(),
@@ -239,6 +244,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.ORES_IRON).add(BlockRegistry.DIRT_IRON_ORE.get());
         this.tag(Tags.Blocks.ORES_LAPIS).add(BlockRegistry.DIRT_LAPIS_ORE.get());
         this.tag(Tags.Blocks.ORES_REDSTONE).add(BlockRegistry.DIRT_REDSTONE_ORE.get());
+        this.tag(CommonTags.Blocks.ORE_BEARING_GROUND_DIRT).add(Blocks.DIRT);
     }
 
 

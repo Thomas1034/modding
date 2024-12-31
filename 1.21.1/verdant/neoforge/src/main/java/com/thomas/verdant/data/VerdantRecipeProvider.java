@@ -48,6 +48,14 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.BLEEDING_HEART.get().asItem(),
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.BLEEDING_HEART.get()))
         );
+        suspiciousStew(
+                BlockRegistry.TIGER_LILY.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.TIGER_LILY.get()))
+        );
+        shapeless(List.of(BlockRegistry.TIGER_LILY.get()), List.of(1), RecipeCategory.MISC, Items.ORANGE_DYE, 1);
+        shapeless(List.of(BlockRegistry.BLEEDING_HEART.get()), List.of(1), RecipeCategory.MISC, Items.RED_DYE, 1);
+        shapeless(List.of(BlockRegistry.WILD_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.LIGHT_GRAY_DYE, 1);
+        shapeless(List.of(ItemRegistry.ROASTED_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.BROWN_DYE, 1);
 
         shapeless(
                 List.of(Items.ROTTEN_FLESH, BlockRegistry.POISON_IVY.get(), Tags.Items.SEEDS),

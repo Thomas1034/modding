@@ -34,7 +34,8 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get());
 
         this.tag(ItemTags.SMALL_FLOWERS)
-                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem());
+                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem(), BlockRegistry.TIGER_LILY.get()
+                        .asItem());
 
         this.tag(Tags.Items.CROPS).add(ItemRegistry.COFFEE_BERRIES.get());
         this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());

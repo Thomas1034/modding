@@ -2,82 +2,82 @@
   "variants": {
     "": [
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 0,
         "y": 0
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 0,
         "y": 90
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 0,
         "y": 180
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 0,
         "y": 270
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 90,
         "y": 0
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 90,
         "y": 90
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 90,
         "y": 180
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 90,
         "y": 270
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 180,
         "y": 0
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 180,
         "y": 90
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 180,
         "y": 180
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 180,
         "y": 270
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 270,
         "y": 0
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 270,
         "y": 90
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 270,
         "y": 180
       },
       {
-        "model": "verdant:block/thorny_strangler_leaves_overlay_thorns",
+        "model": "verdant:block/thorny_strangler_leaves",
         "x": 270,
         "y": 270
       }

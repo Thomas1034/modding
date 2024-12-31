@@ -20,7 +20,8 @@
 	"block.verdant.magenta_candle_ube_cake": "Ube Cake with Magenta Candle",
 	"block.verdant.pink_candle_ube_cake": "Ube Cake with Pink Candle",
 	
-	"block.verdant.water_hemlock": "Drowned Hemlock",
+	"block.verdant.drowned_hemlock": "Drowned Hemlock",
+	"block.verdant.drowned_hemlock_plant": "Drowned Hemlock Plant",
 	
 	"block.verdant.wild_ube": "Wild Ube",
 	"block.verdant.ube_crop": "Ube Crop",
@@ -194,9 +195,10 @@
 	"block.verdant.rotten_wood": "Rotten Wood",
 	"block.verdant.verdant_conduit": "Verdant Conduit",
 	"block.verdant.bleeding_heart": "Bleeding Heart Flower",
+	"block.verdant.tiger_lily": "Tiger Lily",
 	"block.verdant.wild_coffee": "Wild Coffee",
 	"block.verdant.coffee_crop": "Coffee Crop",
-	"block.verdant.potted_bleeding_heart": "Potted Bleeding Heart Flower",
+	"block.verdant.potted_tiger_lily": "Potted Tiger Lily",
 	"block.verdant.stinking_blossom": "Stinking Blossom",
 	"block.verdant.bush": "Bush",
 	"block.verdant.potted_bush": "Potted Bush",

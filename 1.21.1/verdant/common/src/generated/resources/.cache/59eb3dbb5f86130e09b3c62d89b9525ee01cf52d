@@ -1,4 +1,4 @@
-// 1.21.4	2024-12-28T22:39:33.7010002	Loot Tables
+// 1.21.4	2024-12-30T20:18:29.6050232	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_table/blocks/bleeding_heart.json
 a85878d59aa311bc0d09d81019d20a7a16c88d61 data/verdant/loot_table/blocks/bush.json
@@ -11,6 +11,8 @@ a5b866f3970cc254649b588a56d59b68969237c5 data/verdant/loot_table/blocks/dirt_eme
 bd9c4bac8ad7334061ead3e709a36a8eb0092e4e data/verdant/loot_table/blocks/dirt_iron_ore.json
 3c278634d3faed9af5cafeb6de33bb5bfcca6131 data/verdant/loot_table/blocks/dirt_lapis_ore.json
 91b20868d9e806640005ed9e186048e2e8d4e466 data/verdant/loot_table/blocks/dirt_redstone_ore.json
+18c45665cadd8bee5162f21f2eed291d0058e65b data/verdant/loot_table/blocks/drowned_hemlock.json
+cdd0e8af3fb85fad77c55c4668255708c1fd2e0c data/verdant/loot_table/blocks/drowned_hemlock_plant.json
 d27de00356674d043796e3b835f1a9aaf83a5beb data/verdant/loot_table/blocks/fish_trap.json
 a6d6686fe5202779c2de058b44b909d03986e357 data/verdant/loot_table/blocks/heartwood_button.json
 b3cfd94059ae500f14951c437adc0fbdcc302cea data/verdant/loot_table/blocks/heartwood_door.json
@@ -28,7 +30,7 @@ b85788f9d752fc835e31ecea6edbd08939c77e99 data/verdant/loot_table/blocks/heartwoo
 c60d1d26577d97575cd4c2873ca8bcfa8f369f2f data/verdant/loot_table/blocks/heartwood_wall_sign.json
 528f69d274c5b42d4aeedba73ed073a18ea3e882 data/verdant/loot_table/blocks/heartwood_wood.json
 2b1919bdb79969912ddd63e801bf4177b1e4d277 data/verdant/loot_table/blocks/leafy_strangler_vine.json
-264139e38a04461a2666c5c99e69c3e83e13d613 data/verdant/loot_table/blocks/packed_gravel.json
+ac8fb6c511fba180a2a1aba530f1986f77543e07 data/verdant/loot_table/blocks/packed_gravel.json
 36324f8f9a402711d549954ed8a4016d5fda102c data/verdant/loot_table/blocks/poison_ivy.json
 2cd031d0c32651de82e841d772ada96c708bd5d2 data/verdant/loot_table/blocks/poison_ivy_plant.json
 aa8ad937b9e1e8c53d7aeecfaaccc1d9f256b16b data/verdant/loot_table/blocks/poison_strangler_leaves.json
@@ -36,6 +38,7 @@ aa8ad937b9e1e8c53d7aeecfaaccc1d9f256b16b data/verdant/loot_table/blocks/poison_s
 27ae6b804a789bfe65c326525f3f0cc657c0824c data/verdant/loot_table/blocks/potted_bush.json
 f436282147d812e55aab83c977826dc9eb292212 data/verdant/loot_table/blocks/potted_coffee_crop.json
 39bd87c1fc6ed567feb9bc037e89cea901d695dd data/verdant/loot_table/blocks/potted_thorn_bush.json
+747e2af4cae26490a9ab64ac75143a798b98b6bb data/verdant/loot_table/blocks/potted_tiger_lily.json
 cb2d5917f0776bd0a907b50db9e4238d006d9021 data/verdant/loot_table/blocks/potted_wild_coffee.json
 a6542bf0cb4c56f2c57770fb14b4b34966f02cad data/verdant/loot_table/blocks/rope.json
 5fd51335e0c7e81ac0079379e5825a7483b4cbfe data/verdant/loot_table/blocks/rope_hook.json
@@ -68,6 +71,7 @@ a2453625c227b87cf167aec98c33bd958e43d499 data/verdant/loot_table/blocks/test_blo
 1c5304f948d3168b8a8a1aea4fb2874296fcb1c5 data/verdant/loot_table/blocks/test_log.json
 eddc3c41e3c320cc7591c3607d81dbdf63b3e03c data/verdant/loot_table/blocks/thorny_strangler_leaves.json
 d1c89af7841ff5be88b16b0865acf824226a5668 data/verdant/loot_table/blocks/thorn_bush.json
+998fe8dce8b4418763ecc04b74c0ba49b5f622bc data/verdant/loot_table/blocks/tiger_lily.json
 adfd2e5fd4255515e7588311e01e3cb9dd0dc246 data/verdant/loot_table/blocks/verdant_grass_clay.json
 e7b88c072fc914b34a2fa473a89ad446f3b9891b data/verdant/loot_table/blocks/verdant_grass_dirt.json
 aff8d6ad39901a07b7fc0a5a122b733cee997c59 data/verdant/loot_table/blocks/verdant_grass_mud.json

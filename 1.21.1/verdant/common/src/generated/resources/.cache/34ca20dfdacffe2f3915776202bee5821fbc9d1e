@@ -1,7 +1,7 @@
-// 1.21.4	2024-12-30T13:46:04.3620767	Tags for minecraft:block mod id verdant
+// 1.21.4	2024-12-30T21:02:57.2652938	Tags for minecraft:block mod id verdant
 e5df598552db116caaa9321d780a2c14346fefe8 data/c/tags/block/fences/wooden.json
 0b1c8916e407acd9b4cce4d0428a9665ab6c4d4b data/c/tags/block/fence_gates/wooden.json
-b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores.json
+7166531643e02808348a14edc765376109e66419 data/c/tags/block/ores.json
 3483190da3c649a3e8f7b7aba7976f4591697a7a data/c/tags/block/ores/coal.json
 cb89d15702ec273344f347e1ea4ff705107400fe data/c/tags/block/ores/copper.json
 c2545e338a7a87cb553d009c619db4c6d8047d4b data/c/tags/block/ores/diamond.json
@@ -10,10 +10,12 @@ dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/block/ores/emerald.json
 3bcdac3c19b310abd9ffa6e47fceead01a082447 data/c/tags/block/ores/iron.json
 c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/block/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/block/ores/redstone.json
+b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores_in_ground/dirt.json
+d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/block/ore_bearing_ground/dirt.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
 cb745575e495b3eec87db2e2b644df65241d73e8 data/minecraft/tags/block/climbable.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/dirt.json
-319d8658a7a2b7dfac1f54ca3585950451c38f26 data/minecraft/tags/block/flower_pots.json
+840b184c8a8dc4fe0186883c48e46d5f0491cf78 data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
 5ca866375e77118d27e0945d9a7067c85acb9613 data/minecraft/tags/block/logs.json
 2b6d51c8d7e10dc02b8106cdacb16da7644ce843 data/minecraft/tags/block/logs_that_burn.json
@@ -25,7 +27,7 @@ ac73af9594d0d95262eb6f9593ad705fda0ca171 data/minecraft/tags/block/mineable/shov
 86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/block/replaceable.json
 ab8813394e83c3801cfcd7e0e0db374d34d0e46e data/minecraft/tags/block/replaceable_by_trees.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/small_dripleaf_placeable.json
-beb1989528e98e6c5464c2d8a0805f56271ae257 data/minecraft/tags/block/small_flowers.json
+5f5acb6bbdc3281fb0c6183c75d5034503758e21 data/minecraft/tags/block/small_flowers.json
 b8e3131928c2f8b0bfa1e049724e6b3d6e23d82e data/minecraft/tags/block/sword_efficient.json
 4cb0e75eca272749b9b48c9613fe4e29b14b90b7 data/minecraft/tags/block/wooden_buttons.json
 c34e8b6b47ba33c8d8542d6bf51281b1cf3aa277 data/minecraft/tags/block/wooden_doors.json

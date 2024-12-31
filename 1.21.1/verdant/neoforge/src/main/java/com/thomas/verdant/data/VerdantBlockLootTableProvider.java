@@ -8,6 +8,7 @@ import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceKey;
@@ -154,7 +155,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 BlockRegistry.POTTED_BLEEDING_HEART.get(),
                 createPotFlowerItemTable(BlockRegistry.BLEEDING_HEART.get())
         );
-
+        dropSelf(BlockRegistry.TIGER_LILY.get());
+        this.add(BlockRegistry.POTTED_TIGER_LILY.get(), createPotFlowerItemTable(BlockRegistry.TIGER_LILY.get()));
 
         // this.add(BlockRegistry.UBE_CAKE.get(), noDrop());
         // this.add(BlockRegistry.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
@@ -175,9 +177,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // this.add(BlockRegistry.RED_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.RED_CANDLE));
         // this.add(BlockRegistry.BLACK_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BLACK_CANDLE));
 
-        requireSilkTouch(BlockRegistry.PACKED_GRAVEL.get(), Blocks.GRAVEL, List.of(1, 3));
+        requireSilkTouch(BlockRegistry.PACKED_GRAVEL.get(), Blocks.GRAVEL, List.of(3, 4));
 
-        // this.add(BlockRegistry.WATER_HEMLOCK.get(), createDoublePlantShearsDrop(BlockRegistry.WATER_HEMLOCK.get()));
+        this.dropSelf(BlockRegistry.DROWNED_HEMLOCK.get());
+        this.dropOther(BlockRegistry.DROWNED_HEMLOCK_PLANT.get(), BlockRegistry.DROWNED_HEMLOCK.get());
 
         // this.add(BlockRegistry.WILD_CASSAVA.get(),
         //         this.createChanceDrops(BlockRegistry.WILD_CASSAVA.get(), ModItems.BITTER_CASSAVA_CUTTINGS.get(), 0.25f));
@@ -394,7 +397,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected void requireSilkTouchDropsOther(Block base, Block source) {
-        ResourceLocation sourceLoc = source.builtInRegistryHolder().key().location().withPrefix("blocks/");
+        ResourceLocation sourceLoc = BuiltInRegistries.BLOCK.getKey(source).withPrefix("blocks/");
         this.add(base, block -> this.createSilkTouchOrOtherDrop(block, sourceLoc));
     }
 

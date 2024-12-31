@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.ComposterBlock;
  Order of operations would be important, especially with operations
  that involve setting the length.
 
+Add manatees.
  */
 // Credits: (other direct contributors only)
 /*
@@ -68,6 +69,7 @@ public class CommonClass {
         WoodSets.init();
         BlockEntityTypeRegistry.init();
         MenuRegistry.init();
+        FeatureRegistry.init();
         CreativeModeTabRegistry.init();
         RecipeSerializerRegistry.init();
     }

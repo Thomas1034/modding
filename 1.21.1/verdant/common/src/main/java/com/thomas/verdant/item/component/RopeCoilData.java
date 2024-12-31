@@ -26,6 +26,7 @@ public record RopeCoilData(int length, boolean hasHook, int lightLevel, LanternO
 
 
     public enum LanternOptions implements StringRepresentable {
+
         NONE("none", Blocks.AIR.defaultBlockState(), 0, "empty_overlay"), LANTERN(
                 "lantern",
                 Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true),

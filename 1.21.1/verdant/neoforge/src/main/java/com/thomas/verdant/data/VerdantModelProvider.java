@@ -110,6 +110,22 @@ public class VerdantModelProvider extends ModelProvider {
         return MultiVariantGenerator.multiVariant(block, variants);
     }
 
+    protected BlockStateGenerator createOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
+        Variant[] variants = new Variant[overlays.length];
+        for (int o = 0; o < overlays.length; o++) {
+            String overlay = overlays[o];
+            String trimmedOverlay = overlay.substring(overlay.lastIndexOf('/') + 1);
+            ResourceLocation modelLocation = model.apply(overlay).createWithSuffix(
+                    block,
+                    (overlays.length == 1 || trimmedOverlay.equals("default") || trimmedOverlay.equals("overlay_default")) ? "" : "_" + trimmedOverlay,
+                    blockModels.modelOutput
+            );
+            variants[o] = Variant.variant().with(VariantProperties.MODEL, modelLocation);
+
+        }
+        return MultiVariantGenerator.multiVariant(block, variants);
+    }
+
     protected BlockStateGenerator createTumbledOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[4 * 4 * overlays.length];
         for (int o = 0; o < overlays.length; o++) {
@@ -185,14 +201,14 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockRegistry.STRANGLER_LEAVES.get(),
                 "overlay_thorns"
         );
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_COAL_ORE.get(), Blocks.DIRT, "coal_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_COPPER_ORE.get(), Blocks.DIRT, "copper_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_IRON_ORE.get(), Blocks.DIRT, "iron_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_GOLD_ORE.get(), Blocks.DIRT, "gold_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_LAPIS_ORE.get(), Blocks.DIRT, "lapis_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_REDSTONE_ORE.get(), Blocks.DIRT, "redstone_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE.get(), Blocks.DIRT, "emerald_ore_overlay");
-        tumbledOverlaidBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE.get(), Blocks.DIRT, "diamond_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_COAL_ORE.get(), Blocks.DIRT, "coal_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_COPPER_ORE.get(), Blocks.DIRT, "copper_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_IRON_ORE.get(), Blocks.DIRT, "iron_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_GOLD_ORE.get(), Blocks.DIRT, "gold_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_LAPIS_ORE.get(), Blocks.DIRT, "lapis_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_REDSTONE_ORE.get(), Blocks.DIRT, "redstone_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE.get(), Blocks.DIRT, "emerald_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE.get(), Blocks.DIRT, "diamond_ore_overlay");
 
         createCrossBlock(BlockRegistry.POISON_IVY.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
         createCrossBlock(BlockRegistry.POISON_IVY_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
@@ -202,6 +218,13 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
+        createCrossBlock(BlockRegistry.DROWNED_HEMLOCK.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
+        createCrossBlock(
+                BlockRegistry.DROWNED_HEMLOCK_PLANT.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
+
         createCrossBlock(
                 BlockRegistry.COFFEE_CROP.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED,
@@ -239,6 +262,12 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
+        createPlantWithDefaultItem(
+                BlockRegistry.TIGER_LILY.get(),
+                BlockRegistry.POTTED_TIGER_LILY.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
@@ -246,6 +275,7 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         basicItem(BlockRegistry.STRANGLER_TENDRIL.get().asItem());
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
+        basicItem(BlockRegistry.DROWNED_HEMLOCK.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
         // TODO ropeCoilItem(ItemRegistry.ROPE_COIL);
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
@@ -343,6 +373,15 @@ public class VerdantModelProvider extends ModelProvider {
                 .updateTemplate(template -> template.extend().renderType("cutout").build());
 
         blockModels.blockStateOutput.accept(createTumbledOverlaidBlock(block, model, overlays));
+    }
+
+    protected void overlaidBlockWithItem(Block block, Block base, String... overlays) {
+        BiFunction<String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.OVERLAID_CUBE;
+
+        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base)
+                .updateTemplate(template -> template.extend().renderType("cutout").build());
+
+        blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
     }
 
     protected void rotatedTopOverlaidBlockWithItem(Block block, Block base, String topOverlay, String[] overlays) {
