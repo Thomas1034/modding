@@ -70,9 +70,11 @@ public class VerdantClient {
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {
-        setupWoodSets();
+        event.enqueueWork(() -> {
+            setupWoodSets();
 
-        EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+        });
     }
 
     public static void setupWoodSets() {
