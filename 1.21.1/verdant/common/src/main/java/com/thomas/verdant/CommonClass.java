@@ -2,7 +2,6 @@ package com.thomas.verdant;
 
 import com.thomas.verdant.platform.Services;
 import com.thomas.verdant.registry.*;
-import net.minecraft.world.level.block.ComposterBlock;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
@@ -31,6 +30,11 @@ import net.minecraft.world.level.block.ComposterBlock;
  Then build the result based on these as if they're tiny lambdas.
  Order of operations would be important, especially with operations
  that involve setting the length.
+
+Add "tangled mats" which grow in the top layer of water (underwater) and slow down entities caught in them.
+Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots
+filling the whole blocks.
+Find use for them?
 
 Add manatees.
  */
@@ -73,14 +77,5 @@ public class CommonClass {
         CreativeModeTabRegistry.init();
         RecipeSerializerRegistry.init();
     }
-
-    public static void initCompostables() {
-        ComposterBlock.COMPOSTABLES.put(BlockRegistry.POISON_STRANGLER_LEAVES.get().asItem(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(BlockRegistry.THORNY_STRANGLER_LEAVES.get().asItem(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(BlockRegistry.STRANGLER_LEAVES.get().asItem(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(BlockRegistry.WILTED_STRANGLER_LEAVES.get().asItem(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(BlockRegistry.STRANGLER_TENDRIL.get().asItem(), 0.2f);
-    }
-
 
 }

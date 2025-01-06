@@ -247,7 +247,7 @@ public class TrapBlock extends Block {
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 
-		return super.use(belowState, level, pos, player, hand, hitResult);
+		return super.use(state, level, pos, player, hand, hitResult);
 	}
 
 	@Override

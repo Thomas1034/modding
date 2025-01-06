@@ -1,5 +1,6 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.registry.CompostablesRegistry;
 import com.thomas.verdant.registry.FlammablesRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.baitdata.BaitData;
@@ -8,6 +9,7 @@ import com.thomas.verdant.util.featureset.FeatureSet;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -19,14 +21,13 @@ public class Verdant implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        
+
         // This method is invoked by the Fabric mod loader when it is ready
         // to load your mod. You can access Fabric and Common code in this
         // project.
         // Use Fabric to bootstrap the Common mod.
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
-        CommonClass.initCompostables();
 
         // Set up dynamic registries
         DynamicRegistries.registerSynced(BlockTransformer.KEY, BlockTransformer.CODEC);
@@ -55,5 +56,7 @@ public class Verdant implements ModInitializer {
 
         // Register Fire
         FlammablesRegistry.init(FlammableBlockRegistry.getDefaultInstance()::add);
+        CompostablesRegistry.init(CompostingChanceRegistry.INSTANCE::add);
+
     }
 }

@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.item.properties.numeric.BundleFullness;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 /*
 
@@ -93,16 +92,13 @@ import org.jetbrains.annotations.Nullable;
     ]
   }
 }
+*/
 
-
-
-
- */
 public record RopeLengthProperty() implements RangeSelectItemModelProperty {
     public static final MapCodec<BundleFullness> MAP_CODEC = MapCodec.unit(new BundleFullness());
 
     @Override
-    public float get(ItemStack itemStack, @Nullable ClientLevel clientLevel, @Nullable LivingEntity livingEntity, int i) {
+    public float get(ItemStack itemStack, ClientLevel clientLevel, LivingEntity livingEntity, int i) {
         return Math.min(
                 ((float) itemStack.getOrDefault(
                                 DataComponentRegistry.ROPE_COIL.get(),

@@ -12,23 +12,41 @@
                 "data": {
                   "Name": "verdant:bleeding_heart"
                 },
-                "weight": 4
+                "weight": 15
               },
               {
                 "data": {
                   "Name": "verdant:tiger_lily"
                 },
-                "weight": 1
+                "weight": 4
               },
               {
                 "data": {
                   "Name": "minecraft:lily_of_the_valley"
                 },
-                "weight": 1
+                "weight": 10
               },
               {
                 "data": {
                   "Name": "minecraft:blue_orchid"
+                },
+                "weight": 5
+              },
+              {
+                "data": {
+                  "Name": "minecraft:poppy"
+                },
+                "weight": 5
+              },
+              {
+                "data": {
+                  "Name": "minecraft:oxeye_daisy"
+                },
+                "weight": 5
+              },
+              {
+                "data": {
+                  "Name": "verdant:wild_coffee"
                 },
                 "weight": 1
               }
@@ -47,7 +65,7 @@
       ]
     },
     "tries": 64,
-    "xz_spread": 7,
+    "xz_spread": 5,
     "y_spread": 3
   }
 }

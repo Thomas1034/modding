@@ -1,0 +1,64 @@
+{
+  "values": {
+    "verdant:bleeding_heart": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:bush": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:coffee_berries": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:poison_strangler_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "verdant:roasted_coffee": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:rotten_compost": {
+      "can_villager_compost": true,
+      "chance": 1.0
+    },
+    "verdant:rotten_wood": {
+      "can_villager_compost": true,
+      "chance": 0.9
+    },
+    "verdant:stinking_blossom": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:strangler_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "verdant:strangler_tendril": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "verdant:thorn_bush": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:thorny_strangler_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
+    "verdant:tiger_lily": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:wild_coffee": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "verdant:wilted_strangler_leaves": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    }
+  }
+}

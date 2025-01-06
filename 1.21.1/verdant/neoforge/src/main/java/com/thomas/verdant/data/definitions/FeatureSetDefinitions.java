@@ -5,7 +5,6 @@ import com.thomas.verdant.registry.FeatureSetRegistry;
 import com.thomas.verdant.util.Rarity;
 import com.thomas.verdant.util.featureset.ConfiguredFeatureSetEntry;
 import com.thomas.verdant.util.featureset.FeatureSet;
-import net.minecraft.data.worldgen.features.AquaticFeatures;
 import net.minecraft.data.worldgen.features.CaveFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.resources.ResourceKey;
@@ -24,9 +23,13 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.COMMON, JSONFeatures.MIXED_BUSHES));
         entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_TALL_GRASS));
         entries.add(configured(Rarity.UNCOMMON, VegetationFeatures.PATCH_LARGE_FERN));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_FLOWERS));
-        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.MIXED_MUSHROOMS));
-        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
+        entries.add(configured(Rarity.RARE, JSONFeatures.BLEEDING_HEART));
+        entries.add(configured(Rarity.RARE, JSONFeatures.ORCHIDS));
+        entries.add(configured(Rarity.RARE, JSONFeatures.LILIES));
+        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_MUSHROOMS));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MIXED_FLOWERS));
+        entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.COFFEE));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
     }
@@ -48,9 +51,9 @@ public class FeatureSetDefinitions {
 
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
-        entries.add(configured(Rarity.COMMON, AquaticFeatures.SEAGRASS_MID));
-        entries.add(configured(Rarity.UNCOMMON, AquaticFeatures.SEAGRASS_TALL));
-        entries.add(configured(Rarity.VERY_UNCOMMON, AquaticFeatures.SEAGRASS_SHORT));
+        // TODO Fix seagrass spreading water everywhere! Seagrass feature doesn't check for water source.
+        entries.add(configured(Rarity.VERY_COMMON, JSONFeatures.FIXED_SEAGRASS_TALL));
+        entries.add(configured(Rarity.COMMON, JSONFeatures.FIXED_SEAGRASS_SHORT));
         entries.add(configured(Rarity.RARE, VegetationFeatures.PATCH_WATERLILY));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.DROWNED_HEMLOCK));
 

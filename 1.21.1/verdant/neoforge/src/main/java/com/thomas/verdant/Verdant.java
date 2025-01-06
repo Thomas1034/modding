@@ -75,21 +75,21 @@ public class Verdant {
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
 
-        CommonClass.initCompostables();
-
-        FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
-            DispenserBlock.registerBehavior(
-                    woodSet.getBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getBoat().get())
-            );
-            DispenserBlock.registerBehavior(
-                    woodSet.getChestBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
-            );
-        }
+            FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
+            for (WoodSet woodSet : WoodSets.WOOD_SETS) {
+                woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
+                DispenserBlock.registerBehavior(
+                        woodSet.getBoatItem().get(),
+                        new BoatDispenseItemBehavior(woodSet.getBoat().get())
+                );
+                DispenserBlock.registerBehavior(
+                        woodSet.getChestBoatItem().get(),
+                        new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
+                );
+            }
+        });
     }
 
     public static void registerStrippingLogs(final BlockEvent.BlockToolModificationEvent event) {

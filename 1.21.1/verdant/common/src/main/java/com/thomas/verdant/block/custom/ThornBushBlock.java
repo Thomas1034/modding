@@ -28,7 +28,6 @@ public class ThornBushBlock extends BushBlock {
         this.damage = damage;
     }
 
-
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && !VerdantIFF.isFriend(
                 livingEntity)) {
@@ -56,13 +55,13 @@ public class ThornBushBlock extends BushBlock {
                         cumulativeDamage += this.damage;
                     }
 
-                    if (dx >= (double) 0.003F || dz >= (double) 0.003F) {
+                    if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && cumulativeDamage > 0.5f) {
                         Holder<DamageType> type = DamageSourceRegistry.get(
                                 level.registryAccess(),
                                 DamageSourceRegistry.BRIAR
                         );
                         DamageSource source = new DamageSource(type, (Entity) null);
-                        entity.hurtServer(serverLevel, source, this.damage);
+                        entity.hurtServer(serverLevel, source, cumulativeDamage);
                     }
                 }
 

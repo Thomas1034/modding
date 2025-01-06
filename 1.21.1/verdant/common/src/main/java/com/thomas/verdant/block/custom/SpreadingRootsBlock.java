@@ -34,6 +34,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
@@ -363,13 +364,12 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW);
     }
 
-
     public enum NeighborType implements StringRepresentable {
 
         OTHER("other", null),
         AIR("air", BlockStateBase::isAir),
         LOG("log", state -> state.is(BlockTags.LOGS)),
-        WATER("water", state -> state.is(Blocks.WATER));
+        WATER("water", state -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
 
         private final String representation;
         private final Predicate<BlockState> identifier;
