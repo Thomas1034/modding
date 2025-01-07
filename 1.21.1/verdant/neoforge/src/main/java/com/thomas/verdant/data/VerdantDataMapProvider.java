@@ -1,6 +1,7 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.registry.CompostablesRegistry;
+import com.thomas.verdant.registry.FuelsRegistry;
 import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
@@ -13,7 +14,6 @@ import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
 
 public class VerdantDataMapProvider extends DataMapProvider {
     public VerdantDataMapProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
@@ -27,17 +27,21 @@ public class VerdantDataMapProvider extends DataMapProvider {
         }
 
         CompostablesRegistry.init(this::addCompostable);
+
+        FuelsRegistry.init(this::addFurnaceFuel);
     }
 
-    @SuppressWarnings({"nullable", "deprecation"})
     public void generateFor(WoodSet woodSet) {
-        BiConsumer<ItemLike, Integer> consumer = (itemLike, burnTime) -> this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-                .add(itemLike.asItem().builtInRegistryHolder(), new FurnaceFuel(burnTime), false);
-        woodSet.registerFuels(consumer);
+        woodSet.registerFuels(this::addFurnaceFuel);
     }
 
     public void addCompostable(ItemLike item, float compostChance) {
         this.builder(NeoForgeDataMaps.COMPOSTABLES)
                 .add(BuiltInRegistries.ITEM.wrapAsHolder(item.asItem()), new Compostable(compostChance, true), false);
+    }
+
+    public void addFurnaceFuel(ItemLike itemLike, int burnTime) {
+        this.builder(NeoForgeDataMaps.FURNACE_FUELS)
+                .add(BuiltInRegistries.ITEM.wrapAsHolder(itemLike.asItem()), new FurnaceFuel(burnTime), false);
     }
 }

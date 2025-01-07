@@ -77,8 +77,8 @@ public class Verdant {
         eventBus.addListener(Verdant::onFinishSetup);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
 
-        // Functionality
-        eventBus.addListener(Verdant::onPlayerTryToSleepEvent);
+        // Caffeine
+        NeoForge.EVENT_BUS.addListener(Verdant::onPlayerTryToSleepEvent);
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {

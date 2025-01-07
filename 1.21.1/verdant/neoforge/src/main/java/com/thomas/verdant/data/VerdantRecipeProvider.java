@@ -12,11 +12,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.neoforged.neoforge.common.Tags;
 
@@ -106,6 +109,98 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
         // Register rope upgrading.
         new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
+
+        // Cooking coffee
+        foodCooking(
+                List.of(ItemRegistry.COFFEE_BERRIES.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.ROASTED_COFFEE.get(),
+                0.1f,
+                400
+        );
+
+        // Arrow from thorn
+        shaped(
+                List.of("  P", " S ", "V  "),
+                List.of('P', 'S', 'V'),
+                List.of(ItemRegistry.THORN.get(), Items.STICK, Items.VINE),
+                RecipeCategory.COMBAT,
+                Items.ARROW,
+                1
+        );
+
+        // Packed mud from strangler tendrils
+        shapeless(
+                List.of(BlockRegistry.STRANGLER_TENDRIL.get(), Blocks.MUD),
+                List.of(2, 1),
+                RecipeCategory.TOOLS,
+                Blocks.PACKED_MUD,
+                1
+        );
+        // Thorn spikes item
+        shaped(
+                List.of("TTT", "TTT", "KRK"),
+                List.of('T', 'K', 'R'),
+                List.of(ItemRegistry.THORN.get(), Items.STICK, Items.STRING),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.THORN_SPIKES.get(),
+                1
+        );
+        shaped(
+                List.of("TTT", "TTT", "KRK"),
+                List.of('T', 'K', 'R'),
+                List.of(ItemRegistry.THORN.get(), Items.STICK, BlockRegistry.ROPE.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.THORN_SPIKES.get(),
+                1
+        );
+        // Iron spikes item
+        shaped(
+                List.of("NNN", "SSS", "III"),
+                List.of('N', 'S', 'I'),
+                List.of(Items.IRON_NUGGET, BlockRegistry.THORN_SPIKES.get(), Items.IRON_BARS),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.IRON_SPIKES.get(),
+                1
+        );
+
+        // Frame block
+        shaped(
+                List.of(" T ", "T T", " T "),
+                List.of('T'),
+                List.of(Items.STICK),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.FRAME_BLOCK.get(),
+                1
+        );
+        smeltingResultFromBase(BlockRegistry.CHARRED_FRAME_BLOCK.get(), BlockRegistry.FRAME_BLOCK.get());
+
+        // Traps
+        shaped(
+                List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
+                        BlockRegistry.THORN_SPIKES.get(),
+                        Items.COPPER_INGOT,
+                        Items.STICK,
+                        BlockTags.WOODEN_PRESSURE_PLATES
+                ), RecipeCategory.MISC, BlockRegistry.THORN_TRAP.get(), 3
+        );
+        shaped(
+                List.of("S S", "SCS", "TPT"),
+                List.of('S', 'C', 'T', 'P'),
+                List.of(BlockRegistry.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE),
+                RecipeCategory.MISC,
+                BlockRegistry.IRON_TRAP.get(),
+                3
+        );
+        shaped(
+                List.of("FPF", "LLL", "FPF"),
+                List.of('F', 'P', 'L'),
+                List.of(BlockRegistry.FRAME_BLOCK.get(), ItemTags.PLANKS, BlockRegistry.ROPE.get()),
+                RecipeCategory.MISC,
+                BlockRegistry.FISH_TRAP_BLOCK.get(),
+                2
+        );
+
     }
 
     protected void shaped(List<String> pattern, List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result, int count) {
@@ -385,7 +480,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         return item.asItem().builtInRegistryHolder().key().location();
     }
 
-    protected void campfire(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTIme, String group) {
+    protected void campfire(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
                 RecipeSerializer.CAMPFIRE_COOKING_RECIPE,
                 CampfireCookingRecipe::new,
@@ -393,13 +488,13 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 category,
                 result,
                 experience,
-                cookingTIme,
+                cookingTime * 3,
                 group,
                 "_from_campfire"
         );
     }
 
-    protected void smoking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTIme, String group) {
+    protected void smoking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
                 RecipeSerializer.SMOKING_RECIPE,
                 SmokingRecipe::new,
@@ -407,9 +502,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 category,
                 result,
                 experience,
-                cookingTIme,
+                cookingTime / 2,
                 group,
-                "_from_smelting"
+                "_from_smoking"
         );
     }
 
@@ -435,7 +530,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 category,
                 result,
                 experience,
-                cookingTime,
+                cookingTime / 2,
                 group,
                 "_from_blasting"
         );

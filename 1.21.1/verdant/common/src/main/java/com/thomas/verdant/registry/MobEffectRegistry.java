@@ -110,7 +110,7 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> STENCH = MOB_EFFECTS.register(
             "stench",
-            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0xAAE2B5)
+            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0x324500)
     );
 
     public static void init() {

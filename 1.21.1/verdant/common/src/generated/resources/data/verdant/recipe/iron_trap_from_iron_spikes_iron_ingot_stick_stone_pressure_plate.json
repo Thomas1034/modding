@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:iron_trap",
+  "key": {
+    "C": "minecraft:iron_ingot",
+    "P": "minecraft:stone_pressure_plate",
+    "S": "verdant:iron_spikes",
+    "T": "minecraft:stick"
+  },
+  "pattern": [
+    "S S",
+    "SCS",
+    "TPT"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:iron_trap"
+  }
+}

@@ -3,22 +3,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:coffee",
-        "weight": 2
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:patch_grass_jungle",
-        "weight": 150
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:mixed_flowers",
-        "weight": 5
+        "configured_feature": "minecraft:patch_large_fern",
+        "weight": 50
       }
     },
     {
@@ -32,28 +18,28 @@
       "type": "configured",
       "entry": {
         "configured_feature": "verdant:orchids",
-        "weight": 10
+        "weight": 5
       }
     },
     {
       "type": "configured",
       "entry": {
         "configured_feature": "verdant:mixed_mushrooms",
-        "weight": 50
+        "weight": 1
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_large_fern",
-        "weight": 50
+        "configured_feature": "verdant:coffee",
+        "weight": 1
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:bleeding_heart",
-        "weight": 10
+        "configured_feature": "minecraft:patch_grass_jungle",
+        "weight": 150
       }
     },
     {
@@ -66,15 +52,29 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_tall_grass",
-        "weight": 100
+        "configured_feature": "verdant:bleeding_heart",
+        "weight": 5
       }
     },
     {
       "type": "configured",
       "entry": {
         "configured_feature": "verdant:lilies",
-        "weight": 10
+        "weight": 5
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mixed_flowers",
+        "weight": 2
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_tall_grass",
+        "weight": 100
       }
     }
   ],

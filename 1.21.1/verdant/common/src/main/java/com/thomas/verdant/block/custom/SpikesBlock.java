@@ -58,7 +58,6 @@ public class SpikesBlock extends AmethystClusterBlock {
                         entity.hurtServer(serverLevel, source, cumulativeDamage);
                     }
                 }
-                return;
             }
         }
     }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "group": "verdant:roasted_coffee",
+  "ingredient": "verdant:coffee_berries",
+  "result": {
+    "count": 1,
+    "id": "verdant:roasted_coffee"
+  }
+}

@@ -7,7 +7,9 @@ import com.thomas.verdant.registry.*;
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
-// TODO: add dispenser behavior to wood set boats.
+// TODO: when toxic ash is added, implement it as a feature type.
+// Configurable radius and number of attempts - like flower patch, maybe.
+// Then, the toxic ash item and bucket can just place different features, easy enough!
 //
 // TODO When achievements are added: Why would you do that? for eating rotten compost.
 //

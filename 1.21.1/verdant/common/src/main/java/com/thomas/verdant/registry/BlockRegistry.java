@@ -82,6 +82,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> POTTED_TIGER_LILY;
     public static final RegistryObject<Block, Block> DROWNED_HEMLOCK;
     public static final RegistryObject<Block, Block> DROWNED_HEMLOCK_PLANT;
+    public static final RegistryObject<Block, Block> THORN_SPIKES;
+    public static final RegistryObject<Block, Block> IRON_SPIKES;
+    public static final RegistryObject<Block, Block> THORN_TRAP;
+    public static final RegistryObject<Block, Block> IRON_TRAP;
+    public static final RegistryObject<Block, Block> FRAME_BLOCK;
+    public static final RegistryObject<Block, Block> CHARRED_FRAME_BLOCK;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -346,6 +352,40 @@ public class BlockRegistry {
         DROWNED_HEMLOCK_PLANT = registerBlockWithoutItem(
                 "drowned_hemlock_plant",
                 () -> new HemlockPlantBlock(properties(Blocks.KELP_PLANT, "drowned_hemlock_plant"))
+        );
+        THORN_SPIKES = registerBlockWithItem(
+                "thorn_spikes",
+                () -> new SpikesBlock(properties(Blocks.OAK_BUTTON, "thorn_spikes"), 3)
+        );
+        IRON_SPIKES = registerBlockWithItem(
+                "iron_spikes",
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes"), 6)
+        );
+        THORN_TRAP = registerBlockWithItem(
+                "thorn_trap",
+                () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "thorn_trap"), 20, 5, 4)
+        );
+        IRON_TRAP = registerBlockWithItem(
+                "iron_trap",
+                () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap"), 10, 2, 8)
+        );
+        FRAME_BLOCK = registerBlockWithItem(
+                "frame_block",
+                () -> new FrameBlock(properties(
+                        Blocks.OAK_FENCE,
+                        "frame_block"
+                ).isViewBlocking((state, level, pos) -> false)
+                        .noOcclusion()
+                        .instabreak())
+        );
+        CHARRED_FRAME_BLOCK = registerBlockWithItem(
+                "charred_frame_block",
+                () -> new FragileFrameBlock(properties(
+                        Blocks.OAK_FENCE,
+                        "charred_frame_block"
+                ).isViewBlocking((state, level, pos) -> false)
+                        .noOcclusion()
+                        .instabreak())
         );
 
         TEST_LOG = registerBlockWithItem(

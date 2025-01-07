@@ -3,8 +3,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:stinking_blossom_ceiling",
-        "weight": 2
+        "configured_feature": "minecraft:spore_blossom",
+        "weight": 1
       }
     },
     {
@@ -17,7 +17,7 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:poison_ivy_ceiling",
+        "configured_feature": "verdant:glow_lichen_ceiling",
         "weight": 25
       }
     },
@@ -31,6 +31,13 @@
     {
       "type": "configured",
       "entry": {
+        "configured_feature": "verdant:poison_ivy_ceiling",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
         "configured_feature": "minecraft:cave_vine",
         "weight": 5
       }
@@ -38,15 +45,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:glow_lichen_ceiling",
-        "weight": 25
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:spore_blossom",
-        "weight": 1
+        "configured_feature": "verdant:stinking_blossom_ceiling",
+        "weight": 2
       }
     }
   ],

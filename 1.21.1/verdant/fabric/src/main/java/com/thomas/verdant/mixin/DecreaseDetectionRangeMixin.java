@@ -14,17 +14,17 @@ public class DecreaseDetectionRangeMixin {
     @ModifyReturnValue(method = "getVisibilityPercent", at = @At("RETURN"))
     private double decreaseVisibilityPercentDueToStench(double original, Entity lookingEntity) {
         int stenchLevel = 0;
-        if (lookingEntity instanceof LivingEntity livingEntity) {
-            Constants.LOG.warn("Checking {}", livingEntity.getType());
-            MobEffectInstance instance = livingEntity.getEffect(MobEffectRegistry.STENCH.asHolder());
-            if (instance != null) {
-                stenchLevel += instance.getAmplifier() + 1;
-                Constants.LOG.warn("Level is {}", stenchLevel);
 
-            }
-        } else {
-            Constants.LOG.warn("Target {} is no living entity.", lookingEntity.getType());
+        LivingEntity lookedAtEntity = (LivingEntity) (Object) this;
+
+        Constants.LOG.warn("Checking {}", lookedAtEntity.getType());
+        MobEffectInstance instance = lookedAtEntity.getEffect(MobEffectRegistry.STENCH.asHolder());
+        if (instance != null) {
+            stenchLevel += instance.getAmplifier() + 1;
+            Constants.LOG.warn("Level is {}", stenchLevel);
+
         }
+
         double stenchMultiplier = 1.0 / (1.0 + stenchLevel);
         return original * stenchMultiplier;
     }

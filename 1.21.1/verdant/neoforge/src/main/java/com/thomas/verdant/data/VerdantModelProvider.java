@@ -3,6 +3,8 @@ package com.thomas.verdant.data;
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.CoffeeCropBlock;
 import com.thomas.verdant.block.custom.FishTrapBlock;
+import com.thomas.verdant.block.custom.SpikesBlock;
+import com.thomas.verdant.block.custom.TrapBlock;
 import com.thomas.verdant.data.definitions.VerdantTexturedModel;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -23,6 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -91,6 +94,88 @@ public class VerdantModelProvider extends ModelProvider {
                                 .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
                 );
     }
+
+
+    public static MultiPartGenerator createDoubleSidedLogBlock(Block block, ResourceLocation model) {
+
+        return MultiPartGenerator.multiPart(block)
+                .with(
+                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.Y),
+                        Variant.variant().with(VariantProperties.MODEL, model)
+                )
+                .with(
+                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.X),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, model)
+                                .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                )
+                .with(
+                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.Z),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, model)
+                                .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                );
+    }
+
+    public static MultiPartGenerator createSpikesBlock(Block block, ResourceLocation model) {
+        return MultiPartGenerator.multiPart(block).with(
+                Condition.condition().term(SpikesBlock.FACING, Direction.UP),
+                Variant.variant()
+                        .with(VariantProperties.MODEL, model)
+                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+        ).with(
+                Condition.condition().term(SpikesBlock.FACING, Direction.DOWN),
+                Variant.variant()
+                        .with(VariantProperties.MODEL, model)
+                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)
+                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+        ).with(
+                Condition.condition().term(SpikesBlock.FACING, Direction.EAST),
+                Variant.variant()
+                        .with(VariantProperties.MODEL, model)
+                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+        ).with(
+                Condition.condition().term(SpikesBlock.FACING, Direction.SOUTH),
+                Variant.variant()
+                        .with(VariantProperties.MODEL, model)
+                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+        ).with(
+                Condition.condition().term(SpikesBlock.FACING, Direction.WEST),
+                Variant.variant()
+                        .with(VariantProperties.MODEL, model)
+                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+        );
+    }
+
+    public MultiPartGenerator createTrapBlock(Block block, BiFunction<Integer, Boolean, TexturedModel.Provider> model) {
+
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+
+        for (int i = 0; i < 4; i++) {
+            for (Boolean b : new Boolean[]{true, false}) {
+                ResourceLocation location = model.apply(i, b)
+                        .createWithSuffix(block, (b ? "_hidden" : "") + "_stage" + i, blockModels.modelOutput);
+
+                for (VariantProperties.Rotation rotation : VariantProperties.Rotation.values()) {
+
+
+                    generator = generator.with(
+                            Condition.condition().term(TrapBlock.FACING, Direction.EAST),
+                            Variant.variant()
+                                    .with(VariantProperties.MODEL, location)
+                                    .with(VariantProperties.Y_ROT, rotation)
+                    );
+                }
+            }
+        }
+
+        return generator;
+    }
+
 
     protected BlockStateGenerator createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[4 * overlays.length];
@@ -268,6 +353,12 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
+        trapBlockWithItem(BlockRegistry.THORN_TRAP.get());
+        trapBlockWithItem(BlockRegistry.IRON_TRAP.get());
+        spikesBlockWithItem(BlockRegistry.THORN_SPIKES.get());
+        spikesBlockWithItem(BlockRegistry.IRON_SPIKES.get());
+        doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
+        doubleSidedLogBlockWithItem(BlockRegistry.FRAME_BLOCK.get());
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
@@ -277,6 +368,10 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
         basicItem(BlockRegistry.DROWNED_HEMLOCK.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
+        basicItem(BlockRegistry.THORN_SPIKES.get().asItem());
+        basicItem(BlockRegistry.IRON_SPIKES.get().asItem());
+        basicItem(BlockRegistry.THORN_TRAP.get().asItem());
+        basicItem(BlockRegistry.IRON_TRAP.get().asItem());
         // TODO ropeCoilItem(ItemRegistry.ROPE_COIL);
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
 
@@ -382,6 +477,32 @@ public class VerdantModelProvider extends ModelProvider {
                 .updateTemplate(template -> template.extend().renderType("cutout").build());
 
         blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
+    }
+
+    protected void trapBlockWithItem(Block block) {
+        BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TRAP;
+
+        BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(
+                stage,
+                isHidden
+        ).updateTemplate(template -> template.extend().renderType("cutout").build());
+
+        blockModels.blockStateOutput.accept(createTrapBlock(block, model));
+    }
+
+    protected void spikesBlockWithItem(Block block) {
+        blockModels.blockStateOutput.accept(createSpikesBlock(
+                block,
+                VerdantTexturedModel.SPIKES.updateTemplate(template -> template.extend().renderType("cutout").build())
+                        .create(block, blockModels.modelOutput)
+        ));
+    }
+
+    protected void doubleSidedLogBlockWithItem(Block block) {
+        blockModels.blockStateOutput.accept(createDoubleSidedLogBlock(
+                block,
+                VerdantTexturedModel.DOUBLE_SIDED_LOG.create(block, blockModels.modelOutput)
+        ));
     }
 
     protected void rotatedTopOverlaidBlockWithItem(Block block, Block base, String topOverlay, String[] overlays) {

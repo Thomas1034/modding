@@ -1,0 +1,31 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/charred_frame_block"
+      },
+      "when": {
+        "axis": "y"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/charred_frame_block",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "axis": "x"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/charred_frame_block",
+        "x": 90
+      },
+      "when": {
+        "axis": "z"
+      }
+    }
+  ]
+}

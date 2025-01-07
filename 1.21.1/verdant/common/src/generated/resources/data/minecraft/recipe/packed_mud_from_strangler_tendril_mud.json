@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "minecraft:packed_mud",
+  "ingredients": [
+    "verdant:strangler_tendril",
+    "verdant:strangler_tendril",
+    "minecraft:mud"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:packed_mud"
+  }
+}

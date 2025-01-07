@@ -1,0 +1,7 @@
+{
+  "parent": "verdant:block/double_sided_cube_column",
+  "textures": {
+    "end": "verdant:block/charred_frame_block_top",
+    "side": "verdant:block/charred_frame_block"
+  }
+}

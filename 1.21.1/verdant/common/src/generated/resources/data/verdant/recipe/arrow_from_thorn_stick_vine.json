@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "minecraft:arrow",
+  "key": {
+    "P": "verdant:thorn",
+    "S": "minecraft:stick",
+    "V": "minecraft:vine"
+  },
+  "pattern": [
+    "  P",
+    " S ",
+    "V  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:arrow"
+  }
+}

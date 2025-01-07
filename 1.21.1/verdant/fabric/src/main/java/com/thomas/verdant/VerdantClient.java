@@ -74,7 +74,13 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.THORNY_STRANGLER_LEAVES,
                 BlockRegistry.POISON_STRANGLER_LEAVES,
                 BlockRegistry.DROWNED_HEMLOCK,
-                BlockRegistry.DROWNED_HEMLOCK_PLANT
+                BlockRegistry.DROWNED_HEMLOCK_PLANT,
+                BlockRegistry.CHARRED_FRAME_BLOCK,
+                BlockRegistry.FRAME_BLOCK,
+                BlockRegistry.THORN_SPIKES,
+                BlockRegistry.IRON_SPIKES,
+                BlockRegistry.THORN_TRAP,
+                BlockRegistry.IRON_TRAP
         );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {

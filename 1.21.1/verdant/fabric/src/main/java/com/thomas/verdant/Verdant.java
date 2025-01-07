@@ -53,7 +53,10 @@ public class Verdant implements ModInitializer {
         CompostablesRegistry.init(CompostingChanceRegistry.INSTANCE::add);
         // Register Dispenser Behaviors
         DispenserBehaviors.init();
+        // Register fuels
+        FuelRegistryEvents.BUILD.register((builder, context) -> FuelsRegistry.init((builder::add)));
 
+        // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
             if (player.getActiveEffectsMap().get(MobEffectRegistry.CAFFEINATED.asHolder()) != null) {
 

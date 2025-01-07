@@ -17,6 +17,11 @@ public class VerdantTextureMapping {
                 .put(VerdantTextureSlot.INSET_HIGH, TextureMapping.getBlockTexture(block, "_inset_high"));
     }
 
+    public static TextureMapping trap(Block block) {
+        return new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block));
+    }
+
+
     public static TextureMapping overlaidCubeBlock(Block block, Block base, ResourceLocation overlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))

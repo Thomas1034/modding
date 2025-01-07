@@ -29,7 +29,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // Mineables
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
-                BlockRegistry.STRANGLER_VINE.get()/*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.FISH_TRAP_BLOCK.get()*/
+                BlockRegistry.STRANGLER_VINE.get(),
+                BlockRegistry.THORN_SPIKES.get(),
+                BlockRegistry.THORN_TRAP.get()/*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.FISH_TRAP_BLOCK.get()*/
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
@@ -68,25 +70,26 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.POISON_IVY_PLANT.get()/*, BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get()*/
         );
 
-        //        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.IRON_SPIKES.get(), BlockRegistry.IRON_TRAP.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.IRON_SPIKES.get(), BlockRegistry.IRON_TRAP.get());
 
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
 
-        //        // this.tag(BlockTags.FLOWER_POTS).add();
-        //        // this.tag(BlockTags.SMALL_FLOWERS).add();
-
 
         //        // Mechanical.
-        //        this.tag(BlockTags.CROPS).add(BlockRegistry.CASSAVA_CROP.get(), BlockRegistry.BITTER_CASSAVA_CROP.get(),
-        //                BlockRegistry.COFFEE_CROP.get());
+        this.tag(BlockTags.CROPS).add(
+                /*
+                BlockRegistry.CASSAVA_CROP.get(),
+                BlockRegistry.BITTER_CASSAVA_CROP.get(),
+                 */
+                BlockRegistry.COFFEE_CROP.get());
         this.tag(BlockTags.DIRT).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_ROOTED_CLAY.get()/*,
-                BlockRegistry.CASSAVA_ROOTED_DIRT.get(), BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()*/
+                BlockRegistry.VERDANT_ROOTED_CLAY.get()
+                /*, BlockRegistry.CASSAVA_ROOTED_DIRT.get(), BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()*/
         );
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),

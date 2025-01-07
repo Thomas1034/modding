@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:iron_spikes",
+  "key": {
+    "I": "minecraft:iron_bars",
+    "N": "minecraft:iron_nugget",
+    "S": "verdant:thorn_spikes"
+  },
+  "pattern": [
+    "NNN",
+    "SSS",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:iron_spikes"
+  }
+}
