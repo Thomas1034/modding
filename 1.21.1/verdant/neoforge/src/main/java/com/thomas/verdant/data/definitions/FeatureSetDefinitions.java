@@ -26,10 +26,10 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.RARE, JSONFeatures.BLEEDING_HEART));
         entries.add(configured(Rarity.RARE, JSONFeatures.ORCHIDS));
         entries.add(configured(Rarity.RARE, JSONFeatures.LILIES));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_MUSHROOMS));
-        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MIXED_FLOWERS));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MIXED_FLOWERS));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.COFFEE));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MIXED_MUSHROOMS));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
     }

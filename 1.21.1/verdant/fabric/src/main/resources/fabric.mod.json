@@ -31,6 +31,9 @@
     },
     "suggests": {
         "another-mod": "*"
-    }
+    },
+    "mixins": [
+        "verdant.mixins.json"
+    ]
 }
   

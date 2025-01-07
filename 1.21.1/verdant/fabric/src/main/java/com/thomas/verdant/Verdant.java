@@ -1,20 +1,20 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.registry.CompostablesRegistry;
-import com.thomas.verdant.registry.FlammablesRegistry;
-import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
-import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class Verdant implements ModInitializer {
@@ -43,20 +43,28 @@ public class Verdant implements ModInitializer {
             FuelRegistryEvents.BUILD.register((builder, context) -> woodSet.registerFuels((builder::add)));
             StrippableBlockRegistry.register(woodSet.getLog().get(), woodSet.getStrippedLog().get());
             StrippableBlockRegistry.register(woodSet.getWood().get(), woodSet.getStrippedWood().get());
-            DispenserBlock.registerBehavior(
-                    woodSet.getBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getBoat().get())
-            );
-            DispenserBlock.registerBehavior(
-                    woodSet.getChestBoatItem().get(),
-                    new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
-            );
+            DispenserBehaviors.woodSet(woodSet);
             woodSet.registerFlammability(FlammableBlockRegistry.getDefaultInstance()::add);
         }
 
         // Register Fire
         FlammablesRegistry.init(FlammableBlockRegistry.getDefaultInstance()::add);
+        // Register Compost
         CompostablesRegistry.init(CompostingChanceRegistry.INSTANCE::add);
+        // Register Dispenser Behaviors
+        DispenserBehaviors.init();
 
+        EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
+            if (player.getActiveEffectsMap().get(MobEffectRegistry.CAFFEINATED.asHolder()) != null) {
+
+                if (player instanceof ServerPlayer sleepingPlayer) {
+                    sleepingPlayer.sendSystemMessage(Component.translatable("block.minecraft.bed.caffeine"));
+                }
+
+                return Player.BedSleepingProblem.OTHER_PROBLEM;
+            }
+
+            return null;
+        });
     }
 }

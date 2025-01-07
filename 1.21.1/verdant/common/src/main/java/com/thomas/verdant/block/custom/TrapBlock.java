@@ -6,6 +6,7 @@ import com.thomas.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,6 +35,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -66,7 +69,8 @@ public class TrapBlock extends Block {
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 4D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
-    private static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
+    private static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
+            MobEffectRegistry.TRAPPED.asHolder(),
             10,
             0
     );
@@ -82,7 +86,40 @@ public class TrapBlock extends Block {
 
     }
 
-    @SuppressWarnings("deprecation")
+    protected int getCooldownTime() {
+        return this.cooldownTime;
+    }
+
+    protected int getResponseTime() {
+        return this.responseTime;
+    }
+
+    protected void updateNeighbours(Level p_49292_, BlockPos p_49293_) {
+        p_49292_.updateNeighborsAt(p_49293_, this);
+        p_49292_.updateNeighborsAt(p_49293_.below(), this);
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(HIDDEN, false);
+    }
+
+    // Respawning in a trap is bad.
+    @Override
+    public boolean isPossibleToRespawnInThis(BlockState p_279155_) {
+        return false;
+    }
+
+    // Very important!
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(STAGE, SHRINKING, FACING, HIDDEN);
+    }
+
+    @Override
+    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+        return state.getValue(HIDDEN);
+    }
+
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         return direction == Direction.DOWN && !state.canSurvive(
@@ -102,33 +139,38 @@ public class TrapBlock extends Block {
 
     // This and updateNeighbours are used to make sure that neighboring traps are
     // updated when this one is broken
-    @SuppressWarnings("deprecation")
     @Override
-    public void onRemove(BlockState p_49319_, Level p_49320_, BlockPos p_49321_, BlockState p_49322_, boolean p_49323_) {
-        if (!p_49323_ && !p_49319_.is(p_49322_.getBlock())) {
-            this.updateNeighbours(p_49320_, p_49321_);
-            super.onRemove(p_49319_, p_49320_, p_49321_, p_49322_, p_49323_);
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean simulate) {
+        if (!simulate && !state.is(newState.getBlock())) {
+            this.updateNeighbours(level, pos);
+            super.onRemove(state, level, pos, newState, false);
+        } else {
+
+            super.onRemove(state, level, pos, newState, simulate);
         }
     }
 
     @Override
     public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         BlockState belowState = level.getBlockState(pos.below());
-        float destroySpeedRaw = belowState.getDestroySpeed(level, pos);
-        boolean isCorrectToolForBelow = false; // TODO
+        // float destroySpeedRaw = belowState.getDestroySpeed(level, pos);
+        Tool toolComponent = stack.get(DataComponents.TOOL);
+        if (toolComponent != null) {
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState);
 
-        // If it's the right tool and the trap is fully open
-        if (isCorrectToolForBelow && state.getValue(STAGE) == MIN_STAGE) {
-            // Hide/unhide the trap.
-            if (level instanceof ServerLevel serverLevel) {
-                // ModPacketHandler.sendToAllClients(new DestroyEffectsPacket(pos, belowState,
-                // 2));
-                level.levelEvent(null, LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(belowState));
-                // Utilities.addParticlesAroundPositionServer(serverLevel, pos.getCenter(), new
-                // BlockParticleOption(ParticleTypes.BLOCK, state), 1.0, 20);
-                level.setBlockAndUpdate(pos, state.setValue(HIDDEN, !state.getValue(HIDDEN)));
+            // If it's the right tool and the trap is fully open
+            if (isCorrectToolForBelow && state.getValue(STAGE) == MIN_STAGE) {
+                // Hide/unhide the trap.
+                if (level instanceof ServerLevel serverLevel) {
+                    // ModPacketHandler.sendToAllClients(new DestroyEffectsPacket(pos, belowState,
+                    // 2));
+                    level.levelEvent(null, LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(belowState));
+                    // Utilities.addParticlesAroundPositionServer(serverLevel, pos.getCenter(), new
+                    // BlockParticleOption(ParticleTypes.BLOCK, state), 1.0, 20);
+                    level.setBlockAndUpdate(pos, state.setValue(HIDDEN, !state.getValue(HIDDEN)));
+                }
+                return InteractionResult.SUCCESS;
             }
-            return InteractionResult.SUCCESS;
         }
 
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
@@ -165,7 +207,7 @@ public class TrapBlock extends Block {
         List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, shape);
 
         // See if there are any entities there at all.
-        if (entities == null || entities.size() == 0) {
+        if (entities == null || entities.isEmpty()) {
             // If there are no entities, shrink if powered by redstone.
             if (level.hasNeighborSignal(pos)) {
                 int newStage = Math.max(stage - 1, MIN_STAGE);
@@ -239,35 +281,6 @@ public class TrapBlock extends Block {
             }
         }
 
-    }
-
-    protected int getCooldownTime() {
-        return this.cooldownTime;
-    }
-
-    protected int getResponseTime() {
-        return this.responseTime;
-    }
-
-    protected void updateNeighbours(Level p_49292_, BlockPos p_49293_) {
-        p_49292_.updateNeighborsAt(p_49293_, this);
-        p_49292_.updateNeighborsAt(p_49293_.below(), this);
-    }
-
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(HIDDEN, false);
-    }
-
-    // Respawning in a trap is bad.
-    @Override
-    public boolean isPossibleToRespawnInThis(BlockState p_279155_) {
-        return false;
-    }
-
-    // Very important!
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54447_) {
-        p_54447_.add(STAGE, SHRINKING, FACING, HIDDEN);
     }
 
 }

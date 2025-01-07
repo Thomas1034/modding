@@ -158,6 +158,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(BlockRegistry.TIGER_LILY.get());
         this.add(BlockRegistry.POTTED_TIGER_LILY.get(), createPotFlowerItemTable(BlockRegistry.TIGER_LILY.get()));
 
+
+        this.dropSelf(BlockRegistry.THORN_TRAP.get());
+        this.dropSelf(BlockRegistry.IRON_TRAP.get());
+
         // this.add(BlockRegistry.UBE_CAKE.get(), noDrop());
         // this.add(BlockRegistry.CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.CANDLE));
         // this.add(BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.WHITE_CANDLE));

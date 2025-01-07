@@ -2,9 +2,7 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
-import com.thomas.verdant.registry.BlockEntityTypeRegistry;
-import com.thomas.verdant.registry.FlammablesRegistry;
-import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import com.thomas.verdant.util.featureset.FeatureSet;
@@ -12,17 +10,20 @@ import com.thomas.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
-import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.Container;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -42,6 +44,8 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
@@ -72,6 +76,9 @@ public class Verdant {
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
         eventBus.addListener(Verdant::onFinishSetup);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
+
+        // Functionality
+        eventBus.addListener(Verdant::onPlayerTryToSleepEvent);
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
@@ -80,15 +87,9 @@ public class Verdant {
             FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
             for (WoodSet woodSet : WoodSets.WOOD_SETS) {
                 woodSet.registerFlammability(((FireBlock) Blocks.FIRE)::setFlammable);
-                DispenserBlock.registerBehavior(
-                        woodSet.getBoatItem().get(),
-                        new BoatDispenseItemBehavior(woodSet.getBoat().get())
-                );
-                DispenserBlock.registerBehavior(
-                        woodSet.getChestBoatItem().get(),
-                        new BoatDispenseItemBehavior(woodSet.getChestBoat().get())
-                );
+                DispenserBehaviors.woodSet(woodSet);
             }
+            DispenserBehaviors.init();
         });
     }
 
@@ -239,4 +240,28 @@ public class Verdant {
 
         event.dataPackRegistry(FeatureSet.KEY, FeatureSet.CODEC, FeatureSet.CODEC);
     }
+
+    public static void onPlayerTryToSleepEvent(CanPlayerSleepEvent event) {
+        LivingEntity sleepingEntity = event.getEntity();
+
+        if (sleepingEntity.getActiveEffectsMap().get(MobEffectRegistry.CAFFEINATED.asHolder()) != null) {
+            event.setProblem(Player.BedSleepingProblem.OTHER_PROBLEM);
+            if (sleepingEntity instanceof ServerPlayer sleepingPlayer) {
+                sleepingPlayer.sendSystemMessage(Component.translatable("block.minecraft.bed.caffeine"));
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void reduceVisibility(LivingEvent.LivingVisibilityEvent event) {
+        LivingEntity entity = event.getEntity();
+        int stenchLevel = 0;
+        MobEffectInstance instance = entity.getEffect(MobEffectRegistry.STENCH.asHolder());
+        if (instance != null) {
+            stenchLevel += instance.getAmplifier() + 1;
+        }
+        double stenchMultiplier = 1.0 / (1.0 + stenchLevel);
+        event.modifyVisibility(stenchMultiplier);
+    }
+
 }
