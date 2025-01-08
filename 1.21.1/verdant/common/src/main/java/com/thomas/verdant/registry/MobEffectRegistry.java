@@ -116,6 +116,10 @@ public class MobEffectRegistry {
             "intangible",
             () -> new IntangibilityEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF)
     );
+    public static final RegistryObject<MobEffect, MobEffect> WEIGHTLESS = MOB_EFFECTS.register(
+            "weightless",
+            () -> new AntiGravityEffect(MobEffectCategory.BENEFICIAL, 0x000000)
+    );
 
     public static void init() {
     }
