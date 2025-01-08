@@ -174,7 +174,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     public FishTrapBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityTypeRegistry.FISH_TRAP_BLOCK_ENTITY.get(), pos, blockState);
         this.numBaitSlots = 3;
-        this.numOutputSlots = 4;
+        this.numOutputSlots = 3;
         this.baitSlots = IntStream.range(0, this.numBaitSlots).map(this::absoluteIndexForBaitSlot).toArray();
         this.outputSlots = IntStream.range(0, this.numOutputSlots).map(this::absoluteIndexForOutputSlot).toArray();
         this.cycleTime = 30;

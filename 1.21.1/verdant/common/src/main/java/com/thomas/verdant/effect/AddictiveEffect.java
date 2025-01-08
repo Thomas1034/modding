@@ -49,6 +49,7 @@ public class AddictiveEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+
         for (Holder<MobEffect> bonus : this.effects) {
             MobEffectInstance bonusInstance = new MobEffectInstance(bonus, 100, 1 + amplifier * 2);
             entity.addEffect(bonusInstance);

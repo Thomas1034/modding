@@ -40,11 +40,8 @@ public class SpeedometerItem extends Item {
 	}
 
 	private static void eraseCloudAt(Level level, BlockPos pos) {
-
 		Stack<BlockPos> posStack = new Stack<>();
-
 		posStack.push(pos);
-
 		while (!posStack.isEmpty()) {
 			pos = posStack.pop();
 			if (level.getBlockState(pos).is(ModBlocks.CLOUD.get())) {
@@ -57,7 +54,6 @@ public class SpeedometerItem extends Item {
 				posStack.push(pos.west());
 			}
 		}
-
 	}
 
 }

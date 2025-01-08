@@ -361,14 +361,17 @@ public class BlockRegistry {
                 "iron_spikes",
                 () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes"), 6)
         );
+
         THORN_TRAP = registerBlockWithItem(
                 "thorn_trap",
                 () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "thorn_trap"), 20, 5, 4)
         );
+
         IRON_TRAP = registerBlockWithItem(
                 "iron_trap",
-                () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap"), 10, 2, 8)
+                () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap").noCollission().noOcclusion(), 10, 2, 8)
         );
+
         FRAME_BLOCK = registerBlockWithItem(
                 "frame_block",
                 () -> new FrameBlock(properties(

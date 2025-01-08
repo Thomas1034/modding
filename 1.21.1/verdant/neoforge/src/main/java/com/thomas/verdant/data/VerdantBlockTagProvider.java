@@ -224,6 +224,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);
 
+        // Intangibility
+        this.tag(VerdantTags.Blocks.BLOCKS_INTANGIBLE).add(Blocks.BEDROCK, Blocks.NETHER_PORTAL, Blocks.BARRIER);
+
         addDirtOres();
     }
 

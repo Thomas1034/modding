@@ -1,8 +1,8 @@
-// 1.21.4	2025-01-06T23:04:36.1844041	Loot Tables
+// 1.21.4	2025-01-06T23:46:43.3507556	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_table/blocks/bleeding_heart.json
 a85878d59aa311bc0d09d81019d20a7a16c88d61 data/verdant/loot_table/blocks/bush.json
-35deec47b7cd93c9b073d37747bbf05937e7cca5 data/verdant/loot_table/blocks/charred_frame_block.json
+f97adbe84925401e40df22641d5eff78ffb0ab45 data/verdant/loot_table/blocks/charred_frame_block.json
 0bdf5d7147a0905ca324e0b43af26e0c9fb983b2 data/verdant/loot_table/blocks/coffee_crop.json
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json

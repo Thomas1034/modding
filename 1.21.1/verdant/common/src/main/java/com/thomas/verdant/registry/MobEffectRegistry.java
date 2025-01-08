@@ -112,6 +112,10 @@ public class MobEffectRegistry {
             "stench",
             () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0x324500)
     );
+    public static final RegistryObject<MobEffect, MobEffect> INTANGIBLE = MOB_EFFECTS.register(
+            "intangible",
+            () -> new IntangibilityEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF)
+    );
 
     public static void init() {
     }

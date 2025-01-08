@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-06T23:25:44.8825405	Registries
+// 1.21.4	2025-01-07T21:25:06.2030694	Registries
 b0c6a8c47c0c5fcc4ba0ffc7206b700129fc4483 data/minecraft/verdant/bait_data/beef_data.json
 920a2df3c161a343a8402507beb3579dc4fc68f0 data/minecraft/verdant/bait_data/beetroot_seeds_data.json
 920d760df66260e2559bb75e68d27b55149b1cce data/minecraft/verdant/bait_data/bread_data.json
@@ -36,10 +36,10 @@ bc968c225fc114a8247af5170ede25c8350946fb data/minecraft/verdant/bait_data/sugar_
 6fec246622dadd76af8d7986ac97dde65c155531 data/verdant/damage_type/photosensitive.json
 0c9f65dcbb53fe56193264121444cf1c65539a8e data/verdant/verdant/bait_data/coffee_berries_data.json
 d176cc53158f29a4998815f0c94018ee5540b4ab data/verdant/verdant/bait_data/roasted_coffee_data.json
-86cea829dc8212c36ae4eb9c7a8f5cb868954c76 data/verdant/verdant/block_transformer/erosion.json
+0f9495b8846b329283d79fa970ca9c9a686a9e66 data/verdant/verdant/block_transformer/erosion.json
 3e7c98c6034a9b8f379369a968c95541797e5a4e data/verdant/verdant/block_transformer/erosion_wet.json
 299b6f79c72923d7b82174b14706136197453274 data/verdant/verdant/block_transformer/verdant_roots.json
-7c9b84ccb53414b54b48904f43d7e5c245e3b90c data/verdant/verdant/feature_set/above_ground.json
+32d3aacd2c847266c3a2de68990c650fc196b613 data/verdant/verdant/feature_set/above_ground.json
 f5f43492adbdca5178e022a76ba0b69fd6ae4271 data/verdant/verdant/feature_set/always.json
-c7011910aa7de03e91a7beb2725bf090f052b9ec data/verdant/verdant/feature_set/hanging.json
-efdc121ba4a2915e6c5846da39b43e95bd82d1c5 data/verdant/verdant/feature_set/water.json
+37fe90fa525de2630e731cc81b7318e7af84ab7d data/verdant/verdant/feature_set/hanging.json
+d86877af97cdaefba183fbdace51abaa4d505fd9 data/verdant/verdant/feature_set/water.json

@@ -40,6 +40,7 @@ public class VerdantTags {
         public static final TagKey<Block> ROPES_EXTEND = tag("ropes_extend");
         public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
         public static final TagKey<Block> NEEDS_IMBUED_HEARTWOOD_TOOL = tag("needs_imbued_heartwood_tool");
+        public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
 
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

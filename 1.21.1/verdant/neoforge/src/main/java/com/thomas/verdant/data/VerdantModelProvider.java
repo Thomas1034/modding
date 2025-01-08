@@ -160,16 +160,43 @@ public class VerdantModelProvider extends ModelProvider {
                 ResourceLocation location = model.apply(i, b)
                         .createWithSuffix(block, (b ? "_hidden" : "") + "_stage" + i, blockModels.modelOutput);
 
-                for (VariantProperties.Rotation rotation : VariantProperties.Rotation.values()) {
 
-
-                    generator = generator.with(
-                            Condition.condition().term(TrapBlock.FACING, Direction.EAST),
-                            Variant.variant()
-                                    .with(VariantProperties.MODEL, location)
-                                    .with(VariantProperties.Y_ROT, rotation)
-                    );
-                }
+                generator = generator.with(
+                        Condition.condition()
+                                .term(TrapBlock.FACING, Direction.NORTH)
+                                .term(TrapBlock.STAGE, i)
+                                .term(TrapBlock.HIDDEN, b),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, location)
+                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0)
+                );
+                generator = generator.with(
+                        Condition.condition()
+                                .term(TrapBlock.FACING, Direction.EAST)
+                                .term(TrapBlock.STAGE, i)
+                                .term(TrapBlock.HIDDEN, b),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, location)
+                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                );
+                generator = generator.with(
+                        Condition.condition()
+                                .term(TrapBlock.FACING, Direction.SOUTH)
+                                .term(TrapBlock.STAGE, i)
+                                .term(TrapBlock.HIDDEN, b),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, location)
+                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                );
+                generator = generator.with(
+                        Condition.condition()
+                                .term(TrapBlock.FACING, Direction.WEST)
+                                .term(TrapBlock.STAGE, i)
+                                .term(TrapBlock.HIDDEN, b),
+                        Variant.variant()
+                                .with(VariantProperties.MODEL, location)
+                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                );
             }
         }
 

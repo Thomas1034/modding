@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.thomas.verdant.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["DecreaseDetectionRangeMixin", "IntangibilityPlayerTickMixin"],
+  "mixins": ["IntangibilityPlayerTickMixin"],
   "server": [],
   "client": ["IntangibilityBlockVisionMixin"],
   "injectors": {

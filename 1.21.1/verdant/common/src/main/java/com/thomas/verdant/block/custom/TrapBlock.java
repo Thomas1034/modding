@@ -156,7 +156,10 @@ public class TrapBlock extends Block {
         // float destroySpeedRaw = belowState.getDestroySpeed(level, pos);
         Tool toolComponent = stack.get(DataComponents.TOOL);
         if (toolComponent != null) {
-            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState);
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(
+                    level,
+                    pos
+            ) < 1.0f;
 
             // If it's the right tool and the trap is fully open
             if (isCorrectToolForBelow && state.getValue(STAGE) == MIN_STAGE) {

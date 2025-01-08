@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-06T23:25:44.8524463	Model Definitions - verdant
+// 1.21.4	2025-01-06T23:55:56.6182952	Model Definitions - verdant
 0d3173201315bdfb9b715b1ff4eb4aeb7812aaf6 assets/verdant/blockstates/antigorite.json
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
 59e8ef32300c83874f1fa22f9e8665954f0cb70f assets/verdant/blockstates/bush.json
@@ -32,7 +32,7 @@ ba9087edb9108a311b1e687dc3d8a85b8f334e94 assets/verdant/blockstates/heartwood_sl
 200aa33413ed8addbf1ee22bddc60e25f6405ab8 assets/verdant/blockstates/heartwood_wall_sign.json
 187f8143429311b420dde2b8d19d390b671c278b assets/verdant/blockstates/heartwood_wood.json
 3493c1701f1c9ac06a32f9241e4cb46e68811962 assets/verdant/blockstates/iron_spikes.json
-591e326d768f50be4a2d6ee2458ea856c04edaff assets/verdant/blockstates/iron_trap.json
+d6548c60b02e6acb0d8f9c38c9b6b8a7ab5c8e8a assets/verdant/blockstates/iron_trap.json
 2c7d5bd29359c8718e8d172e4cda530335c50359 assets/verdant/blockstates/packed_gravel.json
 67e7df13c27b70a4120b13f6bbf8d1b323865f2a assets/verdant/blockstates/poison_ivy.json
 52fdfa3fd047e2d840e111ef8f6e3851da49a5ac assets/verdant/blockstates/poison_ivy_plant.json
@@ -71,7 +71,7 @@ c473b69103246bd32a5260a6e8af9ef35d1f4ac8 assets/verdant/blockstates/stripped_hea
 d9b39929c8f3724aff1d3e38822819bd7f78aaf5 assets/verdant/blockstates/thorny_strangler_leaves.json
 c8448a0b484c523d477394da7b58bab75fa61f5c assets/verdant/blockstates/thorn_bush.json
 fe13910dd12b7cb364568bb25ee81602ce1754ec assets/verdant/blockstates/thorn_spikes.json
-0b0594f60275129a84f266e415966b34d7f05ac9 assets/verdant/blockstates/thorn_trap.json
+da8a0aa7407fd892c969f4b910fff168aaebd892 assets/verdant/blockstates/thorn_trap.json
 3cbd1b577ca31cd5f946107fed34fed63fa12e45 assets/verdant/blockstates/tiger_lily.json
 132e391aac81493463f2e92bf38ff57f8fae40e2 assets/verdant/blockstates/verdant_grass_clay.json
 db2374f8d49f89c9aad5dc28a9d7cbda4964c85b assets/verdant/blockstates/verdant_grass_dirt.json

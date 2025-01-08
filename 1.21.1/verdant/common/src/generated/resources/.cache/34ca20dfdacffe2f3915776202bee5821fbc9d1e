@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-06T23:01:48.8868632	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-01-07T21:25:06.1837907	Tags for minecraft:block mod id verdant
 4cdfb0ab3e5548c08d89c64ca20e371e1fcb3319 data/c/tags/block/fences/wooden.json
 29b6ccf000f5e52bf448268bbdf5353dc6873fa4 data/c/tags/block/fence_gates/wooden.json
 7166531643e02808348a14edc765376109e66419 data/c/tags/block/ores.json
@@ -38,6 +38,7 @@ a2c30d0029a55b7f30021a64881a6a0345ed3c70 data/minecraft/tags/block/wooden_pressu
 1b53a0c88787ced8312877bd5914f42011baf979 data/minecraft/tags/block/wooden_slabs.json
 ef7f05a52bab2942f9c68c0731865b155ae25bd2 data/minecraft/tags/block/wooden_stairs.json
 4fa1c5f29bf91c63f7d96829e5646a620d807766 data/minecraft/tags/block/wooden_trapdoors.json
+d39e8a25415af80f6d7a88f637347b1fca27930c data/verdant/tags/block/blocks_intangible.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/verdant/tags/block/heartwood_logs.json
 5789e051ee6f018147fb5527a58ab9386c5ac39b data/verdant/tags/block/ropes_extend.json
 402e76c05885cde4061a6642fe2556b9fdb6fa87 data/verdant/tags/block/rope_hooks.json

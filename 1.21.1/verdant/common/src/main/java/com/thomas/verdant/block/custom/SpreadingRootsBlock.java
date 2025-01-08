@@ -41,8 +41,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-// Problems: it's always grass - fix detection of air above and below.
-
+// TODO unify block above/below checks with isActive checks.
 public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
 
     // The maximum distance the block can be from water.
