@@ -1,0 +1,41 @@
+{
+  "parent": "verdant:deep_roots",
+  "criteria": {
+    "rip_them_all_down": {
+      "conditions": {
+        "items": [
+          {
+            "count": {
+              "min": 128
+            },
+            "items": "verdant:heartwood_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.rip_them_all_down.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:diamond_axe"
+    },
+    "title": {
+      "translate": "advancements.verdant.rip_them_all_down.title"
+    }
+  },
+  "requirements": [
+    [
+      "rip_them_all_down"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

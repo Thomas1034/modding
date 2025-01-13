@@ -14,9 +14,8 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.*;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -380,9 +379,10 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
-        trapBlockWithItem(BlockRegistry.THORN_TRAP.get());
+        trapBlockWithItem(BlockRegistry.WOODEN_TRAP.get());
         trapBlockWithItem(BlockRegistry.IRON_TRAP.get());
-        spikesBlockWithItem(BlockRegistry.THORN_SPIKES.get());
+        trapBlockWithItem(BlockRegistry.SNAPLEAF.get());
+        spikesBlockWithItem(BlockRegistry.WOODEN_SPIKES.get());
         spikesBlockWithItem(BlockRegistry.IRON_SPIKES.get());
         doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
         doubleSidedLogBlockWithItem(BlockRegistry.FRAME_BLOCK.get());
@@ -395,13 +395,14 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
         basicItem(BlockRegistry.DROWNED_HEMLOCK.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
-        basicItem(BlockRegistry.THORN_SPIKES.get().asItem());
+        basicItem(BlockRegistry.WOODEN_SPIKES.get().asItem());
         basicItem(BlockRegistry.IRON_SPIKES.get().asItem());
-        basicItem(BlockRegistry.THORN_TRAP.get().asItem());
+        basicItem(BlockRegistry.SNAPLEAF.get().asItem());
+        basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
         basicItem(BlockRegistry.IRON_TRAP.get().asItem());
         // TODO ropeCoilItem(ItemRegistry.ROPE_COIL);
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
-
+        basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
     }
 
     @Override
@@ -413,6 +414,7 @@ public class VerdantModelProvider extends ModelProvider {
         excluded.add(BlockRegistry.ROPE.get());
         excluded.add(BlockRegistry.ROPE_HOOK.get());
         excluded.add(BlockRegistry.STINKING_BLOSSOM.get());
+        excluded.add(BlockRegistry.VERDANT_CONDUIT.get());
 
         return super.getKnownBlocks().filter(entry -> !excluded.contains(entry.value()));
     }
@@ -422,6 +424,7 @@ public class VerdantModelProvider extends ModelProvider {
         List<Item> excluded = new ArrayList<>();
 
         excluded.add(ItemRegistry.ROPE_COIL.get());
+        excluded.add(BlockRegistry.VERDANT_CONDUIT.get().asItem());
 
         return super.getKnownItems().filter(entry -> !excluded.contains(entry.value()));
     }
@@ -603,5 +606,11 @@ public class VerdantModelProvider extends ModelProvider {
             blockModels.registerSimpleFlatItemModel(block.asItem());
             blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertydispatch));
         }
+    }
+
+    public void generateSimpleSpecialItemModel(Block block, SpecialModelRenderer.Unbaked specialModel) {
+        Item item = block.asItem();
+        ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(item);
+        itemModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation, specialModel));
     }
 }

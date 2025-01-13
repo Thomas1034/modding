@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_birch_to_dark_oak",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:dark_oak_log"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:dark_oak_wood"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:stripped_dark_oak_log"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:stripped_dark_oak_wood"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:dark_oak_planks"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:dark_oak_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:dark_oak_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:dark_oak_fence"
+    },
+    {
+      "block": "minecraft:birch_fence_gate",
+      "result": "minecraft:dark_oak_fence_gate"
+    },
+    {
+      "block": "minecraft:birch_door",
+      "result": "minecraft:dark_oak_door"
+    },
+    {
+      "block": "minecraft:birch_trapdoor",
+      "result": "minecraft:dark_oak_trapdoor"
+    },
+    {
+      "block": "minecraft:birch_button",
+      "result": "minecraft:dark_oak_button"
+    },
+    {
+      "block": "minecraft:birch_leaves",
+      "result": "minecraft:dark_oak_leaves"
+    },
+    {
+      "block": "minecraft:birch_sapling",
+      "result": "minecraft:dark_oak_sapling"
+    },
+    {
+      "block": "minecraft:potted_birch_sapling",
+      "result": "minecraft:potted_dark_oak_sapling"
+    },
+    {
+      "block": "minecraft:birch_sign",
+      "result": "minecraft:dark_oak_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_sign",
+      "result": "minecraft:dark_oak_wall_sign"
+    },
+    {
+      "block": "minecraft:birch_hanging_sign",
+      "result": "minecraft:dark_oak_hanging_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_hanging_sign",
+      "result": "minecraft:dark_oak_wall_hanging_sign"
+    }
+  ]
+}

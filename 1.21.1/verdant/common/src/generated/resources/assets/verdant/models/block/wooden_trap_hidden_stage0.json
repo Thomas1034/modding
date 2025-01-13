@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/trap_hidden_stage0",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bar": "verdant:block/wooden_trap_bar",
+    "base": "verdant:block/wooden_trap_base",
+    "particle": "verdant:block/wooden_trap_base",
+    "spikes": "verdant:block/wooden_trap_spikes"
+  }
+}

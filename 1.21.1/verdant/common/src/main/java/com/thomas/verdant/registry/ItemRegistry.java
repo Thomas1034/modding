@@ -1,6 +1,7 @@
 package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.item.custom.HeartOfTheForestItem;
 import com.thomas.verdant.item.custom.RopeCoilItem;
 import com.thomas.verdant.item.custom.RopeItem;
 import com.thomas.verdant.registration.RegistrationProvider;
@@ -13,6 +14,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 import java.util.function.Supplier;
 
@@ -54,6 +56,9 @@ public class ItemRegistry {
             "rope",
             () -> new RopeItem(BlockRegistry.ROPE.get(), properties("rope"))
     );
+    public static final RegistryObject<Item, Item> HEART_OF_THE_FOREST = register("heart_of_the_forest", () -> new HeartOfTheForestItem(properties("heart_of_the_forest").rarity(
+            Rarity.UNCOMMON)));
+
 
     public static void init() {
     }

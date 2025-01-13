@@ -1,0 +1,39 @@
+{
+  "parent": "verdant:root",
+  "criteria": {
+    "pyramid": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "#verdant:contains_verdant"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.petrichor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:heart_of_the_forest"
+    },
+    "title": {
+      "translate": "advancements.verdant.petrichor.title"
+    }
+  },
+  "requirements": [
+    [
+      "pyramid"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

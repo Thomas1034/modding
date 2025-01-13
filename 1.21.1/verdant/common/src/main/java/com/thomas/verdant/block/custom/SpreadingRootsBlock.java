@@ -10,6 +10,7 @@ import com.thomas.verdant.util.featureset.FeatureSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -38,7 +39,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Predicate;
+import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 // TODO unify block above/below checks with isActive checks.
@@ -164,6 +165,9 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         } else if (state.getValue(ABOVE) == NeighborType.WATER) {
             FeatureSet set = features.get(FeatureSetRegistry.WATER).orElseThrow().value();
             set.place(level, pos.above());
+        } else if (state.getValue(ABOVE) == NeighborType.LOG) {
+            FeatureSet set = features.get(FeatureSetRegistry.BELOW_LOG).orElseThrow().value();
+            set.place(level, pos.above());
         } else {
             FeatureSet set = features.get(FeatureSetRegistry.ALWAYS).orElseThrow().value();
             set.place(level, pos.above());
@@ -254,24 +258,38 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
             // Special cases.
             // These check for air above and below.
+            RegistryAccess access = level.registryAccess();
+            boolean overrideTicking = false;
+            NeighborType adjacent = NeighborType.OTHER;
             if (direction == Direction.UP) {
-                state = state.setValue(ABOVE, NeighborType.get(neighbor));
+                adjacent = NeighborType.get(access, neighbor);
+                state = state.setValue(ABOVE, adjacent);
             } else if (direction == Direction.DOWN) {
-                state = state.setValue(BELOW, NeighborType.get(neighbor));
+                adjacent = NeighborType.get(access, neighbor);
+                state = state.setValue(BELOW, adjacent);
             }
+            overrideTicking = adjacent != NeighborType.OTHER;
 
+            canBeActive |= overrideTicking;
             // If the block has not been marked as able to be active, check its neighbor
             // for the criteria.
             if (!canBeActive) {
-                // First, check whether the neighbor can either be eroded or rooted.
-                boolean canBeErodedOrRooted = erode.isValidInput(level, neighbor) || erodeWet.isValidInput(
-                        level,
-                        neighbor
-                ) || roots.isValidInput(level, neighbor);
+                // First, check whether the neighbor is a full block.
                 boolean isFullBlock = neighbor.isCollisionShapeFullBlock(level, neighborPos);
-                // If the block can be rooted, be eroded, or is not a full block, it should not prevent the roots from
-                // growing.
-                canBeActive = canBeErodedOrRooted || !isFullBlock;
+                if (isFullBlock) {
+                    // If the block can be rooted or eroded, it should not prevent the roots from
+                    // growing.
+                    boolean canBeErodedOrRooted = erode.isValidInput(
+                            level.registryAccess(),
+                            neighbor
+                    ) || erodeWet.isValidInput(
+                            level.registryAccess(),
+                            neighbor
+                    ) || roots.isValidInput(level.registryAccess(), neighbor);
+                    canBeActive = canBeErodedOrRooted;
+                } else {
+                    canBeActive = true;
+                }
             }
 
             // Second, handle updating wetness.
@@ -366,22 +384,22 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     public enum NeighborType implements StringRepresentable {
 
         OTHER("other", null),
-        AIR("air", BlockStateBase::isAir),
-        LOG("log", state -> state.is(BlockTags.LOGS)),
-        WATER("water", state -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
+        AIR("air", (access, state) -> state.isAir()),
+        LOG("log", (access, state) -> state.is(BlockTags.LOGS)),
+        WATER("water", (access, state) -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
 
         private final String representation;
-        private final Predicate<BlockState> identifier;
+        private final BiPredicate<RegistryAccess, BlockState> identifier;
 
 
-        NeighborType(String representation, Predicate<BlockState> identifier) {
+        NeighborType(String representation, BiPredicate<RegistryAccess, BlockState> identifier) {
             this.representation = representation;
             this.identifier = identifier;
         }
 
-        public static NeighborType get(BlockState state) {
+        public static NeighborType get(RegistryAccess access, BlockState state) {
             for (NeighborType type : NeighborType.values()) {
-                if (type.identifier != null && type.identifier.test(state)) {
+                if (type.identifier != null && type.identifier.test(access, state)) {
                     return type;
                 }
             }

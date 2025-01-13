@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:wooden_trap",
+  "key": {
+    "C": "minecraft:copper_ingot",
+    "P": "#minecraft:wooden_pressure_plates",
+    "S": "verdant:wooden_spikes",
+    "T": "minecraft:stick"
+  },
+  "pattern": [
+    "S S",
+    "SCS",
+    "TPT"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:wooden_trap"
+  }
+}

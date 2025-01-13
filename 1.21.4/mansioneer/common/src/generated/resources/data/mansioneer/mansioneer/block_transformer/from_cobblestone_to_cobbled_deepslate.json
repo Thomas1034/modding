@@ -1,0 +1,45 @@
+{
+  "name": "mansioneer:from_cobblestone_to_cobbled_deepslate",
+  "values": [
+    {
+      "block": "minecraft:cobblestone",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:infested_cobblestone",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:cobblestone_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:cobblestone_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:cobblestone_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    },
+    {
+      "block": "minecraft:smooth_stone",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone",
+      "result": "minecraft:deepslate"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    }
+  ]
+}

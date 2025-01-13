@@ -1,0 +1,11 @@
+{
+  "name": "mansioneer:mansion_to_savanna",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_acacia"
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_dark_oak"
+    }
+  ]
+}

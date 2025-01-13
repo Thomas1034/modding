@@ -19,6 +19,7 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.THORN.get()))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
                         output.accept(ItemRegistry.THORN.get());
                         output.accept(ItemRegistry.COFFEE_BERRIES.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
@@ -61,17 +62,19 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.CHARRED_FRAME_BLOCK.get());
                         output.accept(BlockRegistry.ROPE.get());
                         output.accept(BlockRegistry.FISH_TRAP_BLOCK.get());
-                        output.accept(BlockRegistry.THORN_SPIKES.get());
+                        output.accept(BlockRegistry.WOODEN_SPIKES.get());
                         output.accept(BlockRegistry.IRON_SPIKES.get());
-                        output.accept(BlockRegistry.THORN_TRAP.get());
+                        output.accept(BlockRegistry.WOODEN_TRAP.get());
                         output.accept(BlockRegistry.IRON_TRAP.get());
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
+                        output.accept(BlockRegistry.SNAPLEAF.get());
                         output.accept(BlockRegistry.WILD_COFFEE.get());
                         output.accept(BlockRegistry.BLEEDING_HEART.get());
                         output.accept(BlockRegistry.TIGER_LILY.get());
                         output.accept(BlockRegistry.DROWNED_HEMLOCK.get());
+                        output.accept(BlockRegistry.VERDANT_CONDUIT.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
                     .build()

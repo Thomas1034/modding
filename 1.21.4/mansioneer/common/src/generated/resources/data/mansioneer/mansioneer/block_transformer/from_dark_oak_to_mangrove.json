@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_dark_oak_to_mangrove",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:mangrove_log"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:mangrove_wood"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:stripped_mangrove_log"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:stripped_mangrove_wood"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:mangrove_planks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:mangrove_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:mangrove_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:mangrove_fence"
+    },
+    {
+      "block": "minecraft:dark_oak_fence_gate",
+      "result": "minecraft:mangrove_fence_gate"
+    },
+    {
+      "block": "minecraft:dark_oak_door",
+      "result": "minecraft:mangrove_door"
+    },
+    {
+      "block": "minecraft:dark_oak_trapdoor",
+      "result": "minecraft:mangrove_trapdoor"
+    },
+    {
+      "block": "minecraft:dark_oak_button",
+      "result": "minecraft:mangrove_button"
+    },
+    {
+      "block": "minecraft:dark_oak_leaves",
+      "result": "minecraft:mangrove_leaves"
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:mangrove_propagule"
+    },
+    {
+      "block": "minecraft:potted_dark_oak_sapling",
+      "result": "minecraft:potted_mangrove_propagule"
+    },
+    {
+      "block": "minecraft:dark_oak_sign",
+      "result": "minecraft:mangrove_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_sign",
+      "result": "minecraft:mangrove_wall_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_hanging_sign",
+      "result": "minecraft:mangrove_hanging_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_hanging_sign",
+      "result": "minecraft:mangrove_wall_hanging_sign"
+    }
+  ]
+}

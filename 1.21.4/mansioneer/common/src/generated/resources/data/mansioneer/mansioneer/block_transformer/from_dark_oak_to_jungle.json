@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_dark_oak_to_jungle",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:jungle_log"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:jungle_wood"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:stripped_jungle_log"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:stripped_jungle_wood"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:jungle_planks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:jungle_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:jungle_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:jungle_fence"
+    },
+    {
+      "block": "minecraft:dark_oak_fence_gate",
+      "result": "minecraft:jungle_fence_gate"
+    },
+    {
+      "block": "minecraft:dark_oak_door",
+      "result": "minecraft:jungle_door"
+    },
+    {
+      "block": "minecraft:dark_oak_trapdoor",
+      "result": "minecraft:jungle_trapdoor"
+    },
+    {
+      "block": "minecraft:dark_oak_button",
+      "result": "minecraft:jungle_button"
+    },
+    {
+      "block": "minecraft:dark_oak_leaves",
+      "result": "minecraft:jungle_leaves"
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:jungle_sapling"
+    },
+    {
+      "block": "minecraft:potted_dark_oak_sapling",
+      "result": "minecraft:potted_jungle_sapling"
+    },
+    {
+      "block": "minecraft:dark_oak_sign",
+      "result": "minecraft:jungle_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_sign",
+      "result": "minecraft:jungle_wall_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_hanging_sign",
+      "result": "minecraft:jungle_hanging_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_hanging_sign",
+      "result": "minecraft:jungle_wall_hanging_sign"
+    }
+  ]
+}

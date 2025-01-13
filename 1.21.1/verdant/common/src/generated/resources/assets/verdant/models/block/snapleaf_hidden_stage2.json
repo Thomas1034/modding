@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/trap_stage2",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bar": "verdant:block/snapleaf_bar",
+    "base": "verdant:block/snapleaf_base",
+    "particle": "verdant:block/snapleaf_base",
+    "spikes": "verdant:block/snapleaf_spikes"
+  }
+}

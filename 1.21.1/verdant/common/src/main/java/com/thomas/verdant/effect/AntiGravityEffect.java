@@ -8,7 +8,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class AntiGravityEffect extends MobEffect {
-
     public AntiGravityEffect(MobEffectCategory category, int color) {
         super(category, color);
         this.addAttributeModifier(
@@ -18,11 +17,8 @@ public class AntiGravityEffect extends MobEffect {
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
     }
-
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
-
-
 }

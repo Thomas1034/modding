@@ -1,0 +1,22 @@
+{
+  "name": "mansioneer:mansion_to_taiga",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_spruce"
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_stone_bricks"
+    },
+    {
+      "transformer": "mansioneer:from_oak_to_jungle"
+    },
+    {
+      "block": "minecraft:torch",
+      "result": "minecraft:lantern"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:blue_carpet"
+    }
+  ]
+}

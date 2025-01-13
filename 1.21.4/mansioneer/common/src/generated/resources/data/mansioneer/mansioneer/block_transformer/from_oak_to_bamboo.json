@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_oak_to_bamboo",
+  "values": [
+    {
+      "block": "minecraft:oak_log",
+      "result": "minecraft:bamboo_block"
+    },
+    {
+      "block": "minecraft:oak_wood",
+      "result": "minecraft:bamboo_block"
+    },
+    {
+      "block": "minecraft:stripped_oak_log",
+      "result": "minecraft:stripped_bamboo_block"
+    },
+    {
+      "block": "minecraft:stripped_oak_wood",
+      "result": "minecraft:stripped_bamboo_block"
+    },
+    {
+      "block": "minecraft:oak_planks",
+      "result": "minecraft:bamboo_planks"
+    },
+    {
+      "block": "minecraft:oak_stairs",
+      "result": "minecraft:bamboo_stairs"
+    },
+    {
+      "block": "minecraft:oak_slab",
+      "result": "minecraft:bamboo_slab"
+    },
+    {
+      "block": "minecraft:oak_fence",
+      "result": "minecraft:bamboo_fence"
+    },
+    {
+      "block": "minecraft:oak_fence_gate",
+      "result": "minecraft:bamboo_fence_gate"
+    },
+    {
+      "block": "minecraft:oak_door",
+      "result": "minecraft:bamboo_door"
+    },
+    {
+      "block": "minecraft:oak_trapdoor",
+      "result": "minecraft:bamboo_trapdoor"
+    },
+    {
+      "block": "minecraft:oak_button",
+      "result": "minecraft:bamboo_button"
+    },
+    {
+      "block": "minecraft:oak_leaves",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:oak_sapling",
+      "result": "minecraft:bamboo_sapling"
+    },
+    {
+      "block": "minecraft:potted_oak_sapling",
+      "result": "minecraft:potted_bamboo"
+    },
+    {
+      "block": "minecraft:oak_sign",
+      "result": "minecraft:bamboo_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_sign",
+      "result": "minecraft:bamboo_wall_sign"
+    },
+    {
+      "block": "minecraft:oak_hanging_sign",
+      "result": "minecraft:bamboo_hanging_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_hanging_sign",
+      "result": "minecraft:bamboo_wall_hanging_sign"
+    }
+  ]
+}

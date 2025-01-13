@@ -1,0 +1,33 @@
+{
+  "parent": "verdant:stand_on_verdant_ground",
+  "criteria": {
+    "log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.strong_trees.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:heartwood_log"
+    },
+    "title": {
+      "translate": "advancements.verdant.strong_trees.title"
+    }
+  },
+  "requirements": [
+    [
+      "log"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

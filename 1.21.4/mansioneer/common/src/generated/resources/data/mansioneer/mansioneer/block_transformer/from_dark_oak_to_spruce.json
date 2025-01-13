@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_dark_oak_to_spruce",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:spruce_log"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:spruce_wood"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:stripped_spruce_log"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:stripped_spruce_wood"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:spruce_planks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:spruce_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:spruce_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:spruce_fence"
+    },
+    {
+      "block": "minecraft:dark_oak_fence_gate",
+      "result": "minecraft:spruce_fence_gate"
+    },
+    {
+      "block": "minecraft:dark_oak_door",
+      "result": "minecraft:spruce_door"
+    },
+    {
+      "block": "minecraft:dark_oak_trapdoor",
+      "result": "minecraft:spruce_trapdoor"
+    },
+    {
+      "block": "minecraft:dark_oak_button",
+      "result": "minecraft:spruce_button"
+    },
+    {
+      "block": "minecraft:dark_oak_leaves",
+      "result": "minecraft:spruce_leaves"
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:spruce_sapling"
+    },
+    {
+      "block": "minecraft:potted_dark_oak_sapling",
+      "result": "minecraft:potted_spruce_sapling"
+    },
+    {
+      "block": "minecraft:dark_oak_sign",
+      "result": "minecraft:spruce_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_sign",
+      "result": "minecraft:spruce_wall_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_hanging_sign",
+      "result": "minecraft:spruce_hanging_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_hanging_sign",
+      "result": "minecraft:spruce_wall_hanging_sign"
+    }
+  ]
+}

@@ -1,22 +1,24 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.renderer.VerdantConduitRenderer;
+import com.thomas.verdant.client.renderer.VerdantConduitSpecialRenderer;
 import com.thomas.verdant.client.screen.FishTrapScreen;
-import com.thomas.verdant.registry.BlockRegistry;
-import com.thomas.verdant.registry.EntityTypeRegistry;
-import com.thomas.verdant.registry.MenuRegistry;
-import com.thomas.verdant.registry.WoodSets;
+import com.thomas.verdant.registry.*;
 import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.special.SpecialModelRenderers;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -77,10 +79,12 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.DROWNED_HEMLOCK_PLANT,
                 BlockRegistry.CHARRED_FRAME_BLOCK,
                 BlockRegistry.FRAME_BLOCK,
-                BlockRegistry.THORN_SPIKES,
+                BlockRegistry.WOODEN_SPIKES,
                 BlockRegistry.IRON_SPIKES,
-                BlockRegistry.THORN_TRAP,
-                BlockRegistry.IRON_TRAP
+                BlockRegistry.WOODEN_TRAP,
+                BlockRegistry.IRON_TRAP,
+                BlockRegistry.SNAPLEAF,
+                BlockRegistry.VERDANT_CONDUIT
         );
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
@@ -91,6 +95,21 @@ public class VerdantClient implements ClientModInitializer {
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+
+
+        BlockEntityRenderers.register(
+                BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
+                VerdantConduitRenderer::new
+        );
+        SpecialModelRenderers.ID_MAPPER.put(
+                VerdantConduitSpecialRenderer.Unbaked.LOCATION,
+                VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC
+        );
+        SpecialBlockRendererRegistry.register(
+                BlockRegistry.VERDANT_CONDUIT.get(),
+                new VerdantConduitSpecialRenderer.Unbaked()
+        );
+
 
         registerItemProperties();
     }

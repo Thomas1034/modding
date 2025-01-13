@@ -16,21 +16,46 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.INSET_LOW
     );
 
-    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create(
-            "verdant:double_sided_cube_column",
+    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create("verdant:double_sided_cube_column",
             TextureSlot.END,
             TextureSlot.SIDE
     );
 
-    public static final ModelTemplate TRAP_STAGE0 = ModelTemplates.create("verdant:trap_stage0", TextureSlot.TEXTURE);
+    public static final ModelTemplate TRAP_STAGE0 = ModelTemplates.create(
+            "verdant:trap_stage0",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES
+    );
     public static final ModelTemplate TRAP_HIDDEN_STAGE0 = ModelTemplates.create(
             "verdant:trap_hidden_stage0",
-            TextureSlot.TEXTURE
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES
     );
-    public static final ModelTemplate TRAP_STAGE1 = ModelTemplates.create("verdant:trap_stage1", TextureSlot.TEXTURE);
-    public static final ModelTemplate TRAP_STAGE2 = ModelTemplates.create("verdant:trap_stage2", TextureSlot.TEXTURE);
-    public static final ModelTemplate TRAP_STAGE3 = ModelTemplates.create("verdant:trap_stage3", TextureSlot.TEXTURE);
-
+    public static final ModelTemplate TRAP_STAGE1 = ModelTemplates.create(
+            "verdant:trap_stage1",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES
+    );
+    public static final ModelTemplate TRAP_STAGE2 = ModelTemplates.create(
+            "verdant:trap_stage2",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES
+    );
+    public static final ModelTemplate TRAP_STAGE3 = ModelTemplates.create(
+            "verdant:trap_stage3",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES
+    );
 
     public static final ModelTemplate OVERLAID_CUBE = ModelTemplates.create(
             "verdant:overlaid_cube",

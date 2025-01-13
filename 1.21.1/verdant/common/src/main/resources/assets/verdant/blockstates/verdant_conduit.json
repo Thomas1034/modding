@@ -1,20 +1,8 @@
+
 {
-  "multipart": [
-    {
-      "when": {
-        "active": "false"
-      },
-      "apply": {
+  "variants": {
+    "": {
         "model": "verdant:block/verdant_conduit"
-      }
-    },
-    {
-      "when": {
-        "active": "true"
-      },
-      "apply": {
-        "model": "verdant:block/verdant_conduit_active"
-      }
     }
-  ]
+  }
 }

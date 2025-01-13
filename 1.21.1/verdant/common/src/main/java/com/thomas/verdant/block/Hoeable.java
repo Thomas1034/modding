@@ -17,7 +17,7 @@ public interface Hoeable {
         BlockTransformer hoeing = transformers.get(BlockTransformerRegistry.HOEING).orElseThrow().value();
 
         // Transforms the state and returns it
-        return hoeing.get(state, level);
+        return hoeing.get(state, level.registryAccess(), level.random);
     }
 
     @SuppressWarnings("unused")

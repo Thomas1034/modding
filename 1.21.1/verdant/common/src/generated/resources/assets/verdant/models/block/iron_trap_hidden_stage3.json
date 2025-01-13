@@ -2,6 +2,9 @@
   "parent": "verdant:block/trap_stage3",
   "render_type": "minecraft:cutout",
   "textures": {
-    "texture": "verdant:block/iron_trap"
+    "bar": "verdant:block/iron_trap_bar",
+    "base": "verdant:block/iron_trap_base",
+    "particle": "verdant:block/iron_trap_base",
+    "spikes": "verdant:block/iron_trap_spikes"
   }
 }

@@ -69,6 +69,15 @@ public class FeatureSetDefinitions {
         return new FeatureSet(entries, FeatureSetRegistry.ALWAYS);
     }
 
+    public static FeatureSet belowLog() {
+
+        List<FeatureSet.Entry> entries = new ArrayList<>();
+
+        entries.add(configured(1, JSONFeatures.STRANGLER_VINES));
+
+        return new FeatureSet(entries, FeatureSetRegistry.BELOW_LOG);
+    }
+
     public static ConfiguredFeatureSetEntry configured(int weight, ResourceKey<ConfiguredFeature<?, ?>> feature) {
         return new ConfiguredFeatureSetEntry(feature.location(), weight);
     }

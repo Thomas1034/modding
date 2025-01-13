@@ -1,0 +1,356 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage0",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "true",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage0",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "true",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage0",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "true",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage0",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "true",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage0",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "false",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage0",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "false",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage0",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "false",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage0",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "false",
+        "stage": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage1",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "true",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "true",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "true",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "true",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage1",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "false",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "false",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "false",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "false",
+        "stage": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage2",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "true",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "true",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "true",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "true",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage2",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "false",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "false",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "false",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "false",
+        "stage": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage3",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "true",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "true",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "true",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_hidden_stage3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "true",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage3",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "hidden": "false",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "hidden": "false",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "hidden": "false",
+        "stage": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/wooden_trap_stage3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "hidden": "false",
+        "stage": "3"
+      }
+    }
+  ]
+}

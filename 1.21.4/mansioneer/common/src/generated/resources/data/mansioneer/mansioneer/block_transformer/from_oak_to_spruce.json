@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_oak_to_spruce",
+  "values": [
+    {
+      "block": "minecraft:oak_log",
+      "result": "minecraft:spruce_log"
+    },
+    {
+      "block": "minecraft:oak_wood",
+      "result": "minecraft:spruce_wood"
+    },
+    {
+      "block": "minecraft:stripped_oak_log",
+      "result": "minecraft:stripped_spruce_log"
+    },
+    {
+      "block": "minecraft:stripped_oak_wood",
+      "result": "minecraft:stripped_spruce_wood"
+    },
+    {
+      "block": "minecraft:oak_planks",
+      "result": "minecraft:spruce_planks"
+    },
+    {
+      "block": "minecraft:oak_stairs",
+      "result": "minecraft:spruce_stairs"
+    },
+    {
+      "block": "minecraft:oak_slab",
+      "result": "minecraft:spruce_slab"
+    },
+    {
+      "block": "minecraft:oak_fence",
+      "result": "minecraft:spruce_fence"
+    },
+    {
+      "block": "minecraft:oak_fence_gate",
+      "result": "minecraft:spruce_fence_gate"
+    },
+    {
+      "block": "minecraft:oak_door",
+      "result": "minecraft:spruce_door"
+    },
+    {
+      "block": "minecraft:oak_trapdoor",
+      "result": "minecraft:spruce_trapdoor"
+    },
+    {
+      "block": "minecraft:oak_button",
+      "result": "minecraft:spruce_button"
+    },
+    {
+      "block": "minecraft:oak_leaves",
+      "result": "minecraft:spruce_leaves"
+    },
+    {
+      "block": "minecraft:oak_sapling",
+      "result": "minecraft:spruce_sapling"
+    },
+    {
+      "block": "minecraft:potted_oak_sapling",
+      "result": "minecraft:potted_spruce_sapling"
+    },
+    {
+      "block": "minecraft:oak_sign",
+      "result": "minecraft:spruce_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_sign",
+      "result": "minecraft:spruce_wall_sign"
+    },
+    {
+      "block": "minecraft:oak_hanging_sign",
+      "result": "minecraft:spruce_hanging_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_hanging_sign",
+      "result": "minecraft:spruce_wall_hanging_sign"
+    }
+  ]
+}

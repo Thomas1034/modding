@@ -9,13 +9,12 @@ import com.thomas.verdant.util.AliasBuilder;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -26,9 +25,9 @@ import java.util.function.Function;
 
 public class BlockTransformer {
 
-    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(
-            Constants.MOD_ID,
-            "block_transformer"));
+    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
+            "block_transformer"
+    ));
 
     public static final Codec<List<BlockTransformerData>> DATA_LIST_CODEC = Codec.list(BlockTransformerData.CODEC).xmap(
             list -> {
@@ -39,10 +38,12 @@ public class BlockTransformer {
                     }
                 });
                 return list;
-            }, list -> list);
+            }, list -> list
+    );
     public static final Codec<BlockTransformer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             DATA_LIST_CODEC.fieldOf("values").forGetter(BlockTransformer::asData),
-            ResourceLocation.CODEC.fieldOf("name").forGetter(bt -> bt.name)).apply(instance, BlockTransformer::new));
+            ResourceLocation.CODEC.fieldOf("name").forGetter(bt -> bt.name)
+    ).apply(instance, BlockTransformer::new));
     public final ResourceLocation name;
     private final Map<TagKey<Block>, Function<RandomSource, Block>> tagMap;
     private final Object2IntMap<TagKey<Block>> tagPriorityMap;
@@ -116,7 +117,7 @@ public class BlockTransformer {
                     Object2IntMap<Block> temporaryMap = new Object2IntOpenHashMap<>();
                     // Load all the options into a map.
                     for (BlockTransformerResultOption option : toLoad.results) {
-                        temporaryMap.put(getBlock(option.name), option.weight);
+                        temporaryMap.put(getBlock(option.name()), option.weight());
                     }
                     // Add the map.
                     this.addProbabilisticMapping(getBlock(toLoad.block), temporaryMap);
@@ -132,7 +133,7 @@ public class BlockTransformer {
                     Object2IntMap<Block> temporaryMap = new Object2IntOpenHashMap<>();
                     // Load all the options into a map.
                     for (BlockTransformerResultOption option : toLoad.results) {
-                        temporaryMap.put(getBlock(option.name), option.weight);
+                        temporaryMap.put(getBlock(option.name()), option.weight());
                     }
                     // Add the map.
                     this.addProbabilisticMapping(toLoad.tag, temporaryMap);
@@ -160,9 +161,11 @@ public class BlockTransformer {
 
     private void addProbabilisticMapping(TagKey<Block> input, Map<Block, Integer> probabilities) {
         this.tagMap.put(input, AliasBuilder.build(probabilities));
+        this.tagPriorityMap.put(input, this.numTagsAdded++);
+
     }
 
-    private Function<RandomSource, Block> getRaw(Block input, LevelAccessor level) {
+    private Function<RandomSource, Block> getRaw(Block input, RegistryAccess access) {
 
         Function<RandomSource, Block> result = this.directMap.get(input);
 
@@ -173,20 +176,23 @@ public class BlockTransformer {
         if (result == null) {
             for (ResourceLocation fallback : this.fallbacks) {
                 // Iterate until a valid option is found; then stop.
-                result = this.getFallback(level, fallback).getRaw(input, level);
+                result = this.getFallback(access, fallback).getRaw(input, access);
+                if (result != null) {
+                    break;
+                }
             }
         }
         return result;
     }
 
     // Storing the set of previously visited block transformers prevents infinite loops.
-    public Block get(Block input, ServerLevelAccessor level) {
-        Function<RandomSource, Block> raw = this.getRaw(input, level);
-        return raw == null ? null : raw.apply(level.getRandom());
+    public Block get(Block input, RegistryAccess access, RandomSource random) {
+        Function<RandomSource, Block> raw = this.getRaw(input, access);
+        return raw == null ? null : raw.apply(random);
     }
 
-    public BlockState get(BlockState input, ServerLevelAccessor level) {
-        return copyProperties(input, this.get(input.getBlock(), level));
+    public BlockState get(BlockState input, RegistryAccess access, RandomSource random) {
+        return copyProperties(input, this.get(input.getBlock(), access, random));
     }
 
     private Function<RandomSource, Block> getHighestPriorityTagMapping(Block block) {
@@ -205,14 +211,14 @@ public class BlockTransformer {
         return result;
     }
 
-    public boolean isValidInput(LevelAccessor level, @NotNull BlockState input) {
-        return this.isValidInput(level, input.getBlock());
+    public boolean isValidInput(RegistryAccess access, @NotNull BlockState input) {
+        return this.isValidInput(access, input.getBlock());
     }
 
-    public boolean isValidInput(LevelAccessor level, Block input) {
-        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(
-                level,
-                input);
+    public boolean isValidInput(RegistryAccess access, Block input) {
+        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(access,
+                input
+        );
     }
 
     private boolean hasValidTagMapping(@NotNull Block input) {
@@ -226,9 +232,9 @@ public class BlockTransformer {
         return false;
     }
 
-    private boolean hasValidFallbackMapping(LevelAccessor level, @NotNull Block input) {
+    private boolean hasValidFallbackMapping(RegistryAccess access, @NotNull Block input) {
         for (ResourceLocation location : this.fallbacks) {
-            if (this.getFallback(level, location).isValidInput(level, input)) {
+            if (this.getFallback(access, location).isValidInput(access, input)) {
                 return true;
             }
         }
@@ -236,13 +242,13 @@ public class BlockTransformer {
     }
 
     // Note: this could cause an infinite loop if a fallback of this registry at any point lists this as a fallback.
-    private BlockTransformer getFallback(LevelAccessor level, ResourceLocation location) {
+    private BlockTransformer getFallback(RegistryAccess access, ResourceLocation location) {
         BlockTransformer cached = this.cachedFallbacks.get(location);
         if (cached != null) {
             return cached;
         }
 
-        Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
+        Registry<BlockTransformer> transformers = access.lookupOrThrow(BlockTransformer.KEY);
         BlockTransformer transformer = transformers.get(location).orElseThrow().value();
         this.cachedFallbacks.put(location, transformer);
         return transformer;

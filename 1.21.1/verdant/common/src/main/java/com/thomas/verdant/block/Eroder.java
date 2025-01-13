@@ -27,9 +27,10 @@ public interface Eroder {
         // Retrieves the registry for eroders.
         Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
         // Selects which eroder to use, depending on whether there is access to water.
-        BlockTransformer eroder = (transformers.get(isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION)).orElseThrow().value();
+        BlockTransformer eroder = (transformers.get(isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION)).orElseThrow()
+                .value();
         // Gets the result of erosion. This could be null.
-        BlockState newState = eroder.get(state, level);
+        BlockState newState = eroder.get(state, level.registryAccess(), level.random);
         // Check if the result is either unchanged or null.
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {

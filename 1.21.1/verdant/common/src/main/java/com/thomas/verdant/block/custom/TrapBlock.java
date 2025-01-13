@@ -1,6 +1,7 @@
 package com.thomas.verdant.block.custom;
 
 
+import com.google.common.base.Predicates;
 import com.thomas.verdant.registry.DamageSourceRegistry;
 import com.thomas.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.BlockPos;
@@ -43,6 +44,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class TrapBlock extends Block {
@@ -57,7 +59,7 @@ public class TrapBlock extends Block {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 5.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D)};
-    private static final double BOX_INSET = 5D;
+    protected static final double BOX_INSET = 5D;
     protected static final AABB[] TOUCH_SHAPE = {new AABB(
             BOX_INSET / 16D,
             0.0D,
@@ -69,21 +71,30 @@ public class TrapBlock extends Block {
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 4D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
-    private static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
-            MobEffectRegistry.TRAPPED.asHolder(),
+    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
             10,
             0
     );
-    private final int cooldownTime;
-    private final int responseTime;
-    private final float attackDamage;
+    protected final Predicate<Entity> shouldTrigger;
+    protected final int cooldownTime;
+    protected final int responseTime;
+    protected final float attackDamage;
+    protected final boolean needsPowerToReopen;
+    protected final boolean manuallyHideable;
 
     public TrapBlock(Properties properties, int cooldownTime, int responseTime, float attackDamage) {
+        this(properties, cooldownTime, responseTime, attackDamage, Predicates.alwaysTrue(), true, true);
+
+    }
+
+    public TrapBlock(Properties properties, int cooldownTime, int responseTime, float attackDamage, Predicate<Entity> shouldTrigger, boolean needsPowerToReopen, boolean manuallyHideable) {
         super(properties);
         this.cooldownTime = cooldownTime;
         this.responseTime = responseTime;
         this.attackDamage = attackDamage;
-
+        this.shouldTrigger = shouldTrigger;
+        this.needsPowerToReopen = needsPowerToReopen;
+        this.manuallyHideable = manuallyHideable;
     }
 
     protected int getCooldownTime() {
@@ -105,7 +116,7 @@ public class TrapBlock extends Block {
 
     // Respawning in a trap is bad.
     @Override
-    public boolean isPossibleToRespawnInThis(BlockState p_279155_) {
+    public boolean isPossibleToRespawnInThis(BlockState state) {
         return false;
     }
 
@@ -152,12 +163,15 @@ public class TrapBlock extends Block {
 
     @Override
     public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+
+        if (!this.manuallyHideable) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+
         BlockState belowState = level.getBlockState(pos.below());
-        // float destroySpeedRaw = belowState.getDestroySpeed(level, pos);
         Tool toolComponent = stack.get(DataComponents.TOOL);
         if (toolComponent != null) {
-            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(
-                    level,
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(level,
                     pos
             ) < 1.0f;
 
@@ -207,17 +221,16 @@ public class TrapBlock extends Block {
         AABB shape = TOUCH_SHAPE[stage].move(pos);
 
         // Get all the entities inside the collision shape.
-        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, shape);
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, shape, this.shouldTrigger);
 
         // See if there are any entities there at all.
-        if (entities == null || entities.isEmpty()) {
+        if (entities.isEmpty()) {
             // If there are no entities, shrink if powered by redstone.
-            if (level.hasNeighborSignal(pos)) {
+            if (level.hasNeighborSignal(pos) || !this.needsPowerToReopen) {
                 int newStage = Math.max(stage - 1, MIN_STAGE);
                 state = state.setValue(STAGE, newStage);
                 stage = newStage;
             }
-
         } else {
             // Otherwise, trigger.
             state = state.setValue(STAGE, MAX_STAGE);
@@ -283,7 +296,6 @@ public class TrapBlock extends Block {
                 }
             }
         }
-
     }
 
 }

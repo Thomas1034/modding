@@ -22,7 +22,7 @@
         "angle": 0
       },
       "faces": {
-        "north": {
+        "up": {
           "texture": "#overlay",
           "uv": [
             16,
@@ -32,7 +32,7 @@
           ],
           "rotation": 270
         },
-				"south": {
+				"down": {
           "texture": "#overlay",
           "uv": [
             16,

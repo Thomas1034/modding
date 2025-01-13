@@ -1,0 +1,5 @@
+{
+  "biome": "c:is_swamp",
+  "tag": true,
+  "transformer": "mansioneer:mansion_to_swamp"
+}

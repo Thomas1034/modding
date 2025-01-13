@@ -1,0 +1,116 @@
+{
+  "name": "mansioneer:mansion_to_jungle",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_jungle"
+    },
+    {
+      "transformer": "mansioneer:from_oak_to_mangrove"
+    },
+    {
+      "block": "minecraft:cobblestone",
+      "results": [
+        {
+          "name": "minecraft:mossy_cobblestone"
+        },
+        {
+          "name": "minecraft:cobblestone",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "block": "minecraft:cobblestone_slab",
+      "results": [
+        {
+          "name": "minecraft:mossy_cobblestone_slab"
+        },
+        {
+          "name": "minecraft:cobblestone_slab",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "block": "minecraft:cobblestone_stairs",
+      "results": [
+        {
+          "name": "minecraft:cobblestone_stairs",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:mossy_cobblestone_stairs"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:cobblestone_wall",
+      "results": [
+        {
+          "name": "minecraft:mossy_cobblestone_wall"
+        },
+        {
+          "name": "minecraft:cobblestone_wall",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:pink_stained_glass"
+        },
+        {
+          "name": "minecraft:red_stained_glass"
+        },
+        {
+          "name": "minecraft:green_stained_glass"
+        },
+        {
+          "name": "minecraft:lime_stained_glass"
+        },
+        {
+          "name": "minecraft:cyan_stained_glass"
+        },
+        {
+          "name": "minecraft:yellow_stained_glass"
+        },
+        {
+          "name": "minecraft:light_blue_stained_glass"
+        }
+      ],
+      "tag": {
+        "location": "c:glass_blocks"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:blue_stained_glass_pane",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:purple_stained_glass_pane"
+        },
+        {
+          "name": "minecraft:red_stained_glass_pane"
+        },
+        {
+          "name": "minecraft:green_stained_glass_pane",
+          "weight": 8
+        }
+      ],
+      "tag": {
+        "location": "c:glass_panes"
+      }
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:yellow_carpet"
+    },
+    {
+      "block": "minecraft:white_carpet",
+      "result": "minecraft:green_carpet"
+    }
+  ]
+}

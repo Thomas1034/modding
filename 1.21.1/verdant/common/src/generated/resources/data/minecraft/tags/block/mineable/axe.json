@@ -36,7 +36,9 @@
     "verdant:heartwood_trapdoor",
     "verdant:leafy_strangler_vine",
     "verdant:strangler_vine",
-    "verdant:thorn_spikes",
-    "verdant:thorn_trap"
+    "verdant:wooden_spikes",
+    "verdant:wooden_trap",
+    "verdant:fish_trap",
+    "verdant:verdant_conduit"
   ]
 }

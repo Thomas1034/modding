@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -20,10 +19,11 @@ import net.minecraft.world.phys.Vec3;
 
 public class IntangibilityEffect extends MobEffect {
 
-    private static final int WEIGHTLESS_LENGTH = 200;
+    private static final int WEIGHTLESS_LENGTH = 15;
 
     public IntangibilityEffect(MobEffectCategory category, int color) {
         super(category, color);
+        // Decrease gravity by 80%
         this.addAttributeModifier(
                 Attributes.GRAVITY,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "intangibility/less_gravity"),
@@ -33,19 +33,21 @@ public class IntangibilityEffect extends MobEffect {
 
     }
 
+    // Returns true if the player can go through the blocks beneath and at their position.
+    // This prevents the player from falling out of the world, and enables them to stand on
+    // intangible blocks.
     public static boolean canGoThroughBlockBeneath(Player player) {
         BlockPos atPos = player.blockPosition();
         Level level = player.level();
         BlockState belowState = level.getBlockState(atPos.below());
         BlockState atState = level.getBlockState(atPos);
         BlockState aboveState = level.getBlockState(atPos.above());
-        return !(belowState.is(VerdantTags.Blocks.BLOCKS_INTANGIBLE) && atState.is(VerdantTags.Blocks.BLOCKS_INTANGIBLE) && aboveState.is(
+        return !(belowState.is(VerdantTags.Blocks.BLOCKS_INTANGIBLE) || atState.is(VerdantTags.Blocks.BLOCKS_INTANGIBLE) || aboveState.is(
                 VerdantTags.Blocks.BLOCKS_INTANGIBLE));
     }
 
     public static boolean isIntangible(Player player) {
-        MobEffectInstance intangibilityInstance = player.getEffect(MobEffectRegistry.INTANGIBLE.asHolder());
-        return intangibilityInstance != null;
+        return player.hasEffect(MobEffectRegistry.INTANGIBLE.asHolder());
     }
 
     @Override
@@ -53,39 +55,44 @@ public class IntangibilityEffect extends MobEffect {
 
         if (entity instanceof Player player) {
 
+            // Reset player fall distance, preventing any fall damage while intangible.
+            player.fallDistance = 0;
+            // Calculate the acceleration with which the player should be propelled upwards when inside blocks.
             double upAcceleration = 2 * player.getAttributeValue(Attributes.GRAVITY);
             double maxUpVelocity = upAcceleration * 10;
+            // Track whether the motion should sync to the client - this will overwrite the client's motion, slowing the player significantly.
             boolean shouldSync = false;
+
+            // Cache values to prevent excessive read operations.
+            boolean feetInBlock = isBlockAtRelative(player, 0);
+            boolean headInBlock = isBlockAtRelative(player, 1);
+            boolean blockBelow = isBlockAtRelative(player, -1);
+            boolean headBelowBlock = isBlockAtRelative(player, 2);
+            boolean canGoThroughBeneath = canGoThroughBlockBeneath(player);
+
+            // Get the player's current movement, likely 0 because this is on the server.
             Vec3 playerMovement = player.getDeltaMovement();
 
-            player.fallDistance = 0;
-
-            boolean feetInBlock = isFeetInBlock(player);
-            boolean headInBlock = isHeadInBlock(player);
-
-            if (player.isShiftKeyDown()) {
+            if (player.isShiftKeyDown() && (headBelowBlock || headInBlock || feetInBlock || blockBelow) && !player.hasEffect(
+                    MobEffectRegistry.WEIGHTLESS.asHolder())) {
+                // Handle dashing.
                 Vec3 playerLookVec = player.getLookAngle();
-                playerMovement = playerMovement.add(playerLookVec.scale(2)).scale(0.25);
+                playerMovement = playerMovement.add(playerLookVec.scale(3)).scale(0.25);
                 shouldSync = true;
-
                 player.addEffect(new MobEffectInstance(MobEffectRegistry.WEIGHTLESS.asHolder(), WEIGHTLESS_LENGTH, 0));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, WEIGHTLESS_LENGTH, 1));
-            } else if ((feetInBlock || headInBlock) && canGoThroughBlockBeneath(player)) {
+            } else if ((feetInBlock || headInBlock) && canGoThroughBeneath) {
+                // Handle upward propulsion when in blocks.
                 double toAdd = playerMovement.y > maxUpVelocity ? 0 : Math.min(
                         upAcceleration,
                         maxUpVelocity - playerMovement.y
                 );
                 if (toAdd > 0) {
                     playerMovement = new Vec3(playerMovement.x, playerMovement.y + toAdd, playerMovement.z);
-                    // Constants.LOG.warn("Setting motion to {}, added {}", playerMovement, toAdd);
                     shouldSync = true;
                 }
             }
 
-
-            // TODO figure out how to send delta-movement, maybe?
-
-
+            // Sync motion to the client if necessary
             if (shouldSync) {
                 player.setDeltaMovement(playerMovement);
                 player.hurtMarked = true;
@@ -107,18 +114,5 @@ public class IntangibilityEffect extends MobEffect {
         BlockState blockState = level.getBlockState(pos);
         return !blockState.getCollisionShape(level, pos).isEmpty() && blockState.getFluidState().isEmpty();
     }
-
-    private boolean isFeetInBlock(Player player) {
-        return isBlockAtRelative(player, 0);
-    }
-
-    private boolean isHeadInBlock(Player player) {
-        return isBlockAtRelative(player, (player.isVisuallyCrawling() || player.isFallFlying()) ? 0 : 1);
-    }
-
-    private boolean isHeadBelowBlock(Player player) {
-        return isBlockAtRelative(player, 2);
-    }
-
 
 }

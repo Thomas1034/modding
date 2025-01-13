@@ -1,0 +1,22 @@
+{
+  "name": "mansioneer:mansion_to_pale_garden",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_pale_oak"
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_spruce"
+    },
+    {
+      "transformer": "mansioneer:from_cobblestone_to_cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:white_carpet"
+    },
+    {
+      "block": "minecraft:white_carpet",
+      "result": "minecraft:gray_carpet"
+    }
+  ]
+}

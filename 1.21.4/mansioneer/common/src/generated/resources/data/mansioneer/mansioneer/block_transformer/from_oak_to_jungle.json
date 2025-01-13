@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_oak_to_jungle",
+  "values": [
+    {
+      "block": "minecraft:oak_log",
+      "result": "minecraft:jungle_log"
+    },
+    {
+      "block": "minecraft:oak_wood",
+      "result": "minecraft:jungle_wood"
+    },
+    {
+      "block": "minecraft:stripped_oak_log",
+      "result": "minecraft:stripped_jungle_log"
+    },
+    {
+      "block": "minecraft:stripped_oak_wood",
+      "result": "minecraft:stripped_jungle_wood"
+    },
+    {
+      "block": "minecraft:oak_planks",
+      "result": "minecraft:jungle_planks"
+    },
+    {
+      "block": "minecraft:oak_stairs",
+      "result": "minecraft:jungle_stairs"
+    },
+    {
+      "block": "minecraft:oak_slab",
+      "result": "minecraft:jungle_slab"
+    },
+    {
+      "block": "minecraft:oak_fence",
+      "result": "minecraft:jungle_fence"
+    },
+    {
+      "block": "minecraft:oak_fence_gate",
+      "result": "minecraft:jungle_fence_gate"
+    },
+    {
+      "block": "minecraft:oak_door",
+      "result": "minecraft:jungle_door"
+    },
+    {
+      "block": "minecraft:oak_trapdoor",
+      "result": "minecraft:jungle_trapdoor"
+    },
+    {
+      "block": "minecraft:oak_button",
+      "result": "minecraft:jungle_button"
+    },
+    {
+      "block": "minecraft:oak_leaves",
+      "result": "minecraft:jungle_leaves"
+    },
+    {
+      "block": "minecraft:oak_sapling",
+      "result": "minecraft:jungle_sapling"
+    },
+    {
+      "block": "minecraft:potted_oak_sapling",
+      "result": "minecraft:potted_jungle_sapling"
+    },
+    {
+      "block": "minecraft:oak_sign",
+      "result": "minecraft:jungle_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_sign",
+      "result": "minecraft:jungle_wall_sign"
+    },
+    {
+      "block": "minecraft:oak_hanging_sign",
+      "result": "minecraft:jungle_hanging_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_hanging_sign",
+      "result": "minecraft:jungle_wall_hanging_sign"
+    }
+  ]
+}

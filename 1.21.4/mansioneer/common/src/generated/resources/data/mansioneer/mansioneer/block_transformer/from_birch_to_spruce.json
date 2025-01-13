@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_birch_to_spruce",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:spruce_log"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:spruce_wood"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:stripped_spruce_log"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:stripped_spruce_wood"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:spruce_planks"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:spruce_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:spruce_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:spruce_fence"
+    },
+    {
+      "block": "minecraft:birch_fence_gate",
+      "result": "minecraft:spruce_fence_gate"
+    },
+    {
+      "block": "minecraft:birch_door",
+      "result": "minecraft:spruce_door"
+    },
+    {
+      "block": "minecraft:birch_trapdoor",
+      "result": "minecraft:spruce_trapdoor"
+    },
+    {
+      "block": "minecraft:birch_button",
+      "result": "minecraft:spruce_button"
+    },
+    {
+      "block": "minecraft:birch_leaves",
+      "result": "minecraft:spruce_leaves"
+    },
+    {
+      "block": "minecraft:birch_sapling",
+      "result": "minecraft:spruce_sapling"
+    },
+    {
+      "block": "minecraft:potted_birch_sapling",
+      "result": "minecraft:potted_spruce_sapling"
+    },
+    {
+      "block": "minecraft:birch_sign",
+      "result": "minecraft:spruce_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_sign",
+      "result": "minecraft:spruce_wall_sign"
+    },
+    {
+      "block": "minecraft:birch_hanging_sign",
+      "result": "minecraft:spruce_hanging_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_hanging_sign",
+      "result": "minecraft:spruce_wall_hanging_sign"
+    }
+  ]
+}

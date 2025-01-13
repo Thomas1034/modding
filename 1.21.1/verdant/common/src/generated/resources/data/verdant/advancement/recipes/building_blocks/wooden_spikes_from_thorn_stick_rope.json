@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:wooden_spikes_from_thorn_stick_rope"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thorn": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:thorn"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wooden_spikes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:wooden_spikes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_thorn",
+      "has_stick",
+      "has_rope",
+      "has_wooden_spikes"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:wooden_spikes_from_thorn_stick_rope"
+    ]
+  }
+}

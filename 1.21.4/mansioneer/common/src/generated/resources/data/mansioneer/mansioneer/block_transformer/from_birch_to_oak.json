@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_birch_to_oak",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:oak_log"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:oak_wood"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:stripped_oak_log"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:stripped_oak_wood"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:oak_planks"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:oak_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:oak_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:oak_fence"
+    },
+    {
+      "block": "minecraft:birch_fence_gate",
+      "result": "minecraft:oak_fence_gate"
+    },
+    {
+      "block": "minecraft:birch_door",
+      "result": "minecraft:oak_door"
+    },
+    {
+      "block": "minecraft:birch_trapdoor",
+      "result": "minecraft:oak_trapdoor"
+    },
+    {
+      "block": "minecraft:birch_button",
+      "result": "minecraft:oak_button"
+    },
+    {
+      "block": "minecraft:birch_leaves",
+      "result": "minecraft:oak_leaves"
+    },
+    {
+      "block": "minecraft:birch_sapling",
+      "result": "minecraft:oak_sapling"
+    },
+    {
+      "block": "minecraft:potted_birch_sapling",
+      "result": "minecraft:potted_oak_sapling"
+    },
+    {
+      "block": "minecraft:birch_sign",
+      "result": "minecraft:oak_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_sign",
+      "result": "minecraft:oak_wall_sign"
+    },
+    {
+      "block": "minecraft:birch_hanging_sign",
+      "result": "minecraft:oak_hanging_sign"
+    },
+    {
+      "block": "minecraft:birch_wall_hanging_sign",
+      "result": "minecraft:oak_wall_hanging_sign"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "mansioneer:mansion_to_swamp",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_mangrove"
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_oak"
+    },
+    {
+      "transformer": "mansioneer:from_oak_to_spruce"
+    },
+    {
+      "transformer": "mansioneer:from_cobblestone_to_mud_bricks"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:light_gray_carpet"
+    },
+    {
+      "block": "minecraft:white_carpet",
+      "result": "minecraft:green_carpet"
+    }
+  ]
+}

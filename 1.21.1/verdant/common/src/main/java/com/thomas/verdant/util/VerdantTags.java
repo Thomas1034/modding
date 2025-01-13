@@ -49,13 +49,12 @@ public class VerdantTags {
 
     public static class Structures {
 
+
+        public static final TagKey<Structure> CONTAINS_VERDANT = tag("contains_verdant");
+
         @SuppressWarnings("unused")
         private static TagKey<Structure> tag(String name) {
-            TagKey<Structure> tag = TagKey.create(
-                    Registries.STRUCTURE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
-            );
-            return tag;
+            return TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
     }
 

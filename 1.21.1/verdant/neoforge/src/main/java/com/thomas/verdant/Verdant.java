@@ -13,6 +13,7 @@ import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -196,16 +197,16 @@ public class Verdant {
             // Generate data for the recipes
             generator.addProvider(true, new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
-            // Generate data for the block and item tags
+            // Generate data for the tags
             BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider);
             generator.addProvider(true, blockTagsProvider);
             MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(packOutput, lookupProvider);
             generator.addProvider(true, mobEffectTagsProvider);
-
             generator.addProvider(
                     true,
                     new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter())
             );
+
             // Generate block and item models.
             generator.addProvider(true, new VerdantModelProvider(packOutput));
 
@@ -222,7 +223,16 @@ public class Verdant {
                     )
             );
 
-            // Generate data maps for furnace fuel; only used on the NeoForge side.
+            // Generate advancements
+            generator.addProvider(
+                    true, new AdvancementProvider(
+                            packOutput, lookupProvider,
+                            // Add generators here
+                            List.of(VerdantAdvancementProvider::generate)
+                    )
+            );
+
+            // Generate data maps for furnace fuel, composters, and such; only used on the NeoForge side.
             generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));
 
         } catch (RuntimeException e) {

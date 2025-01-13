@@ -28,6 +28,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DROWNED_HEMLOCK = createKey("drowned_hemlock");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FIXED_SEAGRASS_SHORT = createKey("fixed_seagrass_short");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FIXED_SEAGRASS_TALL = createKey("fixed_seagrass_tall");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STRANGLER_VINES = createKey("strangler_vines");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(

@@ -161,9 +161,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         this.requireSilkTouch(BlockRegistry.CHARRED_FRAME_BLOCK.get(), Items.CHARCOAL, List.of(0, 1));
         this.dropSelf(BlockRegistry.FRAME_BLOCK.get());
-        this.dropSelf(BlockRegistry.THORN_SPIKES.get());
+        this.dropSelf(BlockRegistry.WOODEN_SPIKES.get());
         this.dropSelf(BlockRegistry.IRON_SPIKES.get());
-        this.dropSelf(BlockRegistry.THORN_TRAP.get());
+        this.dropSelf(BlockRegistry.WOODEN_TRAP.get());
         this.dropSelf(BlockRegistry.IRON_TRAP.get());
 
         // this.add(BlockRegistry.UBE_CAKE.get(), noDrop());
@@ -195,19 +195,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // this.add(BlockRegistry.WILD_UBE.get(),
         //         this.createChanceDrops(BlockRegistry.WILD_UBE.get(), ModItems.UBE.get(), 0.2f));
 
-        //  this.dropSelf(BlockRegistry.FISH_TRAP_BLOCK.get());
-        // this.dropSelf(BlockRegistry.ROPE_LADDER.get());
-        // this.dropSelf(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get());
-        // this.dropSelf(BlockRegistry.CASSAVA_ROOTED_DIRT.get());
-        // this.dropSelf(BlockRegistry.FRAME_BLOCK.get());
-        //  this.dropSelf(BlockRegistry.THORN_TRAP.get());
-        // this.dropSelf(BlockRegistry.IRON_TRAP.get());
-        // this.dropSelf(BlockRegistry.THORN_SPIKES.get());
-        // this.dropSelf(BlockRegistry.IRON_SPIKES.get());
         this.dropSelf(BlockRegistry.ROPE.get());
-        // this.dropSelf(BlockRegistry.POISON_IVY_BLOCK.get());
-        // this.dropSelf(BlockRegistry.TOXIC_ASH_BLOCK.get());
-        // requireSilkTouch(BlockRegistry.VERDANT_CONDUIT.get(), Blocks.AIR);
+        this.dropSelf(BlockRegistry.VERDANT_CONDUIT.get());
 
         oreDrop(BlockRegistry.DIRT_COAL_ORE.get(), Items.COAL, List.of(1, 2));
         this.add(BlockRegistry.DIRT_COPPER_ORE.get(), this.createCopperOreDrops(BlockRegistry.DIRT_COPPER_ORE.get()));
@@ -229,6 +218,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_CLAY.get(), Blocks.CLAY);
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+        this.dropSelf(BlockRegistry.SNAPLEAF.get());
 
         // this.add(BlockRegistry.POTTED_WILD_CASSAVA.get(), createPotFlowerItemTable(BlockRegistry.WILD_CASSAVA.get()));
         // this.add(BlockRegistry.POTTED_WILD_UBE.get(), createPotFlowerItemTable(BlockRegistry.WILD_UBE.get()));

@@ -1,0 +1,198 @@
+{
+  "name": "mansioneer:mansion_to_desert",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:cut_sandstone"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:sandstone"
+    },
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:chiseled_sandstone"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:chiseled_sandstone"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:chiseled_red_sandstone"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:chiseled_red_sandstone"
+    },
+    {
+      "block": "minecraft:cobblestone",
+      "result": "minecraft:cut_red_sandstone"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:sandstone_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:sandstone_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:sandstone_wall"
+    },
+    {
+      "block": "minecraft:torch",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:torch",
+          "weight": 24
+        },
+        {
+          "name": "minecraft:cobweb",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:redstone_torch",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "block": "minecraft:wall_torch",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:cobweb",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:redstone_wall_torch",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:wall_torch",
+          "weight": 24
+        }
+      ]
+    },
+    {
+      "transformer": "mansioneer:from_dark_oak_to_oak"
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_cobblestone"
+    },
+    {
+      "transformer": "mansioneer:from_cobblestone_to_red_sandstone"
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 25
+        },
+        {
+          "name": "minecraft:gray_carpet"
+        },
+        {
+          "name": "minecraft:moss_carpet"
+        },
+        {
+          "name": "minecraft:brown_carpet",
+          "weight": 3
+        }
+      ],
+      "tag": {
+        "location": "minecraft:wool_carpets"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:brown_wool",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:sand",
+          "weight": 45
+        },
+        {
+          "name": "minecraft:gravel",
+          "weight": 15
+        },
+        {
+          "name": "minecraft:gray_wool"
+        }
+      ],
+      "tag": {
+        "location": "minecraft:wool"
+      }
+    },
+    {
+      "block": "minecraft:dirt",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "result": "minecraft:air",
+      "tag": {
+        "location": "minecraft:leaves"
+      }
+    },
+    {
+      "result": "minecraft:dead_bush",
+      "tag": {
+        "location": "minecraft:saplings"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:redstone_wire"
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:potted_dead_bush",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:cobweb"
+        }
+      ],
+      "tag": {
+        "location": "minecraft:flower_pots"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 5
+        },
+        {
+          "name": "minecraft:glass_pane",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:cobweb"
+        }
+      ],
+      "tag": {
+        "location": "c:glass_panes"
+      }
+    }
+  ]
+}

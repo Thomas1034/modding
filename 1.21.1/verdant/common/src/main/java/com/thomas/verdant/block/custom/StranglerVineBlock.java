@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 // TODO handle logic when placed by the player.
-public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock {
+public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
 
     public static final int MIN_AGE = 0;
     public static final int MAX_AGE = 3;
@@ -43,13 +43,56 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
     public static final IntegerProperty SOUTH = IntegerProperty.create("south", MIN_AGE, MAX_AGE);
     public static final IntegerProperty NORTH = IntegerProperty.create("north", MIN_AGE, MAX_AGE);
     public static final IntegerProperty[] FACES = new IntegerProperty[]{EAST, WEST, UP, DOWN, SOUTH, NORTH};
-    public static final Map<Direction, IntegerProperty> PROPERTY_FOR_FACE = Map.of(Direction.EAST, EAST, Direction.WEST, WEST, Direction.UP, UP, Direction.DOWN, DOWN, Direction.SOUTH, SOUTH, Direction.NORTH, NORTH);
-    public static final List<VoxelShape> UP_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 15.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 12.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 8.0f, 0.0f, 16.0f, 16.0f, 16.0f));
-    public static final List<VoxelShape> DOWN_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 1.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 4.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 16.0f));
-    public static final List<VoxelShape> NORTH_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 1.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f), Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 8.0f));
-    public static final List<VoxelShape> SOUTH_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 15.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 12.0f, 16.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 8.0f, 16.0f, 16.0f, 16.0f));
-    public static final List<VoxelShape> WEST_SHAPE = List.of(Shapes.empty(), Block.box(0.0f, 0.0f, 0.0f, 1.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 4.0f, 16.0f, 16.0f), Block.box(0.0f, 0.0f, 0.0f, 8.0f, 16.0f, 16.0f));
-    public static final List<VoxelShape> EAST_SHAPE = List.of(Shapes.empty(), Block.box(15.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f), Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f));
+    public static final Map<Direction, IntegerProperty> PROPERTY_FOR_FACE = Map.of(
+            Direction.EAST,
+            EAST,
+            Direction.WEST,
+            WEST,
+            Direction.UP,
+            UP,
+            Direction.DOWN,
+            DOWN,
+            Direction.SOUTH,
+            SOUTH,
+            Direction.NORTH,
+            NORTH
+    );
+    public static final List<VoxelShape> UP_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(0.0f, 15.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 12.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 8.0f, 0.0f, 16.0f, 16.0f, 16.0f)
+    );
+    public static final List<VoxelShape> DOWN_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 1.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 4.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 8.0f, 16.0f)
+    );
+    public static final List<VoxelShape> NORTH_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 1.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 4.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 16.0f, 16.0f, 8.0f)
+    );
+    public static final List<VoxelShape> SOUTH_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(0.0f, 0.0f, 15.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 12.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 8.0f, 16.0f, 16.0f, 16.0f)
+    );
+    public static final List<VoxelShape> WEST_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(0.0f, 0.0f, 0.0f, 1.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 4.0f, 16.0f, 16.0f),
+            Block.box(0.0f, 0.0f, 0.0f, 8.0f, 16.0f, 16.0f)
+    );
+    public static final List<VoxelShape> EAST_SHAPE = List.of(
+            Shapes.empty(),
+            Block.box(15.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
+            Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f)
+    );
     private static final Map<BlockState, VoxelShape> CACHED_SHAPES = new HashMap<>();
 
     protected final double leafGrowthRadius = 2.9;
@@ -94,6 +137,14 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         ((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
     }
 
+    public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
+        BlockState state = level.getBlockState(pos.relative(direction));
+        if (!state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES)) {
+            return false;
+        }
+        return state.isFaceSturdy(level, pos, direction.getOpposite());
+    }
+
     // Spreads the vine to a nearby block.
     public void spread(Level level, BlockPos pos) {
 
@@ -107,11 +158,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
             placeVine(level, site);
         }
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-        this.grow(state, level, pos);
     }
 
     // Finds all valid growth sites in a 2n+1 cube.
@@ -153,34 +199,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         return validSites;
     }
 
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        // Try to get the cached shape.
-        VoxelShape shape = CACHED_SHAPES.get(state);
-        if (shape == null) {
-            // Empty shape.
-            shape = Shapes.empty();
-            // Merge in the shapes based on the state.
-            shape = Shapes.or(shape, UP_SHAPE.get(state.getValue(UP)));
-            shape = Shapes.or(shape, DOWN_SHAPE.get(state.getValue(DOWN)));
-            shape = Shapes.or(shape, NORTH_SHAPE.get(state.getValue(NORTH)));
-            shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
-            shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
-            shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
-            // shape = shape.optimize();
-            CACHED_SHAPES.put(state, shape);
-        }
-        return shape;
-    }
-
-    public boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
-        BlockState state = level.getBlockState(pos.relative(direction));
-        if (!state.is(BlockTags.LOGS)) {
-            return false;
-        }
-        return state.isFaceSturdy(level, pos, direction.getOpposite());
-    }
-
     // Updates the block whenever there is a change next to it.
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
@@ -207,6 +225,31 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         }
 
         return state;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        // Try to get the cached shape.
+        VoxelShape shape = CACHED_SHAPES.get(state);
+        if (shape == null) {
+            // Empty shape.
+            shape = Shapes.empty();
+            // Merge in the shapes based on the state.
+            shape = Shapes.or(shape, UP_SHAPE.get(state.getValue(UP)));
+            shape = Shapes.or(shape, DOWN_SHAPE.get(state.getValue(DOWN)));
+            shape = Shapes.or(shape, NORTH_SHAPE.get(state.getValue(NORTH)));
+            shape = Shapes.or(shape, SOUTH_SHAPE.get(state.getValue(SOUTH)));
+            shape = Shapes.or(shape, WEST_SHAPE.get(state.getValue(WEST)));
+            shape = Shapes.or(shape, EAST_SHAPE.get(state.getValue(EAST)));
+            // shape = shape.optimize();
+            CACHED_SHAPES.put(state, shape);
+        }
+        return shape;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+        this.grow(state, level, pos);
     }
 
     // Returns true if a block has mature verdant log neighbors.
@@ -241,14 +284,17 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         for (Direction d : Direction.values()) {
             int dValue = d.getAxis().getNegative().get3DDataValue();
             BlockState state = level.getBlockState(pos.relative(d));
-            if (state.is(BlockTags.LOGS) || (state.is(VerdantTags.Blocks.STRANGLER_VINES) && (state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 2))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 3))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 4))) > MIN_AGE || state.getValue(PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 5))) > MIN_AGE)) || state.is(VerdantTags.Blocks.ROTTEN_WOOD)) {
+            if (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES) || (state.is(VerdantTags.Blocks.STRANGLER_VINES) && (state.getValue(
+                    PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 2))) > MIN_AGE || state.getValue(
+                    PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 3))) > MIN_AGE || state.getValue(
+                    PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 4))) > MIN_AGE || state.getValue(
+                    PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 5))) > MIN_AGE)) || state.is(VerdantTags.Blocks.ROTTEN_WOOD)) {
                 return true;
             }
         }
         // System.out.println("Did not find any logs.");
         return false;
     }
-
 
     // Tries to consume the neighboring log.
     // Returns true if it succeeds.
@@ -259,7 +305,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         boolean shouldDecayToAir = false;
 
         // First, check if the host is a log.
-        if (!host.is(BlockTags.LOGS_THAT_BURN)) {
+        if (!host.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES)) {
             return false;
         }
 
@@ -388,7 +434,9 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
 
             } else if (maturity == MAX_AGE && oppositeMaturity == MAX_AGE) {
                 // If it's fully grown on both sides, grow to a log.
-                state = this.log.apply(level.random).defaultBlockState().trySetValue(RotatedPillarBlock.AXIS, d.getAxis());
+                state = this.log.apply(level.random)
+                        .defaultBlockState()
+                        .trySetValue(RotatedPillarBlock.AXIS, d.getAxis());
                 grownIntoLog = true;
                 break;
             }
@@ -397,7 +445,10 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             level.setBlockAndUpdate(pos, state);
         } else if (isMature && !grownIntoLog && state.getValue(DOWN) == MAX_AGE) {
             if (!(state.getBlock() instanceof LeafyStranglerVineBlock)) {
-                level.setBlockAndUpdate(pos, BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get()));
+                level.setBlockAndUpdate(
+                        pos,
+                        BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get())
+                );
                 // TODO Temporary I hope hope hope
                 // Pending leaf rework.
                 boolean clearAbove = true;
@@ -436,7 +487,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
                             level.setBlockAndUpdate(localPos, BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get()));
                         } else
                             */
-                        if ((localState.is(BlockTags.REPLACEABLE) || localState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) && !localState.is(VerdantTags.Blocks.STRANGLER_VINES)) {
+                        if ((localState.is(BlockTags.REPLACEABLE) || localState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) && !localState.is(
+                                VerdantTags.Blocks.STRANGLER_VINES)) {
                             Block leaves = this.leaves.apply(level.random);
                             level.setBlockAndUpdate(localPos, leaves.defaultBlockState());
                             level.scheduleTick(localPos, leaves, 1);
@@ -470,7 +522,10 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
             }
         }
         // Water-log if possible
-        placed = placed.setValue(BlockStateProperties.WATERLOGGED, replaced.getOptionalValue(BlockStateProperties.WATERLOGGED).orElse(false));
+        placed = placed.setValue(
+                BlockStateProperties.WATERLOGGED,
+                replaced.getOptionalValue(BlockStateProperties.WATERLOGGED).orElse(false)
+        );
 
         // Update the block.
         return canGrowToAnyFace ? placed : null;
@@ -481,7 +536,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         return this.getStateForPlacement(context.getLevel(), context.getClickedPos());
     }
 
-
     // Very important!
     // Defines the properties for the block.
     @Override
@@ -489,4 +543,20 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock 
         super.createBlockStateDefinition(builder);
         builder.add(EAST, WEST, UP, DOWN, SOUTH, NORTH, BlockStateProperties.WATERLOGGED);
     }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return true;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+        this.grow(state, level, pos);
+    }
+
 }

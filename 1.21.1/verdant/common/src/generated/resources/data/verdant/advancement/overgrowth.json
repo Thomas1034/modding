@@ -1,0 +1,42 @@
+{
+  "parent": "verdant:petrichor",
+  "criteria": {
+    "conduit": {
+      "conditions": {
+        "effects": {
+          "verdant:verdant_energy": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    },
+    "heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heart_of_the_forest"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.overgrowth.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:heart_of_the_forest"
+    },
+    "title": {
+      "translate": "advancements.verdant.overgrowth.title"
+    }
+  },
+  "requirements": [
+    [
+      "heart",
+      "conduit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

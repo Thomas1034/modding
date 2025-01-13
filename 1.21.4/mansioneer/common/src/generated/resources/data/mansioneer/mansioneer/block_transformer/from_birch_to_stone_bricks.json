@@ -1,0 +1,37 @@
+{
+  "name": "mansioneer:from_birch_to_stone_bricks",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:stone_bricks"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:stone_brick_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:stone_brick_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:stone_brick_wall"
+    }
+  ]
+}

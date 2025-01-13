@@ -1,0 +1,5 @@
+{
+  "biome": "minecraft:pale_garden",
+  "tag": false,
+  "transformer": "mansioneer:mansion_to_pale_garden"
+}

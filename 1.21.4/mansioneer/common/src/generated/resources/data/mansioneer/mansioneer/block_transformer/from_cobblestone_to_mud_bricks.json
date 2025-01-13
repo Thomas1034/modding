@@ -1,0 +1,45 @@
+{
+  "name": "mansioneer:from_cobblestone_to_mud_bricks",
+  "values": [
+    {
+      "block": "minecraft:cobblestone",
+      "result": "minecraft:mud_bricks"
+    },
+    {
+      "block": "minecraft:infested_cobblestone",
+      "result": "minecraft:packed_mud"
+    },
+    {
+      "block": "minecraft:cobblestone_stairs",
+      "result": "minecraft:mud_brick_stairs"
+    },
+    {
+      "block": "minecraft:cobblestone_slab",
+      "result": "minecraft:mud_brick_slab"
+    },
+    {
+      "block": "minecraft:cobblestone_wall",
+      "result": "minecraft:mud_brick_wall"
+    },
+    {
+      "block": "minecraft:smooth_stone",
+      "result": "minecraft:mud_bricks"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone",
+      "result": "minecraft:mud_bricks"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_stairs",
+      "result": "minecraft:mud_brick_stairs"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_slab",
+      "result": "minecraft:mud_brick_slab"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_wall",
+      "result": "minecraft:mud_brick_wall"
+    }
+  ]
+}

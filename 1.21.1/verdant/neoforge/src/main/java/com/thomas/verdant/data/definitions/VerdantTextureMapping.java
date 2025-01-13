@@ -18,7 +18,13 @@ public class VerdantTextureMapping {
     }
 
     public static TextureMapping trap(Block block) {
-        return new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block));
+        return new TextureMapping().put(
+                        VerdantTextureSlot.PARTICLE_BASE,
+                        TextureMapping.getBlockTexture(block, "_base")
+                )
+                .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(block, "_base"))
+                .put(VerdantTextureSlot.BAR, TextureMapping.getBlockTexture(block, "_bar"))
+                .put(VerdantTextureSlot.SPIKES, TextureMapping.getBlockTexture(block, "_spikes"));
     }
 
 

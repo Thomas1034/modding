@@ -1,0 +1,37 @@
+{
+  "name": "mansioneer:from_birch_to_cobblestone",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:smooth_stone"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:smooth_stone"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:smooth_stone"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:smooth_stone"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:cobblestone"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:cobblestone_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:cobblestone_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:cobblestone_wall"
+    }
+  ]
+}

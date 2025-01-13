@@ -97,7 +97,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(BlockRegistry.STRANGLER_TENDRIL.get().asItem()),
                 RecipeCategory.MISC,
                 ItemRegistry.ROPE.get(),
-                2
+                4
         );
         shaped(
                 List.of(" r ", "r r", " r "),
@@ -143,7 +143,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of('T', 'K', 'R'),
                 List.of(ItemRegistry.THORN.get(), Items.STICK, Items.STRING),
                 RecipeCategory.BUILDING_BLOCKS,
-                BlockRegistry.THORN_SPIKES.get(),
+                BlockRegistry.WOODEN_SPIKES.get(),
                 1
         );
         shaped(
@@ -151,17 +151,17 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of('T', 'K', 'R'),
                 List.of(ItemRegistry.THORN.get(), Items.STICK, BlockRegistry.ROPE.get()),
                 RecipeCategory.BUILDING_BLOCKS,
-                BlockRegistry.THORN_SPIKES.get(),
+                BlockRegistry.WOODEN_SPIKES.get(),
                 1
         );
         // Iron spikes item
         shaped(
                 List.of("NNN", "SSS", "III"),
                 List.of('N', 'S', 'I'),
-                List.of(Items.IRON_NUGGET, BlockRegistry.THORN_SPIKES.get(), Items.IRON_BARS),
+                List.of(Items.IRON_NUGGET, BlockRegistry.WOODEN_SPIKES.get(), Items.IRON_BARS),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.IRON_SPIKES.get(),
-                1
+                3
         );
 
         // Frame block
@@ -178,11 +178,11 @@ public class VerdantRecipeProvider extends RecipeProvider {
         // Traps
         shaped(
                 List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
-                        BlockRegistry.THORN_SPIKES.get(),
+                        BlockRegistry.WOODEN_SPIKES.get(),
                         Items.COPPER_INGOT,
                         Items.STICK,
                         BlockTags.WOODEN_PRESSURE_PLATES
-                ), RecipeCategory.MISC, BlockRegistry.THORN_TRAP.get(), 3
+                ), RecipeCategory.MISC, BlockRegistry.WOODEN_TRAP.get(), 3
         );
         shaped(
                 List.of("S S", "SCS", "TPT"),

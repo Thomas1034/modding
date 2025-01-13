@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_dark_oak_to_acacia",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:acacia_log"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:acacia_wood"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:stripped_acacia_log"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:stripped_acacia_wood"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:acacia_planks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:acacia_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:acacia_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:acacia_fence"
+    },
+    {
+      "block": "minecraft:dark_oak_fence_gate",
+      "result": "minecraft:acacia_fence_gate"
+    },
+    {
+      "block": "minecraft:dark_oak_door",
+      "result": "minecraft:acacia_door"
+    },
+    {
+      "block": "minecraft:dark_oak_trapdoor",
+      "result": "minecraft:acacia_trapdoor"
+    },
+    {
+      "block": "minecraft:dark_oak_button",
+      "result": "minecraft:acacia_button"
+    },
+    {
+      "block": "minecraft:dark_oak_leaves",
+      "result": "minecraft:acacia_leaves"
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:acacia_sapling"
+    },
+    {
+      "block": "minecraft:potted_dark_oak_sapling",
+      "result": "minecraft:potted_acacia_sapling"
+    },
+    {
+      "block": "minecraft:dark_oak_sign",
+      "result": "minecraft:acacia_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_sign",
+      "result": "minecraft:acacia_wall_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_hanging_sign",
+      "result": "minecraft:acacia_hanging_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_hanging_sign",
+      "result": "minecraft:acacia_wall_hanging_sign"
+    }
+  ]
+}

@@ -30,8 +30,11 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
                 BlockRegistry.STRANGLER_VINE.get(),
-                BlockRegistry.THORN_SPIKES.get(),
-                BlockRegistry.THORN_TRAP.get()/*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), BlockRegistry.FISH_TRAP_BLOCK.get()*/
+                BlockRegistry.WOODEN_SPIKES.get(),
+                BlockRegistry.WOODEN_TRAP.get(),
+                BlockRegistry.FISH_TRAP_BLOCK.get(),
+                BlockRegistry.VERDANT_CONDUIT.get()
+                /*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(),*/
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
@@ -51,12 +54,14 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(), BlockRegistry.VERDANT_CONDUIT.get()*/
         );
         this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
-        this.tag(BlockTags.MINEABLE_WITH_HOE)
-                .add(/*BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get(),*/BlockRegistry.STRANGLER_TENDRIL.get(),
-                        BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                        BlockRegistry.POISON_IVY.get(),
-                        BlockRegistry.POISON_IVY_PLANT.get()
-                );
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(
+                BlockRegistry.THORN_BUSH.get(),
+                BlockRegistry.BUSH.get(),
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get()
+        );
 
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_VINES);
@@ -67,7 +72,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 BlockRegistry.POISON_IVY.get(),
-                BlockRegistry.POISON_IVY_PLANT.get()/*, BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get()*/
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                BlockRegistry.THORN_BUSH.get(),
+                BlockRegistry.BUSH.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.IRON_SPIKES.get(), BlockRegistry.IRON_TRAP.get());
@@ -169,8 +176,12 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.CAVE_AIR);
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.VOID_AIR);
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).add(Blocks.WATER);
+        this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)
+                .add(BlockRegistry.THORN_BUSH.get(), BlockRegistry.BUSH.get());
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).remove(BlockTags.FIRE);
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).remove(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES);
+
+        this.tag(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES).addTag(BlockTags.LOGS);
 
         // Leafy blocks
         this.tag(VerdantTags.Blocks.STRANGLER_LEAVES).add(

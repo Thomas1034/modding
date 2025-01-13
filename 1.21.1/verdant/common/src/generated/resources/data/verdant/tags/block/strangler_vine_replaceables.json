@@ -22,6 +22,8 @@
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:void_air",
-    "minecraft:water"
+    "minecraft:water",
+    "verdant:thorn_bush",
+    "verdant:bush"
   ]
 }

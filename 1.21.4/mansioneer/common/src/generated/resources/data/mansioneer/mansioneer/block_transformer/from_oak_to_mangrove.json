@@ -1,0 +1,81 @@
+{
+  "name": "mansioneer:from_oak_to_mangrove",
+  "values": [
+    {
+      "block": "minecraft:oak_log",
+      "result": "minecraft:mangrove_log"
+    },
+    {
+      "block": "minecraft:oak_wood",
+      "result": "minecraft:mangrove_wood"
+    },
+    {
+      "block": "minecraft:stripped_oak_log",
+      "result": "minecraft:stripped_mangrove_log"
+    },
+    {
+      "block": "minecraft:stripped_oak_wood",
+      "result": "minecraft:stripped_mangrove_wood"
+    },
+    {
+      "block": "minecraft:oak_planks",
+      "result": "minecraft:mangrove_planks"
+    },
+    {
+      "block": "minecraft:oak_stairs",
+      "result": "minecraft:mangrove_stairs"
+    },
+    {
+      "block": "minecraft:oak_slab",
+      "result": "minecraft:mangrove_slab"
+    },
+    {
+      "block": "minecraft:oak_fence",
+      "result": "minecraft:mangrove_fence"
+    },
+    {
+      "block": "minecraft:oak_fence_gate",
+      "result": "minecraft:mangrove_fence_gate"
+    },
+    {
+      "block": "minecraft:oak_door",
+      "result": "minecraft:mangrove_door"
+    },
+    {
+      "block": "minecraft:oak_trapdoor",
+      "result": "minecraft:mangrove_trapdoor"
+    },
+    {
+      "block": "minecraft:oak_button",
+      "result": "minecraft:mangrove_button"
+    },
+    {
+      "block": "minecraft:oak_leaves",
+      "result": "minecraft:mangrove_leaves"
+    },
+    {
+      "block": "minecraft:oak_sapling",
+      "result": "minecraft:mangrove_propagule"
+    },
+    {
+      "block": "minecraft:potted_oak_sapling",
+      "result": "minecraft:potted_mangrove_propagule"
+    },
+    {
+      "block": "minecraft:oak_sign",
+      "result": "minecraft:mangrove_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_sign",
+      "result": "minecraft:mangrove_wall_sign"
+    },
+    {
+      "block": "minecraft:oak_hanging_sign",
+      "result": "minecraft:mangrove_hanging_sign"
+    },
+    {
+      "block": "minecraft:oak_wall_hanging_sign",
+      "result": "minecraft:mangrove_wall_hanging_sign"
+    }
+  ]
+}

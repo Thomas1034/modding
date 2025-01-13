@@ -1,7 +1,10 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.renderer.VerdantConduitRenderer;
+import com.thomas.verdant.client.renderer.VerdantConduitSpecialRenderer;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
+import com.thomas.verdant.registry.BlockEntityTypeRegistry;
 import com.thomas.verdant.registry.EntityTypeRegistry;
 import com.thomas.verdant.registry.MenuRegistry;
 import com.thomas.verdant.registry.WoodSets;
@@ -23,6 +26,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +41,8 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::onClientSetup);
         modBus.addListener(VerdantClient::onRegisterLayerDefinitions);
         modBus.addListener(VerdantClient::registerScreens);
+        modBus.addListener(VerdantClient::registerBlockEntityRenderers);
+        modBus.addListener(VerdantClient::registerSpecialModels);
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             initialSetupBeforeRenderEvents(woodSet);
@@ -104,5 +110,18 @@ public class VerdantClient {
     public static void registerRenderTypes(WoodSet woodSet) {
         ItemBlockRenderTypes.setRenderLayer(woodSet.getTrapdoor().get(), RenderType.CUTOUT);
         ItemBlockRenderTypes.setRenderLayer(woodSet.getDoor().get(), RenderType.CUTOUT);
+    }
+
+    public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(
+                // The block entity type to register the renderer for.
+                BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
+                // A function of BlockEntityRendererProvider.Context to BlockEntityRenderer.
+                VerdantConduitRenderer::new
+        );
+    }
+
+    public static void registerSpecialModels(RegisterSpecialModelRendererEvent event) {
+        event.register(VerdantConduitSpecialRenderer.Unbaked.LOCATION, VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC);
     }
 }

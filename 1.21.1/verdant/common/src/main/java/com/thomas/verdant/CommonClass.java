@@ -39,6 +39,21 @@ filling the whole blocks.
 Find use for them?
 
 Add manatees.
+
+Boss ideas:
+Stationary
+Spawns in large open areas
+Retreats underground if there are no players nearby
+AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
+
+Advancements:
+born and bred, walk through a thorn bush without taking damage.
+in soviet russia..., get eaten by a snap plant
+thou wast a spirit to delicate, cut open a tree, step inside, and have log block grow on you
+
+Snap plant: a natural trap block. Much fun.
+
+// TODO fix rendering problem with strangler vine age 1 on top and bottom faces of blocks
  */
 // Credits: (other direct contributors only)
 /*

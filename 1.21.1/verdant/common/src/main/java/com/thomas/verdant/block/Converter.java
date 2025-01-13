@@ -22,7 +22,7 @@ public interface Converter {
         // Selects which converter to use, depending on whether there is access to water.
         BlockTransformer converter = transformers.get(this.getTransformer()).orElseThrow().value();
         // Gets the result of conversion. This could be null.
-        BlockState newState = converter.get(state, level);
+        BlockState newState = converter.get(state, level.registryAccess(), level.random);
         // Check if the result is either unchanged or null.
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {
