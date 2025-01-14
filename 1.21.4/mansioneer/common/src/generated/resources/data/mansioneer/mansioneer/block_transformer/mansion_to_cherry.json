@@ -1,0 +1,22 @@
+{
+  "name": "mansioneer:mansion_to_cherry",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:spruce_stairs"
+    },
+    {
+      "transformer": "mansioneer:from_dark_oak_to_cherry"
+    },
+    {
+      "transformer": "mansioneer:from_oak_to_spruce"
+    },
+    {
+      "transformer": "mansioneer:from_cobblestone_to_brick"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:light_blue_carpet"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ package com.startraveler.mansioneer;
 
 
 import com.startraveler.mansioneer.data.MansioneerBiomeMappingProvider;
+import com.startraveler.mansioneer.data.MansioneerBiomeTagProvider;
 import com.startraveler.mansioneer.data.MansioneerBlockTransformerProvider;
 import com.startraveler.mansioneer.util.biomemapping.BiomeMapping;
 import com.startraveler.mansioneer.util.blocktransformer.BlockTransformer;
@@ -9,6 +10,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.BiomeTagsProvider;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
@@ -28,9 +30,7 @@ public class Mansioneer {
         // project.
 
         // Use NeoForge to bootstrap the Common mod.
-        Constants.LOG.info("Hello NeoForge world!");
         CommonClass.init();
-
 
         eventBus.addListener(Mansioneer::registerDatapackRegistries);
         eventBus.addListener(Mansioneer::gatherData);
@@ -49,18 +49,18 @@ public class Mansioneer {
             PackOutput packOutput = generator.getPackOutput();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+            BiomeTagsProvider biomeTagsProvider = new MansioneerBiomeTagProvider(packOutput, lookupProvider);
+            generator.addProvider(true, biomeTagsProvider);
+
             // Generate dynamic registries
             generator.addProvider(
                     true, new DatapackBuiltinEntriesProvider(
                             packOutput,
                             lookupProvider,
-                            new RegistrySetBuilder().add(
-                                    BlockTransformer.KEY,
-                                    MansioneerBlockTransformerProvider::register
-                            ).add(
-                                    BiomeMapping.KEY,
-                                    MansioneerBiomeMappingProvider::register
-                            ),
+                            new RegistrySetBuilder().add(BlockTransformer.KEY,
+                                            MansioneerBlockTransformerProvider::register
+                                    )
+                                    .add(BiomeMapping.KEY, MansioneerBiomeMappingProvider::register),
                             Set.of(Constants.MOD_ID, "minecraft")
                     )
             );

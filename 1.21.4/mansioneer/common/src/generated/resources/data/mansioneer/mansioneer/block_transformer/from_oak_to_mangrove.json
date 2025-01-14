@@ -50,6 +50,10 @@
       "result": "minecraft:mangrove_button"
     },
     {
+      "block": "minecraft:oak_pressure_plate",
+      "result": "minecraft:mangrove_pressure_plate"
+    },
+    {
       "block": "minecraft:oak_leaves",
       "result": "minecraft:mangrove_leaves"
     },

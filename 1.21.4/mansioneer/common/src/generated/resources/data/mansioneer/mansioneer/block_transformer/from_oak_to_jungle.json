@@ -50,6 +50,10 @@
       "result": "minecraft:jungle_button"
     },
     {
+      "block": "minecraft:oak_pressure_plate",
+      "result": "minecraft:jungle_pressure_plate"
+    },
+    {
       "block": "minecraft:oak_leaves",
       "result": "minecraft:jungle_leaves"
     },

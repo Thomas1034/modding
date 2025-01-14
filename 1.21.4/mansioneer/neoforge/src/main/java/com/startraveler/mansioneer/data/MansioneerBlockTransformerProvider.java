@@ -15,14 +15,16 @@ import java.util.Map;
 public class MansioneerBlockTransformerProvider {
 
     public static void register(BootstrapContext<BlockTransformer> bootstrap) {
+        bootstrap.register(key(BuiltInTransformers.EMPTY), new BlockTransformer(List.of(), BuiltInTransformers.EMPTY));
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.ACACIA);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.OAK);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.SPRUCE);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.BIRCH);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.JUNGLE);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.MANGROVE);
-        registerWoodTransformer(bootstrap, WoodTypes.BIRCH, WoodTypes.DARK_OAK);
         registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.PALE_OAK);
+        registerWoodTransformer(bootstrap, WoodTypes.DARK_OAK, WoodTypes.CHERRY);
+        registerWoodTransformer(bootstrap, WoodTypes.BIRCH, WoodTypes.DARK_OAK);
         registerWoodTransformer(bootstrap, WoodTypes.BIRCH, WoodTypes.SPRUCE);
         registerWoodTransformer(bootstrap, WoodTypes.BIRCH, WoodTypes.OAK);
         registerWoodTransformer(bootstrap, WoodTypes.OAK, WoodTypes.SPRUCE);
@@ -33,8 +35,14 @@ public class MansioneerBlockTransformerProvider {
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.MUD_BRICKS);
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.SANDSTONE);
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.RED_SANDSTONE);
+        registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.DIORITE);
+        registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.BRICK);
         registerCrossTransformer(bootstrap, WoodTypes.BIRCH, StoneTypes.STONE_BRICKS);
         registerCrossTransformer(bootstrap, WoodTypes.BIRCH, StoneTypes.COBBLESTONE);
+        registerCrossTransformer(bootstrap, WoodTypes.DARK_OAK, StoneTypes.STONE_BRICKS);
+        registerCrossTransformer(bootstrap, WoodTypes.DARK_OAK, StoneTypes.BRICK);
+        registerCrossTransformer(bootstrap, WoodTypes.BIRCH, StoneTypes.GRANITE);
+        registerCrossTransformer(bootstrap, StoneTypes.COBBLESTONE, WoodTypes.DARK_OAK);
         bootstrap.register(
                 key(BuiltInTransformers.MANSION_TO_SAVANNA), new BlockTransformer(
                         List.of(
@@ -45,7 +53,8 @@ public class MansioneerBlockTransformerProvider {
                                 BuiltInTransformers.transformer(WoodTypes.transformName(
                                         WoodTypes.BIRCH,
                                         WoodTypes.DARK_OAK
-                                ))
+                                )),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.BLUE_CARPET)
                         ), BuiltInTransformers.MANSION_TO_SAVANNA
                 )
         );
@@ -97,6 +106,10 @@ public class MansioneerBlockTransformerProvider {
         bootstrap.register(
                 key(BuiltInTransformers.MANSION_TO_TAIGA), new BlockTransformer(
                         List.of(
+                                BuiltInTransformers.probability(
+                                        Blocks.COBBLESTONE,
+                                        Map.of(Blocks.COBBLESTONE, 7, Blocks.MOSSY_COBBLESTONE, 1)
+                                ),
                                 BuiltInTransformers.transformer(WoodTypes.transformName(
                                         WoodTypes.DARK_OAK,
                                         WoodTypes.SPRUCE
@@ -182,6 +195,14 @@ public class MansioneerBlockTransformerProvider {
         bootstrap.register(
                 key(BuiltInTransformers.MANSION_TO_DESERT), new BlockTransformer(
                         List.of(
+                                BuiltInTransformers.probability(
+                                        Blocks.FARMLAND,
+                                        Map.of(Blocks.COARSE_DIRT, 1, Blocks.SAND, 3)
+                                ),
+                                BuiltInTransformers.probabilityTag(
+                                        BlockTags.CROPS,
+                                        Map.of(Blocks.DEAD_BUSH, 1, Blocks.AIR, 5, Blocks.CACTUS, 2)
+                                ),
                                 BuiltInTransformers.direct(Blocks.DARK_OAK_PLANKS, Blocks.CUT_SANDSTONE),
                                 BuiltInTransformers.direct(Blocks.BIRCH_PLANKS, Blocks.SANDSTONE),
                                 BuiltInTransformers.direct(Blocks.DARK_OAK_LOG, Blocks.CHISELED_SANDSTONE),
@@ -192,6 +213,7 @@ public class MansioneerBlockTransformerProvider {
                                         Blocks.CHISELED_RED_SANDSTONE
                                 ),
                                 BuiltInTransformers.direct(Blocks.COBBLESTONE, Blocks.CUT_RED_SANDSTONE),
+                                BuiltInTransformers.direct(Blocks.COBBLESTONE_WALL, Blocks.SANDSTONE_WALL),
                                 BuiltInTransformers.direct(Blocks.DARK_OAK_STAIRS, Blocks.SANDSTONE_STAIRS),
                                 BuiltInTransformers.direct(Blocks.DARK_OAK_SLAB, Blocks.SANDSTONE_SLAB),
                                 BuiltInTransformers.direct(Blocks.DARK_OAK_FENCE, Blocks.SANDSTONE_WALL),
@@ -273,10 +295,12 @@ public class MansioneerBlockTransformerProvider {
                                 BuiltInTransformers.probabilityTag(
                                         Tags.Blocks.GLASS_PANES, Map.of(
                                                 Blocks.AIR,
-                                                5,
+                                                2,
                                                 Blocks.COBWEB,
                                                 1,
                                                 Blocks.GLASS_PANE,
+                                                3,
+                                                Blocks.GRAY_STAINED_GLASS_PANE,
                                                 3,
                                                 Blocks.BROWN_STAINED_GLASS_PANE,
                                                 7
@@ -286,13 +310,235 @@ public class MansioneerBlockTransformerProvider {
                 )
         );
 
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_BIRCH), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        WoodTypes.BIRCH
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.BIRCH,
+                                        WoodTypes.OAK
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.SPRUCE
+                                )),
+
+                                BuiltInTransformers.probability(
+                                        Blocks.COBBLESTONE,
+                                        Map.of(Blocks.COBBLESTONE, 7, Blocks.MOSSY_COBBLESTONE, 1)
+                                ),
+                                BuiltInTransformers.probability(
+                                        Blocks.COBBLESTONE_SLAB,
+                                        Map.of(Blocks.COBBLESTONE_SLAB, 7, Blocks.MOSSY_COBBLESTONE_SLAB, 1)
+                                ),
+                                BuiltInTransformers.probability(
+                                        Blocks.COBBLESTONE_STAIRS,
+                                        Map.of(Blocks.COBBLESTONE_STAIRS, 7, Blocks.MOSSY_COBBLESTONE_STAIRS, 1)
+                                ),
+                                BuiltInTransformers.probability(
+                                        Blocks.COBBLESTONE_WALL,
+                                        Map.of(Blocks.COBBLESTONE_WALL, 7, Blocks.MOSSY_COBBLESTONE_WALL, 1)
+                                ),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.LIGHT_BLUE_CARPET),
+                                BuiltInTransformers.direct(Blocks.GLASS_PANE, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE)
+
+                        ), BuiltInTransformers.MANSION_TO_BIRCH
+                )
+        );
+
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_MOUNTAIN), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        StoneTypes.STONE_BRICKS
+                                )),
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        WoodTypes.BIRCH,
+                                        StoneTypes.GRANITE
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.SPRUCE
+                                )),
+                                BuiltInTransformers.direct(Blocks.COBBLESTONE_WALL, Blocks.IRON_BARS),
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_FENCE, Blocks.IRON_BARS),
+                                BuiltInTransformers.direct(Blocks.TORCH, Blocks.LANTERN),
+                                BuiltInTransformers.directTag(BlockTags.LEAVES, Blocks.IRON_ORE),
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_SAPLING, Blocks.SPRUCE_SAPLING),
+                                BuiltInTransformers.probabilityTag(
+                                        BlockTags.FLOWER_POTS, Map.of(
+                                                Blocks.POTTED_BROWN_MUSHROOM,
+                                                1,
+                                                Blocks.POTTED_RED_MUSHROOM,
+                                                1,
+                                                Blocks.POTTED_SPRUCE_SAPLING,
+                                                2
+                                        )
+                                ),
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        StoneTypes.COBBLESTONE,
+                                        WoodTypes.DARK_OAK
+                                )),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.WHITE_CARPET),
+                                BuiltInTransformers.direct(Blocks.WHITE_CARPET, Blocks.LIGHT_GRAY_CARPET),
+                                BuiltInTransformers.direct(Blocks.GLASS_PANE, Blocks.GRAY_STAINED_GLASS_PANE)
+                        ), BuiltInTransformers.MANSION_TO_MOUNTAIN
+                )
+        );
+
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_CHERRY), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_STAIRS, Blocks.SPRUCE_STAIRS),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        WoodTypes.CHERRY
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.SPRUCE
+                                )),
+                                BuiltInTransformers.transformer(StoneTypes.transformName(
+                                        StoneTypes.COBBLESTONE,
+                                        StoneTypes.BRICK
+                                )),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.LIGHT_BLUE_CARPET)
+
+                        ), BuiltInTransformers.MANSION_TO_CHERRY
+                )
+        );
+
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_ICE), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        StoneTypes.STONE_BRICKS
+                                )),
+                                BuiltInTransformers.probability(
+                                        Blocks.DARK_OAK_PLANKS, Map.of(
+                                                Blocks.STONE_BRICKS,
+                                                5,
+                                                Blocks.CRACKED_STONE_BRICKS,
+                                                1,
+                                                Blocks.INFESTED_STONE_BRICKS,
+                                                1,
+                                                Blocks.INFESTED_CRACKED_STONE_BRICKS,
+                                                1
+                                        )
+                                ),
+                                BuiltInTransformers.probability(
+                                        Blocks.BIRCH_PLANKS, Map.of(
+                                                Blocks.PACKED_ICE,
+                                                21,
+                                                Blocks.BLUE_ICE,
+                                                7,
+                                                Blocks.SNOW_BLOCK,
+                                                3,
+                                                Blocks.POWDER_SNOW,
+                                                1
+                                        )
+                                ),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.BIRCH,
+                                        WoodTypes.DARK_OAK
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.SPRUCE
+                                )),
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_FENCE, Blocks.IRON_BARS),
+                                BuiltInTransformers.direct(Blocks.TORCH, Blocks.REDSTONE_TORCH),
+                                BuiltInTransformers.direct(Blocks.WALL_TORCH, Blocks.REDSTONE_WALL_TORCH),
+                                BuiltInTransformers.directTag(BlockTags.LEAVES, Blocks.BLUE_ICE),
+                                BuiltInTransformers.directTag(BlockTags.CROPS, Blocks.ICE),
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_SAPLING, Blocks.BLUE_ICE),
+                                BuiltInTransformers.direct(Blocks.FARMLAND, Blocks.COARSE_DIRT),
+                                BuiltInTransformers.direct(Blocks.WATER, Blocks.ICE),
+                                BuiltInTransformers.probabilityTag(
+                                        BlockTags.FLOWER_POTS, Map.of(
+                                                Blocks.POTTED_BROWN_MUSHROOM,
+                                                1,
+                                                Blocks.POTTED_RED_MUSHROOM,
+                                                1,
+                                                Blocks.ICE,
+                                                2
+                                        )
+                                ),
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        StoneTypes.COBBLESTONE,
+                                        WoodTypes.DARK_OAK
+                                )),
+                                BuiltInTransformers.probability(
+                                        Blocks.RED_CARPET,
+                                        Map.of(Blocks.SNOW, 1, Blocks.AIR, 2)
+                                ),
+                                BuiltInTransformers.probability(
+                                        Blocks.WHITE_CARPET,
+                                        Map.of(Blocks.SNOW, 1, Blocks.AIR, 2)
+                                ),
+                                BuiltInTransformers.direct(Blocks.GLASS_PANE, Blocks.ICE)
+                        ), BuiltInTransformers.MANSION_TO_ICE
+                )
+        );
+
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_FOREST), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_STAIRS, Blocks.SPRUCE_STAIRS),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        WoodTypes.OAK
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.JUNGLE
+                                )),
+                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                        StoneTypes.COBBLESTONE,
+                                        WoodTypes.DARK_OAK
+                                )),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.CYAN_CARPET)
+
+                        ), BuiltInTransformers.MANSION_TO_FOREST
+                )
+        );
+
+        bootstrap.register(
+                key(BuiltInTransformers.MANSION_TO_PLAINS), new BlockTransformer(
+                        List.of(
+                                BuiltInTransformers.direct(Blocks.DARK_OAK_STAIRS, Blocks.SPRUCE_STAIRS),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.DARK_OAK,
+                                        WoodTypes.OAK
+                                )),
+                                BuiltInTransformers.transformer(WoodTypes.transformName(
+                                        WoodTypes.OAK,
+                                        WoodTypes.SPRUCE
+                                )),
+                                BuiltInTransformers.transformer(StoneTypes.transformName(
+                                        StoneTypes.COBBLESTONE,
+                                        StoneTypes.BRICK
+                                ))
+                        ), BuiltInTransformers.MANSION_TO_PLAINS
+                )
+        );
     }
+
 
     public static ResourceKey<BlockTransformer> key(ResourceLocation location) {
         return ResourceKey.create(BlockTransformer.KEY, location);
     }
 
     protected static void registerCrossTransformer(BootstrapContext<BlockTransformer> bootstrap, WoodType from, StoneType to) {
+        bootstrap.register(key(CrossTypes.transformName(from, to)), CrossTypes.transform(from, to));
+    }
+
+    protected static void registerCrossTransformer(BootstrapContext<BlockTransformer> bootstrap, StoneType from, WoodType to) {
         bootstrap.register(key(CrossTypes.transformName(from, to)), CrossTypes.transform(from, to));
     }
 

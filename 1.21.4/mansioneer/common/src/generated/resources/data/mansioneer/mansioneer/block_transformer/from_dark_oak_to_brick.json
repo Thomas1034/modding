@@ -1,0 +1,37 @@
+{
+  "name": "mansioneer:from_dark_oak_to_brick",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:terracotta"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:terracotta"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:terracotta"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:terracotta"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:bricks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:brick_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:brick_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:brick_wall"
+    }
+  ]
+}

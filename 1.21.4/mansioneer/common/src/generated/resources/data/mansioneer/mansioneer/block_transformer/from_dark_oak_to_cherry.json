@@ -1,0 +1,85 @@
+{
+  "name": "mansioneer:from_dark_oak_to_cherry",
+  "values": [
+    {
+      "block": "minecraft:dark_oak_log",
+      "result": "minecraft:cherry_log"
+    },
+    {
+      "block": "minecraft:dark_oak_wood",
+      "result": "minecraft:cherry_wood"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_log",
+      "result": "minecraft:stripped_cherry_log"
+    },
+    {
+      "block": "minecraft:stripped_dark_oak_wood",
+      "result": "minecraft:stripped_cherry_wood"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "result": "minecraft:cherry_planks"
+    },
+    {
+      "block": "minecraft:dark_oak_stairs",
+      "result": "minecraft:cherry_stairs"
+    },
+    {
+      "block": "minecraft:dark_oak_slab",
+      "result": "minecraft:cherry_slab"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:cherry_fence"
+    },
+    {
+      "block": "minecraft:dark_oak_fence_gate",
+      "result": "minecraft:cherry_fence_gate"
+    },
+    {
+      "block": "minecraft:dark_oak_door",
+      "result": "minecraft:cherry_door"
+    },
+    {
+      "block": "minecraft:dark_oak_trapdoor",
+      "result": "minecraft:cherry_trapdoor"
+    },
+    {
+      "block": "minecraft:dark_oak_button",
+      "result": "minecraft:cherry_button"
+    },
+    {
+      "block": "minecraft:dark_oak_pressure_plate",
+      "result": "minecraft:cherry_pressure_plate"
+    },
+    {
+      "block": "minecraft:dark_oak_leaves",
+      "result": "minecraft:cherry_leaves"
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:cherry_sapling"
+    },
+    {
+      "block": "minecraft:potted_dark_oak_sapling",
+      "result": "minecraft:potted_cherry_sapling"
+    },
+    {
+      "block": "minecraft:dark_oak_sign",
+      "result": "minecraft:cherry_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_sign",
+      "result": "minecraft:cherry_wall_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_hanging_sign",
+      "result": "minecraft:cherry_hanging_sign"
+    },
+    {
+      "block": "minecraft:dark_oak_wall_hanging_sign",
+      "result": "minecraft:cherry_wall_hanging_sign"
+    }
+  ]
+}

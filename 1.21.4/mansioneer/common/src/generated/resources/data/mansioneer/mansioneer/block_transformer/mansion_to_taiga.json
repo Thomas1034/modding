@@ -2,6 +2,18 @@
   "name": "mansioneer:mansion_to_taiga",
   "values": [
     {
+      "block": "minecraft:cobblestone",
+      "results": [
+        {
+          "name": "minecraft:cobblestone",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:mossy_cobblestone"
+        }
+      ]
+    },
+    {
       "transformer": "mansioneer:from_dark_oak_to_spruce"
     },
     {

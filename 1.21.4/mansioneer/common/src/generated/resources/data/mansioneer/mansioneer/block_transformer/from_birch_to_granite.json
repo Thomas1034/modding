@@ -1,0 +1,37 @@
+{
+  "name": "mansioneer:from_birch_to_granite",
+  "values": [
+    {
+      "block": "minecraft:birch_log",
+      "result": "minecraft:polished_granite"
+    },
+    {
+      "block": "minecraft:birch_wood",
+      "result": "minecraft:polished_granite"
+    },
+    {
+      "block": "minecraft:stripped_birch_log",
+      "result": "minecraft:polished_granite"
+    },
+    {
+      "block": "minecraft:stripped_birch_wood",
+      "result": "minecraft:polished_granite"
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "result": "minecraft:polished_granite"
+    },
+    {
+      "block": "minecraft:birch_stairs",
+      "result": "minecraft:polished_granite_stairs"
+    },
+    {
+      "block": "minecraft:birch_slab",
+      "result": "minecraft:polished_granite_slab"
+    },
+    {
+      "block": "minecraft:birch_fence",
+      "result": "minecraft:granite_wall"
+    }
+  ]
+}

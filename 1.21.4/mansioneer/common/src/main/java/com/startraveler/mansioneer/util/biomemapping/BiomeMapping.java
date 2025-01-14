@@ -13,10 +13,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
+import java.util.stream.StreamSupport;
+
 // Stores a relationship between a biome (or biome tag) and a block transformer
 public class BiomeMapping {
-    public static final ResourceKey<Registry<BiomeMapping>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(
-            Constants.MOD_ID,
+    public static final ResourceKey<Registry<BiomeMapping>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
             "biomemapping"
     ));
     public static final Codec<BiomeMapping> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -29,6 +30,7 @@ public class BiomeMapping {
     protected final ResourceLocation biomeLocation;
     protected final boolean isTag;
     protected final ResourceLocation blockTransformerLocation;
+    protected int size = -1;
 
     public BiomeMapping(ResourceLocation biomeLocation, boolean isTag, ResourceLocation blockTransformerLocation) {
         this.biomeLocation = biomeLocation;
@@ -45,7 +47,21 @@ public class BiomeMapping {
         }
     }
 
+    public int getSize(RegistryAccess access) {
+        if (this.size >= 0) {
+            return this.size;
+        }
+        Registry<Biome> mappings = access.lookupOrThrow(Registries.BIOME);
+        if (this.isTag) {
+            this.size = (int) StreamSupport.stream(mappings.getTagOrEmpty(this.biomeTagKey).spliterator(), false).count();
+        } else {
+            this.size = mappings.get(this.biomeLocation).isPresent() ? 1 : 0;
+        }
+        return this.size;
+    }
+
     public BlockTransformer getTransformer(RegistryAccess access) {
+
         return access.lookupOrThrow(BlockTransformer.KEY).get(this.blockTransformerLocation).orElseThrow().value();
     }
 

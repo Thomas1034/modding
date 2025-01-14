@@ -1,0 +1,45 @@
+{
+  "name": "mansioneer:from_cobblestone_to_diorite",
+  "values": [
+    {
+      "block": "minecraft:cobblestone",
+      "result": "minecraft:polished_diorite"
+    },
+    {
+      "block": "minecraft:infested_cobblestone",
+      "result": "minecraft:diorite"
+    },
+    {
+      "block": "minecraft:cobblestone_stairs",
+      "result": "minecraft:polished_diorite_stairs"
+    },
+    {
+      "block": "minecraft:cobblestone_slab",
+      "result": "minecraft:polished_diorite_slab"
+    },
+    {
+      "block": "minecraft:cobblestone_wall",
+      "result": "minecraft:diorite_wall"
+    },
+    {
+      "block": "minecraft:smooth_stone",
+      "result": "minecraft:polished_diorite"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone",
+      "result": "minecraft:diorite"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_stairs",
+      "result": "minecraft:diorite_stairs"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_slab",
+      "result": "minecraft:diorite_slab"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_wall",
+      "result": "minecraft:diorite_wall"
+    }
+  ]
+}

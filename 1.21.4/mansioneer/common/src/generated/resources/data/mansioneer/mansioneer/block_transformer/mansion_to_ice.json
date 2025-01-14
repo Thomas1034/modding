@@ -1,0 +1,136 @@
+{
+  "name": "mansioneer:mansion_to_ice",
+  "values": [
+    {
+      "transformer": "mansioneer:from_dark_oak_to_stone_bricks"
+    },
+    {
+      "block": "minecraft:dark_oak_planks",
+      "results": [
+        {
+          "name": "minecraft:cracked_stone_bricks"
+        },
+        {
+          "name": "minecraft:infested_cracked_stone_bricks"
+        },
+        {
+          "name": "minecraft:stone_bricks",
+          "weight": 5
+        },
+        {
+          "name": "minecraft:infested_stone_bricks"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:birch_planks",
+      "results": [
+        {
+          "name": "minecraft:powder_snow"
+        },
+        {
+          "name": "minecraft:blue_ice",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:snow_block",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:packed_ice",
+          "weight": 21
+        }
+      ]
+    },
+    {
+      "transformer": "mansioneer:from_birch_to_dark_oak"
+    },
+    {
+      "transformer": "mansioneer:from_oak_to_spruce"
+    },
+    {
+      "block": "minecraft:dark_oak_fence",
+      "result": "minecraft:iron_bars"
+    },
+    {
+      "block": "minecraft:torch",
+      "result": "minecraft:redstone_torch"
+    },
+    {
+      "block": "minecraft:wall_torch",
+      "result": "minecraft:redstone_wall_torch"
+    },
+    {
+      "result": "minecraft:blue_ice",
+      "tag": {
+        "location": "minecraft:leaves"
+      }
+    },
+    {
+      "result": "minecraft:ice",
+      "tag": {
+        "location": "minecraft:crops"
+      }
+    },
+    {
+      "block": "minecraft:dark_oak_sapling",
+      "result": "minecraft:blue_ice"
+    },
+    {
+      "block": "minecraft:farmland",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:water",
+      "result": "minecraft:ice"
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:potted_brown_mushroom"
+        },
+        {
+          "name": "minecraft:ice",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:potted_red_mushroom"
+        }
+      ],
+      "tag": {
+        "location": "minecraft:flower_pots"
+      }
+    },
+    {
+      "transformer": "mansioneer:from_cobblestone_to_dark_oak"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:snow"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:white_carpet",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:snow"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:glass_pane",
+      "result": "minecraft:ice"
+    }
+  ]
+}

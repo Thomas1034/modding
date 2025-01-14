@@ -15,7 +15,6 @@ public class Mansioneer implements ModInitializer {
         // project.
 
         // Use Fabric to bootstrap the Common mod.
-        Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
 
         // Set up dynamic registries

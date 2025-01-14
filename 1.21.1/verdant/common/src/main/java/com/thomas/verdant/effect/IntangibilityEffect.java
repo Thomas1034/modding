@@ -30,8 +30,9 @@ public class IntangibilityEffect extends MobEffect {
                 -0.8,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
-
     }
+
+    // TODO: Cool plant, causes blindness: https://en.wikipedia.org/wiki/Euphorbia_tirucalli
 
     // Returns true if the player can go through the blocks beneath and at their position.
     // This prevents the player from falling out of the world, and enables them to stand on

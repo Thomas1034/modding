@@ -8,12 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
-import java.util.List;
 import java.util.Map;
 
 public class BuiltInTransformers {
-
-    public static final BlockTransformer EMPTY = new BlockTransformer(List.of(), name("empty"));
 
     public static final ResourceLocation MANSION_TO_SAVANNA = name("mansion_to_savanna");
 
@@ -27,6 +24,19 @@ public class BuiltInTransformers {
 
     public static final ResourceLocation MANSION_TO_DESERT = name("mansion_to_desert");
 
+    public static final ResourceLocation MANSION_TO_BIRCH = name("mansion_to_birch");
+
+    public static final ResourceLocation MANSION_TO_MOUNTAIN = name("mansion_to_mountain");
+
+    public static final ResourceLocation MANSION_TO_CHERRY = name("mansion_to_cherry");
+
+    public static final ResourceLocation MANSION_TO_ICE = name("mansion_to_ice");
+
+    public static final ResourceLocation MANSION_TO_FOREST = name("mansion_to_forest");
+
+    public static final ResourceLocation MANSION_TO_PLAINS = name("mansion_to_plains");
+
+    public static final ResourceLocation EMPTY = name("empty");
 
     public static void init() {
     }

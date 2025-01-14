@@ -19,7 +19,6 @@ public class Mansioneer {
         // project.
 
         // Use Forge to bootstrap the Common mod.
-        Constants.LOG.info("Hello Forge world!");
         CommonClass.init();
 
         eventBus.addListener(Mansioneer::registerDatapackRegistries);

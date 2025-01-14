@@ -21,6 +21,14 @@ public class MansioneerBiomeMappingProvider {
         register(bootstrap, Biomes.PALE_GARDEN, BuiltInTransformers.MANSION_TO_PALE_GARDEN);
         register(bootstrap, Tags.Biomes.IS_JUNGLE, BuiltInTransformers.MANSION_TO_JUNGLE);
         register(bootstrap, Tags.Biomes.IS_DESERT, BuiltInTransformers.MANSION_TO_DESERT);
+        register(bootstrap, Tags.Biomes.IS_BIRCH_FOREST, BuiltInTransformers.MANSION_TO_BIRCH);
+        register(bootstrap, Tags.Biomes.IS_MOUNTAIN, BuiltInTransformers.MANSION_TO_MOUNTAIN);
+        register(bootstrap, Biomes.CHERRY_GROVE, BuiltInTransformers.MANSION_TO_CHERRY);
+        register(bootstrap, Tags.Biomes.IS_ICY, BuiltInTransformers.MANSION_TO_ICE);
+        register(bootstrap, Tags.Biomes.IS_SNOWY, BuiltInTransformers.MANSION_TO_ICE);
+        register(bootstrap, Tags.Biomes.IS_FOREST, BuiltInTransformers.MANSION_TO_FOREST);
+        register(bootstrap, Tags.Biomes.IS_PLAINS, BuiltInTransformers.MANSION_TO_PLAINS);
+        register(bootstrap, Tags.Biomes.IS_DARK_FOREST, BuiltInTransformers.EMPTY);
     }
 
     public static ResourceKey<BiomeMapping> key(ResourceLocation location) {

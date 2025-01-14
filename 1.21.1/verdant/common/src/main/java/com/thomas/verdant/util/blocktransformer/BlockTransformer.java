@@ -25,7 +25,8 @@ import java.util.function.Function;
 
 public class BlockTransformer {
 
-    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
+    public static final ResourceKey<Registry<BlockTransformer>> KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
             "block_transformer"
     ));
 
@@ -162,7 +163,6 @@ public class BlockTransformer {
     private void addProbabilisticMapping(TagKey<Block> input, Map<Block, Integer> probabilities) {
         this.tagMap.put(input, AliasBuilder.build(probabilities));
         this.tagPriorityMap.put(input, this.numTagsAdded++);
-
     }
 
     private Function<RandomSource, Block> getRaw(Block input, RegistryAccess access) {
@@ -216,7 +216,8 @@ public class BlockTransformer {
     }
 
     public boolean isValidInput(RegistryAccess access, Block input) {
-        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(access,
+        return this.directMap.containsKey(input) || this.hasValidTagMapping(input) || this.hasValidFallbackMapping(
+                access,
                 input
         );
     }

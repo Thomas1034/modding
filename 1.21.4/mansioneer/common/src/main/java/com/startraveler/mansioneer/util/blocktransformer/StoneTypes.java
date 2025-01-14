@@ -69,6 +69,76 @@ public class StoneTypes {
             Blocks.MOSSY_STONE_BRICK_WALL
     );
 
+    public static final StoneType POLISHED_BLACKSTONE_BRICKS = new StoneType(
+            "polished_blackstone_bricks",
+            Blocks.POLISHED_BLACKSTONE_BRICKS,
+            Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS,
+            Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS,
+            Blocks.POLISHED_BLACKSTONE_BRICK_SLAB,
+            Blocks.POLISHED_BLACKSTONE_BRICK_WALL,
+            Blocks.CHISELED_POLISHED_BLACKSTONE,
+            Blocks.GILDED_BLACKSTONE,
+            Blocks.BLACKSTONE_STAIRS,
+            Blocks.BLACKSTONE_SLAB,
+            Blocks.BLACKSTONE_WALL
+    );
+
+    public static final StoneType GRANITE = new StoneType(
+            "granite",
+            Blocks.POLISHED_GRANITE,
+            Blocks.GRANITE,
+            Blocks.POLISHED_GRANITE_STAIRS,
+            Blocks.POLISHED_GRANITE_SLAB,
+            Blocks.GRANITE_WALL,
+            Blocks.POLISHED_GRANITE,
+            Blocks.GRANITE,
+            Blocks.GRANITE_STAIRS,
+            Blocks.GRANITE_SLAB,
+            Blocks.GRANITE_WALL
+    );
+
+    public static final StoneType ANDESITE = new StoneType(
+            "andesite",
+            Blocks.POLISHED_ANDESITE,
+            Blocks.ANDESITE,
+            Blocks.POLISHED_ANDESITE_STAIRS,
+            Blocks.POLISHED_ANDESITE_SLAB,
+            Blocks.ANDESITE_WALL,
+            Blocks.POLISHED_ANDESITE,
+            Blocks.ANDESITE,
+            Blocks.ANDESITE_STAIRS,
+            Blocks.ANDESITE_SLAB,
+            Blocks.ANDESITE_WALL
+    );
+
+    public static final StoneType DIORITE = new StoneType(
+            "diorite",
+            Blocks.POLISHED_DIORITE,
+            Blocks.DIORITE,
+            Blocks.POLISHED_DIORITE_STAIRS,
+            Blocks.POLISHED_DIORITE_SLAB,
+            Blocks.DIORITE_WALL,
+            Blocks.POLISHED_DIORITE,
+            Blocks.DIORITE,
+            Blocks.DIORITE_STAIRS,
+            Blocks.DIORITE_SLAB,
+            Blocks.DIORITE_WALL
+    );
+
+    public static final StoneType BRICK = new StoneType(
+            "brick",
+            Blocks.BRICKS,
+            Blocks.TERRACOTTA,
+            Blocks.BRICK_STAIRS,
+            Blocks.BRICK_SLAB,
+            Blocks.BRICK_WALL,
+            Blocks.TERRACOTTA,
+            Blocks.BRICKS,
+            Blocks.BRICK_STAIRS,
+            Blocks.BRICK_SLAB,
+            Blocks.BRICK_WALL
+    );
+
     public static final StoneType COBBLESTONE = new StoneType(
             "cobblestone",
             Blocks.COBBLESTONE,
@@ -125,16 +195,16 @@ public class StoneTypes {
         if (result == null) {
 
             List<BlockTransformerData> data = new ArrayList<>();
-            data.add(BuiltInTransformers.direct(from.stoneBricks, to.stoneBricks));
-            data.add(BuiltInTransformers.direct(from.crackedStoneBricks, to.crackedStoneBricks));
-            data.add(BuiltInTransformers.direct(from.stoneBrickStairs, to.stoneBrickStairs));
-            data.add(BuiltInTransformers.direct(from.stoneBrickSlabs, to.stoneBrickSlabs));
-            data.add(BuiltInTransformers.direct(from.stoneBrickWalls, to.stoneBrickWalls));
-            data.add(BuiltInTransformers.direct(from.chiseledStoneBrick, to.chiseledStoneBrick));
-            data.add(BuiltInTransformers.direct(from.mossyStoneBricks, to.mossyStoneBricks));
-            data.add(BuiltInTransformers.direct(from.mossyStoneBrickStairs, to.mossyStoneBrickStairs));
-            data.add(BuiltInTransformers.direct(from.mossyStoneBrickSlabs, to.mossyStoneBrickSlabs));
-            data.add(BuiltInTransformers.direct(from.mossyStoneBrickWalls, to.mossyStoneBrickWalls));
+            data.add(BuiltInTransformers.direct(from.stoneBricks(), to.stoneBricks()));
+            data.add(BuiltInTransformers.direct(from.crackedStoneBricks(), to.crackedStoneBricks()));
+            data.add(BuiltInTransformers.direct(from.stoneBrickStairs(), to.stoneBrickStairs()));
+            data.add(BuiltInTransformers.direct(from.stoneBrickSlabs(), to.stoneBrickSlabs()));
+            data.add(BuiltInTransformers.direct(from.stoneBrickWalls(), to.stoneBrickWalls()));
+            data.add(BuiltInTransformers.direct(from.chiseledStoneBrick(), to.chiseledStoneBrick()));
+            data.add(BuiltInTransformers.direct(from.mossyStoneBricks(), to.mossyStoneBricks()));
+            data.add(BuiltInTransformers.direct(from.mossyStoneBrickStairs(), to.mossyStoneBrickStairs()));
+            data.add(BuiltInTransformers.direct(from.mossyStoneBrickSlabs(), to.mossyStoneBrickSlabs()));
+            data.add(BuiltInTransformers.direct(from.mossyStoneBrickWalls(), to.mossyStoneBrickWalls()));
             result = new BlockTransformer(data, transformName(from, to));
             MAPPINGS.put(pair, result);
         }
@@ -142,7 +212,7 @@ public class StoneTypes {
     }
 
     public static ResourceLocation transformName(StoneType from, StoneType to) {
-        return BuiltInTransformers.name("from_" + from.name + "_to_" + to.name);
+        return BuiltInTransformers.name("from_" + from.name() + "_to_" + to.name());
     }
 
 }

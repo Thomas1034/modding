@@ -50,6 +50,10 @@
       "result": "minecraft:spruce_button"
     },
     {
+      "block": "minecraft:birch_pressure_plate",
+      "result": "minecraft:spruce_pressure_plate"
+    },
+    {
       "block": "minecraft:birch_leaves",
       "result": "minecraft:spruce_leaves"
     },

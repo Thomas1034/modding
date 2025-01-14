@@ -50,6 +50,10 @@
       "result": "minecraft:pale_oak_button"
     },
     {
+      "block": "minecraft:dark_oak_pressure_plate",
+      "result": "minecraft:pale_oak_pressure_plate"
+    },
+    {
       "block": "minecraft:dark_oak_leaves",
       "result": "minecraft:pale_oak_leaves"
     },

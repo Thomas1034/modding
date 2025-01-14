@@ -1,5 +1,7 @@
 package com.startraveler.mansioneer.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.startraveler.mansioneer.util.biomemapping.BiomeMapping;
 import com.startraveler.mansioneer.util.blocktransformer.BlockTransformer;
@@ -31,6 +33,18 @@ public class WoodlandMansionPostProcessMixin {
     @Unique
     protected final Map<Holder<Biome>, BlockTransformer> mansioneer$cachedTransformerMap = new HashMap<>();
 
+    @WrapOperation(method = "afterPlace", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/WorldGenLevel;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
+    public boolean changeFoundation(WorldGenLevel instance, BlockPos pos, BlockState state, int i, Operation<Boolean> original, @Local(argsOnly = true) PiecesContainer container) {
+        BlockPos origin = container.pieces().getFirst().getLocatorPosition();
+        BlockTransformer transformer = mansioneer$getTransformer(instance, origin);
+        return transformer == null ? original.call(instance, pos, state, i) : original.call(
+                instance,
+                pos,
+                transformer.get(state, instance.registryAccess(), instance.getRandom()),
+                i
+        );
+    }
+
     // Notes: runs on a chunk-by-chunk basis!
     @Inject(method = "afterPlace", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/BlockPos$MutableBlockPos;set(III)Lnet/minecraft/core/BlockPos$MutableBlockPos;", ordinal = 0, shift = At.Shift.AFTER))
     public void addIterativeProcessor(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox boundingBox, ChunkPos whichChunkThisIs, PiecesContainer container, CallbackInfo ci, @Local BlockPos.MutableBlockPos mutableBlockPos) {
@@ -38,31 +52,9 @@ public class WoodlandMansionPostProcessMixin {
         // This is based on the first structure piece in the list.
         // May change later.
         BlockPos origin = container.pieces().getFirst().getLocatorPosition();
-        // Then, get the biome.
-        // TODO: Gets the wrong biome. Not sure why.
-        // Maybe it has the wrong seed or something?
-        Holder<Biome> biome = level.getLevel().getChunkSource().getGenerator().getBiomeSource().getNoiseBiome(
-                origin.getX() / 4,
-                origin.getY() / 4,
-                origin.getZ() / 4,
-                level.getLevel().getChunkSource().randomState().sampler()
-        );
-        // Print out the biome holder and its position for debugging.
-        // Constants.LOG.warn("The biome holder is {} at {}", biome, origin);
-        // Get the block transformer from the cache.
-        BlockTransformer transformer = this.mansioneer$cachedTransformerMap.get(biome);
-        // If it's not in the cache, calculate it.
-        // Get the list of biome mappings
-        Registry<BiomeMapping> biomeMappings = level.registryAccess().lookupOrThrow(BiomeMapping.KEY);
-        if (null == transformer) {
-            for (BiomeMapping mapping : biomeMappings) {
-                if (mapping.matches(biome)) {
-                    transformer = mapping.getTransformer(level.registryAccess());
-                    this.mansioneer$cachedTransformerMap.put(biome, transformer);
-                    break;
-                }
-            }
-        }
+        // Then, get the block transformer.
+        BlockTransformer transformer = this.mansioneer$getTransformer(level, origin);
+
         // If a block transformer was found, update the entire vertical column within the structure at this position.
         if (null != transformer) {
             int minY = boundingBox.minY();
@@ -72,7 +64,7 @@ public class WoodlandMansionPostProcessMixin {
             int oldZ = mutableBlockPos.getZ();
             for (int i = minY; i < maxY; i++) {
                 mutableBlockPos.setY(i);
-                if (!(boundingBox.isInside(mutableBlockPos)) && container.isInsidePiece(mutableBlockPos)) {
+                if (!(boundingBox.isInside(mutableBlockPos) && container.isInsidePiece(mutableBlockPos))) {
                     continue;
                 }
                 BlockState oldState = level.getBlockState(mutableBlockPos);
@@ -83,6 +75,38 @@ public class WoodlandMansionPostProcessMixin {
             // Clean up; reset the mutable block pos.
             mutableBlockPos.set(oldX, oldY, oldZ);
         }
+    }
+
+    @Unique
+    public BlockTransformer mansioneer$getTransformer(WorldGenLevel level, BlockPos pos) {
+        // Then, get the biome.
+        Holder<Biome> biome = level.getLevel()
+                .getChunkSource()
+                .getGenerator()
+                .getBiomeSource()
+                .getNoiseBiome(
+                        pos.getX() / 4,
+                        pos.getY() / 4,
+                        pos.getZ() / 4,
+                        level.getLevel().getChunkSource().randomState().sampler()
+                );
+        // Get the block transformer from the cache.
+        BlockTransformer transformer = this.mansioneer$cachedTransformerMap.get(biome);
+        // If it's not in the cache, calculate it.
+        // Get the list of biome mappings
+        Registry<BiomeMapping> biomeMappings = level.registryAccess().lookupOrThrow(BiomeMapping.KEY);
+        int smallestSizeSoFar = Integer.MAX_VALUE;
+        if (null == transformer) {
+            for (BiomeMapping mapping : biomeMappings) {
+                int mappingSize = mapping.getSize(level.registryAccess());
+                if (mapping.matches(biome) && mappingSize < smallestSizeSoFar) {
+                    transformer = mapping.getTransformer(level.registryAccess());
+                    smallestSizeSoFar = mappingSize;
+                }
+            }
+        }
+        this.mansioneer$cachedTransformerMap.put(biome, transformer);
+        return transformer;
     }
 
 

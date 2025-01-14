@@ -26,6 +26,7 @@ public class WoodTypes {
             Blocks.OAK_DOOR,
             Blocks.OAK_TRAPDOOR,
             Blocks.OAK_BUTTON,
+            Blocks.OAK_PRESSURE_PLATE,
             Blocks.OAK_LEAVES,
             Blocks.OAK_SAPLING,
             Blocks.POTTED_OAK_SAPLING,
@@ -48,6 +49,7 @@ public class WoodTypes {
             Blocks.SPRUCE_DOOR,
             Blocks.SPRUCE_TRAPDOOR,
             Blocks.SPRUCE_BUTTON,
+            Blocks.SPRUCE_PRESSURE_PLATE,
             Blocks.SPRUCE_LEAVES,
             Blocks.SPRUCE_SAPLING,
             Blocks.POTTED_SPRUCE_SAPLING,
@@ -70,6 +72,7 @@ public class WoodTypes {
             Blocks.BIRCH_DOOR,
             Blocks.BIRCH_TRAPDOOR,
             Blocks.BIRCH_BUTTON,
+            Blocks.BIRCH_PRESSURE_PLATE,
             Blocks.BIRCH_LEAVES,
             Blocks.BIRCH_SAPLING,
             Blocks.POTTED_BIRCH_SAPLING,
@@ -92,6 +95,7 @@ public class WoodTypes {
             Blocks.JUNGLE_DOOR,
             Blocks.JUNGLE_TRAPDOOR,
             Blocks.JUNGLE_BUTTON,
+            Blocks.JUNGLE_PRESSURE_PLATE,
             Blocks.JUNGLE_LEAVES,
             Blocks.JUNGLE_SAPLING,
             Blocks.POTTED_JUNGLE_SAPLING,
@@ -114,6 +118,7 @@ public class WoodTypes {
             Blocks.ACACIA_DOOR,
             Blocks.ACACIA_TRAPDOOR,
             Blocks.ACACIA_BUTTON,
+            Blocks.ACACIA_PRESSURE_PLATE,
             Blocks.ACACIA_LEAVES,
             Blocks.ACACIA_SAPLING,
             Blocks.POTTED_ACACIA_SAPLING,
@@ -136,6 +141,7 @@ public class WoodTypes {
             Blocks.DARK_OAK_DOOR,
             Blocks.DARK_OAK_TRAPDOOR,
             Blocks.DARK_OAK_BUTTON,
+            Blocks.DARK_OAK_PRESSURE_PLATE,
             Blocks.DARK_OAK_LEAVES,
             Blocks.DARK_OAK_SAPLING,
             Blocks.POTTED_DARK_OAK_SAPLING,
@@ -158,6 +164,7 @@ public class WoodTypes {
             Blocks.MANGROVE_DOOR,
             Blocks.MANGROVE_TRAPDOOR,
             Blocks.MANGROVE_BUTTON,
+            Blocks.MANGROVE_PRESSURE_PLATE,
             Blocks.MANGROVE_LEAVES,
             Blocks.MANGROVE_PROPAGULE,
             Blocks.POTTED_MANGROVE_PROPAGULE,
@@ -180,6 +187,7 @@ public class WoodTypes {
             Blocks.BAMBOO_DOOR,
             Blocks.BAMBOO_TRAPDOOR,
             Blocks.BAMBOO_BUTTON,
+            Blocks.BAMBOO_PRESSURE_PLATE,
             Blocks.AIR,
             Blocks.BAMBOO_SAPLING,
             Blocks.POTTED_BAMBOO,
@@ -202,6 +210,7 @@ public class WoodTypes {
             Blocks.CHERRY_DOOR,
             Blocks.CHERRY_TRAPDOOR,
             Blocks.CHERRY_BUTTON,
+            Blocks.CHERRY_PRESSURE_PLATE,
             Blocks.CHERRY_LEAVES,
             Blocks.CHERRY_SAPLING,
             Blocks.POTTED_CHERRY_SAPLING,
@@ -224,6 +233,7 @@ public class WoodTypes {
             Blocks.CRIMSON_DOOR,
             Blocks.CRIMSON_TRAPDOOR,
             Blocks.CRIMSON_BUTTON,
+            Blocks.CRIMSON_PRESSURE_PLATE,
             Blocks.NETHER_WART_BLOCK,
             Blocks.CRIMSON_FUNGUS,
             Blocks.POTTED_CRIMSON_FUNGUS,
@@ -246,6 +256,7 @@ public class WoodTypes {
             Blocks.WARPED_DOOR,
             Blocks.WARPED_TRAPDOOR,
             Blocks.WARPED_BUTTON,
+            Blocks.WARPED_PRESSURE_PLATE,
             Blocks.WARPED_WART_BLOCK,
             Blocks.WARPED_FUNGUS,
             Blocks.POTTED_WARPED_FUNGUS,
@@ -268,6 +279,7 @@ public class WoodTypes {
             Blocks.PALE_OAK_DOOR,
             Blocks.PALE_OAK_TRAPDOOR,
             Blocks.PALE_OAK_BUTTON,
+            Blocks.PALE_OAK_PRESSURE_PLATE,
             Blocks.PALE_OAK_LEAVES,
             Blocks.PALE_OAK_SAPLING,
             Blocks.POTTED_PALE_OAK_SAPLING,
@@ -291,25 +303,26 @@ public class WoodTypes {
 
             List<BlockTransformerData> data = new ArrayList<>();
 
-            data.add(BuiltInTransformers.direct(from.log, to.log));
-            data.add(BuiltInTransformers.direct(from.wood, to.wood));
-            data.add(BuiltInTransformers.direct(from.strippedLog, to.strippedLog));
-            data.add(BuiltInTransformers.direct(from.strippedWood, to.strippedWood));
-            data.add(BuiltInTransformers.direct(from.planks, to.planks));
-            data.add(BuiltInTransformers.direct(from.stairs, to.stairs));
-            data.add(BuiltInTransformers.direct(from.slab, to.slab));
-            data.add(BuiltInTransformers.direct(from.fence, to.fence));
-            data.add(BuiltInTransformers.direct(from.fenceGate, to.fenceGate));
-            data.add(BuiltInTransformers.direct(from.door, to.door));
-            data.add(BuiltInTransformers.direct(from.trapdoor, to.trapdoor));
-            data.add(BuiltInTransformers.direct(from.button, to.button));
-            data.add(BuiltInTransformers.direct(from.leaves, to.leaves));
-            data.add(BuiltInTransformers.direct(from.sapling, to.sapling));
-            data.add(BuiltInTransformers.direct(from.pottedSapling, to.pottedSapling));
-            data.add(BuiltInTransformers.direct(from.sign, to.sign));
-            data.add(BuiltInTransformers.direct(from.wallSign, to.wallSign));
-            data.add(BuiltInTransformers.direct(from.hangingSign, to.hangingSign));
-            data.add(BuiltInTransformers.direct(from.wallHangingSign, to.wallHangingSign));
+            data.add(BuiltInTransformers.direct(from.log(), to.log()));
+            data.add(BuiltInTransformers.direct(from.wood(), to.wood()));
+            data.add(BuiltInTransformers.direct(from.strippedLog(), to.strippedLog()));
+            data.add(BuiltInTransformers.direct(from.strippedWood(), to.strippedWood()));
+            data.add(BuiltInTransformers.direct(from.planks(), to.planks()));
+            data.add(BuiltInTransformers.direct(from.stairs(), to.stairs()));
+            data.add(BuiltInTransformers.direct(from.slab(), to.slab()));
+            data.add(BuiltInTransformers.direct(from.fence(), to.fence()));
+            data.add(BuiltInTransformers.direct(from.fenceGate(), to.fenceGate()));
+            data.add(BuiltInTransformers.direct(from.door(), to.door()));
+            data.add(BuiltInTransformers.direct(from.trapdoor(), to.trapdoor()));
+            data.add(BuiltInTransformers.direct(from.button(), to.button()));
+            data.add(BuiltInTransformers.direct(from.pressurePlate(), to.pressurePlate()));
+            data.add(BuiltInTransformers.direct(from.leaves(), to.leaves()));
+            data.add(BuiltInTransformers.direct(from.sapling(), to.sapling()));
+            data.add(BuiltInTransformers.direct(from.pottedSapling(), to.pottedSapling()));
+            data.add(BuiltInTransformers.direct(from.sign(), to.sign()));
+            data.add(BuiltInTransformers.direct(from.wallSign(), to.wallSign()));
+            data.add(BuiltInTransformers.direct(from.hangingSign(), to.hangingSign()));
+            data.add(BuiltInTransformers.direct(from.wallHangingSign(), to.wallHangingSign()));
 
             result = new BlockTransformer(data, transformName(from, to));
             MAPPINGS.put(pair, result);
@@ -318,7 +331,7 @@ public class WoodTypes {
     }
 
     public static ResourceLocation transformName(WoodType from, WoodType to) {
-        return BuiltInTransformers.name("from_" + from.name + "_to_" + to.name);
+        return BuiltInTransformers.name("from_" + from.name() + "_to_" + to.name());
     }
 
 }

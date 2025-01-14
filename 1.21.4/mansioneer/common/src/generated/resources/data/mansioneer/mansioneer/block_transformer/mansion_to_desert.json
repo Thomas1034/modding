@@ -2,6 +2,36 @@
   "name": "mansioneer:mansion_to_desert",
   "values": [
     {
+      "block": "minecraft:farmland",
+      "results": [
+        {
+          "name": "minecraft:coarse_dirt"
+        },
+        {
+          "name": "minecraft:sand",
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:cactus",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 5
+        },
+        {
+          "name": "minecraft:dead_bush"
+        }
+      ],
+      "tag": {
+        "location": "minecraft:crops"
+      }
+    },
+    {
       "block": "minecraft:dark_oak_planks",
       "result": "minecraft:cut_sandstone"
     },
@@ -30,6 +60,10 @@
       "result": "minecraft:cut_red_sandstone"
     },
     {
+      "block": "minecraft:cobblestone_wall",
+      "result": "minecraft:sandstone_wall"
+    },
+    {
       "block": "minecraft:dark_oak_stairs",
       "result": "minecraft:sandstone_stairs"
     },
@@ -45,20 +79,20 @@
       "block": "minecraft:torch",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 3
-        },
-        {
           "name": "minecraft:torch",
           "weight": 24
+        },
+        {
+          "name": "minecraft:redstone_torch",
+          "weight": 2
         },
         {
           "name": "minecraft:cobweb",
           "weight": 3
         },
         {
-          "name": "minecraft:redstone_torch",
-          "weight": 2
+          "name": "minecraft:air",
+          "weight": 3
         }
       ]
     },
@@ -66,16 +100,16 @@
       "block": "minecraft:wall_torch",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 3
-        },
-        {
           "name": "minecraft:cobweb",
           "weight": 3
         },
         {
           "name": "minecraft:redstone_wall_torch",
           "weight": 2
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 3
         },
         {
           "name": "minecraft:wall_torch",
@@ -95,18 +129,18 @@
     {
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 25
+          "name": "minecraft:gray_carpet"
         },
         {
-          "name": "minecraft:gray_carpet"
+          "name": "minecraft:brown_carpet",
+          "weight": 3
         },
         {
           "name": "minecraft:moss_carpet"
         },
         {
-          "name": "minecraft:brown_carpet",
-          "weight": 3
+          "name": "minecraft:air",
+          "weight": 25
         }
       ],
       "tag": {
@@ -115,10 +149,6 @@
     },
     {
       "results": [
-        {
-          "name": "minecraft:brown_wool",
-          "weight": 3
-        },
         {
           "name": "minecraft:sand",
           "weight": 45
@@ -129,6 +159,10 @@
         },
         {
           "name": "minecraft:gray_wool"
+        },
+        {
+          "name": "minecraft:brown_wool",
+          "weight": 3
         }
       ],
       "tag": {
@@ -157,15 +191,15 @@
           "name": "minecraft:redstone_wire"
         },
         {
-          "name": "minecraft:air",
-          "weight": 3
+          "name": "minecraft:cobweb"
         },
         {
           "name": "minecraft:potted_dead_bush",
           "weight": 3
         },
         {
-          "name": "minecraft:cobweb"
+          "name": "minecraft:air",
+          "weight": 3
         }
       ],
       "tag": {
@@ -175,12 +209,8 @@
     {
       "results": [
         {
-          "name": "minecraft:brown_stained_glass_pane",
-          "weight": 7
-        },
-        {
-          "name": "minecraft:air",
-          "weight": 5
+          "name": "minecraft:gray_stained_glass_pane",
+          "weight": 3
         },
         {
           "name": "minecraft:glass_pane",
@@ -188,6 +218,14 @@
         },
         {
           "name": "minecraft:cobweb"
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
         }
       ],
       "tag": {

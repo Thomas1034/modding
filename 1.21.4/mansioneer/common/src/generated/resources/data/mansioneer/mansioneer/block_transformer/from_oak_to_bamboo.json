@@ -50,6 +50,10 @@
       "result": "minecraft:bamboo_button"
     },
     {
+      "block": "minecraft:oak_pressure_plate",
+      "result": "minecraft:bamboo_pressure_plate"
+    },
+    {
       "block": "minecraft:oak_leaves",
       "result": "minecraft:air"
     },
