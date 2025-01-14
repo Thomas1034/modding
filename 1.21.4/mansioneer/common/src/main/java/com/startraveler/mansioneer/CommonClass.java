@@ -10,8 +10,6 @@ import com.startraveler.mansioneer.util.blocktransformer.BuiltInTransformers;
 // however it will be compatible with all supported mod loaders.
 /*
 
-Special thanks to The...Why...Even...How...? for solving the thorny problem of getting the biome of a potentially non-yet-generated chunk. Your patience, dedication, and passion for problem-solving are much appreciated.
-
 https://discord.com/channels/507304429255393322/511324119728521285/1327884671656132648
 
  */

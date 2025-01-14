@@ -79,7 +79,7 @@ public class WoodlandMansionPostProcessMixin {
 
     @Unique
     public BlockTransformer mansioneer$getTransformer(WorldGenLevel level, BlockPos pos) {
-        // Then, get the biome.
+        // Then, get the biome. Thanks, Cputnam_a11y!
         Holder<Biome> biome = level.getLevel()
                 .getChunkSource()
                 .getGenerator()
