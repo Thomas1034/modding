@@ -6,7 +6,7 @@
     "#c:is_jungle",
     "#c:is_desert",
     "#c:is_birch_forest",
-    "#c:is_mountain",
+    "#c:is_mountain/slope",
     "#c:is_icy",
     "#c:is_snowy",
     "#c:is_forest",

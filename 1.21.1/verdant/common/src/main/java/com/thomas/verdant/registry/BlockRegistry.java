@@ -91,6 +91,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> FRAME_BLOCK;
     public static final RegistryObject<Block, Block> CHARRED_FRAME_BLOCK;
     public static final RegistryObject<Block, Block> VERDANT_CONDUIT;
+    public static final RegistryObject<Block, Block> IMBUED_HEARTWOOD_LOG;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -412,6 +413,10 @@ public class BlockRegistry {
                 () -> new VerdantConduitBlock(properties(Blocks.CONDUIT, "verdant_conduit"))
         );
 
+        IMBUED_HEARTWOOD_LOG = registerBlockWithItem(
+                "imbued_heartwood_log",
+                () -> new RotatedPillarBlock(properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f))
+        );
 
         TEST_LOG = registerBlockWithItem(
                 "test_log",

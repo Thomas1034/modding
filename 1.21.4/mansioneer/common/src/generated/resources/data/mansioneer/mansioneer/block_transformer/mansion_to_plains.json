@@ -12,7 +12,7 @@
       "transformer": "mansioneer:from_oak_to_spruce"
     },
     {
-      "transformer": "mansioneer:from_cobblestone_to_brick"
+      "transformer": "mansioneer:from_cobblestone_to_stone_bricks"
     }
   ]
 }

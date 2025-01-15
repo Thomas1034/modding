@@ -386,6 +386,7 @@ public class VerdantModelProvider extends ModelProvider {
         spikesBlockWithItem(BlockRegistry.IRON_SPIKES.get());
         doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
         doubleSidedLogBlockWithItem(BlockRegistry.FRAME_BLOCK.get());
+        blockModels.createAxisAlignedPillarBlock(BlockRegistry.IMBUED_HEARTWOOD_LOG.get(), TexturedModel.COLUMN);
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
@@ -403,6 +404,7 @@ public class VerdantModelProvider extends ModelProvider {
         // TODO ropeCoilItem(ItemRegistry.ROPE_COIL);
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
+        basicItem(ItemRegistry.HEART_FRAGMENT.get());
     }
 
     @Override

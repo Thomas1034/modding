@@ -8,10 +8,7 @@ import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +52,11 @@ public class Verdant implements ModInitializer {
         DispenserBehaviors.init();
         // Register fuels
         FuelRegistryEvents.BUILD.register((builder, context) -> FuelsRegistry.init((builder::add)));
+        // Register potion recipes
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+            PotionRecipeRegistry.init(builder::addMix, builder::registerItemRecipe);
+        });
+
 
         // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {

@@ -98,7 +98,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     protected final double leafGrowthRadius = 2.9;
     protected final boolean[][][] leafPattern;
 
-    private final Function<RandomSource, Block> log = (rand) -> WoodSets.STRANGLER.getLog().get();
+    private final Function<RandomSource, Block> log = (rand) -> rand.nextInt(64) == 0 ? BlockRegistry.IMBUED_HEARTWOOD_LOG.get() : WoodSets.STRANGLER.getLog()
+            .get();
 
     private final Function<RandomSource, Block> rottenWood = (rand) -> BlockRegistry.ROTTEN_WOOD.get();
 

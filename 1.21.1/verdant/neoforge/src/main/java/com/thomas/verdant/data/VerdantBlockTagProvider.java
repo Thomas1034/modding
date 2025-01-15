@@ -33,8 +33,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.WOODEN_SPIKES.get(),
                 BlockRegistry.WOODEN_TRAP.get(),
                 BlockRegistry.FISH_TRAP_BLOCK.get(),
-                BlockRegistry.VERDANT_CONDUIT.get()
-                /*, BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(),*/
+                BlockRegistry.VERDANT_CONDUIT.get(),
+                BlockRegistry.IMBUED_HEARTWOOD_LOG.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
@@ -239,6 +239,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.BLOCKS_INTANGIBLE)
                 .add(Blocks.BEDROCK, Blocks.NETHER_PORTAL, Blocks.BARRIER, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
 
+        //
+        this.tag(BlockTags.LOGS).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
+        this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
+
         addDirtOres();
     }
 
@@ -306,6 +310,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 woodSet.getStrippedLog().get(),
                 woodSet.getStrippedWood().get()
         );
+        this.tag(Tags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
         if (woodSet.isFlammable()) {
             this.tag(BlockTags.LOGS_THAT_BURN).add(
                     woodSet.getLog().get(),

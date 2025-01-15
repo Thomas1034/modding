@@ -12,9 +12,6 @@
       "transformer": "mansioneer:from_oak_to_jungle"
     },
     {
-      "transformer": "mansioneer:from_cobblestone_to_dark_oak"
-    },
-    {
       "block": "minecraft:red_carpet",
       "result": "minecraft:cyan_carpet"
     }

@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGrower {
     public static final Supplier<MobEffectInstance> VERDANT_ENERGY = () -> new MobEffectInstance(
             MobEffectRegistry.VERDANT_ENERGY.asHolder(),
-            240,
+            205,
             0
     );
     private static final int RADIUS = 16;

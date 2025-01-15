@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-11T00:06:27.8899959	Loot Tables
+// 1.21.4	2025-01-14T21:42:01.3521158	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_table/blocks/bleeding_heart.json
 a85878d59aa311bc0d09d81019d20a7a16c88d61 data/verdant/loot_table/blocks/bush.json
@@ -31,6 +31,7 @@ b85788f9d752fc835e31ecea6edbd08939c77e99 data/verdant/loot_table/blocks/heartwoo
 6796e5423b3f36293e209e4306cc575d5a48f9ff data/verdant/loot_table/blocks/heartwood_wall_hanging_sign.json
 c60d1d26577d97575cd4c2873ca8bcfa8f369f2f data/verdant/loot_table/blocks/heartwood_wall_sign.json
 528f69d274c5b42d4aeedba73ed073a18ea3e882 data/verdant/loot_table/blocks/heartwood_wood.json
+5310dcac8648d766ff06aaef518ab07837288891 data/verdant/loot_table/blocks/imbued_heartwood_log.json
 dc89c0fb244b3a087c06d57e42aa9182979f27b8 data/verdant/loot_table/blocks/iron_spikes.json
 4687caeef06da386bb77ee827a90fc15e83aba32 data/verdant/loot_table/blocks/iron_trap.json
 2b1919bdb79969912ddd63e801bf4177b1e4d277 data/verdant/loot_table/blocks/leafy_strangler_vine.json

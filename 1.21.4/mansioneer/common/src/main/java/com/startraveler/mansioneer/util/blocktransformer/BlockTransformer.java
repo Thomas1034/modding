@@ -266,4 +266,8 @@ public class BlockTransformer {
         return this.rawData;
     }
 
+    public String toString() {
+        return Constants.MOD_ID + "/block_transformer/" + this.name.toString();
+    }
+
 }

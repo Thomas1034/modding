@@ -24,6 +24,7 @@
     "description": {
       "translate": "advancements.verdant.overgrowth.description"
     },
+    "hidden": true,
     "icon": {
       "count": 1,
       "id": "verdant:heart_of_the_forest"

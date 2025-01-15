@@ -276,11 +276,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         //                        .setRolls(UniformGenerator.between(1, 2)).when(yamCropMaxAgeBuilder));
         //        this.add(BlockRegistry.UBE_CROP.get(), yamLoot);
 
-        //        LootTable.Builder imbuedLogLoot = LootTable.lootTable()
-        //                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.HEART_FRAGMENT.get())))
-        //                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(BlockRegistry.VERDANT_HEARTWOOD_LOG.get())));
+        LootTable.Builder imbuedLogLoot = LootTable.lootTable()
+                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemRegistry.HEART_FRAGMENT.get())))
+                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(WoodSets.HEARTWOOD.getLog().get())));
 
-        // this.add(BlockRegistry.IMBUED_VERDANT_HEARTWOOD_LOG.get(), imbuedLogLoot);
+        this.add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get(), imbuedLogLoot);
     }
 
     @Override

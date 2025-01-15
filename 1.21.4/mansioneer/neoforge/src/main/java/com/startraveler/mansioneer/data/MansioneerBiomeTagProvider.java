@@ -26,7 +26,7 @@ public class MansioneerBiomeTagProvider extends BiomeTagsProvider {
                 Tags.Biomes.IS_JUNGLE,
                 Tags.Biomes.IS_DESERT,
                 Tags.Biomes.IS_BIRCH_FOREST,
-                Tags.Biomes.IS_MOUNTAIN,
+                Tags.Biomes.IS_MOUNTAIN_SLOPE,
                 Tags.Biomes.IS_ICY,
                 Tags.Biomes.IS_SNOWY,
                 Tags.Biomes.IS_FOREST,

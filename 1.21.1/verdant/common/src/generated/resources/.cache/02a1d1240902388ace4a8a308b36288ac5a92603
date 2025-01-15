@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-11T00:53:11.211203	Model Definitions - verdant
+// 1.21.4	2025-01-14T21:42:01.3329867	Model Definitions - verdant
 0d3173201315bdfb9b715b1ff4eb4aeb7812aaf6 assets/verdant/blockstates/antigorite.json
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
 59e8ef32300c83874f1fa22f9e8665954f0cb70f assets/verdant/blockstates/bush.json
@@ -31,6 +31,7 @@ ba9087edb9108a311b1e687dc3d8a85b8f334e94 assets/verdant/blockstates/heartwood_sl
 8e8d843a68719410001ddec25d49a3d1791d7864 assets/verdant/blockstates/heartwood_wall_hanging_sign.json
 200aa33413ed8addbf1ee22bddc60e25f6405ab8 assets/verdant/blockstates/heartwood_wall_sign.json
 187f8143429311b420dde2b8d19d390b671c278b assets/verdant/blockstates/heartwood_wood.json
+fa5a3584c9ed403e4f173feb42e651dd570f9ee7 assets/verdant/blockstates/imbued_heartwood_log.json
 3493c1701f1c9ac06a32f9241e4cb46e68811962 assets/verdant/blockstates/iron_spikes.json
 d6548c60b02e6acb0d8f9c38c9b6b8a7ab5c8e8a assets/verdant/blockstates/iron_trap.json
 2c7d5bd29359c8718e8d172e4cda530335c50359 assets/verdant/blockstates/packed_gravel.json
@@ -113,7 +114,9 @@ bcb73e32bc7f5434a7bc623a681d1e405a76762c assets/verdant/items/heartwood_door.jso
 63d8da358ff9ea52e11bae951b7b2323a72ef019 assets/verdant/items/heartwood_stairs.json
 d80e8d62e045cf2a7016cdd1cacfe7f5953de1f2 assets/verdant/items/heartwood_trapdoor.json
 58580c7c01113bddea2d38be4e9722df1519dafd assets/verdant/items/heartwood_wood.json
+b518d054f4c5b4df264baef57d47392352b14de9 assets/verdant/items/heart_fragment.json
 6af35bebd69bcd3efdcddee44874dd325fe87c85 assets/verdant/items/heart_of_the_forest.json
+7af13acd61fb091001f4c78cf58f8d59762b9e02 assets/verdant/items/imbued_heartwood_log.json
 10924ced3214f5a475991ac17c6445658979d0cd assets/verdant/items/iron_spikes.json
 e6fec70b38c26185f1485c22cfe01aa766ecdb93 assets/verdant/items/iron_trap.json
 647b3b27cd70cdc1e71065adf59bc5af3c22cfbd assets/verdant/items/leafy_strangler_vine.json
@@ -216,6 +219,7 @@ c65db1eef88b5bdeb8951419f1a428ebfe102703 assets/verdant/models/block/heartwood_s
 0bfc6d6bfbc6382066f10f66cb0c660df28d6183 assets/verdant/models/block/heartwood_trapdoor_open.json
 79f985dce68fe5fd12047cdc829522d8a977f745 assets/verdant/models/block/heartwood_trapdoor_top.json
 3cdd1d41e7fc20534b942d37b12d55b009ae865d assets/verdant/models/block/heartwood_wood.json
+eb3fcf59a2fef11ced5de2deb153249835419a0f assets/verdant/models/block/imbued_heartwood_log.json
 b06264bdfcfd6b0bcbc5d89a9da0b4ac3657021f assets/verdant/models/block/iron_spikes.json
 b373f30c2033abc1d29600822f5e3d184d0a0b5f assets/verdant/models/block/iron_trap_hidden_stage0.json
 05b2e4707f33407559b63f2d2af79b108e0af26c assets/verdant/models/block/iron_trap_hidden_stage1.json
@@ -357,6 +361,7 @@ b111cff03e6c123846e3561060a023388493003b assets/verdant/models/item/heartwood_ch
 6ef7e7814828936cb11615ab9ddce9da47671765 assets/verdant/models/item/heartwood_door.json
 f4af4eb3ddbf9eb9fcd2b7dcfcb6509cb286abcd assets/verdant/models/item/heartwood_hanging_sign.json
 ab8f008a08b6494c57a9e3e587c3a552699abc74 assets/verdant/models/item/heartwood_sign.json
+d3c1d30349b0d94398fba80db95b056b6d26464d assets/verdant/models/item/heart_fragment.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
 cad018240194ad36ddfee279b0e7fe93044ff7f4 assets/verdant/models/item/iron_spikes.json
 6c1b612bc1209358226b19e7951efcb12d1a5eb0 assets/verdant/models/item/iron_trap.json

@@ -6,6 +6,10 @@
     },
     {
       "transformer": "mansioneer:from_birch_to_dark_oak"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:blue_carpet"
     }
   ]
 }

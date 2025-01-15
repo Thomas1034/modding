@@ -6,6 +6,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
@@ -37,6 +38,7 @@ public class MansioneerBlockTransformerProvider {
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.RED_SANDSTONE);
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.DIORITE);
         registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.BRICK);
+        registerStoneTransformer(bootstrap, StoneTypes.COBBLESTONE, StoneTypes.STONE_BRICKS);
         registerCrossTransformer(bootstrap, WoodTypes.BIRCH, StoneTypes.STONE_BRICKS);
         registerCrossTransformer(bootstrap, WoodTypes.BIRCH, StoneTypes.COBBLESTONE);
         registerCrossTransformer(bootstrap, WoodTypes.DARK_OAK, StoneTypes.STONE_BRICKS);
@@ -123,7 +125,7 @@ public class MansioneerBlockTransformerProvider {
                                         WoodTypes.JUNGLE
                                 )),
                                 BuiltInTransformers.direct(Blocks.TORCH, Blocks.LANTERN),
-                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.BLUE_CARPET)
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.RED_CARPET)
                         ), BuiltInTransformers.MANSION_TO_TAIGA
                 )
         );
@@ -497,12 +499,7 @@ public class MansioneerBlockTransformerProvider {
                                 BuiltInTransformers.transformer(WoodTypes.transformName(
                                         WoodTypes.OAK,
                                         WoodTypes.JUNGLE
-                                )),
-                                BuiltInTransformers.transformer(CrossTypes.transformName(
-                                        StoneTypes.COBBLESTONE,
-                                        WoodTypes.DARK_OAK
-                                )),
-                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.CYAN_CARPET)
+                                ))
 
                         ), BuiltInTransformers.MANSION_TO_FOREST
                 )
@@ -522,8 +519,9 @@ public class MansioneerBlockTransformerProvider {
                                 )),
                                 BuiltInTransformers.transformer(StoneTypes.transformName(
                                         StoneTypes.COBBLESTONE,
-                                        StoneTypes.BRICK
-                                ))
+                                        StoneTypes.STONE_BRICKS
+                                )),
+                                BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.CYAN_CARPET)
                         ), BuiltInTransformers.MANSION_TO_PLAINS
                 )
         );

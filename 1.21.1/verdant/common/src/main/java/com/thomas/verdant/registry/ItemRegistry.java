@@ -58,6 +58,8 @@ public class ItemRegistry {
     );
     public static final RegistryObject<Item, Item> HEART_OF_THE_FOREST = register("heart_of_the_forest", () -> new HeartOfTheForestItem(properties("heart_of_the_forest").rarity(
             Rarity.UNCOMMON)));
+    public static final RegistryObject<Item, Item> HEART_FRAGMENT = register("heart_fragment", () -> new Item(properties("heart_fragment").rarity(
+            Rarity.UNCOMMON)));
 
 
     public static void init() {

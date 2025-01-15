@@ -87,6 +87,7 @@ public class CommonClass {
         EntityTypeRegistry.init();
         BlockRegistry.init();
         MobEffectRegistry.init();
+        PotionRegistry.init();
         WoodSets.init();
         BlockEntityTypeRegistry.init();
         MenuRegistry.init();

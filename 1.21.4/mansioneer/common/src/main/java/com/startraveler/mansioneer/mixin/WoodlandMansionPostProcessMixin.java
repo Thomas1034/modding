@@ -3,6 +3,7 @@ package com.startraveler.mansioneer.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.startraveler.mansioneer.Constants;
 import com.startraveler.mansioneer.util.biomemapping.BiomeMapping;
 import com.startraveler.mansioneer.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
@@ -70,7 +71,7 @@ public class WoodlandMansionPostProcessMixin {
                 BlockState oldState = level.getBlockState(mutableBlockPos);
 
                 BlockState newState = transformer.get(oldState, level.registryAccess(), random);
-                level.setBlock(mutableBlockPos, newState, Block.UPDATE_CLIENTS);
+                level.setBlock(mutableBlockPos, newState, Block.UPDATE_ALL);
             }
             // Clean up; reset the mutable block pos.
             mutableBlockPos.set(oldX, oldY, oldZ);
@@ -92,11 +93,12 @@ public class WoodlandMansionPostProcessMixin {
                 );
         // Get the block transformer from the cache.
         BlockTransformer transformer = this.mansioneer$cachedTransformerMap.get(biome);
-        // If it's not in the cache, calculate it.
-        // Get the list of biome mappings
-        Registry<BiomeMapping> biomeMappings = level.registryAccess().lookupOrThrow(BiomeMapping.KEY);
-        int smallestSizeSoFar = Integer.MAX_VALUE;
         if (null == transformer) {
+            Constants.LOG.warn("Cache miss for biome {}", biome);
+            // If it's not in the cache, calculate it.
+            // Get the list of biome mappings
+            Registry<BiomeMapping> biomeMappings = level.registryAccess().lookupOrThrow(BiomeMapping.KEY);
+            int smallestSizeSoFar = Integer.MAX_VALUE;
             for (BiomeMapping mapping : biomeMappings) {
                 int mappingSize = mapping.getSize(level.registryAccess());
                 if (mapping.matches(biome) && mappingSize < smallestSizeSoFar) {
@@ -104,8 +106,9 @@ public class WoodlandMansionPostProcessMixin {
                     smallestSizeSoFar = mappingSize;
                 }
             }
+            Constants.LOG.warn("Retrieved {} from the cache", transformer);
+            this.mansioneer$cachedTransformerMap.put(biome, transformer);
         }
-        this.mansioneer$cachedTransformerMap.put(biome, transformer);
         return transformer;
     }
 

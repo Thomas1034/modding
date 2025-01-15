@@ -1,0 +1,84 @@
+{
+  "parent": "verdant:stand_on_verdant_ground",
+  "criteria": {
+    "no_immunity": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "effects": {
+                "verdant:verdant_energy": {
+                  "duration": {
+                    "max": 0
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "poison_ivy": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "block": {
+                  "blocks": "verdant:poison_ivy"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "poison_ivy_plant": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "block": {
+                  "blocks": "verdant:poison_ivy_plant"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.poison_ivy.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "verdant:poison_ivy"
+    },
+    "title": {
+      "translate": "advancements.verdant.poison_ivy.title"
+    }
+  },
+  "requirements": [
+    [
+      "poison_ivy",
+      "poison_ivy_plant"
+    ],
+    [
+      "no_immunity"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

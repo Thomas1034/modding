@@ -26,11 +26,11 @@
       "block": "minecraft:cobblestone_slab",
       "results": [
         {
-          "name": "minecraft:mossy_cobblestone_slab"
-        },
-        {
           "name": "minecraft:cobblestone_slab",
           "weight": 7
+        },
+        {
+          "name": "minecraft:mossy_cobblestone_slab"
         }
       ]
     },

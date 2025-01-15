@@ -16,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class VerdantAdvancementProvider {
@@ -94,7 +95,7 @@ public class VerdantAdvancementProvider {
                 AdvancementType.TASK,
                 true,
                 true,
-                false
+                true
         );
         builder.parent(petrichor);
         builder.addCriterion(
@@ -141,6 +142,100 @@ public class VerdantAdvancementProvider {
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stand_on_verdant_ground")
         );
 
+        Criterion<?> no_immunity_criterion = PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()
+                .effects(MobEffectsPredicate.Builder.effects().and(
+                        MobEffectRegistry.VERDANT_ENERGY.asHolder(),
+                        new MobEffectsPredicate.MobEffectInstancePredicate(
+                                MinMaxBounds.Ints.ANY,
+                                MinMaxBounds.Ints.atMost(0),
+                                Optional.empty(),
+                                Optional.empty()
+                        )
+                )));
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.STINKING_BLOSSOM.get()),
+                Component.translatable("advancements.verdant.stinking_blossom.title"),
+                Component.translatable("advancements.verdant.stinking_blossom.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(stand_on_verdant_ground);
+        builder.addCriterion(
+                "stinking_blossom",
+                PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location()
+                        .setBlock(BlockPredicate.Builder.block()
+                                .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.STINKING_BLOSSOM.get())))
+        );
+        builder.addCriterion("no_immunity", no_immunity_criterion);
+        builder.requirements(AdvancementRequirements.allOf(List.of("stinking_blossom", "no_immunity")));
+        AdvancementHolder stinking_blossom = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stinking_blossom")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.THORN_BUSH.get()),
+                Component.translatable("advancements.verdant.thorn_bush.title"),
+                Component.translatable("advancements.verdant.thorn_bush.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(stand_on_verdant_ground);
+        builder.addCriterion(
+                "thorn_bush",
+                PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location()
+                        .setBlock(BlockPredicate.Builder.block()
+                                .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.THORN_BUSH.get())))
+        );
+        builder.addCriterion("no_immunity", no_immunity_criterion);
+        builder.requirements(AdvancementRequirements.allOf(List.of("thorn_bush", "no_immunity")));
+        AdvancementHolder thorn_bush = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "thorn_bush")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.POISON_IVY.get()),
+                Component.translatable("advancements.verdant.poison_ivy.title"),
+                Component.translatable("advancements.verdant.poison_ivy.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(stand_on_verdant_ground);
+        builder.addCriterion(
+                "poison_ivy",
+                PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location()
+                        .setBlock(BlockPredicate.Builder.block()
+                                .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.POISON_IVY.get())))
+        );
+        builder.addCriterion(
+                "poison_ivy_plant",
+                PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location()
+                        .setBlock(BlockPredicate.Builder.block()
+                                .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.POISON_IVY_PLANT.get())))
+        );
+        builder.addCriterion("no_immunity", no_immunity_criterion);
+        builder.requirements(new AdvancementRequirements(List.of(
+                List.of("poison_ivy", "poison_ivy_plant"),
+                List.of("no_immunity")
+        )));
+        AdvancementHolder poison_ivy = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "poison_ivy")
+        );
 
         builder = Advancement.Builder.advancement();
         builder.display(

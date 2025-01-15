@@ -10,15 +10,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:vines_ceiling",
-        "weight": 100
+        "configured_feature": "verdant:strangler_tendril_ceiling",
+        "weight": 50
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:strangler_tendril_ceiling",
-        "weight": 50
+        "configured_feature": "verdant:vines_ceiling",
+        "weight": 100
       }
     },
     {
@@ -31,15 +31,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:stinking_blossom_ceiling",
-        "weight": 2
+        "configured_feature": "minecraft:spore_blossom",
+        "weight": 1
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:spore_blossom",
-        "weight": 1
+        "configured_feature": "verdant:stinking_blossom_ceiling",
+        "weight": 2
       }
     },
     {

@@ -24,6 +24,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -45,6 +47,7 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -80,6 +83,9 @@ public class Verdant {
 
         // Caffeine
         NeoForge.EVENT_BUS.addListener(Verdant::onPlayerTryToSleepEvent);
+
+        // Potions
+        NeoForge.EVENT_BUS.addListener(Verdant::registerBrewingRecipes);
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
@@ -92,6 +98,21 @@ public class Verdant {
             }
             DispenserBehaviors.init();
         });
+    }
+
+    // Using some method to listen to the event
+    public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
+        // Gets the builder to add recipes to
+        PotionBrewing.Builder builder = event.getBuilder();
+
+        PotionRecipeRegistry.init(
+                builder::addMix,
+                (input, ingredient, output) -> builder.addRecipe(
+                        Ingredient.of(input),
+                        ingredient,
+                        new ItemStack(output)
+                )
+        );
     }
 
     public static void registerStrippingLogs(final BlockEvent.BlockToolModificationEvent event) {

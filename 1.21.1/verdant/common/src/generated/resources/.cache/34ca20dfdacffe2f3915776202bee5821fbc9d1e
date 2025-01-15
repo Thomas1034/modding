@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-11T00:53:11.2051686	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-01-14T22:37:51.8472432	Tags for minecraft:block mod id verdant
 4cdfb0ab3e5548c08d89c64ca20e371e1fcb3319 data/c/tags/block/fences/wooden.json
 29b6ccf000f5e52bf448268bbdf5353dc6873fa4 data/c/tags/block/fence_gates/wooden.json
 7166531643e02808348a14edc765376109e66419 data/c/tags/block/ores.json
@@ -12,15 +12,16 @@ c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/block/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/block/ores/redstone.json
 b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores_in_ground/dirt.json
 d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/block/ore_bearing_ground/dirt.json
+a11921ff90444662df5516a256359b1ad46f5b00 data/c/tags/block/stripped_logs.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
 cb745575e495b3eec87db2e2b644df65241d73e8 data/minecraft/tags/block/climbable.json
 e2f23f941114e1d43716f68c7125f4080b06def0 data/minecraft/tags/block/crops.json
 26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/dirt.json
 840b184c8a8dc4fe0186883c48e46d5f0491cf78 data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
-f2d99ba3fd609f44c62ae898195de87c19937567 data/minecraft/tags/block/logs.json
-f73501a389a511fc3472566e0048bdbc3796b7c7 data/minecraft/tags/block/logs_that_burn.json
-9ae4790d8dda443ef8c735f7be0c1089818c0b48 data/minecraft/tags/block/mineable/axe.json
+452e340d4bda2c785e33d2c857e8d4ad4779dbfe data/minecraft/tags/block/logs.json
+7ab83cae9bc73fa1f9ca160115894ee003a62abf data/minecraft/tags/block/logs_that_burn.json
+6ba2646d564670e28c127ddb2308f17a800e3912 data/minecraft/tags/block/mineable/axe.json
 58e0973eb220997b6b6a19d656aa3a8cea7ed8ff data/minecraft/tags/block/mineable/hoe.json
 9926f292a84961a8c3d58243dfd697cd4ebdb359 data/minecraft/tags/block/mineable/pickaxe.json
 ac73af9594d0d95262eb6f9593ad705fda0ca171 data/minecraft/tags/block/mineable/shovel.json

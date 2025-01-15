@@ -8,17 +8,17 @@
       "block": "minecraft:dark_oak_planks",
       "results": [
         {
-          "name": "minecraft:cracked_stone_bricks"
-        },
-        {
-          "name": "minecraft:infested_cracked_stone_bricks"
-        },
-        {
           "name": "minecraft:stone_bricks",
           "weight": 5
         },
         {
           "name": "minecraft:infested_stone_bricks"
+        },
+        {
+          "name": "minecraft:cracked_stone_bricks"
+        },
+        {
+          "name": "minecraft:infested_cracked_stone_bricks"
         }
       ]
     },
@@ -26,7 +26,8 @@
       "block": "minecraft:birch_planks",
       "results": [
         {
-          "name": "minecraft:powder_snow"
+          "name": "minecraft:packed_ice",
+          "weight": 21
         },
         {
           "name": "minecraft:blue_ice",
@@ -37,8 +38,7 @@
           "weight": 3
         },
         {
-          "name": "minecraft:packed_ice",
-          "weight": 21
+          "name": "minecraft:powder_snow"
         }
       ]
     },
@@ -108,11 +108,11 @@
       "block": "minecraft:red_carpet",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 2
+          "name": "minecraft:snow"
         },
         {
-          "name": "minecraft:snow"
+          "name": "minecraft:air",
+          "weight": 2
         }
       ]
     },
@@ -120,11 +120,11 @@
       "block": "minecraft:white_carpet",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 2
+          "name": "minecraft:snow"
         },
         {
-          "name": "minecraft:snow"
+          "name": "minecraft:air",
+          "weight": 2
         }
       ]
     },
