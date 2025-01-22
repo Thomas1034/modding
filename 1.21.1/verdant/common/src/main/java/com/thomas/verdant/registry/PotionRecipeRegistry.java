@@ -42,7 +42,27 @@ public class PotionRecipeRegistry {
                 Items.SUGAR,
                 PotionRegistry.LONG_STRONG_CAFFEINE.asHolder()
         );
+        recipes.register(Potions.THICK, ItemRegistry.SPARKLING_STARCH.get(), PotionRegistry.COLLOID.asHolder());
+        recipes.register(PotionRegistry.COLLOID.asHolder(), Items.REDSTONE, PotionRegistry.LONG_COLLOID.asHolder());
+        recipes.register(
+                PotionRegistry.COLLOID.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_COLLOID.asHolder()
+        );
 
+        recipes.register(
+                ItemRegistry.HEART_FRAGMENT.get(),
+                PotionRegistry.ANTIDOTE.asHolder(),
+                PotionRegistry.LONG_ANTIDOTE.asHolder(),
+                PotionRegistry.STRONG_ANTIDOTE.asHolder()
+        );
+
+    }
+
+    public void register(ItemLike ingredient, Holder<Potion> normal, Holder<Potion> extended, Holder<Potion> strong) {
+        this.register(Potions.AWKWARD, ingredient, normal);
+        this.register(normal, Items.REDSTONE, extended);
+        this.register(normal, Items.GLOWSTONE_DUST, strong);
     }
 
     public void register(Item input, Set<ItemLike> ingredient, Item output) {

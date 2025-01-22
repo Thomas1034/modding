@@ -1,5 +1,12 @@
 {
   "values": [
-    "verdant:roasted_coffee"
+    "verdant:roasted_coffee",
+    "verdant:bitter_bread",
+    "verdant:cooked_cassava",
+    "verdant:golden_bread",
+    "verdant:cooked_golden_cassava",
+    "verdant:ube",
+    "verdant:baked_ube",
+    "verdant:ube_cookie"
   ]
 }

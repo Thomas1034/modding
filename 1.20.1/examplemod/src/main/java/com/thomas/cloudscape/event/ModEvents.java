@@ -410,18 +410,15 @@ public class ModEvents {
 
 	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event) {
-
 		if (event.phase != TickEvent.Phase.START) {
 			return;
 		}
-
 		if (event.side == LogicalSide.SERVER) {
 			Player player = event.player;
 			if (player instanceof ServerPlayer sp) {
 				MotionHelper.update(sp);
 			}
 		}
-
 	}
 
 	@SubscribeEvent

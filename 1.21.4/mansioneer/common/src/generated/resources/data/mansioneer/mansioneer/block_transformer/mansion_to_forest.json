@@ -10,10 +10,6 @@
     },
     {
       "transformer": "mansioneer:from_oak_to_jungle"
-    },
-    {
-      "block": "minecraft:red_carpet",
-      "result": "minecraft:cyan_carpet"
     }
   ]
 }

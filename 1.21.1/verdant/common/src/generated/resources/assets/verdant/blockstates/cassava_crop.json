@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "verdant:block/cassava_crop_stage0"
+    },
+    "age=1": {
+      "model": "verdant:block/cassava_crop_stage1"
+    },
+    "age=10": {
+      "model": "verdant:block/cassava_crop_stage10"
+    },
+    "age=11": {
+      "model": "verdant:block/cassava_crop_stage11"
+    },
+    "age=2": {
+      "model": "verdant:block/cassava_crop_stage2"
+    },
+    "age=3": {
+      "model": "verdant:block/cassava_crop_stage3"
+    },
+    "age=4": {
+      "model": "verdant:block/cassava_crop_stage4"
+    },
+    "age=5": {
+      "model": "verdant:block/cassava_crop_stage5"
+    },
+    "age=6": {
+      "model": "verdant:block/cassava_crop_stage6"
+    },
+    "age=7": {
+      "model": "verdant:block/cassava_crop_stage7"
+    },
+    "age=8": {
+      "model": "verdant:block/cassava_crop_stage8"
+    },
+    "age=9": {
+      "model": "verdant:block/cassava_crop_stage9"
+    }
+  }
+}

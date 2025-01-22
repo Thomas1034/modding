@@ -1,5 +1,7 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
+import com.thomas.verdant.entity.custom.TimbermiteEntity;
 import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
@@ -8,6 +10,7 @@ import com.thomas.verdant.woodset.WoodSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -57,6 +60,14 @@ public class Verdant implements ModInitializer {
             PotionRecipeRegistry.init(builder::addMix, builder::registerItemRecipe);
         });
 
+        FabricDefaultAttributeRegistry.register(
+                EntityTypeRegistry.TIMBERMITE.get(),
+                TimbermiteEntity.createAttributes()
+        );
+        FabricDefaultAttributeRegistry.register(
+                EntityTypeRegistry.OVERGROWN_ZOMBIE.get(),
+                OvergrownZombieEntity.createAttributes()
+        );
 
         // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
@@ -71,5 +82,7 @@ public class Verdant implements ModInitializer {
 
             return null;
         });
+
+        CommonClass.addCakeCandles();
     }
 }

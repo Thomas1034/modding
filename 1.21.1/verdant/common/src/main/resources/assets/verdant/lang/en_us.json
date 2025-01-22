@@ -109,6 +109,7 @@
 	"item.verdant.bitter_bread": "Bitter Bread",
 	"item.verdant.cooked_cassava": "Cooked Cassava",
 	"item.verdant.cooked_golden_cassava": "Cooked Golden Cassava",
+	"item.verdant.golden_bread": "Golden Bread",
 	"item.verdant.ube": "Ube",
 	"item.verdant.baked_ube": "Baked Ube",
 	"item.verdant.ube_cake": "Ube Cake",
@@ -293,6 +294,7 @@
 	
 	"entity.verdant.overgrown_skeleton": "Overgrown Skeleton",
 	"entity.verdant.overgrown_zombie": "Overgrown Zombie",
+	"entity.verdant.timbermite": "Timbermite",
 	
 	"effect.verdant.intangible": "Intangible",
 	"effect.verdant.cassava_poisoning": "Cassava Poisoning",
@@ -347,6 +349,8 @@
 	"advancements.verdant.poison_ivy.description": "Discover why those vines are poison green.",
 	"advancements.verdant.strong_trees.title": "The Trees Are Strong...",
 	"advancements.verdant.strong_trees.description": "Get to the heart of a new tree species.",
+	"advancements.verdant.heartworm.title": "Heartworm",
+	"advancements.verdant.heartworm.description": "Defeat a Timbermite.",
 	"advancements.verdant.deep_roots.title": "Their Roots Go Deep",
 	"advancements.verdant.deep_roots.description": "Discover just how deep the Verdant has spread.",
 	"advancements.verdant.rip_them_all_down.title": "Rip Them All Down",

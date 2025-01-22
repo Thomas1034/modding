@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:bitter_bread",
+  "key": {
+    "B": "verdant:bitter_starch"
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:bitter_bread"
+  }
+}

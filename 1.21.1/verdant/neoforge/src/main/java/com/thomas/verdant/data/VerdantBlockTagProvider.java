@@ -84,19 +84,19 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         //        // Mechanical.
         this.tag(BlockTags.CROPS).add(
-                /*
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
-                 */
-                BlockRegistry.COFFEE_CROP.get());
+                BlockRegistry.COFFEE_CROP.get()
+        );
         this.tag(BlockTags.DIRT).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_ROOTED_CLAY.get()
-                /*, BlockRegistry.CASSAVA_ROOTED_DIRT.get(), BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()*/
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
+                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()
         );
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
@@ -146,15 +146,23 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
 
-        //        this.tag(BlockTags.CANDLE_CAKES).add(BlockRegistry.CANDLE_UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(), BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get(), BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.LIME_CANDLE_UBE_CAKE.get(), BlockRegistry.PINK_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.GRAY_CANDLE_UBE_CAKE.get(), BlockRegistry.LIGHT_GRAY_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.CYAN_CANDLE_UBE_CAKE.get(), BlockRegistry.PURPLE_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.BLUE_CANDLE_UBE_CAKE.get(), BlockRegistry.BROWN_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.GREEN_CANDLE_UBE_CAKE.get(), BlockRegistry.RED_CANDLE_UBE_CAKE.get(),
-        //                BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
+                this.tag(BlockTags.CANDLE_CAKES).add(BlockRegistry.CANDLE_UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.LIME_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.PINK_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.GRAY_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.LIGHT_GRAY_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.CYAN_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.PURPLE_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.BLUE_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.BROWN_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.GREEN_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.RED_CANDLE_UBE_CAKE.get(),
+                        BlockRegistry.BLACK_CANDLE_UBE_CAKE.get()
+                );
 
         // All vine replacable blocks.
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(VerdantTags.Blocks.TENDRILS);
@@ -225,12 +233,15 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_COFFEE.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.TIGER_LILY.get());
+        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_CASSAVA.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_TIGER_LILY.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_CASSAVA.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_UBE.get());
 
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);

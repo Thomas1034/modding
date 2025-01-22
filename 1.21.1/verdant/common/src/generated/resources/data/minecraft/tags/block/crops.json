@@ -1,5 +1,7 @@
 {
   "values": [
+    "verdant:cassava_crop",
+    "verdant:bitter_cassava_crop",
     "verdant:coffee_crop"
   ]
 }

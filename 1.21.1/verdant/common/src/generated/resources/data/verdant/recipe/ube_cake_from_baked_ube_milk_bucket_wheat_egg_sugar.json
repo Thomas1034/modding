@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:ube_cake",
+  "key": {
+    "B": "minecraft:milk_bucket",
+    "E": "minecraft:egg",
+    "G": "minecraft:sugar",
+    "S": "minecraft:wheat",
+    "U": "verdant:baked_ube"
+  },
+  "pattern": [
+    "UBU",
+    "GEG",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:ube_cake"
+  }
+}

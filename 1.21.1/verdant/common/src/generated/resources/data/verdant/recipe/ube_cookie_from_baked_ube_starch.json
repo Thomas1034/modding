@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:ube_cookie",
+  "key": {
+    "S": "verdant:starch",
+    "U": "verdant:baked_ube"
+  },
+  "pattern": [
+    "SUS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "verdant:ube_cookie"
+  }
+}

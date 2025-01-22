@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_baked_ube": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:baked_ube"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_purple_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:purple_dye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:purple_dye_from_baked_ube"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_baked_ube",
+      "has_purple_dye"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:purple_dye_from_baked_ube"
+    ]
+  }
+}

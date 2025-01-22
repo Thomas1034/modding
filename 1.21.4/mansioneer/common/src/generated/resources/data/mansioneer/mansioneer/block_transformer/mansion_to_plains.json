@@ -13,6 +13,10 @@
     },
     {
       "transformer": "mansioneer:from_cobblestone_to_stone_bricks"
+    },
+    {
+      "block": "minecraft:red_carpet",
+      "result": "minecraft:cyan_carpet"
     }
   ]
 }

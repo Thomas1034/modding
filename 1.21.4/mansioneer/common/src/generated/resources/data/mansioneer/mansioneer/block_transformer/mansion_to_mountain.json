@@ -35,14 +35,14 @@
     {
       "results": [
         {
-          "name": "minecraft:potted_brown_mushroom"
+          "name": "minecraft:potted_spruce_sapling",
+          "weight": 2
         },
         {
           "name": "minecraft:potted_red_mushroom"
         },
         {
-          "name": "minecraft:potted_spruce_sapling",
-          "weight": 2
+          "name": "minecraft:potted_brown_mushroom"
         }
       ],
       "tag": {
@@ -50,7 +50,7 @@
       }
     },
     {
-      "transformer": "mansioneer:from_cobblestone_to_dark_oak"
+      "transformer": "mansioneer:from_cobblestone_to_diorite"
     },
     {
       "block": "minecraft:red_carpet",

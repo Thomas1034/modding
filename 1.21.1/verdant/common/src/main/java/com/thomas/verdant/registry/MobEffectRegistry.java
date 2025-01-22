@@ -40,31 +40,31 @@ public class MobEffectRegistry {
                     600,
                     RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(
                             MobEffects.MOVEMENT_SLOWDOWN,
-                            -5,
+                            5,
                             4,
                             0
                     )
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.WEAKNESS, -5, 4, 1)
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.WEAKNESS, 5, 4, 1)
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.DIG_SLOWDOWN, -5, 4, 2)
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.DIG_SLOWDOWN, 5, 4, 2)
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
                     RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(
                             MobEffectRegistry.FOOD_POISONING.asHolder(),
-                            -5,
+                            5,
                             4,
                             3
                     )
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.WITHER, -5, 4, 5)
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.WITHER, 5, 4, 5)
             )
             )
     );
@@ -80,7 +80,7 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> VERDANT_ENERGY = MOB_EFFECTS.register(
             "verdant_energy",
-            () -> new BoneMealEffect(MobEffectCategory.BENEFICIAL, 0x2a7a1c)
+            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0x2a7a1c)
     );
     public static final RegistryObject<MobEffect, MobEffect> COLLOID = MOB_EFFECTS.register(
             "colloid",

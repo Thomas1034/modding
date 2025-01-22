@@ -12,13 +12,13 @@
           "weight": 5
         },
         {
-          "name": "minecraft:infested_stone_bricks"
+          "name": "minecraft:infested_cracked_stone_bricks"
         },
         {
           "name": "minecraft:cracked_stone_bricks"
         },
         {
-          "name": "minecraft:infested_cracked_stone_bricks"
+          "name": "minecraft:infested_stone_bricks"
         }
       ]
     },
@@ -26,19 +26,19 @@
       "block": "minecraft:birch_planks",
       "results": [
         {
-          "name": "minecraft:packed_ice",
-          "weight": 21
+          "name": "minecraft:snow_block",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:powder_snow"
         },
         {
           "name": "minecraft:blue_ice",
           "weight": 7
         },
         {
-          "name": "minecraft:snow_block",
-          "weight": 3
-        },
-        {
-          "name": "minecraft:powder_snow"
+          "name": "minecraft:packed_ice",
+          "weight": 21
         }
       ]
     },
@@ -87,14 +87,14 @@
     {
       "results": [
         {
-          "name": "minecraft:potted_brown_mushroom"
-        },
-        {
           "name": "minecraft:ice",
           "weight": 2
         },
         {
           "name": "minecraft:potted_red_mushroom"
+        },
+        {
+          "name": "minecraft:potted_brown_mushroom"
         }
       ],
       "tag": {
@@ -108,11 +108,11 @@
       "block": "minecraft:red_carpet",
       "results": [
         {
-          "name": "minecraft:snow"
-        },
-        {
           "name": "minecraft:air",
           "weight": 2
+        },
+        {
+          "name": "minecraft:snow"
         }
       ]
     },
@@ -120,11 +120,11 @@
       "block": "minecraft:white_carpet",
       "results": [
         {
-          "name": "minecraft:snow"
-        },
-        {
           "name": "minecraft:air",
           "weight": 2
+        },
+        {
+          "name": "minecraft:snow"
         }
       ]
     },

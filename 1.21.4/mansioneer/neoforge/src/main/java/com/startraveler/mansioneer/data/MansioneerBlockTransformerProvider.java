@@ -381,9 +381,9 @@ public class MansioneerBlockTransformerProvider {
                                                 2
                                         )
                                 ),
-                                BuiltInTransformers.transformer(CrossTypes.transformName(
+                                BuiltInTransformers.transformer(StoneTypes.transformName(
                                         StoneTypes.COBBLESTONE,
-                                        WoodTypes.DARK_OAK
+                                        StoneTypes.DIORITE
                                 )),
                                 BuiltInTransformers.direct(Blocks.RED_CARPET, Blocks.WHITE_CARPET),
                                 BuiltInTransformers.direct(Blocks.WHITE_CARPET, Blocks.LIGHT_GRAY_CARPET),

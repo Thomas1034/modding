@@ -14,11 +14,11 @@
       "block": "minecraft:cobblestone",
       "results": [
         {
-          "name": "minecraft:cobblestone",
-          "weight": 7
+          "name": "minecraft:mossy_cobblestone"
         },
         {
-          "name": "minecraft:mossy_cobblestone"
+          "name": "minecraft:cobblestone",
+          "weight": 7
         }
       ]
     },
@@ -38,11 +38,11 @@
       "block": "minecraft:cobblestone_stairs",
       "results": [
         {
-          "name": "minecraft:cobblestone_stairs",
-          "weight": 7
+          "name": "minecraft:mossy_cobblestone_stairs"
         },
         {
-          "name": "minecraft:mossy_cobblestone_stairs"
+          "name": "minecraft:cobblestone_stairs",
+          "weight": 7
         }
       ]
     },

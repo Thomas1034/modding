@@ -5,11 +5,11 @@
       "block": "minecraft:cobblestone",
       "results": [
         {
-          "name": "minecraft:cobblestone",
-          "weight": 7
+          "name": "minecraft:mossy_cobblestone"
         },
         {
-          "name": "minecraft:mossy_cobblestone"
+          "name": "minecraft:cobblestone",
+          "weight": 7
         }
       ]
     },
@@ -28,7 +28,7 @@
     },
     {
       "block": "minecraft:red_carpet",
-      "result": "minecraft:blue_carpet"
+      "result": "minecraft:red_carpet"
     }
   ]
 }

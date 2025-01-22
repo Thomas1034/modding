@@ -17,14 +17,41 @@ public class CreativeModeTabRegistry {
     public static final RegistryObject<CreativeModeTab, CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register(
             Constants.MOD_ID + "_items_tab",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-                    .icon(() -> new ItemStack(ItemRegistry.THORN.get()))
+                    .icon(() -> new ItemStack(ItemRegistry.HEART_OF_THE_FOREST.get()))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
                         output.accept(ItemRegistry.THORN.get());
-                        output.accept(ItemRegistry.COFFEE_BERRIES.get());
-                        output.accept(ItemRegistry.ROASTED_COFFEE.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
+                        output.accept(ItemRegistry.POISON_ARROW.get());
+                        output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
+                        output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
+                    })
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
+                    .build()
+    );
+    public static final RegistryObject<CreativeModeTab, CreativeModeTab> FOODS_TAB = CREATIVE_MODE_TABS.register(
+            Constants.MOD_ID + "_foods_tab",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                    .icon(() -> new ItemStack(ItemRegistry.CASSAVA.get()))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.COFFEE_BERRIES.get());
+                        output.accept(ItemRegistry.ROASTED_COFFEE.get());
+                        output.accept(ItemRegistry.ROTTEN_COMPOST.get());
+                        output.accept(ItemRegistry.CASSAVA.get());
+                        output.accept(ItemRegistry.BITTER_CASSAVA.get());
+                        output.accept(ItemRegistry.GOLDEN_CASSAVA.get());
+                        output.accept(ItemRegistry.COOKED_CASSAVA.get());
+                        output.accept(ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
+                        output.accept(ItemRegistry.STARCH.get());
+                        output.accept(ItemRegistry.BITTER_STARCH.get());
+                        output.accept(ItemRegistry.SPARKLING_STARCH.get());
+                        output.accept(ItemRegistry.BITTER_BREAD.get());
+                        output.accept(ItemRegistry.GOLDEN_BREAD.get());
+                        output.accept(ItemRegistry.UBE.get());
+                        output.accept(ItemRegistry.BAKED_UBE.get());
+                        output.accept(ItemRegistry.UBE_COOKIE.get());
+                        output.accept(ItemRegistry.UBE_CAKE.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
@@ -70,6 +97,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
                         output.accept(BlockRegistry.SNAPLEAF.get());
+                        output.accept(BlockRegistry.WILD_CASSAVA.get());
+                        output.accept(BlockRegistry.WILD_UBE.get());
                         output.accept(BlockRegistry.WILD_COFFEE.get());
                         output.accept(BlockRegistry.BLEEDING_HEART.get());
                         output.accept(BlockRegistry.TIGER_LILY.get());

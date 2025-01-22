@@ -1,9 +1,7 @@
 package com.thomas.verdant.platform;
 
 import com.thomas.verdant.Constants;
-import com.thomas.verdant.platform.services.IFishTrapMenuCreator;
-import com.thomas.verdant.platform.services.IFishTrapMenuOpener;
-import com.thomas.verdant.platform.services.IPlatformHelper;
+import com.thomas.verdant.platform.services.*;
 
 import java.util.ServiceLoader;
 
@@ -22,6 +20,13 @@ public class Services {
 
     // This actually opens the fish trap menu, since that varies per-platform.
     public static final IFishTrapMenuOpener FISH_TRAP_MENU_OPENER = load(IFishTrapMenuOpener.class);
+
+    // Handles the growth-event wrapped code for the cassava crop.
+    public static final ICropEventHelper CROP_EVENT_HELPER = load(ICropEventHelper.class);
+
+    // Handles getting the growth speed of crops. Blame NeoForge changing the signature
+    // unnecessarily.
+    public static final ICropGrowthSpeedChecker CROP_GROWTH_SPEED = load(ICropGrowthSpeedChecker.class);
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.

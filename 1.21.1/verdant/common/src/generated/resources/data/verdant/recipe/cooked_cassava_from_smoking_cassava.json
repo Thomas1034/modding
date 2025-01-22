@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 50,
+  "experience": 0.1,
+  "group": "verdant:cooked_cassava",
+  "ingredient": "verdant:cassava",
+  "result": {
+    "count": 1,
+    "id": "verdant:cooked_cassava"
+  }
+}

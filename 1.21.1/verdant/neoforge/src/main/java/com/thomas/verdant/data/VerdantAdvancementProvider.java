@@ -142,6 +142,7 @@ public class VerdantAdvancementProvider {
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stand_on_verdant_ground")
         );
 
+        // TODO make custom criterion for damage from verdant blocks.
         Criterion<?> no_immunity_criterion = PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()
                 .effects(MobEffectsPredicate.Builder.effects().and(
                         MobEffectRegistry.VERDANT_ENERGY.asHolder(),

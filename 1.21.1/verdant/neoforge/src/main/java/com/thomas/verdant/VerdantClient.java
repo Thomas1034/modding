@@ -1,7 +1,6 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.client.renderer.VerdantConduitRenderer;
-import com.thomas.verdant.client.renderer.VerdantConduitSpecialRenderer;
+import com.thomas.verdant.client.renderer.*;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.BlockEntityTypeRegistry;
@@ -80,6 +79,9 @@ public class VerdantClient {
             setupWoodSets();
 
             EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
         });
     }
 

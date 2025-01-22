@@ -5,11 +5,11 @@
       "block": "minecraft:farmland",
       "results": [
         {
-          "name": "minecraft:sand",
-          "weight": 3
+          "name": "minecraft:coarse_dirt"
         },
         {
-          "name": "minecraft:coarse_dirt"
+          "name": "minecraft:sand",
+          "weight": 3
         }
       ]
     },
@@ -87,11 +87,11 @@
           "weight": 24
         },
         {
-          "name": "minecraft:cobweb",
+          "name": "minecraft:air",
           "weight": 3
         },
         {
-          "name": "minecraft:air",
+          "name": "minecraft:cobweb",
           "weight": 3
         }
       ]
@@ -104,16 +104,16 @@
           "weight": 3
         },
         {
-          "name": "minecraft:redstone_wall_torch",
-          "weight": 2
+          "name": "minecraft:air",
+          "weight": 3
         },
         {
           "name": "minecraft:wall_torch",
           "weight": 24
         },
         {
-          "name": "minecraft:air",
-          "weight": 3
+          "name": "minecraft:redstone_wall_torch",
+          "weight": 2
         }
       ]
     },
@@ -132,15 +132,15 @@
           "name": "minecraft:gray_carpet"
         },
         {
-          "name": "minecraft:brown_carpet",
-          "weight": 3
+          "name": "minecraft:air",
+          "weight": 25
         },
         {
           "name": "minecraft:moss_carpet"
         },
         {
-          "name": "minecraft:air",
-          "weight": 25
+          "name": "minecraft:brown_carpet",
+          "weight": 3
         }
       ],
       "tag": {
@@ -150,19 +150,19 @@
     {
       "results": [
         {
-          "name": "minecraft:gravel",
-          "weight": 15
+          "name": "minecraft:gray_wool"
         },
         {
-          "name": "minecraft:gray_wool"
+          "name": "minecraft:sand",
+          "weight": 45
         },
         {
           "name": "minecraft:brown_wool",
           "weight": 3
         },
         {
-          "name": "minecraft:sand",
-          "weight": 45
+          "name": "minecraft:gravel",
+          "weight": 15
         }
       ],
       "tag": {
@@ -188,8 +188,7 @@
     {
       "results": [
         {
-          "name": "minecraft:potted_dead_bush",
-          "weight": 3
+          "name": "minecraft:redstone_wire"
         },
         {
           "name": "minecraft:cobweb"
@@ -199,7 +198,8 @@
           "weight": 3
         },
         {
-          "name": "minecraft:redstone_wire"
+          "name": "minecraft:potted_dead_bush",
+          "weight": 3
         }
       ],
       "tag": {
@@ -209,23 +209,23 @@
     {
       "results": [
         {
-          "name": "minecraft:cobweb"
-        },
-        {
-          "name": "minecraft:gray_stained_glass_pane",
-          "weight": 3
-        },
-        {
-          "name": "minecraft:air",
-          "weight": 2
-        },
-        {
           "name": "minecraft:glass_pane",
           "weight": 3
         },
         {
           "name": "minecraft:brown_stained_glass_pane",
           "weight": 7
+        },
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "minecraft:gray_stained_glass_pane",
+          "weight": 3
+        },
+        {
+          "name": "minecraft:cobweb"
         }
       ],
       "tag": {

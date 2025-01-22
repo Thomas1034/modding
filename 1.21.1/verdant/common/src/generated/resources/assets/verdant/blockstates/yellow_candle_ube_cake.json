@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "verdant:block/yellow_candle_ube_cake"
+    },
+    "lit=true": {
+      "model": "verdant:block/yellow_candle_ube_cake_lit"
+    }
+  }
+}

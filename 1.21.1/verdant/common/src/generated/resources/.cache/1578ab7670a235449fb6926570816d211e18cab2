@@ -1,11 +1,15 @@
-// 1.21.4	2025-01-14T22:37:51.8615515	Tags for minecraft:item mod id verdant
-f19fb21150ca3d7b98db489d008ae3bdb213fe46 data/c/tags/item/crops.json
+// 1.21.4	2025-01-21T15:52:30.0209973	Tags for minecraft:item mod id verdant
+4a4f07cfe1ba76d16b89017db2f1647d7b04453b data/c/tags/item/crops.json
 4cdfb0ab3e5548c08d89c64ca20e371e1fcb3319 data/c/tags/item/fences/wooden.json
 29b6ccf000f5e52bf448268bbdf5353dc6873fa4 data/c/tags/item/fence_gates/wooden.json
 ed91c1bfb4753a6e8ed08a8ff9ee8f97158c4495 data/c/tags/item/fertilizers.json
-5e32ca3c9b1accd0cf78af4e4d86c4dcdbf7cef8 data/c/tags/item/foods.json
+65a9002397d033d7fb8c279738f36f8614764fd7 data/c/tags/item/foods.json
 f19fb21150ca3d7b98db489d008ae3bdb213fe46 data/c/tags/item/foods/berry.json
-ed91c1bfb4753a6e8ed08a8ff9ee8f97158c4495 data/c/tags/item/foods/food_poisoning.json
+77f04fb7c3bef303f9347f6bc98dbef93578129d data/c/tags/item/foods/bread.json
+e1ceebcec8b9bbd90ae11bd0687819510c45c658 data/c/tags/item/foods/edible_when_placed.json
+31eed87b128b80e73dc387dd27fe1b95f9eaa394 data/c/tags/item/foods/food_poisoning.json
+92fd80cc4e43c83341972eab1d39139db89d116a data/c/tags/item/foods/golden.json
+4ba22241ef2f6681e1576349574d06be7baad9b8 data/c/tags/item/foods/vegetable.json
 b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/item/ores.json
 3483190da3c649a3e8f7b7aba7976f4591697a7a data/c/tags/item/ores/coal.json
 cb89d15702ec273344f347e1ea4ff705107400fe data/c/tags/item/ores/copper.json
@@ -15,6 +19,7 @@ dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/item/ores/emerald.json
 3bcdac3c19b310abd9ffa6e47fceead01a082447 data/c/tags/item/ores/iron.json
 c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/item/ores/lapis.json
 0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/item/ores/redstone.json
+6f64aeb58e3eb9ceef6008175f56c1bd70abf38a data/minecraft/tags/item/arrows.json
 b8867f190bcf19d32b8fcef86b6e6e6aeda484c3 data/minecraft/tags/item/hanging_signs.json
 f2d99ba3fd609f44c62ae898195de87c19937567 data/minecraft/tags/item/logs.json
 f2d99ba3fd609f44c62ae898195de87c19937567 data/minecraft/tags/item/logs_that_burn.json
@@ -28,6 +33,7 @@ a2c30d0029a55b7f30021a64881a6a0345ed3c70 data/minecraft/tags/item/wooden_pressur
 1b53a0c88787ced8312877bd5914f42011baf979 data/minecraft/tags/item/wooden_slabs.json
 ef7f05a52bab2942f9c68c0731865b155ae25bd2 data/minecraft/tags/item/wooden_stairs.json
 4fa1c5f29bf91c63f7d96829e5646a620d807766 data/minecraft/tags/item/wooden_trapdoors.json
+fd1050e3b50710462279abdcb0126ce81a18983f data/verdant/tags/item/crafts_to_ropes.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/verdant/tags/item/heartwood_logs.json
 b882fcc87ee1e11b353599ee660a0f508225b174 data/verdant/tags/item/strangler_logs.json
 cf05a9ccc0106bfe2011fb84a387bb49a083387f data/verdant/tags/item/strangler_vines.json

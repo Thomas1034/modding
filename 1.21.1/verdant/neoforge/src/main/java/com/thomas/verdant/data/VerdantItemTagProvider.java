@@ -11,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 
@@ -33,15 +34,43 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
                 .add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get());
 
-        this.tag(ItemTags.SMALL_FLOWERS)
-                .add(BlockRegistry.BLEEDING_HEART.get().asItem(), BlockRegistry.WILD_COFFEE.get().asItem(), BlockRegistry.TIGER_LILY.get()
-                        .asItem());
-
-        this.tag(Tags.Items.CROPS).add(ItemRegistry.COFFEE_BERRIES.get());
+        this.tag(ItemTags.SMALL_FLOWERS).add(
+                BlockRegistry.BLEEDING_HEART.get().asItem(),
+                BlockRegistry.WILD_COFFEE.get().asItem(),
+                BlockRegistry.TIGER_LILY.get().asItem()
+        );
+        
+        this.tag(Tags.Items.CROPS).add(
+                ItemRegistry.COFFEE_BERRIES.get(),
+                ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),
+                ItemRegistry.CASSAVA_CUTTINGS.get(),
+                ItemRegistry.UBE.get()
+        );
         this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());
-        this.tag(Tags.Items.FOODS_FOOD_POISONING).add(ItemRegistry.ROTTEN_COMPOST.get());
+        this.tag(Tags.Items.FOODS_FOOD_POISONING)
+                .add(ItemRegistry.ROTTEN_COMPOST.get(), ItemRegistry.BITTER_BREAD.get());
+        this.tag(Tags.Items.FOODS_BREAD).add(ItemRegistry.BITTER_BREAD.get(), ItemRegistry.GOLDEN_BREAD.get());
+        this.tag(Tags.Items.FOODS_VEGETABLE)
+                .add(ItemRegistry.COOKED_CASSAVA.get(), ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
+        this.tag(Tags.Items.FOODS_GOLDEN)
+                .add(ItemRegistry.GOLDEN_BREAD.get(), ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
 
-        this.tag(Tags.Items.FOODS).add(ItemRegistry.ROASTED_COFFEE.get());
+        this.tag(Tags.Items.FOODS).add(
+                ItemRegistry.ROASTED_COFFEE.get(),
+                ItemRegistry.BITTER_BREAD.get(),
+                ItemRegistry.COOKED_CASSAVA.get(),
+                ItemRegistry.GOLDEN_BREAD.get(),
+                ItemRegistry.COOKED_GOLDEN_CASSAVA.get(),
+                ItemRegistry.UBE.get(),
+                ItemRegistry.BAKED_UBE.get(),
+                ItemRegistry.UBE_COOKIE.get()
+        );
+        this.tag(Tags.Items.FOODS_EDIBLE_WHEN_PLACED).add(ItemRegistry.UBE_CAKE.get());
+
+
+        this.tag(ItemTags.ARROWS).add(ItemRegistry.POISON_ARROW.get());
+        this.tag(VerdantTags.Items.CRAFTS_TO_ROPES)
+                .add(Items.VINE, Items.STRING, BlockRegistry.STRANGLER_TENDRIL.get().asItem());
     }
 
     private void addDirtOres() {

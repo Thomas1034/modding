@@ -3,6 +3,9 @@ package com.thomas.verdant.registry;
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.block.custom.*;
+import com.thomas.verdant.block.custom.extensible.ExtensibleCakeBlock;
+import com.thomas.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
+import com.thomas.verdant.block.loot.LootLocations;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.properties.BlockProperties;
@@ -92,6 +95,33 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> CHARRED_FRAME_BLOCK;
     public static final RegistryObject<Block, Block> VERDANT_CONDUIT;
     public static final RegistryObject<Block, Block> IMBUED_HEARTWOOD_LOG;
+    public static final RegistryObject<Block, Block> CASSAVA_ROOTED_DIRT;
+    public static final RegistryObject<Block, Block> BITTER_CASSAVA_ROOTED_DIRT;
+    public static final RegistryObject<Block, Block> CASSAVA_CROP;
+    public static final RegistryObject<Block, Block> BITTER_CASSAVA_CROP;
+    public static final RegistryObject<Block, Block> WILD_CASSAVA;
+    public static final RegistryObject<Block, Block> POTTED_WILD_CASSAVA;
+    public static final RegistryObject<Block, Block> UBE_CAKE;
+    public static final RegistryObject<Block, Block> CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> WHITE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> ORANGE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> MAGENTA_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> LIGHT_BLUE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> YELLOW_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> LIME_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> PINK_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> GRAY_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> LIGHT_GRAY_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> CYAN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> PURPLE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> BLUE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> BROWN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> GREEN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> RED_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> BLACK_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, Block> UBE_CROP;
+    public static final RegistryObject<Block, Block> WILD_UBE;
+    public static final RegistryObject<Block, Block> POTTED_WILD_UBE;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -415,8 +445,224 @@ public class BlockRegistry {
 
         IMBUED_HEARTWOOD_LOG = registerBlockWithItem(
                 "imbued_heartwood_log",
-                () -> new RotatedPillarBlock(properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f))
+                () -> new com.thomas.verdant.block.custom.InfestedRotatedPillarBlock(
+                        properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f),
+                        EntityTypeRegistry.TIMBERMITE::get
+                )
         );
+
+        CASSAVA_ROOTED_DIRT = registerBlockWithItem(
+                "cassava_rooted_dirt", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.ROOTED_DIRT, "cassava_rooted_dirt"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.CASSAVA_ROOTED_DIRT_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
+        );
+
+        BITTER_CASSAVA_ROOTED_DIRT = registerBlockWithItem(
+                "bitter_cassava_rooted_dirt", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.ROOTED_DIRT, "bitter_cassava_rooted_dirt"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.BITTER_CASSAVA_ROOTED_DIRT_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
+        );
+
+        CASSAVA_CROP = registerBlockWithoutItem(
+                "cassava_crop", () -> new CassavaCropBlock(
+                        properties(Blocks.POTATOES, "cassava_crop"),
+                        (state) -> (state.is(BlockRegistry.CASSAVA_ROOTED_DIRT.get()) || state.is(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get())),
+                        () -> BlockRegistry.CASSAVA_ROOTED_DIRT.get().defaultBlockState(),
+                        ItemRegistry.CASSAVA_CUTTINGS
+                )
+        );
+
+        BITTER_CASSAVA_CROP = registerBlockWithoutItem(
+                "bitter_cassava_crop", () -> new CassavaCropBlock(
+                        properties(Blocks.POTATOES, "bitter_cassava_crop"),
+                        (state) -> (state.is(BlockRegistry.CASSAVA_ROOTED_DIRT.get()) || state.is(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get())),
+                        () -> BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get().defaultBlockState(),
+                        ItemRegistry.BITTER_CASSAVA_CUTTINGS
+                )
+        );
+
+        WILD_CASSAVA = registerBlockWithItem(
+                "wild_cassava", () -> new FlowerBlock(
+                        MobEffectRegistry.CASSAVA_POISONING.asHolder(),
+                        40,
+                        properties(Blocks.BLUE_ORCHID, "wild_cassava")
+                )
+        );
+
+        POTTED_WILD_CASSAVA = registerBlockWithoutItem(
+                "potted_wild_cassava", () -> new FlowerPotBlock(
+                        BlockRegistry.WILD_CASSAVA.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_wild_cassava").noOcclusion()
+                )
+        );
+
+        UBE_CAKE = registerBlockWithoutItem(
+                "ube_cake",
+                () -> new ExtensibleCakeBlock(properties(Blocks.CAKE, "ube_cake"))
+        );
+
+
+        CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "candle_ube_cake",
+                () -> new ExtensibleCandleCakeBlock(
+                        Blocks.CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "candle_ube_cake")
+                )
+        );
+
+        WHITE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "white_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.WHITE_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "white_candle_ube_cake")
+                )
+        );
+
+        ORANGE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "orange_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.ORANGE_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "orange_candle_ube_cake")
+                )
+        );
+
+        MAGENTA_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "magenta_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.MAGENTA_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "magenta_candle_ube_cake")
+                )
+        );
+
+        LIGHT_BLUE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "light_blue_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.LIGHT_BLUE_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "light_blue_candle_ube_cake")
+                )
+        );
+
+        YELLOW_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "yellow_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.YELLOW_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "yellow_candle_ube_cake")
+                )
+        );
+
+        LIME_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "lime_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.LIME_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "lime_candle_ube_cake")
+                )
+        );
+
+        PINK_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "pink_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.PINK_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "pink_candle_ube_cake")
+                )
+        );
+
+        GRAY_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "gray_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.GRAY_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "gray_candle_ube_cake")
+                )
+        );
+
+        LIGHT_GRAY_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "light_gray_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.LIGHT_GRAY_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "light_gray_candle_ube_cake")
+                )
+        );
+
+        CYAN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "cyan_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.CYAN_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "cyan_candle_ube_cake")
+                )
+        );
+
+        PURPLE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "purple_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.PURPLE_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "purple_candle_ube_cake")
+                )
+        );
+
+        BLUE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "blue_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.BLUE_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "blue_candle_ube_cake")
+                )
+        );
+
+        BROWN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "brown_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.BROWN_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "brown_candle_ube_cake")
+                )
+        );
+
+        GREEN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "green_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.GREEN_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "green_candle_ube_cake")
+                )
+        );
+
+        RED_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "red_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.RED_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "red_candle_ube_cake")
+                )
+        );
+
+        BLACK_CANDLE_UBE_CAKE = registerBlockWithoutItem(
+                "black_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
+                        Blocks.BLACK_CANDLE,
+                        BlockRegistry.UBE_CAKE,
+                        properties(Blocks.CANDLE_CAKE, "black_candle_ube_cake")
+                )
+        );
+
+        UBE_CROP = registerBlockWithoutItem(
+                "ube_crop",
+                () -> new SpreadingCropBlock(
+                        properties(Blocks.POTATOES, "ube_crop"),
+                        ItemRegistry.BITTER_CASSAVA_CUTTINGS
+                )
+        );
+
+        WILD_UBE = registerBlockWithItem(
+                "wild_ube",
+                () -> new FlowerBlock(MobEffects.CONFUSION, 40, properties(Blocks.BLUE_ORCHID, "wild_ube"))
+        );
+
+        POTTED_WILD_UBE = registerBlockWithoutItem(
+                "potted_wild_ube", () -> new FlowerPotBlock(
+                        BlockRegistry.WILD_UBE.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_wild_ube").noOcclusion()
+                )
+        );
+
 
         TEST_LOG = registerBlockWithItem(
                 "test_log",

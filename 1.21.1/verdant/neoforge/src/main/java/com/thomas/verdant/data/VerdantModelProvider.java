@@ -1,10 +1,8 @@
 package com.thomas.verdant.data;
 
 import com.thomas.verdant.Constants;
-import com.thomas.verdant.block.custom.CoffeeCropBlock;
-import com.thomas.verdant.block.custom.FishTrapBlock;
-import com.thomas.verdant.block.custom.SpikesBlock;
-import com.thomas.verdant.block.custom.TrapBlock;
+import com.thomas.verdant.block.custom.*;
+import com.thomas.verdant.data.definitions.VerdantTextureMapping;
 import com.thomas.verdant.data.definitions.VerdantTexturedModel;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
@@ -25,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -259,6 +258,87 @@ public class VerdantModelProvider extends ModelProvider {
         return MultiVariantGenerator.multiVariant(block, variants);
     }
 
+    public void candleCake(Block candleBlock, Block cakeBlock, Block candleCakeBlock) {
+        this.blockModels.registerSimpleFlatItemModel(candleBlock.asItem());
+        ResourceLocation candleCakeBase = ModelTemplates.CANDLE_CAKE.create(
+                candleCakeBlock,
+                VerdantTextureMapping.candleCake(cakeBlock, candleBlock, false),
+                this.blockModels.modelOutput
+        );
+        ResourceLocation candleCakeLit = ModelTemplates.CANDLE_CAKE.createWithSuffix(
+                candleCakeBlock,
+                "_lit",
+                VerdantTextureMapping.candleCake(cakeBlock, candleBlock, true),
+                this.blockModels.modelOutput
+        );
+        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(candleCakeBlock)
+                .with(BlockModelGenerators.createBooleanModelDispatch(
+                        BlockStateProperties.LIT,
+                        candleCakeLit,
+                        candleCakeBase
+                )));
+    }
+
+    // TODO
+    public void cakeBlock(Block cake, Item cakeItem) {
+        this.blockModels.registerSimpleFlatItemModel(cakeItem);
+        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(cake)
+                .with(PropertyDispatch.property(BlockStateProperties.BITES)
+                        .select(
+                                0,
+                                Variant.variant()
+                                        .with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(cake))
+                        )
+                        .select(
+                                1,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice1")
+                                        )
+                        )
+                        .select(
+                                2,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice2")
+                                        )
+                        )
+                        .select(
+                                3,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice3")
+                                        )
+                        )
+                        .select(
+                                4,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice4")
+                                        )
+                        )
+                        .select(
+                                5,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice5")
+                                        )
+                        )
+                        .select(
+                                6,
+                                Variant.variant()
+                                        .with(
+                                                VariantProperties.MODEL,
+                                                ModelLocationUtils.getModelLocation(cake, "_slice6")
+                                        )
+                        )));
+    }
+
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
@@ -379,6 +459,39 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
+        createCrossBlock(
+                BlockRegistry.CASSAVA_CROP.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout",
+                CassavaCropBlock.AGE,
+                IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
+        );
+        createCrossBlock(
+                BlockRegistry.BITTER_CASSAVA_CROP.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout",
+                CassavaCropBlock.AGE,
+                IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
+        );
+        createPlantWithDefaultItem(
+                BlockRegistry.WILD_CASSAVA.get(),
+                BlockRegistry.POTTED_WILD_CASSAVA.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
+        createPlantWithDefaultItem(
+                BlockRegistry.WILD_UBE.get(),
+                BlockRegistry.POTTED_WILD_UBE.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
+        createCrossBlock(
+                BlockRegistry.UBE_CROP.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout",
+                SpreadingCropBlock.AGE,
+                IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
+        );
         trapBlockWithItem(BlockRegistry.WOODEN_TRAP.get());
         trapBlockWithItem(BlockRegistry.IRON_TRAP.get());
         trapBlockWithItem(BlockRegistry.SNAPLEAF.get());
@@ -387,6 +500,34 @@ public class VerdantModelProvider extends ModelProvider {
         doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
         doubleSidedLogBlockWithItem(BlockRegistry.FRAME_BLOCK.get());
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.IMBUED_HEARTWOOD_LOG.get(), TexturedModel.COLUMN);
+        tumbledBlockWithItem(BlockRegistry.CASSAVA_ROOTED_DIRT.get());
+        tumbledBlockWithItem(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get());
+        cakeBlock(BlockRegistry.UBE_CAKE.get(), ItemRegistry.UBE_CAKE.get());
+        candleCake(Blocks.WHITE_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.ORANGE_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.MAGENTA_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get());
+        candleCake(
+                Blocks.LIGHT_BLUE_CANDLE,
+                BlockRegistry.UBE_CAKE.get(),
+                BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get()
+        );
+        candleCake(Blocks.YELLOW_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.LIME_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.LIME_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.PINK_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.PINK_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.GRAY_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.GRAY_CANDLE_UBE_CAKE.get());
+        candleCake(
+                Blocks.LIGHT_GRAY_CANDLE,
+                BlockRegistry.UBE_CAKE.get(),
+                BlockRegistry.LIGHT_GRAY_CANDLE_UBE_CAKE.get()
+        );
+        candleCake(Blocks.CYAN_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.CYAN_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.PURPLE_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.PURPLE_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.BLUE_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.BLUE_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.BROWN_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.BROWN_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.GREEN_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.GREEN_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.RED_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.RED_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.BLACK_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
+        candleCake(Blocks.CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.CANDLE_UBE_CAKE.get());
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
@@ -405,6 +546,19 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
         basicItem(ItemRegistry.HEART_FRAGMENT.get());
+        basicItem(ItemRegistry.POISON_ARROW.get());
+        basicItem(ItemRegistry.BITTER_CASSAVA.get());
+        basicItem(ItemRegistry.CASSAVA.get());
+        basicItem(ItemRegistry.COOKED_CASSAVA.get());
+        basicItem(ItemRegistry.BITTER_STARCH.get());
+        basicItem(ItemRegistry.STARCH.get());
+        basicItem(ItemRegistry.SPARKLING_STARCH.get());
+        basicItem(ItemRegistry.BITTER_BREAD.get());
+        basicItem(ItemRegistry.GOLDEN_BREAD.get());
+        basicItem(ItemRegistry.GOLDEN_CASSAVA.get());
+        basicItem(ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
+        basicItem(ItemRegistry.BAKED_UBE.get());
+        basicItem(ItemRegistry.UBE_COOKIE.get());
     }
 
     @Override

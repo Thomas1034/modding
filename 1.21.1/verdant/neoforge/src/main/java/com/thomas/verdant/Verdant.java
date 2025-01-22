@@ -2,6 +2,8 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
+import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
+import com.thomas.verdant.entity.custom.TimbermiteEntity;
 import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
@@ -48,6 +50,7 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -79,6 +82,7 @@ public class Verdant {
         // For wood sets.
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
         eventBus.addListener(Verdant::onFinishSetup);
+        eventBus.addListener(Verdant::registerEntityAttributes);
         NeoForge.EVENT_BUS.addListener(Verdant::registerStrippingLogs);
 
         // Caffeine
@@ -97,6 +101,7 @@ public class Verdant {
                 DispenserBehaviors.woodSet(woodSet);
             }
             DispenserBehaviors.init();
+            CommonClass.addCakeCandles();
         });
     }
 
@@ -113,6 +118,11 @@ public class Verdant {
                         new ItemStack(output)
                 )
         );
+    }
+
+    public static void registerEntityAttributes(final EntityAttributeCreationEvent event) {
+        event.put(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteEntity.createAttributes().build());
+        event.put(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
     }
 
     public static void registerStrippingLogs(final BlockEvent.BlockToolModificationEvent event) {

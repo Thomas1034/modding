@@ -97,7 +97,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(BlockRegistry.STRANGLER_TENDRIL.get().asItem()),
                 RecipeCategory.MISC,
                 ItemRegistry.ROPE.get(),
-                4
+                2
+        );
+        shaped(
+                List.of("v", "v", "w"),
+                List.of('v', 'w'),
+                List.of(ItemRegistry.ROPE.get(), VerdantTags.Items.CRAFTS_TO_ROPES),
+                RecipeCategory.MISC,
+                ItemRegistry.ROPE.get(),
+                3
         );
         shaped(
                 List.of(" r ", "r r", " r "),
@@ -129,6 +137,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        // Poison arrows
+        shapeless(
+                List.of(Items.ARROW, BlockRegistry.POISON_IVY.get().asItem()),
+                List.of(1, 1),
+                RecipeCategory.COMBAT,
+                ItemRegistry.POISON_ARROW.get(),
+                1
+        );
+
         // Packed mud from strangler tendrils
         shapeless(
                 List.of(BlockRegistry.STRANGLER_TENDRIL.get(), Blocks.MUD),
@@ -137,6 +154,14 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 Blocks.PACKED_MUD,
                 1
         );
+        shapeless(
+                List.of(ItemRegistry.ROPE.get(), Blocks.MUD),
+                List.of(2, 1),
+                RecipeCategory.TOOLS,
+                Blocks.PACKED_MUD,
+                1
+        );
+
         // Thorn spikes item
         shaped(
                 List.of("TTT", "TTT", "KRK"),
@@ -199,6 +224,142 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 RecipeCategory.MISC,
                 BlockRegistry.FISH_TRAP_BLOCK.get(),
                 2
+        );
+
+        // Roasting bitter cassava
+        foodCooking(
+                List.of(ItemRegistry.BITTER_CASSAVA.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.CASSAVA.get(),
+                0.1f,
+                200
+        );
+
+        // Golden Cassava
+        shaped(
+                List.of("GGG", "GCG", "GGG"),
+                List.of('G', 'C'),
+                List.of(Items.GOLD_INGOT, ItemRegistry.CASSAVA.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.GOLDEN_CASSAVA.get(),
+                1
+        );
+
+        // Roasting golden cassava
+        foodCooking(
+                List.of(ItemRegistry.GOLDEN_CASSAVA.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.COOKED_GOLDEN_CASSAVA.get(),
+                0.1f,
+                200
+        );
+
+        // Sparkling Starch
+        shapeless(
+                List.of(ItemRegistry.GOLDEN_CASSAVA.get()),
+                List.of(1),
+                RecipeCategory.FOOD,
+                ItemRegistry.SPARKLING_STARCH.get(),
+                4
+        );
+
+        // Starch
+        shapeless(List.of(ItemRegistry.CASSAVA.get()), List.of(1), RecipeCategory.FOOD, ItemRegistry.STARCH.get(), 4);
+
+        // Bitter Starch
+        shapeless(
+                List.of(ItemRegistry.BITTER_CASSAVA.get()),
+                List.of(1),
+                RecipeCategory.FOOD,
+                ItemRegistry.BITTER_STARCH.get(),
+                4
+        );
+
+        // Bread
+        shaped(List.of("BBB"), List.of('B'), List.of(ItemRegistry.STARCH.get()), RecipeCategory.FOOD, Items.BREAD, 1);
+
+        // Bitter Bread
+        shaped(
+                List.of("BBB"),
+                List.of('B'),
+                List.of(ItemRegistry.BITTER_STARCH.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.BITTER_BREAD.get(),
+                1
+        );
+
+        // Golden Bread
+        shaped(
+                List.of("BBB"),
+                List.of('B'),
+                List.of(ItemRegistry.SPARKLING_STARCH.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.GOLDEN_BREAD.get(),
+                1
+        );
+
+        // Roasting cassava
+        foodCooking(
+                List.of(ItemRegistry.CASSAVA.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.COOKED_CASSAVA.get(),
+                0.1f,
+                200
+        );
+
+
+        // Roasting ube
+        foodCooking(List.of(ItemRegistry.UBE.get()), RecipeCategory.FOOD, ItemRegistry.BAKED_UBE.get(), 0.1f, 200);
+
+        // Purple dye from ube
+        shapeless(List.of(ItemRegistry.BAKED_UBE.get()), List.of(1), RecipeCategory.DECORATIONS, Items.PURPLE_DYE, 1);
+
+        // Purple dye from ube with mordant
+        shapeless(
+                List.of(ItemRegistry.BAKED_UBE.get(), Items.RAW_COPPER, Items.WATER_BUCKET),
+                List.of(4, 1, 1),
+                RecipeCategory.DECORATIONS,
+                Items.PURPLE_DYE,
+                12
+        );
+
+        // Purple cake
+        shaped(
+                List.of("UBU", "GEG", "SSS"), List.of('U', 'B', 'S', 'E', 'G'), List.of(
+                        ItemRegistry.BAKED_UBE.get(),
+                        Items.MILK_BUCKET,
+                        ItemRegistry.STARCH.get(),
+                        Items.EGG,
+                        Items.SUGAR
+                ), RecipeCategory.FOOD, ItemRegistry.UBE_CAKE.get(), 1
+        );
+        shaped(
+                List.of("UBU", "GEG", "SSS"),
+                List.of('U', 'B', 'S', 'E', 'G'),
+                List.of(ItemRegistry.BAKED_UBE.get(), Items.MILK_BUCKET, Items.WHEAT, Items.EGG, Items.SUGAR),
+                RecipeCategory.FOOD,
+                ItemRegistry.UBE_CAKE.get(),
+                1
+        );
+
+        // Purple cookies
+        shaped(
+                List.of("SUS"),
+                List.of('U', 'S'),
+                List.of(ItemRegistry.BAKED_UBE.get(), ItemRegistry.STARCH.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.UBE_COOKIE.get(),
+                8
+        );
+
+        // Purple cookies
+        shaped(
+                List.of("SUS"),
+                List.of('U', 'S'),
+                List.of(ItemRegistry.BAKED_UBE.get(), Items.WHEAT),
+                RecipeCategory.FOOD,
+                ItemRegistry.UBE_COOKIE.get(),
+                8
         );
 
     }

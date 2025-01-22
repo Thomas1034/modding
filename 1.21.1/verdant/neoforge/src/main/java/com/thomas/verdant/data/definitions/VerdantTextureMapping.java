@@ -7,6 +7,13 @@ import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
+    public static TextureMapping candleCake(Block cake, Block candle, boolean lit) {
+        return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(cake, "_side"))
+                .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(cake, "_bottom"))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(cake, "_top"))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(cake, "_side"))
+                .put(TextureSlot.CANDLE, TextureMapping.getBlockTexture(candle, lit ? "_lit" : ""));
+    }
 
     public static TextureMapping fishTrap(Block block) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_side"))

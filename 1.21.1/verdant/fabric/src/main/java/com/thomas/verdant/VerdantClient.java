@@ -1,7 +1,6 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.client.renderer.VerdantConduitRenderer;
-import com.thomas.verdant.client.renderer.VerdantConduitSpecialRenderer;
+import com.thomas.verdant.client.renderer.*;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registry.*;
 import com.thomas.verdant.woodset.WoodSet;
@@ -84,6 +83,15 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.WOODEN_TRAP,
                 BlockRegistry.IRON_TRAP,
                 BlockRegistry.SNAPLEAF,
+                BlockRegistry.CASSAVA_CROP,
+                BlockRegistry.BITTER_CASSAVA_CROP,
+                BlockRegistry.WILD_CASSAVA,
+                BlockRegistry.POTTED_WILD_CASSAVA,
+                BlockRegistry.CASSAVA_ROOTED_DIRT,
+                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT,
+                BlockRegistry.WILD_UBE,
+                BlockRegistry.POTTED_WILD_UBE,
+                BlockRegistry.UBE_CROP,
                 BlockRegistry.VERDANT_CONDUIT
         );
 
@@ -95,6 +103,9 @@ public class VerdantClient implements ClientModInitializer {
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
 
 
         BlockEntityRenderers.register(

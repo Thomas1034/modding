@@ -211,6 +211,7 @@ public class CassavaCropBlock extends CropBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(AGE);
 	}
 }

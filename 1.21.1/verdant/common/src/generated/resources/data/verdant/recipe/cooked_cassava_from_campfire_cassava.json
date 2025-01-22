@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 1200,
+  "experience": 0.1,
+  "group": "verdant:cooked_cassava",
+  "ingredient": "verdant:cassava",
+  "result": {
+    "count": 1,
+    "id": "verdant:cooked_cassava"
+  }
+}

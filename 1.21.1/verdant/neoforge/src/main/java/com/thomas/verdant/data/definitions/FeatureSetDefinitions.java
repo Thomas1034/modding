@@ -28,6 +28,7 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.RARE, JSONFeatures.LILIES));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MIXED_FLOWERS));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.WILD_CASSAVA));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.COFFEE));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MIXED_MUSHROOMS));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.BAMBOO));

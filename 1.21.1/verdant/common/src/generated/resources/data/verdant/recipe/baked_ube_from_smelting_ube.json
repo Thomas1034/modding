@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "verdant:baked_ube",
+  "ingredient": "verdant:ube",
+  "result": {
+    "count": 1,
+    "id": "verdant:baked_ube"
+  }
+}

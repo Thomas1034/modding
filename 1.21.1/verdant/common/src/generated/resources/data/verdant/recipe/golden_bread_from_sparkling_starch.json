@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:golden_bread",
+  "key": {
+    "B": "verdant:sparkling_starch"
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:golden_bread"
+  }
+}

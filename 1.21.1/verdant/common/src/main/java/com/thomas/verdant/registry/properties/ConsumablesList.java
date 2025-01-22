@@ -4,9 +4,12 @@ import com.thomas.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+
+import java.util.List;
 
 public class ConsumablesList {
 
@@ -30,6 +33,19 @@ public class ConsumablesList {
                     ), 0.9F
             ))
             .build();
+    public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
+                    new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
+            )))
+            .build();
+    public static final Consumable GOLDEN_BREAD = Consumables.defaultFood()
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
+                    new MobEffectInstance(MobEffects.ABSORPTION, 2400, 1)
+            )))
+            .build();
+
+
 
     private ConsumablesList() {
     }
