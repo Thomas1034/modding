@@ -1,6 +1,6 @@
 package com.thomas.verdant;
 
-import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
+import com.thomas.verdant.entity.custom.RootedEntity;
 import com.thomas.verdant.entity.custom.TimbermiteEntity;
 import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
@@ -65,8 +65,8 @@ public class Verdant implements ModInitializer {
                 TimbermiteEntity.createAttributes()
         );
         FabricDefaultAttributeRegistry.register(
-                EntityTypeRegistry.OVERGROWN_ZOMBIE.get(),
-                OvergrownZombieEntity.createAttributes()
+                EntityTypeRegistry.ROOTED.get(),
+                RootedEntity.createAttributes()
         );
 
         // Block caffeine from sleeping

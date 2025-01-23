@@ -15,12 +15,12 @@ public class ColloidEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
-        if (timeSinceHurt < 5) {
+        if (timeSinceHurt < 2) {
             // Inflict stacked slowness debuffs.
-            int baseTime = 8;
+            int baseTime = 5;
             int max = 5 * (amplifier + 2);
             for (int i = 0; i < max; i++) {
-                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, baseTime * (max - i), 2 * i));
+                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, baseTime * (max - i), i));
             }
         }
         return true;

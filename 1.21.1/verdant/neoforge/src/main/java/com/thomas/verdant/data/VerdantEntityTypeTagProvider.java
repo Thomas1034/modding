@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.world.entity.EntityType;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -21,7 +22,8 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
         this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(EntityTypeRegistry.THROWN_ROPE.get());
         this.tag(EntityTypeTags.ARROWS).add(EntityTypeRegistry.POISON_ARROW.get());
         this.tag(EntityTypeTags.ARTHROPOD).add(EntityTypeRegistry.TIMBERMITE.get());
-        this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).add(EntityTypeRegistry.TIMBERMITE.get());
+        this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)
+                .add(EntityTypeRegistry.TIMBERMITE.get(), EntityTypeRegistry.ROOTED.get(), EntityType.BOGGED);
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).addTag(EntityTypeTags.IMPACT_PROJECTILES);
 
     }

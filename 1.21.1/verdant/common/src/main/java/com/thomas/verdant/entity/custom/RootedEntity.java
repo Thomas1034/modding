@@ -2,7 +2,10 @@ package com.thomas.verdant.entity.custom;
 
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.registry.EntityTypeRegistry;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,17 +17,18 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class OvergrownZombieEntity extends Zombie {
+public class RootedEntity extends Zombie {
 
-    public OvergrownZombieEntity(EntityType<? extends OvergrownZombieEntity> type, Level level) {
+    public RootedEntity(EntityType<? extends RootedEntity> type, Level level) {
         super(type, level);
     }
 
-    public OvergrownZombieEntity(Level level) {
-        super(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), level);
+    public RootedEntity(Level level) {
+        super(EntityTypeRegistry.ROOTED.get(), level);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -49,7 +53,7 @@ public class OvergrownZombieEntity extends Zombie {
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Blaze.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(OvergrownZombieEntity.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(RootedEntity.class));
         this.targetSelector.addGoal(
                 2,
                 new NearestAttackableTargetGoal<>(
@@ -114,6 +118,7 @@ public class OvergrownZombieEntity extends Zombie {
     }
 
     // Instaconvert skeletons and creepers.
+    // Currently, doesn't actually remove the dead entity!
     @Override
     public boolean doHurtTarget(ServerLevel level, Entity entity) {
         if (!super.doHurtTarget(level, entity)) {
@@ -132,8 +137,73 @@ public class OvergrownZombieEntity extends Zombie {
     @Override
     public boolean killedEntity(ServerLevel level, LivingEntity entity) {
         boolean flag = super.killedEntity(level, entity);
+        boolean converted = false;
+        if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && entity instanceof Villager villager) {
+            if (level.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
+                return flag;
+            }
 
+            if (this.convertVillagerToZombieVillager(level, villager)) {
+                flag = false;
+                converted = true;
+            }
+        } else if (entity instanceof Zombie zombie) {
+            if (this.convertZombieToRooted(level, zombie)) {
+                flag = false;
+                converted = true;
+            }
+        } else if (entity instanceof Skeleton skeleton) {
+            if (this.convertSkeletonToBogged(level, skeleton)) {
+                flag = false;
+                converted = true;
+            }
+        }
+
+        if (converted) {
+            level.sendParticles(
+                    ParticleTypes.HAPPY_VILLAGER,
+                    entity.getX(),
+                    entity.getY() + entity.getEyeHeight(),
+                    entity.getZ(),
+                    8,
+                    0.5,
+                    1,
+                    0.5,
+                    1
+            );
+            level.sendParticles(
+                    ParticleTypes.SPORE_BLOSSOM_AIR,
+                    entity.getX(),
+                    entity.getY() + entity.getEyeHeight(),
+                    entity.getZ(),
+                    64,
+                    2,
+                    4,
+                    2,
+                    1
+            );
+        }
 
         return flag;
     }
+
+    public boolean convertZombieToRooted(ServerLevel level, Zombie zombie) {
+        RootedEntity newZombie = zombie.convertTo(
+                EntityTypeRegistry.ROOTED.get(),
+                ConversionParams.single(zombie, true, true),
+                oz -> oz.handleAttributes(oz.level().getCurrentDifficultyAt(oz.blockPosition()).getSpecialMultiplier())
+
+        );
+        return newZombie != null;
+    }
+
+    public boolean convertSkeletonToBogged(ServerLevel level, Skeleton skeleton) {
+        Bogged newSkeleton = skeleton.convertTo(
+                EntityType.BOGGED, ConversionParams.single(skeleton, true, true), bg -> {
+                }
+        );
+        return newSkeleton != null;
+    }
+
+
 }

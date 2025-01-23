@@ -120,6 +120,18 @@ public class MobEffectRegistry {
             "weightless",
             () -> new AntiGravityEffect(MobEffectCategory.NEUTRAL, 0x000000)
     );
+    public static final RegistryObject<MobEffect, MobEffect> BROKEN_ARMOR = MOB_EFFECTS.register(
+            "broken_armor",
+            () -> new BrokenArmorEffect(MobEffectCategory.HARMFUL, 0.1f, 0x000050)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> NUMBNESS = MOB_EFFECTS.register(
+            "numbness",
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000050)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> BLURRED = MOB_EFFECTS.register(
+            "blurred",
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x808080)
+    );
 
     public static void init() {
     }

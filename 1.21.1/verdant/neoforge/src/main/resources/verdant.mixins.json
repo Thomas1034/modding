@@ -8,7 +8,10 @@
   ],
   "server": [],
   "client": [
-    "IntangibilityBlockVisionMixin"
+    "IntangibilityBlockVisionMixin",
+    "NumbnessHideStatsMixin",
+    "GameRendererAddPostShadersMixin",
+    "GuiAddShaderOverlaysMixin"
   ],
   "injectors": {
     "defaultRequire": 1

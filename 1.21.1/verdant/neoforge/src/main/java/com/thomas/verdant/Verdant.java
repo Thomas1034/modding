@@ -2,7 +2,7 @@ package com.thomas.verdant;
 
 
 import com.thomas.verdant.data.*;
-import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
+import com.thomas.verdant.entity.custom.RootedEntity;
 import com.thomas.verdant.entity.custom.TimbermiteEntity;
 import com.thomas.verdant.registry.*;
 import com.thomas.verdant.util.baitdata.BaitData;
@@ -17,6 +17,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ProblemReporter;
@@ -122,7 +123,7 @@ public class Verdant {
 
     public static void registerEntityAttributes(final EntityAttributeCreationEvent event) {
         event.put(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteEntity.createAttributes().build());
-        event.put(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieEntity.createAttributes().build());
+        event.put(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes().build());
     }
 
     public static void registerStrippingLogs(final BlockEvent.BlockToolModificationEvent event) {
@@ -233,6 +234,11 @@ public class Verdant {
             generator.addProvider(true, blockTagsProvider);
             MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(packOutput, lookupProvider);
             generator.addProvider(true, mobEffectTagsProvider);
+            EntityTypeTagsProvider entityTypeTagsProvider = new VerdantEntityTypeTagProvider(
+                    packOutput,
+                    lookupProvider
+            );
+            generator.addProvider(true, entityTypeTagsProvider);
             generator.addProvider(
                     true,
                     new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter())

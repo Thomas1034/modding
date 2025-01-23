@@ -105,7 +105,7 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
 
 
         BlockEntityRenderers.register(

@@ -11,14 +11,17 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.ZombieRenderState;
 import net.minecraft.resources.ResourceLocation;
 
-public class OvergrownZombieOuterLayer extends RenderLayer<ZombieRenderState, ZombieModel<ZombieRenderState>> {
-    private static final ResourceLocation OVERGROWN_ZOMBIE_OUTER_LAYER_LOCATION = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
-            "textures/entity/overgrown_zombie/overgrown_zombie_outer_layer.png"
+public class RootedOuterLayer extends RenderLayer<ZombieRenderState, ZombieModel<ZombieRenderState>> {
+    private static final ResourceLocation ROOTED_OUTER_LAYER_LOCATION = ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "textures/entity/zombie/rooted_outer_layer.png"
     );
     private final ZombieModel<ZombieRenderState> model;
     private final ZombieModel<ZombieRenderState> babyModel;
 
-    public OvergrownZombieOuterLayer(RenderLayerParent<ZombieRenderState, ZombieModel<ZombieRenderState>> renderer, EntityModelSet modelSet) {
+    public RootedOuterLayer(RenderLayerParent<ZombieRenderState, ZombieModel<ZombieRenderState>> renderer, EntityModelSet modelSet) {
+
+
         super(renderer);
         this.model = new ZombieModel<>(modelSet.bakeLayer(ModelLayers.DROWNED_OUTER_LAYER));
         this.babyModel = new ZombieModel<>(modelSet.bakeLayer(ModelLayers.DROWNED_BABY_OUTER_LAYER));
@@ -28,7 +31,7 @@ public class OvergrownZombieOuterLayer extends RenderLayer<ZombieRenderState, Zo
         ZombieModel<ZombieRenderState> drownedModel = renderState.isBaby ? this.babyModel : this.model;
         coloredCutoutModelCopyLayerRender(
                 drownedModel,
-                OVERGROWN_ZOMBIE_OUTER_LAYER_LOCATION,
+                ROOTED_OUTER_LAYER_LOCATION,
                 stack,
                 source,
                 packedLight,

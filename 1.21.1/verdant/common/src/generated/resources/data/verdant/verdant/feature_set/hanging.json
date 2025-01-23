@@ -10,8 +10,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:strangler_tendril_ceiling",
-        "weight": 50
+        "configured_feature": "minecraft:cave_vine",
+        "weight": 5
       }
     },
     {
@@ -38,15 +38,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:cave_vine",
-        "weight": 5
+        "configured_feature": "verdant:poison_ivy_ceiling",
+        "weight": 25
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:poison_ivy_ceiling",
-        "weight": 25
+        "configured_feature": "verdant:strangler_tendril_ceiling",
+        "weight": 50
       }
     }
   ],

@@ -81,7 +81,7 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
-            EntityRenderers.register(EntityTypeRegistry.OVERGROWN_ZOMBIE.get(), OvergrownZombieRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
         });
     }
 

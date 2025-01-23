@@ -1,7 +1,7 @@
 package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
-import com.thomas.verdant.entity.custom.OvergrownZombieEntity;
+import com.thomas.verdant.entity.custom.RootedEntity;
 import com.thomas.verdant.entity.custom.PoisonArrowEntity;
 import com.thomas.verdant.entity.custom.ThrownRopeEntity;
 import com.thomas.verdant.entity.custom.TimbermiteEntity;
@@ -42,15 +42,15 @@ public class EntityTypeRegistry {
                     .updateInterval(20)
                     .build(key("poison_arrow"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<OvergrownZombieEntity>> OVERGROWN_ZOMBIE = ENTITY_TYPES.register(
-            "overgrown_zombie",
-            () -> EntityType.Builder.<OvergrownZombieEntity>of(OvergrownZombieEntity::new, MobCategory.MONSTER)
+    public static final RegistryObject<EntityType<?>, EntityType<RootedEntity>> ROOTED = ENTITY_TYPES.register(
+            "rooted",
+            () -> EntityType.Builder.<RootedEntity>of(RootedEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.95F)
                     .eyeHeight(1.74F)
                     .passengerAttachments(2.0125F)
                     .ridingOffset(-0.7F)
                     .clientTrackingRange(8)
-                    .build(key("overgrown_zombie"))
+                    .build(key("rooted"))
     );
 
     private static ResourceKey<EntityType<?>> key(String name) {
