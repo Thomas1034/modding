@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#verdant:imbued_heartwood_tool_materials",
+  "base": "verdant:heartwood_chestplate",
+  "result": {
+    "count": 1,
+    "id": "verdant:imbued_heartwood_chestplate"
+  },
+  "template": "verdant:imbuement_upgrade_smithing_template"
+}

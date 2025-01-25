@@ -592,6 +592,40 @@ public class VerdantModelProvider extends ModelProvider {
         handheldItem(ItemRegistry.HEARTWOOD_SHOVEL.get());
         handheldItem(ItemRegistry.HEARTWOOD_PICKAXE.get());
         handheldItem(ItemRegistry.HEARTWOOD_SWORD.get());
+
+
+        basicItem(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
+        basicItem(ItemRegistry.IMBUED_HEARTWOOD_HORSE_ARMOR.get());
+
+        itemModels.generateTrimmableItem(
+                ItemRegistry.IMBUED_HEARTWOOD_HELMET.get(),
+                ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
+                "helmet",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get(),
+                ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
+                "chestplate",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get(),
+                ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
+                "leggings",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get(),
+                ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
+                "boots",
+                false
+        );
+        handheldItem(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
+        handheldItem(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
+        handheldItem(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+        handheldItem(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
+        handheldItem(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
     }
 
     @Override

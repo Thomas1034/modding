@@ -26,6 +26,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
             generateFor(woodSet);
         }
 
+
         // Mineables
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
@@ -232,10 +233,18 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(VerdantTags.Blocks.STRANGLER_VINES);
 
         // Flowers
-        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.BLEEDING_HEART.get());
-        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_COFFEE.get());
-        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.TIGER_LILY.get());
-        this.tag(BlockTags.SMALL_FLOWERS).add(BlockRegistry.WILD_CASSAVA.get());
+        this.tag(BlockTags.SMALL_FLOWERS).add(
+                BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.WILD_COFFEE.get(),
+                BlockRegistry.TIGER_LILY.get(),
+                BlockRegistry.WILD_CASSAVA.get()
+        );
+        this.tag(BlockTags.BEE_ATTRACTIVE).add(
+                BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.WILD_COFFEE.get(),
+                BlockRegistry.TIGER_LILY.get(),
+                BlockRegistry.WILD_CASSAVA.get()
+        );
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
@@ -255,6 +264,19 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         //
         this.tag(BlockTags.LOGS).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
+
+        this.tag(BlockTags.CROPS).add(
+                BlockRegistry.UBE_CROP.get(),
+                BlockRegistry.CASSAVA_CROP.get(),
+                BlockRegistry.BITTER_CASSAVA_CROP.get(),
+                BlockRegistry.COFFEE_CROP.get()
+        );
+        this.tag(BlockTags.BEE_GROWABLES).add(
+                BlockRegistry.UBE_CROP.get(),
+                BlockRegistry.CASSAVA_CROP.get(),
+                BlockRegistry.BITTER_CASSAVA_CROP.get(),
+                BlockRegistry.COFFEE_CROP.get()
+        );
 
         addDirtOres();
     }

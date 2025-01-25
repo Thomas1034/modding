@@ -30,6 +30,53 @@ public class CreativeModeTabRegistry {
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
     );
+    public static final RegistryObject<CreativeModeTab, CreativeModeTab> COMBAT_TAB = CREATIVE_MODE_TABS.register(
+            Constants.MOD_ID + "_combat_tab",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                    .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get()))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(BlockRegistry.WOODEN_SPIKES.get());
+                        output.accept(BlockRegistry.IRON_SPIKES.get());
+                        output.accept(BlockRegistry.WOODEN_TRAP.get());
+                        output.accept(BlockRegistry.IRON_TRAP.get());
+                        output.accept(ItemRegistry.POISON_ARROW.get());
+                        output.accept(ItemRegistry.HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.HEARTWOOD_HELMET.get());
+                        output.accept(ItemRegistry.HEARTWOOD_CHESTPLATE.get());
+                        output.accept(ItemRegistry.HEARTWOOD_LEGGINGS.get());
+                        output.accept(ItemRegistry.HEARTWOOD_BOOTS.get());
+                        output.accept(ItemRegistry.HEARTWOOD_HORSE_ARMOR.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_HELMET.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_HORSE_ARMOR.get());
+                    })
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".combat"))
+                    .build()
+    );
+    public static final RegistryObject<CreativeModeTab, CreativeModeTab> TOOLS_TAB = CREATIVE_MODE_TABS.register(
+            Constants.MOD_ID + "_tools_tab",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+                    .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get()))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.ROPE.get());
+                        output.accept(ItemRegistry.ROPE_COIL.get());
+                        output.accept(ItemRegistry.HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.HEARTWOOD_HOE.get());
+                        output.accept(ItemRegistry.HEARTWOOD_PICKAXE.get());
+                        output.accept(ItemRegistry.HEARTWOOD_SHOVEL.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+                    })
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".tools"))
+                    .build()
+    );
     public static final RegistryObject<CreativeModeTab, CreativeModeTab> FOODS_TAB = CREATIVE_MODE_TABS.register(
             Constants.MOD_ID + "_foods_tab",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
@@ -76,6 +123,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.DIRT_REDSTONE_ORE.get());
                         output.accept(BlockRegistry.DIRT_EMERALD_ORE.get());
                         output.accept(BlockRegistry.DIRT_DIAMOND_ORE.get());
+                        output.accept(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
                         output.accept(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
                         output.accept(BlockRegistry.STRANGLER_LEAVES.get());
                         output.accept(BlockRegistry.POISON_STRANGLER_LEAVES.get());

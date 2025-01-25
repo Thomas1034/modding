@@ -83,6 +83,58 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(VerdantTags.Items.CRAFTS_TO_ROPES)
                 .add(Items.VINE, Items.STRING, BlockRegistry.STRANGLER_TENDRIL.get().asItem());
 
+        this.tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(
+                ItemRegistry.CASSAVA_CUTTINGS.get(),
+                ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),
+                ItemRegistry.UBE.get()
+        );
+        this.tag(ItemTags.VILLAGER_PICKS_UP).add(
+                ItemRegistry.CASSAVA_CUTTINGS.get(),
+                ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),
+                ItemRegistry.UBE.get(),
+                ItemRegistry.BITTER_CASSAVA.get(),
+                ItemRegistry.CASSAVA.get(),
+                ItemRegistry.BITTER_BREAD.get()
+        );
+
+        addHeartwoodSet();
+        addImbuedHeartwoodSet();
+    }
+
+    private void addImbuedHeartwoodSet() {
+        this.tag(VerdantTags.Items.REPAIRS_IMBUED_HEARTWOOD_ARMOR).add(ItemRegistry.HEART_FRAGMENT.get());
+        this.tag(VerdantTags.Items.IMBUED_HEARTWOOD_TOOL_MATERIALS).add(ItemRegistry.HEART_FRAGMENT.get());
+
+        this.tag(ItemTags.TRIMMABLE_ARMOR).add(
+                ItemRegistry.IMBUED_HEARTWOOD_HELMET.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.ARMOR_ENCHANTABLE).add(
+                ItemRegistry.IMBUED_HEARTWOOD_HELMET.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.HEAD_ARMOR).add(ItemRegistry.IMBUED_HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.CHEST_ARMOR).add(ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.CHEST_ARMOR_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.LEG_ARMOR).add(ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.LEG_ARMOR_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.FOOT_ARMOR).add(ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get());
+        this.tag(ItemTags.FOOT_ARMOR_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get());
+
+        this.tag(ItemTags.AXES).add(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
+        this.tag(ItemTags.HOES).add(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
+        this.tag(ItemTags.PICKAXES).add(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
+        this.tag(ItemTags.SHOVELS).add(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+    }
+
+    private void addHeartwoodSet() {
         this.tag(VerdantTags.Items.REPAIRS_HEARTWOOD_ARMOR).addTag(WoodSets.HEARTWOOD.getLogItems());
         this.tag(VerdantTags.Items.HEARTWOOD_TOOL_MATERIALS).addTag(WoodSets.HEARTWOOD.getLogItems());
 
@@ -113,7 +165,6 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.HEARTWOOD_SHOVEL.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.HEARTWOOD_SWORD.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
-
     }
 
     private void addDirtOres() {

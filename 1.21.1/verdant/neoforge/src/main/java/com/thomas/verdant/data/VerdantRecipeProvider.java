@@ -449,6 +449,75 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
 
+        // Imbuing
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_AXE.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.IMBUED_HEARTWOOD_AXE.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_HOE.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.IMBUED_HEARTWOOD_HOE.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_PICKAXE.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_SHOVEL.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_SWORD.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_SWORD.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_HELMET.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_BOOTS.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get()
+        );
+
+        // Imbuement smithing template.
+        shaped(
+                List.of("#S#", "#L#", "###"),
+                List.of('#', 'S', 'L'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.EMERALD, WoodSets.STRANGLER.getLogItems()),
+                RecipeCategory.MISC,
+                ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get(),
+                1
+        );
+
+    }
+
+    protected void imbuementSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get()),
+                        Ingredient.of(ingredientItem),
+                        this.tag(VerdantTags.Items.IMBUED_HEARTWOOD_TOOL_MATERIALS),
+                        category,
+                        resultItem
+                )
+                .unlocks("has_imbuement_item", this.has(VerdantTags.Items.IMBUED_HEARTWOOD_TOOL_MATERIALS))
+                .save(this.output, getItemName(resultItem) + "_smithing");
     }
 
     protected void shaped(List<String> pattern, List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result, int count) {

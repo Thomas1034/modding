@@ -6,7 +6,10 @@ import com.thomas.verdant.item.custom.*;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
 import com.thomas.verdant.registry.properties.ConsumablesList;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -17,6 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.equipment.ArmorType;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class ItemRegistry {
@@ -200,7 +204,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
             "heartwood_sword", ((properties) -> new SwordItem(
-                    ToolMaterial.WOOD,
+                    ToolMaterialRegistry.HEARTWOOD,
                     3.0F,
                     -2.4F,
                     properties.stacksTo(1)
@@ -213,7 +217,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> HEARTWOOD_SHOVEL = register(
             "heartwood_shovel", ((properties) -> new ShovelItem(
-                    ToolMaterial.WOOD,
+                    ToolMaterialRegistry.HEARTWOOD,
                     1.5F,
                     -3.0F,
                     properties.stacksTo(1)
@@ -226,7 +230,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> HEARTWOOD_PICKAXE = register(
             "heartwood_pickaxe", ((properties) -> new PickaxeItem(
-                    ToolMaterial.WOOD,
+                    ToolMaterialRegistry.HEARTWOOD,
                     1.0F,
                     -2.8F,
                     properties.stacksTo(1)
@@ -239,7 +243,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> HEARTWOOD_AXE = register(
             "heartwood_axe", ((properties) -> new AxeItem(
-                    ToolMaterial.WOOD,
+                    ToolMaterialRegistry.HEARTWOOD,
                     6.0F,
                     -3.2F,
                     properties.stacksTo(1)
@@ -252,7 +256,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> HEARTWOOD_HOE = register(
             "heartwood_hoe", ((properties) -> new HoeItem(
-                    ToolMaterial.WOOD,
+                    ToolMaterialRegistry.HEARTWOOD,
                     0.0F,
                     -3.0F,
                     properties.stacksTo(1)
@@ -263,19 +267,131 @@ public class ItemRegistry {
             ))
     );
 
-    /**
-     * LEATHER_HORSE_ARMOR = registerItem("leather_horse_armor", (p_381574_) -> new AnimalArmorItem(ArmorMaterials.LEATHER, BodyType.EQUESTRIAN, SoundEvents.HORSE_ARMOR, false, p_381574_), (new Item.Properties()).stacksTo(1));
-     * LEATHER_HELMET = registerItem("leather_helmet", (Function)((p_370828_) -> new ArmorItem(ArmorMaterials.LEATHER, ArmorType.HELMET, p_370828_)));
-     * LEATHER_CHESTPLATE = registerItem("leather_chestplate", (Function)((p_371038_) -> new ArmorItem(ArmorMaterials.LEATHER, ArmorType.CHESTPLATE, p_371038_)));
-     * LEATHER_LEGGINGS = registerItem("leather_leggings", (Function)((p_370985_) -> new ArmorItem(ArmorMaterials.LEATHER, ArmorType.LEGGINGS, p_370985_)));
-     * LEATHER_BOOTS = registerItem("leather_boots", (Function)((p_370904_) -> new ArmorItem(ArmorMaterials.LEATHER, ArmorType.BOOTS, p_370904_)));
-     * WOODEN_SWORD = registerItem("wooden_sword", (Function)((p_370788_) -> new SwordItem(ToolMaterial.WOOD, 3.0F, -2.4F, p_370788_)));
-     * WOODEN_SHOVEL = registerItem("wooden_shovel", (Function)((p_370807_) -> new ShovelItem(ToolMaterial.WOOD, 1.5F, -3.0F, p_370807_)));
-     * WOODEN_PICKAXE = registerItem("wooden_pickaxe", (Function)((p_370925_) -> new PickaxeItem(ToolMaterial.WOOD, 1.0F, -2.8F, p_370925_)));
-     * WOODEN_AXE = registerItem("wooden_axe", (Function)((p_370924_) -> new AxeItem(ToolMaterial.WOOD, 6.0F, -3.2F, p_370924_)));
-     * WOODEN_HOE = registerItem("wooden_hoe", (Function)((p_371086_) -> new HoeItem(ToolMaterial.WOOD, 0.0F, -3.0F, p_371086_)));
-     */
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HORSE_ARMOR = register(
+            "imbued_heartwood_horse_armor", (properties) -> new AnimalArmorItem(
+                    ArmorMaterialRegistry.IMBUED_HEARTWOOD,
+                    AnimalArmorItem.BodyType.EQUESTRIAN,
+                    SoundEvents.HORSE_ARMOR,
+                    false,
+                    properties.stacksTo(1)
+            )
+    );
 
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HELMET = register(
+            "imbued_heartwood_helmet", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.HELMET,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_CHESTPLATE = register(
+            "imbued_heartwood_chestplate", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.CHESTPLATE,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_LEGGINGS = register(
+            "imbued_heartwood_leggings", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.LEGGINGS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_BOOTS = register(
+            "imbued_heartwood_boots", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.BOOTS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SWORD = register(
+            "imbued_heartwood_sword", ((properties) -> new SwordItem(
+                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                    3.0F,
+                    -2.4F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SHOVEL = register(
+            "imbued_heartwood_shovel", ((properties) -> new ShovelItem(
+                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                    1.5F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_PICKAXE = register(
+            "imbued_heartwood_pickaxe", ((properties) -> new PickaxeItem(
+                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                    1.0F,
+                    -2.8F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_AXE = register(
+            "imbued_heartwood_axe", ((properties) -> new AxeItem(
+                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                    6.0F,
+                    -3.2F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HOE = register(
+            "imbued_heartwood_hoe", ((properties) -> new HoeItem(
+                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                    0.0F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
+            SmithingTemplateExtensions::createImbuementUpgradeTemplate
+    );
 
     public static void init() {
     }
@@ -289,6 +405,101 @@ public class ItemRegistry {
                 Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
         ));
+    }
+
+    protected static abstract class SmithingTemplateExtensions {
+        private static final Component IMBUEMENT_UPGRADE_APPLIES_TO;
+        private static final Component IMBUEMENT_UPGRADE_INGREDIENTS;
+        private static final Component IMBUEMENT_UPGRADE_BASE_SLOT_DESCRIPTION;
+        private static final Component IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
+        private static final ChatFormatting DESCRIPTION_FORMAT;
+
+        private static final ResourceLocation EMPTY_SLOT_HELMET;
+        private static final ResourceLocation EMPTY_SLOT_CHESTPLATE;
+        private static final ResourceLocation EMPTY_SLOT_LEGGINGS;
+        private static final ResourceLocation EMPTY_SLOT_BOOTS;
+        private static final ResourceLocation EMPTY_SLOT_HOE;
+        private static final ResourceLocation EMPTY_SLOT_AXE;
+        private static final ResourceLocation EMPTY_SLOT_SWORD;
+        private static final ResourceLocation EMPTY_SLOT_SHOVEL;
+        private static final ResourceLocation EMPTY_SLOT_PICKAXE;
+        private static final ResourceLocation EMPTY_SLOT_HEART_FRAGMENT;
+
+        static {
+
+            DESCRIPTION_FORMAT = ChatFormatting.BLUE;
+
+            IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+            )).
+
+                    withStyle(DESCRIPTION_FORMAT);
+
+            IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+            )).
+
+                    withStyle(DESCRIPTION_FORMAT);
+
+            IMBUEMENT_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.base_slot_description")
+            ));
+            IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace(
+                            "smithing_template.imbuement_upgrade.additions_slot_description")
+            ));
+
+            EMPTY_SLOT_HELMET = ResourceLocation.withDefaultNamespace("container/slot/helmet");
+            EMPTY_SLOT_CHESTPLATE = ResourceLocation.withDefaultNamespace("container/slot/chestplate");
+            EMPTY_SLOT_LEGGINGS = ResourceLocation.withDefaultNamespace("container/slot/leggings");
+            EMPTY_SLOT_BOOTS = ResourceLocation.withDefaultNamespace("container/slot/boots");
+            EMPTY_SLOT_HOE = ResourceLocation.withDefaultNamespace("container/slot/hoe");
+            EMPTY_SLOT_AXE = ResourceLocation.withDefaultNamespace("container/slot/axe");
+            EMPTY_SLOT_SWORD = ResourceLocation.withDefaultNamespace("container/slot/sword");
+            EMPTY_SLOT_SHOVEL = ResourceLocation.withDefaultNamespace("container/slot/shovel");
+            EMPTY_SLOT_PICKAXE = ResourceLocation.withDefaultNamespace("container/slot/pickaxe");
+
+            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(
+                    Constants.MOD_ID,
+                    "container/slot/heart_fragment"
+            );
+
+        }
+
+        public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {
+            return new SmithingTemplateItem(
+                    IMBUEMENT_UPGRADE_APPLIES_TO,
+                    IMBUEMENT_UPGRADE_INGREDIENTS,
+                    IMBUEMENT_UPGRADE_BASE_SLOT_DESCRIPTION,
+                    IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION,
+                    createImbuementUpgradeIconList(),
+                    createImbuementUpgradeMaterialList(),
+                    properties
+            );
+        }
+
+        private static List<ResourceLocation> createImbuementUpgradeIconList() {
+            return List.of(
+                    EMPTY_SLOT_HELMET,
+                    EMPTY_SLOT_SWORD,
+                    EMPTY_SLOT_CHESTPLATE,
+                    EMPTY_SLOT_PICKAXE,
+                    EMPTY_SLOT_LEGGINGS,
+                    EMPTY_SLOT_AXE,
+                    EMPTY_SLOT_BOOTS,
+                    EMPTY_SLOT_HOE,
+                    EMPTY_SLOT_SHOVEL
+            );
+        }
+
+        private static List<ResourceLocation> createImbuementUpgradeMaterialList() {
+            return List.of(EMPTY_SLOT_HEART_FRAGMENT);
+        }
+
     }
 
 
