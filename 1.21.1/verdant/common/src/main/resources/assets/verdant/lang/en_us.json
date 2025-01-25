@@ -277,6 +277,7 @@
   "effect.verdant.numbness": "Numbness",
   "effect.verdant.blurred": "Blurred",
   "effect.verdant.colorblind": "Colorblind",
+  "effect.verdant.red_green": "Red-Green Colorblind",
   "effect.verdant.sepia": "Sepia",
   "command.verdant.spread_speed": "The Verdant Growth is spreading at a base rate of %s blocks per random tick.",
   "command.verdant.spread_speed_random": "The Verdant Growth is spreading at a base rate of %s blocks per random tick, with a %s chance to grow an additional block.",
