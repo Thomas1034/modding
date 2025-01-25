@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,5 +60,16 @@ public class StranglerTendrilBlock extends GrowingPlantHeadBlock {
     @Override
     protected Block getBodyBlock() {
         return BlockRegistry.STRANGLER_TENDRIL_PLANT.get();
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockPos blockpos = pos.relative(this.growthDirection.getOpposite());
+        BlockState blockstate = level.getBlockState(blockpos);
+        return this.canAttachTo(blockstate) && (blockstate.is(this.getHeadBlock()) || blockstate.is(this.getBodyBlock()) || blockstate.isFaceSturdy(
+                level,
+                blockpos,
+                this.growthDirection
+        ) || blockstate.is(BlockTags.LEAVES));
     }
 }

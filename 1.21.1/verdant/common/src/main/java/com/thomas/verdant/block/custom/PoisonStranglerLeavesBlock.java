@@ -1,7 +1,9 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.VerdantIFF;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -25,6 +27,9 @@ public class PoisonStranglerLeavesBlock extends StranglerLeavesBlock {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
             if (!level.isClientSide) {
+                if (livingEntity instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
                 livingEntity.addEffect(POISON.get());
             }
         }

@@ -132,6 +132,19 @@ public class MobEffectRegistry {
             "blurred",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x808080)
     );
+    public static final RegistryObject<MobEffect, MobEffect> COLORBLIND = MOB_EFFECTS.register(
+            "colorblind",
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0xC0C0C0)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> RED_GREEN = MOB_EFFECTS.register(
+            "red_green",
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x0000FF)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> SEPIA = MOB_EFFECTS.register(
+            "sepia",
+            () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0xAD9A78)
+    );
+
 
     public static void init() {
     }

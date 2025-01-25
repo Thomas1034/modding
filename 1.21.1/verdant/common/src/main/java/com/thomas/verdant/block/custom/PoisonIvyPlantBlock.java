@@ -3,8 +3,10 @@ package com.thomas.verdant.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -34,6 +36,9 @@ public class PoisonIvyPlantBlock extends StranglerTendrilPlantBlock {
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
             if (!level.isClientSide) {
+                if (livingEntity instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
                 livingEntity.addEffect(POISON.get());
             }
         }

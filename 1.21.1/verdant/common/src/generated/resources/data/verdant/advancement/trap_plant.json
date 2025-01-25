@@ -1,0 +1,39 @@
+{
+  "parent": "verdant:stand_on_verdant_ground",
+  "criteria": {
+    "trap_plant": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "verdant:snapleaf"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "verdant:verdant_plant_attack_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.trap_plant.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "verdant:snapleaf"
+    },
+    "title": {
+      "translate": "advancements.verdant.trap_plant.title"
+    }
+  },
+  "requirements": [
+    [
+      "trap_plant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

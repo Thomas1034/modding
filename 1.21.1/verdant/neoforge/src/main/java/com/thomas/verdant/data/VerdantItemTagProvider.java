@@ -30,6 +30,17 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         }
         addDirtOres();
 
+
+        // Verdant ground
+        this.tag(VerdantTags.Items.VERDANT_GROUND).add(
+                BlockRegistry.VERDANT_GRASS_DIRT.get().asItem(),
+                BlockRegistry.VERDANT_ROOTED_DIRT.get().asItem(),
+                BlockRegistry.VERDANT_ROOTED_MUD.get().asItem(),
+                BlockRegistry.VERDANT_GRASS_MUD.get().asItem(),
+                BlockRegistry.VERDANT_ROOTED_CLAY.get().asItem(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get().asItem()
+        );
+
         this.tag(VerdantTags.Items.STRANGLER_VINES)
                 .add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get());
@@ -39,7 +50,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
                 BlockRegistry.WILD_COFFEE.get().asItem(),
                 BlockRegistry.TIGER_LILY.get().asItem()
         );
-        
+
         this.tag(Tags.Items.CROPS).add(
                 ItemRegistry.COFFEE_BERRIES.get(),
                 ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),

@@ -1,43 +1,20 @@
 {
   "parent": "verdant:stand_on_verdant_ground",
   "criteria": {
-    "no_immunity": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "effects": {
-                "verdant:verdant_energy": {
-                  "duration": {
-                    "max": 0
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
     "stinking_blossom": {
       "conditions": {
-        "player": [
+        "location": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
+            "condition": "minecraft:location_check",
             "predicate": {
-              "location": {
-                "block": {
-                  "blocks": "verdant:stinking_blossom"
-                }
+              "block": {
+                "blocks": "verdant:stinking_blossom"
               }
             }
           }
         ]
       },
-      "trigger": "minecraft:location"
+      "trigger": "verdant:verdant_plant_attack_trigger"
     }
   },
   "display": {
@@ -56,9 +33,6 @@
   "requirements": [
     [
       "stinking_blossom"
-    ],
-    [
-      "no_immunity"
     ]
   ],
   "sends_telemetry_event": true

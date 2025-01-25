@@ -2,8 +2,11 @@ package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.registry.DamageSourceRegistry;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -31,14 +34,16 @@ public class ThornyStranglerLeavesBlock extends StranglerLeavesBlock {
     // Copied from ThornBushBlock.
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX
-                && entity.getType() != EntityType.BEE
-                && !VerdantIFF.isFriend(le)) {
+        if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE && !VerdantIFF.isFriend(
+                le)) {
             entity.makeStuckInBlock(state, new Vec3((double) 0.9F, 1.0D, (double) 0.9F));
-            if (!level.isClientSide) {
+            if (level instanceof ServerLevel serverLevel) {
                 Holder<DamageType> type = DamageSourceRegistry.get(level.registryAccess(), DamageSourceRegistry.BRIAR);
                 DamageSource source = new DamageSource(type, (Entity) null);
-                entity.hurt(source, 2.0F);
+                if (le instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
+                entity.hurtServer(serverLevel, source, 2.0F);
             }
         }
     }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:strangler_log",
+  "key": {
+    "d": "#verdant:verdant_ground",
+    "f": "verdant:heart_fragment"
+  },
+  "pattern": [
+    " f ",
+    "fdf",
+    " f "
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:strangler_log"
+  }
+}

@@ -60,6 +60,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shapeless(List.of(BlockRegistry.WILD_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.LIGHT_GRAY_DYE, 1);
         shapeless(List.of(ItemRegistry.ROASTED_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.BROWN_DYE, 1);
 
+        shaped(
+                List.of(" f ", "fdf", " f "),
+                List.of('f', 'd'),
+                List.of(ItemRegistry.HEART_FRAGMENT.get(), VerdantTags.Items.VERDANT_GROUND),
+                RecipeCategory.MISC,
+                ItemRegistry.HEART_FRAGMENT.get(),
+                1
+        );
+
         shapeless(
                 List.of(Items.ROTTEN_FLESH, BlockRegistry.POISON_IVY.get(), Tags.Items.SEEDS),
                 List.of(1, 1, 1),

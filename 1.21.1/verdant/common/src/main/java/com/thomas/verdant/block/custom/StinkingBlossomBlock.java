@@ -1,9 +1,11 @@
 package com.thomas.verdant.block.custom;
 
 import com.thomas.verdant.VerdantIFF;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -47,6 +49,9 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(entity)) {
             if (!level.isClientSide) {
+                if (livingEntity instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
                 livingEntity.addEffect(NAUSEA.get());
             }
         }
@@ -74,10 +79,6 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
         );
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return state.getValue(VERTICAL_DIRECTION) == Direction.UP ? FLOOR_SHAPE : CEILING_SHAPE;
-    }
-
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
         int i = pos.getX();
         int j = pos.getY();
@@ -103,17 +104,21 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     }
 
-    // Very important!
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-
-        super.createBlockStateDefinition(builder);
-        builder.add(VERTICAL_DIRECTION);
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return state.getValue(VERTICAL_DIRECTION) == Direction.UP ? FLOOR_SHAPE : CEILING_SHAPE;
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
                 .setValue(VERTICAL_DIRECTION, context.getNearestLookingVerticalDirection().getOpposite());
+    }
+
+    // Very important!
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+
+        super.createBlockStateDefinition(builder);
+        builder.add(VERTICAL_DIRECTION);
     }
 }

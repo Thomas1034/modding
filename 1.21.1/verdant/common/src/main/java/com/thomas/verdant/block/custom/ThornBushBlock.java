@@ -3,10 +3,12 @@ package com.thomas.verdant.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.registry.DamageSourceRegistry;
+import com.thomas.verdant.registry.TriggerRegistry;
 import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
@@ -61,6 +63,9 @@ public class ThornBushBlock extends BushBlock {
                                 DamageSourceRegistry.BRIAR
                         );
                         DamageSource source = new DamageSource(type, (Entity) null);
+                        if (livingEntity instanceof ServerPlayer player) {
+                            TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                        }
                         entity.hurtServer(serverLevel, source, cumulativeDamage);
                     }
                 }

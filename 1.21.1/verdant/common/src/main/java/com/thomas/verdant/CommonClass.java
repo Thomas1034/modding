@@ -102,6 +102,7 @@ public class CommonClass {
         FeatureRegistry.init();
         CreativeModeTabRegistry.init();
         RecipeSerializerRegistry.init();
+        TriggerRegistry.init();
     }
 
 

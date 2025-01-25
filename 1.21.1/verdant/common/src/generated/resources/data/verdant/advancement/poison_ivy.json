@@ -1,61 +1,83 @@
 {
   "parent": "verdant:stand_on_verdant_ground",
   "criteria": {
-    "no_immunity": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "effects": {
-                "verdant:verdant_energy": {
-                  "duration": {
-                    "max": 0
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
     "poison_ivy": {
       "conditions": {
-        "player": [
+        "location": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
+            "condition": "minecraft:location_check",
             "predicate": {
-              "location": {
-                "block": {
-                  "blocks": "verdant:poison_ivy"
-                }
+              "block": {
+                "blocks": "verdant:poison_ivy"
               }
             }
           }
         ]
       },
-      "trigger": "minecraft:location"
+      "trigger": "verdant:verdant_plant_attack_trigger"
+    },
+    "poison_ivy_above": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "offsetY": 1,
+            "predicate": {
+              "block": {
+                "blocks": "verdant:poison_ivy"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "verdant:verdant_plant_attack_trigger"
     },
     "poison_ivy_plant": {
       "conditions": {
-        "player": [
+        "location": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
+            "condition": "minecraft:location_check",
             "predicate": {
-              "location": {
-                "block": {
-                  "blocks": "verdant:poison_ivy_plant"
-                }
+              "block": {
+                "blocks": "verdant:poison_ivy_plant"
               }
             }
           }
         ]
       },
-      "trigger": "minecraft:location"
+      "trigger": "verdant:verdant_plant_attack_trigger"
+    },
+    "poison_ivy_plant_above": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "offsetY": 1,
+            "predicate": {
+              "block": {
+                "blocks": "verdant:poison_ivy_plant"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "verdant:verdant_plant_attack_trigger"
+    },
+    "poison_leaves": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "offsetY": -1,
+            "predicate": {
+              "block": {
+                "blocks": "verdant:poison_strangler_leaves"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "verdant:verdant_plant_attack_trigger"
     }
   },
   "display": {
@@ -74,10 +96,10 @@
   "requirements": [
     [
       "poison_ivy",
-      "poison_ivy_plant"
-    ],
-    [
-      "no_immunity"
+      "poison_ivy_plant",
+      "poison_ivy_above",
+      "poison_ivy_plant_above",
+      "poison_leaves"
     ]
   ],
   "sends_telemetry_event": true

@@ -414,7 +414,8 @@ public class BlockRegistry {
                         4,
                         VerdantIFF::isEnemy,
                         false,
-                        false
+                        false,
+                        true
                 )
         );
 

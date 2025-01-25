@@ -62,6 +62,7 @@ public class VerdantTags {
         public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
         public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Item> CRAFTS_TO_ROPES = tag("crafts_to_ropes");
+        public static final TagKey<Item> VERDANT_GROUND = tag("verdant_ground");
 
         private static TagKey<Item> tag(String name) {
 

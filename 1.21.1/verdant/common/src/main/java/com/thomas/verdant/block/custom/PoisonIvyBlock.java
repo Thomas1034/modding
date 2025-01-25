@@ -3,7 +3,9 @@ package com.thomas.verdant.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.thomas.verdant.VerdantIFF;
 import com.thomas.verdant.registry.BlockRegistry;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -17,8 +19,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.function.Supplier;
 
 public class PoisonIvyBlock extends StranglerTendrilBlock {
-    public static final MapCodec<PoisonIvyBlock> CODEC = simpleCodec(PoisonIvyBlock::new);
     protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    public static final MapCodec<PoisonIvyBlock> CODEC = simpleCodec(PoisonIvyBlock::new);
     protected static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 100, 0);
 
     public PoisonIvyBlock(Properties properties) {
@@ -31,6 +33,9 @@ public class PoisonIvyBlock extends StranglerTendrilBlock {
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
             if (!level.isClientSide) {
+                if (livingEntity instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
                 livingEntity.addEffect(POISON.get());
             }
         }

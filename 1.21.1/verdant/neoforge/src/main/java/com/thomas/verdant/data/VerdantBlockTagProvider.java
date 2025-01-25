@@ -146,23 +146,25 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
 
-                this.tag(BlockTags.CANDLE_CAKES).add(BlockRegistry.CANDLE_UBE_CAKE.get(), BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.LIME_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.PINK_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.GRAY_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.LIGHT_GRAY_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.CYAN_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.PURPLE_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.BLUE_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.BROWN_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.GREEN_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.RED_CANDLE_UBE_CAKE.get(),
-                        BlockRegistry.BLACK_CANDLE_UBE_CAKE.get()
-                );
+        this.tag(BlockTags.CANDLE_CAKES).add(
+                BlockRegistry.CANDLE_UBE_CAKE.get(),
+                BlockRegistry.WHITE_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.ORANGE_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.MAGENTA_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.LIGHT_BLUE_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.YELLOW_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.LIME_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.PINK_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.GRAY_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.LIGHT_GRAY_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.CYAN_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.PURPLE_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.BLUE_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.BROWN_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.GREEN_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.RED_CANDLE_UBE_CAKE.get(),
+                BlockRegistry.BLACK_CANDLE_UBE_CAKE.get()
+        );
 
         // All vine replacable blocks.
         this.tag(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES).addTag(VerdantTags.Blocks.TENDRILS);

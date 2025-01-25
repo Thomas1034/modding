@@ -4,11 +4,13 @@ package com.thomas.verdant.block.custom;
 import com.google.common.base.Predicates;
 import com.thomas.verdant.registry.DamageSourceRegistry;
 import com.thomas.verdant.registry.MobEffectRegistry;
+import com.thomas.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -81,13 +83,14 @@ public class TrapBlock extends Block {
     protected final float attackDamage;
     protected final boolean needsPowerToReopen;
     protected final boolean manuallyHideable;
+    protected final boolean isNatural;
 
     public TrapBlock(Properties properties, int cooldownTime, int responseTime, float attackDamage) {
-        this(properties, cooldownTime, responseTime, attackDamage, Predicates.alwaysTrue(), true, true);
+        this(properties, cooldownTime, responseTime, attackDamage, Predicates.alwaysTrue(), true, true, false);
 
     }
 
-    public TrapBlock(Properties properties, int cooldownTime, int responseTime, float attackDamage, Predicate<Entity> shouldTrigger, boolean needsPowerToReopen, boolean manuallyHideable) {
+    public TrapBlock(Properties properties, int cooldownTime, int responseTime, float attackDamage, Predicate<Entity> shouldTrigger, boolean needsPowerToReopen, boolean manuallyHideable, boolean isNatural) {
         super(properties);
         this.cooldownTime = cooldownTime;
         this.responseTime = responseTime;
@@ -95,6 +98,7 @@ public class TrapBlock extends Block {
         this.shouldTrigger = shouldTrigger;
         this.needsPowerToReopen = needsPowerToReopen;
         this.manuallyHideable = manuallyHideable;
+        this.isNatural = isNatural;
     }
 
     protected int getCooldownTime() {
@@ -253,6 +257,10 @@ public class TrapBlock extends Block {
                             DamageSourceRegistry.BRIAR
                     );
                     DamageSource source = new DamageSource(type, (Entity) null);
+                    if (this.isNatural && entity instanceof ServerPlayer player) {
+
+                        TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                    }
                     entity.hurtServer(level, source, this.attackDamage);
                     if (entity instanceof LivingEntity livingEntity) {
                         livingEntity.addEffect(TRAPPED_EFFECT_GETTER.get());
