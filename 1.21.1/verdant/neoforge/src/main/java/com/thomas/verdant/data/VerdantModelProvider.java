@@ -4,6 +4,7 @@ import com.thomas.verdant.Constants;
 import com.thomas.verdant.block.custom.*;
 import com.thomas.verdant.data.definitions.VerdantTextureMapping;
 import com.thomas.verdant.data.definitions.VerdantTexturedModel;
+import com.thomas.verdant.registry.ArmorMaterialRegistry;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.ItemRegistry;
 import com.thomas.verdant.registry.WoodSets;
@@ -559,6 +560,38 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
         basicItem(ItemRegistry.BAKED_UBE.get());
         basicItem(ItemRegistry.UBE_COOKIE.get());
+
+        basicItem(ItemRegistry.HEARTWOOD_HORSE_ARMOR.get());
+
+        itemModels.generateTrimmableItem(
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                ArmorMaterialRegistry.HEARTWOOD_ASSET,
+                "helmet",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                ArmorMaterialRegistry.HEARTWOOD_ASSET,
+                "chestplate",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                ArmorMaterialRegistry.HEARTWOOD_ASSET,
+                "leggings",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.HEARTWOOD_BOOTS.get(),
+                ArmorMaterialRegistry.HEARTWOOD_ASSET,
+                "boots",
+                false
+        );
+        handheldItem(ItemRegistry.HEARTWOOD_AXE.get());
+        handheldItem(ItemRegistry.HEARTWOOD_HOE.get());
+        handheldItem(ItemRegistry.HEARTWOOD_SHOVEL.get());
+        handheldItem(ItemRegistry.HEARTWOOD_PICKAXE.get());
+        handheldItem(ItemRegistry.HEARTWOOD_SWORD.get());
     }
 
     @Override

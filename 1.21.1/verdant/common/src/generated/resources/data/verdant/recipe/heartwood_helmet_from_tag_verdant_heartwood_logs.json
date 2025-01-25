@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:heartwood_helmet",
+  "key": {
+    "P": "#verdant:heartwood_logs"
+  },
+  "pattern": [
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:heartwood_helmet"
+  }
+}

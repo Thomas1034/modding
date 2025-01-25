@@ -371,6 +371,84 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 8
         );
 
+
+        // Heartwood armor
+        shaped(
+                List.of("PPP", "P P"),
+                List.of('P'),
+                List.of(WoodSets.HEARTWOOD.getLogItems()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                1
+        );
+        shaped(
+                List.of("P P", "PPP", "PPP"),
+                List.of('P'),
+                List.of(WoodSets.HEARTWOOD.getLogItems()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                1
+        );
+        shaped(
+                List.of("PPP", "P P", "P P"),
+                List.of('P'),
+                List.of(WoodSets.HEARTWOOD.getLogItems()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                1
+        );
+        shaped(
+                List.of("P P", "P P"),
+                List.of('P'),
+                List.of(WoodSets.HEARTWOOD.getLogItems()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_BOOTS.get(),
+                1
+        );
+
+        // Heartwood tools
+        shaped(
+                List.of("P", "P", "S"),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_SWORD.get(),
+                1
+        );
+        shaped(
+                List.of("PPP", " S ", " S "),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                RecipeCategory.TOOLS,
+                ItemRegistry.HEARTWOOD_PICKAXE.get(),
+                1
+        );
+        shaped(
+                List.of("PP", "PS", " S"),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                RecipeCategory.TOOLS,
+                ItemRegistry.HEARTWOOD_AXE.get(),
+                1
+        );
+        shaped(
+                List.of("PP", " S", " S"),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                RecipeCategory.TOOLS,
+                ItemRegistry.HEARTWOOD_HOE.get(),
+                1
+        );
+        shaped(
+                List.of("P", "S", "S"),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                RecipeCategory.TOOLS,
+                ItemRegistry.HEARTWOOD_SHOVEL.get(),
+                1
+        );
+
+
     }
 
     protected void shaped(List<String> pattern, List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result, int count) {

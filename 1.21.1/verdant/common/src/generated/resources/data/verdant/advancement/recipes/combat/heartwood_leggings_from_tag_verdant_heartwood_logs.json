@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heartwood_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#verdant:heartwood_logs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:heartwood_leggings_from_tag_verdant_heartwood_logs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minecraft_root",
+      "has_heartwood_leggings"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:heartwood_leggings_from_tag_verdant_heartwood_logs"
+    ]
+  }
+}

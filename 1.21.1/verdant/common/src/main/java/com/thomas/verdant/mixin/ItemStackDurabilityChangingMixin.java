@@ -37,7 +37,7 @@ public class ItemStackDurabilityChangingMixin {
             if (time % tickEvery == 0) {
 
                 stack.hurtAndBreak(
-                        delta.perTick(), serverLevel, serverPlayer, (x) -> {
+                        -delta.perTick(), serverLevel, serverPlayer, (x) -> {
                         }
                 );
             }

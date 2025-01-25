@@ -38,8 +38,9 @@ public class VerdantTags {
         public static final TagKey<Block> TENDRILS = tag("tendrils");
         public static final TagKey<Block> ROPE_HOOKS = tag("rope_hooks");
         public static final TagKey<Block> ROPES_EXTEND = tag("ropes_extend");
-        public static final TagKey<Block> NEEDS_HEARTWOOD_TOOL = tag("needs_heartwood_tool");
-        public static final TagKey<Block> NEEDS_IMBUED_HEARTWOOD_TOOL = tag("needs_imbued_heartwood_tool");
+        public static final TagKey<Block> INCORRECT_FOR_HEARTWOOD_TOOL = tag("incorrect_for_heartwood_tool");
+        public static final TagKey<Block> INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL = tag(
+                "incorrect_for_imbued_heartwood_tool");
         public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
 
         private static TagKey<Block> tag(String name) {
@@ -63,6 +64,8 @@ public class VerdantTags {
         public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Item> CRAFTS_TO_ROPES = tag("crafts_to_ropes");
         public static final TagKey<Item> VERDANT_GROUND = tag("verdant_ground");
+        public static final TagKey<Item> REPAIRS_HEARTWOOD_ARMOR = tag("repairs_heartwood_armor");
+        public static final TagKey<Item> HEARTWOOD_TOOL_MATERIALS = tag("heartwood_tool_materials");
 
         private static TagKey<Item> tag(String name) {
 

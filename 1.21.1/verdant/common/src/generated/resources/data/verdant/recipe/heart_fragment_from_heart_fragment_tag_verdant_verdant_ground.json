@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:heart_fragment",
+  "key": {
+    "d": "#verdant:verdant_ground",
+    "f": "verdant:heart_fragment"
+  },
+  "pattern": [
+    " f ",
+    "fdf",
+    " f "
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:heart_fragment"
+  }
+}

@@ -1,6 +1,7 @@
 package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
+import com.thomas.verdant.item.component.DurabilityChanging;
 import com.thomas.verdant.item.custom.*;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
@@ -8,11 +9,13 @@ import com.thomas.verdant.registry.properties.ConsumablesList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.function.Function;
 
@@ -54,10 +57,7 @@ public class ItemRegistry {
             "rope",
             (properties) -> new RopeItem(BlockRegistry.ROPE.get(), properties)
     );
-    public static final RegistryObject<Item, Item> POISON_ARROW = register(
-            "poison_arrow",
-            PoisonArrowItem::new
-    );
+    public static final RegistryObject<Item, Item> POISON_ARROW = register("poison_arrow", PoisonArrowItem::new);
     public static final RegistryObject<Item, Item> HEART_OF_THE_FOREST = register(
             "heart_of_the_forest",
             (properties) -> new HeartOfTheForestItem(properties.rarity(Rarity.UNCOMMON))
@@ -74,22 +74,10 @@ public class ItemRegistry {
             "bitter_cassava_cuttings",
             (properties) -> new BlockItem(BlockRegistry.BITTER_CASSAVA_CROP.get(), properties)
     );
-    public static final RegistryObject<Item, Item> CASSAVA = register(
-            "cassava",
-            Item::new
-    );
-    public static final RegistryObject<Item, Item> BITTER_CASSAVA = register(
-            "bitter_cassava",
-            Item::new
-    );
-    public static final RegistryObject<Item, Item> STARCH = register(
-            "starch",
-            Item::new
-    );
-    public static final RegistryObject<Item, Item> BITTER_STARCH = register(
-            "bitter_starch",
-            Item::new
-    );
+    public static final RegistryObject<Item, Item> CASSAVA = register("cassava", Item::new);
+    public static final RegistryObject<Item, Item> BITTER_CASSAVA = register("bitter_cassava", Item::new);
+    public static final RegistryObject<Item, Item> STARCH = register("starch", Item::new);
+    public static final RegistryObject<Item, Item> BITTER_STARCH = register("bitter_starch", Item::new);
     public static final RegistryObject<Item, Item> BITTER_BREAD = register(
             "bitter_bread", (properties) -> new EffectBoostFoodItem(
                     properties.food(Foods.BREAD),
@@ -111,17 +99,13 @@ public class ItemRegistry {
             "cooked_cassava",
             (properties) -> new Item(properties.food(Foods.COOKED_CHICKEN))
     );
-    public static final RegistryObject<Item, Item> GOLDEN_CASSAVA = register(
-            "golden_cassava",
-            Item::new
-    );
+    public static final RegistryObject<Item, Item> GOLDEN_CASSAVA = register("golden_cassava", Item::new);
     public static final RegistryObject<Item, Item> COOKED_GOLDEN_CASSAVA = register(
             "cooked_golden_cassava",
-            (properties) -> new Item(properties.stacksTo(64)
-                    .food(
-                            new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build(),
-                            ConsumablesList.COOKED_GOLDEN_CASSAVA
-                    ))
+            (properties) -> new Item(properties.stacksTo(64).food(
+                    new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build(),
+                    ConsumablesList.COOKED_GOLDEN_CASSAVA
+            ))
     );
     public static final RegistryObject<Item, Item> SPARKLING_STARCH = register(
             "sparkling_starch",
@@ -148,11 +132,135 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> UBE = register(
-            "ube", (properties) -> new BlockItem(
+            "ube",
+            (properties) -> new BlockItem(
                     BlockRegistry.UBE_CROP.get(),
                     properties.food(Foods.POISONOUS_POTATO, Consumables.POISONOUS_POTATO)
             )
 
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_HORSE_ARMOR = register(
+            "heartwood_horse_armor", (properties) -> new AnimalArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    AnimalArmorItem.BodyType.EQUESTRIAN,
+                    SoundEvents.HORSE_ARMOR,
+                    false,
+                    properties.stacksTo(1)
+            )
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_HELMET = register(
+            "heartwood_helmet", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.HELMET,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_CHESTPLATE = register(
+            "heartwood_chestplate", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.CHESTPLATE,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_LEGGINGS = register(
+            "heartwood_leggings", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.LEGGINGS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_BOOTS = register(
+            "heartwood_boots", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.HEARTWOOD,
+                    ArmorType.BOOTS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
+            "heartwood_sword", ((properties) -> new SwordItem(
+                    ToolMaterial.WOOD,
+                    3.0F,
+                    -2.4F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_SHOVEL = register(
+            "heartwood_shovel", ((properties) -> new ShovelItem(
+                    ToolMaterial.WOOD,
+                    1.5F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_PICKAXE = register(
+            "heartwood_pickaxe", ((properties) -> new PickaxeItem(
+                    ToolMaterial.WOOD,
+                    1.0F,
+                    -2.8F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_AXE = register(
+            "heartwood_axe", ((properties) -> new AxeItem(
+                    ToolMaterial.WOOD,
+                    6.0F,
+                    -3.2F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_HOE = register(
+            "heartwood_hoe", ((properties) -> new HoeItem(
+                    ToolMaterial.WOOD,
+                    0.0F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
     );
 
     /**

@@ -445,9 +445,8 @@ public class BlockRegistry {
         );
 
         IMBUED_HEARTWOOD_LOG = registerBlockWithItem(
-                "imbued_heartwood_log",
-                () -> new com.thomas.verdant.block.custom.InfestedRotatedPillarBlock(
-                        properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f),
+                "imbued_heartwood_log", () -> new com.thomas.verdant.block.custom.InfestedRotatedPillarBlock(
+                        properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f).lightLevel(state -> 2),
                         EntityTypeRegistry.TIMBERMITE::get
                 )
         );

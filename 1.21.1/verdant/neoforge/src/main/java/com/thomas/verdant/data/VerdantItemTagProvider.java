@@ -82,6 +82,38 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.ARROWS).add(ItemRegistry.POISON_ARROW.get());
         this.tag(VerdantTags.Items.CRAFTS_TO_ROPES)
                 .add(Items.VINE, Items.STRING, BlockRegistry.STRANGLER_TENDRIL.get().asItem());
+
+        this.tag(VerdantTags.Items.REPAIRS_HEARTWOOD_ARMOR).addTag(WoodSets.HEARTWOOD.getLogItems());
+        this.tag(VerdantTags.Items.HEARTWOOD_TOOL_MATERIALS).addTag(WoodSets.HEARTWOOD.getLogItems());
+
+        this.tag(ItemTags.TRIMMABLE_ARMOR).add(
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.ARMOR_ENCHANTABLE).add(
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.HEAD_ARMOR).add(ItemRegistry.HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.CHEST_ARMOR).add(ItemRegistry.HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.CHEST_ARMOR_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.LEG_ARMOR).add(ItemRegistry.HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.LEG_ARMOR_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.FOOT_ARMOR).add(ItemRegistry.HEARTWOOD_BOOTS.get());
+        this.tag(ItemTags.FOOT_ARMOR_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_BOOTS.get());
+
+        this.tag(ItemTags.AXES).add(ItemRegistry.HEARTWOOD_AXE.get());
+        this.tag(ItemTags.HOES).add(ItemRegistry.HEARTWOOD_HOE.get());
+        this.tag(ItemTags.PICKAXES).add(ItemRegistry.HEARTWOOD_PICKAXE.get());
+        this.tag(ItemTags.SHOVELS).add(ItemRegistry.HEARTWOOD_SHOVEL.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
+
     }
 
     private void addDirtOres() {
