@@ -11,6 +11,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_heart_of_the_forest": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heart_of_the_forest"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_minecraft_root": {
       "conditions": {
         "items": [
@@ -23,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:heart_fragment_from_heart_fragment_tag_verdant_verdant_ground"
+        "recipe": "verdant:heart_of_the_forest_from_heart_fragment_tag_verdant_verdant_ground"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -32,12 +42,13 @@
     [
       "has_the_recipe",
       "has_heart_fragment",
-      "has_minecraft_root"
+      "has_minecraft_root",
+      "has_heart_of_the_forest"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:heart_fragment_from_heart_fragment_tag_verdant_verdant_ground"
+      "verdant:heart_of_the_forest_from_heart_fragment_tag_verdant_verdant_ground"
     ]
   }
 }

@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-25T17:52:08.2486204	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-01-25T19:48:13.6041973	Tags for minecraft:block mod id verdant
 e5df598552db116caaa9321d780a2c14346fefe8 data/c/tags/block/fences/wooden.json
 0b1c8916e407acd9b4cce4d0428a9665ab6c4d4b data/c/tags/block/fence_gates/wooden.json
 7166531643e02808348a14edc765376109e66419 data/c/tags/block/ores.json
@@ -13,10 +13,12 @@ c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/block/ores/lapis.json
 b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores_in_ground/dirt.json
 d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/block/ore_bearing_ground/dirt.json
 2f126bbc5b1130a48c953bc1bf5114cac1bc7f77 data/c/tags/block/stripped_logs.json
+ae3b9b3fec6963c7f01796c8fe87b854febb0ac3 data/minecraft/tags/block/bee_attractive.json
+53be5fac254c6dd6190f318da4649cd0ee507301 data/minecraft/tags/block/bee_growables.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
 228dd61829f5a76a24f91849b2651e632bbcee2c data/minecraft/tags/block/candle_cakes.json
 cb745575e495b3eec87db2e2b644df65241d73e8 data/minecraft/tags/block/climbable.json
-a3f8b492d844fb8d26025c7efa716f9c086f2afb data/minecraft/tags/block/crops.json
+6abc2edde4c53b55261bd21b71b33f17a7e4c93e data/minecraft/tags/block/crops.json
 4387bfb55a2795ddfc58f8891c56cac22704702b data/minecraft/tags/block/dirt.json
 ea03e433e44fc4aa782b42f55a5be872b5d430f1 data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json

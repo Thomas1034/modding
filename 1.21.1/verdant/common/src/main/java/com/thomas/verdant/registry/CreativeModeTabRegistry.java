@@ -20,10 +20,11 @@ public class CreativeModeTabRegistry {
                     .icon(() -> new ItemStack(ItemRegistry.HEART_OF_THE_FOREST.get()))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
+                        output.accept(ItemRegistry.HEART_FRAGMENT.get());
+                        output.accept(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.THORN.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
-                        output.accept(ItemRegistry.POISON_ARROW.get());
                         output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
                     })
@@ -100,7 +101,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.UBE_COOKIE.get());
                         output.accept(ItemRegistry.UBE_CAKE.get());
                     })
-                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
+                    .title(Component.translatable("creativetab." + Constants.MOD_ID + ".foods"))
                     .build()
     );
     public static final RegistryObject<CreativeModeTab, CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register(

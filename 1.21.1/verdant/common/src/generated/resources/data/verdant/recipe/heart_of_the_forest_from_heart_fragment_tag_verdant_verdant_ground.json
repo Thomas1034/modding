@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "verdant:heart_fragment",
+  "group": "verdant:heart_of_the_forest",
   "key": {
     "d": "#verdant:verdant_ground",
     "f": "verdant:heart_fragment"
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "verdant:heart_fragment"
+    "id": "verdant:heart_of_the_forest"
   }
 }

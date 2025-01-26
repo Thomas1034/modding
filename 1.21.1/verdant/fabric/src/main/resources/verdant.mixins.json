@@ -6,7 +6,8 @@
   "mixins": [
     "DecreaseDetectionRangeMixin",
     "IntangibilityPlayerTickMixin",
-    "ItemStackDurabilityChangingMixin"
+    "ItemStackDurabilityChangingMixin",
+    "BoggedLikeVerdantFriendsMixin"
   ],
   "server": [],
   "client": [

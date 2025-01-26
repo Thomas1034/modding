@@ -1,0 +1,115 @@
+{
+  "type": "minecraft:flower",
+  "config": {
+    "xz_spread": 5,
+    "y_spread": 3,
+    "feature": {
+      "feature": {
+        "config": {
+          "tries": 8,
+          "xz_spread": 9,
+          "y_spread": 9,
+          "feature": {
+            "feature": {
+              "config": {
+                "to_place": {
+                  "type": "minecraft:weighted_state_provider",
+                  "entries": [
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "facing": "north"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "facing": "east"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "facing": "south"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "facing": "west"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "hidden": "true",
+                          "facing": "north"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "hidden": "true",
+                          "facing": "east"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "hidden": "true",
+                          "facing": "south"
+                        }
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "verdant:snapleaf",
+                        "Properties": {
+                          "hidden": "true",
+                          "facing": "west"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "type": "minecraft:simple_block"
+            },
+            "placement": [
+              {
+                "type": "minecraft:block_predicate_filter",
+                "predicate": {
+                  "type": "minecraft:matching_block_tag",
+                  "tag": "minecraft:air"
+                }
+              }
+            ]
+          }
+        },
+        "type": "minecraft:random_patch"
+      },
+      "placement": []
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-25T17:52:08.2974265	Tags for minecraft:item mod id verdant
+// 1.21.4	2025-01-25T19:48:13.6225228	Tags for minecraft:item mod id verdant
 4a4f07cfe1ba76d16b89017db2f1647d7b04453b data/c/tags/item/crops.json
 e5df598552db116caaa9321d780a2c14346fefe8 data/c/tags/item/fences/wooden.json
 0b1c8916e407acd9b4cce4d0428a9665ab6c4d4b data/c/tags/item/fence_gates/wooden.json
@@ -42,6 +42,8 @@ ee2e4f06057565810a09c6e2b65a5356401db8ed data/minecraft/tags/item/signs.json
 5f5acb6bbdc3281fb0c6183c75d5034503758e21 data/minecraft/tags/item/small_flowers.json
 d45cbd8e2cf855fbbacddd6a8d8aaf089b6b01d6 data/minecraft/tags/item/swords.json
 7109b3790daa2d823801fba7e8f8bc7c6801fb06 data/minecraft/tags/item/trimmable_armor.json
+0ae24cb1278bd03fe6cbb847e80f5441bc7cf804 data/minecraft/tags/item/villager_picks_up.json
+a82420a567ff4584d112cc68bc5fa646de3f346e data/minecraft/tags/item/villager_plantable_seeds.json
 4cb0e75eca272749b9b48c9613fe4e29b14b90b7 data/minecraft/tags/item/wooden_buttons.json
 c34e8b6b47ba33c8d8542d6bf51281b1cf3aa277 data/minecraft/tags/item/wooden_doors.json
 e5df598552db116caaa9321d780a2c14346fefe8 data/minecraft/tags/item/wooden_fences.json

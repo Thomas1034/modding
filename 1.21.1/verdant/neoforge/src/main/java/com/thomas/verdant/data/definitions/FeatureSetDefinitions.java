@@ -20,15 +20,16 @@ public class FeatureSetDefinitions {
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
         entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_GRASS_JUNGLE));
-        entries.add(configured(Rarity.COMMON, JSONFeatures.MIXED_BUSHES));
         entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_TALL_GRASS));
+        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_BUSHES));
         entries.add(configured(Rarity.UNCOMMON, VegetationFeatures.PATCH_LARGE_FERN));
-        entries.add(configured(Rarity.RARE, JSONFeatures.BLEEDING_HEART));
-        entries.add(configured(Rarity.RARE, JSONFeatures.ORCHIDS));
-        entries.add(configured(Rarity.RARE, JSONFeatures.LILIES));
+        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.BLEEDING_HEART));
+        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.LILIES));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
-        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MIXED_FLOWERS));
+        entries.add(configured(Rarity.RARE, JSONFeatures.ORCHIDS));
+        entries.add(configured(Rarity.RARE, JSONFeatures.MIXED_FLOWERS));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.WILD_CASSAVA));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.COFFEE));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MIXED_MUSHROOMS));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.BAMBOO));

@@ -65,7 +65,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of('f', 'd'),
                 List.of(ItemRegistry.HEART_FRAGMENT.get(), VerdantTags.Items.VERDANT_GROUND),
                 RecipeCategory.MISC,
-                ItemRegistry.HEART_FRAGMENT.get(),
+                ItemRegistry.HEART_OF_THE_FOREST.get(),
                 1
         );
 
