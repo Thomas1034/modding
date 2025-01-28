@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-27T23:16:02.9789953	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-01-27T23:58:56.7176293	Tags for minecraft:block mod id verdant
 e5df598552db116caaa9321d780a2c14346fefe8 data/c/tags/block/fences/wooden.json
 0b1c8916e407acd9b4cce4d0428a9665ab6c4d4b data/c/tags/block/fence_gates/wooden.json
 7166531643e02808348a14edc765376109e66419 data/c/tags/block/ores.json
@@ -19,7 +19,8 @@ ae3b9b3fec6963c7f01796c8fe87b854febb0ac3 data/minecraft/tags/block/bee_attractiv
 228dd61829f5a76a24f91849b2651e632bbcee2c data/minecraft/tags/block/candle_cakes.json
 cb745575e495b3eec87db2e2b644df65241d73e8 data/minecraft/tags/block/climbable.json
 6abc2edde4c53b55261bd21b71b33f17a7e4c93e data/minecraft/tags/block/crops.json
-1f9f5bb93151a89331f519f3271a993b93d48a24 data/minecraft/tags/block/dirt.json
+1ef9499e65bfa0eac072bdad27ec0d0371b50e5f data/minecraft/tags/block/dead_bush_may_place_on.json
+4387bfb55a2795ddfc58f8891c56cac22704702b data/minecraft/tags/block/dirt.json
 ea03e433e44fc4aa782b42f55a5be872b5d430f1 data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
 45128c0f58126b8da8726803335efa15aa6814ea data/minecraft/tags/block/logs.json
@@ -27,8 +28,8 @@ ea03e433e44fc4aa782b42f55a5be872b5d430f1 data/minecraft/tags/block/flower_pots.j
 b29416f54920255713736360b8b1c90f1877b294 data/minecraft/tags/block/mineable/axe.json
 58e0973eb220997b6b6a19d656aa3a8cea7ed8ff data/minecraft/tags/block/mineable/hoe.json
 9926f292a84961a8c3d58243dfd697cd4ebdb359 data/minecraft/tags/block/mineable/pickaxe.json
-2521b8ca0df8c0a562ee4736738a31f0acd61b40 data/minecraft/tags/block/mineable/shovel.json
-26ff9485386d0ae7e82be359f76402977cfbca31 data/minecraft/tags/block/mushroom_grow_block.json
+9929dc40b7e9be3ba53389487e48eee1865c644a data/minecraft/tags/block/mineable/shovel.json
+d20cee2b474fa053f3bdc572e55bc214ee45f0cc data/minecraft/tags/block/mushroom_grow_block.json
 6163d4a064c612798a4df13d19a8eefdd875a4af data/minecraft/tags/block/planks.json
 86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/block/replaceable.json
 ab8813394e83c3801cfcd7e0e0db374d34d0e46e data/minecraft/tags/block/replaceable_by_trees.json

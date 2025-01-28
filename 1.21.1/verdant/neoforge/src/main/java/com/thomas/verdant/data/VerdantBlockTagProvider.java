@@ -52,8 +52,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.DIRT_GOLD_ORE.get(),
                 BlockRegistry.DIRT_IRON_ORE.get(),
                 BlockRegistry.DIRT_LAPIS_ORE.get(),
-                BlockRegistry.DIRT_REDSTONE_ORE.get()/*, BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
-                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(), BlockRegistry.VERDANT_CONDUIT.get()*/
+                BlockRegistry.DIRT_REDSTONE_ORE.get(),
+                BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
+                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
@@ -84,14 +85,13 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
 
 
-        //        // Mechanical.
+        // Mechanical.
         this.tag(BlockTags.CROPS).add(
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
         this.tag(BlockTags.DIRT).add(
-                BlockRegistry.TOXIC_DIRT.get(),
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -107,8 +107,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_ROOTED_CLAY.get()
+                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.TOXIC_DIRT.get()
         );
+        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get());
 
         this.tag(BlockTags.CLIMBABLE).add(
                 BlockRegistry.STRANGLER_VINE.get(),

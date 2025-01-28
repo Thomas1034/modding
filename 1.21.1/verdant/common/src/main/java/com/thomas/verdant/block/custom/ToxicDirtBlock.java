@@ -38,6 +38,7 @@ public class ToxicDirtBlock extends Block {
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         super.animateTick(state, level, pos, random);
         if (state.getValue(IS_SURFACE)) {
+            // Constants.LOG.warn("Creating particle!");
             if (random.nextInt(2) == 0) {
                 level.addParticle(
                         ParticleTypes.SMOKE,
@@ -118,7 +119,7 @@ public class ToxicDirtBlock extends Block {
     }
 
     protected BlockState updateDistance(BlockState state, Level level, BlockPos pos) {
-        return state.setValue(IS_SURFACE, !level.getBlockState(pos).isCollisionShapeFullBlock(level, pos));
+        return state.setValue(IS_SURFACE, !level.getBlockState(pos.above()).isCollisionShapeFullBlock(level, pos));
     }
 
 }

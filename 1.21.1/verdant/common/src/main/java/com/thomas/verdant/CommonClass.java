@@ -55,9 +55,11 @@ AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 Advancements:
 born and bred, walk through a thorn bush without taking damage due to verdant armor.
 
-Add in new roots to replace strangler tendrils when below-ground.
 Make grass be less vibrantly green? Uncertain.
 
+Add Dead Wood, toxic ashed logs and wood.
+Tagged as vines-can't-survive-on.
+Fix ashes not directly hurting things
 
 Compatibility
 
