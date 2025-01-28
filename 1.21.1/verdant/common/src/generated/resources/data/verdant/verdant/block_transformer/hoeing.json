@@ -1,0 +1,29 @@
+{
+  "name": "verdant:hoeing",
+  "values": [
+    {
+      "block": "verdant:verdant_rooted_dirt",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "verdant:verdant_grass_dirt",
+      "result": "verdant:verdant_rooted_dirt"
+    },
+    {
+      "block": "verdant:verdant_rooted_mud",
+      "result": "minecraft:mud"
+    },
+    {
+      "block": "verdant:verdant_grass_mud",
+      "result": "verdant:verdant_rooted_mud"
+    },
+    {
+      "block": "verdant:verdant_rooted_clay",
+      "result": "minecraft:clay"
+    },
+    {
+      "block": "verdant:verdant_grass_clay",
+      "result": "verdant:verdant_rooted_clay"
+    }
+  ]
+}

@@ -529,6 +529,8 @@ public class VerdantModelProvider extends ModelProvider {
         candleCake(Blocks.RED_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.RED_CANDLE_UBE_CAKE.get());
         candleCake(Blocks.BLACK_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
         candleCake(Blocks.CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.CANDLE_UBE_CAKE.get());
+        tumbledBlockWithItem(BlockRegistry.TOXIC_DIRT.get());
+        createCrossBlock(BlockRegistry.DEAD_GRASS.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
@@ -626,6 +628,12 @@ public class VerdantModelProvider extends ModelProvider {
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+
+        basicItem(ItemRegistry.TOXIC_ASH.get());
+        basicItem(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
+        basicItem(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
+        basicItem(BlockRegistry.DEAD_GRASS.get().asItem());
+
     }
 
     @Override

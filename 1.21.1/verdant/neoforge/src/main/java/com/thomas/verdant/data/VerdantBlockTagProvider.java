@@ -44,6 +44,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.TOXIC_DIRT.get(),
                 BlockRegistry.DIRT_COAL_ORE.get(),
                 BlockRegistry.DIRT_COPPER_ORE.get(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get(),
@@ -90,6 +91,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.COFFEE_CROP.get()
         );
         this.tag(BlockTags.DIRT).add(
+                BlockRegistry.TOXIC_DIRT.get(),
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -277,6 +279,22 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
+
+        this.tag(VerdantTags.Blocks.BLOCKS_ASH_SPREAD).add(
+                Blocks.BEDROCK,
+                Blocks.NETHER_PORTAL,
+                Blocks.BARRIER,
+                Blocks.OBSIDIAN,
+                Blocks.CRYING_OBSIDIAN,
+                Blocks.SPONGE,
+                Blocks.WET_SPONGE,
+                Blocks.AMETHYST_BLOCK,
+                Blocks.BUDDING_AMETHYST
+        );
+
+
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).add(Blocks.WATER, BlockRegistry.TOXIC_DIRT.get());
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LOGS);
 
         addDirtOres();
     }

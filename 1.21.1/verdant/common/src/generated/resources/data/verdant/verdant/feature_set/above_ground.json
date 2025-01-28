@@ -10,43 +10,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_large_fern",
+        "configured_feature": "verdant:bleeding_heart",
         "weight": 50
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:mixed_bushes",
-        "weight": 50
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:patch_tall_grass",
-        "weight": 100
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:stinking_blossom_floor",
-        "weight": 10
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:patch_grass_jungle",
-        "weight": 150
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:coffee",
-        "weight": 1
       }
     },
     {
@@ -59,8 +24,29 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:snapleaf",
-        "weight": 1
+        "configured_feature": "verdant:mixed_bushes",
+        "weight": 50
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:stinking_blossom_floor",
+        "weight": 10
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:lilies",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_large_fern",
+        "weight": 50
       }
     },
     {
@@ -80,6 +66,27 @@
     {
       "type": "configured",
       "entry": {
+        "configured_feature": "minecraft:patch_tall_grass",
+        "weight": 100
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_grass_jungle",
+        "weight": 150
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:snapleaf",
+        "weight": 1
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
         "configured_feature": "verdant:mixed_mushrooms",
         "weight": 1
       }
@@ -87,15 +94,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:lilies",
-        "weight": 25
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:bleeding_heart",
-        "weight": 50
+        "configured_feature": "verdant:coffee",
+        "weight": 1
       }
     }
   ],

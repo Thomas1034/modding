@@ -54,10 +54,10 @@ AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 
 Advancements:
 born and bred, walk through a thorn bush without taking damage due to verdant armor.
-in soviet russia..., get eaten by a snap plant
-thou wast a spirit to delicate, cut open a tree, step inside, and have log block grow on you
 
-Snap plant: a natural trap block. Much fun.
+Add in new roots to replace strangler tendrils when below-ground.
+Make grass be less vibrantly green? Uncertain.
+
 
 Compatibility
 

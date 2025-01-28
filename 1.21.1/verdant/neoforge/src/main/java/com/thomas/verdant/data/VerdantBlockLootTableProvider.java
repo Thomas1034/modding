@@ -307,6 +307,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.requireSilkTouch(BlockRegistry.IMBUED_HEARTWOOD_LOG.get(), WoodSets.HEARTWOOD.getLog().get());
         this.dropSelf(BlockRegistry.CASSAVA_ROOTED_DIRT.get());
         this.dropSelf(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get());
+        this.dropSelf(BlockRegistry.TOXIC_DIRT.get());
+        this.requireSilkTouchOrShears(BlockRegistry.DEAD_GRASS.get(), Items.WHEAT_SEEDS, List.of(0, 1));
     }
 
     @Override

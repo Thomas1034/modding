@@ -1,4 +1,4 @@
-// 1.21.4	2025-01-25T17:52:08.2639979	Model Definitions - verdant
+// 1.21.4	2025-01-27T23:20:21.0364382	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -47,6 +47,7 @@ e7c4ce4d746079d7dd68a89230aa3c551ae1a1a2 assets/verdant/blockstates/cassava_root
 5df70ce5c23d7a8177acfeba7c7a46d162fcd207 assets/verdant/blockstates/charred_frame_block.json
 fabd76f780064106c76e34db03518f1dd841b228 assets/verdant/blockstates/coffee_crop.json
 ad7e73852fc0db948474548f3f3c12ada3caacd4 assets/verdant/blockstates/cyan_candle_ube_cake.json
+d84cbcdcae0e60833499fc8e0a3980f8a1d15c70 assets/verdant/blockstates/dead_grass.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
 d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond_ore.json
@@ -128,6 +129,7 @@ c473b69103246bd32a5260a6e8af9ef35d1f4ac8 assets/verdant/blockstates/stripped_hea
 d9b39929c8f3724aff1d3e38822819bd7f78aaf5 assets/verdant/blockstates/thorny_strangler_leaves.json
 c8448a0b484c523d477394da7b58bab75fa61f5c assets/verdant/blockstates/thorn_bush.json
 3cbd1b577ca31cd5f946107fed34fed63fa12e45 assets/verdant/blockstates/tiger_lily.json
+b03714ff96b8c8cec0a57c3d14c23ea2e4817977 assets/verdant/blockstates/toxic_dirt.json
 82776c8d248b661e34995125ca30f3b26fefe003 assets/verdant/blockstates/ube_cake.json
 5b6475c7576b3f142149173fb34472e75d79a1ca assets/verdant/blockstates/ube_crop.json
 132e391aac81493463f2e92bf38ff57f8fae40e2 assets/verdant/blockstates/verdant_grass_clay.json
@@ -160,6 +162,7 @@ efbabcf65585fe08cf34a9857c61201b2a34caca assets/verdant/items/cassava_rooted_dir
 fef41114fb1e683895de238ba0f4a8f18a61e926 assets/verdant/items/coffee_berries.json
 045cf0d3443ba03dde3a25d60d76b6a16e27c06e assets/verdant/items/cooked_cassava.json
 50567ee945901a701ec7c05516de6ddb2e00edf2 assets/verdant/items/cooked_golden_cassava.json
+cfb9f78b0b07af502eb68862b8d085a874fc9ff2 assets/verdant/items/dead_grass.json
 91a47c06602254a1d0e55b67ff53b029b12f2205 assets/verdant/items/dirt_coal_ore.json
 b8d1cbaec1dd1359c25d1ffd95ad6179f745d0a7 assets/verdant/items/dirt_copper_ore.json
 9d4c53a8e01306a7e5d92678a20f0d67d9507c6c assets/verdant/items/dirt_diamond_ore.json
@@ -255,6 +258,10 @@ af116e5c1c621d60b84fa76b912dc1063245142e assets/verdant/items/thorn.json
 68d3a2aba51151da3113ffda6e784e21d6e4626d assets/verdant/items/thorny_strangler_leaves.json
 c6a1f27df177c189c3af71916703f3a1b4091b2e assets/verdant/items/thorn_bush.json
 c2a3ea87b8494e22fab2ee8a2be1a6d15d5e9804 assets/verdant/items/tiger_lily.json
+afb4079251709215c62ed5e5854f39ecbc16770c assets/verdant/items/toxic_ash.json
+5e275f4bc601a0a0e704470b6055c3d11618f4a0 assets/verdant/items/toxic_ash_bucket.json
+d2800f28d588904d2b191ccc4b4ecb6700c3d45e assets/verdant/items/toxic_dirt.json
+3c6832a28dc2c169e38155fa4c7f1ce203653df4 assets/verdant/items/toxic_solution_bucket.json
 f4267bdb56f25ba1af2bc0d7e9f4e2b4e8418aa0 assets/verdant/items/ube.json
 7adcc4579af734d07a6aef75414c73d8eeb5efe1 assets/verdant/items/ube_cake.json
 ab01ef277ccae68fc0b4583b6fc1b97b131b7776 assets/verdant/items/ube_cookie.json
@@ -313,6 +320,7 @@ dda5d8d0c532c20092fb0ceb5baf10db53f43ae3 assets/verdant/models/block/charred_fra
 0c5b5de08093144d39fa3e37e722cd9fc486a0ea assets/verdant/models/block/coffee_crop_stage2.json
 d8dba33d7bd418b647759d3af887463773580c23 assets/verdant/models/block/cyan_candle_ube_cake.json
 d25180636d0c176deed964946a84bff1bfe549b4 assets/verdant/models/block/cyan_candle_ube_cake_lit.json
+a26fbd4ab00eef30101134c9f179e3f79b71a115 assets/verdant/models/block/dead_grass.json
 f275f71b3f0796382531426a7979a294521b7cff assets/verdant/models/block/dirt_coal_ore.json
 50f7878ca57959316135807e1f9c1e6cfe0ef100 assets/verdant/models/block/dirt_copper_ore.json
 ab39987fd7d80b0f5206f6c4d4b48aa9660183fe assets/verdant/models/block/dirt_diamond_ore.json
@@ -454,6 +462,7 @@ f580510cf81c4ce1b56593fb40b755503ac82ee2 assets/verdant/models/block/stripped_st
 8f55d02e32c0df2231234aa3365d1d8e552752e6 assets/verdant/models/block/thorny_strangler_leaves.json
 96eec430ea083cc65513669c813b4d849cd83975 assets/verdant/models/block/thorn_bush.json
 8067129c3417bcf8f6444e3b0918aaaa26ef1504 assets/verdant/models/block/tiger_lily.json
+e195ab24dc32cc95ea3df519bbac8e26f651e92a assets/verdant/models/block/toxic_dirt.json
 93fccb436b17b39fafc95e6c38a0594f8b7ef627 assets/verdant/models/block/ube_crop_stage0.json
 5ccd0acb88cfc8f376ab241a35db977efde929db assets/verdant/models/block/ube_crop_stage1.json
 7f739ec4371eeae9029bc32bcab867faebda831d assets/verdant/models/block/ube_crop_stage2.json
@@ -539,6 +548,7 @@ e12bb8f93070b36ea19965ae3b880f6ea15492ff assets/verdant/models/item/bush.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 c6bcf2a05ecaaf51f6cb70e77d12c594bc82d8bf assets/verdant/models/item/cooked_cassava.json
 59e178767225e138acda193b87c473916fb55cbe assets/verdant/models/item/cooked_golden_cassava.json
+5da2f35a792b5cfac8252d9c736862bed4d0183f assets/verdant/models/item/dead_grass.json
 ce2d77d985028c793bf3036be94abf0fe4c51319 assets/verdant/models/item/drowned_hemlock.json
 b1739d8351e56cc5e8e43a698f299eb0f2a510f0 assets/verdant/models/item/golden_bread.json
 3c823437c5ded1eeaea81271864c45e6bcc20c3a assets/verdant/models/item/golden_cassava.json
@@ -679,6 +689,9 @@ d9baba3781488b814b439a672acd8356461d4388 assets/verdant/models/item/strangler_te
 25d1af81b4d10d807cddabf99f1ce9750eef0576 assets/verdant/models/item/thorn.json
 56971747583a4b1f9bdedba4a27af87290cc782a assets/verdant/models/item/thorn_bush.json
 63e349cf0d5f43721b6b3f826e02ead5ad4ca48a assets/verdant/models/item/tiger_lily.json
+52f3667dbd69644119463c036377fc37e436ae53 assets/verdant/models/item/toxic_ash.json
+2ec4f5f50291f42e7c4c5659541bf9b1cf690311 assets/verdant/models/item/toxic_ash_bucket.json
+ae3f815dc4d754df8361f21fd61e2026f7d84cb3 assets/verdant/models/item/toxic_solution_bucket.json
 b8538752d6f02504b184758433c1b2c76b8c4a87 assets/verdant/models/item/ube.json
 213e24261954cf7f229c7dfe1c01e043a45c65fa assets/verdant/models/item/ube_cake.json
 0fbce2d74d1956f0ef9fde4e0a1834eafc242de0 assets/verdant/models/item/ube_cookie.json

@@ -42,6 +42,8 @@ public class VerdantTags {
         public static final TagKey<Block> INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL = tag(
                 "incorrect_for_imbued_heartwood_tool");
         public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
+        public static final TagKey<Block> ALLOWS_ASH_SPREAD = tag("allows_ash_spread");
+        public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("allows_ash_spread");
 
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
@@ -78,6 +80,7 @@ public class VerdantTags {
     public static class EntityTypes {
 
         public static final TagKey<EntityType<?>> VERDANT_FRIENDLY_ENTITIES = tag("verdant_friendly_entities");
+        public static final TagKey<EntityType<?>> TOXIC_ASH_DAMAGES = tag("toxic_ash_damages");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

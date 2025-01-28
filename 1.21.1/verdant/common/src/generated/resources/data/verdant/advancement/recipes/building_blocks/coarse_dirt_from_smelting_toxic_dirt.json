@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:coarse_dirt_from_smelting_toxic_dirt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_toxic_dirt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:toxic_dirt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_toxic_dirt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:coarse_dirt_from_smelting_toxic_dirt"
+    ]
+  }
+}

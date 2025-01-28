@@ -389,8 +389,24 @@ public class ItemRegistry {
                             )
             ))
     );
+
     public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
+    );
+
+    public static final RegistryObject<Item, Item> TOXIC_ASH = register(
+            "toxic_ash",
+            (properties) -> new ToxicAshItem(properties, null, 2, 1)
+    );
+
+    public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_ASH = register(
+            "toxic_ash_bucket",
+            (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 8, 3)
+    );
+
+    public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_SOLUTION = register(
+            "toxic_solution_bucket",
+            (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 32, 8)
     );
 
     public static void init() {

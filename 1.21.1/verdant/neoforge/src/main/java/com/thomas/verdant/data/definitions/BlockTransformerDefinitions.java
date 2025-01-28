@@ -8,6 +8,7 @@ import com.thomas.verdant.registry.BlockTransformerRegistry;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -117,7 +118,9 @@ public class BlockTransformerDefinitions {
                         Blocks.AIR,
                         1,
                         Blocks.BROWN_STAINED_GLASS,
-                        7)));
+                        7
+                )
+        ));
         data.add(probabilityTag(
                 Tags.Blocks.GLASS_PANES, Map.<Block, Integer>of(
                         Blocks.LIME_STAINED_GLASS_PANE,
@@ -127,7 +130,9 @@ public class BlockTransformerDefinitions {
                         Blocks.AIR,
                         1,
                         Blocks.BROWN_STAINED_GLASS_PANE,
-                        7)));
+                        7
+                )
+        ));
 
         return new BlockTransformer(data, BlockTransformerRegistry.EROSION);
     }
@@ -185,6 +190,39 @@ public class BlockTransformerDefinitions {
         return new BlockTransformer(data, BlockTransformerRegistry.HOEING);
     }
 
+
+    public static BlockTransformer toxicAsh() {
+
+        List<BlockTransformerData> data = new ArrayList<>();
+
+        data.add(directTag(BlockTags.LEAVES, Blocks.AIR));
+        data.add(directTag(BlockTags.FLOWERS, Blocks.AIR));
+        data.add(direct(BlockRegistry.SNAPLEAF.get(), Blocks.AIR));
+        data.add(probability(Blocks.SHORT_GRASS, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
+        data.add(direct(Blocks.VINE, Blocks.AIR));
+        data.add(direct(Blocks.TALL_GRASS, Blocks.AIR));
+        data.add(probability(Blocks.FERN, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
+        data.add(direct(Blocks.LARGE_FERN, Blocks.AIR));
+        data.add(direct(Blocks.SEAGRASS, Blocks.WATER));
+        data.add(direct(Blocks.TALL_SEAGRASS, Blocks.WATER));
+        data.add(direct(BlockRegistry.STRANGLER_TENDRIL.get(), Blocks.AIR));
+        data.add(direct(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), Blocks.AIR));
+        data.add(direct(BlockRegistry.STRANGLER_VINE.get(), Blocks.AIR));
+        data.add(direct(BlockRegistry.LEAFY_STRANGLER_VINE.get(), Blocks.AIR));
+        data.add(direct(BlockRegistry.BUSH.get(), Blocks.DEAD_BUSH));
+        data.add(direct(BlockRegistry.THORN_BUSH.get(), Blocks.DEAD_BUSH));
+        data.add(directTag(BlockTags.CROPS, Blocks.AIR));
+        data.add(directTag(BlockTags.DIRT, BlockRegistry.TOXIC_DIRT.get()));
+        data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));
+        data.add(direct(Blocks.PALE_MOSS_BLOCK, Blocks.DIRT));
+        data.add(direct(Blocks.MOSS_CARPET, Blocks.AIR));
+        data.add(direct(Blocks.PALE_MOSS_CARPET, Blocks.AIR));
+        data.add(direct(Blocks.PALE_HANGING_MOSS, Blocks.AIR));
+
+        return new BlockTransformer(data, BlockTransformerRegistry.HOEING);
+    }
+
+
     private static ResourceLocation name(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
@@ -202,7 +240,8 @@ public class BlockTransformerDefinitions {
                         .map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue()))
                         .toList(),
                 null,
-                name(from));
+                name(from)
+        );
     }
 
     private static BlockTransformerData probabilityTag(TagKey<Block> from, Map<Block, Integer> to) {
@@ -214,7 +253,8 @@ public class BlockTransformerDefinitions {
                         .map(entry -> new BlockTransformerResultOption(name(entry.getKey()), entry.getValue()))
                         .toList(),
                 from,
-                null);
+                null
+        );
     }
 
     private static BlockTransformerData directTag(TagKey<Block> from, Block to) {
@@ -227,6 +267,7 @@ public class BlockTransformerDefinitions {
                 null,
                 null,
                 null,
-                null);
+                null
+        );
     }
 }

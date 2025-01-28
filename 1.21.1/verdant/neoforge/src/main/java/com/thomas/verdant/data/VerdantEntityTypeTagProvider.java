@@ -22,9 +22,17 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
         this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(EntityTypeRegistry.THROWN_ROPE.get());
         this.tag(EntityTypeTags.ARROWS).add(EntityTypeRegistry.POISON_ARROW.get());
         this.tag(EntityTypeTags.ARTHROPOD).add(EntityTypeRegistry.TIMBERMITE.get());
+        this.tag(EntityTypeTags.UNDEAD).add(EntityTypeRegistry.ROOTED.get());
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)
                 .add(EntityTypeRegistry.TIMBERMITE.get(), EntityTypeRegistry.ROOTED.get(), EntityType.BOGGED);
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).addTag(EntityTypeTags.IMPACT_PROJECTILES);
+        this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).add(
+                EntityTypeRegistry.ROOTED.get(),
+                EntityType.BOGGED,
+                EntityTypeRegistry.ROOTED.get(),
+                EntityType.CREAKING,
+                EntityType.CREEPER
+        );
 
     }
 }

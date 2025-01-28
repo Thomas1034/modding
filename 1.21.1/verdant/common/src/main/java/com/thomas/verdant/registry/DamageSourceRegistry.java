@@ -12,6 +12,7 @@ public class DamageSourceRegistry {
 
     public static ResourceKey<DamageType> BRIAR = create("briar");
     public static ResourceKey<DamageType> PHOTOSENSITIVE = create("photosensitive");
+    public static ResourceKey<DamageType> TOXIC_ASH = create("toxic_ash");
 
     private static ResourceKey<DamageType> create(String name) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

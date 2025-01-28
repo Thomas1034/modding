@@ -122,6 +122,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> UBE_CROP;
     public static final RegistryObject<Block, Block> WILD_UBE;
     public static final RegistryObject<Block, Block> POTTED_WILD_UBE;
+    public static final RegistryObject<Block, Block> TOXIC_DIRT;
+    public static final RegistryObject<Block, Block> DEAD_GRASS;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -661,6 +663,16 @@ public class BlockRegistry {
                         BlockRegistry.WILD_UBE.get(),
                         properties(Blocks.POTTED_BLUE_ORCHID, "potted_wild_ube").noOcclusion()
                 )
+        );
+
+        TOXIC_DIRT = registerBlockWithItem(
+                "toxic_dirt",
+                () -> new ToxicDirtBlock(properties(Blocks.DIRT, "toxic_dirt"))
+        );
+
+        DEAD_GRASS = registerBlockWithItem(
+                "dead_grass",
+                () -> new DeadTallGrassBlock(properties(Blocks.SHORT_GRASS, "dead_grass"))
         );
 
 

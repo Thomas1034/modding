@@ -506,6 +506,8 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        smelting(List.of(BlockRegistry.TOXIC_DIRT.get()), RecipeCategory.BUILDING_BLOCKS, Blocks.COARSE_DIRT, 0.2f, 200, "detoxification");
+
     }
 
     protected void imbuementSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {

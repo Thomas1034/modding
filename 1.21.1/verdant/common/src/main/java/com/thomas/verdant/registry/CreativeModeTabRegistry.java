@@ -116,6 +116,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.VERDANT_ROOTED_CLAY.get());
                         output.accept(BlockRegistry.VERDANT_GRASS_CLAY.get());
                         output.accept(BlockRegistry.PACKED_GRAVEL.get());
+                        output.accept(BlockRegistry.TOXIC_DIRT.get());
                         output.accept(BlockRegistry.DIRT_COAL_ORE.get());
                         output.accept(BlockRegistry.DIRT_COPPER_ORE.get());
                         output.accept(BlockRegistry.DIRT_IRON_ORE.get());

@@ -1,0 +1,130 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:range_dispatch",
+        "property": "minecraft:crossbow/pull",
+        "scale": 32,
+        "entries": [
+          {
+            "threshold": 0,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/base/empty"
+            }
+          },
+          {
+            "threshold": 4,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/base/length4"
+            }
+          },
+          {
+            "threshold": 8,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/base/length8"
+            }
+          },
+          {
+            "threshold": 16,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/base/length16"
+            }
+          },
+          {
+            "threshold": 32,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/base/length32"
+            }
+          }
+        ]
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "minecraft:broken",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "verdant:item/rope_coil/hook/hook"
+        },
+        "on_false": {
+          "type": "minecraft:model",
+          "model": "verdant:item/rope_coil/hook/empty"
+        }
+      },
+      {
+        "type": "minecraft:range_dispatch",
+        "property": "minecraft:crossbow/pull",
+        "scale": 4,
+        "entries": [
+          {
+            "threshold": 0,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/glow/empty"
+            }
+          },
+          {
+            "threshold": 1,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/glow/glow1"
+            }
+          },
+          {
+            "threshold": 2,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/glow/glow2"
+            }
+          },
+          {
+            "threshold": 3,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/glow/glow3"
+            }
+          },
+          {
+            "threshold": 4,
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/glow/glow4"
+            }
+          }
+        ]
+      },
+      {
+        "type": "minecraft:select",
+        "property": "minecraft:charge_type",
+        "cases": [
+          {
+            "when": "none",
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/empty"
+            }
+          },
+          {
+            "when": "arrow",
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/bell"
+            }
+          },
+          {
+            "when": "rocket",
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/lantern"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

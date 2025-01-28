@@ -1,0 +1,121 @@
+{
+  "name": "verdant:hoeing",
+  "values": [
+    {
+      "result": "minecraft:air",
+      "tag": {
+        "location": "minecraft:leaves"
+      }
+    },
+    {
+      "result": "minecraft:air",
+      "tag": {
+        "location": "minecraft:flowers"
+      }
+    },
+    {
+      "block": "verdant:snapleaf",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:short_grass",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "verdant:dead_grass"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:vine",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:tall_grass",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:fern",
+      "results": [
+        {
+          "name": "minecraft:air",
+          "weight": 2
+        },
+        {
+          "name": "verdant:dead_grass"
+        }
+      ]
+    },
+    {
+      "block": "minecraft:large_fern",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:seagrass",
+      "result": "minecraft:water"
+    },
+    {
+      "block": "minecraft:tall_seagrass",
+      "result": "minecraft:water"
+    },
+    {
+      "block": "verdant:strangler_tendril",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "verdant:strangler_tendril_plant",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "verdant:strangler_vine",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "verdant:leafy_strangler_vine",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "verdant:bush",
+      "result": "minecraft:dead_bush"
+    },
+    {
+      "block": "verdant:thorn_bush",
+      "result": "minecraft:dead_bush"
+    },
+    {
+      "result": "minecraft:air",
+      "tag": {
+        "location": "minecraft:crops"
+      }
+    },
+    {
+      "result": "verdant:toxic_dirt",
+      "tag": {
+        "location": "minecraft:dirt"
+      }
+    },
+    {
+      "block": "minecraft:moss_block",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:pale_moss_block",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:moss_carpet",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:pale_moss_carpet",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:pale_hanging_moss",
+      "result": "minecraft:air"
+    }
+  ]
+}

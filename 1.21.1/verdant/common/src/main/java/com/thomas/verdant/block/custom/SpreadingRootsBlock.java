@@ -42,7 +42,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
-// TODO unify block above/below checks with isActive checks.
 public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
 
     // The maximum distance the block can be from water.
@@ -216,6 +215,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
         this.grow(state, level, pos);
+    }
+
+    @Override
+    public Type getType() {
+        return Type.NEIGHBOR_SPREADER;
     }
 
     protected BlockState updateDistance(BlockState state, Level level, BlockPos pos) {

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:item/rope_coil/base/empty",
+    "layer1": "verdant:item/rope_coil/hook/empty",
+    "layer2": "verdant:item/rope_coil/hanging/empty",
+    "layer3": "verdant:item/rope_coil/glow/glow3"
+  }
+}

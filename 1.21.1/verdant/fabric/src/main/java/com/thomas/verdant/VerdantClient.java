@@ -92,6 +92,7 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.WILD_UBE,
                 BlockRegistry.POTTED_WILD_UBE,
                 BlockRegistry.UBE_CROP,
+                BlockRegistry.DEAD_GRASS,
                 BlockRegistry.VERDANT_CONDUIT
         );
 

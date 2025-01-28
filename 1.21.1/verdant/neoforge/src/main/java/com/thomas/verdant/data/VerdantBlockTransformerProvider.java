@@ -13,6 +13,8 @@ public class VerdantBlockTransformerProvider {
         bootstrap.register(key(BlockTransformerRegistry.VERDANT_ROOTS), BlockTransformerDefinitions.verdantRoots());
         bootstrap.register(key(BlockTransformerRegistry.EROSION), BlockTransformerDefinitions.erosion());
         bootstrap.register(key(BlockTransformerRegistry.EROSION_WET), BlockTransformerDefinitions.erosionWet());
+        bootstrap.register(key(BlockTransformerRegistry.HOEING), BlockTransformerDefinitions.hoeing());
+        bootstrap.register(key(BlockTransformerRegistry.TOXIC_ASH), BlockTransformerDefinitions.toxicAsh());
     }
 
     public static ResourceKey<BlockTransformer> key(ResourceLocation location) {
