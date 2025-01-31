@@ -2,6 +2,14 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
+    // handles asset image creation for the wiki
+    id 'org.moddedmc.wiki.toolkit' version '0.2.5'
+}
+
+dependencies {
+    // ModDevGradle
+    // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-neoforge
+    runtimeOnly "org.sinytra:item-asset-export-neoforge:1.0.2+1.21"
 }
 
 neoForge {
@@ -34,6 +42,19 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet sourceSets.main
+        }
+    }
+}
+
+wiki {
+    docs {
+        // The name of the object (verdant) should match the registered wiki project ID (if it exists).
+        verdant {
+            // The path to the folder containing the documentation metadata file (sinytra-wiki.json)
+            root = file('docs/verdant')
+            // Namespaces of registered in-game item IDs that you wish to include in the asset export
+            // for this documentation root.
+            exportedAssetNamespaces = ['verdant']
         }
     }
 }

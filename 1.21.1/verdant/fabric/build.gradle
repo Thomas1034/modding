@@ -10,6 +10,9 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    // Fabric Loom
+    // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
+    // modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.0.2+1.21"
 }
 
 loom {

@@ -2,9 +2,9 @@ package com.startraveler.verdant;
 
 
 import com.startraveler.verdant.data.*;
-import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
+import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
 import com.startraveler.verdant.util.featureset.FeatureSet;
@@ -69,6 +69,8 @@ import java.util.concurrent.CompletableFuture;
 public class Verdant {
 
     public Verdant(final IEventBus eventBus) {
+
+
         // This method is invoked by the NeoForge mod loader when it is ready
         // to load your mod. You can access NeoForge and Common code in this
         // project.
