@@ -43,11 +43,12 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
         this.tag(VerdantTags.Items.STRANGLER_VINES)
                 .add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
-        tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get());
+        tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get(), ItemRegistry.RANCID_SLIME.get());
 
         this.tag(ItemTags.SMALL_FLOWERS).add(
                 BlockRegistry.BLEEDING_HEART.get().asItem(),
                 BlockRegistry.WILD_COFFEE.get().asItem(),
+                BlockRegistry.RUE.get().asItem(),
                 BlockRegistry.TIGER_LILY.get().asItem()
         );
 
@@ -59,7 +60,11 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         );
         this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());
         this.tag(Tags.Items.FOODS_FOOD_POISONING)
-                .add(ItemRegistry.ROTTEN_COMPOST.get(), ItemRegistry.BITTER_BREAD.get());
+                .add(
+                        ItemRegistry.ROTTEN_COMPOST.get(),
+                        ItemRegistry.RANCID_SLIME.get(),
+                        ItemRegistry.BITTER_BREAD.get()
+                );
         this.tag(Tags.Items.FOODS_BREAD).add(ItemRegistry.BITTER_BREAD.get(), ItemRegistry.GOLDEN_BREAD.get());
         this.tag(Tags.Items.FOODS_VEGETABLE)
                 .add(ItemRegistry.COOKED_CASSAVA.get(), ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
@@ -96,6 +101,8 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
                 ItemRegistry.CASSAVA.get(),
                 ItemRegistry.BITTER_BREAD.get()
         );
+        this.tag(VerdantTags.Items.STARCHES)
+                .add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get(), ItemRegistry.SPARKLING_STARCH.get());
 
         addHeartwoodSet();
         addImbuedHeartwoodSet();

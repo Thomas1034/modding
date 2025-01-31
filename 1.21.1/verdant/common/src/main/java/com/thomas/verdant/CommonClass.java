@@ -57,9 +57,7 @@ born and bred, walk through a thorn bush without taking damage due to verdant ar
 
 Make grass be less vibrantly green? Uncertain.
 
-Add Dead Wood, toxic ashed logs and wood.
-Tagged as vines-can't-survive-on.
-Fix ashes not directly hurting things
+Achievement "That is just wrong on so many levels." for using toxic ash for fishing
 
 Compatibility
 

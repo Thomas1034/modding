@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:dead_wood",
+  "key": {
+    "l": "verdant:dead_log"
+  },
+  "pattern": [
+    "ll",
+    "ll"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:dead_wood"
+  }
+}

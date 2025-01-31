@@ -58,6 +58,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         );
         this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
+                BlockRegistry.POISON_IVY_BLOCK.get(),
                 BlockRegistry.THORN_BUSH.get(),
                 BlockRegistry.BUSH.get(),
                 BlockRegistry.STRANGLER_TENDRIL.get(),
@@ -239,12 +240,14 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // Flowers
         this.tag(BlockTags.SMALL_FLOWERS).add(
                 BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.RUE.get(),
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.WILD_CASSAVA.get()
         );
         this.tag(BlockTags.BEE_ATTRACTIVE).add(
                 BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.RUE.get(),
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.WILD_CASSAVA.get()
@@ -255,6 +258,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BUSH.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_TIGER_LILY.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_RUE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_CASSAVA.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_UBE.get());
 
@@ -294,9 +298,15 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 Blocks.BUDDING_AMETHYST
         );
 
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD)
+                .add(Blocks.WATER, BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_ASH_BLOCK.get());
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(WoodSets.DEAD.getLogs());
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.MOSS_REPLACEABLE);
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LUSH_GROUND_REPLACEABLE);
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.BAMBOO_PLANTABLE_ON);
 
-        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).add(Blocks.WATER, BlockRegistry.TOXIC_DIRT.get());
-        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LOGS);
+        // Dead logs
+        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
 
         addDirtOres();
     }

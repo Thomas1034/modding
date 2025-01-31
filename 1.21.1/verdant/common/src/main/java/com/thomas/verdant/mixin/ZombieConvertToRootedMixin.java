@@ -1,0 +1,106 @@
+package com.thomas.verdant.mixin;
+
+import com.thomas.verdant.entity.custom.RootedEntity;
+import com.thomas.verdant.registry.EntityTypeRegistry;
+import com.thomas.verdant.util.VerdantTags;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Zombie;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(Zombie.class)
+public abstract class ZombieConvertToRootedMixin {
+    // TODO
+    @Unique
+    private static final EntityDataAccessor<Boolean> verdant$DATA_ROOTED_CONVERSION_ID = SynchedEntityData.defineId(Zombie.class,
+            EntityDataSerializers.BOOLEAN
+    );
+    @Unique
+    private int verdant$rootedConversionTime;
+    @Unique
+    private int verdant$onVerdantTime;
+
+    @Shadow
+    protected void convertToZombieType(EntityType<? extends Zombie> entityType) {
+        throw new AssertionError();
+    }
+
+    @Inject(method = "defineSynchedData", at = @At(value = "TAIL"))
+    private void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+        builder.define(verdant$DATA_ROOTED_CONVERSION_ID, false);
+    }
+
+    @Inject(method = "readAdditionalSaveData", at = @At(value = "TAIL"))
+    private void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+        this.verdant$onVerdantTime = compound.getInt("OnVerdantTime");
+        if (compound.contains("RootedConversionTime", 99) && compound.getInt("RootedConversionTime") > -1) {
+            this.verdant$startOnVerdantConversion(compound.getInt("RootedConversionTime"));
+        }
+    }
+
+    @Inject(method = "addAdditionalSaveData", at = @At(value = "TAIL"))
+    private void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+        compound.putInt("OnVerdantTime", this.verdant$isOnVerdantConverting() ? this.verdant$onVerdantTime : -1);
+        compound.putInt(
+                "RootedConversionTime",
+                this.verdant$isOnVerdantConverting() ? this.verdant$rootedConversionTime : -1
+        );
+    }
+
+    @Inject(method = "tick", at = @At(value = "TAIL"))
+    private void tick(CallbackInfo ci) {
+        if (!((Zombie) (Object) this).level().isClientSide && ((Zombie) (Object) this).isAlive() && !((Zombie) (Object) this).isNoAi()) {
+            if (this.verdant$isOnVerdantConverting()) {
+                --this.verdant$rootedConversionTime;
+                if (this.verdant$rootedConversionTime < 0) {
+                    this.verdant$doOnRootedConversion();
+                }
+            } else if (this.verdant$convertsOnVerdant()) {
+                if (((Zombie) (Object) this).getBlockStateOn().is(VerdantTags.Blocks.VERDANT_GROUND)) {
+                    ++this.verdant$onVerdantTime;
+                    if (this.verdant$onVerdantTime >= 60) {
+                        this.verdant$startOnVerdantConversion(30);
+                    }
+                } else {
+                    this.verdant$onVerdantTime = -1;
+                }
+            }
+        }
+    }
+
+    @Unique
+    private boolean verdant$convertsOnVerdant() {
+        return !(((Zombie) (Object) this) instanceof RootedEntity);
+    }
+
+    @Unique
+    private void verdant$doOnRootedConversion() {
+        this.convertToZombieType(EntityTypeRegistry.ROOTED.get());
+        if (!((Zombie) (Object) this).isSilent()) {
+            ((Zombie) (Object) this).level().levelEvent(null, 1040, ((Zombie) (Object) this).blockPosition(), 0);
+        }
+    }
+
+
+    @Unique
+    public boolean verdant$isOnVerdantConverting() {
+        return ((Zombie) (Object) this).getEntityData().get(verdant$DATA_ROOTED_CONVERSION_ID);
+    }
+
+
+    @Unique
+    private void verdant$startOnVerdantConversion(int conversionTime) {
+        this.verdant$rootedConversionTime = conversionTime;
+        ((Zombie) (Object) this).getEntityData().set(verdant$DATA_ROOTED_CONVERSION_ID, true);
+    }
+
+
+}

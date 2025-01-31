@@ -33,6 +33,7 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityType.CREAKING,
                 EntityType.CREEPER
         );
+        this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).addTag(EntityTypeTags.AQUATIC);
 
     }
 }

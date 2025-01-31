@@ -12,8 +12,7 @@ import com.thomas.verdant.registry.properties.BlockProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
@@ -124,6 +123,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> POTTED_WILD_UBE;
     public static final RegistryObject<Block, Block> TOXIC_DIRT;
     public static final RegistryObject<Block, Block> DEAD_GRASS;
+    public static final RegistryObject<Block, Block> POISON_IVY_BLOCK;
+    public static final RegistryObject<Block, Block> TOXIC_ASH_BLOCK;
+    public static final RegistryObject<Block, Block> PUTRID_FERTILIZER;
+    public static final RegistryObject<Block, Block> RUE;
+    public static final RegistryObject<Block, Block> POTTED_RUE;
+    public static final RegistryObject<Block, Block> PAPER_FRAME;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -185,37 +190,60 @@ public class BlockRegistry {
                         .pushReaction(PushReaction.DESTROY))
         );
         DIRT_COAL_ORE = registerBlockWithItem(
-                "dirt_coal_ore",
-                () -> new DropExperienceBlock(UniformInt.of(0, 2), properties(Blocks.COARSE_DIRT, "dirt_coal_ore"))
+                "dirt_coal_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_coal_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_COPPER_ORE = registerBlockWithItem(
-                "dirt_copper_ore",
-                () -> new DropExperienceBlock(ConstantInt.of(0), properties(Blocks.COARSE_DIRT, "dirt_copper_ore"))
+                "dirt_copper_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_copper_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_IRON_ORE = registerBlockWithItem(
-                "dirt_iron_ore",
-                () -> new DropExperienceBlock(ConstantInt.of(0), properties(Blocks.COARSE_DIRT, "dirt_iron_ore"))
+                "dirt_iron_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_iron_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_GOLD_ORE = registerBlockWithItem(
-                "dirt_gold_ore",
-                () -> new DropExperienceBlock(ConstantInt.of(0), properties(Blocks.COARSE_DIRT, "dirt_gold_ore"))
+                "dirt_gold_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_gold_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_LAPIS_ORE = registerBlockWithItem(
-                "dirt_lapis_ore",
-                () -> new DropExperienceBlock(UniformInt.of(2, 5), properties(Blocks.COARSE_DIRT, "dirt_lapis_ore"))
+                "dirt_lapis_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_lapis_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_REDSTONE_ORE = registerBlockWithItem(
-                "dirt_redstone_ore",
-                () -> new RedStoneOreBlock(properties(Blocks.COARSE_DIRT, "dirt_redstone_ore").lightLevel(
-                        litBlockEmission(9)))
+                "dirt_redstone_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_redstone_ore").lightLevel((state) -> 2),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_EMERALD_ORE = registerBlockWithItem(
-                "dirt_emerald_ore",
-                () -> new DropExperienceBlock(UniformInt.of(3, 7), properties(Blocks.COARSE_DIRT, "dirt_emerald_ore"))
+                "dirt_emerald_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_emerald_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         DIRT_DIAMOND_ORE = registerBlockWithItem(
-                "dirt_diamond_ore",
-                () -> new DropExperienceBlock(UniformInt.of(3, 7), properties(Blocks.COARSE_DIRT, "dirt_diamond_ore"))
+                "dirt_diamond_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "dirt_diamond_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
+                        (context) -> Blocks.DIRT.defaultBlockState()
+                )
         );
         STRANGLER_VINE = registerBlockWithItem(
                 "strangler_vine",
@@ -675,7 +703,53 @@ public class BlockRegistry {
                 () -> new DeadTallGrassBlock(properties(Blocks.SHORT_GRASS, "dead_grass"))
         );
 
+        POISON_IVY_BLOCK = registerBlockWithItem(
+                "poison_ivy_block",
+                () -> new EffectGivingPillarBlock(
+                        properties(Blocks.HAY_BLOCK, "poison_ivy_block").mapColor(MapColor.COLOR_LIGHT_GREEN),
+                        () -> new MobEffectInstance(MobEffects.POISON, 100, 1)
+                )
+        );
 
+        TOXIC_ASH_BLOCK = registerBlockWithItem(
+                "toxic_ash_block",
+                () -> new EffectGivingPillarBlock(
+                        properties(Blocks.HAY_BLOCK, "toxic_ash_block").instabreak(),
+                        () -> new MobEffectInstance(MobEffects.WITHER, 100, 0)
+                )
+        );
+
+        RUE = registerBlockWithItem(
+                "rue",
+                () -> new FlowerBlock(MobEffectRegistry.BLURRED.asHolder(), 40, properties(Blocks.BLUE_ORCHID, "rue"))
+        );
+
+        POTTED_RUE = registerBlockWithoutItem(
+                "potted_rue",
+                () -> new FlowerPotBlock(
+                        BlockRegistry.RUE.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_rue").noOcclusion()
+                )
+        );
+
+        PUTRID_FERTILIZER = registerBlockWithItem(
+                "putrid_fertilizer",
+                () -> new FertilizerRotatedPillarBlock(properties(Blocks.HAY_BLOCK, "putrid_fertilizer").mapColor(
+                        MapColor.COLOR_BROWN).randomTicks())
+        );
+
+        PAPER_FRAME = registerBlockWithItem(
+                "paper_frame",
+                () -> new RotatedPillarBlock(properties(
+                        Blocks.OAK_FENCE,
+                        "frame_block"
+                ).isViewBlocking((state, level, pos) -> false)
+                        .noOcclusion()
+                        .instabreak()
+                        .mapColor(MapColor.TERRACOTTA_WHITE))
+        );
+
+        
         TEST_LOG = registerBlockWithItem(
                 "test_log",
                 () -> new RotatedPillarBlock(properties(Blocks.GLASS, "test_log"))

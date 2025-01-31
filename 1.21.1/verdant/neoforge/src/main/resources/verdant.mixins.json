@@ -6,7 +6,8 @@
   "mixins": [
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
-    "BoggedLikeVerdantFriendsMixin"
+    "BoggedLikeVerdantFriendsMixin",
+    "ZombieConvertToRootedMixin"
   ],
   "server": [],
   "client": [

@@ -29,6 +29,7 @@ public class VerdantTags {
         public static final TagKey<Block> SUSTAINS_STRANGLER_LEAVES = tag("sustains_strangler_leaves");
         public static final TagKey<Block> STRANGLER_LOGS = WoodSets.STRANGLER.getLogs();
         public static final TagKey<Block> SUPPORTS_STRANGLER_VINES = tag("supports_strangler_vines");
+        public static final TagKey<Block> DOES_NOT_SUPPORT_STRANGLER_VINES = tag("does_not_support_strangler_vines");
         public static final TagKey<Block> STRANGLER_VINE_REPLACEABLES = tag("strangler_vine_replaceables");
         public static final TagKey<Block> HEARTWOOD_LOGS = WoodSets.HEARTWOOD.getLogs();
         public static final TagKey<Block> STRANGLER_LEAVES = tag("strangler_leaves");
@@ -62,6 +63,7 @@ public class VerdantTags {
     }
 
     public static class Items {
+        public static final TagKey<Item> STARCHES = tag("starches");
         public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
         public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Item> CRAFTS_TO_ROPES = tag("crafts_to_ropes");

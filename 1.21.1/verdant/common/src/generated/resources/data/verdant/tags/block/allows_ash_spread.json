@@ -11,6 +11,10 @@
     "minecraft:budding_amethyst",
     "minecraft:water",
     "verdant:toxic_dirt",
-    "#minecraft:logs"
+    "verdant:toxic_ash_block",
+    "#verdant:dead_logs",
+    "#minecraft:moss_replaceable",
+    "#minecraft:lush_ground_replaceable",
+    "#minecraft:bamboo_plantable_on"
   ]
 }

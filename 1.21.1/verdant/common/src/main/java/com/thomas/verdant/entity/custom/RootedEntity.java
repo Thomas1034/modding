@@ -27,14 +27,10 @@ public class RootedEntity extends Zombie {
         super(type, level);
     }
 
-    public RootedEntity(Level level) {
-        super(EntityTypeRegistry.ROOTED.get(), level);
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 45.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.20F)
+                .add(Attributes.MOVEMENT_SPEED, 0.20F)
                 .add(Attributes.ATTACK_DAMAGE, 4.0D)
                 .add(Attributes.ARMOR, 10.0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 0.5);
@@ -106,7 +102,7 @@ public class RootedEntity extends Zombie {
         return true;
     }
 
-    // Prevent drownding
+    // Prevent drowning
     @Override
     protected boolean convertsInWater() {
         return false;
@@ -117,7 +113,7 @@ public class RootedEntity extends Zombie {
         return false;
     }
 
-    // Instaconvert skeletons and creepers.
+    // Instantly convert skeletons and creepers.
     // Currently, doesn't actually remove the dead entity!
     @Override
     public boolean doHurtTarget(ServerLevel level, Entity entity) {

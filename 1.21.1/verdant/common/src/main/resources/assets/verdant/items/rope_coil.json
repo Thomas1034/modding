@@ -4,7 +4,7 @@
     "models": [
       {
         "type": "minecraft:range_dispatch",
-        "property": "minecraft:crossbow/pull",
+        "property": "verdant:rope/rope_length",
         "scale": 32,
         "entries": [
           {
@@ -46,7 +46,7 @@
       },
       {
         "type": "minecraft:condition",
-        "property": "minecraft:broken",
+        "property": "verdant:rope/has_hook",
         "on_true": {
           "type": "minecraft:model",
           "model": "verdant:item/rope_coil/hook/hook"
@@ -58,7 +58,7 @@
       },
       {
         "type": "minecraft:range_dispatch",
-        "property": "minecraft:crossbow/pull",
+        "property": "verdant:rope/glow_level",
         "scale": 4,
         "entries": [
           {
@@ -100,30 +100,34 @@
       },
       {
         "type": "minecraft:select",
-        "property": "minecraft:charge_type",
         "cases": [
           {
-            "when": "none",
             "model": {
               "type": "minecraft:model",
-              "model": "verdant:item/rope_coil/hanging/empty"
-            }
+              "model": "verdant:item/rope_coil/hanging/soul_lantern"
+            },
+            "when": "soul_lantern"
           },
           {
-            "when": "arrow",
-            "model": {
-              "type": "minecraft:model",
-              "model": "verdant:item/rope_coil/hanging/bell"
-            }
-          },
-          {
-            "when": "rocket",
             "model": {
               "type": "minecraft:model",
               "model": "verdant:item/rope_coil/hanging/lantern"
-            }
+            },
+            "when": "lantern"
+          },
+          {
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/bell"
+            },
+            "when": "bell"
           }
-        ]
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "verdant:item/rope_coil/hanging/empty"
+        },
+        "property": "verdant:rope/hanging_block"
       }
     ]
   }

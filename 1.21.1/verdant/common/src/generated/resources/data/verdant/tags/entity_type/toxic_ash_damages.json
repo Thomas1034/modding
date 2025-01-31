@@ -4,6 +4,7 @@
     "minecraft:bogged",
     "verdant:rooted",
     "minecraft:creaking",
-    "minecraft:creeper"
+    "minecraft:creeper",
+    "#minecraft:aquatic"
   ]
 }

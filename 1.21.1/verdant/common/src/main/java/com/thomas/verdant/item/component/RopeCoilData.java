@@ -27,44 +27,30 @@ public record RopeCoilData(int length, boolean hasHook, int lightLevel, LanternO
 
     public enum LanternOptions implements StringRepresentable {
 
-        NONE("none", Blocks.AIR.defaultBlockState(), 0, "empty_overlay"), LANTERN(
-                "lantern",
-                Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true),
-                0.2f,
-                "lantern_overlay"
-        ), SOUL_LANTERN(
+        NONE("none", Blocks.AIR.defaultBlockState()),
+        LANTERN("lantern", Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)),
+        SOUL_LANTERN(
                 "soul_lantern",
-                Blocks.SOUL_LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true),
-                0.4f,
-                "soul_lantern_overlay"
-        ), BELL(
+                Blocks.SOUL_LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
+        ),
+        BELL(
                 "bell",
-                Blocks.BELL.defaultBlockState().setValue(BlockStateProperties.BELL_ATTACHMENT, BellAttachType.CEILING),
-                0.6f,
-                "bell_overlay"
+                Blocks.BELL.defaultBlockState().setValue(BlockStateProperties.BELL_ATTACHMENT, BellAttachType.CEILING)
         );
 
-        protected static final Map<String, LanternOptions> MAP = new HashMap<>();
-        static StringRepresentableCodec<LanternOptions> CODEC = new StringRepresentableCodec<>(
-                LanternOptions.values(),
-                LanternOptions::bySerializedName,
-                LanternOptions::ordinal
-        );
+        public static final StringRepresentableCodec<LanternOptions> CODEC = StringRepresentable.fromEnum(LanternOptions::values);
+        private static final Map<String, LanternOptions> MAP = new HashMap<>();
 
         static {
             MAP.putAll(Arrays.stream(LanternOptions.values())
                     .collect(Collectors.toMap(LanternOptions::getSerializedName, Function.identity())));
         }
 
-        public final float cutoff;
-        public final String overlay;
         public final String typeName;
         public final BlockState state;
 
-        LanternOptions(String typeName, BlockState state, float cutoff, String overlay) {
-            this.cutoff = cutoff;
+        LanternOptions(String typeName, BlockState state) {
             this.state = state;
-            this.overlay = overlay;
             this.typeName = typeName;
         }
 

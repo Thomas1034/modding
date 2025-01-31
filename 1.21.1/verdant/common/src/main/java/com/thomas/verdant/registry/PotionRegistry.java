@@ -116,6 +116,19 @@ public class PotionRegistry {
             () -> new Potion("strong_stench", new MobEffectInstance(MobEffectRegistry.STENCH.asHolder(), 1800, 1))
     );
 
+    public static final RegistryObject<Potion, Potion> BLURRED = POTIONS.register(
+            "blurred",
+            () -> new Potion("blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_BLURRED = POTIONS.register(
+            "long_blurred",
+            () -> new Potion("long_blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 9600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_BLURRED = POTIONS.register(
+            "strong_blurred",
+            () -> new Potion("strong_blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 1800, 1))
+    );
+
     public static void init() {
     }
 

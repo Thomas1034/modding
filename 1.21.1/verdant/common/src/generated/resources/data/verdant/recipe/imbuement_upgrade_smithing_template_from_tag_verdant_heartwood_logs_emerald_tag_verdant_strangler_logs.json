@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "equipment",
   "group": "verdant:imbuement_upgrade_smithing_template",
   "key": {
     "#": "#verdant:heartwood_logs",

@@ -140,7 +140,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
     public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
         BlockState state = level.getBlockState(pos.relative(direction));
-        if (!state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES)) {
+        if (!canSupportStranglerVine(state)) {
             return false;
         }
         return state.isFaceSturdy(level, pos, direction.getOpposite());
@@ -210,7 +210,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
         IntegerProperty propertyForDirection = PROPERTY_FOR_FACE.get(facing);
 
-        if (state.getValue(propertyForDirection) > MIN_AGE && !state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES)) {
+        if (state.getValue(propertyForDirection) > MIN_AGE && !canSupportStranglerVine(state)) {
             state = state.setValue(propertyForDirection, MIN_AGE);
         }
 
@@ -285,7 +285,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         for (Direction d : Direction.values()) {
             int dValue = d.getAxis().getNegative().get3DDataValue();
             BlockState state = level.getBlockState(pos.relative(d));
-            if (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES) || (state.is(VerdantTags.Blocks.STRANGLER_VINES) && (state.getValue(
+            if (canSupportStranglerVine(state) || (state.is(VerdantTags.Blocks.STRANGLER_VINES) && (state.getValue(
                     PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 2))) > MIN_AGE || state.getValue(
                     PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 3))) > MIN_AGE || state.getValue(
                     PROPERTY_FOR_FACE.get(Direction.from3DDataValue(dValue + 4))) > MIN_AGE || state.getValue(
@@ -306,7 +306,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         boolean shouldDecayToAir = false;
 
         // First, check if the host is a log.
-        if (!host.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES)) {
+        if (!canSupportStranglerVine(host)) {
             return false;
         }
 
@@ -530,6 +530,10 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
         // Update the block.
         return canGrowToAnyFace ? placed : null;
+    }
+
+    protected static boolean canSupportStranglerVine(BlockState state) {
+        return (!state.is(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)) && (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES));
     }
 
     @Override

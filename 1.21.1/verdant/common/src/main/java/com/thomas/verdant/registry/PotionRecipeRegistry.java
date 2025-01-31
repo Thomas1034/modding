@@ -50,11 +50,53 @@ public class PotionRecipeRegistry {
                 PotionRegistry.STRONG_COLLOID.asHolder()
         );
 
+        recipes.register(Potions.THICK, BlockRegistry.STINKING_BLOSSOM.get(), PotionRegistry.STENCH.asHolder());
+        recipes.register(PotionRegistry.STENCH.asHolder(), Items.REDSTONE, PotionRegistry.LONG_STENCH.asHolder());
         recipes.register(
-                ItemRegistry.HEART_FRAGMENT.get(),
+                PotionRegistry.STENCH.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_STENCH.asHolder()
+        );
+
+        recipes.register(Potions.THICK, BlockRegistry.DROWNED_HEMLOCK.get(), PotionRegistry.ASPHYXIATING.asHolder());
+        recipes.register(
+                PotionRegistry.ASPHYXIATING.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_ASPHYXIATING.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.ASPHYXIATING.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_ASPHYXIATING.asHolder()
+        );
+
+        recipes.register(Potions.THICK, ItemRegistry.HEART_FRAGMENT.get(), PotionRegistry.ANTIDOTE.asHolder());
+        recipes.register(PotionRegistry.ANTIDOTE.asHolder(), Items.REDSTONE, PotionRegistry.LONG_ANTIDOTE.asHolder());
+        recipes.register(
                 PotionRegistry.ANTIDOTE.asHolder(),
-                PotionRegistry.LONG_ANTIDOTE.asHolder(),
+                Items.GLOWSTONE_DUST,
                 PotionRegistry.STRONG_ANTIDOTE.asHolder()
+        );
+
+        recipes.register(Potions.THICK, BlockRegistry.RUE.get(), PotionRegistry.BLURRED.asHolder());
+        recipes.register(PotionRegistry.BLURRED.asHolder(), Items.REDSTONE, PotionRegistry.LONG_BLURRED.asHolder());
+        recipes.register(
+                PotionRegistry.BLURRED.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_BLURRED.asHolder()
+        );
+
+        recipes.register(Potions.THICK, ItemRegistry.ROTTEN_COMPOST.get(), PotionRegistry.FOOD_POISONING.asHolder());
+        recipes.register(Potions.THICK, ItemRegistry.RANCID_SLIME.get(), PotionRegistry.FOOD_POISONING.asHolder());
+        recipes.register(
+                PotionRegistry.FOOD_POISONING.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_FOOD_POISONING.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.FOOD_POISONING.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_FOOD_POISONING.asHolder()
         );
 
     }

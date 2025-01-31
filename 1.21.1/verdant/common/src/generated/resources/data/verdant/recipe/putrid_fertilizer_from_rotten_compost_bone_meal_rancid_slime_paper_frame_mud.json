@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:putrid_fertilizer",
+  "key": {
+    "b": "minecraft:bone_meal",
+    "f": "verdant:paper_frame",
+    "m": "minecraft:mud",
+    "r": "verdant:rotten_compost",
+    "s": "verdant:rancid_slime"
+  },
+  "pattern": [
+    "rbs",
+    "bfb",
+    "smr"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:putrid_fertilizer"
+  }
+}

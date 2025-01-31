@@ -55,6 +55,10 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.TIGER_LILY.get().asItem(),
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.TIGER_LILY.get()))
         );
+        suspiciousStew(
+                BlockRegistry.RUE.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.RUE.get()))
+        );
         shapeless(List.of(BlockRegistry.TIGER_LILY.get()), List.of(1), RecipeCategory.MISC, Items.ORANGE_DYE, 1);
         shapeless(List.of(BlockRegistry.BLEEDING_HEART.get()), List.of(1), RecipeCategory.MISC, Items.RED_DYE, 1);
         shapeless(List.of(BlockRegistry.WILD_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.LIGHT_GRAY_DYE, 1);
@@ -75,6 +79,24 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 RecipeCategory.TOOLS,
                 ItemRegistry.ROTTEN_COMPOST.get(),
                 2
+        );
+
+        shapeless(
+                List.of(Tags.Items.EGGS, Tags.Items.SLIME_BALLS, VerdantTags.Items.STARCHES),
+                List.of(1, 1, 1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.RANCID_SLIME.get(),
+                2
+        );
+
+        shaped(
+                List.of("rbs", "bfb", "smr"), List.of('r', 'b', 's', 'f', 'm'), List.of(
+                        ItemRegistry.ROTTEN_COMPOST.get(),
+                        Items.BONE_MEAL,
+                        ItemRegistry.RANCID_SLIME.get(),
+                        BlockRegistry.PAPER_FRAME.get(),
+                        Blocks.MUD
+                ), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.PUTRID_FERTILIZER.get(), 1
         );
 
         shaped(
@@ -208,6 +230,14 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
         smeltingResultFromBase(BlockRegistry.CHARRED_FRAME_BLOCK.get(), BlockRegistry.FRAME_BLOCK.get());
+        shaped(
+                List.of(" P ", "PFP", " P "),
+                List.of('P', 'F'),
+                List.of(Items.PAPER, BlockRegistry.FRAME_BLOCK.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.PAPER_FRAME.get(),
+                1
+        );
 
         // Traps
         shaped(
@@ -501,12 +531,67 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of("#S#", "#L#", "###"),
                 List.of('#', 'S', 'L'),
                 List.of(WoodSets.HEARTWOOD.getLogItems(), Items.EMERALD, WoodSets.STRANGLER.getLogItems()),
-                RecipeCategory.MISC,
+                RecipeCategory.COMBAT,
                 ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get(),
                 1
         );
 
-        smelting(List.of(BlockRegistry.TOXIC_DIRT.get()), RecipeCategory.BUILDING_BLOCKS, Blocks.COARSE_DIRT, 0.2f, 200, "detoxification");
+        // Poison Ivy block.
+        shaped(
+                List.of("III", "IFI", "III"),
+                List.of('I', 'F'),
+                List.of(BlockRegistry.POISON_IVY.get(), BlockRegistry.FRAME_BLOCK.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.POISON_IVY_BLOCK.get(),
+                1
+        );
+
+        // Toxic Ash block
+        smelting(
+                List.of(BlockRegistry.POISON_IVY_BLOCK.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.TOXIC_ASH_BLOCK.get(),
+                0.2f,
+                200,
+                "toxic_ash_block"
+        );
+
+
+        // Toxic Ash
+        shapeless(
+                List.of(BlockRegistry.TOXIC_ASH_BLOCK.get()),
+                List.of(1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.TOXIC_ASH.get(),
+                8
+        );
+
+        // Toxic Ash
+        shapeless(
+                List.of(ItemRegistry.TOXIC_ASH.get(), Items.BUCKET),
+                List.of(8, 1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.BUCKET_OF_TOXIC_ASH.get(),
+                1
+        );
+
+        // Toxic Ash
+        shapeless(
+                List.of(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), Items.WATER_BUCKET),
+                List.of(1, 1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get(),
+                1
+        );
+
+        smelting(
+                List.of(BlockRegistry.TOXIC_DIRT.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                Blocks.COARSE_DIRT,
+                0.2f,
+                200,
+                "detoxification"
+        );
 
     }
 

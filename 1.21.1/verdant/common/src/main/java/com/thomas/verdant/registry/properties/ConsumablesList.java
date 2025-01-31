@@ -32,19 +32,36 @@ public class ConsumablesList {
                             2
                     ), 0.9F
             ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 2), 0.9F))
+            .build();
+    public static final Consumable RANCID_SLIME = Consumables.defaultFood()
+            .soundAfterConsume(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.SLIME_JUMP))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(
+                    new MobEffectInstance(
+                            MobEffectRegistry.FOOD_POISONING.asHolder(),
+                            1000,
+                            1
+                    ), 0.9F
+            ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON, 200, 0), 0.9F))
             .build();
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
+                    new MobEffectInstance(
+                            MobEffects.DAMAGE_RESISTANCE,
+                            1200,
+                            0
+                    ),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
             )))
             .build();
     public static final Consumable GOLDEN_BREAD = Consumables.defaultFood()
-            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(MobEffects.ABSORPTION, 2400, 1)
-            )))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(new MobEffectInstance(
+                    MobEffects.ABSORPTION,
+                    2400,
+                    1
+            ))))
             .build();
-
 
 
     private ConsumablesList() {

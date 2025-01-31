@@ -3,6 +3,45 @@
     "verdant:bush": {
       "burn_time": 100
     },
+    "verdant:dead_button": {
+      "burn_time": 100
+    },
+    "verdant:dead_door": {
+      "burn_time": 200
+    },
+    "verdant:dead_fence": {
+      "burn_time": 300
+    },
+    "verdant:dead_fence_gate": {
+      "burn_time": 300
+    },
+    "verdant:dead_hanging_sign": {
+      "burn_time": 800
+    },
+    "verdant:dead_log": {
+      "burn_time": 300
+    },
+    "verdant:dead_planks": {
+      "burn_time": 300
+    },
+    "verdant:dead_pressure_plate": {
+      "burn_time": 300
+    },
+    "verdant:dead_sign": {
+      "burn_time": 200
+    },
+    "verdant:dead_slab": {
+      "burn_time": 150
+    },
+    "verdant:dead_stairs": {
+      "burn_time": 300
+    },
+    "verdant:dead_trapdoor": {
+      "burn_time": 300
+    },
+    "verdant:dead_wood": {
+      "burn_time": 300
+    },
     "verdant:fish_trap": {
       "burn_time": 300
     },
@@ -94,6 +133,12 @@
       "burn_time": 200
     },
     "verdant:strangler_wood": {
+      "burn_time": 300
+    },
+    "verdant:stripped_dead_log": {
+      "burn_time": 300
+    },
+    "verdant:stripped_dead_wood": {
       "burn_time": 300
     },
     "verdant:stripped_heartwood_log": {

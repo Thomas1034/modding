@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:dead_boat",
+  "key": {
+    "p": "verdant:dead_planks"
+  },
+  "pattern": [
+    "p p",
+    "ppp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:dead_boat"
+  }
+}

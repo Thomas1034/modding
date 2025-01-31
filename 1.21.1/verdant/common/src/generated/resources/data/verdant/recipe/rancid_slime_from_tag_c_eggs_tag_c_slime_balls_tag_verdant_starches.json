@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:rancid_slime",
+  "ingredients": [
+    "#c:eggs",
+    "#c:slime_balls",
+    "#verdant:starches"
+  ],
+  "result": {
+    "count": 2,
+    "id": "verdant:rancid_slime"
+  }
+}

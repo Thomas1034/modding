@@ -2,6 +2,7 @@ package com.thomas.verdant.registry;
 
 import com.thomas.verdant.Constants;
 import com.thomas.verdant.item.component.DurabilityChanging;
+import com.thomas.verdant.item.component.VerdantFriendliness;
 import com.thomas.verdant.item.custom.*;
 import com.thomas.verdant.registration.RegistrationProvider;
 import com.thomas.verdant.registration.RegistryObject;
@@ -48,6 +49,14 @@ public class ItemRegistry {
             (properties) -> new BoneMealItem(properties.food(
                     new FoodProperties.Builder().nutrition(2).saturationModifier(0.02F).build(),
                     ConsumablesList.ROTTEN_COMPOST
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> RANCID_SLIME = register(
+            "rancid_slime",
+            (properties) -> new BoneMealItem(properties.food(
+                    new FoodProperties.Builder().nutrition(2).saturationModifier(0.02F).build(),
+                    ConsumablesList.RANCID_SLIME
             ))
     );
 
@@ -151,6 +160,10 @@ public class ItemRegistry {
                     SoundEvents.HORSE_ARMOR,
                     false,
                     properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
+                            )
             )
     );
 
@@ -162,6 +175,10 @@ public class ItemRegistry {
                             .component(
                                     DataComponentRegistry.DURABILITY_CHANGING.get(),
                                     DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
                             )
             ))
     );
@@ -175,6 +192,10 @@ public class ItemRegistry {
                                     DataComponentRegistry.DURABILITY_CHANGING.get(),
                                     DurabilityChanging.HEARTWOOD_ARMOR
                             )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
             ))
     );
 
@@ -187,6 +208,10 @@ public class ItemRegistry {
                                     DataComponentRegistry.DURABILITY_CHANGING.get(),
                                     DurabilityChanging.HEARTWOOD_ARMOR
                             )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
             ))
     );
 
@@ -198,6 +223,10 @@ public class ItemRegistry {
                             .component(
                                     DataComponentRegistry.DURABILITY_CHANGING.get(),
                                     DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
                             )
             ))
     );
@@ -273,55 +302,66 @@ public class ItemRegistry {
                     AnimalArmorItem.BodyType.EQUESTRIAN,
                     SoundEvents.HORSE_ARMOR,
                     false,
-                    properties.stacksTo(1)
+                    properties.stacksTo(1).component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_HORSE_ARMOR
+                    )
             )
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HELMET = register(
             "imbued_heartwood_helmet", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD,
-                    ArmorType.HELMET,
-                    properties.stacksTo(1)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
+                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.HELMET, properties.stacksTo(1)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )
             ))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_CHESTPLATE = register(
             "imbued_heartwood_chestplate", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD,
-                    ArmorType.CHESTPLATE,
-                    properties.stacksTo(1)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
+                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.CHESTPLATE, properties.stacksTo(1)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )
             ))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_LEGGINGS = register(
             "imbued_heartwood_leggings", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD,
-                    ArmorType.LEGGINGS,
-                    properties.stacksTo(1)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
+                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.LEGGINGS, properties.stacksTo(1)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )
             ))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_BOOTS = register(
             "imbued_heartwood_boots", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD,
-                    ArmorType.BOOTS,
-                    properties.stacksTo(1)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
+                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.BOOTS, properties.stacksTo(1)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )
             ))
     );
 

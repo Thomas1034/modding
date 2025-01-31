@@ -1,5 +1,9 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.item.RopeGlowProperty;
+import com.thomas.verdant.client.item.RopeHangingBlockProperty;
+import com.thomas.verdant.client.item.RopeHookProperty;
+import com.thomas.verdant.client.item.RopeLengthProperty;
 import com.thomas.verdant.client.renderer.*;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registration.RegistryObject;
@@ -23,9 +27,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
+import net.neoforged.neoforge.client.event.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +44,9 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerScreens);
         modBus.addListener(VerdantClient::registerBlockEntityRenderers);
         modBus.addListener(VerdantClient::registerSpecialModels);
+        modBus.addListener(VerdantClient::registerRangeProperties);
+        modBus.addListener(VerdantClient::registerSelectProperties);
+        modBus.addListener(VerdantClient::registerConditionalProperties);
 
         for (WoodSet woodSet : WoodSets.WOOD_SETS) {
             initialSetupBeforeRenderEvents(woodSet);
@@ -125,5 +130,39 @@ public class VerdantClient {
 
     public static void registerSpecialModels(RegisterSpecialModelRendererEvent event) {
         event.register(VerdantConduitSpecialRenderer.Unbaked.LOCATION, VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC);
+    }
+
+    public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent event) {
+        event.register(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
+                // The property type
+                RopeHangingBlockProperty.TYPE
+        );
+    }
+
+    public static void registerRangeProperties(RegisterRangeSelectItemModelPropertyEvent event) {
+        event.register(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
+                // The map codec
+                RopeLengthProperty.MAP_CODEC
+        );
+        event.register(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
+                // The map codec
+                RopeGlowProperty.MAP_CODEC
+        );
+    }
+
+
+    public static void registerConditionalProperties(RegisterConditionalItemModelPropertyEvent event) {
+        event.register(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
+                // The map codec
+                RopeHookProperty.MAP_CODEC
+        );
     }
 }

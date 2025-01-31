@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "toxic_ash_block",
+  "ingredient": "verdant:poison_ivy_block",
+  "result": {
+    "count": 1,
+    "id": "verdant:toxic_ash_block"
+  }
+}

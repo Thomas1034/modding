@@ -52,6 +52,9 @@ public class RopeCoilItem extends Item implements ProjectileItem {
                 tooltipComponents.add(Component.translatable(baseKey + ".glow", data.lightLevel())
                         .withStyle(ChatFormatting.GRAY));
             }
+            if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
+                tooltipComponents.add(Component.translatable(baseKey + "." + data.lantern().typeName).withStyle(ChatFormatting.GRAY));
+            }
         }
     }
 

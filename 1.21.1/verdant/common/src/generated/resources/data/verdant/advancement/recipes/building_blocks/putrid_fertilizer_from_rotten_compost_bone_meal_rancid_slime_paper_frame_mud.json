@@ -1,0 +1,87 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bone_meal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:bone_meal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mud": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:mud"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_paper_frame": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:paper_frame"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_putrid_fertilizer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:putrid_fertilizer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rancid_slime": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rancid_slime"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rotten_compost": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rotten_compost"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:putrid_fertilizer_from_rotten_compost_bone_meal_rancid_slime_paper_frame_mud"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rotten_compost",
+      "has_bone_meal",
+      "has_rancid_slime",
+      "has_paper_frame",
+      "has_mud",
+      "has_putrid_fertilizer"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:putrid_fertilizer_from_rotten_compost_bone_meal_rancid_slime_paper_frame_mud"
+    ]
+  }
+}

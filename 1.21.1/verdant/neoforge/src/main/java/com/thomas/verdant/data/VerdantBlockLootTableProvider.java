@@ -161,6 +161,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(BlockRegistry.TIGER_LILY.get());
         this.add(BlockRegistry.POTTED_TIGER_LILY.get(), createPotFlowerItemTable(BlockRegistry.TIGER_LILY.get()));
 
+        dropSelf(BlockRegistry.RUE.get());
+        this.add(BlockRegistry.POTTED_RUE.get(), createPotFlowerItemTable(BlockRegistry.RUE.get()));
 
         this.requireSilkTouch(BlockRegistry.CHARRED_FRAME_BLOCK.get(), Items.CHARCOAL, List.of(0, 1));
         this.dropSelf(BlockRegistry.FRAME_BLOCK.get());
@@ -309,6 +311,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get());
         this.dropSelf(BlockRegistry.TOXIC_DIRT.get());
         this.requireSilkTouchOrShears(BlockRegistry.DEAD_GRASS.get(), Items.WHEAT_SEEDS, List.of(0, 1));
+        this.dropSelf(BlockRegistry.POISON_IVY_BLOCK.get());
+        this.dropSelf(BlockRegistry.TOXIC_ASH_BLOCK.get());
+        this.dropSelf(BlockRegistry.PUTRID_FERTILIZER.get());
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.thomas.verdant.data.blocktransformer.BlockTransformerData;
 import com.thomas.verdant.data.blocktransformer.BlockTransformerResultOption;
 import com.thomas.verdant.registry.BlockRegistry;
 import com.thomas.verdant.registry.BlockTransformerRegistry;
+import com.thomas.verdant.registry.WoodSets;
 import com.thomas.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -199,10 +201,26 @@ public class BlockTransformerDefinitions {
         data.add(directTag(BlockTags.FLOWERS, Blocks.AIR));
         data.add(direct(BlockRegistry.SNAPLEAF.get(), Blocks.AIR));
         data.add(probability(Blocks.SHORT_GRASS, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
+        data.add(probabilityTag(
+                BlockTags.LOGS_THAT_BURN,
+                Map.of(WoodSets.DEAD.getStrippedWood().get(), 2, WoodSets.DEAD.getStrippedLog().get(), 1)
+        ));
         data.add(direct(Blocks.VINE, Blocks.AIR));
         data.add(direct(Blocks.TALL_GRASS, Blocks.AIR));
         data.add(probability(Blocks.FERN, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
         data.add(direct(Blocks.LARGE_FERN, Blocks.AIR));
+        data.add(directTag(BlockTags.UNDERWATER_BONEMEALS, Blocks.WATER));
+
+        Map<Block, Block> corals = getCoralsBlockMap();
+
+        for (Map.Entry<Block, Block> coral : corals.entrySet()) {
+            data.add(direct(coral.getKey(), coral.getValue()));
+        }
+
+        data.add(direct(BlockRegistry.DROWNED_HEMLOCK.get(), Blocks.WATER));
+        data.add(direct(BlockRegistry.DROWNED_HEMLOCK_PLANT.get(), Blocks.WATER));
+        data.add(direct(Blocks.KELP, Blocks.WATER));
+        data.add(direct(Blocks.KELP_PLANT, Blocks.WATER));
         data.add(direct(Blocks.SEAGRASS, Blocks.WATER));
         data.add(direct(Blocks.TALL_SEAGRASS, Blocks.WATER));
         data.add(direct(BlockRegistry.STRANGLER_TENDRIL.get(), Blocks.AIR));
@@ -211,15 +229,76 @@ public class BlockTransformerDefinitions {
         data.add(direct(BlockRegistry.LEAFY_STRANGLER_VINE.get(), Blocks.AIR));
         data.add(direct(BlockRegistry.BUSH.get(), Blocks.DEAD_BUSH));
         data.add(direct(BlockRegistry.THORN_BUSH.get(), Blocks.DEAD_BUSH));
+        data.add(direct(WoodSets.DEAD.getStrippedWood().get(), WoodSets.DEAD.getStrippedWood().get()));
+        data.add(direct(WoodSets.DEAD.getStrippedLog().get(), WoodSets.DEAD.getStrippedLog().get()));
         data.add(directTag(BlockTags.CROPS, Blocks.AIR));
         data.add(directTag(BlockTags.DIRT, BlockRegistry.TOXIC_DIRT.get()));
+        data.add(direct(Blocks.LILY_PAD, Blocks.AIR));
         data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));
         data.add(direct(Blocks.PALE_MOSS_BLOCK, Blocks.DIRT));
         data.add(direct(Blocks.MOSS_CARPET, Blocks.AIR));
         data.add(direct(Blocks.PALE_MOSS_CARPET, Blocks.AIR));
         data.add(direct(Blocks.PALE_HANGING_MOSS, Blocks.AIR));
+        data.add(direct(Blocks.FARMLAND, BlockRegistry.TOXIC_DIRT.get()));
 
-        return new BlockTransformer(data, BlockTransformerRegistry.HOEING);
+        return new BlockTransformer(data, BlockTransformerRegistry.TOXIC_ASH);
+    }
+
+    public static Map<Block, Block> getCoralsBlockMap() {
+        Map<Block, Block> coralPlants = Map.of(
+                Blocks.BRAIN_CORAL,
+                Blocks.DEAD_BRAIN_CORAL,
+                Blocks.BUBBLE_CORAL,
+                Blocks.DEAD_BUBBLE_CORAL,
+                Blocks.FIRE_CORAL,
+                Blocks.DEAD_FIRE_CORAL,
+                Blocks.HORN_CORAL,
+                Blocks.DEAD_HORN_CORAL,
+                Blocks.TUBE_CORAL,
+                Blocks.DEAD_TUBE_CORAL
+        );
+        Map<Block, Block> coralBlocks = Map.of(
+                Blocks.BRAIN_CORAL_BLOCK,
+                Blocks.DEAD_BRAIN_CORAL_BLOCK,
+                Blocks.BUBBLE_CORAL_BLOCK,
+                Blocks.DEAD_BUBBLE_CORAL_BLOCK,
+                Blocks.FIRE_CORAL_BLOCK,
+                Blocks.DEAD_FIRE_CORAL_BLOCK,
+                Blocks.HORN_CORAL_BLOCK,
+                Blocks.DEAD_HORN_CORAL_BLOCK,
+                Blocks.TUBE_CORAL_BLOCK,
+                Blocks.DEAD_TUBE_CORAL_BLOCK
+        );
+        Map<Block, Block> coralFans = Map.of(
+                Blocks.BRAIN_CORAL_FAN,
+                Blocks.DEAD_BRAIN_CORAL_FAN,
+                Blocks.BUBBLE_CORAL_FAN,
+                Blocks.DEAD_BUBBLE_CORAL_FAN,
+                Blocks.FIRE_CORAL_FAN,
+                Blocks.DEAD_FIRE_CORAL_FAN,
+                Blocks.HORN_CORAL_FAN,
+                Blocks.DEAD_HORN_CORAL_FAN,
+                Blocks.TUBE_CORAL_FAN,
+                Blocks.DEAD_TUBE_CORAL_FAN
+        );
+        Map<Block, Block> coralWallFans = Map.of(
+                Blocks.BRAIN_CORAL_WALL_FAN,
+                Blocks.DEAD_BRAIN_CORAL_WALL_FAN,
+                Blocks.BUBBLE_CORAL_WALL_FAN,
+                Blocks.DEAD_BUBBLE_CORAL_WALL_FAN,
+                Blocks.FIRE_CORAL_WALL_FAN,
+                Blocks.DEAD_FIRE_CORAL_WALL_FAN,
+                Blocks.HORN_CORAL_WALL_FAN,
+                Blocks.DEAD_HORN_CORAL_WALL_FAN,
+                Blocks.TUBE_CORAL_WALL_FAN,
+                Blocks.DEAD_TUBE_CORAL_WALL_FAN
+        );
+        Map<Block, Block> corals = new HashMap<>();
+        corals.putAll(coralPlants);
+        corals.putAll(coralBlocks);
+        corals.putAll(coralFans);
+        corals.putAll(coralWallFans);
+        return corals;
     }
 
 

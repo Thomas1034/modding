@@ -32,6 +32,8 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BAMBOO = createKey("bamboo");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_CASSAVA = createKey("wild_cassava");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPLEAF = createKey("snapleaf");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ROOTS = createKey("hanging_roots");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUE = createKey("rue");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:poison_ivy_block",
+  "key": {
+    "F": "verdant:frame_block",
+    "I": "verdant:poison_ivy"
+  },
+  "pattern": [
+    "III",
+    "IFI",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:poison_ivy_block"
+  }
+}

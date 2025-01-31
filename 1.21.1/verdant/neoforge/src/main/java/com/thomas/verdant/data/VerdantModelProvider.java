@@ -532,6 +532,21 @@ public class VerdantModelProvider extends ModelProvider {
         tumbledBlockWithItem(BlockRegistry.TOXIC_DIRT.get());
         createCrossBlock(BlockRegistry.DEAD_GRASS.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
 
+        blockModels.createAxisAlignedPillarBlock(BlockRegistry.POISON_IVY_BLOCK.get(), TexturedModel.COLUMN);
+        blockModels.createAxisAlignedPillarBlock(BlockRegistry.TOXIC_ASH_BLOCK.get(), TexturedModel.COLUMN);
+
+        createPlantWithDefaultItemWithCustomPottedTexture(
+                BlockRegistry.RUE.get(),
+                BlockRegistry.POTTED_RUE.get(),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/rue_potted"),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
+
+        blockModels.createAxisAlignedPillarBlock(BlockRegistry.PUTRID_FERTILIZER.get(), TexturedModel.COLUMN);
+
+        blockModels.createAxisAlignedPillarBlock(BlockRegistry.PAPER_FRAME.get(), TexturedModel.COLUMN);
+
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
         basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());
@@ -634,6 +649,7 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
         basicItem(BlockRegistry.DEAD_GRASS.get().asItem());
 
+        basicItem(ItemRegistry.RANCID_SLIME.get());
     }
 
     @Override
@@ -785,9 +801,26 @@ public class VerdantModelProvider extends ModelProvider {
         createPlant(block, pottedBlock, plantType, renderType);
     }
 
+    public void createPlantWithDefaultItemWithCustomPottedTexture(Block block, Block pottedBlock, ResourceLocation customTexture, BlockModelGenerators.PlantType plantType, String renderType) {
+        blockModels.registerSimpleItemModel(block.asItem(), plantType.createItemModel(blockModels, block));
+        createPlantWithCustomPottedTexture(block, pottedBlock, customTexture, plantType, renderType);
+    }
+
     public void createPlant(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType, String renderType) {
         createCrossBlock(block, plantType, renderType);
         TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
+        ResourceLocation resourcelocation = plantType.getCrossPot()
+                .extend()
+                .renderType(renderType)
+                .build()
+                .create(pottedBlock, texturemapping, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pottedBlock, resourcelocation));
+    }
+
+    public void createPlantWithCustomPottedTexture(Block block, Block pottedBlock, ResourceLocation customPottedTexture, BlockModelGenerators.PlantType plantType, String renderType) {
+        createCrossBlock(block, plantType, renderType);
+        TextureMapping texturemapping = TextureMapping.singleSlot(TextureSlot.PLANT, customPottedTexture);
+
         ResourceLocation resourcelocation = plantType.getCrossPot()
                 .extend()
                 .renderType(renderType)

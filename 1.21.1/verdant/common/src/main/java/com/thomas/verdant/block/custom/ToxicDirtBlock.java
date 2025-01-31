@@ -1,5 +1,6 @@
 package com.thomas.verdant.block.custom;
 
+import com.thomas.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -28,6 +29,7 @@ public class ToxicDirtBlock extends Block {
 
 
     public static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 100, 0);
+    public static final Supplier<MobEffectInstance> WITHER = () -> new MobEffectInstance(MobEffects.WITHER, 100, 2);
     public static final BooleanProperty IS_SURFACE = BlockStateProperties.UP;
 
     public ToxicDirtBlock(Properties properties) {
@@ -39,7 +41,7 @@ public class ToxicDirtBlock extends Block {
         super.animateTick(state, level, pos, random);
         if (state.getValue(IS_SURFACE)) {
             // Constants.LOG.warn("Creating particle!");
-            if (random.nextInt(2) == 0) {
+            if (random.nextInt(10) == 0) {
                 level.addParticle(
                         ParticleTypes.SMOKE,
                         pos.getX() + random.nextDouble(),
@@ -65,7 +67,13 @@ public class ToxicDirtBlock extends Block {
 
             if (level instanceof ServerLevel) {
                 if (isPoisoned) {
-                    livingEntity.addEffect(POISON.get());
+                    if (livingEntity.getType().is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
+
+                        livingEntity.addEffect(WITHER.get());
+                    } else {
+
+                        livingEntity.addEffect(POISON.get());
+                    }
                 }
             } else {
                 RandomSource random = level.random;

@@ -19,21 +19,23 @@ public class FeatureSetDefinitions {
 
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
-        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_GRASS_JUNGLE));
-        entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_TALL_GRASS));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_BUSHES));
-        entries.add(configured(Rarity.UNCOMMON, VegetationFeatures.PATCH_LARGE_FERN));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.BLEEDING_HEART));
-        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.LILIES));
+        entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_GRASS_JUNGLE));
+        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_TALL_GRASS));
+        entries.add(configured(Rarity.COMMON, JSONFeatures.MIXED_BUSHES));
+        entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_LARGE_FERN));
+        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.RUE));
+        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.BLEEDING_HEART));
+        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_CASSAVA));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
+
+        entries.add(configured(Rarity.RARE, JSONFeatures.LILIES));
         entries.add(configured(Rarity.RARE, JSONFeatures.ORCHIDS));
         entries.add(configured(Rarity.RARE, JSONFeatures.MIXED_FLOWERS));
-        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.WILD_CASSAVA));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.COFFEE));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MIXED_MUSHROOMS));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.BAMBOO));
+        entries.add(configured(Rarity.RARE, JSONFeatures.MIXED_MUSHROOMS));
+        entries.add(configured(Rarity.RARE, JSONFeatures.COFFEE));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.BAMBOO));
 
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
     }
@@ -41,13 +43,14 @@ public class FeatureSetDefinitions {
     public static FeatureSet hanging() {
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
+        entries.add(configured(Rarity.COMMON, JSONFeatures.HANGING_ROOTS));
         entries.add(configured(Rarity.COMMON, JSONFeatures.VINES_CEILING));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.STRANGLER_TENDRIL_CEILING));
-        entries.add(configured(Rarity.RARE, CaveFeatures.CAVE_VINE));
-        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.POISON_IVY_CEILING));
-        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.STINKING_BLOSSOM_CEILING));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.GLOW_LICHEN_CEILING));
+        entries.add(configured(Rarity.RARE, JSONFeatures.STRANGLER_TENDRIL_CEILING));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.POISON_IVY_CEILING));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.STINKING_BLOSSOM_CEILING));
         entries.add(configured(Rarity.EXTREMELY_RARE, CaveFeatures.SPORE_BLOSSOM));
+        entries.add(configured(Rarity.EXTREMELY_RARE, CaveFeatures.CAVE_VINE));
         return new FeatureSet(entries, FeatureSetRegistry.HANGING);
     }
 
@@ -55,7 +58,6 @@ public class FeatureSetDefinitions {
 
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
-        // TODO Fix seagrass spreading water everywhere! Seagrass feature doesn't check for water source.
         entries.add(configured(Rarity.VERY_COMMON, JSONFeatures.FIXED_SEAGRASS_TALL));
         entries.add(configured(Rarity.COMMON, JSONFeatures.FIXED_SEAGRASS_SHORT));
         entries.add(configured(Rarity.RARE, VegetationFeatures.PATCH_WATERLILY));

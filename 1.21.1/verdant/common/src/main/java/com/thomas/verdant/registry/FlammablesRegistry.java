@@ -33,6 +33,7 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.WILD_COFFEE, 60, 100);
         flammables.registerFlammability(BlockRegistry.COFFEE_CROP, 60, 100);
+        flammables.registerFlammability(BlockRegistry.PAPER_FRAME, 60, 100);
     }
 
     public void registerFlammability(Block block, int flammability, int spreadSpeed) {

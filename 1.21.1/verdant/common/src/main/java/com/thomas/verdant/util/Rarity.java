@@ -2,6 +2,7 @@ package com.thomas.verdant.util;
 
 public class Rarity {
     public static final int ALWAYS = Integer.MAX_VALUE >> 1;
+    public static final int OVERWHELMINGLY_COMMON = 400;
     public static final int EXTREMELY_COMMON = 200;
     public static final int VERY_COMMON = 150;
     public static final int COMMON = 100;

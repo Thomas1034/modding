@@ -10,6 +10,12 @@
             "entries": [
               {
                 "data": {
+                  "Name": "verdant:rue"
+                },
+                "weight": 15
+              },
+              {
+                "data": {
                   "Name": "verdant:bleeding_heart"
                 },
                 "weight": 15

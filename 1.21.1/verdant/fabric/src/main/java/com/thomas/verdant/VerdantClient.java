@@ -1,5 +1,9 @@
 package com.thomas.verdant;
 
+import com.thomas.verdant.client.item.RopeGlowProperty;
+import com.thomas.verdant.client.item.RopeHangingBlockProperty;
+import com.thomas.verdant.client.item.RopeHookProperty;
+import com.thomas.verdant.client.item.RopeLengthProperty;
 import com.thomas.verdant.client.renderer.*;
 import com.thomas.verdant.client.screen.FishTrapScreen;
 import com.thomas.verdant.registry.*;
@@ -17,7 +21,11 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
+import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
+import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Arrays;
@@ -93,6 +101,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_WILD_UBE,
                 BlockRegistry.UBE_CROP,
                 BlockRegistry.DEAD_GRASS,
+                BlockRegistry.RUE,
+                BlockRegistry.POTTED_RUE,
                 BlockRegistry.VERDANT_CONDUIT
         );
 
@@ -120,6 +130,31 @@ public class VerdantClient implements ClientModInitializer {
         SpecialBlockRendererRegistry.register(
                 BlockRegistry.VERDANT_CONDUIT.get(),
                 new VerdantConduitSpecialRenderer.Unbaked()
+        );
+
+        RangeSelectItemModelProperties.ID_MAPPER.put(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
+                // The map codec
+                RopeLengthProperty.MAP_CODEC
+        );
+        RangeSelectItemModelProperties.ID_MAPPER.put(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
+                // The map codec
+                RopeGlowProperty.MAP_CODEC
+        );
+        ConditionalItemModelProperties.ID_MAPPER.put(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
+                // The map codec
+                RopeHookProperty.MAP_CODEC
+        );
+        SelectItemModelProperties.ID_MAPPER.put(
+                // The name to reference as the type
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
+                // The property type
+                RopeHangingBlockProperty.TYPE
         );
 
 

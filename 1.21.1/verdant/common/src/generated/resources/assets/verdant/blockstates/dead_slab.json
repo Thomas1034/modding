@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verdant:block/dead_slab"
+    },
+    "type=double": {
+      "model": "verdant:block/dead_planks"
+    },
+    "type=top": {
+      "model": "verdant:block/dead_slab_top"
+    }
+  }
+}

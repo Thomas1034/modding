@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "verdant:block/toxic_ash_block_top",
+    "side": "verdant:block/toxic_ash_block_side"
+  }
+}

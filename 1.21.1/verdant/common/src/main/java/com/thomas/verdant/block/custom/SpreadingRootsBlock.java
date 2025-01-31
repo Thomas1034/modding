@@ -326,7 +326,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             if (stack.is(ItemTags.HOES)) {
                 BlockState hoedTo = this.hoe(state, serverLevel, pos, stack);
                 serverLevel.setBlockAndUpdate(pos, hoedTo);
-                return InteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS_SERVER;
             }
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

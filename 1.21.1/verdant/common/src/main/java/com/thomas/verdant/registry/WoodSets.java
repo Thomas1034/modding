@@ -14,9 +14,44 @@ public class WoodSets {
 
     public static Set<WoodSet> WOOD_SETS = new HashSet<>();
 
-    public static final WoodSet STRANGLER = register(new WoodSet(Constants.MOD_ID, "strangler", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD).ignitedByLava(), 1, true));
+    public static final WoodSet STRANGLER = register(new WoodSet(
+            Constants.MOD_ID,
+            "strangler",
+            () -> BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava(),
+            1,
+            true
+    ));
 
-    public static final WoodSet HEARTWOOD = register(new WoodSet(Constants.MOD_ID, "heartwood", () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS).strength(4.0F, 6.0F).sound(SoundType.WOOD).ignitedByLava(), 2, true));
+    public static final WoodSet DEAD = register(new WoodSet(
+            Constants.MOD_ID,
+            "dead",
+            () -> BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(1.0F, 1.5F)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava(),
+            1,
+            true
+    ));
+
+    public static final WoodSet HEARTWOOD = register(new WoodSet(
+            Constants.MOD_ID,
+            "heartwood",
+            () -> BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GREEN)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(4.0F, 6.0F)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava(),
+            2,
+            true
+    ));
 
     public static WoodSet register(WoodSet woodSet) {
         WOOD_SETS.add(woodSet);
