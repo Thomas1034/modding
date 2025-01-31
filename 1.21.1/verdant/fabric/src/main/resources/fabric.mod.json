@@ -17,10 +17,10 @@
     "accessWidener" : "verdant.accesswidener",
     "entrypoints": {
         "main": [
-            "com.thomas.verdant.Verdant"
+            "com.startraveler.verdant.Verdant"
         ],
         "client": [
-            "com.thomas.verdant.VerdantClient"
+            "com.startraveler.verdant.VerdantClient"
         ]
     },
     "depends": {
