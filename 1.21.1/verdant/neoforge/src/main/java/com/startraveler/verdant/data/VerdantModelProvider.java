@@ -544,9 +544,9 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.ROPE.get());
         basicItem(BlockRegistry.WOODEN_SPIKES.get().asItem());
         basicItem(BlockRegistry.IRON_SPIKES.get().asItem());
-        // basicItem(BlockRegistry.SNAPLEAF.get().asItem());
-        // basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
-        // basicItem(BlockRegistry.IRON_TRAP.get().asItem());
+        basicItem(BlockRegistry.SNAPLEAF.get().asItem());
+        basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
+        basicItem(BlockRegistry.IRON_TRAP.get().asItem());
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
         basicItem(ItemRegistry.HEART_FRAGMENT.get());

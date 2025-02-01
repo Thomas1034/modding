@@ -21,22 +21,22 @@
       "block": "minecraft:short_grass",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 2
+          "name": "verdant:dead_grass"
         },
         {
-          "name": "verdant:dead_grass"
+          "name": "minecraft:air",
+          "weight": 2
         }
       ]
     },
     {
       "results": [
         {
-          "name": "verdant:stripped_dead_log"
-        },
-        {
           "name": "verdant:stripped_dead_wood",
           "weight": 2
+        },
+        {
+          "name": "verdant:stripped_dead_log"
         }
       ],
       "tag": {
@@ -55,11 +55,11 @@
       "block": "minecraft:fern",
       "results": [
         {
-          "name": "minecraft:air",
-          "weight": 2
+          "name": "verdant:dead_grass"
         },
         {
-          "name": "verdant:dead_grass"
+          "name": "minecraft:air",
+          "weight": 2
         }
       ]
     },

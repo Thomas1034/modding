@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:block/iron_trap"
+    "model": "verdant:item/iron_trap"
   }
 }
