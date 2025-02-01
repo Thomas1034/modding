@@ -19,6 +19,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -74,8 +75,13 @@ public class TrapBlock extends Block {
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
     protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
-            10,
+            11,
             0
+    );
+    protected static final Supplier<MobEffectInstance> DIG_SLOWDOWN_EFFECT_GETTER = () -> new MobEffectInstance(
+            MobEffects.DIG_SLOWDOWN,
+            11,
+            1
     );
     protected final Predicate<Entity> shouldTrigger;
     protected final int cooldownTime;
@@ -264,6 +270,7 @@ public class TrapBlock extends Block {
                     entity.hurtServer(level, source, this.attackDamage);
                     if (entity instanceof LivingEntity livingEntity) {
                         livingEntity.addEffect(TRAPPED_EFFECT_GETTER.get());
+                        livingEntity.addEffect(DIG_SLOWDOWN_EFFECT_GETTER.get());
                     }
                 }
             }
@@ -301,6 +308,7 @@ public class TrapBlock extends Block {
                 // Only on mod-5 ticks to reduce flickering.
                 if (!level.isClientSide && 0 == entity.tickCount % 5) {
                     le.addEffect(TRAPPED_EFFECT_GETTER.get());
+                    le.addEffect(DIG_SLOWDOWN_EFFECT_GETTER.get());
                 }
             }
         }

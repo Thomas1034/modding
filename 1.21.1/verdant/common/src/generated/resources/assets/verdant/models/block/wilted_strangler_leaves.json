@@ -1,9 +1,6 @@
 {
-  "parent": "verdant:block/overlaid_cube",
-  "render_type": "minecraft:cutout",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "base": "verdant:block/strangler_leaves",
-    "overlay": "verdant:block/overlay_wilted_thin",
-    "particle": "verdant:block/strangler_leaves"
+    "all": "verdant:block/wilted_strangler_leaves"
   }
 }

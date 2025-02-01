@@ -280,7 +280,6 @@ public class VerdantModelProvider extends ModelProvider {
                 )));
     }
 
-    // TODO
     public void cakeBlock(Block cake, Item cakeItem) {
         this.blockModels.registerSimpleFlatItemModel(cakeItem);
         this.blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(cake)
@@ -377,22 +376,10 @@ public class VerdantModelProvider extends ModelProvider {
                 VERDANT_OVERLAYS
         );
         tumbledBlockWithItem(BlockRegistry.PACKED_GRAVEL.get());
-        tumbledOverlaidBlockWithItem(
-                BlockRegistry.WILTED_STRANGLER_LEAVES.get(),
-                BlockRegistry.STRANGLER_LEAVES.get(),
-                "overlay_wilted_thin"
-        );
-        tumbledBlockWithItem(BlockRegistry.STRANGLER_LEAVES.get(), "cutout");
-        tumbledOverlaidBlockWithItem(
-                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
-                BlockRegistry.STRANGLER_LEAVES.get(),
-                "overlay_poison_ivy"
-        );
-        tumbledOverlaidBlockWithItem(
-                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
-                BlockRegistry.STRANGLER_LEAVES.get(),
-                "overlay_thorns"
-        );
+        tumbledBlockWithItem(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
+        tumbledBlockWithItem(BlockRegistry.STRANGLER_LEAVES.get());
+        tumbledBlockWithItem(BlockRegistry.THORNY_STRANGLER_LEAVES.get());
+        tumbledBlockWithItem(BlockRegistry.POISON_STRANGLER_LEAVES.get());
         overlaidBlockWithItem(BlockRegistry.DIRT_COAL_ORE.get(), Blocks.DIRT, "coal_ore_overlay");
         overlaidBlockWithItem(BlockRegistry.DIRT_COPPER_ORE.get(), Blocks.DIRT, "copper_ore_overlay");
         overlaidBlockWithItem(BlockRegistry.DIRT_IRON_ORE.get(), Blocks.DIRT, "iron_ore_overlay");
@@ -560,7 +547,6 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.SNAPLEAF.get().asItem());
         basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
         basicItem(BlockRegistry.IRON_TRAP.get().asItem());
-        // TODO ropeCoilItem(ItemRegistry.ROPE_COIL);
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
         basicItem(ItemRegistry.HEART_FRAGMENT.get());
