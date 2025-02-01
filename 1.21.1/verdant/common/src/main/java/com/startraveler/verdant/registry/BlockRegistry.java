@@ -257,16 +257,16 @@ public class BlockRegistry {
                 () -> new LeafyStranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "leafy_strangler_vine").strength(
                         1.0f,
                         1.5f
-                ).noOcclusion().randomTicks())
+                ).randomTicks())
         );
         STRANGLER_LEAVES = registerBlockWithItem(
                 "strangler_leaves",
-                () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").noOcclusion()
+                () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves")
                         .randomTicks())
         );
         WILTED_STRANGLER_LEAVES = registerBlockWithItem(
                 "wilted_strangler_leaves",
-                () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").noOcclusion()
+                () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves")
                         .randomTicks())
         );
         POISON_STRANGLER_LEAVES = registerBlockWithItem(

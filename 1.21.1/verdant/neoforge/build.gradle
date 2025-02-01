@@ -10,7 +10,7 @@ dependencies {
     // ModDevGradle
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-neoforge
     // runtimeOnly
-    implementation "org.sinytra:item-asset-export-neoforge:1.0.2+1.21"
+    implementation "org.sinytra:item-asset-export-neoforge:1.1.0+1.21.4"
 }
 
 neoForge {

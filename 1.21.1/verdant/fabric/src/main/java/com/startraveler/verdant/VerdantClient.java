@@ -38,9 +38,13 @@ public class VerdantClient implements ClientModInitializer {
     // Handles client-only code.
     @Override
     public void onInitializeClient() {
-
+        markCutoutMipped();
         // Mark some blocks as cutout.
         markCutout(
+                BlockRegistry.STRANGLER_LEAVES,
+                BlockRegistry.WILTED_STRANGLER_LEAVES,
+                BlockRegistry.THORNY_STRANGLER_LEAVES,
+                BlockRegistry.POISON_STRANGLER_LEAVES,
                 BlockRegistry.DIRT_COAL_ORE,
                 BlockRegistry.DIRT_COPPER_ORE,
                 BlockRegistry.DIRT_DIAMOND_ORE,
@@ -78,10 +82,6 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_BLEEDING_HEART,
                 BlockRegistry.TIGER_LILY,
                 BlockRegistry.POTTED_TIGER_LILY,
-                BlockRegistry.STRANGLER_LEAVES,
-                BlockRegistry.WILTED_STRANGLER_LEAVES,
-                BlockRegistry.THORNY_STRANGLER_LEAVES,
-                BlockRegistry.POISON_STRANGLER_LEAVES,
                 BlockRegistry.DROWNED_HEMLOCK,
                 BlockRegistry.DROWNED_HEMLOCK_PLANT,
                 BlockRegistry.CHARRED_FRAME_BLOCK,
@@ -162,7 +162,6 @@ public class VerdantClient implements ClientModInitializer {
     }
 
     protected void registerItemProperties() {
-
     }
 
     protected void registerBoatRenderers(WoodSet woodSet) {
@@ -186,6 +185,7 @@ public class VerdantClient implements ClientModInitializer {
                 ));
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutoutMipped(Supplier... blocks) {
         Arrays.stream(blocks)
                 .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(

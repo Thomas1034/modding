@@ -155,7 +155,7 @@ public class VerdantAdvancementProvider {
                 AdvancementType.TASK,
                 true,
                 true,
-                false
+                true
         );
         builder.parent(stand_on_verdant_ground);
         builder.addCriterion(

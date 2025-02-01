@@ -44,7 +44,12 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
 
     public StranglerLeavesBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(BlockStateProperties.WATERLOGGED, false).setValue(BlockStateProperties.PERSISTENT, false).setValue(GradientLeavesBlock.GRADIENT, OptionalDirection.EMPTY).setValue(GradientLeavesBlock.DISTANCE, GradientLeavesBlock.MAX_DISTANCE));
+        this.registerDefaultState(this.getStateDefinition()
+                .any()
+                .setValue(BlockStateProperties.WATERLOGGED, false)
+                .setValue(BlockStateProperties.PERSISTENT, false)
+                .setValue(GradientLeavesBlock.GRADIENT, OptionalDirection.EMPTY)
+                .setValue(GradientLeavesBlock.DISTANCE, GradientLeavesBlock.MAX_DISTANCE));
     }
 
     // Returns the number of blocks to move in that direction to find an air block.
@@ -98,7 +103,9 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
     private boolean hasTransparentOrPlantSpaceBeneath(Level level, BlockPos pos, int distanceToCheck) {
         // Check for nearby blocks
 
-        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES));
+        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(
+                BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(
+                VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES));
         int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
 
         return distance > distanceToCheck;
@@ -112,14 +119,17 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
 
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         // If it's decaying, do nothing.
-        if (this.decaying(state)) {
-            dropResources(state, level, pos);
-            level.removeBlock(pos, false);
-            return;
+        super.randomTick(state, level, pos, random);
+        if (!this.decaying(state)) {
+            this.spreadLeaves(level, pos);
         }
 
-        this.spreadLeaves(level, pos);
+    }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(AGE);
     }
 
     public void spreadLeaves(Level level, BlockPos pos) {
@@ -152,7 +162,10 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         BlockPos supportingLog = this.gradientDescent(pos, level, state);
         // Find the distance to that log.
         // Vertical scale is more important.
-        double distanceToLog = supportingLog != null ? Vec3.atCenterOf(supportingLog).subtract(Vec3.atCenterOf(pos)).multiply(1, 2, 1).length() : Double.MAX_VALUE;
+        double distanceToLog = supportingLog != null ? Vec3.atCenterOf(supportingLog)
+                .subtract(Vec3.atCenterOf(pos))
+                .multiply(1, 2, 1)
+                .length() : Double.MAX_VALUE;
 
         // Ensure that this block is within the growing radius.
         boolean grewShelf = false;
@@ -191,6 +204,9 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         level.setBlockAndUpdate(below, newState);
     }
 
+    // Returns the number of blocks to move in a direction till the given condition
+    // is satisfied. Negative max values are ignored.
+
     private boolean tryToGrowShelf(Level level, BlockPos pos, int maxShelfThickness, int minAirGap) {
 
         int numberOfBlocksAbove = getDistanceTillAir(level, pos, Direction.UP, maxShelfThickness + 2);
@@ -209,7 +225,12 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
             return false;
         }
 
-        int numberOfAirBlocksAboveThat = getDistanceTillBlock(level, pos.above(numberOfBlocksAbove), Direction.UP, minAirGap + 2);
+        int numberOfAirBlocksAboveThat = getDistanceTillBlock(
+                level,
+                pos.above(numberOfBlocksAbove),
+                Direction.UP,
+                minAirGap + 2
+        );
         // Check the number of blocks till there's air, to compare to the shelf
         // thickness.
         if (numberOfAirBlocksAboveThat < minAirGap) {
@@ -217,7 +238,12 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
             return false;
         }
 
-        int numberOfAirBlocksBelowThat = getDistanceTillBlock(level, pos.below(numberOfBlocksBelow), Direction.DOWN, minAirGap + 2);
+        int numberOfAirBlocksBelowThat = getDistanceTillBlock(
+                level,
+                pos.below(numberOfBlocksBelow),
+                Direction.DOWN,
+                minAirGap + 2
+        );
         // Check the number of blocks till there's air, to compare to the shelf
         // thickness.
         // System.out.println("There are " + numberOfAirBlocksBelowThat + " air blocks
@@ -235,9 +261,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         successfullyPlaced = successfullyPlaced || trySpreadLeafBlock(level, pos.above());
         return successfullyPlaced;
     }
-
-    // Returns the number of blocks to move in a direction till the given condition
-    // is satisfied. Negative max values are ignored.
 
     // Attempts to place a verdant leaf block there.
     // Returns true if it changed anything.
@@ -275,7 +298,10 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
                     }
 
                     BlockState stateToCheck = level.getBlockState(pos);
-                    if (!stateToCheck.isAir() && !stateToCheck.is(BlockTags.REPLACEABLE) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES) && !stateToCheck.is(BlockTags.LEAVES) && !stateToCheck.is(BlockTags.LOGS)) {
+                    if (!stateToCheck.isAir() && !stateToCheck.is(BlockTags.REPLACEABLE) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES) && !stateToCheck.is(
+                            VerdantTags.Blocks.STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && !stateToCheck.is(
+                            VerdantTags.Blocks.STRANGLER_LEAVES) && !stateToCheck.is(BlockTags.LEAVES) && !stateToCheck.is(
+                            BlockTags.LOGS)) {
                         return false;
                     }
                 }
@@ -289,11 +315,5 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         }
 
         return false;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(AGE);
     }
 }
