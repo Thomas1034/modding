@@ -480,9 +480,9 @@ public class VerdantModelProvider extends ModelProvider {
                 SpreadingCropBlock.AGE,
                 IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
         );
-        trapBlockWithItem(BlockRegistry.WOODEN_TRAP.get());
-        trapBlockWithItem(BlockRegistry.IRON_TRAP.get());
-        trapBlockWithItem(BlockRegistry.SNAPLEAF.get());
+        trapBlock(BlockRegistry.WOODEN_TRAP.get());
+        trapBlock(BlockRegistry.IRON_TRAP.get());
+        trapBlock(BlockRegistry.SNAPLEAF.get());
         spikesBlockWithItem(BlockRegistry.WOODEN_SPIKES.get());
         spikesBlockWithItem(BlockRegistry.IRON_SPIKES.get());
         doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
@@ -544,9 +544,9 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.ROPE.get());
         basicItem(BlockRegistry.WOODEN_SPIKES.get().asItem());
         basicItem(BlockRegistry.IRON_SPIKES.get().asItem());
-        basicItem(BlockRegistry.SNAPLEAF.get().asItem());
-        basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
-        basicItem(BlockRegistry.IRON_TRAP.get().asItem());
+        // basicItem(BlockRegistry.SNAPLEAF.get().asItem());
+        // basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
+        // basicItem(BlockRegistry.IRON_TRAP.get().asItem());
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
         basicItem(ItemRegistry.HEART_FRAGMENT.get());
@@ -742,7 +742,7 @@ public class VerdantModelProvider extends ModelProvider {
         blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
     }
 
-    protected void trapBlockWithItem(Block block) {
+    protected void trapBlock(Block block) {
         BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TRAP;
 
         BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(

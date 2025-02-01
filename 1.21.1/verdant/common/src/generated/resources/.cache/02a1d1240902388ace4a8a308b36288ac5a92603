@@ -1,4 +1,4 @@
-// 1.21.4	2025-02-01T16:54:01.1428953	Model Definitions - verdant
+// 1.21.4	2025-02-01T17:10:35.3090732	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -254,7 +254,7 @@ f850e461ac8fb1cf685704f4273c8e8bb7fb527f assets/verdant/items/imbued_heartwood_s
 78a71aa93fc52155910803dae764ec7d98ec438b assets/verdant/items/imbued_heartwood_sword.json
 17e0838fb47fb956f597ed1a1a4939a349506490 assets/verdant/items/imbuement_upgrade_smithing_template.json
 10924ced3214f5a475991ac17c6445658979d0cd assets/verdant/items/iron_spikes.json
-e6fec70b38c26185f1485c22cfe01aa766ecdb93 assets/verdant/items/iron_trap.json
+d7b5de338244385cbb7e9934e51a61a0468a63b5 assets/verdant/items/iron_trap.json
 647b3b27cd70cdc1e71065adf59bc5af3c22cfbd assets/verdant/items/leafy_strangler_vine.json
 4ae8160d655f0f577e4d03b4e1177a3723834fe8 assets/verdant/items/packed_gravel.json
 94d30b1112c49c7bd2202ab3f7a3ee2eaf426aa5 assets/verdant/items/paper_frame.json
@@ -269,7 +269,7 @@ f47021724b31063d76a1eeb7d6721ad4fe01804e assets/verdant/items/roasted_coffee.jso
 46e0d80b4c3a31ea86cc52ab7b0511650a17b3df assets/verdant/items/rotten_compost.json
 0b503bde434ce89648c47fd2b8b61b267c63d6b9 assets/verdant/items/rotten_wood.json
 9e12f8e8e9e3d52932dc7e625690e691b5754cd2 assets/verdant/items/rue.json
-85abb2c4055bdb6464f41d69d0ed0adee3d6ec8b assets/verdant/items/snapleaf.json
+9c0920b7bedad15b45742e36fe0e4462ce246762 assets/verdant/items/snapleaf.json
 7a68f54ce3cb7dd6a1237cd065309403236cea3a assets/verdant/items/sparkling_starch.json
 4464b59a6cf644b45130b48ba395e5d32124debe assets/verdant/items/starch.json
 b2aeed2802b92ba140448aa428d97894a8a106f6 assets/verdant/items/stinking_blossom.json
@@ -322,7 +322,7 @@ fcb86f249382cc950bb297b3c4f528afd54fe16f assets/verdant/items/wild_cassava.json
 683c36b4671d4d14691146f67d5c3c006c33a339 assets/verdant/items/wild_ube.json
 c85a38ad775e2d3330c32b907462726f7056d602 assets/verdant/items/wilted_strangler_leaves.json
 29acc0661913295aedbb35291d369eb4f299a64e assets/verdant/items/wooden_spikes.json
-f74f3678f63bf0f6345b80ed106b80ea69a1caff assets/verdant/items/wooden_trap.json
+1769609d96fe2f628ad2d465d21d31ebab9934e4 assets/verdant/items/wooden_trap.json
 1d681440bacb52f70b1ba7764f08742ec6a97ff6 assets/verdant/models/block/antigorite.json
 f125a7b8218caeac5c4b738109383b095a50f78d assets/verdant/models/block/bitter_cassava_crop_stage0.json
 a593cae93c4324664ed9b549d454eb35f37da430 assets/verdant/models/block/bitter_cassava_crop_stage1.json
@@ -761,7 +761,6 @@ d81629f05e8ff8cc49b9daaa7981abe2f6e9d40f assets/verdant/models/item/imbued_heart
 d37f6639fa35f423553d81de89bcb256eb6d7ee9 assets/verdant/models/item/imbued_heartwood_sword.json
 a9f95d6b0fafd770adb0a860b611be3f84315801 assets/verdant/models/item/imbuement_upgrade_smithing_template.json
 cad018240194ad36ddfee279b0e7fe93044ff7f4 assets/verdant/models/item/iron_spikes.json
-6c1b612bc1209358226b19e7951efcb12d1a5eb0 assets/verdant/models/item/iron_trap.json
 e267d8b9df7b7f521a5a9b16c2e013487f58d80f assets/verdant/models/item/leafy_strangler_vine.json
 863332605628c1cfef54f4ec3aa5552b376f2e05 assets/verdant/models/item/poison_arrow.json
 3abba40e5e8c408d39b204cfddd6b99f8671cea1 assets/verdant/models/item/poison_ivy.json
@@ -770,7 +769,6 @@ f45f54f4bf38bb77bad5769e19e5e39339789bbf assets/verdant/models/item/rancid_slime
 18c019f416c001e208c8f59dee42912852a6d99a assets/verdant/models/item/rope.json
 0129a5e4e176f0c4830f5133df91b32ecaa0c1f4 assets/verdant/models/item/rotten_compost.json
 64822145207343360c2268e22c0332f22bd4c155 assets/verdant/models/item/rue.json
-5ffff5f4b013fd8e60b131010f04bc50223a2977 assets/verdant/models/item/snapleaf.json
 61d922d06668b903df5c6d017393a74c950a8f98 assets/verdant/models/item/sparkling_starch.json
 2e5a5b17d74b9f84ea55e936337ba9f641459169 assets/verdant/models/item/starch.json
 2781ad81f97d16a1bc0c0ff622935f683d282029 assets/verdant/models/item/strangler_boat.json
@@ -793,4 +791,3 @@ b8538752d6f02504b184758433c1b2c76b8c4a87 assets/verdant/models/item/ube.json
 29437b96327f5d9d54846050c12f44221c980dca assets/verdant/models/item/wild_coffee.json
 8eef389f20cb1d063758baaca8d8222a24b81276 assets/verdant/models/item/wild_ube.json
 5d673ea7d92f056cf5253a22f7627818c7056b95 assets/verdant/models/item/wooden_spikes.json
-7b61bb929d236fdeb86ec43564fb71d016ff946a assets/verdant/models/item/wooden_trap.json
