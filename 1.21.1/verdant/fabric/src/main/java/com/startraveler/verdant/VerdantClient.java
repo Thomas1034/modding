@@ -41,10 +41,6 @@ public class VerdantClient implements ClientModInitializer {
         markCutoutMipped();
         // Mark some blocks as cutout.
         markCutout(
-                BlockRegistry.STRANGLER_LEAVES,
-                BlockRegistry.WILTED_STRANGLER_LEAVES,
-                BlockRegistry.THORNY_STRANGLER_LEAVES,
-                BlockRegistry.POISON_STRANGLER_LEAVES,
                 BlockRegistry.DIRT_COAL_ORE,
                 BlockRegistry.DIRT_COPPER_ORE,
                 BlockRegistry.DIRT_DIAMOND_ORE,
