@@ -30,12 +30,12 @@ public class GradientLeavesBlock extends LeavesBlock {
             "gradient",
             OptionalDirection.class
     );
-    public static final int MIN_DISTANCE = 1;
-    public static final int MAX_DISTANCE = 8;
-    public static final IntegerProperty DISTANCE = IntegerProperty.create(
+    public static final int GRADIENT_MIN_DISTANCE = 1;
+    public static final int GRADIENT_MAX_DISTANCE = 8;
+    public static final IntegerProperty GRADIENT_DISTANCE = IntegerProperty.create(
             "gradient_distance",
-            MIN_DISTANCE,
-            MAX_DISTANCE
+            GRADIENT_MIN_DISTANCE,
+            GRADIENT_MAX_DISTANCE
     );
 
 
@@ -56,7 +56,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     }
 
     protected boolean decaying(BlockState state) {
-        return !state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(DISTANCE) == MAX_DISTANCE;
+        return !state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(GRADIENT_DISTANCE) == GRADIENT_MAX_DISTANCE;
     }
 
     protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
@@ -72,7 +72,7 @@ public class GradientLeavesBlock extends LeavesBlock {
         }
 
         int i = getDistanceAt(facingState) + 1;
-        if (i != 1 || state.getValue(DISTANCE) != i) {
+        if (i != 1 || state.getValue(GRADIENT_DISTANCE) != i) {
             tickAccess.scheduleTick(currentPos, this, 1);
         }
 
@@ -84,7 +84,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(GRADIENT, DISTANCE);
+        builder.add(GRADIENT, GRADIENT_DISTANCE);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     // If so, returns null.
     public BlockPos gradientDescent(BlockPos pos, LevelAccessor level, BlockState state) {
         int counter = 0;
-        int maxIterations = MAX_DISTANCE + 2;
+        int maxIterations = GRADIENT_MAX_DISTANCE + 2;
         while (true) {
             counter++;
             Direction gradient = state.getOptionalValue(GRADIENT).orElse(OptionalDirection.EMPTY).direction();
@@ -125,12 +125,12 @@ public class GradientLeavesBlock extends LeavesBlock {
         if (state.is(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES)) {
             return 0;
         } else {
-            return state.hasProperty(DISTANCE) ? state.getValue(DISTANCE) : MAX_DISTANCE;
+            return state.hasProperty(GRADIENT_DISTANCE) ? state.getValue(GRADIENT_DISTANCE) : GRADIENT_MAX_DISTANCE;
         }
     }
 
     protected BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
-        int distance = MAX_DISTANCE;
+        int distance = GRADIENT_MAX_DISTANCE;
         OptionalDirection gradient = OptionalDirection.EMPTY;
 
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -148,7 +148,7 @@ public class GradientLeavesBlock extends LeavesBlock {
             }
         }
 
-        return state.setValue(DISTANCE, distance).setValue(GRADIENT, gradient);
+        return state.setValue(GRADIENT_DISTANCE, distance).setValue(GRADIENT, gradient);
     }
 
 }

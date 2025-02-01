@@ -49,7 +49,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
                 .setValue(BlockStateProperties.WATERLOGGED, false)
                 .setValue(BlockStateProperties.PERSISTENT, false)
                 .setValue(GradientLeavesBlock.GRADIENT, OptionalDirection.EMPTY)
-                .setValue(GradientLeavesBlock.DISTANCE, GradientLeavesBlock.MAX_DISTANCE));
+                .setValue(GradientLeavesBlock.GRADIENT_DISTANCE, GradientLeavesBlock.GRADIENT_MAX_DISTANCE));
     }
 
     // Returns the number of blocks to move in that direction to find an air block.
@@ -117,13 +117,17 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         return SUPPORT_SHAPE;
     }
 
+    @Override
+    protected boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         // If it's decaying, do nothing.
         super.randomTick(state, level, pos, random);
         if (!this.decaying(state)) {
             this.spreadLeaves(level, pos);
         }
-
     }
 
     @Override
@@ -138,8 +142,8 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // + ".");
 
         // Check if within support distance.
-        int distance = state.hasProperty(DISTANCE) ? state.getValue(DISTANCE) : MAX_DISTANCE;
-        if (distance >= MAX_DISTANCE - 1) {
+        int distance = state.hasProperty(GRADIENT_DISTANCE) ? state.getValue(GRADIENT_DISTANCE) : GRADIENT_MAX_DISTANCE;
+        if (distance >= GRADIENT_MAX_DISTANCE - 1) {
             return;
         }
         LeafyStranglerVineBlock leafyVine = (LeafyStranglerVineBlock) BlockRegistry.LEAFY_STRANGLER_VINE.get();
