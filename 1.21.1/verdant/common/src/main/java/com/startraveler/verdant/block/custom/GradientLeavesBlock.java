@@ -13,6 +13,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -22,13 +23,20 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
-public class GradientLeavesBlock extends Block {
+public class GradientLeavesBlock extends LeavesBlock {
     public static final MapCodec<GradientLeavesBlock> CODEC = simpleCodec(GradientLeavesBlock::new);
 
-    public static final EnumProperty<OptionalDirection> GRADIENT = EnumProperty.create("gradient", OptionalDirection.class);
+    public static final EnumProperty<OptionalDirection> GRADIENT = EnumProperty.create(
+            "gradient",
+            OptionalDirection.class
+    );
     public static final int MIN_DISTANCE = 1;
     public static final int MAX_DISTANCE = 8;
-    public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", MIN_DISTANCE, MAX_DISTANCE);
+    public static final IntegerProperty DISTANCE = IntegerProperty.create(
+            "gradient_distance",
+            MIN_DISTANCE,
+            MAX_DISTANCE
+    );
 
 
     public GradientLeavesBlock(Properties properties) {
@@ -38,6 +46,54 @@ public class GradientLeavesBlock extends Block {
     @Override
     public MapCodec<? extends GradientLeavesBlock> codec() {
         return CODEC;
+    }
+
+    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (this.decaying(state)) {
+            dropResources(state, level, pos);
+            level.removeBlock(pos, false);
+        }
+    }
+
+    protected boolean decaying(BlockState state) {
+        return !state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(DISTANCE) == MAX_DISTANCE;
+    }
+
+    protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        level.setBlockAndUpdate(pos, this.updateDistance(state, level, pos));
+    }
+
+    // Updates the block whenever there is a change next to it.
+    @Override
+    @NotNull
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+        if (state.getValue(BlockStateProperties.WATERLOGGED)) {
+            tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
+        int i = getDistanceAt(facingState) + 1;
+        if (i != 1 || state.getValue(DISTANCE) != i) {
+            tickAccess.scheduleTick(currentPos, this, 1);
+        }
+
+        return state;
+    }
+
+    // Very important!
+    // Defines the properties for the block.
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(GRADIENT, DISTANCE);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        BlockState state = this.defaultBlockState()
+                .setValue(BlockStateProperties.PERSISTENT, true)
+                .setValue(BlockStateProperties.WATERLOGGED, fluidstate.is(FluidTags.WATER));
+        return updateDistance(state, context.getLevel(), context.getClickedPos());
     }
 
     // May have an infinite loop if the gradient is not well-defined or has non-zero curl.
@@ -73,17 +129,6 @@ public class GradientLeavesBlock extends Block {
         }
     }
 
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        if (this.decaying(state)) {
-            dropResources(state, level, pos);
-            level.removeBlock(pos, false);
-        }
-    }
-
-    protected boolean decaying(BlockState state) {
-        return !state.getValue(BlockStateProperties.PERSISTENT) && state.getValue(DISTANCE) == MAX_DISTANCE;
-    }
-
     protected BlockState updateDistance(BlockState state, LevelAccessor level, BlockPos pos) {
         int distance = MAX_DISTANCE;
         OptionalDirection gradient = OptionalDirection.EMPTY;
@@ -104,41 +149,6 @@ public class GradientLeavesBlock extends Block {
         }
 
         return state.setValue(DISTANCE, distance).setValue(GRADIENT, gradient);
-    }
-
-    protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        level.setBlockAndUpdate(pos, this.updateDistance(state, level, pos));
-    }
-
-    // Updates the block whenever there is a change next to it.
-    @Override
-    @NotNull
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
-        if (state.getValue(BlockStateProperties.WATERLOGGED)) {
-            tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-        }
-
-        int i = getDistanceAt(facingState) + 1;
-        if (i != 1 || state.getValue(DISTANCE) != i) {
-            tickAccess.scheduleTick(currentPos, this, 1);
-        }
-
-        return state;
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
-        BlockState state = this.defaultBlockState().setValue(BlockStateProperties.PERSISTENT, true).setValue(BlockStateProperties.WATERLOGGED, fluidstate.is(FluidTags.WATER));
-        return updateDistance(state, context.getLevel(), context.getClickedPos());
-    }
-
-    // Very important!
-    // Defines the properties for the block.
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(GRADIENT, DISTANCE, BlockStateProperties.WATERLOGGED, BlockStateProperties.PERSISTENT);
     }
 
 }

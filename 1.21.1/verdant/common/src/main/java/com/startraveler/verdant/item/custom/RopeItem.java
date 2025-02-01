@@ -1,6 +1,5 @@
 package com.startraveler.verdant.item.custom;
 
-import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -44,7 +43,7 @@ public class RopeItem extends BlockItem {
         if (hookBlock != null) {
             // Iterate over all the possible states, in a random order.
             List<BlockState> states = new ArrayList<>(hookBlock.getStateDefinition().getPossibleStates());
-            Constants.LOG.warn("States {} and random {} ", states, new Random(level.random.nextInt()));
+            // Constants.LOG.warn("States {} and random {} ", states, new Random(level.random.nextInt()));
             Collections.shuffle(states, new Random(level.random.nextInt()));
             for (BlockState hookState : states) {
                 // Check if the hook can survive.

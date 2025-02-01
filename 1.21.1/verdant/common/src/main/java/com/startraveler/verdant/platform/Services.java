@@ -1,6 +1,5 @@
 package com.startraveler.verdant.platform;
 
-import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.platform.services.*;
 
 import java.util.ServiceLoader;
@@ -37,7 +36,7 @@ public class Services {
         final T loadedService = ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        Constants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
+        // Constants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }

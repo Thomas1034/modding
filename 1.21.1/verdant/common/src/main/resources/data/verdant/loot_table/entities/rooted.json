@@ -2,7 +2,7 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "bonus_rolls": 0,
+      "bonus_rolls": 2,
       "entries": [
         {
           "type": "minecraft:item",
@@ -77,7 +77,7 @@
           "name": "minecraft:hanging_roots"
         }
       ],
-      "rolls": 2
+      "rolls": 4
     },
     {
       "bonus_rolls": 0,

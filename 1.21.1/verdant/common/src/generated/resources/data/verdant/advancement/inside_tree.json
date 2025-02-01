@@ -24,6 +24,7 @@
     "description": {
       "translate": "advancements.verdant.inside_tree.description"
     },
+    "hidden": true,
     "icon": {
       "count": 1,
       "id": "verdant:strangler_log"

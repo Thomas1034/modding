@@ -112,7 +112,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:stone_pickaxe",
-          "weight": 1
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -122,17 +122,17 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_axe",
-          "weight": 3
+          "weight": 6
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_sword",
-          "weight": 1
+          "weight": 3
         },
         {
           "type": "minecraft:item",
           "name": "verdant:heartwood_horse_armor",
-          "weight": 6
+          "weight": 2
         }
       ]
     },

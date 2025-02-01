@@ -338,8 +338,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         // If it is ticking while inactive, there is a problem. Log an error and report back.
         if (!state.getValue(ACTIVE)) {
-            Constants.LOG.warn("SpreadingRootsBlock is ticking while inactive ({}).", state);
-            Constants.LOG.warn("Please report this warning to the developer of the mod.");
+            // Constants.LOG.warn("SpreadingRootsBlock is ticking while inactive ({}).", state);
+            // Constants.LOG.warn("Please report this warning to the developer of the mod.");
             return;
         }
         // If it is grassy and should not be, or it is not grassy but should be, swap.

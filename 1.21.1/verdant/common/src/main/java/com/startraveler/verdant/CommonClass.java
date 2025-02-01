@@ -86,8 +86,7 @@ public class CommonClass {
         // we have an interface in the common code and use a loader specific implementation to delegate our call to
         // the platform specific approach.
         if (Services.PLATFORM.isModLoaded("verdant") && Services.PLATFORM.isDevelopmentEnvironment()) {
-
-            Constants.LOG.debug("Verdant is loaded successfully.");
+            // Constants.LOG.debug("Verdant is loaded successfully.");
         }
 
         DataComponentRegistry.init();
