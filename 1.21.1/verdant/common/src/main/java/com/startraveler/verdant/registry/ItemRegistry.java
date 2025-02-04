@@ -30,7 +30,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> ROASTED_COFFEE = register(
             "roasted_coffee", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(1).saturationModifier(0.02F).alwaysEdible().build(),
-                    ConsumablesList.COFFEE_BERRY
+                    ConsumablesList.ROASTED_COFFEE
             ))
     );
 
@@ -430,7 +430,8 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register(
+            "imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
     );
 
@@ -486,16 +487,16 @@ public class ItemRegistry {
             DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
             IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 

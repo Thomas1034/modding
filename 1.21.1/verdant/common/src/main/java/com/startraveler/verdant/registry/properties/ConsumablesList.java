@@ -17,8 +17,18 @@ public class ConsumablesList {
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new ApplyStatusEffectsConsumeEffect(
                     new MobEffectInstance(
-                            MobEffectRegistry.CAFFEINATED.asHolder(),
-                            600,
+                            MobEffects.MOVEMENT_SPEED,
+                            200,
+                            0
+                    ), 0.9F
+            ))
+            .build();
+    public static final Consumable ROASTED_COFFEE = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
+            .onConsume(new ApplyStatusEffectsConsumeEffect(
+                    new MobEffectInstance(
+                            MobEffects.DIG_SPEED,
+                            200,
                             0
                     ), 0.9F
             ))
