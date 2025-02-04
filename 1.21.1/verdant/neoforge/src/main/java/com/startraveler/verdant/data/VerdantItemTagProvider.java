@@ -52,6 +52,21 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
                 BlockRegistry.TIGER_LILY.get().asItem()
         );
 
+
+        this.tag(ItemTags.COW_FOOD).add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get());
+        this.tag(ItemTags.HORSE_FOOD).add(ItemRegistry.STARCH.get());
+        this.tag(ItemTags.PARROT_FOOD).add(ItemRegistry.STARCH.get());
+        this.tag(ItemTags.PARROT_POISONOUS_FOOD).add(ItemRegistry.BITTER_STARCH.get());
+        this.tag(ItemTags.SHEEP_FOOD).add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get());
+        this.tag(ItemTags.PIG_FOOD)
+                .add(ItemRegistry.CASSAVA.get(), ItemRegistry.BITTER_CASSAVA.get(), ItemRegistry.UBE.get());
+        this.tag(ItemTags.CHICKEN_FOOD).add(
+                ItemRegistry.STARCH.get(),
+                ItemRegistry.BITTER_STARCH.get(),
+                ItemRegistry.CASSAVA_CUTTINGS.get(),
+                ItemRegistry.BITTER_CASSAVA_CUTTINGS.get()
+        );
+
         this.tag(Tags.Items.CROPS).add(
                 ItemRegistry.COFFEE_BERRIES.get(),
                 ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),

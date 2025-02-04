@@ -96,7 +96,10 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
 
                     BlockState forBoneMealing = level.getBlockState(growAt);
                     Block block = forBoneMealing.getBlock();
-                    if (block instanceof BonemealableBlock bonemealableBlock) {
+                    if (block instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel,
+                            growAt,
+                            forBoneMealing
+                    )) {
                         bonemealableBlock.performBonemeal(serverLevel, level.random, growAt, forBoneMealing);
                     }
 
