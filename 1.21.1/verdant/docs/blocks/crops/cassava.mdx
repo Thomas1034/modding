@@ -6,25 +6,25 @@ type: item
 
 # Obtaining
 
-Among the many hazards of the **Verdant Growth**, intrepid explorers will sometimes find odd plants with large leaves. 
+Amidst the many hazards of the **Verdant Growth**, explorers may find odd plants with large leaves.
 
 <Asset width={128} height={128} location="verdant:item/wild_cassava" title="Wild Cassava" />
 
-Breaking these will sometimes yield **Bitter Cassava Cuttings** the seed-analogue of *Bitter Cassava**. You can plant these like any other seeds. Keep in mind that **Cassava** is a two-block-tall crop. **Wild Cassava** can also be harvested with shears or silk touch, to be used as decoration or put in a flower pot.
+Breaking these yields **Bitter Cassava Cuttings**, the seed equivalent of *Bitter Cassava*. These can be planted like other crops. Since **Cassava** grows two blocks tall, ensure enough space. **Wild Cassava** can also be harvested with shears or silk touch for decoration or planting in flower pots.
 
-# Growing Cassava 
+# Growing Cassava
 
-Since **Cassava** is a two-block-tall crop, it takes somewhat longer to grow than a crop like wheat or carrots. To make up for this, it produces significantly more resources than its shorter alternatives. Cassava's unique life cycle has an additional twist; when it is fully mature, its roots will grow - not as part of the plant - but instead into the farmland it was placed on, converting the farmland into **Cassava Rooted Dirt**. Breaking the plant itself will drop a large number of its respective **Cuttings**, but no food. To harvest the roots, use a hoe on the **Cassava Rooted Dirt** to pop the **Cassava** roots out of it. 
+**Cassava** takes longer to grow than wheat or carrots but yields significantly more resources. Upon reaching full maturity, its roots extend into the farmland, converting it into **Cassava Rooted Dirt**. Harvesting the plant itself drops many **Cuttings**, but no food. To obtain **Cassava** roots, use a hoe on **Cassava Rooted Dirt**.
 
 <Asset width={128} height={128} location="verdant:item/cassava_rooted_dirt" title="Cassava Rooted Dirt" />
 
 <Asset width={128} height={128} location="verdant:item/bitter_cassava_rooted_dirt" title="Bitter Cassava Rooted Dirt" />
 
-# Bitter Cassava 
+# Bitter Cassava
 
-Perceptive players will notice that the **Cassava** products mentioned so far have been **Bitter Cassava**. Taking inspiration from its real-life properties, **Cassava** in this mod comes in two variants. Products made from uncooked **Bitter Cassava** will inflict a slow and cumulative poison on the player; eating a small amount of it mixed in with a varied diet will avert the worst effects, but subsiding purely on **Bitter Cassava** will prove harmful. 
+**Cassava** exists in two variants. By default, crops yield **Bitter Cassava**, which contains toxic compounds. Consuming too much causes a slow, cumulative poison effect. However, eating small amounts within a varied diet mitigates the risk.
 
-How, then, is normal **Cassava** obtained? **Bitter Cassava** plants will rarely drop **Cassava Cuttings**, which will grow into a near-identical plant whose roots lack the toxic compounds found in **Bitter Cassava**. These can be eaten safely to no ill effect. Non-bitter **Cassava** is less hardy, however, and produces less food per crop. 
+Rarely, **Bitter Cassava** plants drop **Cassava Cuttings**, which grow into a non-toxic variant. This **Cassava** is safe to eat but produces less food and is less hardy.
 
 <Asset width={128} height={128} location="verdant:item/cassava_cuttings" title="Cassava Cuttings" />
 
@@ -42,24 +42,20 @@ How, then, is normal **Cassava** obtained? **Bitter Cassava** plants will rarely
 
 # Uses
 
-What is **Cassava** used for? Non-bitter **Cassava** can be cooked into **Cooked Cassava**, a food with properties similar to **Steak**. It is an excellent and filling food. Alternatively, both types of **Cassava** can be crafted into, respectively, **Starch** and **Bitter Starch**. One **Cassava** crafts into four **Starch**. **Starch** is currently only used to make **Bread**. **Bitter Starch** produces **Bitter Bread**, which will inflict cumulative **Cassava Poisoning** when consumed in large amounts. **Cassava** and **Starch** can be fed to many animals in some form or another.
+Non-bitter **Cassava** can be cooked into **Cooked Cassava**, a filling food similar to **Steak**. Both **Cassava** variants can be processed into **Starch** and **Bitter Starch** (one **Cassava** yields four **Starch**). **Starch** is primarily used for crafting **Bread**, while **Bitter Starch** creates **Bitter Bread**, which causes **Cassava Poisoning** if eaten in excess. Cassava-based items can also be fed to various animals.
 
-# Golden Cassava 
+# Golden Cassava
 
-**Cassava** can be crafted with eight **Gold Ingots** to create a **Golden Cassava**. This powerful item has two uses. It can be cooked into a **Cooked Golden Cassava**; this grants both **Absorption** and **Resistance** when consumed. Alternatively, it can be crafted into **Sparkling Starch**. **Sparkling Starch** can be used in potion-making (see below) or crafted into **Golden Bread**, which grants a higher level of **Absorption** but no other effect. 
+**Cassava** can be combined with eight **Gold Ingots** to create **Golden Cassava**, which has two powerful uses:
+- **Cooked Golden Cassava** grants **Absorption** and **Resistance** when eaten.
+- **Sparkling Starch**, crafted from **Golden Cassava**, can be used for potion-making or crafted into **Golden Bread**, which provides stronger **Absorption**.
 
 <CraftingRecipe
-    slots={[
-        'minecraft:gold_ingot',
-        'minecraft:gold_ingot', 
-        'minecraft:gold_ingot',
-        'minecraft:gold_ingot',
-        'verdant:item/cassava',
-        'minecraft:gold_ingot',
-        'minecraft:gold_ingot',
-        'minecraft:gold_ingot',
-        'minecraft:gold_ingot'
-    ]}
+    slots=[
+        'minecraft:gold_ingot', 'minecraft:gold_ingot', 'minecraft:gold_ingot',
+        'minecraft:gold_ingot', 'verdant:item/cassava', 'minecraft:gold_ingot',
+        'minecraft:gold_ingot', 'minecraft:gold_ingot', 'minecraft:gold_ingot'
+    ]
     result="verdant:item/golden_cassava"
 />
 
@@ -73,8 +69,4 @@ What is **Cassava** used for? Non-bitter **Cassava** can be cooked into **Cooked
 
 # Brewing
 
-**Sparkling Starch** can be brewed in a potion stand into a **Thick Potion** to produce a **Potion of Colloid**; entities inflicted with this effect will be briefly slowed when they take damage. This can be very useful against faster or more evasive foes, and is deadly when combined with environmental hazards such as spikes.
-
-
-
-
+**Sparkling Starch** can be brewed into a **Potion of Colloid** using a potion stand. This potion slows entities briefly upon taking damage, making it a useful tool against fast or evasive foes—especially when combined with environmental hazards like spikes.
