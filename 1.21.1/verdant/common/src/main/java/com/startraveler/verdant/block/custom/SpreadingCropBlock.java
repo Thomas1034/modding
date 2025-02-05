@@ -3,6 +3,7 @@ package com.startraveler.verdant.block.custom;
 import com.startraveler.verdant.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -85,11 +86,12 @@ public class SpreadingCropBlock extends CropBlock {
             BlockState setState = null;
             if (otherState.is(this)) {
                 setState = otherState.setValue(AGE, Math.min(otherState.getValue(AGE) + 1, MAX_AGE));
-            } else if (otherState.isAir() && this.canSurvive(this.defaultBlockState(), level, offset)) {
+            } else if ((otherState.isAir() || otherState.is(BlockTags.CROPS)) && this.canSurvive(this.defaultBlockState(), level, offset)) {
                 setState = this.defaultBlockState().setValue(AGE, 0);
             }
 
             if (setState != null) {
+                level.destroyBlock(offset, true);
                 level.setBlockAndUpdate(offset, setState);
             }
         }
