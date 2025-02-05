@@ -12,15 +12,113 @@ type: item
 
 <Asset width={128} height={128} location="verdant:item/ube" title="Ube" />
 
+<Asset width={128} height={128} location="verdant:item/baked_ube" title="Baked Ube" />
+
 # Growing Ube
 
 **Ube** is a sweet-potato-like plant that behaves similarly to the vanilla Minecraft **Potato**. However, it has one interesting twist. When it grows, **Ube** has a chance to spread to nearby **Farmland**. 
 
 <Callout variant="warning">
-		**Ube** can and will destroy other nearby crops! Things will not go well if you plant it next to other kinds of crops.
+		**Ube** can and will destroy other nearby crops as it spreads!
 </Callout>
 
 
 # Uses
 
-**Ube** can be eaten raw, or cooked like a **Potato**. When it is cooked
+**Ube** can be eaten raw, or cooked like a **Potato**. **Baked Ube** has a variety of uses. For example, it can be crafted into **Ube Cake** or **Ube Cookies**. These have similar properties to their normal equivalents.
+
+<CraftingRecipe
+    slots={[
+        'verdant:item/baked_ube',
+        'minecraft:milk_bucket', 
+        'verdant:item/baked_ube',
+        'minecraft:sugar',
+        'minecraft:egg',
+        'minecraft:sugar',
+        'minecraft:wheat',
+        'minecraft:wheat',
+        'minecraft:wheat'
+    ]}
+    result="verdant:item/ube_cake"
+/>
+
+<CraftingRecipe
+    slots={[
+        'verdant:item/baked_ube',
+        'minecraft:milk_bucket', 
+        'verdant:item/baked_ube',
+        'minecraft:sugar',
+        'minecraft:egg',
+        'minecraft:sugar',
+        'verdant:item/starch',
+        'verdant:item/starch',
+        'verdant:item/starch'
+    ]}
+    result="verdant:item/ube_cake"
+/>
+
+<CraftingRecipe
+    slots={[
+        'verdant:item/starch',
+        'verdant:item/baked_ube', 
+        'verdant:item/starch',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ]}
+    result="verdant:item/ube_cookie"
+		count={8}
+/>
+
+<CraftingRecipe
+    slots={[
+        'minecraft:wheat',
+        'verdant:item/baked_ube', 
+        'minecraft:wheat',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ]}
+    result="verdant:item/ube_cookie"
+		count={8}
+/>
+ 
+
+**Baked Ube** can also be turned into purple dye, with two possible recipes. One produces it directly, whereas one uses copper ore as a mordant. 
+
+<CraftingRecipe
+    slots={[
+        'verdant:item/baked_ube',
+        '', 
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ]}
+    result="minecraft:purple_dye"
+/>
+
+<CraftingRecipe
+    slots={[
+        'verdant:item/baked_ube',
+        'verdant:item/baked_ube', 
+        'verdant:item/baked_ube',
+        'verdant:item/baked_ube',
+        'minecraft:water_bucket',
+        'minecraft:copper_ore',
+        '',
+        '',
+        ''
+    ]}
+    result="minecraft:purple_dye"
+		count={12}
+/>
