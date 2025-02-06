@@ -40,7 +40,7 @@ public class HemlockPlantBlock extends KelpPlantBlock {
     // Inflicts poison on anything inside.
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
+        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 livingEntity.addEffect(ASPHYXIATION.get());
             }

@@ -34,7 +34,7 @@ public class PoisonIvyPlantBlock extends StranglerTendrilPlantBlock {
     // Inflicts poison on anything inside.
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
+        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);

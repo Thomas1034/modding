@@ -1,0 +1,49 @@
+Construction Crane
+
+Similar posts:
+
+https://discord.com/channels/314103695568666625/1152398947332128889
+
+https://discord.com/channels/314103695568666625/1275779402025668650
+
+https://discord.com/channels/314103695568666625/1180940751346077767
+
+Mechanism:
+
+Crane Controller: 3wx4t, takes 2 crew and a bit of power. Is tall.
+Crane Track: 1wx2t, placed attached to the controller. Uses no crew or power. Is tall.
+Exclusion zone is 12 blocks, crane can build freely any point in front of it in the exclusion zone.
+Crane slides along rails, reaches out to repair/deliver resources.
+Resources are dropped off in the controller room, it can hold three stacks of resources.
+Crane can also mine junk or friendly parts in the exclusion zone.
+
+Objections:
+
+Would make combiner ships more powerful
+- Answer: Only if they fit entirely in the exclusion/construction zone of the crane!
+
+Wouldn't work well on big ships, since it can't reach the middle 
+- Possibility: Add 2wx1t crane extender to back of the rails to increase its reach by four blocks for those two rows? Can stack, but requires separate power? 
+
+
+
+Repair or construction focused components have recieved much attention over time, especially since Walt has indicated interest in the idea. I have a suggestion that - I believe - is both novel and well-balanced: the **Construction Crane**. The Construction Crane is composed of multiple components, analogously to the Chaingun.
+
+Components:
+- Crane Controller: The Crane Controller is, in a sense, the most essential part of this system. It is a three tile wide, four tile deep module that takes two crew and a small amount of power to operate. It is also a "tall" module, so deck cannons cannot fire over it. This module holds the crane when it is at rest. The crane cannot construct, deconstruct, or repair when it is at rest on the Crane Controller. Crane Controllers should be fairly expensive, but still easily achievable for midgame players.
+- Crane Rail: The Crane Rail is the track the crane moves on when it is active; when Crane Rails are placed in alignment with the Crane Controller, the crane can freely move along the rails to construct within a range in front of the rails. Crane Rails are similar to Chaingun Magazines in their dimensions and placement requirements. However, they have a four tile exclusion zone in front of them. Like Chaingun Magazines, Crane Rails do not and cannot turn corners. The crane can construct, repair, or move in a twelve tile range in front of itself, with the front being determined by the facing direction of the Crane Controller. Crane Rails should be cheap to build. 
+- Crane Extender: The Crane Extender is placed directly behind Crane Rails or other Crane Extenders, and allows the crane to reach an additional four tiles when it is powered (up to 32 tiles total). The crane must be on the rail directly connected to the Crane Extender to receive the bonus. It is two tiles long, and one tile deep. Crane Extenders must be individually powered, and should require either hypercoils or tristeel in their price.
+
+Operation:
+Resources for repair and construction would be delivered to the Crane Controller. The crane would move along its track and reach out to repair pieces in front of it. Before moving laterally, it would fully retract to its track. This means that the crane prefers to assemble or repair components in a column-wise manner, since it is quicker. 
+
+Objections: 
+
+- Q. Wouldn't this make combiner ships more powerful? 
+	A. Yes, it would. However, the Construction Crane would take up a decent amount of space, and - with all the Crane Extenders needed - quite expensive. The repair material cost would also have to be factored in. All in all, I think it's reasonably well balanced for use in quick shipyard-style construction, repair, or refit, but not in combat.
+	
+- Q. Why would anyone use this? 
+	A. Shipyard-style construction or repair would be extremely rapid, giving players an incentive to move toward building shipyards and repair stations - just like how early-game players are currently incentivised to build ships near NPC stations for the free crew construction help.
+
+- Q. This won't work well on big ships, since it can't reach the center. 
+	A. That's an observation, not a question - but good point! Crane Extenders are designed to mitigate this problem, and players will have to take this into account when they build shipyards. Perhaps they could use tractor beams to position the ship for ideal construction, or print the ship layer by layer while slowly moving the shipyard away using the "Keep Distance" command!

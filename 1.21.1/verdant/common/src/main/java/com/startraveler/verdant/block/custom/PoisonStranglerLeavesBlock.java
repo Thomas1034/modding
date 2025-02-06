@@ -25,7 +25,7 @@ public class PoisonStranglerLeavesBlock extends StranglerLeavesBlock {
     // Copied from PoisonVerdantTendrilBlock.
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(livingEntity)) {
+        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);

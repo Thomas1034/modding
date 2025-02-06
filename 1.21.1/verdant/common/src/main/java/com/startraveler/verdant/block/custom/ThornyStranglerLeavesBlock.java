@@ -34,7 +34,7 @@ public class ThornyStranglerLeavesBlock extends StranglerLeavesBlock {
     // Copied from ThornBushBlock.
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE && !VerdantIFF.isFriend(
+        if (entity instanceof LivingEntity le && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE && VerdantIFF.isEnemy(
                 le)) {
             entity.makeStuckInBlock(state, new Vec3((double) 0.9F, 1.0D, (double) 0.9F));
             if (level instanceof ServerLevel serverLevel) {

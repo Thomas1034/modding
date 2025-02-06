@@ -17,6 +17,9 @@ public class VerdantTags {
     public static class MobEffects {
 
         public static final TagKey<MobEffect> AIRLESS_BREATHING = tag("airless_breathing");
+        public static final TagKey<MobEffect> WEAK_VERDANT_FRIENDLINESS = tag("weak_verdant_friendliness");
+        public static final TagKey<MobEffect> STRONG_VERDANT_FRIENDLINESS = tag("strong_verdant_friendliness");
+        public static final TagKey<MobEffect> VERDANT_FRIEND = tag("verdant_friend");
 
         private static TagKey<MobEffect> tag(String name) {
             return TagKey.create(Registries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

@@ -47,7 +47,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
     // Inflicts nausea on anything inside.
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity livingEntity && !VerdantIFF.isFriend(entity)) {
+        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(entity)) {
             if (!level.isClientSide) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);

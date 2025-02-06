@@ -2,12 +2,13 @@ package com.startraveler.verdant;
 
 import com.startraveler.verdant.item.component.VerdantFriendliness;
 import com.startraveler.verdant.registry.DataComponentRegistry;
-import com.startraveler.verdant.registry.MobEffectRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.Collection;
 
 public class VerdantIFF {
 
@@ -16,26 +17,30 @@ public class VerdantIFF {
     }
 
     public static boolean isFriend(Entity entity) {
+        float friendliness = 0;
         if (entity.getType().is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)) {
-            return true;
+            friendliness += 1;
         }
+        friendliness += getArmorFriendliness(entity);
         if (entity instanceof LivingEntity livingEntity) {
-            MobEffectInstance verdantEnergy = livingEntity.getEffect(MobEffectRegistry.VERDANT_ENERGY.asHolder());
-            if (verdantEnergy != null) {
-                return true;
+            Collection<MobEffectInstance> instances = livingEntity.getActiveEffects();
+            for (MobEffectInstance instance : instances) {
+                if (instance.getEffect().is(VerdantTags.MobEffects.VERDANT_FRIEND)) {
+                    friendliness += 1;
+                }
+                if (instance.getEffect().is(VerdantTags.MobEffects.STRONG_VERDANT_FRIENDLINESS)) {
+                    friendliness += 0.5f;
+                }
+                if (instance.getEffect().is(VerdantTags.MobEffects.STRONG_VERDANT_FRIENDLINESS)) {
+                    friendliness += 0.5f;
+                }
+                if (instance.getEffect().is(VerdantTags.MobEffects.WEAK_VERDANT_FRIENDLINESS)) {
+                    friendliness += 0.3f;
+                }
             }
-
-            float armorFriendliness = getArmorFriendliness(entity);
-
-            if (armorFriendliness >= 1) {
-                return true;
-            }
-
         }
-        // Stops compile warnings to preserve the structure of the code.
-        boolean b;
 
-        return false;
+        return friendliness > 1;
     }
 
 

@@ -1,6 +1,7 @@
 package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.registry.MobEffectRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -17,5 +18,7 @@ public class VerdantMobEffectTagProvider extends MobEffectTagProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(VerdantTags.MobEffects.AIRLESS_BREATHING)
                 .add(MobEffects.CONDUIT_POWER.value(), MobEffects.WATER_BREATHING.value());
+        this.tag(VerdantTags.MobEffects.WEAK_VERDANT_FRIENDLINESS).add(MobEffectRegistry.ANTIDOTE.get());
+        this.tag(VerdantTags.MobEffects.VERDANT_FRIEND).add(MobEffectRegistry.VERDANT_ENERGY.get());
     }
 }
