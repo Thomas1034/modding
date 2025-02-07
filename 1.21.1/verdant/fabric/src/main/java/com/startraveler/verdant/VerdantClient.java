@@ -114,7 +114,6 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
 
-
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
                 VerdantConduitRenderer::new
