@@ -450,6 +450,12 @@ public class ItemRegistry {
             (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 32, 8)
     );
 
+
+    public static final RegistryObject<Item, Item> TEST_SWORD = register(
+            "test_sword",
+            ((properties) -> new SwordItem(ToolMaterial.GOLD, 3.0F, -2.4F, properties.stacksTo(1)))
+    );
+
     public static void init() {
     }
 
@@ -487,16 +493,16 @@ public class ItemRegistry {
             DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
             IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 

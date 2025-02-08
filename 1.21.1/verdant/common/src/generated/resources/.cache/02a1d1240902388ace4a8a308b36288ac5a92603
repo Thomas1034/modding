@@ -1,4 +1,4 @@
-// 1.21.4	2025-02-01T17:22:52.9335562	Model Definitions - verdant
+// 1.21.4	2025-02-07T19:51:43.5643976	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -147,6 +147,11 @@ c473b69103246bd32a5260a6e8af9ef35d1f4ac8 assets/verdant/blockstates/stripped_hea
 1aa4e1d7287a06c1e84a6237cd55768a2f133be4 assets/verdant/blockstates/stripped_strangler_log.json
 1ae9dad8598e825f14af40f72db3b8ddd2691585 assets/verdant/blockstates/stripped_strangler_wood.json
 42cf55faa03e28fa7aa9f00a0fb6d9d5e3978a06 assets/verdant/blockstates/test_block.json
+859f34ad804109d5a9e2d10b70e35b89bed86e54 assets/verdant/blockstates/test_block_five.json
+39f6cbea50c7945eebf8ef11177d94a455e8e541 assets/verdant/blockstates/test_block_four.json
+08858a055c09c4a34fbd83965e3061c35125207d assets/verdant/blockstates/test_block_six.json
+22e4c2f054e7191177e70bc4927f6f3db4425976 assets/verdant/blockstates/test_block_three.json
+dd7ef6f1f919dd8627c9762a15a102da19372a60 assets/verdant/blockstates/test_block_two.json
 5274c741f026f7e04d925598a63c47b6b3714161 assets/verdant/blockstates/test_log.json
 49cc86927fb968d851abaed135774570d8b7b549 assets/verdant/blockstates/thorny_strangler_leaves.json
 c8448a0b484c523d477394da7b58bab75fa61f5c assets/verdant/blockstates/thorn_bush.json
@@ -298,6 +303,11 @@ fefbc864d713fca153d119f06500d8f20b2e7250 assets/verdant/items/strangler_wood.jso
 a0d40efc2401c3c820d718fb325c877c151926d0 assets/verdant/items/stripped_strangler_log.json
 381dbf1e7df9dca602a545fbe4c1574a0715d0a3 assets/verdant/items/stripped_strangler_wood.json
 1a90362ebf8d14566b448ae950420fe09b51b4a2 assets/verdant/items/test_block.json
+17f1163dc9069bf87953eab03f1a363dae8acd8b assets/verdant/items/test_block_five.json
+2fe1f10a60b82a2ef0217c4b994a884fdfebbfe4 assets/verdant/items/test_block_four.json
+02da02ccccdffe76095f2cc665dcbd3c3d9bd628 assets/verdant/items/test_block_six.json
+09af1d9a51c4e47ef84db2162f4ab04e17bb905e assets/verdant/items/test_block_three.json
+56354b062545c58139f4137bf602b18ff4a78fbf assets/verdant/items/test_block_two.json
 b8c6e7e93db81b3d0dd565ea8fae0bd9a636272e assets/verdant/items/test_log.json
 af116e5c1c621d60b84fa76b912dc1063245142e assets/verdant/items/thorn.json
 68d3a2aba51151da3113ffda6e784e21d6e4626d assets/verdant/items/thorny_strangler_leaves.json
@@ -544,6 +554,11 @@ a636a88e8a3822d00ee89d20531cac6711415964 assets/verdant/models/block/stripped_he
 eec9d2fde8803908f529a5805b8d9ea159fa22e6 assets/verdant/models/block/stripped_strangler_log.json
 f580510cf81c4ce1b56593fb40b755503ac82ee2 assets/verdant/models/block/stripped_strangler_wood.json
 0fba06b827fd43e3c8ad261da81e1bbfddd9e8f0 assets/verdant/models/block/test_block.json
+36a7620b374430b593467029747067206cf3024e assets/verdant/models/block/test_block_five.json
+62d18cc81e37dbe3a572168897457f904cc919af assets/verdant/models/block/test_block_four.json
+19897a07656c98834fa8504fbfc1bf8ac05c5567 assets/verdant/models/block/test_block_six.json
+36bd7b02f288d4a6e13fc3edf76f60edcaa248fc assets/verdant/models/block/test_block_three.json
+cf9ad9fff5f88222c6dfc9dc417b8bcaac95861f assets/verdant/models/block/test_block_two.json
 34fcfb97403c384fa126cad7bca3bf43be513d54 assets/verdant/models/block/test_log.json
 76d6f2e65552b4cf9fccc01395488ae5d0bb2ec3 assets/verdant/models/block/thorny_strangler_leaves.json
 96eec430ea083cc65513669c813b4d849cd83975 assets/verdant/models/block/thorn_bush.json

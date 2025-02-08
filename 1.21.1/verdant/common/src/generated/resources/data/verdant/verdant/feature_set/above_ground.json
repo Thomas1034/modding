@@ -3,22 +3,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:stinking_blossom_floor",
-        "weight": 10
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:snapleaf",
-        "weight": 1
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:orchids",
+        "configured_feature": "verdant:lilies",
         "weight": 5
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:wild_cassava",
+        "weight": 25
       }
     },
     {
@@ -38,14 +31,7 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:lilies",
-        "weight": 5
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:coffee",
+        "configured_feature": "verdant:orchids",
         "weight": 5
       }
     },
@@ -59,29 +45,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:mixed_flowers",
+        "configured_feature": "verdant:coffee",
         "weight": 5
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_large_fern",
-        "weight": 100
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:patch_grass_jungle",
-        "weight": 200
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:wild_cassava",
-        "weight": 25
+        "configured_feature": "verdant:snapleaf",
+        "weight": 1
       }
     },
     {
@@ -94,8 +66,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:bamboo",
-        "weight": 2
+        "configured_feature": "verdant:stinking_blossom_floor",
+        "weight": 10
       }
     },
     {
@@ -103,6 +75,34 @@
       "entry": {
         "configured_feature": "verdant:mixed_bushes",
         "weight": 100
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_large_fern",
+        "weight": 100
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:bamboo",
+        "weight": 2
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "minecraft:patch_grass_jungle",
+        "weight": 200
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mixed_flowers",
+        "weight": 5
       }
     }
   ],

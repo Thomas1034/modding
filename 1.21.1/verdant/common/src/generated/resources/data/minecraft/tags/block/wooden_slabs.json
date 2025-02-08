@@ -1,7 +1,7 @@
 {
   "values": [
-    "verdant:dead_slab",
     "verdant:heartwood_slab",
-    "verdant:strangler_slab"
+    "verdant:strangler_slab",
+    "verdant:dead_slab"
   ]
 }

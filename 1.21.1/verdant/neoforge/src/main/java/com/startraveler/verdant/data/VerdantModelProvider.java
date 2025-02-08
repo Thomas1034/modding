@@ -353,6 +353,11 @@ public class VerdantModelProvider extends ModelProvider {
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE.get());
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD.get());
         simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_TWO.get());
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_THREE.get());
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_FOUR.get());
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_FIVE.get());
+        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_SIX.get());
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.TEST_LOG.get(), TexturedModel.COLUMN);
         tumbledOverlaidBlockWithItem(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT, VERDANT_OVERLAYS);
         rotatedTopOverlaidBlockWithItem(
@@ -636,6 +641,9 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.DEAD_GRASS.get().asItem());
 
         basicItem(ItemRegistry.RANCID_SLIME.get());
+
+
+        // handheldItem(ItemRegistry.TEST_SWORD.get());
     }
 
     @Override
@@ -658,7 +666,7 @@ public class VerdantModelProvider extends ModelProvider {
 
         excluded.add(ItemRegistry.ROPE_COIL.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get().asItem());
-
+        excluded.add(ItemRegistry.TEST_SWORD.get());
         return super.getKnownItems().filter(entry -> !excluded.contains(entry.value()));
     }
 

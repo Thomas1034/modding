@@ -39,6 +39,13 @@ public class BlockRegistry {
             Registries.BLOCK,
             Constants.MOD_ID
     );
+    public static final RegistryObject<Block, Block> TEST_BLOCK;
+    public static final RegistryObject<Block, Block> TEST_BLOCK_TWO;
+    public static final RegistryObject<Block, Block> TEST_BLOCK_THREE;
+    public static final RegistryObject<Block, Block> TEST_BLOCK_FOUR;
+    public static final RegistryObject<Block, Block> TEST_BLOCK_FIVE;
+    public static final RegistryObject<Block, Block> TEST_BLOCK_SIX;
+    public static final RegistryObject<Block, Block> TEST_LOG;
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_GRASS_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_MUD;
@@ -54,8 +61,6 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> DIRT_REDSTONE_ORE;
     public static final RegistryObject<Block, Block> DIRT_EMERALD_ORE;
     public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
-    public static final RegistryObject<Block, Block> TEST_BLOCK;
-    public static final RegistryObject<Block, Block> TEST_LOG;
     public static final RegistryObject<Block, Block> STRANGLER_VINE;
     public static final RegistryObject<Block, Block> LEAFY_STRANGLER_VINE;
     public static final RegistryObject<Block, Block> STRANGLER_LEAVES;
@@ -261,13 +266,11 @@ public class BlockRegistry {
         );
         STRANGLER_LEAVES = registerBlockWithItem(
                 "strangler_leaves",
-                () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves")
-                        .randomTicks())
+                () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").randomTicks())
         );
         WILTED_STRANGLER_LEAVES = registerBlockWithItem(
                 "wilted_strangler_leaves",
-                () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves")
-                        .randomTicks())
+                () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").randomTicks())
         );
         POISON_STRANGLER_LEAVES = registerBlockWithItem(
                 "poison_strangler_leaves",
@@ -758,6 +761,26 @@ public class BlockRegistry {
         TEST_BLOCK = registerBlockWithItem(
                 "test_block",
                 () -> new Block(properties(Blocks.GLASS, "test_block").randomTicks())
+        );
+        TEST_BLOCK_TWO = registerBlockWithItem(
+                "test_block_two",
+                () -> new Block(properties(Blocks.GLASS, "test_block_two").randomTicks())
+        );
+        TEST_BLOCK_THREE = registerBlockWithItem(
+                "test_block_three",
+                () -> new Block(properties(Blocks.GLASS, "test_block_three").randomTicks())
+        );
+        TEST_BLOCK_FOUR = registerBlockWithItem(
+                "test_block_four",
+                () -> new Block(properties(Blocks.GLASS, "test_block_four").randomTicks())
+        );
+        TEST_BLOCK_FIVE = registerBlockWithItem(
+                "test_block_five",
+                () -> new Block(properties(Blocks.GLASS, "test_block_five").randomTicks())
+        );
+        TEST_BLOCK_SIX = registerBlockWithItem(
+                "test_block_six",
+                () -> new Block(properties(Blocks.GLASS, "test_block_six").randomTicks())
         );
     }
 

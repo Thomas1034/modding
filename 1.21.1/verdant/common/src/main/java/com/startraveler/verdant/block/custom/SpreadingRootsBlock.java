@@ -1,6 +1,5 @@
 package com.startraveler.verdant.block.custom;
 
-import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.Hoeable;
 import com.startraveler.verdant.block.VerdantGrower;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
@@ -336,10 +335,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // This is anticipated to cause the most lag.
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-        // If it is ticking while inactive, there is a problem. Log an error and report back.
+        // If it is ticking while inactive, there is a problem.
         if (!state.getValue(ACTIVE)) {
-            // Constants.LOG.warn("SpreadingRootsBlock is ticking while inactive ({}).", state);
-            // Constants.LOG.warn("Please report this warning to the developer of the mod.");
             return;
         }
         // If it is grassy and should not be, or it is not grassy but should be, swap.
@@ -362,7 +359,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        level.setBlockAndUpdate(pos, this.updateDistance(state, level, pos));
+        BlockState updated = this.updateDistance(state, level, pos);
+        if (state != updated) {
+            level.setBlockAndUpdate(pos, updated);
+        }
     }
 
     // Checks if it can random tick. This significantly decreases lag!
