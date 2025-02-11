@@ -450,12 +450,6 @@ public class ItemRegistry {
             (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 32, 8)
     );
 
-
-    public static final RegistryObject<Item, Item> TEST_SWORD = register(
-            "test_sword",
-            ((properties) -> new SwordItem(ToolMaterial.GOLD, 3.0F, -2.4F, properties.stacksTo(1)))
-    );
-
     public static void init() {
     }
 
