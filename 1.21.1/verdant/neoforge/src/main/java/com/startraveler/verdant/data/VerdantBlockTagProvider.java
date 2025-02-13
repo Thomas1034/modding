@@ -35,6 +35,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.WOODEN_TRAP.get(),
                 BlockRegistry.FISH_TRAP_BLOCK.get(),
                 BlockRegistry.VERDANT_CONDUIT.get(),
+                BlockRegistry.ROPE_LADDER.get(),
                 BlockRegistry.IMBUED_HEARTWOOD_LOG.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -120,7 +121,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.POISON_IVY.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.ROPE.get(),
-                BlockRegistry.ROPE_HOOK.get()/*, BlockRegistry.ROPE_LADDER.get()*/
+                BlockRegistry.ROPE_HOOK.get(),
+                BlockRegistry.ROPE_LADDER.get()
         );
 
         this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());

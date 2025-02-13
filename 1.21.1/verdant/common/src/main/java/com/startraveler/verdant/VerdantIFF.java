@@ -13,10 +13,15 @@ import java.util.Collection;
 public class VerdantIFF {
 
     public static boolean isEnemy(Entity entity) {
-        return !isFriend(entity);
+        return getFriendliness(entity) < 1;
     }
 
+    @SuppressWarnings("unused")
     public static boolean isFriend(Entity entity) {
+        return getFriendliness(entity) >= 1;
+    }
+
+    public static float getFriendliness(Entity entity) {
         float friendliness = 0;
         if (entity.getType().is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)) {
             friendliness += 1;
@@ -39,8 +44,7 @@ public class VerdantIFF {
                 }
             }
         }
-
-        return friendliness > 1;
+        return friendliness;
     }
 
 

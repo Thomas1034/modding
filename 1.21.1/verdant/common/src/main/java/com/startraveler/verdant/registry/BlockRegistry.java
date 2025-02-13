@@ -39,13 +39,7 @@ public class BlockRegistry {
             Registries.BLOCK,
             Constants.MOD_ID
     );
-    public static final RegistryObject<Block, Block> TEST_BLOCK;
-    public static final RegistryObject<Block, Block> TEST_BLOCK_TWO;
-    public static final RegistryObject<Block, Block> TEST_BLOCK_THREE;
-    public static final RegistryObject<Block, Block> TEST_BLOCK_FOUR;
-    public static final RegistryObject<Block, Block> TEST_BLOCK_FIVE;
-    public static final RegistryObject<Block, Block> TEST_BLOCK_SIX;
-    public static final RegistryObject<Block, Block> TEST_LOG;
+
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_GRASS_DIRT;
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_MUD;
@@ -135,6 +129,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> RUE;
     public static final RegistryObject<Block, Block> POTTED_RUE;
     public static final RegistryObject<Block, Block> PAPER_FRAME;
+    public static final RegistryObject<Block, Block> ROPE_LADDER;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -753,35 +748,11 @@ public class BlockRegistry {
                         .mapColor(MapColor.TERRACOTTA_WHITE))
         );
 
+        ROPE_LADDER = registerBlockWithItem(
+                "rope_ladder",
+                () -> new HangingLadderBlock(properties(Blocks.LADDER, "rope_ladder"))
+        );
 
-        TEST_LOG = registerBlockWithItem(
-                "test_log",
-                () -> new RotatedPillarBlock(properties(Blocks.GLASS, "test_log"))
-        );
-        TEST_BLOCK = registerBlockWithItem(
-                "test_block",
-                () -> new Block(properties(Blocks.GLASS, "test_block").randomTicks())
-        );
-        TEST_BLOCK_TWO = registerBlockWithItem(
-                "test_block_two",
-                () -> new Block(properties(Blocks.GLASS, "test_block_two").randomTicks())
-        );
-        TEST_BLOCK_THREE = registerBlockWithItem(
-                "test_block_three",
-                () -> new Block(properties(Blocks.GLASS, "test_block_three").randomTicks())
-        );
-        TEST_BLOCK_FOUR = registerBlockWithItem(
-                "test_block_four",
-                () -> new Block(properties(Blocks.GLASS, "test_block_four").randomTicks())
-        );
-        TEST_BLOCK_FIVE = registerBlockWithItem(
-                "test_block_five",
-                () -> new Block(properties(Blocks.GLASS, "test_block_five").randomTicks())
-        );
-        TEST_BLOCK_SIX = registerBlockWithItem(
-                "test_block_six",
-                () -> new Block(properties(Blocks.GLASS, "test_block_six").randomTicks())
-        );
     }
 
     public static void init() {

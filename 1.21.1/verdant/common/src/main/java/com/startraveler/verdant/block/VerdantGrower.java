@@ -13,7 +13,10 @@ public interface VerdantGrower extends Converter, Eroder {
     }
 
     default boolean erodeOrGrow(BlockState state, ServerLevel level, BlockPos pos, boolean isWet) {
-        return this.erode(state, level, pos, isWet) || this.convert(state, level, pos);
+        if (level.isLoaded(pos)) {
+            return this.erode(state, level, pos, isWet) || this.convert(state, level, pos);
+        }
+        return false;
     }
 
     @Override

@@ -65,15 +65,9 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         // BlockRegistry.VERDANT.addLootTables(this);
 
         this.dropOther(BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
+        this.dropSelf(BlockRegistry.ROPE_LADDER.get());
         this.dropSelf(BlockRegistry.FISH_TRAP_BLOCK.get());
         this.dropSelf(BlockRegistry.ANTIGORITE.get());
-        this.add(BlockRegistry.TEST_BLOCK.get(), noDrop());
-        this.add(BlockRegistry.TEST_BLOCK_TWO.get(), noDrop());
-        this.add(BlockRegistry.TEST_BLOCK_THREE.get(), noDrop());
-        this.add(BlockRegistry.TEST_BLOCK_FOUR.get(), noDrop());
-        this.add(BlockRegistry.TEST_BLOCK_FIVE.get(), noDrop());
-        this.add(BlockRegistry.TEST_BLOCK_SIX.get(), noDrop());
-        this.add(BlockRegistry.TEST_LOG.get(), noDrop());
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
         requireSilkTouch(BlockRegistry.STRANGLER_LEAVES.get(), Items.VINE, List.of(0, 1));

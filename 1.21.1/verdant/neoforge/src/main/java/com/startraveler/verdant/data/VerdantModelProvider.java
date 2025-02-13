@@ -352,13 +352,6 @@ public class VerdantModelProvider extends ModelProvider {
         fishTrapWithItem(BlockRegistry.FISH_TRAP_BLOCK.get());
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE.get());
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_TWO.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_THREE.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_FOUR.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_FIVE.get());
-        simpleBlockWithItem(BlockRegistry.TEST_BLOCK_SIX.get());
-        blockModels.createAxisAlignedPillarBlock(BlockRegistry.TEST_LOG.get(), TexturedModel.COLUMN);
         tumbledOverlaidBlockWithItem(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT, VERDANT_OVERLAYS);
         rotatedTopOverlaidBlockWithItem(
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
@@ -635,6 +628,7 @@ public class VerdantModelProvider extends ModelProvider {
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
 
+        basicItem(BlockRegistry.ROPE_LADDER.get().asItem());
         basicItem(ItemRegistry.TOXIC_ASH.get());
         basicItem(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
         basicItem(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
@@ -653,6 +647,7 @@ public class VerdantModelProvider extends ModelProvider {
         excluded.add(BlockRegistry.STRANGLER_VINE.get());
         excluded.add(BlockRegistry.LEAFY_STRANGLER_VINE.get());
         excluded.add(BlockRegistry.ROPE.get());
+        excluded.add(BlockRegistry.ROPE_LADDER.get());
         excluded.add(BlockRegistry.ROPE_HOOK.get());
         excluded.add(BlockRegistry.STINKING_BLOSSOM.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get());
@@ -666,7 +661,6 @@ public class VerdantModelProvider extends ModelProvider {
 
         excluded.add(ItemRegistry.ROPE_COIL.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get().asItem());
-        excluded.add(ItemRegistry.TEST_SWORD.get());
         return super.getKnownItems().filter(entry -> !excluded.contains(entry.value()));
     }
 
