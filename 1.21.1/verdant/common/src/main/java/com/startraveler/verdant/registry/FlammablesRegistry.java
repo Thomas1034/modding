@@ -33,6 +33,8 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.WILD_COFFEE, 60, 100);
         flammables.registerFlammability(BlockRegistry.COFFEE_CROP, 60, 100);
+        flammables.registerFlammability(BlockRegistry.FRAME_BLOCK, 60, 100);
+        flammables.registerFlammability(BlockRegistry.CHARRED_FRAME_BLOCK, 60, 100);
         flammables.registerFlammability(BlockRegistry.PAPER_FRAME, 60, 100);
     }
 
