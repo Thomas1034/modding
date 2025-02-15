@@ -225,6 +225,8 @@
   "block.minecraft.bed.caffeine": "You may not rest now; you are caffeinated",
   "item.minecraft.smithing_template.imbuement_upgrade.applies_to": "Heartwood Equipment",
   "item.minecraft.smithing_template.imbuement_upgrade.ingredients": "Heart Fragment",
+  "item.minecraft.smithing_template.imbuement_upgrade.additions_slot_description": "Add Heart Fragment",
+  "item.minecraft.smithing_template.imbuement_upgrade.base_slot_description": "Add heartwood armor, weapon, or tool",
   "item.minecraft.potion.effect.caffeine": "Coffee",
   "item.minecraft.splash_potion.effect.caffeine": "Splash Potion of Caffeine",
   "item.minecraft.lingering_potion.effect.caffeine": "Lingering Potion of Caffeine",

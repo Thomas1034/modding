@@ -7,7 +7,7 @@ public record DurabilityChanging(int perTick, int tickEvery, boolean randomize) 
     public static final DurabilityChanging HEARTWOOD_ARMOR = new DurabilityChanging(1, 200, false);
     public static final DurabilityChanging HEARTWOOD_TOOLS = new DurabilityChanging(1, 600, false);
     public static final DurabilityChanging IMBUED_HEARTWOOD_ARMOR = new DurabilityChanging(1, 40, false);
-    public static final DurabilityChanging IMBUED_HEARTWOOD_TOOLS = new DurabilityChanging(1, 100, false);
+    public static final DurabilityChanging IMBUED_HEARTWOOD_TOOLS = new DurabilityChanging(1, 50, false);
 
     public static final Codec<DurabilityChanging> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.INT.fieldOf("perTick").forGetter(DurabilityChanging::perTick),

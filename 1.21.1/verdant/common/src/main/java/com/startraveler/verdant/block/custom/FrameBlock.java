@@ -4,6 +4,9 @@ package com.startraveler.verdant.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -17,7 +20,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -30,9 +35,21 @@ public class FrameBlock extends RotatedPillarBlock implements SimpleWaterloggedB
     private static final VoxelShape YP = Block.box(0, 15, 0, 16, 16, 16);
     private static final VoxelShape XP = Block.box(15, 0, 0, 16, 16, 16);
     private static final VoxelShape XN = Block.box(0, 0, 0, 1, 16, 16);
+    private static final VoxelShape ZN_THICK = Block.box(0, 0, 0, 16, 16, 4);
+    private static final VoxelShape ZP_THICK = Block.box(0, 0, 12, 16, 16, 16);
+    private static final VoxelShape YN_THICK = Block.box(0, 0, 0, 16, 4, 16);
+    private static final VoxelShape YP_THICK = Block.box(0, 12, 0, 16, 16, 16);
+    private static final VoxelShape XP_THICK = Block.box(12, 0, 0, 16, 16, 16);
+    private static final VoxelShape XN_THICK = Block.box(0, 0, 0, 4, 16, 16);
     private static final VoxelShape X_SHAPE = Shapes.or(YP, YN, ZP, ZN);
     private static final VoxelShape Y_SHAPE = Shapes.or(XP, XN, ZP, ZN);
     private static final VoxelShape Z_SHAPE = Shapes.or(XP, XN, YP, YN);
+    private static final VoxelShape X_SHAPE_THICK = Shapes.or(YP_THICK, YN_THICK, ZP_THICK, ZN_THICK);
+    private static final VoxelShape Y_SHAPE_THICK = Shapes.or(XP_THICK, XN_THICK, ZP_THICK, ZN_THICK);
+    private static final VoxelShape Z_SHAPE_THICK = Shapes.or(XP_THICK, XN_THICK, YP_THICK, YN_THICK);
+    private static final double ENTITY_AREA_CUTOFF = 0.25;
+    private static final double LENIENT_ENTITY_AREA_CUTOFF = 1.5 * 1.5 * ENTITY_AREA_CUTOFF;
+    private static final double SHORT_ENTITY_HEIGHT_CUTOFF = 0.75;
 
     public FrameBlock(Properties properties) {
         super(properties);
@@ -64,8 +81,18 @@ public class FrameBlock extends RotatedPillarBlock implements SimpleWaterloggedB
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public VoxelShape getBlockSupportShape(BlockState p_60581_, BlockGetter p_60582_, BlockPos p_60583_) {
+    @Override
+    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
         return Shapes.empty();
+    }
+
+    @Override
+    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return switch (state.getValue(AXIS)) {
+            case Z -> Z_SHAPE_THICK;
+            case Y -> Y_SHAPE_THICK;
+            default -> X_SHAPE_THICK;
+        };
     }
 
     @Override
@@ -75,6 +102,12 @@ public class FrameBlock extends RotatedPillarBlock implements SimpleWaterloggedB
             case Y -> Y_SHAPE;
             default -> X_SHAPE;
         };
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        boolean isSmallEntity = context instanceof EntityCollisionContext entityContext && entityContext.getEntity() instanceof Entity entity && entity.getBoundingBox() instanceof AABB box && ((box.getXsize() * box.getYsize() < ((entity instanceof LivingEntity livingEntity && livingEntity.isBaby()) || (entity instanceof Projectile) ? LENIENT_ENTITY_AREA_CUTOFF : ENTITY_AREA_CUTOFF)) || (box.getZsize() < SHORT_ENTITY_HEIGHT_CUTOFF));
+        return this.hasCollision && !isSmallEntity ? state.getShape(level, pos) : Shapes.empty();
     }
 
 }

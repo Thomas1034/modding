@@ -146,6 +146,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.ROPE_COIL.get(),
                 1
         );
+
+        shapeless(List.of(Items.WATER_BUCKET, Items.DIRT), List.of(1, 8), RecipeCategory.BUILDING_BLOCKS, Items.MUD, 8);
+
         // Register rope upgrading.
         new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
 

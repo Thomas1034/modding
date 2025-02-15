@@ -311,7 +311,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HELMET = register(
             "imbued_heartwood_helmet", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.HELMET, properties.stacksTo(1)
+                    ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.HELMET, properties.stacksTo(1)
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
@@ -325,7 +325,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_CHESTPLATE = register(
             "imbued_heartwood_chestplate", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.CHESTPLATE, properties.stacksTo(1)
+                    ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.CHESTPLATE, properties.stacksTo(1)
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
@@ -339,7 +339,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_LEGGINGS = register(
             "imbued_heartwood_leggings", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.LEGGINGS, properties.stacksTo(1)
+                    ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.LEGGINGS, properties.stacksTo(1)
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
@@ -353,7 +353,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_BOOTS = register(
             "imbued_heartwood_boots", ((properties) -> new ArmorItem(
-                    ArmorMaterialRegistry.HEARTWOOD, ArmorType.BOOTS, properties.stacksTo(1)
+                    ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.BOOTS, properties.stacksTo(1)
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
@@ -430,8 +430,7 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register(
-            "imbuement_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
     );
 
@@ -520,11 +519,7 @@ public class ItemRegistry {
             EMPTY_SLOT_SHOVEL = ResourceLocation.withDefaultNamespace("container/slot/shovel");
             EMPTY_SLOT_PICKAXE = ResourceLocation.withDefaultNamespace("container/slot/pickaxe");
 
-            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(
-                    Constants.MOD_ID,
-                    "container/slot/heart_fragment"
-            );
-
+            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/slot/empty_slot_heart_fragment");
         }
 
         public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {
