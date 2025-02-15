@@ -10,27 +10,6 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:hanging_roots",
-        "weight": 100
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "minecraft:cave_vine",
-        "weight": 1
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:glow_lichen_ceiling",
-        "weight": 25
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
         "configured_feature": "minecraft:spore_blossom",
         "weight": 1
       }
@@ -45,7 +24,14 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:vines_ceiling",
+        "configured_feature": "minecraft:cave_vine",
+        "weight": 1
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:hanging_roots",
         "weight": 100
       }
     },
@@ -54,6 +40,20 @@
       "entry": {
         "configured_feature": "verdant:stinking_blossom_ceiling",
         "weight": 1
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:glow_lichen_ceiling",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:vines_ceiling",
+        "weight": 100
       }
     }
   ],

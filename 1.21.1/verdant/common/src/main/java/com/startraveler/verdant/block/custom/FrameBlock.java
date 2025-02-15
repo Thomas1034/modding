@@ -53,6 +53,7 @@ public class FrameBlock extends RotatedPillarBlock implements SimpleWaterloggedB
 
     public FrameBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

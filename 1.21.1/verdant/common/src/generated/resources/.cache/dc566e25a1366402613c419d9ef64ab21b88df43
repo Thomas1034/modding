@@ -1,4 +1,5 @@
-// 1.21.4	2025-01-31T00:53:44.4203919	Verdant Recipe Provider
+// 1.21.4	2025-02-14T20:17:56.4898606	Verdant Recipe Provider
+058358bc2a0dcbec2b2a9ab55e054b6a0fc22303 data/minecraft/advancement/recipes/building_blocks/mud_from_water_bucket_dirt.json
 63829a0908d269b60f0a963f3b7b674fa8332709 data/minecraft/advancement/recipes/combat/imbued_heartwood_boots_smithing.json
 113b517edf2ad893408d3f0cdb742a3ac72ae1bf data/minecraft/advancement/recipes/combat/imbued_heartwood_chestplate_smithing.json
 c4470b3bfd24524be4a66a0a161db9222a513018 data/minecraft/advancement/recipes/combat/imbued_heartwood_helmet_smithing.json
@@ -31,6 +32,7 @@ d175c26c732a8b08e3d6c662c7abd8b69acc8ca6 data/minecraft/recipe/imbued_heartwood_
 9e5e600fe9ee03c810a4d52ad08c8ed2a4178aa1 data/minecraft/recipe/imbued_heartwood_shovel_smithing.json
 6faf9de16d7adaecb8cf3d01dfcdd636c18a1c6e data/minecraft/recipe/imbued_heartwood_sword_smithing.json
 8d20a0d580ac0dac149935d5d8c456b2bb521c51 data/minecraft/recipe/light_gray_dye_from_wild_coffee.json
+3682650a66d41510205d8dacf3102b8a018d4e4f data/minecraft/recipe/mud_from_water_bucket_dirt.json
 79ba97150cffa6dc66edc5d79b88134df7b4b36c data/minecraft/recipe/orange_dye_from_tiger_lily.json
 b2b3e3e29e62304a23dcd9d71e4240f242c14447 data/minecraft/recipe/packed_mud_from_rope_mud.json
 17003734d149ed9172e2d994e1d8d7ef83c1487b data/minecraft/recipe/packed_mud_from_strangler_tendril_mud.json
