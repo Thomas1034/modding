@@ -42,9 +42,6 @@ public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterl
     private static final VoxelShape X_SHAPE_THICK = Shapes.or(YP_THICK, YN_THICK, ZP_THICK, ZN_THICK);
     private static final VoxelShape Y_SHAPE_THICK = Shapes.or(XP_THICK, XN_THICK, ZP_THICK, ZN_THICK);
     private static final VoxelShape Z_SHAPE_THICK = Shapes.or(XP_THICK, XN_THICK, YP_THICK, YN_THICK);
-    private static final double ENTITY_AREA_CUTOFF = 0.25 * 0.75 * 0.75;
-    private static final double LENIENT_ENTITY_AREA_CUTOFF = 1.5 * 1.5 * ENTITY_AREA_CUTOFF;
-    private static final double SHORT_ENTITY_HEIGHT_CUTOFF = Math.sqrt(2);
 
     public SimpleFrameBlock(Properties properties) {
         super(properties);
@@ -93,6 +90,7 @@ public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterl
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+
         return switch (state.getValue(AXIS)) {
             case Z -> Z_SHAPE;
             case Y -> Y_SHAPE;
