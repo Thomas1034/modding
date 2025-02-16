@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,20 +25,9 @@ import net.minecraft.world.level.block.Blocks;
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
 // common compatible binaries. This means common code can not directly use loader specific concepts such as Forge events
 // however it will be compatible with all supported mod loaders.
-// TODO: when toxic ash is added, implement it as a feature type.
-// Configurable radius and number of attempts - like flower patch, maybe.
-// Then, the toxic ash item and bucket can just place different features, easy enough!
-//
-// TODO When achievements are added: Why would you do that? for eating rotten compost.
-//
-// Look into connected textures for Antigorite, and make polished, brick, and chiseled variants.
-// https://www.curseforge.com/minecraft/mc-mods/continuity
+
 //
 // Ideas for new effects:
-// Photosensitivity - sky light causes damage during the daytime
-// Numbness - health bar displays as full if above max - level hearts (needs mixins)
-// Nettled - walking hurts
-// Cyclopegia - apply blur filter over entire screen, with varying severity based on the strength
 //
 // TODO Ideas for future improvements:
 /*
@@ -56,8 +45,7 @@ Search for TODO TODO TODO in Discord.
 Mixin to public void teleportTo(double x, double y, double z) and public Entity teleport(TeleportTransition teleportTransition), both in Entity.
 
 Add "tangled mats" which grow in the top layer of water (underwater) and slow down entities caught in them.
-Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots
-filling the whole blocks.
+Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots filling the whole blocks.
 Find use for them?
 
 Add manatees.
@@ -69,11 +57,9 @@ Retreats underground if there are no players nearby
 AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 
 Advancements:
-born and bred, walk through a thorn bush without taking damage due to verdant armor.
-
-Make grass be less vibrantly green? Uncertain.
-
-Achievement "That is just wrong on so many levels." for using toxic ash for fishing
+"Born and Bred", walk through a thorn bush without taking damage due to verdant armor.
+"That is just wrong on so many levels" for using toxic ash for fishing
+"Not Generally Considered Edible", eat one of the rotten fertilizers
 
 Compatibility
 
