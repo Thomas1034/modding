@@ -1,32 +1,16 @@
-# MultiLoader Template
+# The Verdant Growth  
 
-This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
+Welcome to the GitHub repository for the Verdant Growth Minecraft Mod!
 
-## Getting Started
+The **Verdant Growth** is an unstoppable plant infection that spreads across the world, consuming forests and reshaping landscapes. It expands through two primary mechanisms: strangler vines entwine and overgrow trees, and underground roots transform even deepslate into lush greenery. This relentless overgrowth introduces new resources, challenges, and dangers; survival can be difficult, but the rewards are well worth it. Players who unleash the Verdant Growth must be prepared—it cannot be contained easily.  
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
+Overgrown regions offer unique materials and ingredients. Strangler-vine-covered trees yield large amounts of **Strangler Wood**, while the rarer **Heartwood** can be crafted into tools, weapons, and armor. Players may rarely find **Imbued Heartwood**, a key step in creating rapidly self-repairing equipment.  
 
-1. Clone or download this repository to your computer.
-2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
-3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
-4. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
-6. Assuming you were able to run the game in step 5 your workspace should now be set up.
+Many other plants have distinct and useful properties: **Poison Ivy** can be crafted into **Poison Arrows**, **Thorn Bushes** provide materials for devious traps, and climbable **Strangler Tendrils** can be crafted into **Rope** and upgradable throwable **Rope Coils**. Many plants serve as ingredients for powerful potions, while crops like **Cassava**, **Ube**, and **Coffee** introduce unique mechanics, risks, and rewards.
 
-### Eclipse
-While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
+Fortunately, the Verdant Growth doesn’t spread naturally. Players must first locate an **Overgrown Pyramid** hidden in jungle biomes and deliberately trigger its release. Once it is set loose, all players in the world will receive an advancement notification—marking the start of a slow spread that will consume and transform the world.
 
-## Development Guide
-When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+## License
 
-Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-## Removing Platforms and Loaders
-While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
-
-Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
-For example if you wanted to remove support for `forge` you would follow the following steps:
-
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
