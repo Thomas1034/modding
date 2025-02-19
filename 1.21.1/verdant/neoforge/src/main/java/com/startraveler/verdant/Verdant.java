@@ -1,7 +1,6 @@
 package com.startraveler.verdant;
 
 
-import com.startraveler.verdant.data.*;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
@@ -9,18 +8,8 @@ import com.startraveler.verdant.util.baitdata.BaitData;
 import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
 import com.startraveler.verdant.util.featureset.FeatureSet;
 import com.startraveler.verdant.woodset.WoodSet;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.core.WritableRegistry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.advancements.AdvancementProvider;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
@@ -34,9 +23,6 @@ import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -46,9 +32,6 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -58,12 +41,8 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 @Mod(Constants.MOD_ID)
 public class Verdant {
@@ -79,7 +58,6 @@ public class Verdant {
         CommonClass.init();
 
         eventBus.addListener(Verdant::registerDatapackRegistries);
-        eventBus.addListener(Verdant::gatherData);
         eventBus.addListener(Verdant::registerContainerCapabilities);
         // For wood sets.
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
@@ -193,88 +171,6 @@ public class Verdant {
                     entityType,
                     (entity, ctx) -> new InvWrapper(entity)
             );
-        }
-    }
-
-    public static void gatherData(final GatherDataEvent.Client event) {
-        try {
-            // Store some frequently-used fields for later use.
-            DataGenerator generator = event.getGenerator();
-            PackOutput packOutput = generator.getPackOutput();
-            CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-
-            /*
-            Debugging purposes only.
-            BuiltInRegistries.REGISTRY.stream()
-                    .forEach(registry -> Constants.LOG.warn("Found registry {} ", registry.key().location()));
-            */
-
-            // Loot tables.
-            generator.addProvider(
-                    true, new LootTableProvider(
-                            packOutput,
-                            Collections.emptySet(),
-                            List.of(new LootTableProvider.SubProviderEntry(
-                                    VerdantBlockLootTableProvider::new,
-                                    LootContextParamSets.BLOCK
-                            )),
-                            lookupProvider
-                    ) {
-                        @Override
-                        protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
-                            // Do not validate at all, per what people online said.
-                        }
-                    }
-            );
-
-            // Generate data for the recipes
-            generator.addProvider(true, new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
-
-            // Generate data for the tags
-            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider);
-            generator.addProvider(true, blockTagsProvider);
-            MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(packOutput, lookupProvider);
-            generator.addProvider(true, mobEffectTagsProvider);
-            EntityTypeTagsProvider entityTypeTagsProvider = new VerdantEntityTypeTagProvider(
-                    packOutput,
-                    lookupProvider
-            );
-            generator.addProvider(true, entityTypeTagsProvider);
-            generator.addProvider(
-                    true,
-                    new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter())
-            );
-
-            // Generate block and item models.
-            generator.addProvider(true, new VerdantModelProvider(packOutput));
-
-            // Generate dynamic registries
-            generator.addProvider(
-                    true, new DatapackBuiltinEntriesProvider(
-                            packOutput,
-                            lookupProvider,
-                            new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)
-                                    .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
-                                    .add(BaitData.KEY, BaitDataProvider::register)
-                                    .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
-                            Set.of(Constants.MOD_ID, "minecraft")
-                    )
-            );
-
-            // Generate advancements
-            generator.addProvider(
-                    true, new AdvancementProvider(
-                            packOutput, lookupProvider,
-                            // Add generators here
-                            List.of(VerdantAdvancementProvider::generate)
-                    )
-            );
-
-            // Generate data maps for furnace fuel, composters, and such; only used on the NeoForge side.
-            generator.addProvider(true, new VerdantDataMapProvider(packOutput, lookupProvider));
-
-        } catch (RuntimeException e) {
-            Constants.LOG.error("Failed to generate data.", e);
         }
     }
 
