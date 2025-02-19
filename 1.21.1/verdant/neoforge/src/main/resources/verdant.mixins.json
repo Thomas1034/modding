@@ -7,14 +7,19 @@
     "BoggedLikeVerdantFriendsMixin",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
-    "ZombieConvertToRootedMixin"
+    "ZombieConvertToRootedMixin",
+    "EntityGetterInvoker",
+    "ThrownTridentDataIDGetter",
+    "AbstractArrowAccessors",
+    "ArrowAccessors"
   ],
   "server": [],
   "client": [
     "GameRendererAddPostShadersMixin",
     "GuiAddShaderOverlaysMixin",
     "IntangibilityBlockVisionMixin",
-    "NumbnessHideStatsMixin"
+    "NumbnessHideStatsMixin",
+    "ArrowRendererModelAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

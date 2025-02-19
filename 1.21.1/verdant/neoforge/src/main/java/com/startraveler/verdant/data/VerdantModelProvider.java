@@ -636,8 +636,11 @@ public class VerdantModelProvider extends ModelProvider {
 
         basicItem(ItemRegistry.RANCID_SLIME.get());
 
+        basicItem(ItemRegistry.DART.get());
+        tippedArrow(ItemRegistry.TIPPED_DART.get());
+        handheldItem(ItemRegistry.BLOWGUN.get());
 
-        // handheldItem(ItemRegistry.TEST_SWORD.get());
+        handheldItem(ItemRegistry.HUNTING_SPEAR.get());
     }
 
     @Override
@@ -692,6 +695,15 @@ public class VerdantModelProvider extends ModelProvider {
 
     private void handheldItem(Item item) {
         itemModels.generateFlatItem(item, item, ModelTemplates.FLAT_HANDHELD_ITEM);
+    }
+
+    public void tippedArrow(Item arrowItem) {
+        ResourceLocation resourcelocation = itemModels.generateLayeredItem(
+                arrowItem,
+                ModelLocationUtils.getModelLocation(arrowItem, "_head"),
+                ModelLocationUtils.getModelLocation(arrowItem, "_base")
+        );
+        itemModels.addPotionTint(arrowItem, resourcelocation);
     }
 
     protected void simpleBlockWithItem(Block block) {

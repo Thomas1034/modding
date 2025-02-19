@@ -25,6 +25,7 @@ import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.ConsumablesList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -34,6 +35,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.equipment.ArmorType;
 
@@ -465,6 +467,23 @@ public class ItemRegistry {
             (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 32, 8)
     );
 
+    public static final RegistryObject<Item, Item> HUNTING_SPEAR = register(
+            "hunting_spear",
+            (properties) -> new HuntingSpearItem(properties.stacksTo(16))
+    );
+
+    public static final RegistryObject<Item, Item> DART = register("dart", DartItem::new);
+
+    public static final RegistryObject<Item, Item> TIPPED_DART = register(
+            "tipped_dart",
+            properties -> new TippedDartItem(properties.component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY))
+    );
+
+    public static final RegistryObject<Item, Item> BLOWGUN = register(
+            "blowgun",
+            properties -> new BlowgunItem(properties)
+    );
+
     public static void init() {
     }
 
@@ -535,7 +554,10 @@ public class ItemRegistry {
             EMPTY_SLOT_SHOVEL = ResourceLocation.withDefaultNamespace("container/slot/shovel");
             EMPTY_SLOT_PICKAXE = ResourceLocation.withDefaultNamespace("container/slot/pickaxe");
 
-            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "container/slot/empty_slot_heart_fragment");
+            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(
+                    Constants.MOD_ID,
+                    "container/slot/empty_slot_heart_fragment"
+            );
         }
 
         public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {

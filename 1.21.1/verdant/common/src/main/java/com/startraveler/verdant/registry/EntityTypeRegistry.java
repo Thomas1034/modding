@@ -17,10 +17,7 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.entity.custom.PoisonArrowEntity;
-import com.startraveler.verdant.entity.custom.RootedEntity;
-import com.startraveler.verdant.entity.custom.ThrownRopeEntity;
-import com.startraveler.verdant.entity.custom.TimbermiteEntity;
+import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -58,15 +55,31 @@ public class EntityTypeRegistry {
                     .updateInterval(20)
                     .build(key("poison_arrow"))
     );
+    public static final RegistryObject<EntityType<?>, EntityType<DartEntity>> DART = ENTITY_TYPES.register(
+            "dart",
+            () -> EntityType.Builder.<DartEntity>of(DartEntity::new, MobCategory.MISC)
+                    .noLootTable()
+                    .sized(0.25F, 0.25F)
+                    .eyeHeight(0.065F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .build(key("dart"))
+    );
     public static final RegistryObject<EntityType<?>, EntityType<RootedEntity>> ROOTED = ENTITY_TYPES.register(
             "rooted",
-            () -> EntityType.Builder.<RootedEntity>of(RootedEntity::new, MobCategory.MONSTER)
+            () -> EntityType.Builder.of(RootedEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.95F)
                     .eyeHeight(1.74F)
                     .passengerAttachments(2.0125F)
                     .ridingOffset(-0.7F)
                     .clientTrackingRange(8)
                     .build(key("rooted"))
+    );
+    public static final RegistryObject<EntityType<?>, EntityType<ThrownSpearEntity>> THROWN_SPEAR = ENTITY_TYPES.register(
+            "thrown_spear",
+            () -> EntityType.Builder.<ThrownSpearEntity>of(ThrownSpearEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f)
+                    .build(key("thrown_spear"))
     );
 
     private static ResourceKey<EntityType<?>> key(String name) {

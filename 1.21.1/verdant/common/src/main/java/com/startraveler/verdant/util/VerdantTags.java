@@ -91,6 +91,7 @@ public class VerdantTags {
         public static final TagKey<Item> REPAIRS_IMBUED_HEARTWOOD_ARMOR = tag("repairs_heartwood_armor");
         public static final TagKey<Item> HEARTWOOD_TOOL_MATERIALS = tag("heartwood_tool_materials");
         public static final TagKey<Item> IMBUED_HEARTWOOD_TOOL_MATERIALS = tag("imbued_heartwood_tool_materials");
+        public static final TagKey<Item> DARTS = tag("darts");
 
         private static TagKey<Item> tag(String name) {
 

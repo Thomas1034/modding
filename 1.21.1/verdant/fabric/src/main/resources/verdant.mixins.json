@@ -4,18 +4,23 @@
   "package": "com.startraveler.verdant.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractArrowAccessors",
+    "BoggedLikeVerdantFriendsMixin",
     "DecreaseDetectionRangeMixin",
+    "EntityGetterInvoker",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
-    "BoggedLikeVerdantFriendsMixin",
-    "ZombieConvertToRootedMixin"
+    "ThrownTridentDataIDGetter",
+    "ZombieConvertToRootedMixin",
+    "ArrowAccessors"
   ],
   "server": [],
   "client": [
+    "GameRendererAddPostShadersMixin",
+    "GuiAddShaderOverlaysMixin",
     "IntangibilityBlockVisionMixin",
     "NumbnessHideStatsMixin",
-    "GameRendererAddPostShadersMixin",
-    "GuiAddShaderOverlaysMixin"
+    "ArrowRendererModelAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

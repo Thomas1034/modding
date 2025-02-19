@@ -1,4 +1,4 @@
-// 1.21.4	2025-02-13T15:24:54.8451315	Model Definitions - verdant
+// 1.21.4	2025-02-17T14:25:07.0547767	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -175,6 +175,7 @@ c32dacc59401b2d505bdb3327188fa4d09d1f1f6 assets/verdant/items/bitter_cassava_cut
 c232fe62f6ed4a146e1a495b73468fc564e04f9d assets/verdant/items/bitter_cassava_rooted_dirt.json
 e33cb7f83e56e9bfc91248965efab3e857186cc1 assets/verdant/items/bitter_starch.json
 6c4c06503b28dd3e96b3b94c82c31341baf2eee4 assets/verdant/items/bleeding_heart.json
+0fef95c425a1d4f31b42cf460c11a2db034b5cc5 assets/verdant/items/blowgun.json
 5c2754fa8c400a9093c63ef680f29f3153a0c5b4 assets/verdant/items/bush.json
 cb3d8e5e3b81ca251eda9e8f211af5c144520261 assets/verdant/items/cassava.json
 3962dec74ecfb5be510c308759de9269997d01e2 assets/verdant/items/cassava_cuttings.json
@@ -183,6 +184,7 @@ efbabcf65585fe08cf34a9857c61201b2a34caca assets/verdant/items/cassava_rooted_dir
 fef41114fb1e683895de238ba0f4a8f18a61e926 assets/verdant/items/coffee_berries.json
 045cf0d3443ba03dde3a25d60d76b6a16e27c06e assets/verdant/items/cooked_cassava.json
 50567ee945901a701ec7c05516de6ddb2e00edf2 assets/verdant/items/cooked_golden_cassava.json
+1eb680b82981799a26f537caed72f105857de68d assets/verdant/items/dart.json
 a0fc0fe38f28c6570bfeaee1f6090a6bb2704582 assets/verdant/items/dead_boat.json
 d2e26922d6278887c9c5ce55b01f51b4b50ba1e0 assets/verdant/items/dead_button.json
 015a938b8c6fd5445a6a22d7195403e9bda352ab assets/verdant/items/dead_chest_boat.json
@@ -239,6 +241,7 @@ d80e8d62e045cf2a7016cdd1cacfe7f5953de1f2 assets/verdant/items/heartwood_trapdoor
 58580c7c01113bddea2d38be4e9722df1519dafd assets/verdant/items/heartwood_wood.json
 b518d054f4c5b4df264baef57d47392352b14de9 assets/verdant/items/heart_fragment.json
 6af35bebd69bcd3efdcddee44874dd325fe87c85 assets/verdant/items/heart_of_the_forest.json
+9415e48535e6e012bcf6ea90cfc26fa8cd6cccee assets/verdant/items/hunting_spear.json
 9b24ff4adaee62910012da76bc4be88970324712 assets/verdant/items/imbued_heartwood_axe.json
 a8f2166506bb1f004a8e05537ee5f55a3c40f8d9 assets/verdant/items/imbued_heartwood_boots.json
 01eafca7424a42e561b67fe4fa9c4b1439a2483d assets/verdant/items/imbued_heartwood_chestplate.json
@@ -300,6 +303,7 @@ af116e5c1c621d60b84fa76b912dc1063245142e assets/verdant/items/thorn.json
 68d3a2aba51151da3113ffda6e784e21d6e4626d assets/verdant/items/thorny_strangler_leaves.json
 c6a1f27df177c189c3af71916703f3a1b4091b2e assets/verdant/items/thorn_bush.json
 c2a3ea87b8494e22fab2ee8a2be1a6d15d5e9804 assets/verdant/items/tiger_lily.json
+d08f0b1334cf2a9d37346cee7a4262ee5ac9f382 assets/verdant/items/tipped_dart.json
 afb4079251709215c62ed5e5854f39ecbc16770c assets/verdant/items/toxic_ash.json
 48a28125adbf8316d0ae343797b00e701011a8f0 assets/verdant/items/toxic_ash_block.json
 5e275f4bc601a0a0e704470b6055c3d11618f4a0 assets/verdant/items/toxic_ash_bucket.json
@@ -624,12 +628,14 @@ ee47f42237c31840196e0c62c152310a1299e00f assets/verdant/models/block/wooden_trap
 9968910aceb1564f60d29374c6979d7f904b5251 assets/verdant/models/item/bitter_cassava_cuttings.json
 c25a982b125b499e5d15850bfa9e0c2517358c11 assets/verdant/models/item/bitter_starch.json
 3c5f83baebd15e25e72d571a0ef457358b741b17 assets/verdant/models/item/bleeding_heart.json
+de0d4ebe036802d6cdb86560c80950092ba3967e assets/verdant/models/item/blowgun.json
 e12bb8f93070b36ea19965ae3b880f6ea15492ff assets/verdant/models/item/bush.json
 6a2b0c8a23f19923aaa882395038566fc79287da assets/verdant/models/item/cassava.json
 42906cfecbcef65ff920e66e25e3f6bbb1e19ecc assets/verdant/models/item/cassava_cuttings.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 c6bcf2a05ecaaf51f6cb70e77d12c594bc82d8bf assets/verdant/models/item/cooked_cassava.json
 59e178767225e138acda193b87c473916fb55cbe assets/verdant/models/item/cooked_golden_cassava.json
+f8a893bc8d88ca54a7b0c0d1217c69a043abeffa assets/verdant/models/item/dart.json
 8c731b6c6f2f03563c0f84f74bb6cd5d9238482e assets/verdant/models/item/dead_boat.json
 41fd132c4dcffdd0b6e4a96c69f9617bfc2e78d4 assets/verdant/models/item/dead_chest_boat.json
 f88dd126d4df69df4cc8b16b086edfa662c96670 assets/verdant/models/item/dead_door.json
@@ -700,6 +706,7 @@ ab8f008a08b6494c57a9e3e587c3a552699abc74 assets/verdant/models/item/heartwood_si
 447a926de607ac04e516a98dda1bf98c0063a99f assets/verdant/models/item/heartwood_sword.json
 d3c1d30349b0d94398fba80db95b056b6d26464d assets/verdant/models/item/heart_fragment.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
+fcd85584e284b6e9853dfd0d5db9b4b79aedc27d assets/verdant/models/item/hunting_spear.json
 3eb1752ef4bb1a8f91f133bc939056da081df8de assets/verdant/models/item/imbued_heartwood_axe.json
 df533deaf98da68278ef0e4a6267b76fb9449c6b assets/verdant/models/item/imbued_heartwood_boots.json
 51c6816ac8d547d28b1ba8c9df27860a411c0386 assets/verdant/models/item/imbued_heartwood_boots_amethyst_trim.json
@@ -779,6 +786,7 @@ d9baba3781488b814b439a672acd8356461d4388 assets/verdant/models/item/strangler_te
 25d1af81b4d10d807cddabf99f1ce9750eef0576 assets/verdant/models/item/thorn.json
 56971747583a4b1f9bdedba4a27af87290cc782a assets/verdant/models/item/thorn_bush.json
 63e349cf0d5f43721b6b3f826e02ead5ad4ca48a assets/verdant/models/item/tiger_lily.json
+c09b81a7b36ef4656f6906f8e24d01ad53fda086 assets/verdant/models/item/tipped_dart.json
 52f3667dbd69644119463c036377fc37e436ae53 assets/verdant/models/item/toxic_ash.json
 2ec4f5f50291f42e7c4c5659541bf9b1cf690311 assets/verdant/models/item/toxic_ash_bucket.json
 ae3f815dc4d754df8361f21fd61e2026f7d84cb3 assets/verdant/models/item/toxic_solution_bucket.json

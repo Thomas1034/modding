@@ -187,6 +187,8 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.HEARTWOOD_SHOVEL.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.HEARTWOOD_SWORD.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
+
+        this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
     }
 
     private void addDirtOres() {

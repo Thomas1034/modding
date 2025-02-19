@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:item/tipped_dart_head",
+    "layer1": "verdant:item/tipped_dart_base"
+  }
+}
