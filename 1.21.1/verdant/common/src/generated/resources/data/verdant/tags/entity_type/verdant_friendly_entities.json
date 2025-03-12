@@ -3,6 +3,8 @@
     "verdant:timbermite",
     "verdant:rooted",
     "minecraft:bogged",
+    "minecraft:creeper",
+    "minecraft:creaking",
     "#minecraft:impact_projectiles"
   ]
 }

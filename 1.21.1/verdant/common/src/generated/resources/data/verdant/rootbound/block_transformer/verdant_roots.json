@@ -1,0 +1,29 @@
+{
+  "name": "verdant:verdant_roots",
+  "values": [
+    {
+      "block": "minecraft:muddy_mangrove_roots",
+      "result": "verdant:verdant_rooted_mud"
+    },
+    {
+      "block": "minecraft:rooted_dirt",
+      "result": "verdant:verdant_rooted_dirt"
+    },
+    {
+      "block": "minecraft:dirt",
+      "result": "verdant:verdant_rooted_dirt"
+    },
+    {
+      "block": "minecraft:podzol",
+      "result": "verdant:verdant_grass_dirt"
+    },
+    {
+      "block": "minecraft:mud",
+      "result": "verdant:verdant_rooted_mud"
+    },
+    {
+      "block": "minecraft:clay",
+      "result": "verdant:verdant_rooted_clay"
+    }
+  ]
+}

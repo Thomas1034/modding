@@ -12,7 +12,8 @@
     "ItemStackDurabilityChangingMixin",
     "ThrownTridentDataIDGetter",
     "ZombieConvertToRootedMixin",
-    "ArrowAccessors"
+    "ArrowAccessors",
+    "MobEffectInstanceAccessors"
   ],
   "server": [],
   "client": [

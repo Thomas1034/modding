@@ -1,10 +1,10 @@
 package com.startraveler.verdant.data.definitions;
 
+import com.startraveler.rootbound.featureset.ConfiguredFeatureSetEntry;
+import com.startraveler.rootbound.featureset.FeatureSet;
 import com.startraveler.verdant.feature.JSONFeatures;
 import com.startraveler.verdant.registry.FeatureSetRegistry;
 import com.startraveler.verdant.util.Rarity;
-import com.startraveler.verdant.util.featureset.ConfiguredFeatureSetEntry;
-import com.startraveler.verdant.util.featureset.FeatureSet;
 import net.minecraft.data.worldgen.features.CaveFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.resources.ResourceKey;

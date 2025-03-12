@@ -11,6 +11,8 @@ dependencies {
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-neoforge
     // runtimeOnly
     implementation "org.sinytra:item-asset-export-neoforge:1.1.0+1.21.4"
+    implementation files('libs/rootbound-neoforge-1.21.4-1.0.0.jar')
+    jarJar( files('libs/rootbound-neoforge-1.21.4-1.0.0.jar') )
 }
 
 neoForge {

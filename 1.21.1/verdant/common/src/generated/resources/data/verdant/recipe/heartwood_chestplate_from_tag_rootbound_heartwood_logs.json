@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:heartwood_chestplate",
+  "key": {
+    "P": "#rootbound:heartwood_logs"
+  },
+  "pattern": [
+    "P P",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:heartwood_chestplate"
+  }
+}

@@ -7,6 +7,10 @@ import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
+    public static TextureMapping asterisk(ResourceLocation plus, ResourceLocation cross) {
+        return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
+    }
+
     public static TextureMapping candleCake(Block cake, Block candle, boolean lit) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(cake, "_side"))
                 .put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(cake, "_bottom"))

@@ -16,11 +16,15 @@
  */
 package com.startraveler.verdant.registry.properties;
 
+import com.startraveler.verdant.item.custom.DiminishEffectConsumeEffect;
 import com.startraveler.verdant.registry.MobEffectRegistry;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
@@ -29,25 +33,23 @@ import java.util.List;
 
 public class ConsumablesList {
 
+    public static final Consumable ALOE_LEAF = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .animation(ItemUseAnimation.CROSSBOW)
+            .sound(Holder.direct(SoundEvents.EMPTY))
+            .hasConsumeParticles(false)
+            .build();
     public static final Consumable COFFEE_BERRY = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new ApplyStatusEffectsConsumeEffect(
-                    new MobEffectInstance(
-                            MobEffects.MOVEMENT_SPEED,
-                            200,
-                            0
-                    ), 0.9F
+                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0),
+                    0.9F
             ))
             .build();
     public static final Consumable ROASTED_COFFEE = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new ApplyStatusEffectsConsumeEffect(
-                    new MobEffectInstance(
-                            MobEffects.DIG_SPEED,
-                            200,
-                            0
-                    ), 0.9F
-            ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0), 0.9F))
             .build();
     public static final Consumable ROTTEN_COMPOST = Consumables.defaultFood()
             .soundAfterConsume(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.ZOMBIE_DEATH))
@@ -73,11 +75,7 @@ public class ConsumablesList {
             .build();
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(
-                            MobEffects.DAMAGE_RESISTANCE,
-                            1200,
-                            0
-                    ),
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
             )))
             .build();

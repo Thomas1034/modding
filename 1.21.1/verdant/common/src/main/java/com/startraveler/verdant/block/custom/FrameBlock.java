@@ -44,6 +44,16 @@ public class FrameBlock extends SimpleFrameBlock implements SimpleWaterloggedBlo
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false));
     }
 
+    // TODO finish up making paper block transparent
+    @Override
+    protected int getLightBlock(BlockState state) {
+        if (state.isSolidRender()) {
+            return 15;
+        } else {
+            return state.propagatesSkylightDown() ? 0 : 1;
+        }
+    }
+
     @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         boolean isSmallEntity = context instanceof EntityCollisionContext entityContext && entityContext.getEntity() instanceof Entity entity && entity.getBoundingBox() instanceof AABB box && ((box.getXsize() * box.getZsize() < ((entity instanceof LivingEntity livingEntity && livingEntity.isBaby()) || (entity instanceof Projectile) ? LENIENT_ENTITY_AREA_CUTOFF : ENTITY_AREA_CUTOFF)) || (box.getYsize() < SHORT_ENTITY_HEIGHT_CUTOFF));

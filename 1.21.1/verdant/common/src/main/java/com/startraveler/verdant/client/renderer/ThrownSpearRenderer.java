@@ -43,6 +43,7 @@ public class ThrownSpearRenderer extends EntityRenderer<ThrownSpearEntity, Throw
             stack.translate(offsetToTarget.x, offsetToTarget.y, offsetToTarget.z);
             Vec3 offsetFromTarget = new Vec3(renderState.relativeX, renderState.relativeY, renderState.relativeZ);
 
+
             stack.translate(offsetFromTarget.x, offsetFromTarget.y, offsetFromTarget.z);
 
             stack.mulPose(Axis.YP.rotationDegrees(renderState.yRotRelative - 90.0F));
@@ -74,7 +75,7 @@ public class ThrownSpearRenderer extends EntityRenderer<ThrownSpearEntity, Throw
             thrownSpearRenderState.isStuck = false;
         } else {
             thrownSpearRenderState.isStuck = true;
-            thrownSpearRenderState.xRotRelative = thrownSpear.lockedXRot;
+            thrownSpearRenderState.xRotRelative = thrownSpear.lockedXRot + entity.getVisualRotationYInDegrees();
             thrownSpearRenderState.yRotRelative = thrownSpear.lockedYRot;
             thrownSpearRenderState.xRotTarget = entity.getXRot(partialTick);
             thrownSpearRenderState.yRotTarget = ThrownSpearEntity.getVisualYRot(entity, partialTick);

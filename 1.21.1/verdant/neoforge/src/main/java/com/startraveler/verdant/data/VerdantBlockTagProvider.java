@@ -5,7 +5,6 @@ import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.CommonTags;
 import com.startraveler.verdant.util.VerdantTags;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -22,10 +21,6 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            generateFor(woodSet);
-        }
-
 
         // Mineables
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
@@ -33,7 +28,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STRANGLER_VINE.get(),
                 BlockRegistry.WOODEN_SPIKES.get(),
                 BlockRegistry.WOODEN_TRAP.get(),
-                BlockRegistry.FISH_TRAP_BLOCK.get(),
+                BlockRegistry.FISH_TRAP.get(),
                 BlockRegistry.VERDANT_CONDUIT.get(),
                 BlockRegistry.ROPE_LADDER.get(),
                 BlockRegistry.IMBUED_HEARTWOOD_LOG.get()
@@ -46,6 +41,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
                 BlockRegistry.TOXIC_DIRT.get(),
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
                 BlockRegistry.DIRT_COAL_ORE.get(),
                 BlockRegistry.DIRT_COPPER_ORE.get(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get(),
@@ -103,6 +100,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
                 BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()
         );
+        this.tag(Tags.Blocks.GRAVELS).add(BlockRegistry.SCREE.get());
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
@@ -235,6 +233,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_CLAY.get()
         );
 
+
         // Verdant logs
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(BlockTags.LOGS_THAT_BURN);
         this.tag(VerdantTags.Blocks.SUSTAINS_STRANGLER_LEAVES).addTag(VerdantTags.Blocks.STRANGLER_VINES);
@@ -247,6 +246,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.WILD_CASSAVA.get()
         );
+
         this.tag(BlockTags.BEE_ATTRACTIVE).add(
                 BlockRegistry.BLEEDING_HEART.get(),
                 BlockRegistry.RUE.get(),
@@ -336,57 +336,4 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(CommonTags.Blocks.ORE_BEARING_GROUND_DIRT).add(Blocks.DIRT);
     }
 
-
-    public void generateFor(WoodSet woodSet) {
-        this.tag(woodSet.getLogs()).add(
-                woodSet.getLog().get(),
-                woodSet.getWood().get(),
-                woodSet.getStrippedLog().get(),
-                woodSet.getStrippedWood().get()
-        );
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
-                woodSet.getLog().get(),
-                woodSet.getWood().get(),
-                woodSet.getStrippedLog().get(),
-                woodSet.getStrippedWood().get(),
-                woodSet.getPlanks().get(),
-                woodSet.getSlab().get(),
-                woodSet.getStairs().get(),
-                woodSet.getFence().get(),
-                woodSet.getFenceGate().get(),
-                woodSet.getSign().get(),
-                woodSet.getWallSign().get(),
-                woodSet.getHangingSign().get(),
-                woodSet.getWallHangingSign().get(),
-                woodSet.getButton().get(),
-                woodSet.getPressurePlate().get(),
-                woodSet.getDoor().get(),
-                woodSet.getTrapdoor().get()
-        );
-        this.tag(BlockTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get());
-        this.tag(BlockTags.WOODEN_DOORS).add(woodSet.getDoor().get());
-        this.tag(BlockTags.WOODEN_SLABS).add(woodSet.getSlab().get());
-        this.tag(BlockTags.WOODEN_STAIRS).add(woodSet.getStairs().get());
-        this.tag(BlockTags.WOODEN_BUTTONS).add(woodSet.getButton().get());
-        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get());
-        this.tag(BlockTags.WOODEN_FENCES).add(woodSet.getFence().get());
-        this.tag(BlockTags.PLANKS).add(woodSet.getPlanks().get());
-        this.tag(BlockTags.LOGS).add(
-                woodSet.getLog().get(),
-                woodSet.getWood().get(),
-                woodSet.getStrippedLog().get(),
-                woodSet.getStrippedWood().get()
-        );
-        this.tag(Tags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedLog().get(), woodSet.getStrippedWood().get());
-        if (woodSet.isFlammable()) {
-            this.tag(BlockTags.LOGS_THAT_BURN).add(
-                    woodSet.getLog().get(),
-                    woodSet.getWood().get(),
-                    woodSet.getStrippedLog().get(),
-                    woodSet.getStrippedWood().get()
-            );
-        }
-        this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(woodSet.getFenceGate().get());
-        this.tag(Tags.Blocks.FENCES_WOODEN).add(woodSet.getFence().get());
-    }
 }

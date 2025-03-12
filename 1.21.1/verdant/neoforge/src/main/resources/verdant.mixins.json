@@ -11,7 +11,8 @@
     "EntityGetterInvoker",
     "ThrownTridentDataIDGetter",
     "AbstractArrowAccessors",
-    "ArrowAccessors"
+    "ArrowAccessors",
+    "MobEffectInstanceAccessors"
   ],
   "server": [],
   "client": [

@@ -38,7 +38,7 @@ public class BlockEntityTypeRegistry {
 
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY = BLOCK_ENTITIES.register(
             "fish_trap",
-            () -> new BlockEntityType<>(FishTrapBlockEntity::new, Set.of(BlockRegistry.FISH_TRAP_BLOCK.get()))
+            () -> new BlockEntityType<>(FishTrapBlockEntity::new, Set.of(BlockRegistry.FISH_TRAP.get()))
     );
 
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<VerdantConduitBlockEntity>> VERDANT_CONDUIT_BLOCK_ENTITY = BLOCK_ENTITIES.register(

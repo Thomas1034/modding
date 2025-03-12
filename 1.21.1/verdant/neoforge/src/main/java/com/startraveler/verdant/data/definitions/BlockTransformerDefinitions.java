@@ -1,12 +1,12 @@
 package com.startraveler.verdant.data.definitions;
 
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
+import com.startraveler.rootbound.blocktransformer.data.BlockTransformerData;
+import com.startraveler.rootbound.blocktransformer.data.BlockTransformerResultOption;
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.data.blocktransformer.BlockTransformerData;
-import com.startraveler.verdant.data.blocktransformer.BlockTransformerResultOption;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.WoodSets;
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -170,6 +170,8 @@ public class BlockTransformerDefinitions {
 
         List<BlockTransformerData> data = new ArrayList<>();
 
+        data.add(direct(Blocks.MUDDY_MANGROVE_ROOTS, BlockRegistry.VERDANT_ROOTED_MUD.get()));
+        data.add(direct(Blocks.ROOTED_DIRT, BlockRegistry.VERDANT_ROOTED_DIRT.get()));
         data.add(direct(Blocks.DIRT, BlockRegistry.VERDANT_ROOTED_DIRT.get()));
         data.add(direct(Blocks.PODZOL, BlockRegistry.VERDANT_GRASS_DIRT.get()));
         data.add(direct(Blocks.MUD, BlockRegistry.VERDANT_ROOTED_MUD.get()));

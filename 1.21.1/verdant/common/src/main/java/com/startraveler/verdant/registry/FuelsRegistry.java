@@ -16,7 +16,7 @@
  */
 package com.startraveler.verdant.registry;
 
-import com.startraveler.verdant.woodset.WoodSet;
+import com.startraveler.rootbound.woodset.WoodSet;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
@@ -35,7 +35,7 @@ public class FuelsRegistry {
         // FireBlock
         FuelsRegistry fuels = new FuelsRegistry(registrar);
 
-        fuels.registerFuel(BlockRegistry.FISH_TRAP_BLOCK, WoodSet.BurnTimes.PLANKS);
+        fuels.registerFuel(BlockRegistry.FISH_TRAP, WoodSet.BurnTimes.PLANKS);
         fuels.registerFuel(BlockRegistry.BUSH, WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.THORN_BUSH, WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.STRANGLER_LEAVES, WoodSet.BurnTimes.STICK);

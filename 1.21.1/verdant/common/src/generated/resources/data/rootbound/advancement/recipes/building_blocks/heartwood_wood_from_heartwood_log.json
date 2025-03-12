@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heartwood_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_heartwood_wood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_wood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rootbound:heartwood_wood_from_heartwood_log"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_heartwood_log",
+      "has_heartwood_wood"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rootbound:heartwood_wood_from_heartwood_log"
+    ]
+  }
+}

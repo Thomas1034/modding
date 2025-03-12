@@ -129,7 +129,7 @@ public class FishTrapMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return AbstractContainerMenu.stillValid(this.access, player, BlockRegistry.FISH_TRAP_BLOCK.get());
+        return AbstractContainerMenu.stillValid(this.access, player, BlockRegistry.FISH_TRAP.get());
     }
 
     @Override

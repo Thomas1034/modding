@@ -28,7 +28,12 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class VerdantTags {
+
+    public static final Set<TagKey<?>> TAGS = new HashSet<>();
 
     public static class MobEffects {
 
@@ -66,7 +71,12 @@ public class VerdantTags {
         public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("allows_ash_spread");
 
         private static TagKey<Block> tag(String name) {
-            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<Block> tag = TagKey.create(
+                    Registries.BLOCK,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
+            TAGS.add(tag);
+            return tag;
         }
     }
 
@@ -77,7 +87,12 @@ public class VerdantTags {
 
         @SuppressWarnings("unused")
         private static TagKey<Structure> tag(String name) {
-            return TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<Structure> tag = TagKey.create(
+                    Registries.STRUCTURE,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
+            TAGS.add(tag);
+            return tag;
         }
     }
 
@@ -94,8 +109,12 @@ public class VerdantTags {
         public static final TagKey<Item> DARTS = tag("darts");
 
         private static TagKey<Item> tag(String name) {
-
-            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<Item> tag = TagKey.create(
+                    Registries.ITEM,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
+            TAGS.add(tag);
+            return tag;
         }
     }
 
@@ -105,7 +124,12 @@ public class VerdantTags {
         public static final TagKey<EntityType<?>> TOXIC_ASH_DAMAGES = tag("toxic_ash_damages");
 
         private static TagKey<EntityType<?>> tag(String name) {
-            return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<EntityType<?>> tag = TagKey.create(
+                    Registries.ENTITY_TYPE,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
+            TAGS.add(tag);
+            return tag;
         }
     }
 
@@ -113,7 +137,12 @@ public class VerdantTags {
 
         @SuppressWarnings("unused")
         private static TagKey<Biome> tag(String name) {
-            return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+            TagKey<Biome> tag = TagKey.create(
+                    Registries.BIOME,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+            );
+            TAGS.add(tag);
+            return tag;
         }
     }
 }

@@ -106,6 +106,22 @@ public class PotionRegistry {
             () -> new Potion("strong_colloid", new MobEffectInstance(MobEffectRegistry.COLLOID.asHolder(), 1800, 1))
     );
 
+    public static final RegistryObject<Potion, Potion> ADRENALINE = POTIONS.register(
+            "adrenaline",
+            () -> new Potion("adrenaline", new MobEffectInstance(MobEffectRegistry.ADRENALINE.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_ADRENALINE = POTIONS.register(
+            "long_adrenaline",
+            () -> new Potion("long_adrenaline", new MobEffectInstance(MobEffectRegistry.ADRENALINE.asHolder(), 9600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_ADRENALINE = POTIONS.register(
+            "strong_adrenaline",
+            () -> new Potion(
+                    "strong_adrenaline",
+                    new MobEffectInstance(MobEffectRegistry.ADRENALINE.asHolder(), 1800, 1)
+            )
+    );
+
     public static final RegistryObject<Potion, Potion> ANTIDOTE = POTIONS.register(
             "antidote",
             () -> new Potion("antidote", new MobEffectInstance(MobEffectRegistry.ANTIDOTE.asHolder(), 1800, 0))
@@ -134,15 +150,31 @@ public class PotionRegistry {
 
     public static final RegistryObject<Potion, Potion> BLURRED = POTIONS.register(
             "blurred",
-            () -> new Potion("blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 3600, 0))
+            () -> new Potion("blurred", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 3600, 0))
     );
     public static final RegistryObject<Potion, Potion> LONG_BLURRED = POTIONS.register(
             "long_blurred",
-            () -> new Potion("long_blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 9600, 0))
+            () -> new Potion("long_blurred", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 9600, 0))
     );
     public static final RegistryObject<Potion, Potion> STRONG_BLURRED = POTIONS.register(
             "strong_blurred",
-            () -> new Potion("strong_blurred", new MobEffectInstance(MobEffectRegistry.BLURRED.asHolder(), 1800, 1))
+            () -> new Potion("strong_blurred", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 1800, 1))
+    );
+
+    public static final RegistryObject<Potion, Potion> CLUMSINESS = POTIONS.register(
+            "clumsiness",
+            () -> new Potion("clumsiness", new MobEffectInstance(MobEffectRegistry.CLUMSINESS.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_CLUMSINESS = POTIONS.register(
+            "long_clumsiness",
+            () -> new Potion("long_clumsiness", new MobEffectInstance(MobEffectRegistry.CLUMSINESS.asHolder(), 9600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_CLUMSINESS = POTIONS.register(
+            "strong_clumsiness",
+            () -> new Potion(
+                    "strong_clumsiness",
+                    new MobEffectInstance(MobEffectRegistry.CLUMSINESS.asHolder(), 1800, 1)
+            )
     );
 
     public static void init() {

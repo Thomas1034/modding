@@ -187,6 +187,7 @@ public class ThrownSpearEntity extends ThrownTrident {
             this.targetEntityID = tag.getUUID(STUCK_ENTITY_ID_TAG);
             this.isStuck = true;
         }
+
     }
 
     @Override
@@ -227,7 +228,7 @@ public class ThrownSpearEntity extends ThrownTrident {
     protected void attachToEntity(Entity target) {
         // Lock current rotation
         this.lockedXRot = this.getXRot();
-        this.lockedYRot = this.getYRot();
+        this.lockedYRot = this.getYRot() - target.getVisualRotationYInDegrees();
 
         Vec3 motion = this.getDeltaMovement().normalize();
         Vec3 impactPoint = this.position().add(motion.scale(IMPACT_DEPTH));

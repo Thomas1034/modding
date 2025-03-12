@@ -1,8 +1,8 @@
 package com.startraveler.verdant.data;
 
+import com.startraveler.rootbound.featureset.FeatureSet;
 import com.startraveler.verdant.data.definitions.FeatureSetDefinitions;
 import com.startraveler.verdant.registry.FeatureSetRegistry;
-import com.startraveler.verdant.util.featureset.FeatureSet;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

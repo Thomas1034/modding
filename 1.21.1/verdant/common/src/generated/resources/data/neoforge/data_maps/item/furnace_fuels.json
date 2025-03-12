@@ -1,8 +1,5 @@
 {
   "values": {
-    "verdant:bush": {
-      "burn_time": 100
-    },
     "verdant:dead_button": {
       "burn_time": 100
     },
@@ -41,12 +38,6 @@
     },
     "verdant:dead_wood": {
       "burn_time": 300
-    },
-    "verdant:fish_trap": {
-      "burn_time": 300
-    },
-    "verdant:frame_block": {
-      "burn_time": 200
     },
     "verdant:heartwood_button": {
       "burn_time": 200
@@ -87,9 +78,6 @@
     "verdant:heartwood_wood": {
       "burn_time": 600
     },
-    "verdant:leafy_strangler_vine": {
-      "burn_time": 200
-    },
     "verdant:strangler_button": {
       "burn_time": 100
     },
@@ -104,9 +92,6 @@
     },
     "verdant:strangler_hanging_sign": {
       "burn_time": 800
-    },
-    "verdant:strangler_leaves": {
-      "burn_time": 100
     },
     "verdant:strangler_log": {
       "burn_time": 300
@@ -129,9 +114,6 @@
     "verdant:strangler_trapdoor": {
       "burn_time": 300
     },
-    "verdant:strangler_vine": {
-      "burn_time": 200
-    },
     "verdant:strangler_wood": {
       "burn_time": 300
     },
@@ -152,15 +134,6 @@
     },
     "verdant:stripped_strangler_wood": {
       "burn_time": 300
-    },
-    "verdant:thorn_bush": {
-      "burn_time": 100
-    },
-    "verdant:thorny_strangler_leaves": {
-      "burn_time": 100
-    },
-    "verdant:wilted_strangler_leaves": {
-      "burn_time": 100
     }
   }
 }

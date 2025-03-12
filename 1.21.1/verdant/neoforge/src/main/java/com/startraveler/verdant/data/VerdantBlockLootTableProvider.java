@@ -7,7 +7,6 @@ import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -57,16 +56,16 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 .map(RegistryObject::get)
                 .collect(Collectors.toSet()));
 
-        // For the wood set
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            generateFor(woodSet);
-        }
         // BlockRegistry.VERDANT_HEARTWOOD.addLootTables(this);
         // BlockRegistry.VERDANT.addLootTables(this);
 
+        this.dropOther(BlockRegistry.SMALL_ALOE.get(), ItemRegistry.ALOE_LEAF.get());
+        this.dropOther(BlockRegistry.LARGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
+        this.dropOther(BlockRegistry.HUGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
         this.dropOther(BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
+        this.dropSelf(BlockRegistry.SCREE.get());
         this.dropSelf(BlockRegistry.ROPE_LADDER.get());
-        this.dropSelf(BlockRegistry.FISH_TRAP_BLOCK.get());
+        this.dropSelf(BlockRegistry.FISH_TRAP.get());
         this.dropSelf(BlockRegistry.ANTIGORITE.get());
         this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
         this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
@@ -165,6 +164,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         this.requireSilkTouch(BlockRegistry.CHARRED_FRAME_BLOCK.get(), Items.CHARCOAL, List.of(0, 1));
         this.dropSelf(BlockRegistry.FRAME_BLOCK.get());
+        this.dropSelf(BlockRegistry.PAPER_FRAME.get());
+
         this.dropSelf(BlockRegistry.WOODEN_SPIKES.get());
         this.dropSelf(BlockRegistry.IRON_SPIKES.get());
         this.dropSelf(BlockRegistry.WOODEN_TRAP.get());
@@ -321,32 +322,6 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         return this.knownBlocks;
     }
 
-    protected void generateFor(WoodSet woodSet) {
-
-        this.knownBlocks.addAll(woodSet.getBlockProvider()
-                .getEntries()
-                .stream()
-                .map(RegistryObject::get)
-                .collect(Collectors.toSet()));
-
-        this.dropSelf(woodSet.getPlanks().get());
-        this.dropSelf(woodSet.getLog().get());
-        this.dropSelf(woodSet.getWood().get());
-        this.dropSelf(woodSet.getStrippedLog().get());
-        this.dropSelf(woodSet.getStrippedWood().get());
-        this.dropSelf(woodSet.getFence().get());
-        this.dropSelf(woodSet.getFenceGate().get());
-        this.dropSelf(woodSet.getStairs().get());
-        this.dropSelf(woodSet.getButton().get());
-        this.dropSelf(woodSet.getPressurePlate().get());
-        this.dropSelf(woodSet.getTrapdoor().get());
-        this.dropOther(woodSet.getWallSign().get(), woodSet.getSignItem().get());
-        this.dropOther(woodSet.getSign().get(), woodSet.getSignItem().get());
-        this.dropOther(woodSet.getWallHangingSign().get(), woodSet.getHangingSignItem().get());
-        this.dropOther(woodSet.getHangingSign().get(), woodSet.getHangingSignItem().get());
-        this.add(woodSet.getSlab().get(), this.createSlabItemTable(woodSet.getSlab().get()));
-        this.add(woodSet.getDoor().get(), this.createDoorTable(woodSet.getDoor().get()));
-    }
 
     protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
         return createShearsDispatchTable(

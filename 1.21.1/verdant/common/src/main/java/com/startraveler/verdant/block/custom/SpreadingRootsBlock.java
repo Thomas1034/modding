@@ -16,12 +16,12 @@
  */
 package com.startraveler.verdant.block.custom;
 
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
+import com.startraveler.rootbound.featureset.FeatureSet;
 import com.startraveler.verdant.block.Hoeable;
 import com.startraveler.verdant.block.VerdantGrower;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.FeatureSetRegistry;
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.util.featureset.FeatureSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -37,7 +37,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -74,6 +77,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Properties that aren't reflected in what the user sees.
     // These are used for caching surrounding blocks, to optimize spreading mechanics.
+    public static final BooleanProperty SUCCESSFULLY_SPREAD = BooleanProperty.create("successfully_spread");
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
     public static final EnumProperty<NeighborType> ABOVE = EnumProperty.create("above", NeighborType.class);
     public static final EnumProperty<NeighborType> BELOW = EnumProperty.create("below", NeighborType.class);
@@ -168,8 +172,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     // This handles erosion, growth, and (eventually) placing features like
-    // grass, bushes, vines, and monsters.
-    public void grow(BlockState state, ServerLevel level, BlockPos pos) {
+    // grass, bushes, vines, etc.
+    // Returns whether any erosion or growth succeeded.
+    public boolean grow(BlockState state, ServerLevel level, BlockPos pos) {
+        boolean anySucceeded = false;
         // First, check if the state is wet.
         // This is important for erosion; some things can only be
         // eroded with access to water.
@@ -177,9 +183,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         // Spread everywhere in the radius.
         for (int[] offset : this.offsetsToSpreadTo) {
             BlockPos posToTry = pos.offset(offset[0], offset[1], offset[2]);
-            this.erodeOrGrow(level, posToTry, isWet);
+            anySucceeded |= this.erodeOrGrow(level, posToTry, isWet);
         }
         this.placeFeature(state, level, pos);
+        return anySucceeded;
     }
 
     public void placeFeature(BlockState state, ServerLevel level, BlockPos pos) {
@@ -390,14 +397,18 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateWet.get().get());
         }
+
+        // Erode or spread, and grow.
+        if (rand.nextFloat() < this.chanceToSpread(state)) {
+            boolean successfullySpread = this.grow(state, level, pos);
+            state = state.setValue(SUCCESSFULLY_SPREAD, successfullySpread);
+        }
+
         // Set the state in the world.
         if (state != originalState) {
             level.setBlockAndUpdate(pos, state);
         }
-        // Erode or spread, and grow.
-        if (rand.nextFloat() < this.chanceToSpread()) {
-            this.grow(state, level, pos);
-        }
+
     }
 
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
@@ -424,11 +435,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Defines the properties for the block.
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW);
+        builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW, SUCCESSFULLY_SPREAD);
     }
 
-    protected float chanceToSpread() {
-        return 0.25f;
+    protected float chanceToSpread(BlockState state) {
+        return state.getValue(SUCCESSFULLY_SPREAD) ? 0.25f : 0.015625f;
     }
 
     public enum NeighborType implements StringRepresentable {

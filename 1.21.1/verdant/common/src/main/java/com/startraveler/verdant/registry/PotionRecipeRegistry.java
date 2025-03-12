@@ -29,6 +29,9 @@ import java.util.Set;
 
 public class PotionRecipeRegistry {
 
+    // MobEffects.DARKNESS
+
+
     private final TriConsumer<Holder<Potion>, Item, Holder<Potion>> potionRegistrar;
     private final TriConsumer<Item, Ingredient, Item> genericRegistrar;
 
@@ -113,6 +116,38 @@ public class PotionRecipeRegistry {
                 PotionRegistry.FOOD_POISONING.asHolder(),
                 Items.GLOWSTONE_DUST,
                 PotionRegistry.STRONG_FOOD_POISONING.asHolder()
+        );
+
+        recipes.register(
+                PotionRegistry.COLLOID.asHolder(),
+                Items.FERMENTED_SPIDER_EYE,
+                PotionRegistry.ADRENALINE.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.ADRENALINE.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_ADRENALINE.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.ADRENALINE.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_ADRENALINE.asHolder()
+        );
+
+        recipes.register(
+                PotionRegistry.BLURRED.asHolder(),
+                Items.FERMENTED_SPIDER_EYE,
+                PotionRegistry.CLUMSINESS.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.CLUMSINESS.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_CLUMSINESS.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.CLUMSINESS.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_CLUMSINESS.asHolder()
         );
 
     }

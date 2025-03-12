@@ -36,8 +36,6 @@ public class BoneMealEffect extends MobEffect {
 
         // Random chance.
         if (entity.canBeCollidedWith() && entity.getRandom().nextFloat() >= 0.05 * (amplifier + 1)) {
-
-
             // Applies bone meal below, at, and above the player.
 
             BoneMealItem.growCrop(Items.BONE_MEAL.getDefaultInstance(), entity.level(), entity.blockPosition());

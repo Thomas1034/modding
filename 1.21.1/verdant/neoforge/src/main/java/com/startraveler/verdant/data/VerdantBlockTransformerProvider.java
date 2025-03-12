@@ -1,8 +1,8 @@
 package com.startraveler.verdant.data;
 
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import com.startraveler.verdant.data.definitions.BlockTransformerDefinitions;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

@@ -10,7 +10,7 @@
             "predicate": {
               "location": {
                 "block": {
-                  "blocks": "#verdant:strangler_logs"
+                  "blocks": "#rootbound:strangler_logs"
                 }
               }
             }

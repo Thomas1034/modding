@@ -5,7 +5,6 @@ import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.VerdantTags;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -25,9 +24,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            generateFor(woodSet);
-        }
+
         addDirtOres();
 
 
@@ -210,41 +207,5 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(Tags.Items.ORES_IRON).add(BlockRegistry.DIRT_IRON_ORE.get().asItem());
         this.tag(Tags.Items.ORES_LAPIS).add(BlockRegistry.DIRT_LAPIS_ORE.get().asItem());
         this.tag(Tags.Items.ORES_REDSTONE).add(BlockRegistry.DIRT_REDSTONE_ORE.get().asItem());
-    }
-
-
-    public void generateFor(WoodSet woodSet) {
-        this.tag(woodSet.getLogItems()).add(
-                woodSet.getLog().get().asItem(),
-                woodSet.getWood().get().asItem(),
-                woodSet.getStrippedLog().get().asItem(),
-                woodSet.getStrippedWood().get().asItem()
-        );
-        this.tag(ItemTags.WOODEN_SLABS).add(woodSet.getSlab().get().asItem());
-        this.tag(ItemTags.WOODEN_STAIRS).add(woodSet.getStairs().get().asItem());
-        this.tag(ItemTags.WOODEN_BUTTONS).add(woodSet.getButton().get().asItem());
-        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(woodSet.getPressurePlate().get().asItem());
-        this.tag(ItemTags.WOODEN_FENCES).add(woodSet.getFence().get().asItem());
-        this.tag(ItemTags.PLANKS).add(woodSet.getPlanks().get().asItem());
-        this.tag(ItemTags.LOGS).add(
-                woodSet.getLog().get().asItem(),
-                woodSet.getWood().get().asItem(),
-                woodSet.getStrippedLog().get().asItem(),
-                woodSet.getStrippedWood().get().asItem()
-        );
-        if (woodSet.isFlammable()) {
-            this.tag(ItemTags.LOGS_THAT_BURN).add(
-                    woodSet.getLog().get().asItem(),
-                    woodSet.getWood().get().asItem(),
-                    woodSet.getStrippedLog().get().asItem(),
-                    woodSet.getStrippedWood().get().asItem()
-            );
-        }
-        this.tag(ItemTags.SIGNS).add(woodSet.getSignItem().get());
-        this.tag(ItemTags.HANGING_SIGNS).add(woodSet.getHangingSignItem().get());
-        this.tag(ItemTags.WOODEN_DOORS).add(woodSet.getDoor().get().asItem());
-        this.tag(ItemTags.WOODEN_TRAPDOORS).add(woodSet.getTrapdoor().get().asItem());
-        this.tag(Tags.Items.FENCE_GATES_WOODEN).add(woodSet.getFenceGate().get().asItem());
-        this.tag(Tags.Items.FENCES_WOODEN).add(woodSet.getFence().get().asItem());
     }
 }

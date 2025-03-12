@@ -2,13 +2,13 @@ package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.data.definitions.VerdantModelTemplates;
 import com.startraveler.verdant.data.definitions.VerdantTextureMapping;
 import com.startraveler.verdant.data.definitions.VerdantTexturedModel;
 import com.startraveler.verdant.registry.ArmorMaterialRegistry;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -345,11 +345,7 @@ public class VerdantModelProvider extends ModelProvider {
         this.blockModels = blockModels;
         this.itemModels = itemModels;
 
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            generateFor(woodSet);
-        }
-
-        fishTrapWithItem(BlockRegistry.FISH_TRAP_BLOCK.get());
+        fishTrapWithItem(BlockRegistry.FISH_TRAP.get());
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE.get());
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD.get());
         tumbledOverlaidBlockWithItem(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT, VERDANT_OVERLAYS);
@@ -532,6 +528,27 @@ public class VerdantModelProvider extends ModelProvider {
 
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.PAPER_FRAME.get(), TexturedModel.COLUMN);
 
+        createCrossBlockWithoutItem(
+                BlockRegistry.SMALL_ALOE.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout",
+                ((AloeCropBlock) BlockRegistry.SMALL_ALOE.get()).getAgeProperty(),
+                IntStream.range(0, ((AloeCropBlock) BlockRegistry.SMALL_ALOE.get()).getMaxAge() + 1).toArray()
+        );
+
+        createAsteriskBlockWithoutItem(
+                BlockRegistry.LARGE_ALOE.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout",
+                ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getAgeProperty(),
+                IntStream.range(0, ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getMaxAge() + 1).toArray()
+        );
+
+        blockModels.createTrivialCube(BlockRegistry.HUGE_ALOE.get());
+        blockModels.createTrivialBlock(BlockRegistry.SCREE.get(), TexturedModel.COLUMN);
+
+        basicItem(ItemRegistry.ALOE_PUP.get());
+
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
         basicItem(ItemRegistry.THORN.get());
         basicItem(BlockRegistry.STRANGLER_VINE.get().asItem());
@@ -638,9 +655,11 @@ public class VerdantModelProvider extends ModelProvider {
 
         basicItem(ItemRegistry.DART.get());
         tippedArrow(ItemRegistry.TIPPED_DART.get());
-        handheldItem(ItemRegistry.BLOWGUN.get());
-
         handheldItem(ItemRegistry.HUNTING_SPEAR.get());
+
+        handheldItem(ItemRegistry.ALOE_LEAF.get());
+
+        itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
     }
 
     @Override
@@ -654,6 +673,9 @@ public class VerdantModelProvider extends ModelProvider {
         excluded.add(BlockRegistry.ROPE_HOOK.get());
         excluded.add(BlockRegistry.STINKING_BLOSSOM.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get());
+        WoodSets.WOOD_SETS.forEach(woodSet -> {
+            woodSet.getBlockProvider().getEntries().forEach(registryObject -> excluded.add(registryObject.get()));
+        });
 
         return super.getKnownBlocks().filter(entry -> !excluded.contains(entry.value()));
     }
@@ -662,8 +684,15 @@ public class VerdantModelProvider extends ModelProvider {
     protected Stream<? extends Holder<Item>> getKnownItems() {
         List<Item> excluded = new ArrayList<>();
 
+        excluded.add(ItemRegistry.BLOWGUN.get());
         excluded.add(ItemRegistry.ROPE_COIL.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get().asItem());
+
+        WoodSets.WOOD_SETS.forEach(woodSet -> {
+            woodSet.getItemProvider().getEntries().forEach(registryObject -> excluded.add(registryObject.get()));
+        });
+
+
         return super.getKnownItems().filter(entry -> !excluded.contains(entry.value()));
     }
 
@@ -673,20 +702,6 @@ public class VerdantModelProvider extends ModelProvider {
 
     private ResourceLocation key(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
-    }
-
-    protected void generateFor(WoodSet woodSet) {
-        Block planks = woodSet.getPlanks().get();
-
-        blockModels.family(woodSet.getPlanks().get()).generateFor(woodSet.getFamily());
-        blockModels.createHangingSign(planks, woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get());
-        blockModels.createAxisAlignedPillarBlock(woodSet.getLog().get(), TexturedModel.COLUMN);
-        blockModels.createAxisAlignedPillarBlock(woodSet.getStrippedLog().get(), TexturedModel.COLUMN);
-        blockModels.createAxisAlignedPillarBlock(woodSet.getWood().get(), TexturedModel.COLUMN);
-        blockModels.createAxisAlignedPillarBlock(woodSet.getStrippedWood().get(), TexturedModel.COLUMN);
-
-        basicItem(woodSet.getBoatItem().get());
-        basicItem(woodSet.getChestBoatItem().get());
     }
 
     private void basicItem(Item item) {
@@ -853,7 +868,7 @@ public class VerdantModelProvider extends ModelProvider {
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourcelocation));
     }
 
-    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
+    public void createCrossBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
         if (ageProperty.getPossibleValues().size() != possibleValues.length) {
             throw new IllegalArgumentException("missing values for property: " + ageProperty);
         } else {
@@ -867,9 +882,41 @@ public class VerdantModelProvider extends ModelProvider {
                         .createWithSuffix(block, s, texturemapping, blockModels.modelOutput);
                 return Variant.variant().with(VariantProperties.MODEL, resourcelocation);
             });
-            blockModels.registerSimpleFlatItemModel(block.asItem());
             blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertydispatch));
         }
+    }
+
+    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
+        createCrossBlockWithoutItem(block, plantType, renderType, ageProperty, possibleValues);
+        blockModels.registerSimpleFlatItemModel(block.asItem());
+
+    }
+
+    public void createAsteriskBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
+        if (ageProperty.getPossibleValues().size() != possibleValues.length) {
+            throw new IllegalArgumentException("missing values for property: " + ageProperty);
+        } else {
+            PropertyDispatch propertydispatch = PropertyDispatch.property(ageProperty).generate(index -> {
+                String s = "_stage" + possibleValues[index];
+                TextureMapping texture = VerdantTextureMapping.asterisk(
+                        TextureMapping.getBlockTexture(block),
+                        TextureMapping.getBlockTexture(block, s)
+                );
+
+                ResourceLocation resourcelocation = VerdantModelTemplates.ASTERISK.extend()
+                        .renderType(renderType)
+                        .build()
+                        .createWithSuffix(block, s, texture, blockModels.modelOutput);
+                return Variant.variant().with(VariantProperties.MODEL, resourcelocation);
+            });
+            blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertydispatch));
+        }
+    }
+
+    public void createAsteriskBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
+        createAsteriskBlockWithoutItem(block, plantType, renderType, ageProperty, possibleValues);
+        blockModels.registerSimpleFlatItemModel(block.asItem());
+
     }
 
     public void generateSimpleSpecialItemModel(Block block, SpecialModelRenderer.Unbaked specialModel) {

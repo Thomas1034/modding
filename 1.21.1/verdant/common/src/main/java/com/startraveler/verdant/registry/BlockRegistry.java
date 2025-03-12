@@ -22,32 +22,34 @@ import com.startraveler.verdant.block.custom.InfestedRotatedPillarBlock;
 import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
+import com.startraveler.verdant.block.custom.extensible.HugeAloeCropBlock;
 import com.startraveler.verdant.block.loot.LootLocations;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
-
-
-// NEXT UP:
-// Rework block and item registration.
-// Registration helper classes:
-// Supply
 
 
 public class BlockRegistry {
@@ -82,7 +84,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> STRANGLER_TENDRIL_PLANT;
     public static final RegistryObject<Block, Block> POISON_IVY;
     public static final RegistryObject<Block, Block> POISON_IVY_PLANT;
-    public static final RegistryObject<Block, Block> FISH_TRAP_BLOCK;
+    public static final RegistryObject<Block, Block> FISH_TRAP;
     public static final RegistryObject<Block, Block> ANTIGORITE;
     public static final RegistryObject<Block, Block> ROPE;
     public static final RegistryObject<Block, Block> ROPE_HOOK;
@@ -146,6 +148,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> POTTED_RUE;
     public static final RegistryObject<Block, Block> PAPER_FRAME;
     public static final RegistryObject<Block, Block> ROPE_LADDER;
+    public static final RegistryObject<Block, Block> SMALL_ALOE;
+    public static final RegistryObject<Block, Block> LARGE_ALOE;
+    public static final RegistryObject<Block, Block> HUGE_ALOE;
+    public static final RegistryObject<Block, Block> SCREE;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -193,6 +199,7 @@ public class BlockRegistry {
                         () -> BlockRegistry.VERDANT_GRASS_CLAY
                 )
         );
+
         VERDANT_GRASS_CLAY = registerBlockWithItem(
                 "verdant_grass_clay",
                 () -> new SpreadingRootsBlock(
@@ -203,8 +210,7 @@ public class BlockRegistry {
         );
         PACKED_GRAVEL = registerBlockWithItem(
                 "packed_gravel",
-                () -> new Block(properties("packed_gravel").pushReaction(PushReaction.DESTROY)
-                        .pushReaction(PushReaction.DESTROY))
+                () -> new Block(properties(Blocks.GRAVEL, "packed_gravel").strength(1.0F).pushReaction(PushReaction.DESTROY))
         );
         DIRT_COAL_ORE = registerBlockWithItem(
                 "dirt_coal_ore", () -> new HoeRemovableItemBlock(
@@ -335,7 +341,7 @@ public class BlockRegistry {
                 () -> new PoisonIvyPlantBlock(properties(Blocks.WEEPING_VINES_PLANT, "poison_ivy_plant").offsetType(
                         BlockBehaviour.OffsetType.XZ).noOcclusion().randomTicks())
         );
-        FISH_TRAP_BLOCK = registerBlockWithItem(
+        FISH_TRAP = registerBlockWithItem(
                 "fish_trap",
                 () -> new FishTrapBlock(properties(Blocks.OAK_PLANKS, "fish_trap").noOcclusion()
                         .isViewBlocking((s, l, p) -> false))
@@ -736,7 +742,7 @@ public class BlockRegistry {
 
         RUE = registerBlockWithItem(
                 "rue",
-                () -> new FlowerBlock(MobEffectRegistry.BLURRED.asHolder(), 40, properties(Blocks.BLUE_ORCHID, "rue"))
+                () -> new FlowerBlock(MobEffectRegistry.BLURRING.asHolder(), 40, properties(Blocks.BLUE_ORCHID, "rue"))
         );
 
         POTTED_RUE = registerBlockWithoutItem(
@@ -757,7 +763,7 @@ public class BlockRegistry {
                 "paper_frame",
                 () -> new RotatedPillarBlock(properties(
                         Blocks.OAK_FENCE,
-                        "frame_block"
+                        "paper_frame"
                 ).isViewBlocking((state, level, pos) -> false)
                         .noOcclusion()
                         .instabreak()
@@ -767,6 +773,76 @@ public class BlockRegistry {
         ROPE_LADDER = registerBlockWithItem(
                 "rope_ladder",
                 () -> new HangingLadderBlock(properties(Blocks.LADDER, "rope_ladder"))
+        );
+
+        SMALL_ALOE = registerBlockWithoutItem(
+                "small_aloe", () -> new AloeCropBlock(
+                        (state, level, pos) -> level.setBlockAndUpdate(
+                                pos,
+                                BlockRegistry.LARGE_ALOE.get().defaultBlockState()
+                        ), (rand) -> {
+                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2));
+                    stack.set(
+                            DataComponents.USE_COOLDOWN,
+                            new UseCooldown(4.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
+                    );
+                    return stack;
+                }, () -> ItemRegistry.ALOE_PUP.get(), i -> 0f, properties(Blocks.SWEET_BERRY_BUSH, "small_aloe")
+                )
+        );
+
+        LARGE_ALOE = registerBlockWithoutItem(
+                "large_aloe", () -> new AloeCropBlock(
+                        (state, level, pos) -> {
+                            if (((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).canPlace(level, pos, true)) {
+                                ((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).placeFullBush(level, pos, 0);
+                            }
+
+                        }, (rand) -> {
+                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2));
+                    stack.set(
+                            DataComponents.USE_COOLDOWN,
+                            new UseCooldown(2.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
+                    );
+                    return stack;
+                }, () -> ItemRegistry.ALOE_PUP.get(), (i -> i / 10f), properties(Blocks.SWEET_BERRY_BUSH, "large_aloe")
+                ) {
+
+                    @Override
+                    public IntegerProperty getAgeProperty() {
+                        return BlockStateProperties.AGE_5;
+                    }
+
+                    @Override
+                    public int getMaxAge() {
+                        return 5;
+                    }
+
+                }
+        );
+
+        HUGE_ALOE = registerBlockWithoutItem(
+                "huge_aloe", () -> new HugeAloeCropBlock(
+                        properties(Blocks.SWEET_BERRY_BUSH, "huge_aloe"), (rand) -> {
+                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 3));
+                    stack.set(
+                            DataComponents.USE_COOLDOWN,
+                            new UseCooldown(8.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
+                    );
+                    return stack;
+                }, () -> ItemRegistry.ALOE_PUP.get()
+                )
+        );
+
+        SCREE = registerBlockWithItem(
+                "scree", () -> new ColoredFallingBlock(
+                        new ColorRGBA(0x2A2A2F),
+                        properties("scree").mapColor(MapColor.DEEPSLATE)
+                                .instrument(NoteBlockInstrument.SNARE)
+                                .strength(1.5F)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.GRAVEL)
+                )
         );
 
     }

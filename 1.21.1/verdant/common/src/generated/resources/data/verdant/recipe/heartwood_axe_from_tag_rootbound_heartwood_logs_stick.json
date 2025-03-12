@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:heartwood_axe",
+  "key": {
+    "P": "#rootbound:heartwood_logs",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "PP",
+    "PS",
+    " S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:heartwood_axe"
+  }
+}

@@ -16,6 +16,8 @@
  */
 package com.startraveler.verdant.registry;
 
+import com.startraveler.rootbound.tiling.feature.configuration.TilingFeatureConfiguration;
+import com.startraveler.rootbound.tiling.feature.custom.TiledStructureFeature;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.feature.custom.FixedSeagrassFeature;
 import com.startraveler.verdant.feature.custom.StranglerVineFeature;
@@ -36,6 +38,10 @@ public class FeatureRegistry {
     public static final RegistryObject<Feature<?>, Feature<?>> FIXED_SEAGRASS = FEATURES.register(
             "fixed_seagrass",
             () -> new FixedSeagrassFeature(ProbabilityFeatureConfiguration.CODEC)
+    );
+    public static final RegistryObject<Feature<?>, Feature<?>> TEST_TILING = FEATURES.register(
+            "test_tiling",
+            () -> new TiledStructureFeature(TilingFeatureConfiguration.CODEC)
     );
     public static final RegistryObject<Feature<?>, Feature<?>> STRANGLER_VINES = FEATURES.register(
             "strangler_vines",

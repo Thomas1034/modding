@@ -68,7 +68,7 @@ public class GameRendererAddPostShadersMixin {
 
         Player player = this.minecraft.player;
         if (player != null) {
-            MobEffectInstance instance = player.getEffect(MobEffectRegistry.BLURRED.asHolder());
+            MobEffectInstance instance = player.getEffect(MobEffectRegistry.BLURRING.asHolder());
 
             if (instance != null) {
                 PostChain postchain = this.minecraft.getShaderManager()

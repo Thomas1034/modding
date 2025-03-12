@@ -25,7 +25,10 @@ import net.minecraft.world.level.block.state.BlockState;
 public interface VerdantGrower extends Converter, Eroder {
 
     default boolean erodeOrGrow(ServerLevel level, BlockPos pos, boolean isWet) {
-        return this.erodeOrGrow(level.getBlockState(pos), level, pos, isWet);
+        if (level.isLoaded(pos)) {
+            return this.erodeOrGrow(level.getBlockState(pos), level, pos, isWet);
+        }
+        return false;
     }
 
     default boolean erodeOrGrow(BlockState state, ServerLevel level, BlockPos pos, boolean isWet) {

@@ -16,7 +16,7 @@
  */
 package com.startraveler.verdant.block;
 
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -64,7 +64,7 @@ public interface Converter {
         return false;
     }
 
-    abstract ResourceLocation getTransformer();
+    ResourceLocation getTransformer();
 
 }
 

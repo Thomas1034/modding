@@ -12,7 +12,7 @@
     "minecraft:water",
     "verdant:toxic_dirt",
     "verdant:toxic_ash_block",
-    "#verdant:dead_logs",
+    "#rootbound:dead_logs",
     "#minecraft:moss_replaceable",
     "#minecraft:lush_ground_replaceable",
     "#minecraft:bamboo_plantable_on"

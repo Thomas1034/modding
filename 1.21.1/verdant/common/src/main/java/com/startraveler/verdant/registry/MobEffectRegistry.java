@@ -144,8 +144,8 @@ public class MobEffectRegistry {
             "numbness",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000050)
     );
-    public static final RegistryObject<MobEffect, MobEffect> BLURRED = MOB_EFFECTS.register(
-            "blurred",
+    public static final RegistryObject<MobEffect, MobEffect> BLURRING = MOB_EFFECTS.register(
+            "blurring",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x808080)
     );
     public static final RegistryObject<MobEffect, MobEffect> COLORBLIND = MOB_EFFECTS.register(
@@ -159,6 +159,18 @@ public class MobEffectRegistry {
     public static final RegistryObject<MobEffect, MobEffect> SEPIA = MOB_EFFECTS.register(
             "sepia",
             () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0xAD9A78)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> RECALL = MOB_EFFECTS.register(
+            "recall",
+            () -> new RecallEffect(MobEffectCategory.BENEFICIAL, 0x3CFF00)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> ADRENALINE = MOB_EFFECTS.register(
+            "adrenaline",
+            () -> new AdrenalineEffect(MobEffectCategory.BENEFICIAL, 0xE4003B)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> CLUMSINESS = MOB_EFFECTS.register(
+            "clumsiness",
+            () -> new AdrenalineEffect(MobEffectCategory.HARMFUL, 0x9E7402)
     );
 
 

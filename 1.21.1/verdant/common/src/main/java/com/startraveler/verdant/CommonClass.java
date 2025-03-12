@@ -67,7 +67,17 @@ Compatibility
  */
 // Credits: (other direct contributors only)
 /*
+Features Added:
+- Blowgun, with tipped darts
+- Aloe
+- Snapleaves can be smelted into green dye
+- Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potion.
 
+Bugs Fixed:
+- Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth
+- Reduced lag from verdant ground that isn't actively spreading.
+- Packed Gravel is now properly mineable with shovels.
+- And More! (that I forgot to write down)
  */
 public class CommonClass {
 

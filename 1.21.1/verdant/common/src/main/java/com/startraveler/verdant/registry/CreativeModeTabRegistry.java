@@ -19,10 +19,15 @@ package com.startraveler.verdant.registry;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 
 public class CreativeModeTabRegistry {
 
@@ -43,6 +48,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.VERDANT_ROOTED_CLAY.get());
                         output.accept(BlockRegistry.VERDANT_GRASS_CLAY.get());
                         output.accept(BlockRegistry.PACKED_GRAVEL.get());
+                        output.accept(BlockRegistry.SCREE.get());
                         output.accept(BlockRegistry.TOXIC_DIRT.get());
                         output.accept(BlockRegistry.DIRT_COAL_ORE.get());
                         output.accept(BlockRegistry.DIRT_COPPER_ORE.get());
@@ -66,7 +72,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.CHARRED_FRAME_BLOCK.get());
                         output.accept(BlockRegistry.PAPER_FRAME.get());
                         output.accept(BlockRegistry.ROPE.get());
-                        output.accept(BlockRegistry.FISH_TRAP_BLOCK.get());
+                        output.accept(BlockRegistry.FISH_TRAP.get());
                         output.accept(BlockRegistry.POISON_IVY_BLOCK.get());
                         output.accept(BlockRegistry.TOXIC_ASH_BLOCK.get());
                         output.accept(BlockRegistry.PUTRID_FERTILIZER.get());
@@ -104,6 +110,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
+                        output.accept(ItemRegistry.ALOE_PUP.get());
+                        output.accept(ItemRegistry.ALOE_LEAF.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
@@ -162,6 +170,17 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HORSE_ARMOR.get());
+                        output.accept(ItemRegistry.BLOWGUN.get());
+                        output.accept(ItemRegistry.DART.get());
+                        output.accept(ItemRegistry.TIPPED_DART.get());
+                        itemDisplayParameters.holders()
+                                .lookup(Registries.POTION)
+                                .ifPresent((registryLookup) -> generatePotionEffectTypes(
+                                        output,
+                                        registryLookup,
+                                        ItemRegistry.TIPPED_DART.get(),
+                                        itemDisplayParameters.enabledFeatures()
+                                ));
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".combat"))
                     .build()
@@ -172,6 +191,7 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get()))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.ROPE.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.TOXIC_ASH.get());
@@ -187,11 +207,18 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+                        output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".tools"))
                     .build()
     );
 
+    private static void generatePotionEffectTypes(CreativeModeTab.Output output, HolderLookup<Potion> potions, Item item, FeatureFlagSet requiredFeatures) {
+        potions.listElements()
+                .filter((holder) -> (holder.value().isEnabled(requiredFeatures)))
+                .map((holder) -> PotionContents.createItemStack(item, holder))
+                .forEach(output::accept);
+    }
 
     public static void init() {
     }

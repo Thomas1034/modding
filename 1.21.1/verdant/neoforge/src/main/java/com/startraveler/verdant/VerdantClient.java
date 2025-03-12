@@ -1,5 +1,8 @@
 package com.startraveler.verdant;
 
+import com.startraveler.rootbound.RootboundClient;
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
+import com.startraveler.rootbound.featureset.FeatureSet;
 import com.startraveler.verdant.client.item.RopeGlowProperty;
 import com.startraveler.verdant.client.item.RopeHangingBlockProperty;
 import com.startraveler.verdant.client.item.RopeHookProperty;
@@ -7,20 +10,11 @@ import com.startraveler.verdant.client.item.RopeLengthProperty;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.data.*;
-import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.BlockEntityTypeRegistry;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import com.startraveler.verdant.registry.MenuRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.baitdata.BaitData;
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.util.featureset.FeatureSet;
-import com.startraveler.verdant.woodset.WoodSet;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.HolderLookup;
@@ -34,9 +28,6 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ProblemReporter;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -50,19 +41,21 @@ import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@Mod(value = "verdant", dist = Dist.CLIENT)
+@Mod(value = Constants.MOD_ID, dist = Dist.CLIENT)
 public class VerdantClient {
-
-    protected static final Map<RegistryObject<EntityType<?>, EntityType<? extends Boat>>, ModelLayerLocation> LOCATION_FOR_BOAT = new HashMap<>();
-    protected static final Map<RegistryObject<EntityType<?>, EntityType<? extends ChestBoat>>, ModelLayerLocation> LOCATION_FOR_CHEST_BOAT = new HashMap<>();
 
     public VerdantClient(IEventBus modBus) {
         modBus.addListener(VerdantClient::gatherData);
+        modBus.addListener(
+                GatherDataEvent.Client.class,
+                (event) -> RootboundClient.gatherData(event, WoodSets.WOOD_SETS)
+        );
         modBus.addListener(VerdantClient::onClientSetup);
-        modBus.addListener(VerdantClient::onRegisterLayerDefinitions);
         modBus.addListener(VerdantClient::registerScreens);
         modBus.addListener(VerdantClient::registerBlockEntityRenderers);
         modBus.addListener(VerdantClient::registerSpecialModels);
@@ -70,14 +63,13 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerSelectProperties);
         modBus.addListener(VerdantClient::registerConditionalProperties);
 
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            initialSetupBeforeRenderEvents(woodSet);
-        }
+        RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
     }
 
 
     public static void gatherData(final GatherDataEvent.Client event) {
         try {
+
             // Store some frequently-used fields for later use.
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();
@@ -134,12 +126,18 @@ public class VerdantClient {
                             packOutput,
                             lookupProvider,
                             new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)
-                                    .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
+                                    // .add(TileSet.KEY, VerdantTileSetProvider::register)
+                                    // .add(StructureTile.KEY, VerdantStructureTileProvider::register)
+                                    // .add(TileConnection.KEY, VerdantTileConnectionProvider::register)
                                     .add(BaitData.KEY, BaitDataProvider::register)
+                                    .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
                                     .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
-                            Set.of(Constants.MOD_ID, "minecraft")
+                            Set.of(Constants.MOD_ID, "minecraft", com.startraveler.rootbound.Constants.MOD_ID)
                     )
             );
+
+            // Generate lang file
+            generator.addProvider(true, new VerdantEnglishUSLanguageProvider(packOutput));
 
             // Generate advancements
             generator.addProvider(
@@ -159,37 +157,8 @@ public class VerdantClient {
     }
 
 
-    public static void initialSetupBeforeRenderEvents(WoodSet woodSet) {
-
-        ModelLayerLocation boat = new ModelLayerLocation(
-                ResourceLocation.withDefaultNamespace("boat/" + woodSet.getName()),
-                "main"
-        );
-        // ModelLayers.register("boat/" + woodSet.getName());
-        ModelLayerLocation chestBoat = new ModelLayerLocation(
-                ResourceLocation.withDefaultNamespace("chest_boat/" + woodSet.getName()),
-                "main"
-        );
-        // ModelLayers.register("chest_boat/" + woodSet.getName());
-
-        LOCATION_FOR_BOAT.put(woodSet.getBoat(), boat);
-        LOCATION_FOR_CHEST_BOAT.put(woodSet.getChestBoat(), chestBoat);
-    }
-
-    public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            event.registerLayerDefinition(LOCATION_FOR_BOAT.get(woodSet.getBoat()), BoatModel::createBoatModel);
-            event.registerLayerDefinition(
-                    LOCATION_FOR_CHEST_BOAT.get(woodSet.getChestBoat()),
-                    BoatModel::createChestBoatModel
-            );
-        }
-    }
-
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            setupWoodSets();
-
             EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
@@ -199,34 +168,11 @@ public class VerdantClient {
         });
     }
 
-    public static void setupWoodSets() {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            setupWoodSet(woodSet);
-        }
-    }
-
-    public static void setupWoodSet(WoodSet woodSet) {
-        EntityRenderers.register(
-                woodSet.getBoat().get(),
-                (context) -> new BoatRenderer(context, LOCATION_FOR_BOAT.get(woodSet.getBoat()))
-        );
-        EntityRenderers.register(
-                woodSet.getChestBoat().get(),
-                (context) -> new BoatRenderer(context, LOCATION_FOR_CHEST_BOAT.get(woodSet.getChestBoat()))
-        );
-
-        registerRenderTypes(woodSet);
-    }
 
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
     }
 
-    @SuppressWarnings("deprecation")
-    public static void registerRenderTypes(WoodSet woodSet) {
-        ItemBlockRenderTypes.setRenderLayer(woodSet.getTrapdoor().get(), RenderType.CUTOUT);
-        ItemBlockRenderTypes.setRenderLayer(woodSet.getDoor().get(), RenderType.CUTOUT);
-    }
 
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(

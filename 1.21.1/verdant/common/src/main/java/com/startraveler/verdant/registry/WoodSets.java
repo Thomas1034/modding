@@ -16,8 +16,8 @@
  */
 package com.startraveler.verdant.registry;
 
+import com.startraveler.rootbound.woodset.WoodSet;
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;

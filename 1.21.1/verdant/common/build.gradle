@@ -42,4 +42,7 @@ artifacts {
         commonResources dir
     }
 }
+dependencies {
+    implementation files('libs/rootbound-common-1.21.4-1.0.0.jar')
+}
 

@@ -2,8 +2,6 @@ package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.registry.CompostablesRegistry;
 import com.startraveler.verdant.registry.FuelsRegistry;
-import com.startraveler.verdant.registry.WoodSets;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -22,17 +20,10 @@ public class VerdantDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            generateFor(woodSet);
-        }
 
         CompostablesRegistry.init(this::addCompostable);
 
         FuelsRegistry.init(this::addFurnaceFuel);
-    }
-
-    public void generateFor(WoodSet woodSet) {
-        woodSet.registerFuels(this::addFurnaceFuel);
     }
 
     public void addCompostable(ItemLike item, float compostChance) {

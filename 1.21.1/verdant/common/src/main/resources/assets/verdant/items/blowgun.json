@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "verdant:item/blowgun"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "verdant:item/blowgun_held"
+    },
+    "property": "minecraft:using_item"
+  }
+}

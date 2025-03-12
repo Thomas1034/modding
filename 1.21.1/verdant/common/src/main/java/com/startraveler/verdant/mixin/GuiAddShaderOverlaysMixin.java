@@ -47,7 +47,7 @@ public class GuiAddShaderOverlaysMixin {
         float screenEffectScale = this.minecraft.options.screenEffectScale().get().floatValue();
         Player player = this.minecraft.player;
         if (player != null) {
-            MobEffectInstance instance = player.getEffect(MobEffectRegistry.BLURRED.asHolder());
+            MobEffectInstance instance = player.getEffect(MobEffectRegistry.BLURRING.asHolder());
             if (instance != null) {
                 this.verdant$renderBlurredOverlay(guiGraphics, Mth.map(1.25f - screenEffectScale, 0, 1.2f, 0, 1));
             }

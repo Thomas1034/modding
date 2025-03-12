@@ -27,7 +27,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class DartEntity extends Arrow {
@@ -41,7 +40,7 @@ public class DartEntity extends Arrow {
         this(EntityTypeRegistry.DART.get(), thrower, level, ammo, bow);
     }
 
-    protected DartEntity(EntityType<? extends Arrow> entityType, LivingEntity owner, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+    protected DartEntity(EntityType<? extends Arrow> entityType, LivingEntity owner, Level level, ItemStack pickupItemStack, ItemStack firedFromWeapon) {
         this(
                 entityType,
                 owner.getX(),
@@ -54,7 +53,7 @@ public class DartEntity extends Arrow {
         this.setOwner(owner);
     }
 
-    protected DartEntity(EntityType<? extends Arrow> entityType, double x, double y, double z, Level level, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+    protected DartEntity(EntityType<? extends Arrow> entityType, double x, double y, double z, Level level, ItemStack pickupItemStack, ItemStack firedFromWeapon) {
         this(entityType, level);
         this.setPickupItemStack(pickupItemStack.copy());
         this.setCustomName(pickupItemStack.get(DataComponents.CUSTOM_NAME));

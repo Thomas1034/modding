@@ -16,10 +16,10 @@
  */
 package com.startraveler.verdant.block.custom;
 
+import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import com.startraveler.verdant.entity.custom.ThrownRopeEntity;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.VerdantTags;
-import com.startraveler.verdant.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

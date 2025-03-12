@@ -6,7 +6,6 @@ import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.VerdantTags;
-import com.startraveler.verdant.woodset.WoodSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -39,9 +38,6 @@ public class VerdantRecipeProvider extends RecipeProvider {
     // TODO marking the place since IntelliJ sorts this file (partially and arbitrarily)
     @Override
     protected void buildRecipes() {
-        for (WoodSet woodSet : WoodSets.WOOD_SETS) {
-            this.generateFor(woodSet);
-        }
 
         suspiciousStew(
                 BlockRegistry.WILD_COFFEE.get().asItem(),
@@ -59,6 +55,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.RUE.get().asItem(),
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.RUE.get()))
         );
+
         shapeless(List.of(BlockRegistry.TIGER_LILY.get()), List.of(1), RecipeCategory.MISC, Items.ORANGE_DYE, 1);
         shapeless(List.of(BlockRegistry.BLEEDING_HEART.get()), List.of(1), RecipeCategory.MISC, Items.RED_DYE, 1);
         shapeless(List.of(BlockRegistry.WILD_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.LIGHT_GRAY_DYE, 1);
@@ -70,6 +67,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(ItemRegistry.HEART_FRAGMENT.get(), VerdantTags.Items.VERDANT_GROUND),
                 RecipeCategory.MISC,
                 ItemRegistry.HEART_OF_THE_FOREST.get(),
+                1
+        );
+
+        shaped(
+                List.of(" f ", "fdf", " f "),
+                List.of('f', 'd'),
+                List.of(ItemRegistry.ALOE_LEAF.get(), ItemTags.DIRT),
+                RecipeCategory.MISC,
+                ItemRegistry.ALOE_PUP.get(),
                 1
         );
 
@@ -196,6 +202,17 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        shaped(
+                List.of("gg", "gg"),
+                List.of('g'),
+                List.of(Blocks.GRAVEL),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.PACKED_GRAVEL.get(),
+                1
+        );
+
+
+
         // Thorn spikes item
         shaped(
                 List.of("TTT", "TTT", "KRK"),
@@ -232,6 +249,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.FRAME_BLOCK.get(),
                 1
         );
+        smeltingResultFromBase(BlockRegistry.SNAPLEAF.get(), Items.GREEN_DYE);
         smeltingResultFromBase(BlockRegistry.CHARRED_FRAME_BLOCK.get(), BlockRegistry.FRAME_BLOCK.get());
         shaped(
                 List.of(" P ", "PFP", " P "),
@@ -264,7 +282,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of('F', 'P', 'L'),
                 List.of(BlockRegistry.FRAME_BLOCK.get(), ItemTags.PLANKS, BlockRegistry.ROPE.get()),
                 RecipeCategory.MISC,
-                BlockRegistry.FISH_TRAP_BLOCK.get(),
+                BlockRegistry.FISH_TRAP.get(),
                 2
         );
 
@@ -403,6 +421,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.UBE_COOKIE.get(),
                 8
         );
+
+        // Slime from Aloe
+        shapeless(List.of(ItemRegistry.ALOE_LEAF.get()), List.of(3), RecipeCategory.TOOLS, Items.SLIME_BALL, 1);
 
 
         // Heartwood armor
@@ -769,93 +790,6 @@ public class VerdantRecipeProvider extends RecipeProvider {
         campfire(ingredients, category, result, experience, 2 * cookingTime, group);
         smelting(ingredients, category, result, experience, cookingTime, group);
         smoking(ingredients, category, result, experience, cookingTime / 2, group);
-    }
-
-    protected void generateFor(WoodSet woodSet) {
-
-        shapeless(
-                List.of(woodSet.getLogItems()),
-                List.of(1),
-                RecipeCategory.BUILDING_BLOCKS,
-                woodSet.getPlanks().get(),
-                4,
-                "planks"
-        );
-
-        shaped(
-                List.of("ll", "ll"),
-                List.of('l'),
-                List.of(woodSet.getLog().get()),
-                RecipeCategory.BUILDING_BLOCKS,
-                woodSet.getWood().get(),
-                3
-        );
-
-        stairBuilder(woodSet.getStairs().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_stairs")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        this.slabBuilder(
-                        RecipeCategory.BUILDING_BLOCKS,
-                        woodSet.getSlab().get(),
-                        Ingredient.of(woodSet.getPlanks().get())
-                )
-                .unlockedBy(hasPlanks(woodSet), this.has(woodSet.getPlanks().get()))
-                .group("wooden_slab")
-                .save(this.output);
-
-        buttonBuilder(woodSet.getButton().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_button")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        pressurePlate(woodSet.getPressurePlate().get(), woodSet.getPlanks().get());
-
-        fenceBuilder(woodSet.getFence().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_fence")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        fenceGateBuilder(woodSet.getFenceGate().get(), Ingredient.of(woodSet.getPlanks().get())).group(
-                "wooden_fence_gate").unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get())).save(this.output);
-
-        doorBuilder(woodSet.getDoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_door")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        trapdoorBuilder(woodSet.getTrapdoor().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_trapdoor")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        signBuilder(woodSet.getSignItem().get(), Ingredient.of(woodSet.getPlanks().get())).group("wooden_sign")
-                .unlockedBy(hasPlanks(woodSet), has(woodSet.getPlanks().get()))
-                .save(this.output);
-
-        hangingSign(woodSet.getHangingSignItem().get(), woodSet.getStrippedLog().get());
-
-        shaped(
-                List.of("p p", "ppp"),
-                List.of('p'),
-                List.of(woodSet.getPlanks().get()),
-                RecipeCategory.TRANSPORTATION,
-                woodSet.getBoatItem().get(),
-                1
-        );
-
-        shapeless(
-                List.of(Items.CHEST, woodSet.getBoatItem().get()),
-                List.of(1, 1),
-                RecipeCategory.TRANSPORTATION,
-                woodSet.getChestBoatItem().get(),
-                1,
-                "chest_boat"
-        );
-    }
-
-    protected String hasPlanks(WoodSet woodSet) {
-        return has(woodSet, "_planks");
-    }
-
-    protected String has(WoodSet woodSet, String suffix) {
-        return "has_" + woodSet.getName() + "_" + suffix;
     }
 
     protected String hasName(ItemLike item) {

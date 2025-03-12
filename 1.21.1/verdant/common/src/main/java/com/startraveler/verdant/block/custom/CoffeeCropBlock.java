@@ -70,6 +70,7 @@ public class CoffeeCropBlock extends CropBlock {
         return MAX_AGE;
     }
 
+    @Override
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
