@@ -9,13 +9,11 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
 
 public class Verdant implements ModInitializer {
 
@@ -64,6 +62,8 @@ public class Verdant implements ModInitializer {
 
             return null;
         });
+
+        TillableBlockRegistry.register(BlockRegistry.STONY_GRUS.get(), HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState()));
 
         CommonClass.addCakeCandles();
 

@@ -63,7 +63,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(BlockRegistry.LARGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
         this.dropOther(BlockRegistry.HUGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
         this.dropOther(BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
+        this.dropSelf(BlockRegistry.GRUS.get());
+        this.dropSelf(BlockRegistry.STONY_GRUS.get());
         this.dropSelf(BlockRegistry.SCREE.get());
+        this.dropSelf(BlockRegistry.FUSED_SCREE.get());
+        this.dropSelf(BlockRegistry.FUSED_GRAVEL.get());
         this.dropSelf(BlockRegistry.ROPE_LADDER.get());
         this.dropSelf(BlockRegistry.FISH_TRAP.get());
         this.dropSelf(BlockRegistry.ANTIGORITE.get());
@@ -191,6 +195,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.BLACK_CANDLE_UBE_CAKE.get(), createCandleCakeDrops(Blocks.BLACK_CANDLE));
 
         requireSilkTouch(BlockRegistry.PACKED_GRAVEL.get(), Blocks.GRAVEL, List.of(3, 4));
+        requireSilkTouch(BlockRegistry.PACKED_SCREE.get(), BlockRegistry.SCREE.get(), List.of(3, 4));
 
         this.dropSelf(BlockRegistry.DROWNED_HEMLOCK.get());
         this.dropOther(BlockRegistry.DROWNED_HEMLOCK_PLANT.get(), BlockRegistry.DROWNED_HEMLOCK.get());
@@ -222,6 +227,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         );
         oreDrop(BlockRegistry.DIRT_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 3));
         oreDrop(BlockRegistry.DIRT_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
+        oreDrop(BlockRegistry.GRUS_COAL_ORE.get(), Items.COAL, List.of(1, 2));
+        this.add(BlockRegistry.GRUS_COPPER_ORE.get(), this.createCopperOreDrops(BlockRegistry.DIRT_COPPER_ORE.get()));
+        oreDrop(BlockRegistry.GRUS_IRON_ORE.get(), Items.RAW_IRON, List.of(1, 2));
+        oreDrop(BlockRegistry.GRUS_GOLD_ORE.get(), Items.RAW_GOLD, List.of(1, 2));
+        this.add(BlockRegistry.GRUS_LAPIS_ORE.get(), this.createLapisOreDrops(BlockRegistry.DIRT_LAPIS_ORE.get()));
+        this.add(
+                BlockRegistry.GRUS_REDSTONE_ORE.get(),
+                this.createRedstoneOreDrops(BlockRegistry.DIRT_REDSTONE_ORE.get())
+        );
+        oreDrop(BlockRegistry.GRUS_EMERALD_ORE.get(), Items.EMERALD, List.of(1, 3));
+        oreDrop(BlockRegistry.GRUS_DIAMOND_ORE.get(), Items.DIAMOND, List.of(1, 1));
 
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_DIRT.get(), Blocks.DIRT);
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_DIRT.get(), Blocks.DIRT);
@@ -229,6 +245,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_MUD.get(), Blocks.MUD);
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_CLAY.get(), Blocks.CLAY);
         requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY);
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_GRASS_GRUS.get(), BlockRegistry.GRUS.get());
+        requireSilkTouchDropsOther(BlockRegistry.VERDANT_ROOTED_GRUS.get(), BlockRegistry.GRUS.get());
         this.dropSelf(BlockRegistry.SNAPLEAF.get());
 
         this.add(BlockRegistry.POTTED_WILD_CASSAVA.get(), createPotFlowerItemTable(BlockRegistry.WILD_CASSAVA.get()));

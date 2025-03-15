@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "minecraft:slime_ball",
+  "ingredients": [
+    "#verdant:aloes",
+    "#verdant:aloes",
+    "#verdant:aloes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:slime_ball"
+  }
+}

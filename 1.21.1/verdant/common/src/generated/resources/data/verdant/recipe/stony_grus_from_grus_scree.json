@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:stony_grus",
+  "key": {
+    "g": "verdant:grus",
+    "x": "verdant:scree"
+  },
+  "pattern": [
+    "gx",
+    "xg"
+  ],
+  "result": {
+    "count": 4,
+    "id": "verdant:stony_grus"
+  }
+}

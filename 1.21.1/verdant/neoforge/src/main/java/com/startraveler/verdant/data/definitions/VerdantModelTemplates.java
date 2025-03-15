@@ -22,6 +22,12 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.PLUS
     );
 
+    public static final ModelTemplate HUGE_ASTERISK = ModelTemplates.create(
+            "verdant:huge_asterisk",
+            TextureSlot.CROSS,
+            VerdantTextureSlot.PLUS
+    );
+
     public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create("verdant:double_sided_cube_column",
             TextureSlot.END,
             TextureSlot.SIDE

@@ -27,7 +27,6 @@ import com.startraveler.verdant.block.loot.LootLocations;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -36,7 +35,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,7 +44,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -64,7 +61,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> VERDANT_GRASS_MUD;
     public static final RegistryObject<Block, Block> VERDANT_ROOTED_CLAY;
     public static final RegistryObject<Block, Block> VERDANT_GRASS_CLAY;
+    public static final RegistryObject<Block, Block> VERDANT_ROOTED_GRUS;
+    public static final RegistryObject<Block, Block> VERDANT_GRASS_GRUS;
     public static final RegistryObject<Block, Block> PACKED_GRAVEL;
+    public static final RegistryObject<Block, Block> FUSED_GRAVEL;
     public static final RegistryObject<Block, Block> DIRT_COAL_ORE;
     public static final RegistryObject<Block, Block> DIRT_COPPER_ORE;
     public static final RegistryObject<Block, Block> DIRT_IRON_ORE;
@@ -73,6 +73,14 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> DIRT_REDSTONE_ORE;
     public static final RegistryObject<Block, Block> DIRT_EMERALD_ORE;
     public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
+    public static final RegistryObject<Block, Block> GRUS_COAL_ORE;
+    public static final RegistryObject<Block, Block> GRUS_COPPER_ORE;
+    public static final RegistryObject<Block, Block> GRUS_IRON_ORE;
+    public static final RegistryObject<Block, Block> GRUS_GOLD_ORE;
+    public static final RegistryObject<Block, Block> GRUS_LAPIS_ORE;
+    public static final RegistryObject<Block, Block> GRUS_REDSTONE_ORE;
+    public static final RegistryObject<Block, Block> GRUS_EMERALD_ORE;
+    public static final RegistryObject<Block, Block> GRUS_DIAMOND_ORE;
     public static final RegistryObject<Block, Block> STRANGLER_VINE;
     public static final RegistryObject<Block, Block> LEAFY_STRANGLER_VINE;
     public static final RegistryObject<Block, Block> STRANGLER_LEAVES;
@@ -152,6 +160,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> LARGE_ALOE;
     public static final RegistryObject<Block, Block> HUGE_ALOE;
     public static final RegistryObject<Block, Block> SCREE;
+    public static final RegistryObject<Block, Block> PACKED_SCREE;
+    public static final RegistryObject<Block, Block> FUSED_SCREE;
+    public static final RegistryObject<Block, Block> GRUS;
+    public static final RegistryObject<Block, Block> STONY_GRUS;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -208,9 +220,32 @@ public class BlockRegistry {
                         () -> BlockRegistry.VERDANT_ROOTED_CLAY
                 )
         );
+        VERDANT_ROOTED_GRUS = registerBlockWithItem(
+                "verdant_rooted_grus", () -> new SpreadingRootsBlock(
+                        BlockProperties.VERDANT_ROOTS.setId(id("verdant_rooted_grus")),
+                        false,
+                        () -> BlockRegistry.VERDANT_GRASS_GRUS,
+                        false,
+                        () -> BlockRegistry.VERDANT_ROOTED_MUD
+                )
+        );
+        VERDANT_GRASS_GRUS = registerBlockWithItem(
+                "verdant_grass_grus", () -> new SpreadingRootsBlock(
+                        BlockProperties.VERDANT_GRASS.setId(id("verdant_grass_grus")),
+                        true,
+                        () -> BlockRegistry.VERDANT_ROOTED_GRUS,
+                        false,
+                        () -> BlockRegistry.VERDANT_GRASS_MUD
+                )
+        );
         PACKED_GRAVEL = registerBlockWithItem(
                 "packed_gravel",
-                () -> new Block(properties(Blocks.GRAVEL, "packed_gravel").strength(1.0F).pushReaction(PushReaction.DESTROY))
+                () -> new Block(properties(Blocks.GRAVEL, "packed_gravel").strength(1.0F)
+                        .pushReaction(PushReaction.DESTROY))
+        );
+        FUSED_GRAVEL = registerBlockWithItem(
+                "fused_gravel",
+                () -> new Block(properties(Blocks.GRAVEL, "fused_gravel").strength(1.0F))
         );
         DIRT_COAL_ORE = registerBlockWithItem(
                 "dirt_coal_ore", () -> new HoeRemovableItemBlock(
@@ -266,6 +301,62 @@ public class BlockRegistry {
                         properties(Blocks.COARSE_DIRT, "dirt_diamond_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
                         (context) -> Blocks.DIRT.defaultBlockState()
+                )
+        );
+        GRUS_COAL_ORE = registerBlockWithItem(
+                "grus_coal_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_coal_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_COPPER_ORE = registerBlockWithItem(
+                "grus_copper_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_copper_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_IRON_ORE = registerBlockWithItem(
+                "grus_iron_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_iron_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_GOLD_ORE = registerBlockWithItem(
+                "grus_gold_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_gold_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_LAPIS_ORE = registerBlockWithItem(
+                "grus_lapis_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_lapis_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_REDSTONE_ORE = registerBlockWithItem(
+                "grus_redstone_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_redstone_ore").lightLevel((state) -> 2),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_EMERALD_ORE = registerBlockWithItem(
+                "grus_emerald_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_emerald_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                )
+        );
+        GRUS_DIAMOND_ORE = registerBlockWithItem(
+                "grus_diamond_ore", () -> new HoeRemovableItemBlock(
+                        properties(Blocks.COARSE_DIRT, "grus_diamond_ore"),
+                        ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
                 )
         );
         STRANGLER_VINE = registerBlockWithItem(
@@ -780,32 +871,29 @@ public class BlockRegistry {
                         (state, level, pos) -> level.setBlockAndUpdate(
                                 pos,
                                 BlockRegistry.LARGE_ALOE.get().defaultBlockState()
-                        ), (rand) -> {
-                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2));
-                    stack.set(
-                            DataComponents.USE_COOLDOWN,
-                            new UseCooldown(4.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
-                    );
-                    return stack;
-                }, () -> ItemRegistry.ALOE_PUP.get(), i -> 0f, properties(Blocks.SWEET_BERRY_BUSH, "small_aloe")
+                        ),
+                        (rand) -> new ItemStack(ItemRegistry.YOUNG_ALOE_LEAF.get(), rand.nextInt(0, 2)),
+                        () -> ItemRegistry.ALOE_PUP.get(),
+                        i -> 0f,
+                        properties(Blocks.SWEET_BERRY_BUSH, "small_aloe")
                 )
         );
 
         LARGE_ALOE = registerBlockWithoutItem(
                 "large_aloe", () -> new AloeCropBlock(
                         (state, level, pos) -> {
-                            if (((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).canPlace(level, pos, true)) {
-                                ((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).placeFullBush(level, pos, 0);
+                            if (false) {
+                                if (((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).canPlace(level, pos, true)) {
+                                    ((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).placeFullBush(level, pos, 0);
+                                }
                             }
 
-                        }, (rand) -> {
-                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2));
-                    stack.set(
-                            DataComponents.USE_COOLDOWN,
-                            new UseCooldown(2.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
-                    );
-                    return stack;
-                }, () -> ItemRegistry.ALOE_PUP.get(), (i -> i / 10f), properties(Blocks.SWEET_BERRY_BUSH, "large_aloe")
+
+                        },
+                        (rand) -> new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2)),
+                        () -> ItemRegistry.ALOE_PUP.get(),
+                        (i -> i / 10f),
+                        properties(Blocks.SWEET_BERRY_BUSH, "large_aloe")
                 ) {
 
                     @Override
@@ -823,19 +911,14 @@ public class BlockRegistry {
 
         HUGE_ALOE = registerBlockWithoutItem(
                 "huge_aloe", () -> new HugeAloeCropBlock(
-                        properties(Blocks.SWEET_BERRY_BUSH, "huge_aloe"), (rand) -> {
-                    ItemStack stack = new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 3));
-                    stack.set(
-                            DataComponents.USE_COOLDOWN,
-                            new UseCooldown(8.0f, Optional.of(ItemRegistry.ALOE_LEAF.getId()))
-                    );
-                    return stack;
-                }, () -> ItemRegistry.ALOE_PUP.get()
+                        properties(Blocks.SWEET_BERRY_BUSH, "huge_aloe"),
+                        (rand) -> new ItemStack(ItemRegistry.OLD_ALOE_LEAF.get(), rand.nextInt(2, 5)),
+                        () -> ItemRegistry.ALOE_PUP.get()
                 )
         );
 
         SCREE = registerBlockWithItem(
-                "scree", () -> new ColoredFallingBlock(
+                "scree", () -> new ColoredFallingPillarBlock(
                         new ColorRGBA(0x2A2A2F),
                         properties("scree").mapColor(MapColor.DEEPSLATE)
                                 .instrument(NoteBlockInstrument.SNARE)
@@ -843,6 +926,36 @@ public class BlockRegistry {
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.GRAVEL)
                 )
+        );
+
+        PACKED_SCREE = registerBlockWithItem(
+                "packed_scree",
+                () -> new RotatedPillarBlock(properties("packed_scree").mapColor(MapColor.DEEPSLATE)
+                        .instrument(NoteBlockInstrument.SNARE)
+                        .strength(1.8F)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.GRAVEL))
+        );
+
+        FUSED_SCREE = registerBlockWithItem(
+                "fused_scree",
+                () -> new RotatedPillarBlock(properties("fused_scree").mapColor(MapColor.DEEPSLATE)
+                        .instrument(NoteBlockInstrument.SNARE)
+                        .strength(2.0F)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.GRAVEL))
+        );
+
+        GRUS = registerBlockWithItem(
+                "grus",
+                () -> new Block(properties("grus").mapColor(MapColor.COLOR_GRAY).strength(0.8F).sound(SoundType.GRAVEL))
+        );
+
+        STONY_GRUS = registerBlockWithItem(
+                "stony_grus",
+                () -> new Block(properties("stony_grus").mapColor(MapColor.COLOR_GRAY)
+                        .strength(1.0F)
+                        .sound(SoundType.GRAVEL))
         );
 
     }
@@ -865,8 +978,7 @@ public class BlockRegistry {
     }
 
     protected static <T extends Block> RegistryObject<Block, T> registerBlockWithoutItem(String name, Supplier<T> block) {
-        var reg = BLOCKS.register(name, block);
-        return reg;
+        return BLOCKS.register(name, block);
     }
 
     private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {

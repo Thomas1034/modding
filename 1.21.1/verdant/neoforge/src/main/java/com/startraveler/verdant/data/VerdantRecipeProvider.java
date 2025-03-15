@@ -71,9 +71,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         shaped(
-                List.of(" f ", "fdf", " f "),
+                List.of("fff", "fdf"),
                 List.of('f', 'd'),
-                List.of(ItemRegistry.ALOE_LEAF.get(), ItemTags.DIRT),
+                List.of(VerdantTags.Items.ALOES, ItemTags.DIRT),
                 RecipeCategory.MISC,
                 ItemRegistry.ALOE_PUP.get(),
                 1
@@ -211,7 +211,45 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        shaped(
+                List.of("gg", "gg"),
+                List.of('g'),
+                List.of(BlockRegistry.SCREE.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.PACKED_SCREE.get(),
+                1
+        );
 
+        shaped(
+                List.of("gx", "xg"),
+                List.of('g', 'x'),
+                List.of(BlockRegistry.GRUS.get(), Blocks.MOSS_BLOCK),
+                RecipeCategory.BUILDING_BLOCKS,
+                Blocks.DIRT,
+                4
+        );
+
+        shaped(
+                List.of("gx", "xg"),
+                List.of('g', 'x'),
+                List.of(BlockRegistry.GRUS.get(), Blocks.PALE_MOSS_BLOCK),
+                RecipeCategory.BUILDING_BLOCKS,
+                Blocks.DIRT,
+                4
+        );
+
+        shaped(
+                List.of("gx", "xg"),
+                List.of('g', 'x'),
+                List.of(BlockRegistry.GRUS.get(), BlockRegistry.SCREE.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.STONY_GRUS.get(),
+                4
+        );
+
+        smeltingResultFromBase(BlockRegistry.PACKED_GRAVEL.get(), BlockRegistry.FUSED_GRAVEL.get());
+
+        smeltingResultFromBase(BlockRegistry.PACKED_SCREE.get(), BlockRegistry.FUSED_SCREE.get());
 
         // Thorn spikes item
         shaped(
@@ -423,7 +461,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         // Slime from Aloe
-        shapeless(List.of(ItemRegistry.ALOE_LEAF.get()), List.of(3), RecipeCategory.TOOLS, Items.SLIME_BALL, 1);
+        shapeless(List.of(VerdantTags.Items.ALOES), List.of(3), RecipeCategory.TOOLS, Items.SLIME_BALL, 1);
 
 
         // Heartwood armor

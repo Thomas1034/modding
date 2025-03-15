@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/overlaid_cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "verdant:block/grus",
+    "overlay": "verdant:block/overlay_thin",
+    "particle": "verdant:block/grus"
+  }
+}

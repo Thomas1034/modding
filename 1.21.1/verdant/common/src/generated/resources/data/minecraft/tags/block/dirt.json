@@ -6,7 +6,11 @@
     "verdant:verdant_rooted_mud",
     "verdant:verdant_grass_clay",
     "verdant:verdant_rooted_clay",
+    "verdant:verdant_grass_grus",
+    "verdant:verdant_rooted_grus",
     "verdant:cassava_rooted_dirt",
-    "verdant:bitter_cassava_rooted_dirt"
+    "verdant:bitter_cassava_rooted_dirt",
+    "verdant:stony_grus",
+    "verdant:grus"
   ]
 }

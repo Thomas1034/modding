@@ -40,6 +40,20 @@ public class ConsumablesList {
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
+    public static final Consumable YOUNG_ALOE_LEAF = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .animation(ItemUseAnimation.CROSSBOW)
+            .sound(Holder.direct(SoundEvents.EMPTY))
+            .hasConsumeParticles(false)
+            .build();
+    public static final Consumable OLD_ALOE_LEAF = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .animation(ItemUseAnimation.CROSSBOW)
+            .sound(Holder.direct(SoundEvents.EMPTY))
+            .hasConsumeParticles(false)
+            .build();
     public static final Consumable COFFEE_BERRY = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new ApplyStatusEffectsConsumeEffect(
@@ -75,7 +89,11 @@ public class ConsumablesList {
             .build();
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
+                    new MobEffectInstance(
+                            MobEffects.DAMAGE_RESISTANCE,
+                            1200,
+                            0
+                    ),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
             )))
             .build();

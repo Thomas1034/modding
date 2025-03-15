@@ -97,6 +97,7 @@ public class VerdantTags {
     }
 
     public static class Items {
+        public static final TagKey<Item> ALOES = tag("aloes");
         public static final TagKey<Item> STARCHES = tag("starches");
         public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
         public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");

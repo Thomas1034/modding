@@ -1,0 +1,34 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "verdant:block/blasting_blossom_stage1",
+		"flower": "verdant:block/blasting_blossom_stage1",
+		"base": "verdant:block/blasting_blossom_base"
+	},
+	"elements": [
+		{
+			"from": [1, 0.1, 1],
+			"to": [15, 0.1, 15],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [1, 1, 15, 15], "texture": "#base"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#base"}
+			}
+		},
+		{
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+			"faces": {
+				"north": {"uv": [6, 6, 10, 4], "texture": "#flower"},
+				"east": {"uv": [10, 6, 12, 10], "rotation": 90, "texture": "#flower"},
+				"south": {"uv": [6, 10, 10, 12], "texture": "#flower"},
+				"west": {"uv": [6, 6, 4, 10], "rotation": 90, "texture": "#flower"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#flower"},
+				"down": {"uv": [6, 6, 10, 10], "texture": "#flower"}
+			}
+		}
+	]
+}

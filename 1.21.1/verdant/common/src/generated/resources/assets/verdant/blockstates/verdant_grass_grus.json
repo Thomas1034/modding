@@ -1,0 +1,134 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "verdant:block/verdant_grass_grus",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thick",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thick",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thick",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thick",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin2",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin2",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin2",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_thin2",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin_mixed",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin_mixed",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin_mixed",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_very_thin_mixed",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted",
+        "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted_thin",
+        "y": 0
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted_thin",
+        "y": 90
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted_thin",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/verdant_grass_grus_overlay_wilted_thin",
+        "y": 270
+      }
+    ]
+  }
+}

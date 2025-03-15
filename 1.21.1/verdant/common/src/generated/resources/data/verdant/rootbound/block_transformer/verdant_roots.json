@@ -24,6 +24,10 @@
     {
       "block": "minecraft:clay",
       "result": "verdant:verdant_rooted_clay"
+    },
+    {
+      "block": "verdant:grus",
+      "result": "verdant:verdant_rooted_grus"
     }
   ]
 }

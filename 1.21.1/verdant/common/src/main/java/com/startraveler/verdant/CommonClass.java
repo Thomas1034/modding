@@ -60,6 +60,8 @@ Advancements:
 "Born and Bred", walk through a thorn bush without taking damage due to verdant armor.
 "That is just wrong on so many levels" for using toxic ash for fishing
 "Not Generally Considered Edible", eat one of the rotten fertilizers
+"In Aloe Veritas", use aloe's soothing gel to remove a harmful effect
+"Kabloom", step on a volatile flower
 
 Compatibility
 
@@ -69,9 +71,14 @@ Compatibility
 /*
 Features Added:
 - Blowgun, with tipped darts
-- Aloe
+- Aloe, a two-stage crop used to soothe harmful effects.
 - Snapleaves can be smelted into green dye
 - Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potion.
+- Added Fused Gravel, smelted from Packed Gravel
+- Added Scree, a dark-colored gravel equivalent formed by erosion from Deepslate.
+- Added Packed Scree and Fused Scree
+- Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
+- Added Rocky Grus, the equivalent of Coarse Dirt for Scree.
 
 Bugs Fixed:
 - Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth

@@ -40,9 +40,14 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
+                BlockRegistry.VERDANT_GRASS_GRUS.get(),
                 BlockRegistry.TOXIC_DIRT.get(),
                 BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.PACKED_SCREE.get(),
                 BlockRegistry.SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get(),
                 BlockRegistry.DIRT_COAL_ORE.get(),
                 BlockRegistry.DIRT_COPPER_ORE.get(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get(),
@@ -79,10 +84,14 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.BUSH.get()
         );
 
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.IRON_SPIKES.get(), BlockRegistry.IRON_TRAP.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                BlockRegistry.IRON_SPIKES.get(),
+                BlockRegistry.IRON_TRAP.get(),
+                BlockRegistry.FUSED_GRAVEL.get(),
+                BlockRegistry.FUSED_SCREE.get()
+        );
 
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
-
 
         // Mechanical.
         this.tag(BlockTags.CROPS).add(
@@ -97,8 +106,75 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_GRUS.get(),
+                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
                 BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
-                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()
+                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.AZALEA_ROOT_REPLACEABLE).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.ANCIENT_CITY_REPLACEABLE).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.SCULK_REPLACEABLE).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.SCULK_REPLACEABLE_WORLD_GEN).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(BlockRegistry.PACKED_GRAVEL.get());
+        this.tag(BlockTags.MOSS_REPLACEABLE).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
+        );
+        this.tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(
+                BlockRegistry.PACKED_GRAVEL.get(),
+                BlockRegistry.SCREE.get(),
+                BlockRegistry.PACKED_SCREE.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
         );
         this.tag(Tags.Blocks.GRAVELS).add(BlockRegistry.SCREE.get());
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
@@ -108,7 +184,11 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
-                BlockRegistry.TOXIC_DIRT.get()
+                BlockRegistry.VERDANT_GRASS_GRUS.get(),
+                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
+                BlockRegistry.TOXIC_DIRT.get(),
+                BlockRegistry.STONY_GRUS.get(),
+                BlockRegistry.GRUS.get()
         );
         this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get());
 
@@ -230,7 +310,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
-                BlockRegistry.VERDANT_GRASS_CLAY.get()
+                BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
+                BlockRegistry.VERDANT_GRASS_GRUS.get()
         );
 
 
@@ -271,22 +353,28 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.BLOCKS_INTANGIBLE)
                 .add(Blocks.BEDROCK, Blocks.NETHER_PORTAL, Blocks.BARRIER, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
 
-        //
         this.tag(BlockTags.LOGS).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
 
         this.tag(BlockTags.CROPS).add(
+                BlockRegistry.SMALL_ALOE.get(),
+                BlockRegistry.LARGE_ALOE.get(),
+                BlockRegistry.HUGE_ALOE.get(),
                 BlockRegistry.UBE_CROP.get(),
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
         this.tag(BlockTags.BEE_GROWABLES).add(
+                BlockRegistry.SMALL_ALOE.get(),
+                BlockRegistry.LARGE_ALOE.get(),
+                BlockRegistry.HUGE_ALOE.get(),
                 BlockRegistry.UBE_CROP.get(),
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
+
 
         this.tag(VerdantTags.Blocks.BLOCKS_ASH_SPREAD).add(
                 Blocks.BEDROCK,
@@ -307,12 +395,13 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LUSH_GROUND_REPLACEABLE);
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.BAMBOO_PLANTABLE_ON);
 
-        // Dead logs
+        // Dead logs    
         this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
 
         addDirtOres();
+        addGrusOres();
     }
-
+    
     private void addDirtOres() {
         this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_DIRT);
         this.tag(CommonTags.Blocks.ORES_IN_GROUND_DIRT).add(
@@ -334,6 +423,30 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.ORES_LAPIS).add(BlockRegistry.DIRT_LAPIS_ORE.get());
         this.tag(Tags.Blocks.ORES_REDSTONE).add(BlockRegistry.DIRT_REDSTONE_ORE.get());
         this.tag(CommonTags.Blocks.ORE_BEARING_GROUND_DIRT).add(Blocks.DIRT);
+    }
+
+    private void addGrusOres() {
+
+        this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_GRUS);
+        this.tag(CommonTags.Blocks.ORES_IN_GROUND_GRUS).add(
+                BlockRegistry.GRUS_COAL_ORE.get(),
+                BlockRegistry.GRUS_COPPER_ORE.get(),
+                BlockRegistry.GRUS_DIAMOND_ORE.get(),
+                BlockRegistry.GRUS_EMERALD_ORE.get(),
+                BlockRegistry.GRUS_GOLD_ORE.get(),
+                BlockRegistry.GRUS_IRON_ORE.get(),
+                BlockRegistry.GRUS_LAPIS_ORE.get(),
+                BlockRegistry.GRUS_REDSTONE_ORE.get()
+        );
+        this.tag(Tags.Blocks.ORES_COAL).add(BlockRegistry.GRUS_COAL_ORE.get());
+        this.tag(Tags.Blocks.ORES_COPPER).add(BlockRegistry.GRUS_COPPER_ORE.get());
+        this.tag(Tags.Blocks.ORES_DIAMOND).add(BlockRegistry.GRUS_DIAMOND_ORE.get());
+        this.tag(Tags.Blocks.ORES_EMERALD).add(BlockRegistry.GRUS_EMERALD_ORE.get());
+        this.tag(Tags.Blocks.ORES_GOLD).add(BlockRegistry.GRUS_GOLD_ORE.get());
+        this.tag(Tags.Blocks.ORES_IRON).add(BlockRegistry.GRUS_IRON_ORE.get());
+        this.tag(Tags.Blocks.ORES_LAPIS).add(BlockRegistry.GRUS_LAPIS_ORE.get());
+        this.tag(Tags.Blocks.ORES_REDSTONE).add(BlockRegistry.GRUS_REDSTONE_ORE.get());
+        this.tag(CommonTags.Blocks.ORE_BEARING_GROUND_GRUS).add(BlockRegistry.GRUS.get());
     }
 
 }

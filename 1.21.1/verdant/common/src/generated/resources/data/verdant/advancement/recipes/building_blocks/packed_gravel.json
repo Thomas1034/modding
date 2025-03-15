@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fused_gravel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:fused_gravel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:packed_gravel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fused_gravel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:packed_gravel"
+    ]
+  }
+}

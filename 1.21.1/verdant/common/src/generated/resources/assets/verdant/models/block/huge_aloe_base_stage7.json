@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/huge_asterisk",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "verdant:block/huge_aloe_base_stage7_cross",
+    "plus": "verdant:block/huge_aloe_base_stage7_plus"
+  }
+}

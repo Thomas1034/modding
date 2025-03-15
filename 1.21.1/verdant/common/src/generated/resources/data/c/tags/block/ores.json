@@ -1,5 +1,6 @@
 {
   "values": [
-    "#c:ores_in_ground/dirt"
+    "#c:ores_in_ground/dirt",
+    "#c:ores_in_ground/grus"
   ]
 }

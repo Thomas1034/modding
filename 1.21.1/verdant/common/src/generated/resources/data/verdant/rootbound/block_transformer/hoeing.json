@@ -24,6 +24,14 @@
     {
       "block": "verdant:verdant_grass_clay",
       "result": "verdant:verdant_rooted_clay"
+    },
+    {
+      "block": "verdant:verdant_rooted_grus",
+      "result": "verdant:grus"
+    },
+    {
+      "block": "verdant:verdant_grass_grus",
+      "result": "verdant:verdant_rooted_grus"
     }
   ]
 }

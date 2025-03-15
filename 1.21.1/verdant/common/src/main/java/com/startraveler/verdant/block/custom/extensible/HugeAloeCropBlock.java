@@ -34,10 +34,12 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class HugeAloeCropBlock extends Block {
-
-    public static IntegerProperty X_PROPERTY = IntegerProperty.create("x", 0, 2);
-    public static IntegerProperty Y_PROPERTY = IntegerProperty.create("y", 0, 2);
-    public static IntegerProperty Z_PROPERTY = IntegerProperty.create("z", 0, 2);
+    public static int MAX_COORD = 2;
+    public static int MIN_COORD = 0;
+    public static int CENTER_COORD = (MAX_COORD - MIN_COORD) / 2;
+    public static IntegerProperty X_PROPERTY = IntegerProperty.create("x", MIN_COORD, MAX_COORD);
+    public static IntegerProperty Y_PROPERTY = IntegerProperty.create("y", MIN_COORD, MAX_COORD);
+    public static IntegerProperty Z_PROPERTY = IntegerProperty.create("z", MIN_COORD, MAX_COORD);
     public static IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static int MAX_AGE = 7;
     protected final Function<RandomSource, ItemStack> harvest;
@@ -50,9 +52,9 @@ public class HugeAloeCropBlock extends Block {
         this.baseSeed = baseSeed;
         this.registerDefaultState(this.getStateDefinition()
                 .any()
-                .setValue(X_PROPERTY, 1)
-                .setValue(Y_PROPERTY, 0)
-                .setValue(Z_PROPERTY, 1));
+                .setValue(X_PROPERTY, CENTER_COORD)
+                .setValue(Y_PROPERTY, MIN_COORD)
+                .setValue(Z_PROPERTY, CENTER_COORD));
     }
 
     // Returns true if the given center position is supported and on a valid block for aloes.

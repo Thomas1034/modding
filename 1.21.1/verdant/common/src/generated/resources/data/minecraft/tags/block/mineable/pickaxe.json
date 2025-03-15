@@ -1,6 +1,8 @@
 {
   "values": [
     "verdant:iron_spikes",
-    "verdant:iron_trap"
+    "verdant:iron_trap",
+    "verdant:fused_gravel",
+    "verdant:fused_scree"
   ]
 }

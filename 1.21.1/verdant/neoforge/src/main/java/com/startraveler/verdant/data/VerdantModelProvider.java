@@ -1,7 +1,9 @@
 package com.startraveler.verdant.data;
 
+import com.google.common.collect.Streams;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.block.custom.extensible.HugeAloeCropBlock;
 import com.startraveler.verdant.data.definitions.VerdantModelTemplates;
 import com.startraveler.verdant.data.definitions.VerdantTextureMapping;
 import com.startraveler.verdant.data.definitions.VerdantTexturedModel;
@@ -9,6 +11,7 @@ import com.startraveler.verdant.registry.ArmorMaterialRegistry;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
+import com.startraveler.verdant.util.Util;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -31,6 +34,7 @@ import org.apache.commons.lang3.function.TriFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -94,7 +98,6 @@ public class VerdantModelProvider extends ModelProvider {
                 );
     }
 
-
     public static MultiPartGenerator createDoubleSidedLogBlock(Block block, ResourceLocation model) {
 
         return MultiPartGenerator.multiPart(block)
@@ -150,6 +153,75 @@ public class VerdantModelProvider extends ModelProvider {
         );
     }
 
+    public static BlockStateGenerator createMirroredColumnGenerator(Block columnBlock, BiConsumer<ResourceLocation, ModelInstance> modelOutput, TextureMapping[] mappings, String[] suffixes) {
+        Stream<ResourceLocation> mirrored = Util.zip(
+                Arrays.stream(mappings),
+                Arrays.stream(suffixes),
+                (mapping, suffix) -> ModelTemplates.CUBE_COLUMN_MIRRORED.createWithSuffix(
+                        columnBlock,
+                        suffix,
+                        mapping,
+                        modelOutput
+                )
+        );
+        Stream<ResourceLocation> normal = Util.zip(
+                Arrays.stream(mappings),
+                Arrays.stream(suffixes),
+                (mapping, suffix) -> ModelTemplates.CUBE_COLUMN.createWithSuffix(
+                        columnBlock,
+                        suffix,
+                        mapping,
+                        modelOutput
+                )
+        );
+        Stream<ResourceLocation> merged = Streams.concat(mirrored, normal);
+        return createRotatedVariant(
+                columnBlock,
+                merged.toArray(ResourceLocation[]::new)
+        ).with(BlockModelGenerators.createRotatedPillar());
+    }
+
+    public static MultiVariantGenerator createRotatedVariant(Block block, ResourceLocation... models) {
+        return MultiVariantGenerator.multiVariant(
+                block, Stream.concat(
+                        Arrays.stream(models).map(model -> Variant.variant().with(VariantProperties.MODEL, model)),
+                        Arrays.stream(models)
+                                .map(model -> Variant.variant()
+                                        .with(VariantProperties.MODEL, model)
+                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                ).toArray(Variant[]::new)
+
+        );
+    }
+
+    public MultiPartGenerator createHugeAloeBlock(Block block, BiFunction<Integer, Integer, TexturedModel.Provider> model) {
+
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+
+        for (int i = 0; i <= HugeAloeCropBlock.MAX_AGE; i++) {
+
+            for (int j = HugeAloeCropBlock.MIN_COORD; j <= HugeAloeCropBlock.MAX_COORD; j++) {
+                ResourceLocation location = model.apply(i, j).createWithSuffix(
+                        block,
+                        (j == 0 ? "_base" : j == 1 ? "_middle" : "_top") + "_stage" + i,
+                        blockModels.modelOutput
+                );
+
+
+                generator = generator.with(
+                        Condition.condition()
+                                .term(HugeAloeCropBlock.Y_PROPERTY, j)
+                                .term(HugeAloeCropBlock.Z_PROPERTY, HugeAloeCropBlock.CENTER_COORD)
+                                .term(HugeAloeCropBlock.X_PROPERTY, HugeAloeCropBlock.CENTER_COORD)
+                                .term(HugeAloeCropBlock.AGE, i),
+                        Variant.variant().with(VariantProperties.MODEL, location)
+                );
+            }
+        }
+
+        return generator;
+    }
+
     public MultiPartGenerator createTrapBlock(Block block, BiFunction<Integer, Boolean, TexturedModel.Provider> model) {
 
         MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
@@ -201,7 +273,6 @@ public class VerdantModelProvider extends ModelProvider {
 
         return generator;
     }
-
 
     protected BlockStateGenerator createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[4 * overlays.length];
@@ -369,7 +440,19 @@ public class VerdantModelProvider extends ModelProvider {
                 "verdant_grass",
                 VERDANT_OVERLAYS
         );
+        tumbledOverlaidBlockWithItem(
+                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
+                BlockRegistry.GRUS.get(),
+                VERDANT_OVERLAYS
+        );
+        rotatedTopOverlaidBlockWithItem(
+                BlockRegistry.VERDANT_GRASS_GRUS.get(),
+                BlockRegistry.GRUS.get(),
+                "verdant_grass",
+                VERDANT_OVERLAYS
+        );
         tumbledBlockWithItem(BlockRegistry.PACKED_GRAVEL.get());
+        tumbledBlockWithItem(BlockRegistry.FUSED_GRAVEL.get());
         tumbledBlockWithItem(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
         tumbledBlockWithItem(BlockRegistry.STRANGLER_LEAVES.get());
         tumbledBlockWithItem(BlockRegistry.THORNY_STRANGLER_LEAVES.get());
@@ -382,6 +465,14 @@ public class VerdantModelProvider extends ModelProvider {
         overlaidBlockWithItem(BlockRegistry.DIRT_REDSTONE_ORE.get(), Blocks.DIRT, "redstone_ore_overlay");
         overlaidBlockWithItem(BlockRegistry.DIRT_EMERALD_ORE.get(), Blocks.DIRT, "emerald_ore_overlay");
         overlaidBlockWithItem(BlockRegistry.DIRT_DIAMOND_ORE.get(), Blocks.DIRT, "diamond_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_COAL_ORE.get(), BlockRegistry.GRUS.get(), "coal_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_COPPER_ORE.get(), BlockRegistry.GRUS.get(), "copper_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_IRON_ORE.get(), BlockRegistry.GRUS.get(), "iron_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_GOLD_ORE.get(), BlockRegistry.GRUS.get(), "gold_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_LAPIS_ORE.get(), BlockRegistry.GRUS.get(), "lapis_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_REDSTONE_ORE.get(), BlockRegistry.GRUS.get(), "redstone_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_EMERALD_ORE.get(), BlockRegistry.GRUS.get(), "emerald_ore_overlay");
+        overlaidBlockWithItem(BlockRegistry.GRUS_DIAMOND_ORE.get(), BlockRegistry.GRUS.get(), "diamond_ore_overlay");
 
         createCrossBlock(BlockRegistry.POISON_IVY.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
         createCrossBlock(BlockRegistry.POISON_IVY_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
@@ -544,8 +635,13 @@ public class VerdantModelProvider extends ModelProvider {
                 IntStream.range(0, ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getMaxAge() + 1).toArray()
         );
 
-        blockModels.createTrivialCube(BlockRegistry.HUGE_ALOE.get());
-        blockModels.createTrivialBlock(BlockRegistry.SCREE.get(), TexturedModel.COLUMN);
+        hugeAloeBlock(BlockRegistry.HUGE_ALOE.get());
+        mirroredColumnBlock(BlockRegistry.SCREE.get());
+        mirroredColumnBlock(BlockRegistry.PACKED_SCREE.get());
+        mirroredColumnBlock(BlockRegistry.FUSED_SCREE.get());
+
+        tumbledBlockWithItem(BlockRegistry.GRUS.get());
+        tumbledBlockWithItem(BlockRegistry.STONY_GRUS.get());
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 
@@ -657,7 +753,10 @@ public class VerdantModelProvider extends ModelProvider {
         tippedArrow(ItemRegistry.TIPPED_DART.get());
         handheldItem(ItemRegistry.HUNTING_SPEAR.get());
 
-        handheldItem(ItemRegistry.ALOE_LEAF.get());
+        basicItem(ItemRegistry.ALOE_LEAF.get());
+        basicItem(ItemRegistry.YOUNG_ALOE_LEAF.get());
+        basicItem(ItemRegistry.OLD_ALOE_LEAF.get());
+
 
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
     }
@@ -743,6 +842,23 @@ public class VerdantModelProvider extends ModelProvider {
         tumbledBlockWithItem(block, null);
     }
 
+    protected void mirroredColumnBlock(Block block) {
+        TextureMapping mapping = TextureMapping.column(block);
+        TextureMapping altMapping = VerdantTextureMapping.columnAlt(block);
+
+
+        TextureMapping[] mappings = new TextureMapping[]{mapping, altMapping};
+        String[] suffixes = new String[]{"", "_alt"};
+
+        blockModels.blockStateOutput.accept(createMirroredColumnGenerator(
+                block,
+                blockModels.modelOutput,
+                mappings,
+                suffixes
+        ));
+    }
+
+
     protected void tumbledBlockWithItem(Block block, String renderType) {
         TexturedModel.Provider model = TexturedModel.CUBE;
 
@@ -780,6 +896,15 @@ public class VerdantModelProvider extends ModelProvider {
         ).updateTemplate(template -> template.extend().renderType("cutout").build());
 
         blockModels.blockStateOutput.accept(createTrapBlock(block, model));
+    }
+
+    protected void hugeAloeBlock(Block block) {
+        BiFunction<Integer, Integer, TexturedModel.Provider> baseModel = VerdantTexturedModel.HUGE_ASTERISK_FOR_ALOE;
+
+        BiFunction<Integer, Integer, TexturedModel.Provider> model = (age, height) -> baseModel.apply(age, height)
+                .updateTemplate(template -> template.extend().renderType("cutout").build());
+
+        blockModels.blockStateOutput.accept(createHugeAloeBlock(block, model));
     }
 
     protected void spikesBlockWithItem(Block block) {

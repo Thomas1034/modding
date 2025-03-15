@@ -28,6 +28,8 @@ public class BlockProperties {
             .mapColor(MapColor.GRASS).randomTicks().sound(SoundType.GRASS).strength(0.75F);
     public static final BlockBehaviour.Properties VERDANT_GRASS = BlockBehaviour.Properties.of()
             .mapColor(MapColor.GRASS).randomTicks().sound(SoundType.GRASS).strength(0.8F);
+    public static final BlockBehaviour.Properties TOUGH_VERDANT_GRASS = BlockBehaviour.Properties.of()
+            .mapColor(MapColor.GRASS).randomTicks().sound(SoundType.GRASS).strength(1.2F);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_PLANKS = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_SLAB = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_SIGN = verdantHeartwoodBase().forceSolidOn()

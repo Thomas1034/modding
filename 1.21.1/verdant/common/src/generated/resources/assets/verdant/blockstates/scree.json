@@ -1,0 +1,114 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "verdant:block/scree_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree_alt",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/scree_alt",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "verdant:block/scree_mirrored"
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored"
+      },
+      {
+        "model": "verdant:block/scree"
+      },
+      {
+        "model": "verdant:block/scree_alt"
+      },
+      {
+        "model": "verdant:block/scree_mirrored",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree",
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree_alt",
+        "y": 180
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "verdant:block/scree_mirrored",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/scree",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/scree_alt",
+        "x": 90
+      },
+      {
+        "model": "verdant:block/scree_mirrored",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree_alt_mirrored",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/scree_alt",
+        "x": 90,
+        "y": 180
+      }
+    ]
+  }
+}

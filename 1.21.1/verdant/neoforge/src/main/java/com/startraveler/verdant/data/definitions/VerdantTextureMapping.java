@@ -7,8 +7,34 @@ import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
+    public static TextureMapping columnAlt(Block block) {
+        return (new TextureMapping()).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side_alt"))
+                .put(TextureSlot.END, TextureMapping.getBlockTexture(block, "_top"));
+    }
+
     public static TextureMapping asterisk(ResourceLocation plus, ResourceLocation cross) {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
+    }
+
+    public static TextureMapping asterisk(Block block) {
+        return new TextureMapping().put(VerdantTextureSlot.PLUS, TextureMapping.getBlockTexture(block, "_plus"))
+                .put(TextureSlot.CROSS, TextureMapping.getBlockTexture(block, "_cross"));
+    }
+
+    public static TextureMapping asteriskForAloe(int age, int height, Block block) {
+        return new TextureMapping().put(
+                VerdantTextureSlot.PLUS,
+                TextureMapping.getBlockTexture(
+                        block,
+                        (height == 0 ? "_base" : height == 1 ? "_middle" : "_top") + "_stage" + age + "_plus"
+                )
+        ).put(
+                TextureSlot.CROSS,
+                TextureMapping.getBlockTexture(
+                        block,
+                        (height == 0 ? "_base" : height == 1 ? "_middle" : "_top") + "_stage" + age + "_cross"
+                )
+        );
     }
 
     public static TextureMapping candleCake(Block cake, Block candle, boolean lit) {

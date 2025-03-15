@@ -33,9 +33,14 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.COBBLESTONE, BlockRegistry.PACKED_GRAVEL.get()));
         data.add(direct(Blocks.MOSSY_COBBLESTONE, BlockRegistry.PACKED_GRAVEL.get()));
         data.add(direct(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE));
-        data.add(direct(Blocks.COBBLED_DEEPSLATE, Blocks.COBBLESTONE));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE, BlockRegistry.PACKED_SCREE.get()));
         data.add(direct(BlockRegistry.PACKED_GRAVEL.get(), Blocks.COARSE_DIRT));
+        data.add(direct(BlockRegistry.PACKED_SCREE.get(), BlockRegistry.STONY_GRUS.get()));
+        data.add(direct(BlockRegistry.SCREE.get(), BlockRegistry.STONY_GRUS.get()));
+        data.add(direct(BlockRegistry.FUSED_GRAVEL.get(), BlockRegistry.PACKED_GRAVEL.get()));
+        data.add(direct(BlockRegistry.FUSED_SCREE.get(), BlockRegistry.PACKED_SCREE.get()));
         data.add(direct(Blocks.GRAVEL, Blocks.COARSE_DIRT));
+        data.add(direct(BlockRegistry.STONY_GRUS.get(), BlockRegistry.GRUS.get()));
         data.add(direct(Blocks.COARSE_DIRT, Blocks.DIRT));
         data.add(direct(Blocks.DIRT_PATH, Blocks.DIRT));
         data.add(direct(Blocks.MYCELIUM, Blocks.DIRT));
@@ -61,15 +66,15 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.COBBLESTONE_SLAB));
         data.add(direct(Blocks.MOSSY_STONE_BRICK_WALL, Blocks.COBBLESTONE_WALL));
         // Deepslate partial blocks.
-        data.add(direct(Blocks.COBBLED_DEEPSLATE_STAIRS, Blocks.GRAVEL));
-        data.add(direct(Blocks.COBBLED_DEEPSLATE_SLAB, Blocks.GRAVEL));
-        data.add(direct(Blocks.COBBLED_DEEPSLATE_WALL, Blocks.GRAVEL));
-        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.DEEPSLATE));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_STAIRS, BlockRegistry.SCREE.get()));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_SLAB, BlockRegistry.SCREE.get()));
+        data.add(direct(Blocks.COBBLED_DEEPSLATE_WALL, BlockRegistry.SCREE.get()));
+        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.COBBLED_DEEPSLATE));
         data.add(direct(Blocks.DEEPSLATE_BRICK_SLAB, Blocks.COBBLED_DEEPSLATE_SLAB));
         data.add(direct(Blocks.DEEPSLATE_BRICK_STAIRS, Blocks.COBBLED_DEEPSLATE_STAIRS));
         data.add(direct(Blocks.DEEPSLATE_BRICK_WALL, Blocks.COBBLED_DEEPSLATE_WALL));
-        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.DEEPSLATE));
-        data.add(direct(Blocks.DEEPSLATE_TILES, Blocks.DEEPSLATE));
+        data.add(direct(Blocks.DEEPSLATE_BRICKS, Blocks.COBBLED_DEEPSLATE));
+        data.add(direct(Blocks.DEEPSLATE_TILES, Blocks.COBBLED_DEEPSLATE));
         data.add(direct(Blocks.DEEPSLATE_TILE_SLAB, Blocks.COBBLED_DEEPSLATE_SLAB));
         data.add(direct(Blocks.DEEPSLATE_TILE_STAIRS, Blocks.COBBLED_DEEPSLATE_STAIRS));
         data.add(direct(Blocks.DEEPSLATE_TILE_WALL, Blocks.COBBLED_DEEPSLATE_WALL));
@@ -91,15 +96,15 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.MUD_BRICK_SLAB, Blocks.COARSE_DIRT));
         data.add(direct(Blocks.MUD_BRICK_STAIRS, Blocks.COARSE_DIRT));
         data.add(direct(Blocks.MUD_BRICK_WALL, Blocks.COARSE_DIRT));
-        // Deepslate ores to stone ores.
-        data.add(direct(Blocks.DEEPSLATE_COAL_ORE, Blocks.COAL_ORE));
-        data.add(direct(Blocks.DEEPSLATE_COPPER_ORE, Blocks.COPPER_ORE));
-        data.add(direct(Blocks.DEEPSLATE_IRON_ORE, Blocks.IRON_ORE));
-        data.add(direct(Blocks.DEEPSLATE_GOLD_ORE, Blocks.GOLD_ORE));
-        data.add(direct(Blocks.DEEPSLATE_REDSTONE_ORE, Blocks.REDSTONE_ORE));
-        data.add(direct(Blocks.DEEPSLATE_LAPIS_ORE, Blocks.LAPIS_ORE));
-        data.add(direct(Blocks.DEEPSLATE_EMERALD_ORE, Blocks.EMERALD_ORE));
-        data.add(direct(Blocks.DEEPSLATE_DIAMOND_ORE, Blocks.DIAMOND_ORE));
+        // Deepslate ores to grus ores.
+        data.add(direct(Blocks.DEEPSLATE_COAL_ORE, BlockRegistry.GRUS_COAL_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_COPPER_ORE, BlockRegistry.GRUS_COPPER_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_IRON_ORE, BlockRegistry.GRUS_IRON_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_GOLD_ORE, BlockRegistry.GRUS_GOLD_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_REDSTONE_ORE, BlockRegistry.GRUS_REDSTONE_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_LAPIS_ORE, BlockRegistry.GRUS_LAPIS_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_EMERALD_ORE, BlockRegistry.GRUS_EMERALD_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_DIAMOND_ORE, BlockRegistry.GRUS_EMERALD_ORE.get()));
         // Stone ores to dirt ores
         data.add(direct(Blocks.COAL_ORE, BlockRegistry.DIRT_COAL_ORE.get()));
         data.add(direct(Blocks.COPPER_ORE, BlockRegistry.DIRT_COPPER_ORE.get()));
@@ -176,6 +181,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.PODZOL, BlockRegistry.VERDANT_GRASS_DIRT.get()));
         data.add(direct(Blocks.MUD, BlockRegistry.VERDANT_ROOTED_MUD.get()));
         data.add(direct(Blocks.CLAY, BlockRegistry.VERDANT_ROOTED_CLAY.get()));
+        data.add(direct(BlockRegistry.GRUS.get(), BlockRegistry.VERDANT_ROOTED_GRUS.get()));
 
         return new BlockTransformer(data, BlockTransformerRegistry.VERDANT_ROOTS);
     }
@@ -190,6 +196,8 @@ public class BlockTransformerDefinitions {
         data.add(direct(BlockRegistry.VERDANT_GRASS_MUD.get(), BlockRegistry.VERDANT_ROOTED_MUD.get()));
         data.add(direct(BlockRegistry.VERDANT_ROOTED_CLAY.get(), Blocks.CLAY));
         data.add(direct(BlockRegistry.VERDANT_GRASS_CLAY.get(), BlockRegistry.VERDANT_ROOTED_CLAY.get()));
+        data.add(direct(BlockRegistry.VERDANT_ROOTED_GRUS.get(), BlockRegistry.GRUS.get()));
+        data.add(direct(BlockRegistry.VERDANT_GRASS_GRUS.get(), BlockRegistry.VERDANT_ROOTED_GRUS.get()));
 
         return new BlockTransformer(data, BlockTransformerRegistry.HOEING);
     }

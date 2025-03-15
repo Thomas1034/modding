@@ -28,6 +28,10 @@ public class VerdantTexturedModel {
             ModelTemplates.CROSS
     );
 
+    public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),
+            VerdantModelTemplates.HUGE_ASTERISK
+    );
+
 
     public static final BiFunction<Integer, Boolean, TexturedModel.Provider> TRAP = (stage, isHidden) -> {
 

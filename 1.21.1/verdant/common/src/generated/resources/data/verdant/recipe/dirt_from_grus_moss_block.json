@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "minecraft:dirt",
+  "key": {
+    "g": "verdant:grus",
+    "x": "minecraft:moss_block"
+  },
+  "pattern": [
+    "gx",
+    "xg"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:dirt"
+  }
+}

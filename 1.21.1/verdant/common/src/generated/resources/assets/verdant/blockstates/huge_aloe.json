@@ -1,7 +1,268 @@
 {
-  "variants": {
-    "": {
-      "model": "verdant:block/huge_aloe"
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage0"
+      },
+      "when": {
+        "age": "0",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage0"
+      },
+      "when": {
+        "age": "0",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage0"
+      },
+      "when": {
+        "age": "0",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage1"
+      },
+      "when": {
+        "age": "1",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage1"
+      },
+      "when": {
+        "age": "1",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage1"
+      },
+      "when": {
+        "age": "1",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage2"
+      },
+      "when": {
+        "age": "2",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage2"
+      },
+      "when": {
+        "age": "2",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage2"
+      },
+      "when": {
+        "age": "2",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage3"
+      },
+      "when": {
+        "age": "3",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage3"
+      },
+      "when": {
+        "age": "3",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage3"
+      },
+      "when": {
+        "age": "3",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage4"
+      },
+      "when": {
+        "age": "4",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage4"
+      },
+      "when": {
+        "age": "4",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage4"
+      },
+      "when": {
+        "age": "4",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage5"
+      },
+      "when": {
+        "age": "5",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage5"
+      },
+      "when": {
+        "age": "5",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage5"
+      },
+      "when": {
+        "age": "5",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage6"
+      },
+      "when": {
+        "age": "6",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage6"
+      },
+      "when": {
+        "age": "6",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage6"
+      },
+      "when": {
+        "age": "6",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_base_stage7"
+      },
+      "when": {
+        "age": "7",
+        "x": "1",
+        "y": "0",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_middle_stage7"
+      },
+      "when": {
+        "age": "7",
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/huge_aloe_top_stage7"
+      },
+      "when": {
+        "age": "7",
+        "x": "1",
+        "y": "2",
+        "z": "1"
+      }
     }
-  }
+  ]
 }
