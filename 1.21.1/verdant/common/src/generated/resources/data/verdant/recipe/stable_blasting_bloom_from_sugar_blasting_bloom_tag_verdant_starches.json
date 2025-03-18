@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:stable_blasting_bloom",
+  "ingredients": [
+    "minecraft:sugar",
+    "verdant:blasting_bloom",
+    "verdant:blasting_bloom",
+    "#verdant:starches"
+  ],
+  "result": {
+    "count": 2,
+    "id": "verdant:stable_blasting_bloom"
+  }
+}

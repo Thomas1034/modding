@@ -1,4 +1,4 @@
-package com.startraveler.verdant.block.custom.extensible;
+package com.startraveler.verdant.block.custom;
 
 import com.startraveler.verdant.VerdantIFF;
 import com.startraveler.verdant.platform.Services;

@@ -1,8 +1,10 @@
-// 1.21.4	2025-03-13T16:08:21.7205892	Loot Tables
+// 1.21.4	2025-03-17T15:40:07.4500212	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_table/blocks/bitter_cassava_rooted_dirt.json
 c00a1dadacf937cf7d9992b3b77751a45e207752 data/verdant/loot_table/blocks/black_candle_ube_cake.json
+f14967e9f19d92801c7bcba2e41ec3c8b5938b49 data/verdant/loot_table/blocks/blasting_blossom.json
+899e7221dba0c431fb56ec24de67922a522217a9 data/verdant/loot_table/blocks/blasting_bunch.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_table/blocks/bleeding_heart.json
 afb8b97223d01fed96fa4b945c5d81214a11b837 data/verdant/loot_table/blocks/blue_candle_ube_cake.json
 b7e58dbb792f138767be9f1c84693a2a31fce7c9 data/verdant/loot_table/blocks/brown_candle_ube_cake.json

@@ -170,7 +170,11 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> CLUMSINESS = MOB_EFFECTS.register(
             "clumsiness",
-            () -> new AdrenalineEffect(MobEffectCategory.HARMFUL, 0x9E7402)
+            () -> new ClumsinessEffect(MobEffectCategory.HARMFUL, 0x9E9502)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> UNBREAKABLE = MOB_EFFECTS.register(
+            "unbreakable",
+            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0xE0F0F0)
     );
 
 

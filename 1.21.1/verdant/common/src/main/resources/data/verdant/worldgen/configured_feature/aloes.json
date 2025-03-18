@@ -10,7 +10,13 @@
             "entries": [
               {
                 "data": {
-                  "Name": "minecraft:blue_orchid"
+                  "Name": "verdant:small_aloe"
+                },
+                "weight": 3
+              },
+							{
+                "data": {
+                  "Name": "verdant:large_aloe"
                 },
                 "weight": 1
               }

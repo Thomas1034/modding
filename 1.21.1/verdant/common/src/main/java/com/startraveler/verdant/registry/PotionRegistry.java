@@ -177,6 +177,23 @@ public class PotionRegistry {
             )
     );
 
+    public static final RegistryObject<Potion, Potion> BROKEN_ARMOR = POTIONS.register(
+            "broken_armor",
+            () -> new Potion("broken_armor", new MobEffectInstance(MobEffectRegistry.BROKEN_ARMOR.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_BROKEN_ARMOR = POTIONS.register(
+            "long_broken_armor",
+            () -> new Potion("long_broken_armor", new MobEffectInstance(MobEffectRegistry.BROKEN_ARMOR.asHolder(), 9600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_BROKEN_ARMOR = POTIONS.register(
+            "strong_broken_armor",
+            () -> new Potion(
+                    "strong_broken_armor",
+                    new MobEffectInstance(MobEffectRegistry.BROKEN_ARMOR.asHolder(), 1800, 1)
+            )
+    );
+
+
     public static void init() {
     }
 

@@ -21,11 +21,13 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class ClumsinessEffect extends MobEffect {
 
-    public static final int DROP_HOW_OFTEN_IN_TICKS = 400;
+    public static final int DROP_HOW_OFTEN_IN_TICKS = 100;
+    public static final float TOSS_SPEED = 0.2f;
 
     public ClumsinessEffect(MobEffectCategory category, int color) {
         super(category, color);
@@ -36,23 +38,26 @@ public class ClumsinessEffect extends MobEffect {
 
         if (level.random.nextInt(DROP_HOW_OFTEN_IN_TICKS / (amplifier + 1)) == 0) {
             if (entity.hasItemInSlot(EquipmentSlot.MAINHAND)) {
-                ItemStack held = entity.getItemBySlot(EquipmentSlot.MAINHAND);
-                entity.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                entity.spawnAtLocation(level, held);
+                tossItemInSlot(level, entity, EquipmentSlot.MAINHAND);
             } else if (entity.hasItemInSlot(EquipmentSlot.OFFHAND)) {
-                ItemStack held = entity.getItemBySlot(EquipmentSlot.OFFHAND);
-                entity.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
-                entity.spawnAtLocation(level, held);
+                tossItemInSlot(level, entity, EquipmentSlot.OFFHAND);
             }
         }
-
-
         return true;
     }
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
+    }
+
+    protected void tossItemInSlot(ServerLevel level, LivingEntity entity, EquipmentSlot slot) {
+        ItemStack held = entity.getItemBySlot(EquipmentSlot.OFFHAND);
+        entity.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+        ItemEntity item = entity.spawnAtLocation(level, held);
+        if (item != null) {
+            item.setDeltaMovement(entity.getLookAngle().scale(TOSS_SPEED));
+        }
     }
 }
 

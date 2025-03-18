@@ -37,6 +37,7 @@ public class VerdantTags {
 
     public static class MobEffects {
 
+        public static final TagKey<MobEffect> UNBREAKABLE = tag("unbreakable");
         public static final TagKey<MobEffect> AIRLESS_BREATHING = tag("airless_breathing");
         public static final TagKey<MobEffect> WEAK_VERDANT_FRIENDLINESS = tag("weak_verdant_friendliness");
         public static final TagKey<MobEffect> STRONG_VERDANT_FRIENDLINESS = tag("strong_verdant_friendliness");
@@ -108,6 +109,7 @@ public class VerdantTags {
         public static final TagKey<Item> HEARTWOOD_TOOL_MATERIALS = tag("heartwood_tool_materials");
         public static final TagKey<Item> IMBUED_HEARTWOOD_TOOL_MATERIALS = tag("imbued_heartwood_tool_materials");
         public static final TagKey<Item> DARTS = tag("darts");
+        public static final TagKey<Item> BLASTING_BLOSSOM_BOMBS = tag("blasting_blossom_bombs");
 
         private static TagKey<Item> tag(String name) {
             TagKey<Item> tag = TagKey.create(

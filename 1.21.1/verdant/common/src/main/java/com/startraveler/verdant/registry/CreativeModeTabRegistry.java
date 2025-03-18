@@ -126,7 +126,9 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.ALOE_PUP.get());
+                        output.accept(ItemRegistry.YOUNG_ALOE_LEAF.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
+                        output.accept(ItemRegistry.OLD_ALOE_LEAF.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_green_dye": {
+    "has_packed_gravel": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:green_dye"
+            "items": "verdant:packed_gravel"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:snapleaf"
+        "recipe": "verdant:fused_gravel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_green_dye"
+      "has_packed_gravel"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:snapleaf"
+      "verdant:fused_gravel"
     ]
   }
 }

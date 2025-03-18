@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-14T17:24:34.1180051	Tags for minecraft:item mod id verdant
+// 1.21.4	2025-03-17T14:25:41.2132839	Tags for minecraft:item mod id verdant
 4a4f07cfe1ba76d16b89017db2f1647d7b04453b data/c/tags/item/crops.json
 e56b723a0ff94cebfdead5fd310f793a46ac4c31 data/c/tags/item/fertilizers.json
 65a9002397d033d7fb8c279738f36f8614764fd7 data/c/tags/item/foods.json
@@ -46,6 +46,7 @@ d45cbd8e2cf855fbbacddd6a8d8aaf089b6b01d6 data/minecraft/tags/item/swords.json
 0ae24cb1278bd03fe6cbb847e80f5441bc7cf804 data/minecraft/tags/item/villager_picks_up.json
 a82420a567ff4584d112cc68bc5fa646de3f346e data/minecraft/tags/item/villager_plantable_seeds.json
 8919a09e5c375193a0f02b3321fb7e931a4f36e7 data/verdant/tags/item/aloes.json
+d10bc32c34158a4a59fb10802ac3c1ccc4532e6a data/verdant/tags/item/blasting_blossom_bombs.json
 fd1050e3b50710462279abdcb0126ce81a18983f data/verdant/tags/item/crafts_to_ropes.json
 1e155673f82519ea111088ab76d649980c1ce1d2 data/verdant/tags/item/darts.json
 4091fd8126588cb6c53956343a5e6026d59d4e66 data/verdant/tags/item/heartwood_tool_materials.json

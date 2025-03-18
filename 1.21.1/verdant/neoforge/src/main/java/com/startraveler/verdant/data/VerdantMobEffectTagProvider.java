@@ -20,5 +20,7 @@ public class VerdantMobEffectTagProvider extends MobEffectTagProvider {
                 .add(MobEffects.CONDUIT_POWER.value(), MobEffects.WATER_BREATHING.value());
         this.tag(VerdantTags.MobEffects.WEAK_VERDANT_FRIENDLINESS).add(MobEffectRegistry.ANTIDOTE.get());
         this.tag(VerdantTags.MobEffects.VERDANT_FRIEND).add(MobEffectRegistry.VERDANT_ENERGY.get());
+        this.tag(VerdantTags.MobEffects.UNBREAKABLE)
+                .add(MobEffectRegistry.UNBREAKABLE.get());
     }
 }

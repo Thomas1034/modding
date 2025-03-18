@@ -3,7 +3,6 @@ package com.startraveler.verdant.data;
 import com.google.common.collect.Streams;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
-import com.startraveler.verdant.block.custom.extensible.HugeAloeCropBlock;
 import com.startraveler.verdant.data.definitions.VerdantModelTemplates;
 import com.startraveler.verdant.data.definitions.VerdantTextureMapping;
 import com.startraveler.verdant.data.definitions.VerdantTexturedModel;
@@ -152,6 +151,90 @@ public class VerdantModelProvider extends ModelProvider {
                         .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
         );
     }
+
+    public static MultiPartGenerator createBlastingBlossom(Block block, Function<Integer, ResourceLocation> modelFunction) {
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+        for (int i : BombFlowerCropBlock.AGE.getPossibleValues()) {
+            ResourceLocation model = modelFunction.apply(i);
+            generator = generator.with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.UP)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+            ).with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.DOWN)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+            ).with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.EAST)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+            ).with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.SOUTH)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+            ).with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.SOUTH)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+            ).with(
+                    Condition.condition()
+                            .term(BombFlowerCropBlock.FACING, Direction.WEST)
+                            .term(BombFlowerCropBlock.AGE, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+            );
+        }
+
+        return generator;
+    }
+
+    public static MultiPartGenerator createBlastingBunch(Block block, Function<Integer, ResourceLocation> modelFunction) {
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+        for (int i : BombPileBlock.BOMBS.getPossibleValues()) {
+            ResourceLocation model = modelFunction.apply(i);
+            generator = generator.with(
+                    Condition.condition().term(BombPileBlock.FACING, Direction.EAST).term(BombPileBlock.BOMBS, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+            ).with(
+                    Condition.condition().term(BombPileBlock.FACING, Direction.SOUTH).term(BombPileBlock.BOMBS, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+            ).with(
+                    Condition.condition().term(BombPileBlock.FACING, Direction.WEST).term(BombPileBlock.BOMBS, i),
+                    Variant.variant()
+                            .with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+            ).with(
+                    Condition.condition().term(BombPileBlock.FACING, Direction.NORTH).term(BombPileBlock.BOMBS, i),
+                    Variant.variant().with(VariantProperties.MODEL, model)
+            );
+        }
+
+        return generator;
+    }
+
 
     public static BlockStateGenerator createMirroredColumnGenerator(Block columnBlock, BiConsumer<ResourceLocation, ModelInstance> modelOutput, TextureMapping[] mappings, String[] suffixes) {
         Stream<ResourceLocation> mirrored = Util.zip(
@@ -643,6 +726,10 @@ public class VerdantModelProvider extends ModelProvider {
         tumbledBlockWithItem(BlockRegistry.GRUS.get());
         tumbledBlockWithItem(BlockRegistry.STONY_GRUS.get());
 
+        blastingBlossom(BlockRegistry.BLASTING_BLOSSOM.get());
+
+        blastingBunch(BlockRegistry.BLASTING_BUNCH.get());
+
         basicItem(ItemRegistry.ALOE_PUP.get());
 
         basicItem(ItemRegistry.ROASTED_COFFEE.get());
@@ -757,6 +844,9 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.YOUNG_ALOE_LEAF.get());
         basicItem(ItemRegistry.OLD_ALOE_LEAF.get());
 
+        basicItem(ItemRegistry.STABLE_BLASTING_BLOOM.get());
+        basicItem(ItemRegistry.BLASTING_BLOOM.get());
+        basicItem(ItemRegistry.BLASTING_BLOSSOM_SPROUT.get());
 
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
     }
@@ -906,6 +996,27 @@ public class VerdantModelProvider extends ModelProvider {
 
         blockModels.blockStateOutput.accept(createHugeAloeBlock(block, model));
     }
+
+    protected void blastingBlossom(Block block) {
+        blockModels.blockStateOutput.accept(createBlastingBlossom(
+                block,
+                (i) -> VerdantTexturedModel.BLASTING_BLOSSOM.apply(i)
+                        .get(block)
+                        .updateTemplate(template -> template.extend().renderType("cutout").build())
+                        .createWithSuffix(block, "_stage" + i, blockModels.modelOutput)
+        ));
+    }
+
+    protected void blastingBunch(Block block) {
+        blockModels.blockStateOutput.accept(createBlastingBunch(
+                block,
+                (i) -> VerdantTexturedModel.BLASTING_BUNCH.apply(i)
+                        .get(block)
+                        .updateTemplate(template -> template.extend().renderType("cutout").build())
+                        .createWithSuffix(block, "_stack" + i, blockModels.modelOutput)
+        ));
+    }
+
 
     protected void spikesBlockWithItem(Block block) {
         blockModels.blockStateOutput.accept(createSpikesBlock(

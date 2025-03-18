@@ -1,5 +1,6 @@
 package com.startraveler.verdant.data.definitions;
 
+import com.startraveler.verdant.block.custom.BombFlowerCropBlock;
 import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -85,4 +86,28 @@ public class VerdantModelTemplates {
             TextureSlot.SIDE,
             TextureSlot.BOTTOM
     );
+
+    public static ModelTemplate bombFlower(Integer age) {
+        return age < BombFlowerCropBlock.MAX_AGE ? ModelTemplates.create(
+                "verdant:bomb_flower_stage" + age,
+                TextureSlot.PARTICLE,
+                VerdantTextureSlot.BASE,
+                VerdantTextureSlot.FLOWER
+        ) : ModelTemplates.create(
+                "verdant:bomb_flower_stage" + age,
+                TextureSlot.PARTICLE,
+                VerdantTextureSlot.BASE,
+                VerdantTextureSlot.FLOWER,
+                TextureSlot.SIDE
+        );
+    }
+
+    public static ModelTemplate bombPile(Integer bombs) {
+        return ModelTemplates.create(
+                "verdant:bomb_pile_stack" + bombs,
+                TextureSlot.PARTICLE,
+                VerdantTextureSlot.FLOWER,
+                TextureSlot.SIDE
+        );
+    }
 }

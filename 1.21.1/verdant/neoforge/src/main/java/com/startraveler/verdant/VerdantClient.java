@@ -17,6 +17,7 @@ import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.TntRenderer;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
@@ -165,6 +166,7 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.THROWN_SPEAR.get(), ThrownSpearRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
         });
     }
 

@@ -81,6 +81,18 @@ public class EntityTypeRegistry {
                     .sized(0.5f, 0.5f)
                     .build(key("thrown_spear"))
     );
+    public static final RegistryObject<EntityType<?>, EntityType<BlockIgnoringPrimedTnt>> BLOCK_IGNORING_PRIMED_TNT = ENTITY_TYPES.register(
+            "block_ignoring_tnt",
+            () -> EntityType.Builder.<BlockIgnoringPrimedTnt>of(BlockIgnoringPrimedTnt::new, MobCategory.MISC)
+                    .noLootTable()
+                    .fireImmune()
+                    .sized(0.98F, 0.98F)
+                    .eyeHeight(0.15F)
+                    .clientTrackingRange(10)
+                    .updateInterval(10)
+                    .build(key("block_ignoring_tnt"))
+    );
+
 
     private static ResourceKey<EntityType<?>> key(String name) {
         return ResourceKey.create(

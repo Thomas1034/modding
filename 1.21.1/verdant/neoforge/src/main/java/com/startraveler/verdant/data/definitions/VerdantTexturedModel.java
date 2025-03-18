@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class VerdantTexturedModel {
 
@@ -26,6 +27,14 @@ public class VerdantTexturedModel {
     public static final TexturedModel.Provider SPIKES = TexturedModel.createDefault(
             TextureMapping::cross,
             ModelTemplates.CROSS
+    );
+
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BLOSSOM = (age) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombFlower(block, age),
+            VerdantModelTemplates.bombFlower(age)
+    );
+
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BUNCH = (bombs) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombPile(block, bombs),
+            VerdantModelTemplates.bombPile(bombs)
     );
 
     public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),

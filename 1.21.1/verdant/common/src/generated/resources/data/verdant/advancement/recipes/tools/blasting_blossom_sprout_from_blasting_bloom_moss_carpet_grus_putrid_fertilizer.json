@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blasting_bloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:blasting_bloom"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_blasting_blossom_sprout": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:blasting_blossom_sprout"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_grus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:grus"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_moss_carpet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:moss_carpet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_putrid_fertilizer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:putrid_fertilizer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:blasting_blossom_sprout_from_blasting_bloom_moss_carpet_grus_putrid_fertilizer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blasting_bloom",
+      "has_moss_carpet",
+      "has_grus",
+      "has_putrid_fertilizer",
+      "has_blasting_blossom_sprout"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:blasting_blossom_sprout_from_blasting_bloom_moss_carpet_grus_putrid_fertilizer"
+    ]
+  }
+}

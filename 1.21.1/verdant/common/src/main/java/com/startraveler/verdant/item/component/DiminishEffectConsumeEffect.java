@@ -14,7 +14,7 @@
  * If you modify this file, please include a notice stating the changes:
  * Example: "Modified by [Your Name] on [Date] - [Short Description of Changes]"
  */
-package com.startraveler.verdant.item.custom;
+package com.startraveler.verdant.item.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;

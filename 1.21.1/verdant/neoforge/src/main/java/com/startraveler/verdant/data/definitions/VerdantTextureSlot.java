@@ -12,5 +12,6 @@ public class VerdantTextureSlot {
     public static final TextureSlot OVERLAY = TextureSlot.create("overlay", TextureSlot.ALL);
     public static final TextureSlot SPIKES = TextureSlot.create("spikes", TextureSlot.ALL);
     public static final TextureSlot BAR = TextureSlot.create("bar", TextureSlot.ALL);
+    public static final TextureSlot FLOWER = TextureSlot.create("flower", TextureSlot.ALL);
 
 }

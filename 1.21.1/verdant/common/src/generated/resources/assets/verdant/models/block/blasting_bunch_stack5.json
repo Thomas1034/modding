@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/bomb_pile_stack5",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "flower": "verdant:block/blasting_bunch",
+    "particle": "verdant:block/blasting_bunch",
+    "side": "verdant:block/blasting_bunch_side"
+  }
+}

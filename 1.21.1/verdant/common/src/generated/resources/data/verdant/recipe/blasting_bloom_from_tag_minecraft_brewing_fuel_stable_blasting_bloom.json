@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:blasting_bloom",
+  "ingredients": [
+    "#minecraft:brewing_fuel",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom",
+    "verdant:stable_blasting_bloom"
+  ],
+  "result": {
+    "count": 8,
+    "id": "verdant:blasting_bloom"
+  }
+}

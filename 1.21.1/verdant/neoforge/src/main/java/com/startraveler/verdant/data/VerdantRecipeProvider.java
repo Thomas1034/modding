@@ -15,6 +15,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -247,9 +248,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 4
         );
 
-        smeltingResultFromBase(BlockRegistry.PACKED_GRAVEL.get(), BlockRegistry.FUSED_GRAVEL.get());
+        smeltingResultFromBase(BlockRegistry.FUSED_GRAVEL.get(), BlockRegistry.PACKED_GRAVEL.get());
 
-        smeltingResultFromBase(BlockRegistry.PACKED_SCREE.get(), BlockRegistry.FUSED_SCREE.get());
+        smeltingResultFromBase(BlockRegistry.FUSED_SCREE.get(), BlockRegistry.PACKED_SCREE.get());
 
         // Thorn spikes item
         shaped(
@@ -287,7 +288,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.FRAME_BLOCK.get(),
                 1
         );
-        smeltingResultFromBase(BlockRegistry.SNAPLEAF.get(), Items.GREEN_DYE);
+        smeltingResultFromBase(Items.GREEN_DYE, BlockRegistry.SNAPLEAF.get());
         smeltingResultFromBase(BlockRegistry.CHARRED_FRAME_BLOCK.get(), BlockRegistry.FRAME_BLOCK.get());
         shaped(
                 List.of(" P ", "PFP", " P "),
@@ -655,6 +656,60 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 "detoxification"
         );
 
+
+        // Rope Ladder block.
+        shaped(
+                List.of("R R", "RSR", "R R"),
+                List.of('R', 'S'),
+                List.of(BlockRegistry.ROPE.get(), Items.STICK),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.ROPE_LADDER.get(),
+                3
+        );
+
+        shapeless(
+                List.of(Items.SUGAR, ItemRegistry.BLASTING_BLOOM.get(), VerdantTags.Items.STARCHES),
+                List.of(1, 2, 1),
+                RecipeCategory.TOOLS,
+                ItemRegistry.STABLE_BLASTING_BLOOM.get(),
+                2
+        );
+        shapeless(
+                List.of(ItemTags.BREWING_FUEL, ItemRegistry.STABLE_BLASTING_BLOOM.get()),
+                List.of(1, 8),
+                RecipeCategory.COMBAT,
+                ItemRegistry.BLASTING_BLOOM.get(),
+                8
+        );
+
+        shapeless(
+                List.of(Items.CHARCOAL, ItemRegistry.BLASTING_BLOOM.get()),
+                List.of(1, 1),
+                RecipeCategory.MISC,
+                Items.GUNPOWDER,
+                1
+        );
+
+
+        shaped(
+                List.of("BCB", "BGB", "BFB"), List.of('B', 'C', 'G', 'F'), List.of(
+                        ItemRegistry.BLASTING_BLOOM.get(),
+                        Items.MOSS_CARPET,
+                        BlockRegistry.GRUS.get(),
+                        BlockRegistry.PUTRID_FERTILIZER.get()
+                ), RecipeCategory.TOOLS, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
+        );
+
+        shaped(
+                List.of("BCB", "BGB", "BFB"), List.of('B', 'C', 'G', 'F'), List.of(
+                        ItemRegistry.BLASTING_BLOOM.get(),
+                        Items.PALE_MOSS_CARPET,
+                        BlockRegistry.GRUS.get(),
+                        BlockRegistry.PUTRID_FERTILIZER.get()
+                ), RecipeCategory.TOOLS, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
+        );
+
+        // TODO End of recipe definitions
     }
 
     protected void imbuementSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {

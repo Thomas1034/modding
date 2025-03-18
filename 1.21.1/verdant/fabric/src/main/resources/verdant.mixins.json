@@ -10,9 +10,11 @@
     "EntityGetterInvoker",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
+    "ItemStackUnbreakabilityMixin",
     "ThrownTridentDataIDGetter",
     "ZombieConvertToRootedMixin",
     "ArrowAccessors",
+    "PrimedTntAccessors",
     "MobEffectInstanceAccessors"
   ],
   "server": [],

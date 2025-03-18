@@ -1,11 +1,11 @@
 {
   "type": "minecraft:smelting",
-  "category": "blocks",
+  "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "minecraft:green_dye",
+  "ingredient": "verdant:snapleaf",
   "result": {
     "count": 1,
-    "id": "verdant:snapleaf"
+    "id": "minecraft:green_dye"
   }
 }

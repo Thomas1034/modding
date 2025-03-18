@@ -1,5 +1,6 @@
 package com.startraveler.verdant.data.definitions;
 
+import com.startraveler.verdant.block.custom.BombFlowerCropBlock;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,25 @@ public class VerdantTextureMapping {
     public static TextureMapping asterisk(Block block) {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, TextureMapping.getBlockTexture(block, "_plus"))
                 .put(TextureSlot.CROSS, TextureMapping.getBlockTexture(block, "_cross"));
+    }
+
+    public static TextureMapping bombFlower(Block block, int age) {
+        TextureMapping mapping = new TextureMapping().put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(block, "_base"))
+                .put(VerdantTextureSlot.FLOWER, TextureMapping.getBlockTexture(block, "_stage" + age))
+                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_stage" + age));
+        if (age == BombFlowerCropBlock.MAX_AGE) {
+            mapping = mapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_stage" + age + "_side"));
+        }
+        return mapping;
+    }
+
+    public static TextureMapping bombPile(Block block, int bombs) {
+        return new TextureMapping().put(
+                        VerdantTextureSlot.FLOWER,
+                        TextureMapping.getBlockTexture(block)
+                )
+                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
     }
 
     public static TextureMapping asteriskForAloe(int age, int height, Block block) {

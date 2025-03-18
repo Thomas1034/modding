@@ -16,7 +16,7 @@
  */
 package com.startraveler.verdant.registry.properties;
 
-import com.startraveler.verdant.item.custom.DiminishEffectConsumeEffect;
+import com.startraveler.verdant.item.component.DiminishEffectConsumeEffect;
 import com.startraveler.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;

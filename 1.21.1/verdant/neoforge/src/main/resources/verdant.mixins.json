@@ -7,11 +7,13 @@
     "BoggedLikeVerdantFriendsMixin",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
+    "ItemStackUnbreakabilityMixin",
     "ZombieConvertToRootedMixin",
     "EntityGetterInvoker",
     "ThrownTridentDataIDGetter",
     "AbstractArrowAccessors",
     "ArrowAccessors",
+    "PrimedTntAccessors",
     "MobEffectInstanceAccessors"
   ],
   "server": [],

@@ -116,8 +116,14 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(VerdantTags.Items.STARCHES)
                 .add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get(), ItemRegistry.SPARKLING_STARCH.get());
         this.tag(VerdantTags.Items.ALOES)
-                .add(ItemRegistry.ALOE_LEAF.get(), ItemRegistry.YOUNG_ALOE_LEAF.get(), ItemRegistry.OLD_ALOE_LEAF.get());
+                .add(
+                        ItemRegistry.ALOE_LEAF.get(),
+                        ItemRegistry.YOUNG_ALOE_LEAF.get(),
+                        ItemRegistry.OLD_ALOE_LEAF.get()
+                );
         this.tag(Tags.Items.GRAVELS).add(BlockRegistry.SCREE.get().asItem());
+
+        this.tag(VerdantTags.Items.BLASTING_BLOSSOM_BOMBS).add(ItemRegistry.STABLE_BLASTING_BLOOM.get());
 
         addHeartwoodSet();
         addImbuedHeartwoodSet();

@@ -246,8 +246,6 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.LILY_PAD, Blocks.AIR));
         data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));
         data.add(direct(Blocks.PALE_MOSS_BLOCK, Blocks.DIRT));
-        data.add(direct(Blocks.MOSS_CARPET, Blocks.AIR));
-        data.add(direct(Blocks.PALE_MOSS_CARPET, Blocks.AIR));
         data.add(direct(Blocks.PALE_HANGING_MOSS, Blocks.AIR));
         data.add(direct(Blocks.FARMLAND, BlockRegistry.TOXIC_DIRT.get()));
 

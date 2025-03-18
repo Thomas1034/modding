@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/bomb_flower_stage0",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "verdant:block/blasting_blossom_base",
+    "flower": "verdant:block/blasting_blossom_stage0",
+    "particle": "verdant:block/blasting_blossom_stage0"
+  }
+}

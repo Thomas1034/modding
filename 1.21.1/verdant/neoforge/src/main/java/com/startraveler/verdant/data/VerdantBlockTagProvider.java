@@ -363,6 +363,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.UBE_CROP.get(),
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
+                BlockRegistry.BLASTING_BLOSSOM.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
         this.tag(BlockTags.BEE_GROWABLES).add(
@@ -401,7 +402,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         addDirtOres();
         addGrusOres();
     }
-    
+
     private void addDirtOres() {
         this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_DIRT);
         this.tag(CommonTags.Blocks.ORES_IN_GROUND_DIRT).add(

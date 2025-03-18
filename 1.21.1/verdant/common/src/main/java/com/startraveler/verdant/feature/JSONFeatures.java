@@ -34,6 +34,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MIXED_FLOWERS = createKey("mixed_flowers");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORCHIDS = createKey("orchids");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LILIES = createKey("lilies");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ALOES = createKey("aloes");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLEEDING_HEART = createKey("bleeding_heart");
     public static final ResourceKey<ConfiguredFeature<?, ?>> COFFEE = createKey("coffee");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MIXED_BUSHES = createKey("mixed_bushes");
@@ -50,6 +51,8 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPLEAF = createKey("snapleaf");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ROOTS = createKey("hanging_roots");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUE = createKey("rue");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MOSS_CARPETS = createKey("moss_carpets");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLASTING_BLOSSOMS = createKey("blasting_blossoms");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(

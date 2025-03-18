@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fused_gravel": {
+    "has_packed_scree": {
       "conditions": {
         "items": [
           {
-            "items": "verdant:fused_gravel"
+            "items": "verdant:packed_scree"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:packed_gravel"
+        "recipe": "verdant:fused_scree"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_fused_gravel"
+      "has_packed_scree"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:packed_gravel"
+      "verdant:fused_scree"
     ]
   }
 }

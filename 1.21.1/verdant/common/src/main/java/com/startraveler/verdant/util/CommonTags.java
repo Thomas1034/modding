@@ -19,6 +19,7 @@ package com.startraveler.verdant.util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class CommonTags {
@@ -32,6 +33,17 @@ public class CommonTags {
 
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
+        }
+    }
+
+    public static class Items {
+        public static final TagKey<Item> TOOLS_IGNITER = tag("tools/igniter");
+        public static final TagKey<Item> TOOLS_SHEAR = tag("tools/shear");
+        public static final TagKey<Item> FERTILIZERS = tag("fertilizers");
+
+
+        private static TagKey<Item> tag(String name) {
+            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 }

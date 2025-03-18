@@ -16,6 +16,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.TntRenderer;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
@@ -97,6 +98,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.SMALL_ALOE,
                 BlockRegistry.LARGE_ALOE,
                 BlockRegistry.HUGE_ALOE,
+                BlockRegistry.BLASTING_BLOSSOM,
+                BlockRegistry.BLASTING_BUNCH,
                 BlockRegistry.VERDANT_CONDUIT
         );
 
@@ -109,6 +112,7 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_SPEAR.get(), ThrownSpearRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
 
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),

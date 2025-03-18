@@ -70,6 +70,7 @@ Compatibility
 // Credits: (other direct contributors only)
 /*
 Features Added:
+- Rope Ladders, which can hang from ladders above them.
 - Blowgun, with tipped darts
 - Aloe, a two-stage crop used to soothe harmful effects.
 - Snapleaves can be smelted into green dye
@@ -78,7 +79,7 @@ Features Added:
 - Added Scree, a dark-colored gravel equivalent formed by erosion from Deepslate.
 - Added Packed Scree and Fused Scree
 - Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
-- Added Rocky Grus, the equivalent of Coarse Dirt for Scree.
+- Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
 
 Bugs Fixed:
 - Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth

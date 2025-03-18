@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:blasting_blossom_sprout",
+  "key": {
+    "B": "verdant:blasting_bloom",
+    "C": "minecraft:pale_moss_carpet",
+    "F": "verdant:putrid_fertilizer",
+    "G": "verdant:grus"
+  },
+  "pattern": [
+    "BCB",
+    "BGB",
+    "BFB"
+  ],
+  "result": {
+    "count": 2,
+    "id": "verdant:blasting_blossom_sprout"
+  }
+}

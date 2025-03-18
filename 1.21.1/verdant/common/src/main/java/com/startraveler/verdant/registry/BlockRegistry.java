@@ -22,11 +22,11 @@ import com.startraveler.verdant.block.custom.InfestedRotatedPillarBlock;
 import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
-import com.startraveler.verdant.block.custom.extensible.HugeAloeCropBlock;
 import com.startraveler.verdant.block.loot.LootLocations;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
+import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -164,6 +164,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> FUSED_SCREE;
     public static final RegistryObject<Block, Block> GRUS;
     public static final RegistryObject<Block, Block> STONY_GRUS;
+    public static final RegistryObject<Block, Block> BLASTING_BLOSSOM;
+    public static final RegistryObject<Block, Block> BLASTING_BUNCH;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -956,6 +958,21 @@ public class BlockRegistry {
                 () -> new Block(properties("stony_grus").mapColor(MapColor.COLOR_GRAY)
                         .strength(1.0F)
                         .sound(SoundType.GRAVEL))
+        );
+
+        BLASTING_BLOSSOM = registerBlockWithoutItem(
+                "blasting_blossom",
+                () -> new BombFlowerCropBlock(
+                        properties(Blocks.MELON, "blasting_blossom").randomTicks(),
+                        rand -> new ItemStack(ItemRegistry.BLASTING_BLOOM.get())
+                )
+        );
+
+        BLASTING_BUNCH = registerBlockWithoutItem(
+                "blasting_bunch", () -> new BombPileBlock(
+                        properties(Blocks.MELON, "blasting_bunch").randomTicks(),
+                        (stack) -> stack.is(VerdantTags.Items.BLASTING_BLOSSOM_BOMBS)
+                )
         );
 
     }

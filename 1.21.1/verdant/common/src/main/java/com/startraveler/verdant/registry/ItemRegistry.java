@@ -17,6 +17,7 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.block.custom.BombPileBlock;
 import com.startraveler.verdant.item.component.DurabilityChanging;
 import com.startraveler.verdant.item.component.VerdantFriendliness;
 import com.startraveler.verdant.item.custom.*;
@@ -36,11 +37,13 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -531,11 +534,28 @@ public class ItemRegistry {
             properties -> new SpawnEggItem(EntityTypeRegistry.ROOTED.get(), properties)
     );
 
-
     // TODO
     public static final RegistryObject<Item, Item> BLOWGUN = register(
             "blowgun",
             properties -> new BlowgunItem(properties)
+    );
+
+
+    public static final RegistryObject<Item, Item> BLASTING_BLOSSOM_SPROUT = register(
+            "blasting_blossom_sprout",
+            (properties) -> new BlockItem(BlockRegistry.BLASTING_BLOSSOM.get(), properties)
+    );
+    public static final RegistryObject<Item, Item> STABLE_BLASTING_BLOOM = register(
+            "stable_blasting_bloom",
+            (properties) -> new BlockItem(BlockRegistry.BLASTING_BUNCH.get(), properties)
+    );
+    public static final RegistryObject<Item, Item> BLASTING_BLOOM = register(
+            "blasting_bloom", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                            DataComponents.BLOCK_STATE,
+                            new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                    ), () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
+            )
     );
 
     public static void init() {

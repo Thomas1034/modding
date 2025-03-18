@@ -1,0 +1,316 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack1",
+        "y": 90
+      },
+      "when": {
+        "bombs": "1",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack1",
+        "y": 180
+      },
+      "when": {
+        "bombs": "1",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack1",
+        "y": 270
+      },
+      "when": {
+        "bombs": "1",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack1"
+      },
+      "when": {
+        "bombs": "1",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack2",
+        "y": 90
+      },
+      "when": {
+        "bombs": "2",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack2",
+        "y": 180
+      },
+      "when": {
+        "bombs": "2",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack2",
+        "y": 270
+      },
+      "when": {
+        "bombs": "2",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack2"
+      },
+      "when": {
+        "bombs": "2",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack3",
+        "y": 90
+      },
+      "when": {
+        "bombs": "3",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack3",
+        "y": 180
+      },
+      "when": {
+        "bombs": "3",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack3",
+        "y": 270
+      },
+      "when": {
+        "bombs": "3",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack3"
+      },
+      "when": {
+        "bombs": "3",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack4",
+        "y": 90
+      },
+      "when": {
+        "bombs": "4",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack4",
+        "y": 180
+      },
+      "when": {
+        "bombs": "4",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack4",
+        "y": 270
+      },
+      "when": {
+        "bombs": "4",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack4"
+      },
+      "when": {
+        "bombs": "4",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack5",
+        "y": 90
+      },
+      "when": {
+        "bombs": "5",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack5",
+        "y": 180
+      },
+      "when": {
+        "bombs": "5",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack5",
+        "y": 270
+      },
+      "when": {
+        "bombs": "5",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack5"
+      },
+      "when": {
+        "bombs": "5",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack6",
+        "y": 90
+      },
+      "when": {
+        "bombs": "6",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack6",
+        "y": 180
+      },
+      "when": {
+        "bombs": "6",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack6",
+        "y": 270
+      },
+      "when": {
+        "bombs": "6",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack6"
+      },
+      "when": {
+        "bombs": "6",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack7",
+        "y": 90
+      },
+      "when": {
+        "bombs": "7",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack7",
+        "y": 180
+      },
+      "when": {
+        "bombs": "7",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack7",
+        "y": 270
+      },
+      "when": {
+        "bombs": "7",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack7"
+      },
+      "when": {
+        "bombs": "7",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack8",
+        "y": 90
+      },
+      "when": {
+        "bombs": "8",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack8",
+        "y": 180
+      },
+      "when": {
+        "bombs": "8",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack8",
+        "y": 270
+      },
+      "when": {
+        "bombs": "8",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/blasting_bunch_stack8"
+      },
+      "when": {
+        "bombs": "8",
+        "facing": "north"
+      }
+    }
+  ]
+}

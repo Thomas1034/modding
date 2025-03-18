@@ -3,9 +3,9 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "verdant:fused_gravel",
+  "ingredient": "verdant:packed_scree",
   "result": {
     "count": 1,
-    "id": "verdant:packed_gravel"
+    "id": "verdant:fused_scree"
   }
 }
