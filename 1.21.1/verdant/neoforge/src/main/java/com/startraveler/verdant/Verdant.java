@@ -59,6 +59,8 @@ public class Verdant {
         // For wood sets.
         eventBus.addListener(Verdant::onFinishSetup);
         eventBus.addListener(Verdant::registerEntityAttributes);
+        // Dart Tipping Ingredients
+        eventBus.addListener(Verdant::modifyDefaultComponents);
 
         // Caffeine
         NeoForge.EVENT_BUS.addListener(Verdant::onPlayerTryToSleepEvent);
@@ -69,13 +71,15 @@ public class Verdant {
         // Tilling Grus
         NeoForge.EVENT_BUS.addListener(Verdant::registerTillables);
 
+
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
     }
 
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
-
-        // TODO
-
+        BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> event.modify(
+                item,
+                builder -> biConsumerConsumer.accept(builder::set)
+        ));
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {

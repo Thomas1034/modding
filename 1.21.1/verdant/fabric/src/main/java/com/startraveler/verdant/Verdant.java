@@ -64,14 +64,16 @@ public class Verdant implements ModInitializer {
             return null;
         });
 
-        TillableBlockRegistry.register(BlockRegistry.STONY_GRUS.get(), HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState()));
+        TillableBlockRegistry.register(
+                BlockRegistry.STONY_GRUS.get(),
+                HoeItem::onlyIfAirAbove,
+                HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState())
+        );
 
-        DefaultItemComponentEvents.MODIFY.register((context) -> {
-
-            // TODO
-
-
-        });
+        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(
+                item,
+                builder -> biConsumerConsumer.accept(builder::set)
+        )));
 
         CommonClass.addCakeCandles();
 

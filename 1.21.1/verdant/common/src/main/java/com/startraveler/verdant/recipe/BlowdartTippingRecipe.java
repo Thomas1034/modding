@@ -16,7 +16,7 @@
  */
 package com.startraveler.verdant.recipe;
 
-import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.registry.DataComponentRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.RecipeSerializerRegistry;
 import com.startraveler.verdant.util.OKLabBlender;
@@ -43,6 +43,7 @@ import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class BlowdartTippingRecipe extends CustomRecipe {
 
@@ -56,7 +57,6 @@ public class BlowdartTippingRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-
         return assemble(input, level.registryAccess()) != ItemStack.EMPTY;
     }
 
@@ -66,46 +66,57 @@ public class BlowdartTippingRecipe extends CustomRecipe {
 
         boolean isValid = true;
         int dartCount = 0;
-        List<SuspiciousStewEffects> effects = new ArrayList<>();
+        List<SuspiciousStewEffects> suspiciousEffects = new ArrayList<>();
+        List<MobEffectInstance> directEffects = new ArrayList<>();
         int binderCount = 0;
         for (ItemStack stack : input.items()) {
+            // TODO: allow item to fulfil multiple conditions?
             if (stack.is(ItemRegistry.DART.get())) {
+
                 dartCount++;
+
+            } else if (stack.has(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get())) {
+                directEffects.addAll(Objects.requireNonNull(stack.get(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get()))
+                        .effects());
+
             } else if (stack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
 
-                effects.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
+                suspiciousEffects.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
+
             } else if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
 
-                effects.add(seh.getSuspiciousEffects());
+                suspiciousEffects.add(seh.getSuspiciousEffects());
+
             } else if (stack.is(VerdantTags.Items.DART_EFFECT_BINDERS)) {
+
                 binderCount++;
-            } else if (stack.isEmpty()) {
-            } else {
+
+            } else if (!stack.isEmpty()) {
                 isValid = false;
+
             }
         }
 
 
         isValid &= dartCount > 0;
 
-        isValid &= !effects.isEmpty();
+        isValid &= !suspiciousEffects.isEmpty() || !directEffects.isEmpty();
 
         if (isValid) {
-            Constants.LOG.warn("It is valid.");
             int durationMultiplier = SECONDS_TO_TICKS * (int) (EFFECT_DURATION_BASE_MULTIPLIER + binderCount * EFFECT_DURATION_PER_BINDER_MULTIPLIER);
-            List<MobEffectInstance> customEffects = effects.stream()
-                    .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()
-                            .stream()
-                            .map(SuspiciousStewEffects.Entry::createEffectInstance))
-                    .map(oldEffects -> new MobEffectInstance(
-                            oldEffects.getEffect(),
-                            oldEffects.getDuration() * durationMultiplier,
-                            oldEffects.getAmplifier(),
-                            oldEffects.isAmbient(),
-                            oldEffects.isVisible(),
-                            oldEffects.showIcon()
-                    ))
-                    .toList();
+            List<MobEffectInstance> customEffects = Stream.concat(
+                    suspiciousEffects.stream()
+                            .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()
+                                    .stream()
+                                    .map(SuspiciousStewEffects.Entry::createEffectInstance)), directEffects.stream()
+            ).map(oldEffects -> new MobEffectInstance(
+                    oldEffects.getEffect(),
+                    oldEffects.getDuration() * durationMultiplier,
+                    oldEffects.getAmplifier(),
+                    oldEffects.isAmbient(),
+                    oldEffects.isVisible(),
+                    oldEffects.showIcon()
+            )).toList();
 
             int color = OKLabBlender.blendColors(customEffects.stream()
                     .map(instance -> instance.getEffect().value().getColor())
