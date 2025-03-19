@@ -1,6 +1,7 @@
 package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.recipe.BlowdartTippingRecipe;
 import com.startraveler.verdant.recipe.RopeCoilUpgradeRecipe;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
@@ -15,7 +16,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
@@ -158,6 +158,8 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
         // Register rope upgrading.
         new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
+        // Register dart tipping.
+        new BlowdartTippingRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
 
         // Cooking coffee
         foodCooking(

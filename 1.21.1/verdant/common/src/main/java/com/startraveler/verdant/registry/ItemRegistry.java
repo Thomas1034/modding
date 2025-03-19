@@ -40,6 +40,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.UseCooldown;
+import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.List;
@@ -504,17 +505,25 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item, Item> TOXIC_ASH = register(
             "toxic_ash",
-            (properties) -> new ToxicAshItem(properties, null, 2, 1)
+            (properties) -> new ToxicAshItem(properties, 2, 1)
     );
 
     public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_ASH = register(
-            "toxic_ash_bucket",
-            (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 8, 3)
+            "toxic_ash_bucket", (properties) -> new ToxicAshItem(
+                    properties.stacksTo(1)
+                            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(Items.BUCKET))),
+                    8,
+                    3
+            )
     );
 
     public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_SOLUTION = register(
-            "toxic_solution_bucket",
-            (properties) -> new ToxicAshItem(properties.stacksTo(1), () -> new ItemStack(Items.BUCKET), 32, 8)
+            "toxic_solution_bucket", (properties) -> new ToxicAshItem(
+                    properties.stacksTo(1)
+                            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(Items.BUCKET))),
+                    32,
+                    8
+            )
     );
 
     public static final RegistryObject<Item, Item> HUNTING_SPEAR = register(

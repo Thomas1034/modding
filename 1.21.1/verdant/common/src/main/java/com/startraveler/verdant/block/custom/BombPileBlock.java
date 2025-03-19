@@ -42,7 +42,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class BombPileBlock extends Block {
@@ -65,7 +64,7 @@ public class BombPileBlock extends Block {
         this.registerDefaultState(this.getStateDefinition().any().setValue(BOMBS, MIN_BOMBS).setValue(UNSTABLE, false));
     }
 
-    private static void explode(Level level, BlockState state, BlockPos pos, @Nullable LivingEntity entity) {
+    private static void explode(Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         if (!level.isClientSide) {
             PrimedTnt bomb = new PrimedTnt(level, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, entity);
             ((PrimedTntAccessors) bomb).setExplosionPower(state.getValue(BOMBS) * 2);
@@ -181,7 +180,6 @@ public class BombPileBlock extends Block {
         level.addFreshEntity(bomb);
     }
 
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
         return this.canSurvive(state, context.getLevel(), context.getClickedPos()) ? state : null;

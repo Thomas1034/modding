@@ -17,6 +17,7 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.recipe.BlowdartTippingRecipe;
 import com.startraveler.verdant.recipe.RopeCoilUpgradeRecipe;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
@@ -33,6 +34,10 @@ public class RecipeSerializerRegistry {
 
     public static final RegistryObject<RecipeSerializer<?>, CustomRecipe.Serializer<RopeCoilUpgradeRecipe>> ROPE_COIL_SERIALIZER = SERIALIZERS.register("rope_coil_upgrade",
             () -> new CustomRecipe.Serializer<>(RopeCoilUpgradeRecipe::new)
+    );
+
+    public static final RegistryObject<RecipeSerializer<?>, CustomRecipe.Serializer<BlowdartTippingRecipe>> BLOWDART_TIPPING_SERIALIZER = SERIALIZERS.register("blowdart_tipping",
+            () -> new CustomRecipe.Serializer<>(BlowdartTippingRecipe::new)
     );
 
     public static void init() {

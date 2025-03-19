@@ -6,6 +6,7 @@ import com.startraveler.verdant.mixin.PrimedTntAccessors;
 import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.CommonTags;
+import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +42,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -236,13 +236,13 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         super.stepOn(level, pos, state, entity);
-        if (!entity.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && state.getValue(AGE) == MAX_AGE) {
+        if (!entity.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && !entity.getType()
+                .is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES) && state.getValue(AGE) == MAX_AGE) {
             level.setBlockAndUpdate(pos, state.setValue(AGE, MIN_AGE));
             this.explode(level, pos);
         }
     }
 
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
         if (state != null) {

@@ -30,6 +30,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
@@ -69,6 +70,12 @@ public class Verdant {
         NeoForge.EVENT_BUS.addListener(Verdant::registerTillables);
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
+    }
+
+    public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
+
+        // TODO
+
     }
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {

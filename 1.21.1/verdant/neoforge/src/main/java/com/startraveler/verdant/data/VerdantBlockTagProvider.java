@@ -191,6 +191,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.GRUS.get()
         );
         this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get());
+        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(
                 BlockRegistry.STRANGLER_VINE.get(),

@@ -174,7 +174,7 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> UNBREAKABLE = MOB_EFFECTS.register(
             "unbreakable",
-            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0xE0F0F0)
+            () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0x4AEDD9)
     );
 
 

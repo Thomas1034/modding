@@ -14,7 +14,7 @@
  * If you modify this file, please include a notice stating the changes:
  * Example: "Modified by [Your Name] on [Date] - [Short Description of Changes]"
  */
-package com.startraveler.verdant.item;
+package com.startraveler.verdant.item.custom;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;

@@ -149,7 +149,7 @@ public class PotionRecipeRegistry {
                 Items.GLOWSTONE_DUST,
                 PotionRegistry.STRONG_CLUMSINESS.asHolder()
         );
-        
+
         recipes.register(Potions.THICK, ItemRegistry.BLASTING_BLOOM.get(), PotionRegistry.BROKEN_ARMOR.asHolder());
         recipes.register(
                 PotionRegistry.BROKEN_ARMOR.asHolder(),
@@ -160,6 +160,17 @@ public class PotionRecipeRegistry {
                 PotionRegistry.BROKEN_ARMOR.asHolder(),
                 Items.GLOWSTONE_DUST,
                 PotionRegistry.STRONG_BROKEN_ARMOR.asHolder()
+        );
+
+        recipes.register(
+                PotionRegistry.BROKEN_ARMOR.asHolder(),
+                Items.FERMENTED_SPIDER_EYE,
+                PotionRegistry.UNBREAKABLE.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.UNBREAKABLE.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_UNBREAKABLE.asHolder()
         );
 
     }

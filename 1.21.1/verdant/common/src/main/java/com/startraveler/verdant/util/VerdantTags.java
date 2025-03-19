@@ -110,6 +110,7 @@ public class VerdantTags {
         public static final TagKey<Item> IMBUED_HEARTWOOD_TOOL_MATERIALS = tag("imbued_heartwood_tool_materials");
         public static final TagKey<Item> DARTS = tag("darts");
         public static final TagKey<Item> BLASTING_BLOSSOM_BOMBS = tag("blasting_blossom_bombs");
+        public static final TagKey<Item> DART_EFFECT_BINDERS = tag("dart_effect_binders");
 
         private static TagKey<Item> tag(String name) {
             TagKey<Item> tag = TagKey.create(

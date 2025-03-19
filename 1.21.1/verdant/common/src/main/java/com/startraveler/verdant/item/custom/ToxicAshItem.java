@@ -22,6 +22,7 @@ import com.startraveler.verdant.registry.DamageSourceRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
@@ -45,17 +46,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 public class ToxicAshItem extends Item implements Converter {
     public static final int MAX_PERMEABILITY_RANGE = 4;
-    protected final Supplier<ItemStack> residual;
     protected final int range;
     protected final int randomRange;
 
-    public ToxicAshItem(Properties properties, Supplier<ItemStack> residual, int range, int randomRange) {
+    public ToxicAshItem(Properties properties, int range, int randomRange) {
         super(properties);
-        this.residual = residual;
         this.range = range;
         this.randomRange = randomRange;
     }
@@ -81,7 +79,11 @@ public class ToxicAshItem extends Item implements Converter {
                 stack.shrink(1);
                 return InteractionResult.SUCCESS_SERVER;
             } else {
-                return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(this.getEmptySuccessItem(stack, player));
+                ItemStack result = this.getEmptySuccessItem(stack, player);
+                if (player != null) {
+                    player.setItemInHand(context.getHand(), result);
+                }
+                return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(result);
             }
         }
 
@@ -190,7 +192,8 @@ public class ToxicAshItem extends Item implements Converter {
 
 
     public ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
-        return (player != null && !player.hasInfiniteMaterials()) ? this.residual == null ? ItemStack.EMPTY : this.residual.get() : stack;
+        return (player != null && !player.hasInfiniteMaterials()) ? stack.has(DataComponents.USE_REMAINDER) ? stack.get(
+                DataComponents.USE_REMAINDER).convertInto() : ItemStack.EMPTY : stack;
     }
 
     @Override

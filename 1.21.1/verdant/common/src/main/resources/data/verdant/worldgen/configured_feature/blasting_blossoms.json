@@ -10,7 +10,10 @@
             "entries": [
               {
                 "data": {
-                  "Name": "verdant:blasting_blossom"
+                  "Name": "verdant:blasting_blossom",
+                  "Properties": {
+                    "facing": "up"
+                  }
                 },
                 "weight": 4
               },

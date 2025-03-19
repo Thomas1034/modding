@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-17T14:25:41.2132839	Tags for minecraft:item mod id verdant
+// 1.21.4	2025-03-19T00:27:34.3848218	Tags for minecraft:item mod id verdant
 4a4f07cfe1ba76d16b89017db2f1647d7b04453b data/c/tags/item/crops.json
 e56b723a0ff94cebfdead5fd310f793a46ac4c31 data/c/tags/item/fertilizers.json
 65a9002397d033d7fb8c279738f36f8614764fd7 data/c/tags/item/foods.json
@@ -9,15 +9,18 @@ e1ceebcec8b9bbd90ae11bd0687819510c45c658 data/c/tags/item/foods/edible_when_plac
 92fd80cc4e43c83341972eab1d39139db89d116a data/c/tags/item/foods/golden.json
 4ba22241ef2f6681e1576349574d06be7baad9b8 data/c/tags/item/foods/vegetable.json
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/item/gravels.json
-b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/item/ores.json
-3483190da3c649a3e8f7b7aba7976f4591697a7a data/c/tags/item/ores/coal.json
-cb89d15702ec273344f347e1ea4ff705107400fe data/c/tags/item/ores/copper.json
-c2545e338a7a87cb553d009c619db4c6d8047d4b data/c/tags/item/ores/diamond.json
-dcd312c97fc6ae4c08714ba59a9f1d576c52d5a7 data/c/tags/item/ores/emerald.json
-9edfa994faa12416b54d6967881c25f1a6efa8ce data/c/tags/item/ores/gold.json
-3bcdac3c19b310abd9ffa6e47fceead01a082447 data/c/tags/item/ores/iron.json
-c5ef25f775851883ab1daafebe3ad7ff8d7bc649 data/c/tags/item/ores/lapis.json
-0dbcafc48b3d3fa425e58861c31075d3fef8a66e data/c/tags/item/ores/redstone.json
+dedaee5099583fbdf310afcea0bf873225389f42 data/c/tags/item/ores.json
+22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/item/ores/coal.json
+46e0aa3d4a7c2a6de76ac34371f1e4d7cb5e390d data/c/tags/item/ores/copper.json
+80b7575bf9173ad55c4cdf23b4d1ecbe4afa8136 data/c/tags/item/ores/diamond.json
+66bc4a1e0309be655f76f46d8be2daa6d3bde9ce data/c/tags/item/ores/emerald.json
+74b6e5ec8d6915a19b09af6e9971fda31848d6fe data/c/tags/item/ores/gold.json
+68684fa5b368daf5c8cfe0beb2ca5f33732fac2f data/c/tags/item/ores/iron.json
+51908e7d54aa07f98541731b05958316e6703286 data/c/tags/item/ores/lapis.json
+5f87849d875f197b79c7d2ba451d46c06db232b3 data/c/tags/item/ores/redstone.json
+ebbc55edd1dfc29b2d954c196102b1ce89e15e29 data/c/tags/item/ores_in_ground/dirt.json
+d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/item/ore_bearing_ground/dirt.json
+d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/item/ore_bearing_ground/grus.json
 6f64aeb58e3eb9ceef6008175f56c1bd70abf38a data/minecraft/tags/item/arrows.json
 15c3d7f5f79f0485483d0f36ba9be7d0f37212ab data/minecraft/tags/item/axes.json
 db51b71a4552bc2fe4f0c3cd4c40ab85d5edd04d data/minecraft/tags/item/chest_armor.json
@@ -49,6 +52,7 @@ a82420a567ff4584d112cc68bc5fa646de3f346e data/minecraft/tags/item/villager_plant
 d10bc32c34158a4a59fb10802ac3c1ccc4532e6a data/verdant/tags/item/blasting_blossom_bombs.json
 fd1050e3b50710462279abdcb0126ce81a18983f data/verdant/tags/item/crafts_to_ropes.json
 1e155673f82519ea111088ab76d649980c1ce1d2 data/verdant/tags/item/darts.json
+7031861956185905c0b33100ef95db464a21453f data/verdant/tags/item/dart_effect_binders.json
 4091fd8126588cb6c53956343a5e6026d59d4e66 data/verdant/tags/item/heartwood_tool_materials.json
 4ae377e10322f65828138dafc24a86d0340a70e1 data/verdant/tags/item/imbued_heartwood_tool_materials.json
 d07889c61eb05050b200fdad7663479af18887ad data/verdant/tags/item/repairs_heartwood_armor.json

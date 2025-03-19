@@ -8,6 +8,7 @@ import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.network.chat.Component;
@@ -64,6 +65,13 @@ public class Verdant implements ModInitializer {
         });
 
         TillableBlockRegistry.register(BlockRegistry.STONY_GRUS.get(), HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState()));
+
+        DefaultItemComponentEvents.MODIFY.register((context) -> {
+
+            // TODO
+
+
+        });
 
         CommonClass.addCakeCandles();
 

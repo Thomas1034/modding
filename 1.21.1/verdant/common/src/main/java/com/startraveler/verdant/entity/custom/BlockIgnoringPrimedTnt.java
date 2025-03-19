@@ -9,15 +9,12 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-
-import javax.annotation.Nullable;
-
 public class BlockIgnoringPrimedTnt extends PrimedTnt {
     public BlockIgnoringPrimedTnt(EntityType<? extends PrimedTnt> entityType, Level level) {
         super(entityType, level);
     }
 
-    public BlockIgnoringPrimedTnt(Level level, double x, double y, double z, @Nullable LivingEntity owner) {
+    public BlockIgnoringPrimedTnt(Level level, double x, double y, double z, LivingEntity owner) {
         this(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), level);
         this.setPos(x, y, z);
         double d0 = level.random.nextDouble() * (double) ((float) Math.PI * 2F);

@@ -44,8 +44,8 @@ import java.util.function.Supplier;
 public class ToxicDirtBlock extends Block {
 
 
-    public static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 100, 0);
-    public static final Supplier<MobEffectInstance> WITHER = () -> new MobEffectInstance(MobEffects.WITHER, 100, 2);
+    public static final Supplier<MobEffectInstance> POISON = () -> new MobEffectInstance(MobEffects.POISON, 105, 0);
+    public static final Supplier<MobEffectInstance> WITHER = () -> new MobEffectInstance(MobEffects.WITHER, 105, 2);
     public static final BooleanProperty IS_SURFACE = BlockStateProperties.UP;
 
     public ToxicDirtBlock(Properties properties) {

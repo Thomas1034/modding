@@ -57,11 +57,12 @@ Retreats underground if there are no players nearby
 AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 
 Advancements:
-"Born and Bred", walk through a thorn bush without taking damage due to verdant armor.
-"That is just wrong on so many levels" for using toxic ash for fishing
-"Not Generally Considered Edible", eat one of the rotten fertilizers
-"In Aloe Veritas", use aloe's soothing gel to remove a harmful effect
-"Kabloom", step on a volatile flower
+"Born and Bred", "Walk through a thorn bush without taking damage."
+"That is just wrong on so many levels", "Use Toxic Ash as a shortcut while fishing." for using toxic ash for fishing
+"Not Generally Considered Edible", "Why would you eat that?", for eating rotten fertilizer
+"In Aloe Veritas", "Use aloe's soothing gel to remove a harmful effect."
+"Kabloom", "Step on a volatile flower"
+"Minesweeper", "Collect a Blasting Bloom using shears."
 
 Compatibility
 
@@ -70,18 +71,28 @@ Compatibility
 // Credits: (other direct contributors only)
 /*
 Features Added:
+- Blasting Blossoms, a plant inspired by Legend of Zelda's Bomb Flowers.
+- Blasting Blooms, usable as grenade-like weapons
+- Stable Blasting Blooms, which can be placed and stacked for powerful mining explosions.
+- Broken Armor potions, reducing the protection given by armor, brewed from Blasting Blooms in Thick potions.
+- The Unbreakable potion effect prevents durability loss, brewed from Fermented Spider's Eye in Broken Armor potions.
+- Blasting Blossom Sprouts, used to plant Blasting Blooms.
+- Rebalanced some spread rates.
 - Rope Ladders, which can hang from ladders above them.
-- Blowgun, with tipped darts
+- Blowgun, with tipped darts.
 - Aloe, a two-stage crop used to soothe harmful effects.
-- Snapleaves can be smelted into green dye
-- Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potion.
-- Added Fused Gravel, smelted from Packed Gravel
+- Snapleaves can be smelted into green dye.
+- Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potions.
+- Added Fused Gravel, a decorative block smelted from Packed Gravel.
 - Added Scree, a dark-colored gravel equivalent formed by erosion from Deepslate.
-- Added Packed Scree and Fused Scree
+- Added Packed Scree and Fused Scree.
 - Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
 - Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
 
 Bugs Fixed:
+- Dead Bushes can now survive on verdant ground.
+- The poison effect from Toxic Dirt flickers when viewed in the inventory.
+- Bucket of Toxic Solution does not actually use up when it is used.
 - Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth
 - Reduced lag from verdant ground that isn't actively spreading.
 - Packed Gravel is now properly mineable with shovels.

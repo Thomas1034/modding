@@ -4,6 +4,7 @@ import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
+import com.startraveler.verdant.util.CommonTags;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -26,6 +27,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
 
         addDirtOres();
+        addGrusOres();
 
 
         // Verdant ground
@@ -195,10 +197,14 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
 
         this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
+
+        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE);
     }
 
+
     private void addDirtOres() {
-        this.tag(Tags.Items.ORES).add(
+        this.tag(Tags.Items.ORES).addTag(CommonTags.Items.ORES_IN_GROUND_DIRT);
+        this.tag(CommonTags.Items.ORES_IN_GROUND_DIRT).add(
                 BlockRegistry.DIRT_COAL_ORE.get().asItem(),
                 BlockRegistry.DIRT_COPPER_ORE.get().asItem(),
                 BlockRegistry.DIRT_DIAMOND_ORE.get().asItem(),
@@ -216,5 +222,30 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(Tags.Items.ORES_IRON).add(BlockRegistry.DIRT_IRON_ORE.get().asItem());
         this.tag(Tags.Items.ORES_LAPIS).add(BlockRegistry.DIRT_LAPIS_ORE.get().asItem());
         this.tag(Tags.Items.ORES_REDSTONE).add(BlockRegistry.DIRT_REDSTONE_ORE.get().asItem());
+        this.tag(CommonTags.Items.ORE_BEARING_GROUND_DIRT).add(Items.DIRT);
+    }
+
+
+    private void addGrusOres() {
+        this.tag(Tags.Items.ORES).addTag(CommonTags.Items.ORES_IN_GROUND_GRUS);
+        this.tag(CommonTags.Items.ORES_IN_GROUND_DIRT).add(
+                BlockRegistry.GRUS_COAL_ORE.get().asItem(),
+                BlockRegistry.GRUS_COPPER_ORE.get().asItem(),
+                BlockRegistry.GRUS_DIAMOND_ORE.get().asItem(),
+                BlockRegistry.GRUS_EMERALD_ORE.get().asItem(),
+                BlockRegistry.GRUS_GOLD_ORE.get().asItem(),
+                BlockRegistry.GRUS_IRON_ORE.get().asItem(),
+                BlockRegistry.GRUS_LAPIS_ORE.get().asItem(),
+                BlockRegistry.GRUS_REDSTONE_ORE.get().asItem()
+        );
+        this.tag(Tags.Items.ORES_COAL).add(BlockRegistry.GRUS_COAL_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_COPPER).add(BlockRegistry.GRUS_COPPER_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_DIAMOND).add(BlockRegistry.GRUS_DIAMOND_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_EMERALD).add(BlockRegistry.GRUS_EMERALD_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_GOLD).add(BlockRegistry.GRUS_GOLD_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_IRON).add(BlockRegistry.GRUS_IRON_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_LAPIS).add(BlockRegistry.GRUS_LAPIS_ORE.get().asItem());
+        this.tag(Tags.Items.ORES_REDSTONE).add(BlockRegistry.GRUS_REDSTONE_ORE.get().asItem());
+        this.tag(CommonTags.Items.ORE_BEARING_GROUND_GRUS).add(Items.DIRT);
     }
 }
