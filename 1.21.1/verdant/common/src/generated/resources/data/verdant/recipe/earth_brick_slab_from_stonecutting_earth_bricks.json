@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "verdant:earth_brick_slab",
+  "ingredient": "verdant:earth_bricks",
+  "result": {
+    "count": 2,
+    "id": "verdant:earth_brick_slab"
+  }
+}

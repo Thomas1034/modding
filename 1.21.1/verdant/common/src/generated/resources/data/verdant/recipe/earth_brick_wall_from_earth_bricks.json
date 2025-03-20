@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:earth_brick_wall",
+  "key": {
+    "E": "verdant:earth_bricks"
+  },
+  "pattern": [
+    "EEE",
+    "EEE"
+  ],
+  "result": {
+    "count": 6,
+    "id": "verdant:earth_brick_wall"
+  }
+}

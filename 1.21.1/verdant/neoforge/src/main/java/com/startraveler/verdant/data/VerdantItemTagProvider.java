@@ -29,6 +29,9 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         addDirtOres();
         addGrusOres();
 
+        this.tag(ItemTags.WALLS).add(BlockRegistry.EARTH_BRICK_WALL.get().asItem());
+        this.tag(ItemTags.STAIRS).add(BlockRegistry.EARTH_BRICK_STAIRS.get().asItem());
+        this.tag(ItemTags.SLABS).add(BlockRegistry.EARTH_BRICK_SLAB.get().asItem());
 
         // Verdant ground
         this.tag(VerdantTags.Items.VERDANT_GROUND).add(

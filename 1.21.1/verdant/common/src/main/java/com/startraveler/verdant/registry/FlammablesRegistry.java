@@ -45,6 +45,7 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.STINKING_BLOSSOM, 60, 100);
         flammables.registerFlammability(BlockRegistry.BLEEDING_HEART, 60, 100);
         flammables.registerFlammability(BlockRegistry.TIGER_LILY, 60, 100);
+        flammables.registerFlammability(BlockRegistry.RUE, 60, 100);
         flammables.registerFlammability(BlockRegistry.THORN_BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.WILD_COFFEE, 60, 100);

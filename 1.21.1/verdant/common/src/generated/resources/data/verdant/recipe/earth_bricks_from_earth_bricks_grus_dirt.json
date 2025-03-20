@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:earth_bricks",
+  "key": {
+    "B": "verdant:earth_bricks",
+    "D": "minecraft:dirt",
+    "G": "verdant:grus"
+  },
+  "pattern": [
+    "BG",
+    "DB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "verdant:earth_bricks"
+  }
+}

@@ -56,6 +56,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.DIRT_IRON_ORE.get(),
                 BlockRegistry.DIRT_LAPIS_ORE.get(),
                 BlockRegistry.DIRT_REDSTONE_ORE.get(),
+                BlockRegistry.EARTH_BRICKS.get(),
+                BlockRegistry.EARTH_BRICK_STAIRS.get(),
+                BlockRegistry.EARTH_BRICK_WALL.get(),
+                BlockRegistry.EARTH_BRICK_SLAB.get(),
                 BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
                 BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get()
         );
@@ -399,6 +403,18 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         // Dead logs    
         this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
+
+        //
+        this.tag(BlockTags.WALLS).add(BlockRegistry.EARTH_BRICK_WALL.get());
+        this.tag(BlockTags.STAIRS).add(BlockRegistry.EARTH_BRICK_STAIRS.get());
+        this.tag(BlockTags.SLABS).add(BlockRegistry.EARTH_BRICK_SLAB.get());
+        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(
+                BlockRegistry.EARTH_BRICK_WALL.get(),
+                BlockRegistry.EARTH_BRICK_SLAB.get(),
+                BlockRegistry.EARTH_BRICK_STAIRS.get(),
+                BlockRegistry.EARTH_BRICKS.get()
+        );
+
 
         addDirtOres();
         addGrusOres();

@@ -400,7 +400,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         ));
         this.add(blastingBunch, blastingBunchTable);
 
-
+        this.dropSelf(BlockRegistry.EARTH_BRICKS.get());
+        this.dropSelf(BlockRegistry.EARTH_BRICK_STAIRS.get());
+        this.dropSelf(BlockRegistry.EARTH_BRICK_WALL.get());
+        this.add(BlockRegistry.EARTH_BRICK_SLAB.get(), this.createSlabItemTable(BlockRegistry.EARTH_BRICK_SLAB.get()));
     }
 
     @Override

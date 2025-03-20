@@ -17,7 +17,14 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:cave_vine",
+        "configured_feature": "verdant:poison_ivy_ceiling",
+        "weight": 2
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:stinking_blossom_ceiling",
         "weight": 1
       }
     },
@@ -31,8 +38,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:hanging_roots",
-        "weight": 100
+        "configured_feature": "minecraft:cave_vine",
+        "weight": 1
       }
     },
     {
@@ -45,15 +52,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:poison_ivy_ceiling",
-        "weight": 2
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
-        "configured_feature": "verdant:stinking_blossom_ceiling",
-        "weight": 1
+        "configured_feature": "verdant:hanging_roots",
+        "weight": 100
       }
     }
   ],

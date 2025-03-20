@@ -5,6 +5,8 @@
     "verdant:poisoner",
     "minecraft:bogged",
     "minecraft:creeper",
+    "minecraft:spider",
+    "minecraft:cave_spider",
     "minecraft:creaking",
     "#minecraft:impact_projectiles"
   ]

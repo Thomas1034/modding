@@ -33,7 +33,6 @@ import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,11 +67,11 @@ public record AmplifyEffectsConsumeEffect(Optional<MobEffectCategory> category) 
         if (!level.isClientSide) {
             // Find the mob effect instance that the eater has.
             List<MobEffectInstance> effects = new ArrayList<>(livingEntity.getActiveEffects());
-            Collections.shuffle(effects);
 
             for (MobEffectInstance instance : effects) {
                 Holder<MobEffect> effect = instance.getEffect();
                 if (this.category.isEmpty() || this.category.get() == effect.value().getCategory()) {
+                    livingEntity.removeEffect(effect);
                     livingEntity.addEffect(
                             new MobEffectInstance(
                                     effect,

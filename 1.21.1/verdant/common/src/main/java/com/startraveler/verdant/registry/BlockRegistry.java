@@ -166,7 +166,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> STONY_GRUS;
     public static final RegistryObject<Block, Block> BLASTING_BLOSSOM;
     public static final RegistryObject<Block, Block> BLASTING_BUNCH;
+    public static final RegistryObject<Block, Block> EARTH_BRICKS;
+    public static final RegistryObject<Block, Block> EARTH_BRICK_STAIRS;
+    public static final RegistryObject<Block, Block> EARTH_BRICK_SLAB;
+    public static final RegistryObject<Block, Block> EARTH_BRICK_WALL;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
+
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem(
@@ -974,6 +979,35 @@ public class BlockRegistry {
                         (stack) -> stack.is(VerdantTags.Items.BLASTING_BLOSSOM_BOMBS)
                 )
         );
+
+        EARTH_BRICKS = registerBlockWithItem(
+                "earth_bricks",
+                () -> new Block(properties("earth_bricks").mapColor(MapColor.DIRT)
+                        .strength(1.6F)
+                        .sound(SoundType.GRAVEL))
+        );
+
+        EARTH_BRICK_STAIRS = registerBlockWithItem(
+                "earth_brick_stairs", () -> new StairBlock(
+                        EARTH_BRICKS.get().defaultBlockState(),
+                        properties("earth_brick_stairs").mapColor(MapColor.DIRT).strength(1.6F).sound(SoundType.GRAVEL)
+                )
+        );
+
+        EARTH_BRICK_SLAB = registerBlockWithItem(
+                "earth_brick_slab",
+                () -> new SlabBlock(properties("earth_brick_slab").mapColor(MapColor.DIRT)
+                        .strength(1.6F)
+                        .sound(SoundType.GRAVEL))
+        );
+
+        EARTH_BRICK_WALL = registerBlockWithItem(
+                "earth_brick_wall",
+                () -> new WallBlock(properties("earth_brick_wall").mapColor(MapColor.DIRT)
+                        .strength(1.6F)
+                        .sound(SoundType.GRAVEL))
+        );
+
 
     }
 

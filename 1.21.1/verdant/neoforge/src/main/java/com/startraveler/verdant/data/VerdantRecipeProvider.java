@@ -711,6 +711,71 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ), RecipeCategory.TOOLS, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
         );
 
+        shaped(
+                List.of("DGD", "GAG", "DGD"),
+                List.of('A', 'G', 'D'),
+                List.of(ItemRegistry.TOXIC_ASH.get(), BlockRegistry.GRUS.get(), Blocks.DIRT),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICKS.get(),
+                8
+        );
+
+        shaped(
+                List.of("BG", "DB"),
+                List.of('B', 'G', 'D'),
+                List.of(BlockRegistry.EARTH_BRICKS.get(), BlockRegistry.GRUS.get(), Blocks.DIRT),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICKS.get(),
+                4
+        );
+
+
+        shaped(
+                List.of("E  ", "EE ", "EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.EARTH_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_STAIRS.get(),
+                4
+        );
+
+        shaped(
+                List.of("EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.EARTH_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_SLAB.get(),
+                6
+        );
+
+        shaped(
+                List.of("EEE", "EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.EARTH_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_WALL.get(),
+                6
+        );
+
+        stonecutting(
+                BlockRegistry.EARTH_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_SLAB.get(),
+                2
+        );
+        stonecutting(
+                BlockRegistry.EARTH_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_WALL.get(),
+                1
+        );
+        stonecutting(
+                BlockRegistry.EARTH_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICK_STAIRS.get(),
+                1
+        );
+
         // TODO End of recipe definitions
     }
 

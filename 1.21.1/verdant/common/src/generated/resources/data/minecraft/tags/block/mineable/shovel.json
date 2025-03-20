@@ -22,6 +22,10 @@
     "verdant:dirt_iron_ore",
     "verdant:dirt_lapis_ore",
     "verdant:dirt_redstone_ore",
+    "verdant:earth_bricks",
+    "verdant:earth_brick_stairs",
+    "verdant:earth_brick_wall",
+    "verdant:earth_brick_slab",
     "verdant:cassava_rooted_dirt",
     "verdant:bitter_cassava_rooted_dirt"
   ]

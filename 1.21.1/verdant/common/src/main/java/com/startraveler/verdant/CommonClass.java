@@ -94,8 +94,12 @@ Features Added:
 - Added Packed Scree and Fused Scree.
 - Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
 - Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
+- Poisoners, witches that have learned to use the plants of the Verdant Growth for more potent potions.
+- Crocodile Tears, exclusive drops from Poisoners that amplify potion effects when consumed.
+- Earth Bricks, made of Dirt and Grus, with a dash of Toxic Ash to keep plants away.
 
 Bugs Fixed:
+- Spiders and Cave Spiders are now friendly to the Verdant Growth (and vice versa).
 - Dead Bushes can now survive on verdant ground.
 - The poison effect from Toxic Dirt flickers when viewed in the inventory.
 - Bucket of Toxic Solution does not actually use up when it is used.

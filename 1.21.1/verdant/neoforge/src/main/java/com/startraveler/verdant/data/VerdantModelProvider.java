@@ -3,6 +3,7 @@ package com.startraveler.verdant.data;
 import com.google.common.collect.Streams;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.data.definitions.VerdantBlockFamilies;
 import com.startraveler.verdant.data.definitions.VerdantModelTemplates;
 import com.startraveler.verdant.data.definitions.VerdantTextureMapping;
 import com.startraveler.verdant.data.definitions.VerdantTexturedModel;
@@ -729,6 +730,8 @@ public class VerdantModelProvider extends ModelProvider {
         blastingBlossom(BlockRegistry.BLASTING_BLOSSOM.get());
 
         blastingBunch(BlockRegistry.BLASTING_BUNCH.get());
+
+        blockModels.family(BlockRegistry.EARTH_BRICKS.get()).generateFor(VerdantBlockFamilies.EARTH_BRICKS);
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 
