@@ -52,8 +52,11 @@ public class ItemRegistry {
 
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
 
-    // TODO add Dry Aloe Leaf
-    // TODO add Young Aloe Leaf
+    public static final RegistryObject<Item, Item> CROCODILE_TEAR = register(
+            "crocodile_tear",
+            (properties -> new Item(properties.component(DataComponents.CONSUMABLE, ConsumablesList.CROCODILE_TEAR)))
+    );
+
     public static final RegistryObject<Item, Item> ALOE_LEAF = register(
             "aloe_leaf", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),

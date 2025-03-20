@@ -16,6 +16,7 @@
  */
 package com.startraveler.verdant.registry.properties;
 
+import com.startraveler.verdant.item.component.AmplifyEffectsConsumeEffect;
 import com.startraveler.verdant.item.component.DiminishEffectConsumeEffect;
 import com.startraveler.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.Holder;
@@ -30,25 +31,31 @@ import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ConsumablesList {
 
+    public static final Consumable CROCODILE_TEAR = Consumables.defaultDrink()
+            .consumeSeconds(Consumables.DEFAULT_DRINK.consumeSeconds() / 1.5f)
+            .onConsume(new AmplifyEffectsConsumeEffect(Optional.empty()))
+            .build();
+
     public static final Consumable ALOE_LEAF = Consumables.defaultFood()
-            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
     public static final Consumable YOUNG_ALOE_LEAF = Consumables.defaultFood()
-            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
     public static final Consumable OLD_ALOE_LEAF = Consumables.defaultFood()
-            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 1.5f)
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
@@ -89,11 +96,7 @@ public class ConsumablesList {
             .build();
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(
-                            MobEffects.DAMAGE_RESISTANCE,
-                            1200,
-                            0
-                    ),
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
             )))
             .build();

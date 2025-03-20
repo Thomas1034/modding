@@ -83,12 +83,15 @@ public class ToxicDirtBlock extends Block {
 
             if (level instanceof ServerLevel) {
                 if (isPoisoned) {
+                    MobEffectInstance newEffect;
                     if (livingEntity.getType().is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
-
-                        livingEntity.addEffect(WITHER.get());
+                        newEffect = WITHER.get();
                     } else {
-
-                        livingEntity.addEffect(POISON.get());
+                        newEffect = POISON.get();
+                    }
+                    MobEffectInstance existingEffect = livingEntity.getEffect(newEffect.getEffect());
+                    if (existingEffect == null || existingEffect.getAmplifier() < newEffect.getAmplifier()) {
+                        livingEntity.addEffect(newEffect);
                     }
                 }
             } else {

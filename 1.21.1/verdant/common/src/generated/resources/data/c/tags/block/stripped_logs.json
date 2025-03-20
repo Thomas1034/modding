@@ -1,9 +1,9 @@
 {
   "values": [
-    "verdant:stripped_dead_log",
-    "verdant:stripped_dead_wood",
     "verdant:stripped_strangler_log",
     "verdant:stripped_strangler_wood",
+    "verdant:stripped_dead_log",
+    "verdant:stripped_dead_wood",
     "verdant:stripped_heartwood_log",
     "verdant:stripped_heartwood_wood"
   ]

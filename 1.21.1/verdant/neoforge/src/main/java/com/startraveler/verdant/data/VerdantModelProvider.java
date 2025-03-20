@@ -848,6 +848,8 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.BLASTING_BLOOM.get());
         basicItem(ItemRegistry.BLASTING_BLOSSOM_SPROUT.get());
 
+        basicItem(ItemRegistry.CROCODILE_TEAR.get());
+
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
         itemModels.generateSpawnEgg(ItemRegistry.TIMBERMITE_SPAWN_EGG.get(), 0x2bf31b, 0x1e150a);
         itemModels.generateSpawnEgg(ItemRegistry.POISONER_SPAWN_EGG.get(), 0x000034, 0x51a03e);

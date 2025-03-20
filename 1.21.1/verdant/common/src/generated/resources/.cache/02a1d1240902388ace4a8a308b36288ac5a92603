@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-19T21:56:04.1527746	Model Definitions - verdant
+// 1.21.4	2025-03-20T01:07:51.1626465	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -157,6 +157,7 @@ efbabcf65585fe08cf34a9857c61201b2a34caca assets/verdant/items/cassava_rooted_dir
 fef41114fb1e683895de238ba0f4a8f18a61e926 assets/verdant/items/coffee_berries.json
 045cf0d3443ba03dde3a25d60d76b6a16e27c06e assets/verdant/items/cooked_cassava.json
 50567ee945901a701ec7c05516de6ddb2e00edf2 assets/verdant/items/cooked_golden_cassava.json
+128216e0c1ef082e466dfcb1433e76a0208c122b assets/verdant/items/crocodile_tear.json
 1eb680b82981799a26f537caed72f105857de68d assets/verdant/items/dart.json
 cfb9f78b0b07af502eb68862b8d085a874fc9ff2 assets/verdant/items/dead_grass.json
 91a47c06602254a1d0e55b67ff53b029b12f2205 assets/verdant/items/dirt_coal_ore.json
@@ -560,6 +561,7 @@ e12bb8f93070b36ea19965ae3b880f6ea15492ff assets/verdant/models/item/bush.json
 3680cb67c607f828d41ad1d7f6bcb87a2f91df2c assets/verdant/models/item/coffee_berries.json
 c6bcf2a05ecaaf51f6cb70e77d12c594bc82d8bf assets/verdant/models/item/cooked_cassava.json
 59e178767225e138acda193b87c473916fb55cbe assets/verdant/models/item/cooked_golden_cassava.json
+ef3319d28eb986ded19300c56c95d5be116d66bb assets/verdant/models/item/crocodile_tear.json
 f8a893bc8d88ca54a7b0c0d1217c69a043abeffa assets/verdant/models/item/dart.json
 5da2f35a792b5cfac8252d9c736862bed4d0183f assets/verdant/models/item/dead_grass.json
 ce2d77d985028c793bf3036be94abf0fe4c51319 assets/verdant/models/item/drowned_hemlock.json

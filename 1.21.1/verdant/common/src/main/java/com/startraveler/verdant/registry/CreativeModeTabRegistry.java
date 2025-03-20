@@ -125,6 +125,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
+                        output.accept(ItemRegistry.CASSAVA.get());
                         output.accept(ItemRegistry.ALOE_PUP.get());
                         output.accept(ItemRegistry.YOUNG_ALOE_LEAF.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
@@ -137,13 +138,13 @@ public class CreativeModeTabRegistry {
     public static final RegistryObject<CreativeModeTab, CreativeModeTab> FOODS_TAB = CREATIVE_MODE_TABS.register(
             Constants.MOD_ID + "_foods_tab",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-                    .icon(() -> new ItemStack(ItemRegistry.CASSAVA.get()))
+                    .icon(() -> new ItemStack(ItemRegistry.GOLDEN_BREAD.get()))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.CROCODILE_TEAR.get());
                         output.accept(ItemRegistry.COFFEE_BERRIES.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());
-                        output.accept(ItemRegistry.CASSAVA.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA.get());
                         output.accept(ItemRegistry.GOLDEN_CASSAVA.get());
                         output.accept(ItemRegistry.COOKED_CASSAVA.get());
@@ -208,6 +209,7 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get()))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ItemRegistry.CROCODILE_TEAR.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.ROPE.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
@@ -225,6 +227,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
                         output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".tools"))
                     .build()
