@@ -26,6 +26,7 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).add(
                 EntityTypeRegistry.TIMBERMITE.get(),
                 EntityTypeRegistry.ROOTED.get(),
+                EntityTypeRegistry.POISONER.get(),
                 EntityType.BOGGED,
                 EntityType.CREEPER,
                 EntityType.CREAKING
@@ -34,7 +35,7 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
         this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).add(
                 EntityTypeRegistry.ROOTED.get(),
                 EntityType.BOGGED,
-                EntityTypeRegistry.ROOTED.get(),
+                EntityTypeRegistry.POISONER.get(),
                 EntityType.CREAKING,
                 EntityType.CREEPER
         );

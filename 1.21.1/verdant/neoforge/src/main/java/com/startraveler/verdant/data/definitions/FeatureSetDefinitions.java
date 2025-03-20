@@ -21,8 +21,8 @@ public class FeatureSetDefinitions {
 
         entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_GRASS_JUNGLE));
         entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_TALL_GRASS));
+        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_LARGE_FERN));
         entries.add(configured(Rarity.COMMON, JSONFeatures.MIXED_BUSHES));
-        entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_LARGE_FERN));
         entries.add(configured(Rarity.UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.MOSS_CARPETS));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.RUE));

@@ -1,7 +1,7 @@
-// 1.21.4	2025-03-08T12:22:19.7683463	Tags for minecraft:entity_type mod id verdant
+// 1.21.4	2025-03-19T21:56:04.1498357	Tags for minecraft:entity_type mod id verdant
 6f64aeb58e3eb9ceef6008175f56c1bd70abf38a data/minecraft/tags/entity_type/arrows.json
 b12b7ca4fb63fc37a02a84636ad626f90e1c78fb data/minecraft/tags/entity_type/arthropod.json
 95277dad465282e4276acd3fed9a3038aa7f446f data/minecraft/tags/entity_type/impact_projectiles.json
 009242661fdcab76bbc8ae9da341cfbc69e0113e data/minecraft/tags/entity_type/undead.json
-4de86428280a99dd141234915bf9570e857ef9be data/verdant/tags/entity_type/toxic_ash_damages.json
-b944698e0f8f0de326a7e250dfe744edbb555262 data/verdant/tags/entity_type/verdant_friendly_entities.json
+1d1e7934ef6c3fdc0475cfa290f9f28c6c32bf60 data/verdant/tags/entity_type/toxic_ash_damages.json
+b75b3975503ee8e29bab964a88297d67b7f610df data/verdant/tags/entity_type/verdant_friendly_entities.json

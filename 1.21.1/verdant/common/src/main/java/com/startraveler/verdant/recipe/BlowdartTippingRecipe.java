@@ -49,7 +49,6 @@ public class BlowdartTippingRecipe extends CustomRecipe {
 
     public static final float EFFECT_DURATION_BASE_MULTIPLIER = 2;
     public static final float EFFECT_DURATION_PER_BINDER_MULTIPLIER = 1;
-    public static final int SECONDS_TO_TICKS = 20;
 
     public BlowdartTippingRecipe(CraftingBookCategory category) {
         super(category);
@@ -70,40 +69,59 @@ public class BlowdartTippingRecipe extends CustomRecipe {
         List<MobEffectInstance> directEffects = new ArrayList<>();
         int binderCount = 0;
         for (ItemStack stack : input.items()) {
+            boolean anySucceeded = false;
             // TODO: allow item to fulfil multiple conditions?
             if (stack.is(ItemRegistry.DART.get())) {
 
                 dartCount++;
-
-            } else if (stack.has(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get())) {
-                directEffects.addAll(Objects.requireNonNull(stack.get(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get()))
-                        .effects());
-
-            } else if (stack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
-
-                suspiciousEffects.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
-
-            } else if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
-
-                suspiciousEffects.add(seh.getSuspiciousEffects());
-
-            } else if (stack.is(VerdantTags.Items.DART_EFFECT_BINDERS)) {
-
-                binderCount++;
-
-            } else if (!stack.isEmpty()) {
-                isValid = false;
+                anySucceeded = true;
 
             }
+
+            if (stack.has(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get())) {
+
+                directEffects.addAll(Objects.requireNonNull(stack.get(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get()))
+                        .effects());
+                anySucceeded = true;
+
+            }
+
+            if (stack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
+
+                suspiciousEffects.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
+                anySucceeded = true;
+
+            }
+
+            if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
+
+                suspiciousEffects.add(seh.getSuspiciousEffects());
+                anySucceeded = true;
+
+            }
+
+            if (stack.is(VerdantTags.Items.DART_EFFECT_BINDERS)) {
+
+                binderCount++;
+                anySucceeded = true;
+
+            }
+
+            if (stack.isEmpty()) {
+                anySucceeded = true;
+            }
+
+            isValid &= anySucceeded;
         }
 
 
         isValid &= dartCount > 0;
 
-        isValid &= !suspiciousEffects.isEmpty() || !directEffects.isEmpty();
+
+        isValid &= (!suspiciousEffects.isEmpty() || !directEffects.isEmpty());
 
         if (isValid) {
-            int durationMultiplier = SECONDS_TO_TICKS * (int) (EFFECT_DURATION_BASE_MULTIPLIER + binderCount * EFFECT_DURATION_PER_BINDER_MULTIPLIER);
+            int durationMultiplier = (int) (EFFECT_DURATION_BASE_MULTIPLIER + binderCount * EFFECT_DURATION_PER_BINDER_MULTIPLIER);
             List<MobEffectInstance> customEffects = Stream.concat(
                     suspiciousEffects.stream()
                             .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()

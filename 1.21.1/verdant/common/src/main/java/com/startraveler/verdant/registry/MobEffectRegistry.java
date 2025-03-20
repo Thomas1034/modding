@@ -160,10 +160,6 @@ public class MobEffectRegistry {
             "sepia",
             () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0xAD9A78)
     );
-    public static final RegistryObject<MobEffect, MobEffect> RECALL = MOB_EFFECTS.register(
-            "recall",
-            () -> new RecallEffect(MobEffectCategory.BENEFICIAL, 0x3CFF00)
-    );
     public static final RegistryObject<MobEffect, MobEffect> ADRENALINE = MOB_EFFECTS.register(
             "adrenaline",
             () -> new AdrenalineEffect(MobEffectCategory.BENEFICIAL, 0xE4003B)
@@ -176,7 +172,22 @@ public class MobEffectRegistry {
             "unbreakable",
             () -> new NoOpEffect(MobEffectCategory.BENEFICIAL, 0x4AEDD9)
     );
-
+    public static final RegistryObject<MobEffect, MobEffect> INNER_FIRE = MOB_EFFECTS.register(
+            "inner_fire",
+            () -> new InnerFireEffect(MobEffectCategory.HARMFUL, 0xDD6100)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> FLICKERING = MOB_EFFECTS.register(
+            "flickering",
+            () -> new TeleportitisEffect(MobEffectCategory.NEUTRAL, 6.0f, 0x562E56)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> RECALL = MOB_EFFECTS.register(
+            "recall",
+            () -> new RecallEffect(MobEffectCategory.BENEFICIAL, 0x8021D7)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> DESPERATION = MOB_EFFECTS.register(
+            "desperation",
+            () -> new AddictiveEffect(MobEffectCategory.NEUTRAL, 0x135EE5, 100, MobEffects.REGENERATION)
+    );
 
     public static void init() {
     }

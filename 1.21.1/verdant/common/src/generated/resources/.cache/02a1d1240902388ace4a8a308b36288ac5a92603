@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-18T00:24:31.8833062	Model Definitions - verdant
+// 1.21.4	2025-03-19T21:56:04.1527746	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -37,7 +37,7 @@ cbe576a2e07045dfe8743333262e86f166828e70 assets/minecraft/models/item/white_cand
 217ec44882649fb9566804cdc87e288e1b37beb1 assets/verdant/blockstates/bitter_cassava_crop.json
 9622edfbbcb5413623773de504290c9ece0d730a assets/verdant/blockstates/bitter_cassava_rooted_dirt.json
 646de54cdfccb89bc945cdc240add02d3ad038bd assets/verdant/blockstates/black_candle_ube_cake.json
-e1db110549d799267ad78a8a8145f084b7650672 assets/verdant/blockstates/blasting_blossom.json
+8fe98fb031b89d5ac4eaf56bc873cf927365da75 assets/verdant/blockstates/blasting_blossom.json
 9b75a739a6b45102978db290e3c49f647875f405 assets/verdant/blockstates/blasting_bunch.json
 f7ee9e60859eb6bc0d9da2f762b2bc1f9648f767 assets/verdant/blockstates/bleeding_heart.json
 7328171702cb7b72409fd5c575ba11e04a5bb0b7 assets/verdant/blockstates/blue_candle_ube_cake.json
@@ -195,7 +195,6 @@ cea8d00a52924dd4512634b3655b4babd4c48a50 assets/verdant/items/heartwood_hoe.json
 3b9b26e6f2047b050fc29bd5af24e8d580004555 assets/verdant/items/heartwood_sword.json
 b518d054f4c5b4df264baef57d47392352b14de9 assets/verdant/items/heart_fragment.json
 6af35bebd69bcd3efdcddee44874dd325fe87c85 assets/verdant/items/heart_of_the_forest.json
-9415e48535e6e012bcf6ea90cfc26fa8cd6cccee assets/verdant/items/hunting_spear.json
 9b24ff4adaee62910012da76bc4be88970324712 assets/verdant/items/imbued_heartwood_axe.json
 a8f2166506bb1f004a8e05537ee5f55a3c40f8d9 assets/verdant/items/imbued_heartwood_boots.json
 01eafca7424a42e561b67fe4fa9c4b1439a2483d assets/verdant/items/imbued_heartwood_chestplate.json
@@ -215,6 +214,7 @@ e6fec70b38c26185f1485c22cfe01aa766ecdb93 assets/verdant/items/iron_trap.json
 4ae8160d655f0f577e4d03b4e1177a3723834fe8 assets/verdant/items/packed_gravel.json
 56a99529e47c7f8028dca7e13c1d94e6e6c1639d assets/verdant/items/packed_scree.json
 94d30b1112c49c7bd2202ab3f7a3ee2eaf426aa5 assets/verdant/items/paper_frame.json
+fc0da90391dc01d7bcc7153da5fe8dc97b017959 assets/verdant/items/poisoner_spawn_egg.json
 aac4f71a84189f5066ce18381fc8ab8ddfa3a277 assets/verdant/items/poison_arrow.json
 69b4b1144ac4f4fb98bb1f16d40d06fe917027cb assets/verdant/items/poison_ivy.json
 d73fc640ee16948e80c9ffd7cfb47aebe205e56d assets/verdant/items/poison_ivy_block.json
@@ -242,6 +242,7 @@ af116e5c1c621d60b84fa76b912dc1063245142e assets/verdant/items/thorn.json
 68d3a2aba51151da3113ffda6e784e21d6e4626d assets/verdant/items/thorny_strangler_leaves.json
 c6a1f27df177c189c3af71916703f3a1b4091b2e assets/verdant/items/thorn_bush.json
 c2a3ea87b8494e22fab2ee8a2be1a6d15d5e9804 assets/verdant/items/tiger_lily.json
+c72b23690d25d8ef20860a294b0ce0276d8d2b9a assets/verdant/items/timbermite_spawn_egg.json
 d08f0b1334cf2a9d37346cee7a4262ee5ac9f382 assets/verdant/items/tipped_dart.json
 afb4079251709215c62ed5e5854f39ecbc16770c assets/verdant/items/toxic_ash.json
 48a28125adbf8316d0ae343797b00e701011a8f0 assets/verdant/items/toxic_ash_block.json
@@ -620,7 +621,6 @@ d89c30185126a8d6b6841a0e15d5b50143cad10a assets/verdant/models/item/heartwood_sh
 447a926de607ac04e516a98dda1bf98c0063a99f assets/verdant/models/item/heartwood_sword.json
 d3c1d30349b0d94398fba80db95b056b6d26464d assets/verdant/models/item/heart_fragment.json
 f87320c3fd2f0443f60543a50d104b2c02fcc245 assets/verdant/models/item/heart_of_the_forest.json
-fcd85584e284b6e9853dfd0d5db9b4b79aedc27d assets/verdant/models/item/hunting_spear.json
 3eb1752ef4bb1a8f91f133bc939056da081df8de assets/verdant/models/item/imbued_heartwood_axe.json
 df533deaf98da68278ef0e4a6267b76fb9449c6b assets/verdant/models/item/imbued_heartwood_boots.json
 51c6816ac8d547d28b1ba8c9df27860a411c0386 assets/verdant/models/item/imbued_heartwood_boots_amethyst_trim.json

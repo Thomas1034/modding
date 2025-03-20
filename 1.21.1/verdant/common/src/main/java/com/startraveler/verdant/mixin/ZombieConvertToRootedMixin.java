@@ -20,9 +20,6 @@ import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Zombie;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,11 +31,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Zombie.class)
 public abstract class ZombieConvertToRootedMixin {
-    // TODO
+
     @Unique
-    private static final EntityDataAccessor<Boolean> verdant$DATA_ROOTED_CONVERSION_ID = SynchedEntityData.defineId(Zombie.class,
-            EntityDataSerializers.BOOLEAN
-    );
+    protected boolean verdant$isConverting;
     @Unique
     private int verdant$rootedConversionTime;
     @Unique
@@ -49,14 +44,10 @@ public abstract class ZombieConvertToRootedMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "defineSynchedData", at = @At(value = "TAIL"))
-    private void defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(verdant$DATA_ROOTED_CONVERSION_ID, false);
-    }
-
     @Inject(method = "readAdditionalSaveData", at = @At(value = "TAIL"))
     private void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         this.verdant$onVerdantTime = compound.getInt("OnVerdantTime");
+        this.verdant$isConverting = compound.getBoolean("IsVerdantConverting");
         if (compound.contains("RootedConversionTime", 99) && compound.getInt("RootedConversionTime") > -1) {
             this.verdant$startOnVerdantConversion(compound.getInt("RootedConversionTime"));
         }
@@ -65,6 +56,7 @@ public abstract class ZombieConvertToRootedMixin {
     @Inject(method = "addAdditionalSaveData", at = @At(value = "TAIL"))
     private void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         compound.putInt("OnVerdantTime", this.verdant$isOnVerdantConverting() ? this.verdant$onVerdantTime : -1);
+        compound.putBoolean("IsVerdantConverting", this.verdant$isConverting);
         compound.putInt(
                 "RootedConversionTime",
                 this.verdant$isOnVerdantConverting() ? this.verdant$rootedConversionTime : -1
@@ -108,14 +100,14 @@ public abstract class ZombieConvertToRootedMixin {
 
     @Unique
     public boolean verdant$isOnVerdantConverting() {
-        return ((Zombie) (Object) this).getEntityData().get(verdant$DATA_ROOTED_CONVERSION_ID);
+        return this.verdant$isConverting;
     }
 
 
     @Unique
     private void verdant$startOnVerdantConversion(int conversionTime) {
         this.verdant$rootedConversionTime = conversionTime;
-        ((Zombie) (Object) this).getEntityData().set(verdant$DATA_ROOTED_CONVERSION_ID, true);
+        this.verdant$isConverting = true;
     }
 
 

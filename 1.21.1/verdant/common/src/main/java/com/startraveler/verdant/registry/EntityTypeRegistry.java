@@ -93,6 +93,15 @@ public class EntityTypeRegistry {
                     .build(key("block_ignoring_tnt"))
     );
 
+    public static final RegistryObject<EntityType<?>, EntityType<PoisonerEntity>> POISONER = ENTITY_TYPES.register(
+            "poisoner",
+            () -> EntityType.Builder.<PoisonerEntity>of(PoisonerEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .eyeHeight(1.62F)
+                    .passengerAttachments(2.2625F)
+                    .clientTrackingRange(8)
+                    .build(key("poisoner"))
+    );
 
     private static ResourceKey<EntityType<?>> key(String name) {
         return ResourceKey.create(

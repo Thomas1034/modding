@@ -1,6 +1,7 @@
 package com.startraveler.verdant;
 
 import com.startraveler.rootbound.Rootbound;
+import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
@@ -49,6 +50,7 @@ public class Verdant implements ModInitializer {
                 TimbermiteEntity.createAttributes()
         );
         FabricDefaultAttributeRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes());
 
         // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
@@ -70,8 +72,7 @@ public class Verdant implements ModInitializer {
                 HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState())
         );
 
-        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(
-                item,
+        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(item,
                 builder -> biConsumerConsumer.accept(builder::set)
         )));
 

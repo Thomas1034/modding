@@ -113,6 +113,7 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.THROWN_SPEAR.get(), ThrownSpearRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
 
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),

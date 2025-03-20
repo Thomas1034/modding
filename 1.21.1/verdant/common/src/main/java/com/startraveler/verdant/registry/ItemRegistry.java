@@ -526,10 +526,13 @@ public class ItemRegistry {
             )
     );
 
+    /*
     public static final RegistryObject<Item, Item> HUNTING_SPEAR = register(
             "hunting_spear",
             (properties) -> new HuntingSpearItem(properties.stacksTo(16))
     );
+    */
+
 
     public static final RegistryObject<Item, Item> DART = register("dart", DartItem::new);
 
@@ -541,6 +544,16 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> ROOTED_SPAWN_EGG = register(
             "rooted_spawn_egg",
             properties -> new SpawnEggItem(EntityTypeRegistry.ROOTED.get(), properties)
+    );
+
+    public static final RegistryObject<Item, Item> TIMBERMITE_SPAWN_EGG = register(
+            "timbermite_spawn_egg",
+            properties -> new SpawnEggItem(EntityTypeRegistry.TIMBERMITE.get(), properties)
+    );
+
+    public static final RegistryObject<Item, Item> POISONER_SPAWN_EGG = register(
+            "poisoner_spawn_egg",
+            properties -> new SpawnEggItem(EntityTypeRegistry.POISONER.get(), properties)
     );
 
     // TODO

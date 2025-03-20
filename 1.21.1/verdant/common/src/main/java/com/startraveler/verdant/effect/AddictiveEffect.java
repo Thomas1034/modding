@@ -28,7 +28,7 @@ import java.util.*;
 
 public class AddictiveEffect extends MobEffect {
 
-    public static final Map<Holder<MobEffect>, Holder<MobEffect>> OPPOSITES = new HashMap<>();
+    protected static final Map<Holder<MobEffect>, Holder<MobEffect>> OPPOSITES = new HashMap<>();
 
     static {
         registerEffects();

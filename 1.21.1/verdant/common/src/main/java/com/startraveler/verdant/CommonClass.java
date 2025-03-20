@@ -76,10 +76,16 @@ Features Added:
 - Stable Blasting Blooms, which can be placed and stacked for powerful mining explosions.
 - Broken Armor potions, reducing the protection given by armor, brewed from Blasting Blooms in Thick potions.
 - The Unbreakable potion effect prevents durability loss, brewed from Fermented Spider's Eye in Broken Armor potions.
+- Colorblindness and Fading potions disrupt player vision.
+- Clumsiness potions, brewed from a Fermented Spider's Eye in a Blurred potion, cause entities to drop what they are holding.
+- Inner Fire potions, brewed with Magma Cream in a Colloid potion, ignite entities they are inflicted upon.
+- The Flickering potion effect causes entities to teleport uncontrollably when hit, brewed with a Chorus Flower in a Colloid potion.
+- The Recall potion will teleport the player back to their spawn point, brewed with a Fermented Spider's Eye in a Flickering potion.
 - Blasting Blossom Sprouts, used to plant Blasting Blooms.
 - Rebalanced some spread rates.
 - Rope Ladders, which can hang from ladders above them.
-- Blowgun, with tipped darts.
+- Blowgun, firing darts.
+- Tipped darts, crafted with darts. Add flowers or various other items to add effects, and lengthen the effects with slime balls or honey bottles.
 - Aloe, a two-stage crop used to soothe harmful effects.
 - Snapleaves can be smelted into green dye.
 - Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potions.

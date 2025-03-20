@@ -1,7 +1,6 @@
 package com.startraveler.verdant.entity.custom;
 
 import com.google.common.collect.Lists;
-import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.mixin.AbstractArrowAccessors;
 import com.startraveler.verdant.mixin.ArrowAccessors;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
@@ -33,7 +32,6 @@ public class DartEntity extends Arrow {
     public DartEntity(EntityType<? extends Arrow> type, Level level) {
         super(type, level);
         ((ArrowAccessors) (this)).verdant$updateColor();
-        Constants.LOG.warn("Color is: {}", this.getColor());
     }
 
     public DartEntity(Level level, LivingEntity thrower, ItemStack ammo, ItemStack bow) {
@@ -92,7 +90,7 @@ public class DartEntity extends Arrow {
     @Override
     @SuppressWarnings("deprecation")
     protected void onHitEntity(EntityHitResult result) {
-        super.onHitEntity(result);
+        // Does _NOT_ invoke super.
         Entity hitEntity = result.getEntity();
         double baseDamage = this.getBaseDamage();
         Entity owner = this.getOwner();

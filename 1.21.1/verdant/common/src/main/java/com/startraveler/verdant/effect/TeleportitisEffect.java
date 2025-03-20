@@ -30,52 +30,55 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 
 public class TeleportitisEffect extends MobEffect {
-    private float diameter;
+    private final float diameter;
 
-    public TeleportitisEffect(MobEffectCategory category, int color) {
+    public TeleportitisEffect(MobEffectCategory category, float diameter, int color) {
         super(category, color);
+        this.diameter = diameter;
     }
 
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-        int radius = (int) (this.diameter * (amplifier + 1));
-        boolean teleportSucceeded = false;
-        for (int i = 0; i < 16; ++i) {
-            double newX = entity.getX() + (entity.getRandom().nextDouble() - 0.5F) * radius;
-            double newY = Mth.clamp(
-                    entity.getY() + (entity.getRandom().nextDouble() - 0.5F) * radius,
-                    level.getMinY(),
-                    (level.getMinY() + level.getLogicalHeight() - 1)
-            );
-            double newZ = entity.getZ() + (entity.getRandom().nextDouble() - 0.5F) * radius;
-            if (entity.isPassenger()) {
-                entity.stopRiding();
-            }
-
-            Vec3 vec3 = entity.position();
-            if (entity.randomTeleport(newX, newY, newZ, true)) {
-                level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
-                SoundSource soundsource;
-                SoundEvent soundevent;
-                if (entity instanceof Fox) {
-                    soundevent = SoundEvents.FOX_TELEPORT;
-                    soundsource = SoundSource.NEUTRAL;
-                } else {
-                    soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
-                    soundsource = SoundSource.PLAYERS;
+        int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
+        if (timeSinceHurt < 2) {
+            int radius = (int) (this.diameter * (amplifier + 1));
+            boolean teleportSucceeded = false;
+            for (int i = 0; i < 16; ++i) {
+                double newX = entity.getX() + (entity.getRandom().nextDouble() - 0.5F) * radius;
+                double newY = Mth.clamp(
+                        entity.getY() + (entity.getRandom().nextDouble() - 0.5F) * radius,
+                        level.getMinY(),
+                        (level.getMinY() + level.getLogicalHeight() - 1)
+                );
+                double newZ = entity.getZ() + (entity.getRandom().nextDouble() - 0.5F) * radius;
+                if (entity.isPassenger()) {
+                    entity.stopRiding();
                 }
 
-                level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundevent, soundsource);
-                entity.resetFallDistance();
-                teleportSucceeded = true;
-                break;
+                Vec3 vec3 = entity.position();
+                if (entity.randomTeleport(newX, newY, newZ, true)) {
+                    level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
+                    SoundSource soundsource;
+                    SoundEvent soundevent;
+                    if (entity instanceof Fox) {
+                        soundevent = SoundEvents.FOX_TELEPORT;
+                        soundsource = SoundSource.NEUTRAL;
+                    } else {
+                        soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
+                        soundsource = SoundSource.PLAYERS;
+                    }
+
+                    level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundevent, soundsource);
+                    entity.resetFallDistance();
+                    teleportSucceeded = true;
+                    break;
+                }
+            }
+
+            if (teleportSucceeded && entity instanceof Player player) {
+                player.resetCurrentImpulseContext();
             }
         }
-
-        if (teleportSucceeded && entity instanceof Player player) {
-            player.resetCurrentImpulseContext();
-        }
-
         return true;
     }
 

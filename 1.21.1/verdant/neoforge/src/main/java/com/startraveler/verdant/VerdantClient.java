@@ -167,6 +167,7 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.THROWN_SPEAR.get(), ThrownSpearRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
         });
     }
 

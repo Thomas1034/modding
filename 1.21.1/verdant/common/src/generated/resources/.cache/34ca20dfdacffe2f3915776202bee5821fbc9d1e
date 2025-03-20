@@ -1,6 +1,6 @@
-// 1.21.4	2025-03-18T21:20:55.8836981	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-03-19T21:56:04.1366873	Tags for minecraft:block mod id verdant
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/block/gravels.json
-dedaee5099583fbdf310afcea0bf873225389f42 data/c/tags/block/ores.json
+a7fe49bc7b3af55491706e65a6b9bed51887c38a data/c/tags/block/ores.json
 22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/block/ores/coal.json
 46e0aa3d4a7c2a6de76ac34371f1e4d7cb5e390d data/c/tags/block/ores/copper.json
 80b7575bf9173ad55c4cdf23b4d1ecbe4afa8136 data/c/tags/block/ores/diamond.json

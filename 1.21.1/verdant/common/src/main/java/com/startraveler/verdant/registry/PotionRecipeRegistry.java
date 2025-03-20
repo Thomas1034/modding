@@ -173,6 +173,45 @@ public class PotionRecipeRegistry {
                 PotionRegistry.LONG_UNBREAKABLE.asHolder()
         );
 
+        recipes.register(PotionRegistry.COLLOID.asHolder(), Items.MAGMA_CREAM, PotionRegistry.INNER_FIRE.asHolder());
+        recipes.register(
+                PotionRegistry.INNER_FIRE.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_INNER_FIRE.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.INNER_FIRE.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_INNER_FIRE.asHolder()
+        );
+
+        recipes.register(PotionRegistry.COLLOID.asHolder(), Items.CHORUS_FLOWER, PotionRegistry.FLICKERING.asHolder());
+        recipes.register(
+                PotionRegistry.FLICKERING.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_FLICKERING.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.FLICKERING.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_FLICKERING.asHolder()
+        );
+
+        recipes.register(PotionRegistry.BLURRED.asHolder(), Items.CRIMSON_FUNGUS, PotionRegistry.COLORBLIND.asHolder());
+        recipes.register(
+                PotionRegistry.COLORBLIND.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_COLORBLIND.asHolder()
+        );
+        recipes.register(PotionRegistry.BLURRED.asHolder(), Items.BROWN_DYE, PotionRegistry.FADING.asHolder());
+        recipes.register(PotionRegistry.FADING.asHolder(), Items.REDSTONE, PotionRegistry.LONG_FADING.asHolder());
+
+
+        recipes.register(
+                PotionRegistry.FLICKERING.asHolder(),
+                Items.FERMENTED_SPIDER_EYE,
+                PotionRegistry.RECALL.asHolder()
+        );
     }
 
     public void register(ItemLike ingredient, Holder<Potion> normal, Holder<Potion> extended, Holder<Potion> strong) {

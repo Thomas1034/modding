@@ -2,6 +2,7 @@ package com.startraveler.verdant;
 
 
 import com.startraveler.rootbound.Rootbound;
+import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
@@ -110,6 +111,7 @@ public class Verdant {
     public static void registerEntityAttributes(final EntityAttributeCreationEvent event) {
         event.put(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteEntity.createAttributes().build());
         event.put(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes().build());
+        event.put(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes().build());
     }
 
     public static void registerContainerCapabilities(RegisterCapabilitiesEvent event) {

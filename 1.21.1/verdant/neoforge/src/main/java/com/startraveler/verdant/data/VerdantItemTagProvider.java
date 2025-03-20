@@ -198,7 +198,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
         this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
 
-        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE);
+        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM);
     }
 
 

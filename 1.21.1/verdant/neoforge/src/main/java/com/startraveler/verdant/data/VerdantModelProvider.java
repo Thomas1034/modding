@@ -188,7 +188,7 @@ public class VerdantModelProvider extends ModelProvider {
                             .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
             ).with(
                     Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.SOUTH)
+                            .term(BombFlowerCropBlock.FACING, Direction.NORTH)
                             .term(BombFlowerCropBlock.AGE, i),
                     Variant.variant()
                             .with(VariantProperties.MODEL, model)
@@ -838,7 +838,7 @@ public class VerdantModelProvider extends ModelProvider {
 
         basicItem(ItemRegistry.DART.get());
         tippedArrow(ItemRegistry.TIPPED_DART.get());
-        handheldItem(ItemRegistry.HUNTING_SPEAR.get());
+        // handheldItem(ItemRegistry.HUNTING_SPEAR.get());
 
         basicItem(ItemRegistry.ALOE_LEAF.get());
         basicItem(ItemRegistry.YOUNG_ALOE_LEAF.get());
@@ -849,6 +849,8 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.BLASTING_BLOSSOM_SPROUT.get());
 
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
+        itemModels.generateSpawnEgg(ItemRegistry.TIMBERMITE_SPAWN_EGG.get(), 0x2bf31b, 0x1e150a);
+        itemModels.generateSpawnEgg(ItemRegistry.POISONER_SPAWN_EGG.get(), 0x000034, 0x51a03e);
     }
 
     @Override

@@ -405,7 +405,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
     }
 
     private void addDirtOres() {
-        this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_DIRT);
+        this.tag(Tags.Blocks.ORES).addOptionalTag(CommonTags.Blocks.ORES_IN_GROUND_DIRT);
         this.tag(CommonTags.Blocks.ORES_IN_GROUND_DIRT).add(
                 BlockRegistry.DIRT_COAL_ORE.get(),
                 BlockRegistry.DIRT_COPPER_ORE.get(),
@@ -429,7 +429,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
     private void addGrusOres() {
 
-        this.tag(Tags.Blocks.ORES).addTag(CommonTags.Blocks.ORES_IN_GROUND_GRUS);
+        this.tag(Tags.Blocks.ORES).addOptionalTag(CommonTags.Blocks.ORES_IN_GROUND_GRUS);
         this.tag(CommonTags.Blocks.ORES_IN_GROUND_GRUS).add(
                 BlockRegistry.GRUS_COAL_ORE.get(),
                 BlockRegistry.GRUS_COPPER_ORE.get(),

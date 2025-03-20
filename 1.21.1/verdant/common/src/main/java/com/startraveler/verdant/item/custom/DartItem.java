@@ -15,6 +15,8 @@ public class DartItem extends ArrowItem {
         super(properties);
     }
 
+
+
     @Override
     public AbstractArrow createArrow(Level level, ItemStack ammo, LivingEntity shooter, ItemStack weapon) {
         DartEntity dart = new DartEntity(level, shooter, ammo.copyWithCount(1), weapon);

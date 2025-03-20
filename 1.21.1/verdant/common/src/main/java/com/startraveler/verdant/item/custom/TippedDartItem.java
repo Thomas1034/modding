@@ -16,11 +16,11 @@ public class TippedDartItem extends DartItem {
         super(properties);
     }
 
-    public void appendHoverText(ItemStack stack, Item.TooltipContext too, List<Component> components, TooltipFlag flag) {
-        PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
-        if (potioncontents != null) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
+        PotionContents potionContents = stack.get(DataComponents.POTION_CONTENTS);
+        if (potionContents != null) {
             Objects.requireNonNull(components);
-            potioncontents.addPotionTooltip(components::add, 0.125F, too.tickRate());
+            potionContents.addPotionTooltip(components::add, 1.0F, context.tickRate());
         }
 
     }
@@ -36,4 +36,5 @@ public class TippedDartItem extends DartItem {
         itemstack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.POISON));
         return itemstack;
     }
+
 }

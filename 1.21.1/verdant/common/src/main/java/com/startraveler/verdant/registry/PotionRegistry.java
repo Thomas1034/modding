@@ -161,6 +161,24 @@ public class PotionRegistry {
             () -> new Potion("strong_blurred", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 1800, 1))
     );
 
+    public static final RegistryObject<Potion, Potion> COLORBLIND = POTIONS.register(
+            "colorblind",
+            () -> new Potion("colorblind", new MobEffectInstance(MobEffectRegistry.RED_GREEN.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_COLORBLIND = POTIONS.register(
+            "long_colorblind",
+            () -> new Potion("long_colorblind", new MobEffectInstance(MobEffectRegistry.RED_GREEN.asHolder(), 9600, 0))
+    );
+
+    public static final RegistryObject<Potion, Potion> FADING = POTIONS.register(
+            "fading",
+            () -> new Potion("fading", new MobEffectInstance(MobEffectRegistry.SEPIA.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_FADING = POTIONS.register(
+            "long_fading",
+            () -> new Potion("long_fading", new MobEffectInstance(MobEffectRegistry.SEPIA.asHolder(), 9600, 0))
+    );
+
     public static final RegistryObject<Potion, Potion> CLUMSINESS = POTIONS.register(
             "clumsiness",
             () -> new Potion("clumsiness", new MobEffectInstance(MobEffectRegistry.CLUMSINESS.asHolder(), 3600, 0))
@@ -208,6 +226,46 @@ public class PotionRegistry {
             )
     );
 
+
+    public static final RegistryObject<Potion, Potion> INNER_FIRE = POTIONS.register(
+            "inner_fire",
+            () -> new Potion("inner_fire", new MobEffectInstance(MobEffectRegistry.INNER_FIRE.asHolder(), 1800, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_INNER_FIRE = POTIONS.register(
+            "long_inner_fire",
+            () -> new Potion("long_inner_fire", new MobEffectInstance(MobEffectRegistry.INNER_FIRE.asHolder(), 4800, 0))
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_INNER_FIRE = POTIONS.register(
+            "strong_inner_fire",
+            () -> new Potion(
+                    "strong_inner_fire",
+                    new MobEffectInstance(MobEffectRegistry.INNER_FIRE.asHolder(), 900, 1)
+            )
+    );
+
+    public static final RegistryObject<Potion, Potion> FLICKERING = POTIONS.register(
+            "flickering",
+            () -> new Potion("flickering", new MobEffectInstance(MobEffectRegistry.FLICKERING.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_FLICKERING = POTIONS.register(
+            "long_flickering",
+            () -> new Potion(
+                    "long_flickering",
+                    new MobEffectInstance(MobEffectRegistry.FLICKERING.asHolder(), 9600, 0)
+            )
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_FLICKERING = POTIONS.register(
+            "strong_flickering",
+            () -> new Potion(
+                    "strong_flickering",
+                    new MobEffectInstance(MobEffectRegistry.FLICKERING.asHolder(), 1800, 1)
+            )
+    );
+
+    public static final RegistryObject<Potion, Potion> RECALL = POTIONS.register(
+            "recall",
+            () -> new Potion("recall", new MobEffectInstance(MobEffectRegistry.RECALL.asHolder(), 60, 0))
+    );
 
     public static void init() {
     }
