@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-17T15:40:07.4500212	Loot Tables
+// 1.21.4	2025-03-20T16:39:55.1824099	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_table/blocks/bitter_cassava_rooted_dirt.json
@@ -6,6 +6,7 @@ c00a1dadacf937cf7d9992b3b77751a45e207752 data/verdant/loot_table/blocks/black_ca
 f14967e9f19d92801c7bcba2e41ec3c8b5938b49 data/verdant/loot_table/blocks/blasting_blossom.json
 899e7221dba0c431fb56ec24de67922a522217a9 data/verdant/loot_table/blocks/blasting_bunch.json
 03ad36c6ca871e8418edc68ca5838b2bc7d2261c data/verdant/loot_table/blocks/bleeding_heart.json
+5693b4cc70d15142531ec6836a60e04af9ce14fd data/verdant/loot_table/blocks/blueweed.json
 afb8b97223d01fed96fa4b945c5d81214a11b837 data/verdant/loot_table/blocks/blue_candle_ube_cake.json
 b7e58dbb792f138767be9f1c84693a2a31fce7c9 data/verdant/loot_table/blocks/brown_candle_ube_cake.json
 a85878d59aa311bc0d09d81019d20a7a16c88d61 data/verdant/loot_table/blocks/bush.json
@@ -26,6 +27,10 @@ bd9c4bac8ad7334061ead3e709a36a8eb0092e4e data/verdant/loot_table/blocks/dirt_iro
 91b20868d9e806640005ed9e186048e2e8d4e466 data/verdant/loot_table/blocks/dirt_redstone_ore.json
 18c45665cadd8bee5162f21f2eed291d0058e65b data/verdant/loot_table/blocks/drowned_hemlock.json
 cdd0e8af3fb85fad77c55c4668255708c1fd2e0c data/verdant/loot_table/blocks/drowned_hemlock_plant.json
+21f919bbd78c03c7999cccd289bfc6a8fb50ee7c data/verdant/loot_table/blocks/earth_bricks.json
+9064c792b6736f9bb9a12b8e627011a329473aee data/verdant/loot_table/blocks/earth_brick_slab.json
+28cf8f7ec5e0a9ad041a9a2e3c17d0e6d48565c0 data/verdant/loot_table/blocks/earth_brick_stairs.json
+2cd0a3a3a6488182e0dd3c7fabe715524fab6287 data/verdant/loot_table/blocks/earth_brick_wall.json
 d27de00356674d043796e3b835f1a9aaf83a5beb data/verdant/loot_table/blocks/fish_trap.json
 c281c354bd98abf5465b2960e92377684fbfe401 data/verdant/loot_table/blocks/frame_block.json
 4c47996b61ba2a250a4e39528ed08fbdc51a32bb data/verdant/loot_table/blocks/fused_gravel.json
@@ -61,6 +66,7 @@ e2914250a2b337ac0ccf06ff26e43a935e7eea02 data/verdant/loot_table/blocks/pink_can
 2cd031d0c32651de82e841d772ada96c708bd5d2 data/verdant/loot_table/blocks/poison_ivy_plant.json
 aa8ad937b9e1e8c53d7aeecfaaccc1d9f256b16b data/verdant/loot_table/blocks/poison_strangler_leaves.json
 09abb3be23da54003d0cb641c614bb0943bf8aaf data/verdant/loot_table/blocks/potted_bleeding_heart.json
+ab55b0385e7050de2f9b5e0e914b4dc0ab35c4f8 data/verdant/loot_table/blocks/potted_blueweed.json
 27ae6b804a789bfe65c326525f3f0cc657c0824c data/verdant/loot_table/blocks/potted_bush.json
 f436282147d812e55aab83c977826dc9eb292212 data/verdant/loot_table/blocks/potted_coffee_crop.json
 f5bf509fa993a13dfce187588bd64087bef32190 data/verdant/loot_table/blocks/potted_rue.json
@@ -86,11 +92,14 @@ f03c39b3ac62de1548022cd0913500973c9e56ae data/verdant/loot_table/blocks/stinking
 a0e48d933acbeacb9538264fec8e5f5cc28197f0 data/verdant/loot_table/blocks/strangler_tendril.json
 92fa231ab0df3e89e68118abf07d57bc0aec2a92 data/verdant/loot_table/blocks/strangler_tendril_plant.json
 7698ba83b3b91b496f0450abd722e8e6376087f8 data/verdant/loot_table/blocks/strangler_vine.json
+0f64cce400785b3ed6082d605637335b5ded1aaf data/verdant/loot_table/blocks/tall_bush.json
+228e0bc3cd03aa584f773d4b52edfdde4b3b266b data/verdant/loot_table/blocks/tall_thorn_bush.json
 eddc3c41e3c320cc7591c3607d81dbdf63b3e03c data/verdant/loot_table/blocks/thorny_strangler_leaves.json
 d1c89af7841ff5be88b16b0865acf824226a5668 data/verdant/loot_table/blocks/thorn_bush.json
 998fe8dce8b4418763ecc04b74c0ba49b5f622bc data/verdant/loot_table/blocks/tiger_lily.json
 ba8c6aef6e703d603121aeafe1951374f4e5bfc8 data/verdant/loot_table/blocks/toxic_ash_block.json
 6f7177c6adb59480c378eccf1cae3784f1c9abe0 data/verdant/loot_table/blocks/toxic_dirt.json
+29af4d11b94fd3dafa609a6ee5da487be38d3104 data/verdant/loot_table/blocks/toxic_grus.json
 bea5e6f4b776059ebb3e16b0fe2ac2e2e9f9646b data/verdant/loot_table/blocks/ube_cake.json
 a62c33440264e24672b9ae8090dbbaeeba52e137 data/verdant/loot_table/blocks/ube_crop.json
 c4aeb6e158f5e2a00a33898f3225d6bcc2aebc25 data/verdant/loot_table/blocks/verdant_conduit.json

@@ -39,6 +39,8 @@ public class CompostablesRegistry {
         compostables.registerCompostability(BlockRegistry.STINKING_BLOSSOM.get(), 0.65f);
         compostables.registerCompostability(BlockRegistry.BUSH.get(), 0.65f);
         compostables.registerCompostability(BlockRegistry.THORN_BUSH.get(), 0.65f);
+        compostables.registerCompostability(BlockRegistry.TALL_BUSH.get(), 0.5f);
+        compostables.registerCompostability(BlockRegistry.TALL_THORN_BUSH.get(), 0.5f);
         compostables.registerCompostability(ItemRegistry.COFFEE_BERRIES, 0.65f);
         compostables.registerCompostability(ItemRegistry.ROASTED_COFFEE, 0.65f);
         compostables.registerCompostability(ItemRegistry.ROTTEN_COMPOST, 1.0f);

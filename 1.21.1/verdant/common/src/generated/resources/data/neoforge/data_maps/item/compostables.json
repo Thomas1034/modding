@@ -40,6 +40,14 @@
       "can_villager_compost": true,
       "chance": 0.3
     },
+    "verdant:tall_bush": {
+      "can_villager_compost": true,
+      "chance": 0.5
+    },
+    "verdant:tall_thorn_bush": {
+      "can_villager_compost": true,
+      "chance": 0.5
+    },
     "verdant:thorn_bush": {
       "can_villager_compost": true,
       "chance": 0.65

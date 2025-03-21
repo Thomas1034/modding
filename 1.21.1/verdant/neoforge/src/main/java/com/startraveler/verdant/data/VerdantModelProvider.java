@@ -611,6 +611,12 @@ public class VerdantModelProvider extends ModelProvider {
                 "cutout"
         );
         createPlantWithDefaultItem(
+                BlockRegistry.BLUEWEED.get(),
+                BlockRegistry.POTTED_BLUEWEED.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED,
+                "cutout"
+        );
+        createPlantWithDefaultItem(
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.POTTED_TIGER_LILY.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED,
@@ -732,6 +738,16 @@ public class VerdantModelProvider extends ModelProvider {
         blastingBunch(BlockRegistry.BLASTING_BUNCH.get());
 
         blockModels.family(BlockRegistry.EARTH_BRICKS.get()).generateFor(VerdantBlockFamilies.EARTH_BRICKS);
+        tumbledBlockWithItem(BlockRegistry.TOXIC_GRUS.get());
+
+        blockModels.createDoublePlantWithDefaultItem(
+                BlockRegistry.TALL_BUSH.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED
+        );
+        blockModels.createDoublePlantWithDefaultItem(
+                BlockRegistry.TALL_THORN_BUSH.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED
+        );
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 
@@ -851,7 +867,7 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.BLASTING_BLOOM.get());
         basicItem(ItemRegistry.BLASTING_BLOSSOM_SPROUT.get());
 
-        basicItem(ItemRegistry.CROCODILE_TEAR.get());
+        basicItem(ItemRegistry.FRAGILE_FLASK.get());
 
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
         itemModels.generateSpawnEgg(ItemRegistry.TIMBERMITE_SPAWN_EGG.get(), 0x2bf31b, 0x1e150a);

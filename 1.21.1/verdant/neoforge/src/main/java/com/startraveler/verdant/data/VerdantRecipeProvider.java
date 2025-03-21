@@ -49,6 +49,10 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.BLEEDING_HEART.get()))
         );
         suspiciousStew(
+                BlockRegistry.BLUEWEED.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.BLUEWEED.get()))
+        );
+        suspiciousStew(
                 BlockRegistry.TIGER_LILY.get().asItem(),
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.TIGER_LILY.get()))
         );
@@ -59,6 +63,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
         shapeless(List.of(BlockRegistry.TIGER_LILY.get()), List.of(1), RecipeCategory.MISC, Items.ORANGE_DYE, 1);
         shapeless(List.of(BlockRegistry.BLEEDING_HEART.get()), List.of(1), RecipeCategory.MISC, Items.RED_DYE, 1);
+        shapeless(List.of(BlockRegistry.BLUEWEED.get()), List.of(1), RecipeCategory.MISC, Items.BLUE_DYE, 1);
         shapeless(List.of(BlockRegistry.WILD_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.LIGHT_GRAY_DYE, 1);
         shapeless(List.of(ItemRegistry.ROASTED_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.BROWN_DYE, 1);
 
@@ -721,14 +726,22 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         shaped(
-                List.of("BG", "DB"),
-                List.of('B', 'G', 'D'),
-                List.of(BlockRegistry.EARTH_BRICKS.get(), BlockRegistry.GRUS.get(), Blocks.DIRT),
+                List.of("BG", "GB"),
+                List.of('B', 'G'),
+                List.of(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.GRUS.get()),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.EARTH_BRICKS.get(),
                 4
         );
 
+        shaped(
+                List.of("BG", "GB"),
+                List.of('B', 'G'),
+                List.of(Blocks.DIRT, BlockRegistry.TOXIC_GRUS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICKS.get(),
+                4
+        );
 
         shaped(
                 List.of("E  ", "EE ", "EEE"),

@@ -22,7 +22,9 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.TntBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -155,6 +157,15 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(BlockRegistry.THORN_BUSH.get()));
         requireSilkTouch(BlockRegistry.BUSH.get(), Items.STICK, List.of(2, 4));
         this.add(BlockRegistry.POTTED_BUSH.get(), createPotFlowerItemTable(BlockRegistry.BUSH.get()));
+        this.add(
+                BlockRegistry.TALL_BUSH.get(),
+                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
+        );
+        this.add(
+                BlockRegistry.TALL_THORN_BUSH.get(),
+                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
+        );
+
         dropSelf(BlockRegistry.WILD_COFFEE.get());
         this.add(BlockRegistry.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(BlockRegistry.WILD_COFFEE.get()));
         dropOther(BlockRegistry.COFFEE_CROP.get(), ItemRegistry.COFFEE_BERRIES.get());
@@ -164,6 +175,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 BlockRegistry.POTTED_BLEEDING_HEART.get(),
                 createPotFlowerItemTable(BlockRegistry.BLEEDING_HEART.get())
         );
+        dropSelf(BlockRegistry.BLUEWEED.get());
+        this.add(BlockRegistry.POTTED_BLUEWEED.get(), createPotFlowerItemTable(BlockRegistry.BLUEWEED.get()));
         dropSelf(BlockRegistry.TIGER_LILY.get());
         this.add(BlockRegistry.POTTED_TIGER_LILY.get(), createPotFlowerItemTable(BlockRegistry.TIGER_LILY.get()));
 
@@ -404,6 +417,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.EARTH_BRICK_STAIRS.get());
         this.dropSelf(BlockRegistry.EARTH_BRICK_WALL.get());
         this.add(BlockRegistry.EARTH_BRICK_SLAB.get(), this.createSlabItemTable(BlockRegistry.EARTH_BRICK_SLAB.get()));
+        this.dropSelf(BlockRegistry.TOXIC_GRUS.get());
     }
 
     @Override

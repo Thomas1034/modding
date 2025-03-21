@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "verdant:block/earth_bricks",
+    "side": "verdant:block/earth_bricks",
+    "top": "verdant:block/earth_bricks"
+  }
+}

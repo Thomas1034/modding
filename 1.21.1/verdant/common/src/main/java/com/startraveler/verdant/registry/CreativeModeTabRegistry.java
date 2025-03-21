@@ -53,6 +53,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.GRUS.get());
                         output.accept(BlockRegistry.STONY_GRUS.get());
                         output.accept(BlockRegistry.SCREE.get());
+                        output.accept(BlockRegistry.TOXIC_GRUS.get());
                         output.accept(BlockRegistry.FUSED_GRAVEL.get());
                         output.accept(BlockRegistry.PACKED_SCREE.get());
                         output.accept(BlockRegistry.FUSED_SCREE.get());
@@ -73,6 +74,10 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.GRUS_REDSTONE_ORE.get());
                         output.accept(BlockRegistry.GRUS_EMERALD_ORE.get());
                         output.accept(BlockRegistry.GRUS_DIAMOND_ORE.get());
+                        output.accept(BlockRegistry.EARTH_BRICKS.get());
+                        output.accept(BlockRegistry.EARTH_BRICK_SLAB.get());
+                        output.accept(BlockRegistry.EARTH_BRICK_STAIRS.get());
+                        output.accept(BlockRegistry.EARTH_BRICK_WALL.get());
                         output.accept(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
                         output.accept(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
                         output.accept(BlockRegistry.STRANGLER_LEAVES.get());
@@ -98,6 +103,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
+                        output.accept(BlockRegistry.TALL_BUSH.get());
+                        output.accept(BlockRegistry.TALL_THORN_BUSH.get());
                         output.accept(BlockRegistry.SNAPLEAF.get());
                         output.accept(BlockRegistry.WILD_CASSAVA.get());
                         output.accept(BlockRegistry.WILD_UBE.get());
@@ -105,6 +112,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.BLEEDING_HEART.get());
                         output.accept(BlockRegistry.TIGER_LILY.get());
                         output.accept(BlockRegistry.RUE.get());
+                        output.accept(BlockRegistry.BLUEWEED.get());
                         output.accept(BlockRegistry.DROWNED_HEMLOCK.get());
                         output.accept(BlockRegistry.VERDANT_CONDUIT.get());
                     })
@@ -140,7 +148,7 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.GOLDEN_BREAD.get()))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ItemRegistry.CROCODILE_TEAR.get());
+                        output.accept(ItemRegistry.FRAGILE_FLASK.get());
                         output.accept(ItemRegistry.COFFEE_BERRIES.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
@@ -209,7 +217,7 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get()))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ItemRegistry.CROCODILE_TEAR.get());
+                        output.accept(ItemRegistry.FRAGILE_FLASK.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.ROPE.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());

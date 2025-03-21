@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "suspicious_stew",
+  "ingredients": [
+    "minecraft:bowl",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "verdant:blueweed"
+  ],
+  "result": {
+    "components": {
+      "minecraft:suspicious_stew_effects": [
+        {
+          "duration": 280,
+          "id": "minecraft:hunger"
+        },
+        {
+          "duration": 140,
+          "id": "verdant:photosensitivity"
+        }
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:suspicious_stew"
+  }
+}

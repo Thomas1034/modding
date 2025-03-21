@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-19T21:56:04.1366873	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-03-20T16:39:55.1642883	Tags for minecraft:block mod id verdant
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/block/gravels.json
 a7fe49bc7b3af55491706e65a6b9bed51887c38a data/c/tags/block/ores.json
 22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/block/ores/coal.json
@@ -16,16 +16,16 @@ a0951c01882ac275d893a38da974930d555b0749 data/c/tags/block/ore_bearing_ground/gr
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/ancient_city_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/azalea_root_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/base_stone_overworld.json
-f313fcef2806ffcb661a4aa3f56208fecf23c51e data/minecraft/tags/block/bee_attractive.json
+dbc5dd39a4698d7039d3069a376c418d5a8d5093 data/minecraft/tags/block/bee_attractive.json
 d5ee06e660bb2497568ce5289ae9dd1af65eb864 data/minecraft/tags/block/bee_growables.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
 228dd61829f5a76a24f91849b2651e632bbcee2c data/minecraft/tags/block/candle_cakes.json
 c8a4d9031084e478eab96a3fa95081a2f8990ad4 data/minecraft/tags/block/climbable.json
 b32d57e2e595cb2a2fb123a98df777446706b470 data/minecraft/tags/block/crops.json
-ab9f1fab5d8813bb33c5e80e0e1eadab379cf450 data/minecraft/tags/block/dead_bush_may_place_on.json
+2cc30033629388347b3c0b090379217ecf1812ef data/minecraft/tags/block/dead_bush_may_place_on.json
 3e751825ba571a76ea43f5b84beac47a8d100505 data/minecraft/tags/block/deepslate_ore_replaceables.json
 f634394119cdd826c0d4e1f7663ffe8bca2daa94 data/minecraft/tags/block/dirt.json
-1bbd0ab3d9f62d8a2c82430eadd539e9a76b0332 data/minecraft/tags/block/flower_pots.json
+54e0d55b1c5c43740878cc6b7d7691434d1352cd data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
 d9f4fe11be6ef5c7e408176664bad9d38714e9ef data/minecraft/tags/block/logs.json
 17ac5c2bc445f201caafcc6bd4d575e6ab2ae27e data/minecraft/tags/block/logs_that_burn.json
@@ -33,19 +33,22 @@ d9f4fe11be6ef5c7e408176664bad9d38714e9ef data/minecraft/tags/block/logs.json
 496be53ad49a2282005fe3ba6bff8f2de7382d07 data/minecraft/tags/block/mineable/axe.json
 b47276bd5b3268c2dc97f475279a25934b227c21 data/minecraft/tags/block/mineable/hoe.json
 f62378f9a32758f61247fa3726e8d0f2dd458fc4 data/minecraft/tags/block/mineable/pickaxe.json
-b878b44ee2dd6869b9157dbb240330966878efd7 data/minecraft/tags/block/mineable/shovel.json
+278171ed00cb47d5ffd9db17ae563808f2be792e data/minecraft/tags/block/mineable/shovel.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/moss_replaceable.json
-2af7c87fbc10f34c2dbb91058cc8ee9973b8a0be data/minecraft/tags/block/mushroom_grow_block.json
+4b09d24f0fe7e59fe92ecfe6e9e00afae8b351a8 data/minecraft/tags/block/mushroom_grow_block.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/overworld_carver_replaceables.json
 86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/block/replaceable.json
-ab8813394e83c3801cfcd7e0e0db374d34d0e46e data/minecraft/tags/block/replaceable_by_trees.json
+24cdba12f06ee93e1b16ab2fbaebdc28634c0782 data/minecraft/tags/block/replaceable_by_trees.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/sculk_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/sculk_replaceable_world_gen.json
+f79184c9a3c115b5d795b3e5bc3bc883751881b0 data/minecraft/tags/block/slabs.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/small_dripleaf_placeable.json
-f313fcef2806ffcb661a4aa3f56208fecf23c51e data/minecraft/tags/block/small_flowers.json
+dbc5dd39a4698d7039d3069a376c418d5a8d5093 data/minecraft/tags/block/small_flowers.json
+3dadc355aa055fc04fc2ca92d3a9d8050d011f5c data/minecraft/tags/block/stairs.json
 632e51d9e1da4c4a4177aad785022f0017eb7f97 data/minecraft/tags/block/stone_ore_replaceables.json
 fc0e36c48e21de2ebb93099449e0529758079ff1 data/minecraft/tags/block/sword_efficient.json
-0cefa5ec7a31d1a42fedd06aaf5fcf192aee0d64 data/verdant/tags/block/allows_ash_spread.json
+8a068ef41a796af294e6b97201938cf77b3f7bdb data/minecraft/tags/block/walls.json
+50b25fccf90c88d6c1cc0205b9e802fdf7d8648a data/verdant/tags/block/allows_ash_spread.json
 0f31e47abb56f74b7354c88b1931bba3ff957249 data/verdant/tags/block/blocks_intangible.json
 35e1913aa11a17b44697ff09ba132a37571b842d data/verdant/tags/block/does_not_support_strangler_vines.json
 5789e051ee6f018147fb5527a58ab9386c5ac39b data/verdant/tags/block/ropes_extend.json

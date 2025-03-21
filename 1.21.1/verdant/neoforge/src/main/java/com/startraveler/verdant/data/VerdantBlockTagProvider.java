@@ -43,6 +43,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_ROOTED_GRUS.get(),
                 BlockRegistry.VERDANT_GRASS_GRUS.get(),
                 BlockRegistry.TOXIC_DIRT.get(),
+                BlockRegistry.TOXIC_GRUS.get(),
                 BlockRegistry.PACKED_GRAVEL.get(),
                 BlockRegistry.PACKED_SCREE.get(),
                 BlockRegistry.SCREE.get(),
@@ -191,10 +192,11 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.VERDANT_GRASS_GRUS.get(),
                 BlockRegistry.VERDANT_ROOTED_GRUS.get(),
                 BlockRegistry.TOXIC_DIRT.get(),
+                BlockRegistry.TOXIC_GRUS.get(),
                 BlockRegistry.STONY_GRUS.get(),
                 BlockRegistry.GRUS.get()
         );
-        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get());
+        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
         this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(
@@ -213,7 +215,9 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.POISON_IVY.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                BlockRegistry.STRANGLER_TENDRIL.get()
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.TALL_THORN_BUSH.get(),
+                BlockRegistry.TALL_BUSH.get()
         );
 
         this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(
@@ -328,6 +332,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         // Flowers
         this.tag(BlockTags.SMALL_FLOWERS).add(
                 BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.BLUEWEED.get(),
                 BlockRegistry.RUE.get(),
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.TIGER_LILY.get(),
@@ -336,12 +341,15 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.BEE_ATTRACTIVE).add(
                 BlockRegistry.BLEEDING_HEART.get(),
+                BlockRegistry.BLUEWEED.get(),
                 BlockRegistry.RUE.get(),
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.WILD_CASSAVA.get()
         );
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
+        ;
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLUEWEED.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_THORN_BUSH.get());
@@ -394,8 +402,12 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 Blocks.BUDDING_AMETHYST
         );
 
-        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD)
-                .add(Blocks.WATER, BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_ASH_BLOCK.get());
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).add(
+                Blocks.WATER,
+                BlockRegistry.TOXIC_DIRT.get(),
+                BlockRegistry.TOXIC_GRUS.get(),
+                BlockRegistry.TOXIC_ASH_BLOCK.get()
+        );
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(WoodSets.DEAD.getLogs());
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.MOSS_REPLACEABLE);
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LUSH_GROUND_REPLACEABLE);

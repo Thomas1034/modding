@@ -10,11 +10,10 @@ import com.startraveler.verdant.client.item.RopeLengthProperty;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.data.*;
-import com.startraveler.verdant.registry.BlockEntityTypeRegistry;
-import com.startraveler.verdant.registry.EntityTypeRegistry;
-import com.startraveler.verdant.registry.MenuRegistry;
-import com.startraveler.verdant.registry.WoodSets;
+import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.TntRenderer;
@@ -168,6 +167,10 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
+
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), RenderType.CUTOUT);
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), RenderType.CUTOUT);
+
         });
     }
 

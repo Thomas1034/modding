@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verdant:block/earth_brick_slab"
+    },
+    "type=double": {
+      "model": "verdant:block/earth_bricks"
+    },
+    "type=top": {
+      "model": "verdant:block/earth_brick_slab_top"
+    }
+  }
+}

@@ -16,6 +16,12 @@
               },
               {
                 "data": {
+                  "Name": "verdant:blueweed"
+                },
+                "weight": 30
+              },
+              {
+                "data": {
                   "Name": "verdant:bleeding_heart"
                 },
                 "weight": 15

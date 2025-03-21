@@ -95,10 +95,12 @@ Features Added:
 - Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
 - Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
 - Poisoners, witches that have learned to use the plants of the Verdant Growth for more potent potions.
-- Crocodile Tears, exclusive drops from Poisoners that amplify potion effects when consumed.
+- Fragile Flasks, exclusive drops from Poisoners that amplify potion effects when consumed.
 - Earth Bricks, made of Dirt and Grus, with a dash of Toxic Ash to keep plants away.
+- Blueweed, a flower that causes photosensitivity when touched.
 
 Bugs Fixed:
+- Fixed a few mistagged blocks/items.
 - Spiders and Cave Spiders are now friendly to the Verdant Growth (and vice versa).
 - Dead Bushes can now survive on verdant ground.
 - The poison effect from Toxic Dirt flickers when viewed in the inventory.
@@ -106,7 +108,7 @@ Bugs Fixed:
 - Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth
 - Reduced lag from verdant ground that isn't actively spreading.
 - Packed Gravel is now properly mineable with shovels.
-- And More! (that I forgot to write down)
+- And More! ( that I forgot to write down :) )
  */
 public class CommonClass {
 

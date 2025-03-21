@@ -3,13 +3,12 @@
   "category": "building",
   "group": "verdant:earth_bricks",
   "key": {
-    "B": "verdant:earth_bricks",
-    "D": "minecraft:dirt",
-    "G": "verdant:grus"
+    "B": "minecraft:dirt",
+    "G": "verdant:toxic_grus"
   },
   "pattern": [
     "BG",
-    "DB"
+    "GB"
   ],
   "result": {
     "count": 4,

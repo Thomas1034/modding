@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "verdant:block/tall_thorn_bush_bottom"
+    },
+    "half=upper": {
+      "model": "verdant:block/tall_thorn_bush_top"
+    }
+  }
+}

@@ -12,13 +12,31 @@
                 "data": {
                   "Name": "verdant:thorn_bush"
                 },
-                "weight": 1
+                "weight": 3
               },
               {
                 "data": {
                   "Name": "verdant:bush"
                 },
-                "weight": 1
+                "weight": 3
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "verdant:tall_thorn_bush",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "verdant:tall_bush",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                }
               }
             ]
           }

@@ -38,6 +38,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLEEDING_HEART = createKey("bleeding_heart");
     public static final ResourceKey<ConfiguredFeature<?, ?>> COFFEE = createKey("coffee");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MIXED_BUSHES = createKey("mixed_bushes");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_BUSHES = createKey("tall_bushes");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MIXED_MUSHROOMS = createKey("mixed_mushrooms");
     public static final ResourceKey<ConfiguredFeature<?, ?>> VINES_CEILING = createKey("vines_ceiling");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOW_LICHEN_CEILING = createKey("glow_lichen_ceiling");
@@ -51,6 +52,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPLEAF = createKey("snapleaf");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ROOTS = createKey("hanging_roots");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUE = createKey("rue");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEWEED = createKey("blueweed");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MOSS_CARPETS = createKey("moss_carpets");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLASTING_BLOSSOMS = createKey("blasting_blossoms");
 

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:item/crocodile_tear"
+    "model": "verdant:item/fragile_flask"
   }
 }

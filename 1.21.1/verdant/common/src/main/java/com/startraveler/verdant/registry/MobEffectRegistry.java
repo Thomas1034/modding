@@ -188,6 +188,10 @@ public class MobEffectRegistry {
             "desperation",
             () -> new AddictiveEffect(MobEffectCategory.NEUTRAL, 0x135EE5, 100, MobEffects.REGENERATION)
     );
+    public static final RegistryObject<MobEffect, MobEffect> PHOTOSENSITIVITY = MOB_EFFECTS.register(
+            "photosensitivity",
+            () -> new PhotosensitivityEffect(MobEffectCategory.HARMFUL, 0xFFFF00)
+    );
 
     public static void init() {
     }

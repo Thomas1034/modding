@@ -65,6 +65,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.BUSH,
                 BlockRegistry.POTTED_THORN_BUSH,
                 BlockRegistry.POTTED_BUSH,
+                BlockRegistry.TALL_THORN_BUSH,
+                BlockRegistry.TALL_BUSH,
                 BlockRegistry.STINKING_BLOSSOM,
                 BlockRegistry.WILD_COFFEE,
                 BlockRegistry.POTTED_WILD_COFFEE,

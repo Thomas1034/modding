@@ -38,6 +38,8 @@ public class FuelsRegistry {
         fuels.registerFuel(BlockRegistry.FISH_TRAP, WoodSet.BurnTimes.PLANKS);
         fuels.registerFuel(BlockRegistry.BUSH, WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.THORN_BUSH, WoodSet.BurnTimes.STICK);
+        fuels.registerFuel(BlockRegistry.TALL_BUSH, 2 * WoodSet.BurnTimes.STICK);
+        fuels.registerFuel(BlockRegistry.TALL_THORN_BUSH, 2 * WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.STRANGLER_LEAVES, WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.WILTED_STRANGLER_LEAVES, WoodSet.BurnTimes.STICK);
         fuels.registerFuel(BlockRegistry.THORNY_STRANGLER_LEAVES, WoodSet.BurnTimes.STICK);

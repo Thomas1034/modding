@@ -243,6 +243,8 @@ public class BlockTransformerDefinitions {
         data.add(direct(WoodSets.DEAD.getStrippedLog().get(), WoodSets.DEAD.getStrippedLog().get()));
         data.add(directTag(BlockTags.CROPS, Blocks.AIR));
         data.add(directTag(BlockTags.DIRT, BlockRegistry.TOXIC_DIRT.get()));
+        data.add(direct(BlockRegistry.GRUS.get(), BlockRegistry.TOXIC_GRUS.get()));
+        data.add(direct(BlockRegistry.STONY_GRUS.get(), BlockRegistry.TOXIC_GRUS.get()));
         data.add(direct(Blocks.LILY_PAD, Blocks.AIR));
         data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));
         data.add(direct(Blocks.PALE_MOSS_BLOCK, Blocks.DIRT));

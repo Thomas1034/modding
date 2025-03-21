@@ -249,10 +249,7 @@ public class PotionRegistry {
     );
     public static final RegistryObject<Potion, Potion> LONG_FLICKERING = POTIONS.register(
             "long_flickering",
-            () -> new Potion(
-                    "long_flickering",
-                    new MobEffectInstance(MobEffectRegistry.FLICKERING.asHolder(), 9600, 0)
-            )
+            () -> new Potion("long_flickering", new MobEffectInstance(MobEffectRegistry.FLICKERING.asHolder(), 9600, 0))
     );
     public static final RegistryObject<Potion, Potion> STRONG_FLICKERING = POTIONS.register(
             "strong_flickering",
@@ -265,6 +262,26 @@ public class PotionRegistry {
     public static final RegistryObject<Potion, Potion> RECALL = POTIONS.register(
             "recall",
             () -> new Potion("recall", new MobEffectInstance(MobEffectRegistry.RECALL.asHolder(), 60, 0))
+    );
+
+
+    public static final RegistryObject<Potion, Potion> PHOTOSENSITIVITY = POTIONS.register(
+            "photosensitivity",
+            () -> new Potion("photosensitivity", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 3600, 0))
+    );
+    public static final RegistryObject<Potion, Potion> LONG_PHOTOSENSITIVITY = POTIONS.register(
+            "long_photosensitivity",
+            () -> new Potion(
+                    "long_photosensitivity",
+                    new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 9600, 0)
+            )
+    );
+    public static final RegistryObject<Potion, Potion> STRONG_PHOTOSENSITIVITY = POTIONS.register(
+            "strong_photosensitivity",
+            () -> new Potion(
+                    "strong_photosensitivity",
+                    new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 1800, 1)
+            )
     );
 
     public static void init() {

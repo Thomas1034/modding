@@ -1,31 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dirt": {
+    "has_blue_dye": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:dirt"
+            "items": "minecraft:blue_dye"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_earth_bricks": {
+    "has_blueweed": {
       "conditions": {
         "items": [
           {
-            "items": "verdant:earth_bricks"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_grus": {
-      "conditions": {
-        "items": [
-          {
-            "items": "verdant:grus"
+            "items": "verdant:blueweed"
           }
         ]
       },
@@ -33,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:earth_bricks_from_earth_bricks_grus_dirt"
+        "recipe": "minecraft:blue_dye_from_blueweed"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +31,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_earth_bricks",
-      "has_grus",
-      "has_dirt"
+      "has_blueweed",
+      "has_blue_dye"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:earth_bricks_from_earth_bricks_grus_dirt"
+      "minecraft:blue_dye_from_blueweed"
     ]
   }
 }

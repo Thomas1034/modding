@@ -49,6 +49,7 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.SMALL_FLOWERS).add(
                 BlockRegistry.BLEEDING_HEART.get().asItem(),
+                BlockRegistry.BLUEWEED.get().asItem(),
                 BlockRegistry.WILD_COFFEE.get().asItem(),
                 BlockRegistry.RUE.get().asItem(),
                 BlockRegistry.TIGER_LILY.get().asItem()

@@ -27,14 +27,20 @@ import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
 import com.startraveler.verdant.util.VerdantTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -44,6 +50,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -170,8 +177,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> EARTH_BRICK_STAIRS;
     public static final RegistryObject<Block, Block> EARTH_BRICK_SLAB;
     public static final RegistryObject<Block, Block> EARTH_BRICK_WALL;
+    public static final RegistryObject<Block, Block> TOXIC_GRUS;
+    public static final RegistryObject<Block, Block> BLUEWEED;
+    public static final RegistryObject<Block, Block> POTTED_BLUEWEED;
+    public static final RegistryObject<Block, Block> TALL_BUSH;
+    public static final RegistryObject<Block, Block> TALL_THORN_BUSH;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
-
 
     static {
         VERDANT_ROOTED_DIRT = registerBlockWithItem(
@@ -983,31 +994,87 @@ public class BlockRegistry {
         EARTH_BRICKS = registerBlockWithItem(
                 "earth_bricks",
                 () -> new Block(properties("earth_bricks").mapColor(MapColor.DIRT)
-                        .strength(1.6F)
+                        .strength(2.5F)
                         .sound(SoundType.GRAVEL))
         );
 
         EARTH_BRICK_STAIRS = registerBlockWithItem(
                 "earth_brick_stairs", () -> new StairBlock(
                         EARTH_BRICKS.get().defaultBlockState(),
-                        properties("earth_brick_stairs").mapColor(MapColor.DIRT).strength(1.6F).sound(SoundType.GRAVEL)
+                        properties("earth_brick_stairs").mapColor(MapColor.DIRT).strength(2.5F).sound(SoundType.GRAVEL)
                 )
         );
 
         EARTH_BRICK_SLAB = registerBlockWithItem(
                 "earth_brick_slab",
                 () -> new SlabBlock(properties("earth_brick_slab").mapColor(MapColor.DIRT)
-                        .strength(1.6F)
+                        .strength(2.5F)
                         .sound(SoundType.GRAVEL))
         );
 
         EARTH_BRICK_WALL = registerBlockWithItem(
                 "earth_brick_wall",
                 () -> new WallBlock(properties("earth_brick_wall").mapColor(MapColor.DIRT)
-                        .strength(1.6F)
+                        .strength(2.5F)
                         .sound(SoundType.GRAVEL))
         );
 
+
+        TOXIC_GRUS = registerBlockWithItem(
+                "toxic_grus",
+                () -> new ToxicDirtBlock(properties("toxic_grus").mapColor(MapColor.COLOR_GRAY)
+                        .strength(0.9F)
+                        .sound(SoundType.GRAVEL))
+        );
+
+
+        BLUEWEED = registerBlockWithItem(
+                "blueweed", () -> new FlowerBlock(
+                        new SuspiciousStewEffects(List.of(
+                                new SuspiciousStewEffects.Entry(MobEffects.HUNGER, 280),
+                                new SuspiciousStewEffects.Entry(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 140)
+                        )), properties(Blocks.BLUE_ORCHID, "blueweed")
+                ) {
+                    private static final Supplier<MobEffectInstance> PHOTOSENSITIVITY = () -> new MobEffectInstance(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(),
+                            300,
+                            0
+                    );
+
+                    @Override
+                    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+                        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
+                            if (!level.isClientSide) {
+                                if (livingEntity instanceof ServerPlayer player) {
+                                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                                }
+                                livingEntity.addEffect(PHOTOSENSITIVITY.get());
+                            }
+                        }
+                    }
+                }
+        );
+        POTTED_BLUEWEED = registerBlockWithoutItem(
+                "potted_blueweed", () -> new FlowerPotBlock(
+                        BlockRegistry.BLUEWEED.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_blueweed").noOcclusion()
+                )
+        );
+
+        TALL_BUSH = registerBlockWithItem(
+                "tall_bush",
+                () -> new TallThornBushBlock(
+                        properties(Blocks.SWEET_BERRY_BUSH, "tall_bush").noOcclusion()
+                                .strength(1.0F), 0.0f
+                )
+        );
+
+        TALL_THORN_BUSH = registerBlockWithItem(
+                "tall_thorn_bush",
+                () -> new TallThornBushBlock(
+                        properties(Blocks.SWEET_BERRY_BUSH, "tall_thorn_bush").noOcclusion()
+                                .strength(1.5F), 3.0f
+                )
+        );
 
     }
 

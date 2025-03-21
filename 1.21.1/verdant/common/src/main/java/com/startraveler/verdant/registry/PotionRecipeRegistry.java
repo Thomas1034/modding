@@ -206,11 +206,23 @@ public class PotionRecipeRegistry {
         recipes.register(PotionRegistry.BLURRED.asHolder(), Items.BROWN_DYE, PotionRegistry.FADING.asHolder());
         recipes.register(PotionRegistry.FADING.asHolder(), Items.REDSTONE, PotionRegistry.LONG_FADING.asHolder());
 
-
         recipes.register(
                 PotionRegistry.FLICKERING.asHolder(),
                 Items.FERMENTED_SPIDER_EYE,
                 PotionRegistry.RECALL.asHolder()
+        );
+
+
+        recipes.register(Potions.THICK, BlockRegistry.BLUEWEED.get(), PotionRegistry.PHOTOSENSITIVITY.asHolder());
+        recipes.register(
+                PotionRegistry.PHOTOSENSITIVITY.asHolder(),
+                Items.REDSTONE,
+                PotionRegistry.LONG_PHOTOSENSITIVITY.asHolder()
+        );
+        recipes.register(
+                PotionRegistry.PHOTOSENSITIVITY.asHolder(),
+                Items.GLOWSTONE_DUST,
+                PotionRegistry.STRONG_PHOTOSENSITIVITY.asHolder()
         );
     }
 

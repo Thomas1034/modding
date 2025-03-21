@@ -35,9 +35,10 @@ import java.util.Optional;
 
 public class ConsumablesList {
 
-    public static final Consumable CROCODILE_TEAR = Consumables.defaultDrink()
+    public static final Consumable FRAGILE_FLASK = Consumables.defaultDrink()
             .consumeSeconds(Consumables.DEFAULT_DRINK.consumeSeconds() / 1.5f)
             .onConsume(new AmplifyEffectsConsumeEffect(Optional.empty()))
+            .soundAfterConsume(Holder.direct(SoundEvents.GLASS_BREAK))
             .build();
 
     public static final Consumable ALOE_LEAF = Consumables.defaultFood()
@@ -96,7 +97,11 @@ public class ConsumablesList {
             .build();
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 0),
+                    new MobEffectInstance(
+                            MobEffects.DAMAGE_RESISTANCE,
+                            1200,
+                            0
+                    ),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0)
             )))
             .build();

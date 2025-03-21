@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-19T12:36:02.8612742	Tags for minecraft:item mod id verdant
+// 1.21.4	2025-03-20T16:39:55.1989467	Tags for minecraft:item mod id verdant
 4a4f07cfe1ba76d16b89017db2f1647d7b04453b data/c/tags/item/crops.json
 e56b723a0ff94cebfdead5fd310f793a46ac4c31 data/c/tags/item/fertilizers.json
 65a9002397d033d7fb8c279738f36f8614764fd7 data/c/tags/item/foods.json
@@ -43,11 +43,14 @@ ba75187305edb0db84dcf583e94b6e52f734b1b8 data/minecraft/tags/item/parrot_poisono
 b0c7a5db43b6154dde24dbd0361c8eeb1500466f data/minecraft/tags/item/pig_food.json
 8060535043270a900b1bda76a78c27db77379887 data/minecraft/tags/item/sheep_food.json
 07808d533cb8ad440d3bb7a0199130de9b439478 data/minecraft/tags/item/shovels.json
-7dd18322894af9789a444a1c7786806dc48d2dff data/minecraft/tags/item/small_flowers.json
+f79184c9a3c115b5d795b3e5bc3bc883751881b0 data/minecraft/tags/item/slabs.json
+5bbe13d1ccaa2eede763d30ffa624ecf1f76d7a6 data/minecraft/tags/item/small_flowers.json
+3dadc355aa055fc04fc2ca92d3a9d8050d011f5c data/minecraft/tags/item/stairs.json
 d45cbd8e2cf855fbbacddd6a8d8aaf089b6b01d6 data/minecraft/tags/item/swords.json
 7109b3790daa2d823801fba7e8f8bc7c6801fb06 data/minecraft/tags/item/trimmable_armor.json
 0ae24cb1278bd03fe6cbb847e80f5441bc7cf804 data/minecraft/tags/item/villager_picks_up.json
 a82420a567ff4584d112cc68bc5fa646de3f346e data/minecraft/tags/item/villager_plantable_seeds.json
+8a068ef41a796af294e6b97201938cf77b3f7bdb data/minecraft/tags/item/walls.json
 8919a09e5c375193a0f02b3321fb7e931a4f36e7 data/verdant/tags/item/aloes.json
 d10bc32c34158a4a59fb10802ac3c1ccc4532e6a data/verdant/tags/item/blasting_blossom_bombs.json
 fd1050e3b50710462279abdcb0126ce81a18983f data/verdant/tags/item/crafts_to_ropes.json
