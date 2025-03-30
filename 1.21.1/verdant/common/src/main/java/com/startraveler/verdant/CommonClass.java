@@ -85,6 +85,8 @@ Need to fix: TODO
 Changes:
 - Changed Frame recipe to require thorns.
 - Rebalanced the spread rates and feature placement of the Verdant Growth.
+- Rebalanced some loot tables of dirt ores.
+- Split some features off into a helper mod, Rootbound. This is automatically bundled into this mod, so there's no difference for users. It simply helps me structure the code more cleanly and (hopefully) share code between projects.
 
 Features Added:
 - Added Thorny Heartwood weapons and tools, which are more durable and have an inherent Thorns effect.

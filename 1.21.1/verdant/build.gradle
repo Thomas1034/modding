@@ -4,7 +4,7 @@ plugins {
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '2.0.62-beta' apply false
     // helps with multiloader registration
-    id 'com.matyrobbrt.mc.registrationutils' version "{$regutils_version}"
+    id 'com.matyrobbrt.mc.registrationutils' version "${regutils_version}"
 }
 
 repositories {

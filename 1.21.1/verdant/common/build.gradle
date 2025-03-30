@@ -47,6 +47,6 @@ artifacts {
     }
 }
 dependencies {
-    implementation "com.startraveler.rootbound:rootbound-common-{$minecraft_version}:{$rootbound_version}"
+    implementation "com.startraveler.rootbound:rootbound-common-${minecraft_version}:${rootbound_version}"
 }
 

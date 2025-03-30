@@ -18,8 +18,8 @@ dependencies {
     // Fabric Loom
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
     // modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.0.2+1.21"
-    modImplementation "com.startraveler.rootbound:rootbound-fabric-{$minecraft_version}:{$rootbound_version}"
-    include "com.startraveler.rootbound:rootbound-fabric-{$minecraft_version}:{$rootbound_version}"
+    modImplementation "com.startraveler.rootbound:rootbound-fabric-${minecraft_version}:${rootbound_version}"
+    include "com.startraveler.rootbound:rootbound-fabric-${minecraft_version}:${rootbound_version}"
 }
 
 loom {
