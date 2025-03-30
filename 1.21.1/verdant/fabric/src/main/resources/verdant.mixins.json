@@ -3,9 +3,32 @@
   "minVersion": "0.8",
   "package": "com.startraveler.verdant.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["AbstractArrowAccessors","ArrowAccessors","ArrowPostHurtEffectMixin","BoggedLikeVerdantFriendsMixin","DecreaseDetectionRangeMixin","EntityGetterInvoker","IntangibilityPlayerTickMixin","ItemStackDurabilityChangingMixin","ItemStackUnbreakabilityMixin","MobEffectInstanceAccessors","PrimedTntAccessors","ThrownTridentDataIDGetter","WitchMixin","WitchConvertToPoisonerViaLivingEntityMixin","ZombieConvertToRootedMixin"],
+  "mixins": [
+    "AbstractArrowAccessors",
+    "ArrowAccessors",
+    "ArrowPostHurtEffectMixin",
+    "BoggedLikeVerdantFriendsMixin",
+    "DecreaseDetectionRangeMixin",
+    "LivingEntityMixin",
+    "EntityGetterInvoker",
+    "IntangibilityPlayerTickMixin",
+    "ItemStackDurabilityChangingMixin",
+    "ItemStackUnbreakabilityMixin",
+    "MobEffectInstanceAccessors",
+    "PrimedTntAccessors",
+    "ThrownTridentDataIDGetter",
+    "WitchConvertToPoisonerViaLivingEntityMixin",
+    "WitchMixin",
+    "ZombieConvertToRootedMixin"
+  ],
   "server": [],
-  "client": ["ArrowRendererModelAccessor","GameRendererAddPostShadersMixin","GuiAddShaderOverlaysMixin","IntangibilityBlockVisionMixin","NumbnessHideStatsMixin"],
+  "client": [
+    "ArrowRendererModelAccessor",
+    "GameRendererAddPostShadersMixin",
+    "GuiAddShaderOverlaysMixin",
+    "IntangibilityBlockVisionMixin",
+    "NumbnessHideStatsMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

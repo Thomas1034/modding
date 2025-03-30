@@ -1,5 +1,9 @@
 {
   "values": {
+    "verdant:bitter_cassava_cuttings": {
+      "can_villager_compost": true,
+      "chance": 0.3
+    },
     "verdant:bleeding_heart": {
       "can_villager_compost": true,
       "chance": 0.65
@@ -7,6 +11,10 @@
     "verdant:bush": {
       "can_villager_compost": true,
       "chance": 0.65
+    },
+    "verdant:cassava_cuttings": {
+      "can_villager_compost": true,
+      "chance": 0.3
     },
     "verdant:coffee_berries": {
       "can_villager_compost": true,

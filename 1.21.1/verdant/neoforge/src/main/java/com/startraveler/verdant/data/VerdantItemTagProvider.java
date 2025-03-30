@@ -131,8 +131,19 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
 
         this.tag(VerdantTags.Items.BLASTING_BLOSSOM_BOMBS).add(ItemRegistry.STABLE_BLASTING_BLOOM.get());
 
+        this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
+
+        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM);
+
+        this.tag(VerdantTags.Items.HAS_THORNS).add(
+                ItemRegistry.THORN.get().asItem(),
+                BlockRegistry.WOODEN_SPIKES.get().asItem(),
+                BlockRegistry.IRON_SPIKES.get().asItem()
+        );
+
         addHeartwoodSet();
         addImbuedHeartwoodSet();
+        addThornyHeartwoodSet();
     }
 
     private void addImbuedHeartwoodSet() {
@@ -200,9 +211,55 @@ public class VerdantItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.SWORDS).add(ItemRegistry.HEARTWOOD_SWORD.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
 
-        this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
+    }
 
-        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM);
+
+    private void addThornyHeartwoodSet() {
+        this.tag(VerdantTags.Items.HAS_THORNS).add(
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.get(),
+                ItemRegistry.THORNY_HEARTWOOD_AXE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_HOE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get(),
+                ItemRegistry.THORNY_HEARTWOOD_SWORD.get(),
+                ItemRegistry.THORNY_HEARTWOOD_SWORD.get(),
+                ItemRegistry.THORNY_HEARTWOOD_HORSE_ARMOR.get()
+        );
+
+        this.tag(VerdantTags.Items.REPAIRS_THORNY_HEARTWOOD_ARMOR).addTag(WoodSets.HEARTWOOD.getLogItems());
+        this.tag(VerdantTags.Items.THORNY_HEARTWOOD_TOOL_MATERIALS).add(BlockRegistry.WOODEN_SPIKES.get().asItem());
+
+        this.tag(ItemTags.TRIMMABLE_ARMOR).add(
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.ARMOR_ENCHANTABLE).add(
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.get()
+        );
+        this.tag(ItemTags.HEAD_ARMOR).add(ItemRegistry.THORNY_HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.HEAD_ARMOR_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_HELMET.get());
+        this.tag(ItemTags.CHEST_ARMOR).add(ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.CHEST_ARMOR_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get());
+        this.tag(ItemTags.LEG_ARMOR).add(ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.LEG_ARMOR_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get());
+        this.tag(ItemTags.FOOT_ARMOR).add(ItemRegistry.THORNY_HEARTWOOD_BOOTS.get());
+        this.tag(ItemTags.FOOT_ARMOR_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_BOOTS.get());
+
+        this.tag(ItemTags.AXES).add(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
+        this.tag(ItemTags.HOES).add(ItemRegistry.THORNY_HEARTWOOD_HOE.get());
+        this.tag(ItemTags.PICKAXES).add(ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get());
+        this.tag(ItemTags.SHOVELS).add(ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+
     }
 
 

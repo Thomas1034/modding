@@ -32,7 +32,7 @@ public class AdrenalineEffect extends MobEffect {
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
         if (timeSinceHurt < 2) {
-            entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, amplifier + 1));
+            entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 2 * (amplifier + 1) - 1));
         }
         return true;
     }

@@ -20,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +37,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -43,15 +45,21 @@ public class HoeRemovableItemBlock extends Block {
 
     private final ResourceKey<LootTable> itemLootTable;
     private final Function<UseOnContext, BlockState> stateProvider;
+    private final Function<RandomSource, Integer> rolls;
 
     // For cassava roots.
     // They'll grow under the plant, if it's in dirt.
     // You'll need to collect the plant and hoe the ground underneath it again
     // to collect the roots.
     public HoeRemovableItemBlock(BlockBehaviour.Properties properties, ResourceKey<LootTable> itemLootTable, Function<UseOnContext, BlockState> stateProvider) {
+        this(properties, itemLootTable, stateProvider, (r) -> 1);
+    }
+
+    public HoeRemovableItemBlock(BlockBehaviour.Properties properties, ResourceKey<LootTable> itemLootTable, Function<UseOnContext, BlockState> stateProvider, Function<RandomSource, Integer> rolls) {
         super(properties);
         this.itemLootTable = itemLootTable;
         this.stateProvider = stateProvider;
+        this.rolls = rolls;
     }
 
     @Override
@@ -66,19 +74,23 @@ public class HoeRemovableItemBlock extends Block {
 
 
             if (level instanceof ServerLevel serverLevel) {
+                List<ItemStack> loot = new ArrayList<>();
+                int rolls = this.rolls.apply(level.random);
+                for (int i = 0; i < rolls; i++) {
 
-                LootTable table = level.getServer().reloadableRegistries().getLootTable(this.itemLootTable);
+                    LootTable table = level.getServer().reloadableRegistries().getLootTable(this.itemLootTable);
 
-                LootParams lootparams = (new LootParams.Builder(serverLevel)).withParameter(
-                                LootContextParams.ORIGIN,
-                                pos.getCenter()
-                        )
-                        .withParameter(LootContextParams.TOOL, stack)
-                        .withParameter(LootContextParams.BLOCK_STATE, state)
-                        .withParameter(LootContextParams.THIS_ENTITY, player)
-                        .create(LootContextParamSets.BLOCK);
+                    LootParams lootparams = (new LootParams.Builder(serverLevel)).withParameter(
+                                    LootContextParams.ORIGIN,
+                                    pos.getCenter()
+                            )
+                            .withParameter(LootContextParams.TOOL, stack)
+                            .withParameter(LootContextParams.BLOCK_STATE, state)
+                            .withParameter(LootContextParams.THIS_ENTITY, player)
+                            .create(LootContextParamSets.BLOCK);
 
-                List<ItemStack> loot = table.getRandomItems(lootparams);
+                    loot.addAll(table.getRandomItems(lootparams));
+                }
 
                 level.setBlockAndUpdate(pos, newState);
                 for (ItemStack poppedStack : loot) {

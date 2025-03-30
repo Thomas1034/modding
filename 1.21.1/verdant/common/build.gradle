@@ -3,6 +3,10 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+repositories {
+    mavenLocal()
+}
+
 neoForge {
     neoFormVersion = neo_form_version
     // Automatically enable AccessTransformers if the file exists
@@ -43,6 +47,6 @@ artifacts {
     }
 }
 dependencies {
-    implementation files('libs/rootbound-common-1.21.4-1.0.0.jar')
+    implementation "com.startraveler.rootbound:rootbound-common-{$minecraft_version}:{$rootbound_version}"
 }
 

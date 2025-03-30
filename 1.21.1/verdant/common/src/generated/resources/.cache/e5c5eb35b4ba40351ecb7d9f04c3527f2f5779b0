@@ -1,6 +1,10 @@
-// 1.21.4	2025-02-19T12:33:58.8300126	Advancements
+// 1.21.4	2025-03-26T22:19:36.3345703	Advancements
+ef5ced76890d463a8bff23d1bd72393352b1196f data/verdant/advancement/aloe.json
 e7bd1ab21c5ac2e2332cea98ebc811699eeea07e data/verdant/advancement/deep_roots.json
+46c81925477fc1361de4a60d1ee548095a70a217 data/verdant/advancement/inedible.json
 4ab4a09d9ecbeeb390abd362c2e17567221ea652 data/verdant/advancement/inside_tree.json
+a760ba7dc0efa06a4e7c33142f766cf995c67665 data/verdant/advancement/iron_spikes.json
+eb3a06378ec3ba3d8ea45edce5143a881ab63c7b data/verdant/advancement/iron_trap.json
 0ef33eafa4c77148a4751b3b99f9f0804dfa7082 data/verdant/advancement/overgrowth.json
 1a0440b07cefde20848db241d313c873d58cd9c2 data/verdant/advancement/petrichor.json
 a86d225fdf3fafe53b9b502e5f1145fc3f8ff96f data/verdant/advancement/poison_ivy.json
@@ -10,4 +14,6 @@ bff8e61df0520448f21ec6f1819f808c358b01c1 data/verdant/advancement/stand_on_verda
 6c1d6a518c7d0cc6880012f2750f13073f5813e1 data/verdant/advancement/stinking_blossom.json
 7ff0b752ce612a4141cd2b36bd5339a436f8556d data/verdant/advancement/strong_trees.json
 6eff2de3c93637db9ea9150fdd15d96a257098ca data/verdant/advancement/thorn_bush.json
-156d0fc15a08106389abf322978cef229a119787 data/verdant/advancement/trap_plant.json
+43e1c5264af9bf76ebc15dfc02d86789aa6078fc data/verdant/advancement/trap_plant.json
+672287708304768cefb746d2c83350e780cec6d7 data/verdant/advancement/wooden_spikes.json
+7ca8733edddb2307c4b9b0674db4efbde9717916 data/verdant/advancement/wooden_trap.json

@@ -1,0 +1,29 @@
+{
+  "parent": "verdant:wooden_spikes",
+  "criteria": {
+    "craft_spikes": {
+      "conditions": {
+        "recipe_id": "verdant:iron_spikes_from_iron_nugget_wooden_spikes_iron_bars"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.iron_spikes.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:iron_spikes"
+    },
+    "title": {
+      "translate": "advancements.verdant.iron_spikes.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_spikes"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

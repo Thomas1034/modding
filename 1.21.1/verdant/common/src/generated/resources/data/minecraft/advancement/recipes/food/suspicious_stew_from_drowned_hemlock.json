@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_drowned_hemlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:drowned_hemlock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:suspicious_stew_from_drowned_hemlock"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_drowned_hemlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:suspicious_stew_from_drowned_hemlock"
+    ]
+  }
+}

@@ -128,6 +128,7 @@ public class CreativeModeTabRegistry {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
                         output.accept(ItemRegistry.HEART_FRAGMENT.get());
+                        output.accept(ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.THORN.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
@@ -189,6 +190,13 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.HEARTWOOD_LEGGINGS.get());
                         output.accept(ItemRegistry.HEARTWOOD_BOOTS.get());
                         output.accept(ItemRegistry.HEARTWOOD_HORSE_ARMOR.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_HELMET.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_BOOTS.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_HORSE_ARMOR.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HELMET.get());
@@ -230,6 +238,10 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.HEARTWOOD_SHOVEL.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_HOE.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());

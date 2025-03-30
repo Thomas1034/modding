@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:blowgun",
+  "key": {
+    "b": "minecraft:bamboo",
+    "i": "#c:nuggets/iron",
+    "w": "#c:rods/wooden"
+  },
+  "pattern": [
+    "wb ",
+    " wi",
+    "  w"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:blowgun"
+  }
+}

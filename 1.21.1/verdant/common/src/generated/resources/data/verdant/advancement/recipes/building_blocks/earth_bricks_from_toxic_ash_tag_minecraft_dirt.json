@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_earth_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:earth_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:dirt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:earth_bricks_from_toxic_ash_tag_minecraft_dirt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_toxic_ash": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:toxic_ash"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_toxic_ash",
+      "has_minecraft_root",
+      "has_earth_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:earth_bricks_from_toxic_ash_tag_minecraft_dirt"
+    ]
+  }
+}

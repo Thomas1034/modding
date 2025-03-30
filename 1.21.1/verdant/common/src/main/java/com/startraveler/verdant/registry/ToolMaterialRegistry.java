@@ -30,11 +30,21 @@ public class ToolMaterialRegistry {
             VerdantTags.Items.HEARTWOOD_TOOL_MATERIALS
     );
 
+    public static ToolMaterial THORNY_HEARTWOOD = new ToolMaterial(
+            VerdantTags.Blocks.INCORRECT_FOR_THORNY_HEARTWOOD_TOOL,
+            300,
+            6.0F,
+            2.0F,
+            8,
+            VerdantTags.Items.THORNY_HEARTWOOD_TOOL_MATERIALS
+    );
+
+
     public static ToolMaterial IMBUED_HEARTWOOD = new ToolMaterial(
-            VerdantTags.Blocks.INCORRECT_FOR_HEARTWOOD_TOOL,
+            VerdantTags.Blocks.INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL,
             131,
             7.0F,
-            2.5F,
+            3.0F,
             3,
             VerdantTags.Items.HEARTWOOD_TOOL_MATERIALS
     );

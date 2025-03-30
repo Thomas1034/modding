@@ -65,6 +65,8 @@ public class VerdantTags {
         public static final TagKey<Block> ROPE_HOOKS = tag("rope_hooks");
         public static final TagKey<Block> ROPES_EXTEND = tag("ropes_extend");
         public static final TagKey<Block> INCORRECT_FOR_HEARTWOOD_TOOL = tag("incorrect_for_heartwood_tool");
+        public static final TagKey<Block> INCORRECT_FOR_THORNY_HEARTWOOD_TOOL = tag(
+                "incorrect_for_thorny_heartwood_tool");
         public static final TagKey<Block> INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL = tag(
                 "incorrect_for_imbued_heartwood_tool");
         public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
@@ -99,14 +101,17 @@ public class VerdantTags {
 
     public static class Items {
         public static final TagKey<Item> ALOES = tag("aloes");
+        public static final TagKey<Item> HAS_THORNS = tag("has_thorns");
         public static final TagKey<Item> STARCHES = tag("starches");
         public static final TagKey<Item> VERDANT_FRIENDLY_ARMORS = tag("verdant_friendly_armors");
         public static final TagKey<Item> STRANGLER_VINES = tag("strangler_vines");
         public static final TagKey<Item> CRAFTS_TO_ROPES = tag("crafts_to_ropes");
         public static final TagKey<Item> VERDANT_GROUND = tag("verdant_ground");
         public static final TagKey<Item> REPAIRS_HEARTWOOD_ARMOR = tag("repairs_heartwood_armor");
+        public static final TagKey<Item> REPAIRS_THORNY_HEARTWOOD_ARMOR = tag("repairs_thorny_heartwood_armor");
         public static final TagKey<Item> REPAIRS_IMBUED_HEARTWOOD_ARMOR = tag("repairs_heartwood_armor");
         public static final TagKey<Item> HEARTWOOD_TOOL_MATERIALS = tag("heartwood_tool_materials");
+        public static final TagKey<Item> THORNY_HEARTWOOD_TOOL_MATERIALS = tag("thorny_heartwood_tool_materials");
         public static final TagKey<Item> IMBUED_HEARTWOOD_TOOL_MATERIALS = tag("imbued_heartwood_tool_materials");
         public static final TagKey<Item> DARTS = tag("darts");
         public static final TagKey<Item> BLASTING_BLOSSOM_BOMBS = tag("blasting_blossom_bombs");

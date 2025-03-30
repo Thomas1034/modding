@@ -25,14 +25,17 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.KelpBlock;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.List;
 import java.util.function.Supplier;
 
-public class HemlockBlock extends KelpBlock {
+public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
     public static final MapCodec<HemlockBlock> CODEC = simpleCodec(HemlockBlock::new);
     protected static final Supplier<MobEffectInstance> ASPHYXIATION = () -> new MobEffectInstance(
             MobEffectRegistry.ASPHYXIATING.asHolder(),
@@ -67,6 +70,14 @@ public class HemlockBlock extends KelpBlock {
     @Override
     protected int getBlocksToGrowWhenBonemealed(RandomSource random) {
         return random.nextBoolean() && random.nextBoolean() ? 1 : 0;
+    }
+
+    @Override
+    public SuspiciousStewEffects getSuspiciousEffects() {
+        return new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(
+                MobEffectRegistry.ASPHYXIATING.asHolder(),
+                200
+        )));
     }
 }
 

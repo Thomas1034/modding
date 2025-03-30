@@ -583,6 +583,154 @@ public class ItemRegistry {
             )
     );
 
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HORSE_ARMOR = register(
+            "thorny_heartwood_horse_armor", (properties) -> new AnimalArmorItem(
+                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
+                    AnimalArmorItem.BodyType.EQUESTRIAN,
+                    SoundEvents.HORSE_ARMOR,
+                    false,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
+                            )
+            )
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HELMET = register(
+            "thorny_heartwood_helmet", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
+                    ArmorType.HELMET,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_CHESTPLATE = register(
+            "thorny_heartwood_chestplate", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
+                    ArmorType.CHESTPLATE,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_LEGGINGS = register(
+            "thorny_heartwood_leggings", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
+                    ArmorType.LEGGINGS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_BOOTS = register(
+            "thorny_heartwood_boots", ((properties) -> new ArmorItem(
+                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
+                    ArmorType.BOOTS,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_ARMOR
+                            )
+                            .component(
+                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                                    VerdantFriendliness.HEARTWOOD_ARMOR
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SWORD = register(
+            "thorny_heartwood_sword", ((properties) -> new SwordItem(
+                    ToolMaterialRegistry.THORNY_HEARTWOOD,
+                    3.0F,
+                    -2.4F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SHOVEL = register(
+            "thorny_heartwood_shovel", ((properties) -> new ShovelItem(
+                    ToolMaterialRegistry.THORNY_HEARTWOOD,
+                    1.5F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_PICKAXE = register(
+            "thorny_heartwood_pickaxe", ((properties) -> new PickaxeItem(
+                    ToolMaterialRegistry.THORNY_HEARTWOOD,
+                    1.0F,
+                    -2.8F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_AXE = register(
+            "thorny_heartwood_axe", ((properties) -> new AxeItem(
+                    ToolMaterialRegistry.THORNY_HEARTWOOD,
+                    6.0F,
+                    -3.2F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HOE = register(
+            "thorny_heartwood_hoe", ((properties) -> new HoeItem(
+                    ToolMaterialRegistry.THORNY_HEARTWOOD,
+                    0.0F,
+                    -3.0F,
+                    properties.stacksTo(1)
+                            .component(
+                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
+                                    DurabilityChanging.HEARTWOOD_TOOLS
+                            )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register("thorns_upgrade_smithing_template",
+            SmithingTemplateExtensions::createThornsUpgradeTemplate
+    );
+
     public static void init() {
     }
 
@@ -602,6 +750,10 @@ public class ItemRegistry {
         private static final Component IMBUEMENT_UPGRADE_INGREDIENTS;
         private static final Component IMBUEMENT_UPGRADE_BASE_SLOT_DESCRIPTION;
         private static final Component IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
+        private static final Component THORNS_UPGRADE_APPLIES_TO;
+        private static final Component THORNS_UPGRADE_INGREDIENTS;
+        private static final Component THORNS_UPGRADE_BASE_SLOT_DESCRIPTION;
+        private static final Component THORNS_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
         private static final ChatFormatting DESCRIPTION_FORMAT;
 
         private static final ResourceLocation EMPTY_SLOT_HELMET;
@@ -614,6 +766,7 @@ public class ItemRegistry {
         private static final ResourceLocation EMPTY_SLOT_SHOVEL;
         private static final ResourceLocation EMPTY_SLOT_PICKAXE;
         private static final ResourceLocation EMPTY_SLOT_HEART_FRAGMENT;
+        private static final ResourceLocation EMPTY_SLOT_SPIKES;
 
         static {
 
@@ -643,6 +796,30 @@ public class ItemRegistry {
                             "smithing_template.imbuement_upgrade.additions_slot_description")
             ));
 
+            THORNS_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
+                    )).
+
+                    withStyle(DESCRIPTION_FORMAT);
+
+            THORNS_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
+                    )).
+
+                    withStyle(DESCRIPTION_FORMAT);
+
+            THORNS_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.base_slot_description")
+            ));
+            THORNS_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
+                    "item",
+                    ResourceLocation.withDefaultNamespace(
+                            "smithing_template.thorns_upgrade.additions_slot_description")
+            ));
+
             EMPTY_SLOT_HELMET = ResourceLocation.withDefaultNamespace("container/slot/helmet");
             EMPTY_SLOT_CHESTPLATE = ResourceLocation.withDefaultNamespace("container/slot/chestplate");
             EMPTY_SLOT_LEGGINGS = ResourceLocation.withDefaultNamespace("container/slot/leggings");
@@ -657,6 +834,10 @@ public class ItemRegistry {
                     Constants.MOD_ID,
                     "container/slot/empty_slot_heart_fragment"
             );
+            EMPTY_SLOT_SPIKES = ResourceLocation.fromNamespaceAndPath(
+                    Constants.MOD_ID,
+                    "container/slot/empty_slot_spikes"
+            );
         }
 
         public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {
@@ -667,6 +848,18 @@ public class ItemRegistry {
                     IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION,
                     createImbuementUpgradeIconList(),
                     createImbuementUpgradeMaterialList(),
+                    properties
+            );
+        }
+
+        public static SmithingTemplateItem createThornsUpgradeTemplate(Item.Properties properties) {
+            return new SmithingTemplateItem(
+                    THORNS_UPGRADE_APPLIES_TO,
+                    THORNS_UPGRADE_INGREDIENTS,
+                    THORNS_UPGRADE_BASE_SLOT_DESCRIPTION,
+                    THORNS_UPGRADE_ADDITIONS_SLOT_DESCRIPTION,
+                    createThornsUpgradeIconList(),
+                    createThornsUpgradeMaterialList(),
                     properties
             );
         }
@@ -687,6 +880,24 @@ public class ItemRegistry {
 
         private static List<ResourceLocation> createImbuementUpgradeMaterialList() {
             return List.of(EMPTY_SLOT_HEART_FRAGMENT);
+        }
+
+        private static List<ResourceLocation> createThornsUpgradeIconList() {
+            return List.of(
+                    EMPTY_SLOT_HELMET,
+                    EMPTY_SLOT_SWORD,
+                    EMPTY_SLOT_CHESTPLATE,
+                    EMPTY_SLOT_PICKAXE,
+                    EMPTY_SLOT_LEGGINGS,
+                    EMPTY_SLOT_AXE,
+                    EMPTY_SLOT_BOOTS,
+                    EMPTY_SLOT_HOE,
+                    EMPTY_SLOT_SHOVEL
+            );
+        }
+
+        private static List<ResourceLocation> createThornsUpgradeMaterialList() {
+            return List.of(EMPTY_SLOT_SPIKES);
         }
 
     }

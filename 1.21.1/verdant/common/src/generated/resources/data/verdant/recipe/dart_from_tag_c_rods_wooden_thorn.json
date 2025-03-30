@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:dart",
+  "key": {
+    "s": "#c:rods/wooden",
+    "t": "verdant:thorn"
+  },
+  "pattern": [
+    "t ",
+    " s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:dart"
+  }
+}

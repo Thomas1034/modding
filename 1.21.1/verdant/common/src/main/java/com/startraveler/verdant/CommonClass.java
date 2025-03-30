@@ -58,19 +58,37 @@ AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 
 Advancements:
 "Born and Bred", "Walk through a thorn bush without taking damage."
-"That is just wrong on so many levels", "Use Toxic Ash as a shortcut while fishing." for using toxic ash for fishing
-"Not Generally Considered Edible", "Why would you eat that?", for eating rotten fertilizer
+"That is just wrong on so many levels", "Use Toxic Ash as a shortcut while fishing."
 "In Aloe Veritas", "Use aloe's soothing gel to remove a harmful effect."
-"Kabloom", "Step on a volatile flower"
+"Kabloom", "Step on a volatile flower."
 "Minesweeper", "Collect a Blasting Bloom using shears."
+"Someone Else's Problem", "Craft Wooden Spikes."
+"Warning: Sharp Floor", "Craft Iron Spikes."
+"", "Place a Wooden Trap."
+"", "Place an Iron Trap."
+"Gilded Cage", "Place a Golden Trap." (add golden traps first)
 
 Compatibility
 
+Ideas:
+Caltrops - eight thorns, one plank, for a consumable that deals damage and inflicts slowness when entities step on it.
+Lingers on the ground and will not hurt the person who threw it.
+
+
+Need to fix: TODO
+- Models of cross-crops not looking right.
+- Growth speed of bomb flowers.
 
  */
 // Credits: (other direct contributors only)
 /*
+Changes:
+- Changed Frame recipe to require thorns.
+- Rebalanced the spread rates and feature placement of the Verdant Growth.
+
 Features Added:
+- Added Thorny Heartwood weapons and tools, which are more durable and have an inherent Thorns effect.
+- Coarse Dirt will very rarely erode to Dirt Emerald Ore.
 - Blasting Blossoms, a plant inspired by Legend of Zelda's Bomb Flowers.
 - Blasting Blooms, usable as grenade-like weapons
 - Stable Blasting Blooms, which can be placed and stacked for powerful mining explosions.
@@ -82,7 +100,6 @@ Features Added:
 - The Flickering potion effect causes entities to teleport uncontrollably when hit, brewed with a Chorus Flower in a Colloid potion.
 - The Recall potion will teleport the player back to their spawn point, brewed with a Fermented Spider's Eye in a Flickering potion.
 - Blasting Blossom Sprouts, used to plant Blasting Blooms.
-- Rebalanced some spread rates.
 - Rope Ladders, which can hang from ladders above them.
 - Blowgun, firing darts.
 - Tipped darts, crafted with darts. Add flowers or various other items to add effects, and lengthen the effects with slime balls or honey bottles.
@@ -94,21 +111,34 @@ Features Added:
 - Added Packed Scree and Fused Scree.
 - Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
 - Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
+- Rocky Grus will very rarely erode to Grus Emerald Ore.
 - Poisoners, witches that have learned to use the plants of the Verdant Growth for more potent potions.
 - Fragile Flasks, exclusive drops from Poisoners that amplify potion effects when consumed.
 - Earth Bricks, made of Dirt and Grus, with a dash of Toxic Ash to keep plants away.
 - Blueweed, a flower that causes photosensitivity when touched.
+- Tall Bushes and Tall Thorn Bushes, double-height versions of the shorter bushes.
 
 Bugs Fixed:
+- Fixed some low-contrast textures.
+- Fixed a few incorrect pixels on several textures.
+- Imbued Heartwood Armor now has more durability.
+- Heartwood tools can no longer mine everything.
+- Heartwood armor's color scheme has been updated.
+- Ube now actually generates.
+- Timbermites are rarer.
+- Fixed Imbued Heartwood Logs spawning instead of Strangler Logs.
+- Heartwood Logs are now correctly (rarely) replaced by Imbued Heartwood Logs.
+- Coffee Crops now produce Coffee Berries instead of Sweet Berries.
 - Fixed a few mistagged blocks/items.
 - Spiders and Cave Spiders are now friendly to the Verdant Growth (and vice versa).
 - Dead Bushes can now survive on verdant ground.
 - The poison effect from Toxic Dirt flickers when viewed in the inventory.
-- Bucket of Toxic Solution does not actually use up when it is used.
+- Toxic Dirt does not actually hurt things that walk on it properly.
+- Bucket of Toxic Solution does not use up when it is used.
 - Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth
 - Reduced lag from verdant ground that isn't actively spreading.
 - Packed Gravel is now properly mineable with shovels.
-- And More! ( that I forgot to write down :) )
+- And More! ( that I forgot to write down )
  */
 public class CommonClass {
 

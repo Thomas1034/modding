@@ -47,6 +47,7 @@ import java.util.stream.Stream;
 
 public class BlowdartTippingRecipe extends CustomRecipe {
 
+    public static final float SUSPICIOUS_STEW_BONUS = 2;
     public static final float EFFECT_DURATION_BASE_MULTIPLIER = 2;
     public static final float EFFECT_DURATION_PER_BINDER_MULTIPLIER = 1;
 
@@ -65,7 +66,8 @@ public class BlowdartTippingRecipe extends CustomRecipe {
 
         boolean isValid = true;
         int dartCount = 0;
-        List<SuspiciousStewEffects> suspiciousEffects = new ArrayList<>();
+        List<SuspiciousStewEffects> suspiciousEffectsFromFlowers = new ArrayList<>();
+        List<SuspiciousStewEffects> suspiciousEffectsFromStew = new ArrayList<>();
         List<MobEffectInstance> directEffects = new ArrayList<>();
         int binderCount = 0;
         for (ItemStack stack : input.items()) {
@@ -88,14 +90,14 @@ public class BlowdartTippingRecipe extends CustomRecipe {
 
             if (stack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
 
-                suspiciousEffects.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
+                suspiciousEffectsFromStew.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
                 anySucceeded = true;
 
             }
 
             if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
 
-                suspiciousEffects.add(seh.getSuspiciousEffects());
+                suspiciousEffectsFromFlowers.add(seh.getSuspiciousEffects());
                 anySucceeded = true;
 
             }
@@ -118,15 +120,29 @@ public class BlowdartTippingRecipe extends CustomRecipe {
         isValid &= dartCount > 0;
 
 
-        isValid &= (!suspiciousEffects.isEmpty() || !directEffects.isEmpty());
+        isValid &= (!suspiciousEffectsFromFlowers.isEmpty() || !suspiciousEffectsFromStew.isEmpty() || !directEffects.isEmpty());
 
         if (isValid) {
             int durationMultiplier = (int) (EFFECT_DURATION_BASE_MULTIPLIER + binderCount * EFFECT_DURATION_PER_BINDER_MULTIPLIER);
             List<MobEffectInstance> customEffects = Stream.concat(
-                    suspiciousEffects.stream()
-                            .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()
-                                    .stream()
-                                    .map(SuspiciousStewEffects.Entry::createEffectInstance)), directEffects.stream()
+                    Stream.concat(
+                            suspiciousEffectsFromStew.stream()
+                                    .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()
+                                            .stream()
+                                            .map(SuspiciousStewEffects.Entry::createEffectInstance))
+                                    .map(oldEffects -> new MobEffectInstance(
+                                            oldEffects.getEffect(),
+                                            (int) (oldEffects.getDuration() * SUSPICIOUS_STEW_BONUS),
+                                            oldEffects.getAmplifier(),
+                                            oldEffects.isAmbient(),
+                                            oldEffects.isVisible(),
+                                            oldEffects.showIcon()
+                                    )),
+                            suspiciousEffectsFromFlowers.stream()
+                                    .flatMap(suspiciousStewEffects -> suspiciousStewEffects.effects()
+                                            .stream()
+                                            .map(SuspiciousStewEffects.Entry::createEffectInstance))
+                    ), directEffects.stream()
             ).map(oldEffects -> new MobEffectInstance(
                     oldEffects.getEffect(),
                     oldEffects.getDuration() * durationMultiplier,

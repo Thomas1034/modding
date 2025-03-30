@@ -50,6 +50,8 @@ public class CompostablesRegistry {
         compostables.registerCompostability(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), 0.3f);
         compostables.registerCompostability(BlockRegistry.STRANGLER_TENDRIL.get(), 0.3f);
         compostables.registerCompostability(BlockRegistry.ROTTEN_WOOD.get(), 0.9f);
+        compostables.registerCompostability(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(), 0.3f);
+        compostables.registerCompostability(ItemRegistry.CASSAVA_CUTTINGS.get(), 0.3f);
     }
 
     public void registerCompostability(ItemLike item, float compostability) {

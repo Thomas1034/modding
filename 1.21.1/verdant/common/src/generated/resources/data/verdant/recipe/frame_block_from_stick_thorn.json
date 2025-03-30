@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:frame_block",
+  "key": {
+    "H": "verdant:thorn",
+    "T": "minecraft:stick"
+  },
+  "pattern": [
+    "HTH",
+    "T T",
+    "HTH"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:frame_block"
+  }
+}

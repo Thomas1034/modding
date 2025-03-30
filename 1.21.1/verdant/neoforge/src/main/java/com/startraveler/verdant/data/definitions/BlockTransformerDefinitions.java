@@ -40,8 +40,14 @@ public class BlockTransformerDefinitions {
         data.add(direct(BlockRegistry.FUSED_GRAVEL.get(), BlockRegistry.PACKED_GRAVEL.get()));
         data.add(direct(BlockRegistry.FUSED_SCREE.get(), BlockRegistry.PACKED_SCREE.get()));
         data.add(direct(Blocks.GRAVEL, Blocks.COARSE_DIRT));
-        data.add(direct(BlockRegistry.STONY_GRUS.get(), BlockRegistry.GRUS.get()));
-        data.add(direct(Blocks.COARSE_DIRT, Blocks.DIRT));
+        data.add(probability(
+                BlockRegistry.STONY_GRUS.get(),
+                Map.of(BlockRegistry.GRUS.get(), 2 * 16 * 16 * 16 - 1, BlockRegistry.GRUS_EMERALD_ORE.get(), 1)
+        ));
+        data.add(probability(
+                Blocks.COARSE_DIRT,
+                Map.of(Blocks.DIRT, 4 * 16 * 16 * 16 - 1, BlockRegistry.DIRT_EMERALD_ORE.get(), 1)
+        ));
         data.add(direct(Blocks.DIRT_PATH, Blocks.DIRT));
         data.add(direct(Blocks.MYCELIUM, Blocks.DIRT));
         data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));

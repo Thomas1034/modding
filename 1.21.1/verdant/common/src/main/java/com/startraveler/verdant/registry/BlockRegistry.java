@@ -269,112 +269,128 @@ public class BlockRegistry {
                 "dirt_coal_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_coal_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_COPPER_ORE = registerBlockWithItem(
                 "dirt_copper_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_copper_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_IRON_ORE = registerBlockWithItem(
                 "dirt_iron_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_iron_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_GOLD_ORE = registerBlockWithItem(
                 "dirt_gold_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_gold_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_LAPIS_ORE = registerBlockWithItem(
                 "dirt_lapis_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_lapis_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_REDSTONE_ORE = registerBlockWithItem(
                 "dirt_redstone_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_redstone_ore").lightLevel((state) -> 2),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_EMERALD_ORE = registerBlockWithItem(
                 "dirt_emerald_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_emerald_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_DIAMOND_ORE = registerBlockWithItem(
                 "dirt_diamond_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_diamond_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_COAL_ORE = registerBlockWithItem(
                 "grus_coal_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_coal_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_COPPER_ORE = registerBlockWithItem(
                 "grus_copper_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_copper_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_IRON_ORE = registerBlockWithItem(
                 "grus_iron_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_iron_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_GOLD_ORE = registerBlockWithItem(
                 "grus_gold_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_gold_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_LAPIS_ORE = registerBlockWithItem(
                 "grus_lapis_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_lapis_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_REDSTONE_ORE = registerBlockWithItem(
                 "grus_redstone_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_redstone_ore").lightLevel((state) -> 2),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_EMERALD_ORE = registerBlockWithItem(
                 "grus_emerald_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_emerald_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_DIAMOND_ORE = registerBlockWithItem(
                 "grus_diamond_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_diamond_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState()
+                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         STRANGLER_VINE = registerBlockWithItem(
@@ -1064,7 +1080,7 @@ public class BlockRegistry {
                 "tall_bush",
                 () -> new TallThornBushBlock(
                         properties(Blocks.SWEET_BERRY_BUSH, "tall_bush").noOcclusion()
-                                .strength(1.0F), 0.0f
+                                .strength(0.5F), 0.0f
                 )
         );
 
@@ -1072,7 +1088,7 @@ public class BlockRegistry {
                 "tall_thorn_bush",
                 () -> new TallThornBushBlock(
                         properties(Blocks.SWEET_BERRY_BUSH, "tall_thorn_bush").noOcclusion()
-                                .strength(1.5F), 3.0f
+                                .strength(0.75F), 3.0f
                 )
         );
 

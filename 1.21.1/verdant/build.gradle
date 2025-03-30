@@ -4,8 +4,13 @@ plugins {
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '2.0.62-beta' apply false
     // helps with multiloader registration
-    id 'com.matyrobbrt.mc.registrationutils' version '1.21.3-0.1.1'
+    id 'com.matyrobbrt.mc.registrationutils' version "{$regutils_version}"
 }
+
+repositories {
+    mavenLocal()
+}
+
 registrationUtils {
     group 'com.startraveler.verdant.registration'
     projects {

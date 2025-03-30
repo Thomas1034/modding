@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:thorns_upgrade_smithing_template",
+  "key": {
+    "#": "#rootbound:heartwood_logs",
+    "L": "#rootbound:strangler_logs",
+    "S": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    "#S#",
+    "#L#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:thorns_upgrade_smithing_template"
+  }
+}

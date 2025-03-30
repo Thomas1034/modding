@@ -1,4 +1,3 @@
-
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
@@ -6,13 +5,17 @@ plugins {
     id 'org.moddedmc.wiki.toolkit' version '0.2.5'
 }
 
+repositories {
+    mavenLocal()
+}
+
 dependencies {
     // ModDevGradle
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-neoforge
     // runtimeOnly
     implementation "org.sinytra:item-asset-export-neoforge:1.1.0+1.21.4"
-    implementation files('libs/rootbound-neoforge-1.21.4-1.0.0.jar')
-    jarJar( files('libs/rootbound-neoforge-1.21.4-1.0.0.jar') )
+    implementation "com.startraveler.rootbound:rootbound-neoforge-{$minecraft_version}:{$rootbound_version"
+    jarJar "com.startraveler.rootbound:rootbound-neoforge-{$minecraft_version}:{$rootbound_version}"
 }
 
 neoForge {

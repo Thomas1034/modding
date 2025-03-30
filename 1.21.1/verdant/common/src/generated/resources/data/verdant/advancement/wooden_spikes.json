@@ -1,0 +1,36 @@
+{
+  "parent": "verdant:trap_plant",
+  "criteria": {
+    "craft_spikes_rope": {
+      "conditions": {
+        "recipe_id": "verdant:wooden_spikes_from_thorn_stick_rope"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "craft_spikes_string": {
+      "conditions": {
+        "recipe_id": "verdant:wooden_spikes_from_thorn_stick_string"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.wooden_spikes.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:wooden_spikes"
+    },
+    "title": {
+      "translate": "advancements.verdant.wooden_spikes.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_spikes_rope",
+      "craft_spikes_string"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

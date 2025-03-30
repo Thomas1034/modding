@@ -1,0 +1,29 @@
+{
+  "parent": "verdant:wooden_spikes",
+  "criteria": {
+    "craft_trap": {
+      "conditions": {
+        "recipe_id": "verdant:wooden_trap_from_wooden_spikes_copper_ingot_stick_tag_minecraft_wooden_pressure_plates"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.wooden_trap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:wooden_trap"
+    },
+    "title": {
+      "translate": "advancements.verdant.wooden_trap.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_trap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

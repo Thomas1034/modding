@@ -96,7 +96,11 @@ public class CoffeeCropBlock extends CropBlock {
         boolean flag = age == MAX_AGE;
         if (age > 1) {
             int numberOfBerriesDropped = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(Items.SWEET_BERRIES, numberOfBerriesDropped + (flag ? 1 : 0)));
+            popResource(
+                    level,
+                    pos,
+                    new ItemStack(ItemRegistry.COFFEE_BERRIES.get(), numberOfBerriesDropped + (flag ? 1 : 0))
+            );
             level.playSound(
                     null,
                     pos,

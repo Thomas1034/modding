@@ -91,6 +91,13 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
                 "item.minecraft.smithing_template.imbuement_upgrade.base_slot_description",
                 "Add heartwood armor, weapon, or tool"
         );
+        this.add("item.minecraft.smithing_template.thorns_upgrade.applies_to", "Heartwood Equipment");
+        this.add("item.minecraft.smithing_template.thorns_upgrade.ingredients", "Wooden Spikes");
+        this.add("item.minecraft.smithing_template.thorns_upgrade.additions_slot_description", "Add wooden spikes");
+        this.add(
+                "item.minecraft.smithing_template.thorns_upgrade.base_slot_description",
+                "Add heartwood armor, weapon, or tool"
+        );
         this.excludedPotions.add(PotionRegistry.CAFFEINE.get());
         this.excludedPotions.add(PotionRegistry.LONG_CAFFEINE.get());
         this.excludedPotions.add(PotionRegistry.STRONG_CAFFEINE.get());
@@ -121,12 +128,12 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("death.attack.verdant.briar.message", "%s sat on a thorn.");
         this.add("death.attack.verdant.item.message", "%s was thrown into the briar patch by %s using %s.");
         this.add("death.attack.verdant.player.message", "%s was thrown into the briar patch by %s.");
-        this.add("death.attack.photosensitive", "%s got a sunburn.");
-        this.add("death.attack.photosensitive.item", "%s got a sunburn thanks to %s.");
-        this.add("death.attack.photosensitive.player", "%s got a sunburn thanks to %s.");
-        this.add("death.attack.toxic_ash", "%s suffered chemical burns.");
-        this.add("death.attack.toxic_ash.item", "%s suffered chemical burns thanks to %s.");
-        this.add("death.attack.toxic_ash.player", "%s suffered chemical burns thanks to %s.");
+        this.add("death.attack.verdant.photosensitive.message", "%s got a sunburn.");
+        this.add("death.attack.verdant.photosensitive.item", "%s got a sunburn thanks to %s.");
+        this.add("death.attack.verdant.photosensitive.player", "%s got a sunburn thanks to %s.");
+        this.add("death.attack.verdant.toxic_ash.message", "%s suffered chemical burns.");
+        this.add("death.attack.verdant.toxic_ash.item.message", "%s suffered chemical burns thanks to %s.");
+        this.add("death.attack.verdant.toxic_ash.player.message", "%s suffered chemical burns thanks to %s.");
         this.add("advancements.verdant.root.title", "The Verdant Growth");
         this.add("advancements.verdant.root.description", "A spreading plague of greenery is sealed in this world.");
         this.add("advancements.verdant.petrichor.title", "Petrichor");
@@ -149,6 +156,18 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("advancements.verdant.trap_plant.description", "Whoops.");
         this.add("advancements.verdant.poison_ivy.title", "Leaves of Three");
         this.add("advancements.verdant.poison_ivy.description", "Discover why those vines are poison green.");
+        this.add("advancements.verdant.inedible.title", "Unfit for Human Consumption");
+        this.add("advancements.verdant.inedible.description", "Why did you even think that was a good idea?");
+        this.add("advancements.verdant.aloe.title", "In Aloe Veritas");
+        this.add("advancements.verdant.aloe.description", "Use aloe's soothing gel to remove a harmful effect.");
+        this.add("advancements.verdant.wooden_spikes.title", "Someone Else's Problem");
+        this.add("advancements.verdant.wooden_spikes.description", "Craft Wooden Spikes.");
+        this.add("advancements.verdant.iron_spikes.title", "Warning: Sharp Floor");
+        this.add("advancements.verdant.iron_spikes.description", "Craft Iron Spikes.");
+        this.add("advancements.verdant.wooden_trap.title", "Free Cheese!");
+        this.add("advancements.verdant.wooden_trap.description", "Develop traps.");
+        this.add("advancements.verdant.iron_trap.title", "A Mind of Metal and Gears");
+        this.add("advancements.verdant.iron_trap.description", "Create a more deadly variety of trap.");
         this.add("advancements.verdant.inside_tree.title", "A Spirit Too Delicate");
         this.add("advancements.verdant.inside_tree.description", "Get stuck inside a fast-growing tree.");
         this.add("advancements.verdant.strong_trees.title", "The Trees Are Strong");

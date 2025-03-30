@@ -69,6 +69,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.POISON_IVY_BLOCK.get(),
                 BlockRegistry.THORN_BUSH.get(),
                 BlockRegistry.BUSH.get(),
+                BlockRegistry.TALL_BUSH.get(),
+                BlockRegistry.TALL_THORN_BUSH.get(),
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 BlockRegistry.POISON_IVY.get(),
@@ -430,6 +432,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
 
         addDirtOres();
         addGrusOres();
+        setupToolTiers();
     }
 
     private void addDirtOres() {
@@ -477,6 +480,15 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.ORES_LAPIS).add(BlockRegistry.GRUS_LAPIS_ORE.get());
         this.tag(Tags.Blocks.ORES_REDSTONE).add(BlockRegistry.GRUS_REDSTONE_ORE.get());
         this.tag(CommonTags.Blocks.ORE_BEARING_GROUND_GRUS).add(BlockRegistry.GRUS.get());
+    }
+
+    private void setupToolTiers() {
+        this.tag(VerdantTags.Blocks.INCORRECT_FOR_HEARTWOOD_TOOL)
+                .addTag(VerdantTags.Blocks.INCORRECT_FOR_THORNY_HEARTWOOD_TOOL);
+        this.tag(VerdantTags.Blocks.INCORRECT_FOR_HEARTWOOD_TOOL)
+                .addTag(VerdantTags.Blocks.INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL);
+        this.tag(VerdantTags.Blocks.INCORRECT_FOR_IMBUED_HEARTWOOD_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        this.tag(VerdantTags.Blocks.INCORRECT_FOR_THORNY_HEARTWOOD_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
     }
 
 }

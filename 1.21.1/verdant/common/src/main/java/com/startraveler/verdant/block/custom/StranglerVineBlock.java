@@ -109,17 +109,16 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             Block.box(12.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f),
             Block.box(8.0f, 0.0f, 0.0f, 16.0f, 16.0f, 16.0f)
     );
+    public static final int IMBUED_HEARTWOOD_CHANCE = 128;
     private static final Map<BlockState, VoxelShape> CACHED_SHAPES = new HashMap<>();
-
     protected final double leafGrowthRadius = 2.9;
     protected final boolean[][][] leafPattern;
-
-    private final Function<RandomSource, Block> log = (rand) -> rand.nextInt(64) == 0 ? BlockRegistry.IMBUED_HEARTWOOD_LOG.get() : WoodSets.STRANGLER.getLog()
-            .get();
+    private final Function<RandomSource, Block> log = (rand) -> WoodSets.STRANGLER.getLog().get();
 
     private final Function<RandomSource, Block> rottenWood = (rand) -> BlockRegistry.ROTTEN_WOOD.get();
 
-    private final Function<RandomSource, Block> heartwood = (rand) -> WoodSets.HEARTWOOD.getLog().get();
+    private final Function<RandomSource, Block> heartwood = (rand) -> rand.nextInt(IMBUED_HEARTWOOD_CHANCE) == 0 ? BlockRegistry.IMBUED_HEARTWOOD_LOG.get() : WoodSets.HEARTWOOD.getLog()
+            .get();
 
     private final Function<RandomSource, Block> leaves = (random) -> {
         float chance = random.nextFloat();
@@ -160,6 +159,10 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             return false;
         }
         return state.isFaceSturdy(level, pos, direction.getOpposite());
+    }
+
+    protected static boolean canSupportStranglerVine(BlockState state) {
+        return (!state.is(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)) && (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES));
     }
 
     // Spreads the vine to a nearby block.
@@ -546,10 +549,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
         // Update the block.
         return canGrowToAnyFace ? placed : null;
-    }
-
-    protected static boolean canSupportStranglerVine(BlockState state) {
-        return (!state.is(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)) && (state.is(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES));
     }
 
     @Override

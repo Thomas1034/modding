@@ -1,0 +1,49 @@
+{
+  "parent": "verdant:poison_ivy",
+  "criteria": {
+    "normal": {
+      "conditions": {
+        "item": {
+          "items": "verdant:aloe_leaf"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "old": {
+      "conditions": {
+        "item": {
+          "items": "verdant:old_aloe_leaf"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "young": {
+      "conditions": {
+        "item": {
+          "items": "verdant:young_aloe_leaf"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.aloe.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:aloe_leaf"
+    },
+    "title": {
+      "translate": "advancements.verdant.aloe.title"
+    }
+  },
+  "requirements": [
+    [
+      "young",
+      "normal",
+      "old"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

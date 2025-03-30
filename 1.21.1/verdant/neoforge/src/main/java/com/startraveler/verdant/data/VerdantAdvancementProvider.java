@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -171,31 +172,6 @@ public class VerdantAdvancementProvider {
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "inside_tree")
         );
 
-        builder = Advancement.Builder.advancement();
-        builder.display(
-                new ItemStack(BlockRegistry.SNAPLEAF.get()),
-                Component.translatable("advancements.verdant.trap_plant.title"),
-                Component.translatable("advancements.verdant.trap_plant.description"),
-                null,
-                AdvancementType.TASK,
-                true,
-                true,
-                true
-        );
-        builder.parent(stand_on_verdant_ground);
-        builder.addCriterion(
-                "trap_plant", VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
-                        Optional.of(LocationPredicate.Builder.location()
-                                .setBlock(BlockPredicate.Builder.block()
-                                        .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.SNAPLEAF.get()))
-                                .build()), new BlockPos(0, 0, 0)
-                )))
-        );
-        builder.requirements(AdvancementRequirements.allOf(List.of("trap_plant")));
-        AdvancementHolder trap_plant = builder.save(
-                writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "trap_plant")
-        );
 
         builder = Advancement.Builder.advancement();
         builder.display(
@@ -260,6 +236,32 @@ public class VerdantAdvancementProvider {
         AdvancementHolder thorn_bush = builder.save(
                 writer,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "thorn_bush")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.SNAPLEAF.get()),
+                Component.translatable("advancements.verdant.trap_plant.title"),
+                Component.translatable("advancements.verdant.trap_plant.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(thorn_bush);
+        builder.addCriterion(
+                "trap_plant", VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                        Optional.of(LocationPredicate.Builder.location()
+                                .setBlock(BlockPredicate.Builder.block()
+                                        .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.SNAPLEAF.get()))
+                                .build()), new BlockPos(0, 0, 0)
+                )))
+        );
+        builder.requirements(AdvancementRequirements.allOf(List.of("trap_plant")));
+        AdvancementHolder trap_plant = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "trap_plant")
         );
 
         builder = Advancement.Builder.advancement();
@@ -410,6 +412,190 @@ public class VerdantAdvancementProvider {
         AdvancementHolder rip_them_all_down = builder.save(
                 writer,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rip_them_all_down")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.RANCID_SLIME.get()),
+                Component.translatable("advancements.verdant.inedible.title"),
+                Component.translatable("advancements.verdant.inedible.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(poison_ivy);
+        builder.addCriterion(
+                "rotten",
+                ConsumeItemTrigger.TriggerInstance.usedItem(
+                        registries.lookupOrThrow(Registries.ITEM),
+                        ItemRegistry.ROTTEN_COMPOST.get()
+                )
+        );
+        builder.addCriterion(
+                "rancid",
+                ConsumeItemTrigger.TriggerInstance.usedItem(
+                        registries.lookupOrThrow(Registries.ITEM),
+                        ItemRegistry.RANCID_SLIME.get()
+                )
+
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("rotten", "rancid")));
+        AdvancementHolder inedible = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "inedible")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.ALOE_LEAF.get()),
+                Component.translatable("advancements.verdant.aloe.title"),
+                Component.translatable("advancements.verdant.aloe.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(poison_ivy);
+        builder.addCriterion(
+                "young",
+                ConsumeItemTrigger.TriggerInstance.usedItem(
+                        registries.lookupOrThrow(Registries.ITEM),
+                        ItemRegistry.YOUNG_ALOE_LEAF.get()
+                )
+        );
+        builder.addCriterion(
+                "normal",
+                ConsumeItemTrigger.TriggerInstance.usedItem(
+                        registries.lookupOrThrow(Registries.ITEM),
+                        ItemRegistry.ALOE_LEAF.get()
+                )
+
+        );
+        builder.addCriterion(
+                "old",
+                ConsumeItemTrigger.TriggerInstance.usedItem(
+                        registries.lookupOrThrow(Registries.ITEM),
+                        ItemRegistry.OLD_ALOE_LEAF.get()
+                )
+
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("young", "normal", "old")));
+        AdvancementHolder aloe = builder.save(writer, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "aloe"));
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.WOODEN_SPIKES.get()),
+                Component.translatable("advancements.verdant.wooden_spikes.title"),
+                Component.translatable("advancements.verdant.wooden_spikes.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(trap_plant);
+        builder.addCriterion(
+                "craft_spikes_rope",
+                RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_rope")
+                ))
+        );
+        builder.addCriterion(
+                "craft_spikes_string",
+                RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_string")
+                ))
+        );
+
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_spikes_rope", "craft_spikes_string")));
+        AdvancementHolder wooden_spikes = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.IRON_SPIKES.get()),
+                Component.translatable("advancements.verdant.iron_spikes.title"),
+                Component.translatable("advancements.verdant.iron_spikes.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(wooden_spikes);
+        builder.addCriterion(
+                "craft_spikes", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "iron_spikes_from_iron_nugget_wooden_spikes_iron_bars"
+                        )
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_spikes")));
+        AdvancementHolder iron_spikes = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "iron_spikes")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.WOODEN_TRAP.get()),
+                Component.translatable("advancements.verdant.wooden_trap.title"),
+                Component.translatable("advancements.verdant.wooden_trap.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(wooden_spikes);
+        builder.addCriterion(
+                "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "wooden_trap_from_wooden_spikes_copper_ingot_stick_tag_minecraft_wooden_pressure_plates"
+                        )
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
+        AdvancementHolder wooden_trap = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_trap")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.IRON_TRAP.get()),
+                Component.translatable("advancements.verdant.iron_trap.title"),
+                Component.translatable("advancements.verdant.iron_trap.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(wooden_trap);
+        builder.addCriterion(
+                "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "iron_trap_from_iron_spikes_iron_ingot_stick_stone_pressure_plate"
+                        )
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
+        AdvancementHolder iron_trap = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "iron_trap")
         );
     }
 

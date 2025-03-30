@@ -35,6 +35,10 @@ public interface ArmorMaterialRegistry {
             EquipmentAssets.ROOT_ID,
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "heartwood")
     );
+    ResourceKey<EquipmentAsset> THORNY_HEARTWOOD_ASSET = ResourceKey.create(
+            EquipmentAssets.ROOT_ID,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "thorny_heartwood")
+    );
     ResourceKey<EquipmentAsset> IMBUED_HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "imbued_heartwood")
@@ -52,8 +56,20 @@ public interface ArmorMaterialRegistry {
     ), 8, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, VerdantTags.Items.REPAIRS_HEARTWOOD_ARMOR, HEARTWOOD_ASSET
     );
 
+    ArmorMaterial THORNY_HEARTWOOD = new ArmorMaterial(
+            20, Util.make(
+            new EnumMap<>(ArmorType.class), (builder) -> {
+                builder.put(ArmorType.BOOTS, 2);
+                builder.put(ArmorType.LEGGINGS, 4);
+                builder.put(ArmorType.CHESTPLATE, 5);
+                builder.put(ArmorType.HELMET, 3);
+                builder.put(ArmorType.BODY, 5);
+            }
+    ), 8, SoundEvents.ARMOR_EQUIP_LEATHER, 0.5F, 0.0F, VerdantTags.Items.REPAIRS_HEARTWOOD_ARMOR, THORNY_HEARTWOOD_ASSET
+    );
+
     ArmorMaterial IMBUED_HEARTWOOD = new ArmorMaterial(
-            7,
+            15,
             Util.make(
                     new EnumMap<>(ArmorType.class), (builder) -> {
                         builder.put(ArmorType.BOOTS, 3);

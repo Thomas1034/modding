@@ -1,5 +1,5 @@
 {
-  "parent": "verdant:stand_on_verdant_ground",
+  "parent": "verdant:thorn_bush",
   "criteria": {
     "trap_plant": {
       "conditions": {

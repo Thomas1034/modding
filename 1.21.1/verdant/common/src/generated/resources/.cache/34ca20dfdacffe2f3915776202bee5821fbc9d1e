@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-20T16:39:55.1642883	Tags for minecraft:block mod id verdant
+// 1.21.4	2025-03-28T20:28:37.1521875	Tags for minecraft:block mod id verdant
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/block/gravels.json
 a7fe49bc7b3af55491706e65a6b9bed51887c38a data/c/tags/block/ores.json
 22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/block/ores/coal.json
@@ -31,7 +31,7 @@ d9f4fe11be6ef5c7e408176664bad9d38714e9ef data/minecraft/tags/block/logs.json
 17ac5c2bc445f201caafcc6bd4d575e6ab2ae27e data/minecraft/tags/block/logs_that_burn.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/lush_ground_replaceable.json
 496be53ad49a2282005fe3ba6bff8f2de7382d07 data/minecraft/tags/block/mineable/axe.json
-b47276bd5b3268c2dc97f475279a25934b227c21 data/minecraft/tags/block/mineable/hoe.json
+1ffde5dca90678df149b3fd4c78095fdd90c1890 data/minecraft/tags/block/mineable/hoe.json
 f62378f9a32758f61247fa3726e8d0f2dd458fc4 data/minecraft/tags/block/mineable/pickaxe.json
 278171ed00cb47d5ffd9db17ae563808f2be792e data/minecraft/tags/block/mineable/shovel.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/moss_replaceable.json
@@ -51,6 +51,9 @@ fc0e36c48e21de2ebb93099449e0529758079ff1 data/minecraft/tags/block/sword_efficie
 50b25fccf90c88d6c1cc0205b9e802fdf7d8648a data/verdant/tags/block/allows_ash_spread.json
 0f31e47abb56f74b7354c88b1931bba3ff957249 data/verdant/tags/block/blocks_intangible.json
 35e1913aa11a17b44697ff09ba132a37571b842d data/verdant/tags/block/does_not_support_strangler_vines.json
+eb9e548c6190869e03379c2092e88a932fe2b30d data/verdant/tags/block/incorrect_for_heartwood_tool.json
+950a086f855d118e00d3fc9697663c7721c42db1 data/verdant/tags/block/incorrect_for_imbued_heartwood_tool.json
+950a086f855d118e00d3fc9697663c7721c42db1 data/verdant/tags/block/incorrect_for_thorny_heartwood_tool.json
 5789e051ee6f018147fb5527a58ab9386c5ac39b data/verdant/tags/block/ropes_extend.json
 402e76c05885cde4061a6642fe2556b9fdb6fa87 data/verdant/tags/block/rope_hooks.json
 271575023c6445c4a3ce150f19c9721228f1ed8f data/verdant/tags/block/strangler_leaves.json

@@ -49,6 +49,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> STRANGLER_VINES = createKey("strangler_vines");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BAMBOO = createKey("bamboo");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_CASSAVA = createKey("wild_cassava");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_UBE = createKey("wild_ube");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPLEAF = createKey("snapleaf");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ROOTS = createKey("hanging_roots");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUE = createKey("rue");

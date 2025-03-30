@@ -869,6 +869,41 @@ public class VerdantModelProvider extends ModelProvider {
 
         basicItem(ItemRegistry.FRAGILE_FLASK.get());
 
+        basicItem(ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get());
+
+        basicItem(ItemRegistry.THORNY_HEARTWOOD_HORSE_ARMOR.get());
+
+        itemModels.generateTrimmableItem(
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
+                ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
+                "helmet",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
+                ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
+                "chestplate",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
+                ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
+                "leggings",
+                false
+        );
+        itemModels.generateTrimmableItem(
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.get(),
+                ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
+                "boots",
+                false
+        );
+        handheldItem(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
+        handheldItem(ItemRegistry.THORNY_HEARTWOOD_HOE.get());
+        handheldItem(ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get());
+        handheldItem(ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get());
+        handheldItem(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+
+
         itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
         itemModels.generateSpawnEgg(ItemRegistry.TIMBERMITE_SPAWN_EGG.get(), 0x2bf31b, 0x1e150a);
         itemModels.generateSpawnEgg(ItemRegistry.POISONER_SPAWN_EGG.get(), 0x000034, 0x51a03e);

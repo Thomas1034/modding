@@ -267,20 +267,20 @@ public class PotionRegistry {
 
     public static final RegistryObject<Potion, Potion> PHOTOSENSITIVITY = POTIONS.register(
             "photosensitivity",
-            () -> new Potion("photosensitivity", new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 3600, 0))
+            () -> new Potion("photosensitivity", new MobEffectInstance(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 3600, 0))
     );
     public static final RegistryObject<Potion, Potion> LONG_PHOTOSENSITIVITY = POTIONS.register(
             "long_photosensitivity",
             () -> new Potion(
                     "long_photosensitivity",
-                    new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 9600, 0)
+                    new MobEffectInstance(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 9600, 0)
             )
     );
     public static final RegistryObject<Potion, Potion> STRONG_PHOTOSENSITIVITY = POTIONS.register(
             "strong_photosensitivity",
             () -> new Potion(
                     "strong_photosensitivity",
-                    new MobEffectInstance(MobEffectRegistry.BLURRING.asHolder(), 1800, 1)
+                    new MobEffectInstance(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 1800, 1)
             )
     );
 

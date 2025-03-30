@@ -1,0 +1,29 @@
+{
+  "parent": "verdant:wooden_trap",
+  "criteria": {
+    "craft_trap": {
+      "conditions": {
+        "recipe_id": "verdant:iron_trap_from_iron_spikes_iron_ingot_stick_stone_pressure_plate"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.iron_trap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:iron_trap"
+    },
+    "title": {
+      "translate": "advancements.verdant.iron_trap.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_trap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "verdant:poison_ivy",
+  "criteria": {
+    "rancid": {
+      "conditions": {
+        "item": {
+          "items": "verdant:rancid_slime"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "rotten": {
+      "conditions": {
+        "item": {
+          "items": "verdant:rotten_compost"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.inedible.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "verdant:rancid_slime"
+    },
+    "title": {
+      "translate": "advancements.verdant.inedible.title"
+    }
+  },
+  "requirements": [
+    [
+      "rotten",
+      "rancid"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

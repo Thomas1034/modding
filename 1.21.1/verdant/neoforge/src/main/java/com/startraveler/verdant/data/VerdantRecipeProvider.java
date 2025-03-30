@@ -60,6 +60,10 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.RUE.get().asItem(),
                 Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.RUE.get()))
         );
+        suspiciousStew(
+                BlockRegistry.DROWNED_HEMLOCK.get().asItem(),
+                Objects.requireNonNull(SuspiciousEffectHolder.tryGet(BlockRegistry.DROWNED_HEMLOCK.get()))
+        );
 
         shapeless(List.of(BlockRegistry.TIGER_LILY.get()), List.of(1), RecipeCategory.MISC, Items.ORANGE_DYE, 1);
         shapeless(List.of(BlockRegistry.BLEEDING_HEART.get()), List.of(1), RecipeCategory.MISC, Items.RED_DYE, 1);
@@ -288,9 +292,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
         // Frame block
         shaped(
-                List.of(" T ", "T T", " T "),
-                List.of('T'),
-                List.of(Items.STICK),
+                List.of("HTH", "T T", "HTH"),
+                List.of('T', 'H'),
+                List.of(Items.STICK, ItemRegistry.THORN.get()),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.FRAME_BLOCK.get(),
                 1
@@ -717,30 +721,30 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         shaped(
-                List.of("DGD", "GAG", "DGD"),
-                List.of('A', 'G', 'D'),
-                List.of(ItemRegistry.TOXIC_ASH.get(), BlockRegistry.GRUS.get(), Blocks.DIRT),
-                RecipeCategory.BUILDING_BLOCKS,
-                BlockRegistry.EARTH_BRICKS.get(),
-                8
-        );
-
-        shaped(
-                List.of("BG", "GB"),
-                List.of('B', 'G'),
-                List.of(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.GRUS.get()),
+                List.of("DDD", "DAD", "DDD"),
+                List.of('A', 'D'),
+                List.of(ItemRegistry.TOXIC_ASH.get(), BlockTags.DIRT),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.EARTH_BRICKS.get(),
                 4
         );
 
         shaped(
-                List.of("BG", "GB"),
-                List.of('B', 'G'),
-                List.of(Blocks.DIRT, BlockRegistry.TOXIC_GRUS.get()),
+                List.of("BD", "DB"),
+                List.of('B', 'D'),
+                List.of(BlockRegistry.TOXIC_DIRT.get(), BlockTags.DIRT),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.EARTH_BRICKS.get(),
-                4
+                2
+        );
+
+        shaped(
+                List.of("BD", "DB"),
+                List.of('B', 'D'),
+                List.of(BlockTags.DIRT, BlockRegistry.TOXIC_GRUS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.EARTH_BRICKS.get(),
+                2
         );
 
         shaped(
@@ -789,7 +793,97 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        shaped(
+                List.of("wb ", " wi", "  w"),
+                List.of('b', 'w', 'i'),
+                List.of(Items.BAMBOO, Tags.Items.RODS_WOODEN, Tags.Items.NUGGETS_IRON),
+                RecipeCategory.COMBAT,
+                ItemRegistry.BLOWGUN.get(),
+                1
+        );
+
+        shaped(
+                List.of("t ", " s"),
+                List.of('s', 't'),
+                List.of(Tags.Items.RODS_WOODEN, ItemRegistry.THORN.get()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.DART.get(),
+                1
+        );
+
+
+        shapeless(RecipeCategory.MISC, BlockRegistry.TALL_THORN_BUSH.get(), 4, ItemRegistry.THORN.get(), 8);
+        shapeless(RecipeCategory.MISC, BlockRegistry.TALL_BUSH.get(), 4, WoodSets.STRANGLER.getPlanks().get(), 1);
+
+        shapeless(RecipeCategory.MISC, BlockRegistry.THORN_BUSH.get(), 2, BlockRegistry.TALL_THORN_BUSH.get(), 1);
+        shapeless(RecipeCategory.MISC, BlockRegistry.TALL_THORN_BUSH.get(), 1, BlockRegistry.THORN_BUSH.get(), 2);
+
+        shapeless(RecipeCategory.MISC, BlockRegistry.TALL_BUSH.get(), 1, BlockRegistry.BUSH.get(), 2);
+        shapeless(RecipeCategory.MISC, BlockRegistry.BUSH.get(), 2, BlockRegistry.TALL_BUSH.get(), 1);
+
+
+        // Thornification
+        thornsSmithing(ItemRegistry.HEARTWOOD_AXE.get(), RecipeCategory.TOOLS, ItemRegistry.THORNY_HEARTWOOD_AXE.get());
+        thornsSmithing(ItemRegistry.HEARTWOOD_HOE.get(), RecipeCategory.TOOLS, ItemRegistry.THORNY_HEARTWOOD_HOE.get());
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_PICKAXE.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_SHOVEL.get(),
+                RecipeCategory.TOOLS,
+                ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_SWORD.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_SWORD.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_HELMET.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_LEGGINGS.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get()
+        );
+        thornsSmithing(
+                ItemRegistry.HEARTWOOD_BOOTS.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.get()
+        );
+
+        // Thorns smithing template.
+        shaped(
+                List.of("#S#", "#L#", "###"),
+                List.of('#', 'S', 'L'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.GOLD_INGOT, WoodSets.STRANGLER.getLogItems()),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get(),
+                1
+        );
+
         // TODO End of recipe definitions
+    }
+
+    protected void thornsSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get()),
+                        Ingredient.of(ingredientItem),
+                        this.tag(VerdantTags.Items.THORNY_HEARTWOOD_TOOL_MATERIALS),
+                        category,
+                        resultItem
+                )
+                .unlocks("has_imbuement_item", this.has(VerdantTags.Items.IMBUED_HEARTWOOD_TOOL_MATERIALS))
+                .save(this.output, getItemName(resultItem) + "_smithing");
     }
 
     protected void imbuementSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {

@@ -93,7 +93,7 @@ public class BlowdartTippingIngredientRegistry {
                 Items.WARPED_FUNGUS, (builder -> builder.accept(
                         DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
                         new BlowdartTippingIngredient(List.of(new MobEffectInstance(
-                                MobEffectRegistry.FLICKERING.asHolder(),
+                                MobEffectRegistry.WEIGHTLESS.asHolder(),
                                 140,
                                 0
                         )))
@@ -108,6 +108,56 @@ public class BlowdartTippingIngredientRegistry {
                                 200,
                                 0
                         )))
+                ))
+        );
+
+        event.accept(
+                Items.CHORUS_FRUIT, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(
+                                MobEffectRegistry.FLICKERING.asHolder(),
+                                140,
+                                0
+                        )))
+                ))
+        );
+
+        event.accept(
+                Items.ROTTEN_FLESH, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.POISON, 60, 0)))
+                ))
+        );
+
+        event.accept(
+                Items.GLOW_INK_SAC, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.GLOWING, 60, 0)))
+                ))
+        );
+
+        event.accept(
+                Items.GUNPOWDER, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(
+                                MobEffects.MOVEMENT_SLOWDOWN,
+                                140,
+                                0
+                        )))
+                ))
+        );
+
+        event.accept(
+                Items.ROTTEN_FLESH, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.POISON, 60, 0)))
+                ))
+        );
+
+        event.accept(
+                Items.SHULKER_SHELL, (builder -> builder.accept(
+                        DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.LEVITATION, 400, 0)))
                 ))
         );
     }
