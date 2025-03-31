@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-28T20:28:37.1860854	Model Definitions - verdant
+// 1.21.4	2025-03-31T00:22:30.1635391	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -229,7 +229,7 @@ e6fec70b38c26185f1485c22cfe01aa766ecdb93 assets/verdant/items/iron_trap.json
 4ae8160d655f0f577e4d03b4e1177a3723834fe8 assets/verdant/items/packed_gravel.json
 56a99529e47c7f8028dca7e13c1d94e6e6c1639d assets/verdant/items/packed_scree.json
 94d30b1112c49c7bd2202ab3f7a3ee2eaf426aa5 assets/verdant/items/paper_frame.json
-fc0da90391dc01d7bcc7153da5fe8dc97b017959 assets/verdant/items/poisoner_spawn_egg.json
+71088804b20c06c88617eecff28afa9a77a2abc1 assets/verdant/items/poisoner_spawn_egg.json
 aac4f71a84189f5066ce18381fc8ab8ddfa3a277 assets/verdant/items/poison_arrow.json
 69b4b1144ac4f4fb98bb1f16d40d06fe917027cb assets/verdant/items/poison_ivy.json
 d73fc640ee16948e80c9ffd7cfb47aebe205e56d assets/verdant/items/poison_ivy_block.json
@@ -270,7 +270,7 @@ f05e619d36754cc5c542d2d810b9fe102870312e assets/verdant/items/thorns_upgrade_smi
 68d3a2aba51151da3113ffda6e784e21d6e4626d assets/verdant/items/thorny_strangler_leaves.json
 c6a1f27df177c189c3af71916703f3a1b4091b2e assets/verdant/items/thorn_bush.json
 c2a3ea87b8494e22fab2ee8a2be1a6d15d5e9804 assets/verdant/items/tiger_lily.json
-c72b23690d25d8ef20860a294b0ce0276d8d2b9a assets/verdant/items/timbermite_spawn_egg.json
+555d17117895532a09ba4db1af0864ff71ab667f assets/verdant/items/timbermite_spawn_egg.json
 d08f0b1334cf2a9d37346cee7a4262ee5ac9f382 assets/verdant/items/tipped_dart.json
 afb4079251709215c62ed5e5854f39ecbc16770c assets/verdant/items/toxic_ash.json
 48a28125adbf8316d0ae343797b00e701011a8f0 assets/verdant/items/toxic_ash_block.json

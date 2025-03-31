@@ -83,64 +83,16 @@ Need to fix: TODO
 // Credits: (other direct contributors only)
 /*
 Changes:
-- Changed Frame recipe to require thorns.
-- Rebalanced the spread rates and feature placement of the Verdant Growth.
-- Rebalanced some loot tables of dirt ores.
-- Split some features off into a helper mod, Rootbound. This is automatically bundled into this mod, so there's no difference for users. It simply helps me structure the code more cleanly and (hopefully) share code between projects.
+
 
 Features Added:
-- Added Thorny Heartwood weapons and tools, which are more durable and have an inherent Thorns effect.
-- Coarse Dirt will very rarely erode to Dirt Emerald Ore.
-- Blasting Blossoms, a plant inspired by Legend of Zelda's Bomb Flowers.
-- Blasting Blooms, usable as grenade-like weapons
-- Stable Blasting Blooms, which can be placed and stacked for powerful mining explosions.
-- Broken Armor potions, reducing the protection given by armor, brewed from Blasting Blooms in Thick potions.
-- The Unbreakable potion effect prevents durability loss, brewed from Fermented Spider's Eye in Broken Armor potions.
-- Colorblindness and Fading potions disrupt player vision.
-- Clumsiness potions, brewed from a Fermented Spider's Eye in a Blurred potion, cause entities to drop what they are holding.
-- Inner Fire potions, brewed with Magma Cream in a Colloid potion, ignite entities they are inflicted upon.
-- The Flickering potion effect causes entities to teleport uncontrollably when hit, brewed with a Chorus Flower in a Colloid potion.
-- The Recall potion will teleport the player back to their spawn point, brewed with a Fermented Spider's Eye in a Flickering potion.
-- Blasting Blossom Sprouts, used to plant Blasting Blooms.
-- Rope Ladders, which can hang from ladders above them.
-- Blowgun, firing darts.
-- Tipped darts, crafted with darts. Add flowers or various other items to add effects, and lengthen the effects with slime balls or honey bottles.
-- Aloe, a two-stage crop used to soothe harmful effects.
-- Snapleaves can be smelted into green dye.
-- Adrenaline potions grant a burst of speed when you take damage, brewed from Fermented Spider's Eye in Colloid potions.
-- Added Fused Gravel, a decorative block smelted from Packed Gravel.
-- Added Scree, a dark-colored gravel equivalent formed by erosion from Deepslate.
-- Added Packed Scree and Fused Scree.
-- Added Grus (yes, that's a real word!), a gravely and nutrient-poor soil eroded from Scree.
-- Added Rocky Grus, the equivalent of Coarse Dirt for Grus and Scree.
-- Rocky Grus will very rarely erode to Grus Emerald Ore.
-- Poisoners, witches that have learned to use the plants of the Verdant Growth for more potent potions.
-- Fragile Flasks, exclusive drops from Poisoners that amplify potion effects when consumed.
-- Earth Bricks, made of Dirt and Grus, with a dash of Toxic Ash to keep plants away.
-- Blueweed, a flower that causes photosensitivity when touched.
-- Tall Bushes and Tall Thorn Bushes, double-height versions of the shorter bushes.
+
 
 Bugs Fixed:
-- Fixed some low-contrast textures.
-- Fixed a few incorrect pixels on several textures.
-- Imbued Heartwood Armor now has more durability.
-- Heartwood tools can no longer mine everything.
-- Heartwood armor's color scheme has been updated.
-- Ube now actually generates.
-- Timbermites are rarer.
-- Fixed Imbued Heartwood Logs spawning instead of Strangler Logs.
-- Heartwood Logs are now correctly (rarely) replaced by Imbued Heartwood Logs.
-- Coffee Crops now produce Coffee Berries instead of Sweet Berries.
-- Fixed a few mistagged blocks/items.
-- Spiders and Cave Spiders are now friendly to the Verdant Growth (and vice versa).
-- Dead Bushes can now survive on verdant ground.
-- The poison effect from Toxic Dirt flickers when viewed in the inventory.
-- Toxic Dirt does not actually hurt things that walk on it properly.
-- Bucket of Toxic Solution does not use up when it is used.
-- Rooted Dirt and Muddy Mangrove Roots are no longer inexplicably immune to the Verdant Growth
-- Reduced lag from verdant ground that isn't actively spreading.
-- Packed Gravel is now properly mineable with shovels.
-- And More! ( that I forgot to write down )
+- Blueweed had the wrong render type on the Fabric version.
+- The Timbermite spawn egg was the wrong color.
+- The Poisoner spawn egg was the wrong color.
+
  */
 public class CommonClass {
 

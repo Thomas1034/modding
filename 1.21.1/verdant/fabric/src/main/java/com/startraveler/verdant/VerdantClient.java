@@ -102,6 +102,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.HUGE_ALOE,
                 BlockRegistry.BLASTING_BLOSSOM,
                 BlockRegistry.BLASTING_BUNCH,
+                BlockRegistry.BLUEWEED,
+                BlockRegistry.POTTED_BLUEWEED,
                 BlockRegistry.VERDANT_CONDUIT
         );
 
