@@ -3,7 +3,6 @@ package com.startraveler.mansioneer.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.startraveler.mansioneer.Constants;
 import com.startraveler.mansioneer.util.biomemapping.BiomeMapping;
 import com.startraveler.mansioneer.util.blocktransformer.BlockTransformer;
 import net.minecraft.core.BlockPos;
@@ -69,7 +68,6 @@ public class WoodlandMansionPostProcessMixin {
                     continue;
                 }
                 BlockState oldState = level.getBlockState(mutableBlockPos);
-
                 BlockState newState = transformer.get(oldState, level.registryAccess(), random);
                 level.setBlock(mutableBlockPos, newState, Block.UPDATE_ALL);
             }
@@ -94,7 +92,7 @@ public class WoodlandMansionPostProcessMixin {
         // Get the block transformer from the cache.
         BlockTransformer transformer = this.mansioneer$cachedTransformerMap.get(biome);
         if (null == transformer) {
-            Constants.LOG.warn("Cache miss for biome {}", biome);
+            // Constants.LOG.warn("Cache miss for biome {}", biome);
             // If it's not in the cache, calculate it.
             // Get the list of biome mappings
             Registry<BiomeMapping> biomeMappings = level.registryAccess().lookupOrThrow(BiomeMapping.KEY);
@@ -106,11 +104,10 @@ public class WoodlandMansionPostProcessMixin {
                     smallestSizeSoFar = mappingSize;
                 }
             }
-            Constants.LOG.warn("Retrieved {} from the cache", transformer);
+            // Constants.LOG.warn("Retrieved {} from the cache", transformer);
             this.mansioneer$cachedTransformerMap.put(biome, transformer);
         }
         return transformer;
     }
-
 
 }

@@ -55,6 +55,20 @@ public class StoneTypes {
             Blocks.MUD_BRICK_WALL
     );
 
+    public static final StoneType END_STONE_BRICKS = new StoneType(
+            "end_stone_bricks",
+            Blocks.END_STONE_BRICKS,
+            Blocks.END_STONE,
+            Blocks.END_STONE_BRICK_STAIRS,
+            Blocks.END_STONE_BRICK_SLAB,
+            Blocks.END_STONE_BRICK_WALL,
+            Blocks.PURPUR_PILLAR,
+            Blocks.END_STONE,
+            Blocks.END_STONE_BRICK_STAIRS,
+            Blocks.END_STONE_BRICK_SLAB,
+            Blocks.END_STONE_BRICK_WALL
+    );
+
     public static final StoneType STONE_BRICKS = new StoneType(
             "stone_bricks",
             Blocks.STONE_BRICKS,

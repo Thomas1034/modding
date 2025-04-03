@@ -35,6 +35,32 @@ public class WoodTypes {
             Blocks.OAK_HANGING_SIGN,
             Blocks.OAK_WALL_HANGING_SIGN
     );
+
+
+    public static final WoodType PURPUR = new WoodType(
+            "purpur",
+            Blocks.PURPUR_PILLAR,
+            Blocks.PURPUR_PILLAR,
+            Blocks.PURPUR_PILLAR,
+            Blocks.PURPUR_PILLAR,
+            Blocks.PURPUR_BLOCK,
+            Blocks.PURPUR_STAIRS,
+            Blocks.PURPUR_SLAB,
+            Blocks.IRON_BARS,
+            Blocks.IRON_BARS,
+            Blocks.IRON_DOOR,
+            Blocks.IRON_TRAPDOOR,
+            Blocks.OAK_BUTTON,
+            Blocks.OAK_PRESSURE_PLATE,
+            Blocks.AIR,
+            Blocks.CHORUS_FLOWER,
+            Blocks.POTTED_WARPED_FUNGUS,
+            Blocks.OAK_SIGN,
+            Blocks.OAK_WALL_SIGN,
+            Blocks.OAK_HANGING_SIGN,
+            Blocks.OAK_WALL_HANGING_SIGN
+    );
+
     public static final WoodType SPRUCE = new WoodType(
             "spruce",
             Blocks.SPRUCE_LOG,
