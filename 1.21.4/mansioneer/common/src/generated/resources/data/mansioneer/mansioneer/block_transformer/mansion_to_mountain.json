@@ -35,14 +35,14 @@
     {
       "results": [
         {
-          "name": "minecraft:potted_spruce_sapling",
-          "weight": 2
+          "name": "minecraft:potted_brown_mushroom"
         },
         {
           "name": "minecraft:potted_red_mushroom"
         },
         {
-          "name": "minecraft:potted_brown_mushroom"
+          "name": "minecraft:potted_spruce_sapling",
+          "weight": 2
         }
       ],
       "tag": {
