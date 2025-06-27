@@ -43,6 +43,12 @@ public class Services {
     // unnecessarily.
     public static final ICropGrowthSpeedChecker CROP_GROWTH_SPEED = load(ICropGrowthSpeedChecker.class);
 
+    // Creates a sap block instance, since this unfortunately differs between NeoForge and Fabric.
+    public static final ISapBlockProvider SAP_BLOCK_PROVIDER = load(ISapBlockProvider.class);
+
+    // Creates a resin block instance, since this unfortunately differs between NeoForge and Fabric.
+    public static final IResinBlockProvider RESIN_BLOCK_PROVIDER = load(IResinBlockProvider.class);
+
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.
     // Inside the file you should write the fully qualified class name of the implementation to load for the platform. For

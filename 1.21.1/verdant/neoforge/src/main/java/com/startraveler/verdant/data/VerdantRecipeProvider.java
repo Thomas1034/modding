@@ -774,6 +774,21 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 6
         );
 
+        shaped(
+                List.of("E", "E"),
+                List.of('E'),
+                List.of(BlockRegistry.EARTH_BRICK_SLAB.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.CHISELED_EARTH_BRICKS.get(),
+                1
+        );
+
+        stonecutting(
+                BlockRegistry.EARTH_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.CHISELED_EARTH_BRICKS.get(),
+                1
+        );
         stonecutting(
                 BlockRegistry.EARTH_BRICKS.get(),
                 RecipeCategory.BUILDING_BLOCKS,
@@ -790,6 +805,68 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.EARTH_BRICKS.get(),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.EARTH_BRICK_STAIRS.get(),
+                1
+        );
+
+
+        shaped(
+                List.of("E  ", "EE ", "EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.VERDANT_RESIN_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get(),
+                4
+        );
+
+        shaped(
+                List.of("EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.VERDANT_RESIN_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get(),
+                6
+        );
+
+        shaped(
+                List.of("EEE", "EEE"),
+                List.of('E'),
+                List.of(BlockRegistry.VERDANT_RESIN_BRICKS.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_WALL.get(),
+                6
+        );
+
+        shaped(
+                List.of("E", "E"),
+                List.of('E'),
+                List.of(BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get(),
+                1
+        );
+
+        stonecutting(
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get(),
+                1
+        );
+        stonecutting(
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get(),
+                2
+        );
+        stonecutting(
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_WALL.get(),
+                1
+        );
+        stonecutting(
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get(),
                 1
         );
 

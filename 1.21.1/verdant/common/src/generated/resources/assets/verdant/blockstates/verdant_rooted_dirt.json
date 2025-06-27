@@ -2,29 +2,23 @@
   "variants": {
     "": [
       {
-        "model": "verdant:block/verdant_rooted_dirt",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
@@ -43,8 +37,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
@@ -63,8 +56,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt",
@@ -82,29 +74,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_thick"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
@@ -123,8 +109,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
@@ -143,8 +128,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thick",
@@ -162,29 +146,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_thin"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
@@ -203,8 +181,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
@@ -223,8 +200,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin",
@@ -242,29 +218,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_thin2"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
@@ -283,8 +253,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
@@ -303,8 +272,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_thin2",
@@ -322,29 +290,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
@@ -363,8 +325,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
@@ -383,8 +344,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin",
@@ -402,29 +362,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
@@ -443,8 +397,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
@@ -463,8 +416,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_very_thin_mixed",
@@ -482,29 +434,23 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 0,
-        "y": 0
+        "model": "verdant:block/verdant_rooted_dirt_overlay_wilted"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
@@ -523,8 +469,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
@@ -543,8 +488,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
@@ -560,31 +504,25 @@
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted",
         "x": 270,
         "y": 270
+      },
+      {
+        "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin"
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 0,
-        "y": 0
-      },
-      {
-        "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 0,
         "y": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 0,
         "y": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 0,
         "y": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 90,
-        "y": 0
+        "x": 90
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
@@ -603,8 +541,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 180,
-        "y": 0
+        "x": 180
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
@@ -623,8 +560,7 @@
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",
-        "x": 270,
-        "y": 0
+        "x": 270
       },
       {
         "model": "verdant:block/verdant_rooted_dirt_overlay_wilted_thin",

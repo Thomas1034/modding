@@ -6,3 +6,4 @@ accessible    method    net/minecraft/client/model/geom/ModelLayers register (Lj
 accessible    method    net/minecraft/world/level/block/CropBlock getGrowthSpeed (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)F
 accessible    field     net/minecraft/world/entity/ai/goal/target/NearestAttackableTargetGoal targetConditions Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
 accessible    field     net/minecraft/world/entity/ai/targeting/TargetingConditions selector Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;
+accessible    method    net/minecraft/world/level/block/LiquidBlock <init> (Lnet/minecraft/world/level/material;Lnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V

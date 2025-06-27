@@ -19,13 +19,14 @@ package com.startraveler.verdant.mixin;
 import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import com.startraveler.verdant.util.VerdantTags;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,22 +45,23 @@ public abstract class WitchConvertToPoisonerViaLivingEntityMixin {
     protected boolean verdant$isConverting;
 
     @Inject(method = "readAdditionalSaveData", at = @At(value = "TAIL"))
-    private void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    private void readAdditionalSaveData(ValueInput input, CallbackInfo ci) {
         if (verdant$isAWitch()) {
-            this.verdant$onVerdantTime = compound.getInt("OnVerdantTime");
-            this.verdant$isConverting = compound.getBoolean("IsVerdantConverting");
-            if (compound.contains("RootedConversionTime", 99) && compound.getInt("RootedConversionTime") > -1) {
-                this.verdant$startOnVerdantConversion(compound.getInt("RootedConversionTime"));
+            this.verdant$onVerdantTime = input.getIntOr("OnVerdantTime", 0);
+            this.verdant$isConverting = input.getBooleanOr("IsVerdantConverting", false);
+            int rootedConversionTime = input.getIntOr("RootedConversionTime", -1);
+            if (rootedConversionTime > -1) {
+                this.verdant$startOnVerdantConversion(rootedConversionTime);
             }
         }
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At(value = "TAIL"))
-    private void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    private void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
         if (verdant$isAWitch()) {
-            compound.putInt("OnVerdantTime", this.verdant$isOnVerdantConverting() ? this.verdant$onVerdantTime : -1);
-            compound.putBoolean("IsVerdantConverting", this.verdant$isConverting);
-            compound.putInt(
+            output.putInt("OnVerdantTime", this.verdant$isOnVerdantConverting() ? this.verdant$onVerdantTime : -1);
+            output.putBoolean("IsVerdantConverting", this.verdant$isConverting);
+            output.putInt(
                     "RootedConversionTime",
                     this.verdant$isOnVerdantConverting() ? this.verdant$rootedConversionTime : -1
             );

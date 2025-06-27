@@ -72,6 +72,7 @@ public class VerdantTags {
         public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
         public static final TagKey<Block> ALLOWS_ASH_SPREAD = tag("allows_ash_spread");
         public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("allows_ash_spread");
+        public static final TagKey<Block> VERDANT_RESIN_BLOCKS = tag("verdant_resin_blocks");
 
         private static TagKey<Block> tag(String name) {
             TagKey<Block> tag = TagKey.create(

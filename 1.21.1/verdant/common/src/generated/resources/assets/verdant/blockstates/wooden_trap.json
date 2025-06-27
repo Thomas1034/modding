@@ -2,8 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_hidden_stage0",
-        "y": 0
+        "model": "verdant:block/wooden_trap_hidden_stage0"
       },
       "when": {
         "facing": "north",
@@ -46,8 +45,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_stage0",
-        "y": 0
+        "model": "verdant:block/wooden_trap_stage0"
       },
       "when": {
         "facing": "north",
@@ -90,8 +88,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_hidden_stage1",
-        "y": 0
+        "model": "verdant:block/wooden_trap_hidden_stage1"
       },
       "when": {
         "facing": "north",
@@ -134,8 +131,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_stage1",
-        "y": 0
+        "model": "verdant:block/wooden_trap_stage1"
       },
       "when": {
         "facing": "north",
@@ -178,8 +174,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_hidden_stage2",
-        "y": 0
+        "model": "verdant:block/wooden_trap_hidden_stage2"
       },
       "when": {
         "facing": "north",
@@ -222,8 +217,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_stage2",
-        "y": 0
+        "model": "verdant:block/wooden_trap_stage2"
       },
       "when": {
         "facing": "north",
@@ -266,8 +260,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_hidden_stage3",
-        "y": 0
+        "model": "verdant:block/wooden_trap_hidden_stage3"
       },
       "when": {
         "facing": "north",
@@ -310,8 +303,7 @@
     },
     {
       "apply": {
-        "model": "verdant:block/wooden_trap_stage3",
-        "y": 0
+        "model": "verdant:block/wooden_trap_stage3"
       },
       "when": {
         "facing": "north",

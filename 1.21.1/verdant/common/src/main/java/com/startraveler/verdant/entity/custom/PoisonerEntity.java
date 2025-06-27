@@ -14,7 +14,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ThrownPotion;
+import net.minecraft.world.entity.projectile.ThrownSplashPotion;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -64,7 +64,7 @@ public class PoisonerEntity extends Witch {
                 }
                 this.setTarget(null);
 
-            } else if (distanceToTarget >= (double) 8.0F && !target.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+            } else if (distanceToTarget >= (double) 8.0F && !target.hasEffect(MobEffects.SLOWNESS)) {
                 potionToInflict = Potions.SLOWNESS;
                 extraEffectsToInflict.addAll(PotionRegistry.STRONG_COLLOID.get().getEffects());
             } else if (target.getHealth() >= 8.0F && !target.hasEffect(MobEffects.POISON)) {
@@ -90,7 +90,7 @@ public class PoisonerEntity extends Witch {
                 );
 
                 Projectile.spawnProjectileUsingShoot(
-                        ThrownPotion::new,
+                        ThrownSplashPotion::new,
                         serverLevel,
                         itemstack,
                         this,

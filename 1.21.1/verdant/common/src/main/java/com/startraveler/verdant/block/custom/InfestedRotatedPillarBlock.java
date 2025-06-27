@@ -42,10 +42,9 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
     private void spawnInfestation(ServerLevel level, BlockPos pos) {
         Monster infestor = this.infestor.get().create(level, EntitySpawnReason.TRIGGERED);
         if (infestor != null) {
-            infestor.moveTo(
-                    (double) pos.getX() + (double) 0.5F,
-                    (double) pos.getY(),
-                    (double) pos.getZ() + (double) 0.5F,
+
+            infestor.moveOrInterpolateTo(
+                    pos.getBottomCenter(),
                     0.0F,
                     0.0F
             );

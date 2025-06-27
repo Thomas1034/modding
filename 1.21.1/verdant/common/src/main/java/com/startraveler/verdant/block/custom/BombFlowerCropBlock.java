@@ -148,9 +148,8 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        super.onRemove(state, level, pos, newState, movedByPiston);
-        if (state.getValue(AGE) == MAX_AGE && !(newState.is(this))) {
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
+        if (state.getValue(AGE) == MAX_AGE) {
             this.explode(level, pos);
         }
     }
@@ -161,7 +160,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
         if (currentAge == MAX_AGE) {
             state = state.setValue(AGE, MIN_AGE);
             level.setBlockAndUpdate(pos, state);
-            if (stack.is(CommonTags.Items.TOOLS_SHEAR) || player.hasEffect(MobEffects.DAMAGE_BOOST)) {
+            if (stack.is(CommonTags.Items.TOOLS_SHEAR) || player.hasEffect(MobEffects.STRENGTH)) {
                 popResource(level, pos, this.harvest.apply(level.random));
                 level.playSound(
                         null,

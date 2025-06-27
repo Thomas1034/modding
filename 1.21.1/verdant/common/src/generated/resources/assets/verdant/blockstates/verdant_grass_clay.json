@@ -2,8 +2,7 @@
   "variants": {
     "": [
       {
-        "model": "verdant:block/verdant_grass_clay",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay"
       },
       {
         "model": "verdant:block/verdant_grass_clay",
@@ -18,8 +17,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_thick",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_thick"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_thick",
@@ -34,8 +32,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_thin",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_thin"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_thin",
@@ -50,8 +47,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_thin2",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_thin2"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_thin2",
@@ -66,8 +62,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_very_thin",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_very_thin"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_very_thin",
@@ -82,8 +77,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_very_thin_mixed",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_very_thin_mixed"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_very_thin_mixed",
@@ -98,8 +92,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_wilted",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_wilted"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_wilted",
@@ -114,8 +107,7 @@
         "y": 270
       },
       {
-        "model": "verdant:block/verdant_grass_clay_overlay_wilted_thin",
-        "y": 0
+        "model": "verdant:block/verdant_grass_clay_overlay_wilted_thin"
       },
       {
         "model": "verdant:block/verdant_grass_clay_overlay_wilted_thin",

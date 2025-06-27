@@ -2,12 +2,17 @@ package com.startraveler.verdant;
 
 
 import com.startraveler.rootbound.Rootbound;
+import com.startraveler.verdant.entity.custom.BrambleEntity;
 import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
+import com.startraveler.verdant.timer.BaseTimer;
+import com.startraveler.verdant.timer.PrintForTestingTimer;
+import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,6 +27,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.DimensionDataStorage;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -37,6 +43,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
@@ -63,6 +70,7 @@ public class Verdant {
         // Dart Tipping Ingredients
         eventBus.addListener(Verdant::modifyDefaultComponents);
 
+
         // Caffeine
         NeoForge.EVENT_BUS.addListener(Verdant::onPlayerTryToSleepEvent);
 
@@ -72,8 +80,32 @@ public class Verdant {
         // Tilling Grus
         NeoForge.EVENT_BUS.addListener(Verdant::registerTillables);
 
+        // Ticking Timers
+        NeoForge.EVENT_BUS.addListener(Verdant::tickTimers);
+
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
+    }
+
+    public static void tickTimers(LevelTickEvent.Post event) {
+        if (event.getLevel() instanceof ServerLevel level) {
+
+            DimensionDataStorage dataStorage = level.getDataStorage();
+            TimerListSavedData timerList = dataStorage
+                    .computeIfAbsent(TimerListSavedData.TYPE);
+
+            List<BaseTimer> timers = timerList.getTimers();
+
+            if (!timers.isEmpty()) {
+                for (BaseTimer timer : timers) {
+                    boolean result = timer.handleTick(level);
+                    if (!result) {
+                        timerList.removeTimer(timer);
+                    }
+                }
+                dataStorage.set(TimerListSavedData.TYPE, timerList);
+            }
+        }
     }
 
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
@@ -85,6 +117,8 @@ public class Verdant {
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+
+            BaseTimer.CODEC_REGISTRY.register(PrintForTestingTimer.TYPE, PrintForTestingTimer.CODEC);
 
             FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
 
@@ -112,6 +146,7 @@ public class Verdant {
         event.put(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteEntity.createAttributes().build());
         event.put(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes().build());
         event.put(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes().build());
+        event.put(EntityTypeRegistry.BRAMBLE.get(), BrambleEntity.createAttributes().build());
     }
 
     public static void registerContainerCapabilities(RegisterCapabilitiesEvent event) {
@@ -123,7 +158,6 @@ public class Verdant {
                         side
                 )
         );
-
 
         // Boats, modified from CapabilityHooks.
         List<? extends EntityType<? extends Container>> woodSetChestBoats = WoodSets.WOOD_SETS.stream()
@@ -141,7 +175,7 @@ public class Verdant {
 
     public static void registerDatapackRegistries(final DataPackRegistryEvent.NewRegistry event) {
 
-        Constants.LOG.warn("Registering datapack registries");
+        // Constants.LOG.warn("Registering datapack registries");
         event.dataPackRegistry(BaitData.KEY, BaitData.CODEC, BaitData.CODEC);
     }
 

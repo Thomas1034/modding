@@ -15,6 +15,9 @@ public interface AbstractArrowAccessors {
     @Invoker("setPierceLevel")
     void verdant$setPierceLevel(byte level);
 
+    @Accessor("baseDamage")
+    double getBaseDamage();
+
     @Accessor("pickupItemStack")
     void verdant$setPickupItemStack(ItemStack stack);
 

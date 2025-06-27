@@ -8,6 +8,15 @@ import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
+    public static TextureMapping skull(Block block) {
+        return (new TextureMapping()).put(TextureSlot.UP, TextureMapping.getBlockTexture(block, "_up"))
+                .put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_down"))
+                .put(TextureSlot.NORTH, TextureMapping.getBlockTexture(block, "_north"))
+                .put(TextureSlot.EAST, TextureMapping.getBlockTexture(block, "_east"))
+                .put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(block, "_south"))
+                .put(TextureSlot.WEST, TextureMapping.getBlockTexture(block, "_west"));
+    }
+
     public static TextureMapping columnAlt(Block block) {
         return (new TextureMapping()).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side_alt"))
                 .put(TextureSlot.END, TextureMapping.getBlockTexture(block, "_top"));
@@ -23,7 +32,10 @@ public class VerdantTextureMapping {
     }
 
     public static TextureMapping bombFlower(Block block, int age) {
-        TextureMapping mapping = new TextureMapping().put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(block, "_base"))
+        TextureMapping mapping = new TextureMapping().put(
+                        VerdantTextureSlot.BASE,
+                        TextureMapping.getBlockTexture(block, "_base")
+                )
                 .put(VerdantTextureSlot.FLOWER, TextureMapping.getBlockTexture(block, "_stage" + age))
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_stage" + age));
         if (age == BombFlowerCropBlock.MAX_AGE) {

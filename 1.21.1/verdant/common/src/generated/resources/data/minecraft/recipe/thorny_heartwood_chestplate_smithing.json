@@ -3,7 +3,6 @@
   "addition": "#verdant:thorny_heartwood_tool_materials",
   "base": "verdant:heartwood_chestplate",
   "result": {
-    "count": 1,
     "id": "verdant:thorny_heartwood_chestplate"
   },
   "template": "verdant:thorns_upgrade_smithing_template"

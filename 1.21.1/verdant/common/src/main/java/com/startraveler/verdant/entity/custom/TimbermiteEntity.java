@@ -19,7 +19,6 @@ package com.startraveler.verdant.entity.custom;
 import com.startraveler.verdant.VerdantIFF;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -35,6 +34,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 public class TimbermiteEntity extends Monster {
     private static final int MAX_LIFE = 2400;
@@ -92,14 +93,14 @@ public class TimbermiteEntity extends Monster {
         return SoundEvents.ENDERMITE_AMBIENT;
     }
 
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(ValueOutput compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Lifetime", this.life);
     }
 
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(ValueInput compound) {
         super.readAdditionalSaveData(compound);
-        this.life = compound.getInt("Lifetime");
+        this.life = compound.getIntOr("Lifetime", MAX_LIFE);
     }
 
     protected void playStepSound(BlockPos pos, BlockState block) {

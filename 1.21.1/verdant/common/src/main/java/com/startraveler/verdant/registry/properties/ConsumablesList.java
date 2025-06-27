@@ -65,13 +65,13 @@ public class ConsumablesList {
     public static final Consumable COFFEE_BERRY = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
             .onConsume(new ApplyStatusEffectsConsumeEffect(
-                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0),
+                    new MobEffectInstance(MobEffects.SPEED, 200, 0),
                     0.9F
             ))
             .build();
     public static final Consumable ROASTED_COFFEE = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0), 0.9F))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HASTE, 200, 0), 0.9F))
             .build();
     public static final Consumable ROTTEN_COMPOST = Consumables.defaultFood()
             .soundAfterConsume(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.ZOMBIE_DEATH))
@@ -98,7 +98,7 @@ public class ConsumablesList {
     public static final Consumable COOKED_GOLDEN_CASSAVA = Consumables.defaultFood()
             .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
                     new MobEffectInstance(
-                            MobEffects.DAMAGE_RESISTANCE,
+                            MobEffects.RESISTANCE,
                             1200,
                             0
                     ),

@@ -58,6 +58,7 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.DIRT_LAPIS_ORE.get(),
                 BlockRegistry.DIRT_REDSTONE_ORE.get(),
                 BlockRegistry.EARTH_BRICKS.get(),
+                BlockRegistry.CHISELED_EARTH_BRICKS.get(),
                 BlockRegistry.EARTH_BRICK_STAIRS.get(),
                 BlockRegistry.EARTH_BRICK_WALL.get(),
                 BlockRegistry.EARTH_BRICK_SLAB.get(),
@@ -198,8 +199,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STONY_GRUS.get(),
                 BlockRegistry.GRUS.get()
         );
-        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
-        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
+        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
+        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(
                 BlockRegistry.STRANGLER_VINE.get(),
@@ -209,7 +210,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.ROPE.get(),
                 BlockRegistry.ROPE_HOOK.get(),
-                BlockRegistry.ROPE_LADDER.get()
+                BlockRegistry.ROPE_LADDER.get(),
+                BlockRegistry.SAP_BLOCK.get()
         );
 
         this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
@@ -419,14 +421,28 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
 
         //
-        this.tag(BlockTags.WALLS).add(BlockRegistry.EARTH_BRICK_WALL.get());
-        this.tag(BlockTags.STAIRS).add(BlockRegistry.EARTH_BRICK_STAIRS.get());
-        this.tag(BlockTags.SLABS).add(BlockRegistry.EARTH_BRICK_SLAB.get());
-        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON).add(
+        this.tag(BlockTags.WALLS)
+                .add(BlockRegistry.EARTH_BRICK_WALL.get(), BlockRegistry.VERDANT_RESIN_BRICK_WALL.get());
+        this.tag(BlockTags.STAIRS)
+                .add(BlockRegistry.EARTH_BRICK_STAIRS.get(), BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get());
+        this.tag(BlockTags.SLABS)
+                .add(BlockRegistry.EARTH_BRICK_SLAB.get(), BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get());
+        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).add(
                 BlockRegistry.EARTH_BRICK_WALL.get(),
                 BlockRegistry.EARTH_BRICK_SLAB.get(),
                 BlockRegistry.EARTH_BRICK_STAIRS.get(),
-                BlockRegistry.EARTH_BRICKS.get()
+                BlockRegistry.EARTH_BRICKS.get(),
+                BlockRegistry.CHISELED_EARTH_BRICKS.get()
+        );
+
+        // Resins
+        this.tag(VerdantTags.Blocks.VERDANT_RESIN_BLOCKS).add(
+                BlockRegistry.VERDANT_RESIN_BRICK_WALL.get(),
+                BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get(),
+                BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get(),
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
+                BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get(),
+                BlockRegistry.VERDANT_RESIN_BLOCK.get()
         );
 
 

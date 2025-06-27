@@ -3,12 +3,14 @@ package com.startraveler.verdant.entity.custom;
 import com.startraveler.verdant.mixin.PrimedTntAccessors;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+
 public class BlockIgnoringPrimedTnt extends PrimedTnt {
     public BlockIgnoringPrimedTnt(EntityType<? extends PrimedTnt> entityType, Level level) {
         super(entityType, level);
@@ -23,7 +25,7 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this.xo = x;
         this.yo = y;
         this.zo = z;
-        ((PrimedTntAccessors) this).setOwner(owner);
+        ((PrimedTntAccessors) this).setOwner(new EntityReference<>(owner));
     }
 
     public void tick() {

@@ -85,14 +85,14 @@ public class BombPileBlock extends Block {
         }
     }
 
-    public void onCaughtFire(BlockState state, Level world, BlockPos pos, Direction face, LivingEntity igniter) {
+    public void whenCatchingFire(BlockState state, Level world, BlockPos pos, Direction face, LivingEntity igniter) {
         explode(world, state, pos, igniter);
     }
 
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston) {
         if (level.hasNeighborSignal(pos) || !this.canSurvive(state, level, pos)) {
-            onCaughtFire(state, level, pos, null, null);
+            whenCatchingFire(state, level, pos, null, null);
             level.removeBlock(pos, false);
         }
     }
@@ -100,7 +100,7 @@ public class BombPileBlock extends Block {
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!oldState.is(state.getBlock())) {
             if (level.hasNeighborSignal(pos)) {
-                onCaughtFire(state, level, pos, null, null);
+                whenCatchingFire(state, level, pos, null, null);
                 level.removeBlock(pos, false);
             }
         }
@@ -111,7 +111,7 @@ public class BombPileBlock extends Block {
         int numBombs = state.getValue(BOMBS);
         Item item = stack.getItem();
         if (stack.is(CommonTags.Items.TOOLS_IGNITER)) {
-            onCaughtFire(state, level, pos, result.getDirection(), player);
+            whenCatchingFire(state, level, pos, result.getDirection(), player);
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
             if (stack.has(DataComponents.DAMAGE)) {
                 stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
@@ -155,7 +155,7 @@ public class BombPileBlock extends Block {
             BlockPos blockpos = hit.getBlockPos();
             Entity entity = projectile.getOwner();
             if (projectile.mayInteract(serverlevel, blockpos)) {
-                onCaughtFire(
+                whenCatchingFire(
                         state,
                         level,
                         blockpos,
@@ -188,7 +188,7 @@ public class BombPileBlock extends Block {
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide() && !player.isCreative() && state.getValue(UNSTABLE)) {
-            onCaughtFire(state, level, pos, null, null);
+            whenCatchingFire(state, level, pos, null, null);
         }
         return super.playerWillDestroy(level, pos, state, player);
     }

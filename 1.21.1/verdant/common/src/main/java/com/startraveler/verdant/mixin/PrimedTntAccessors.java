@@ -1,5 +1,6 @@
 package com.startraveler.verdant.mixin;
 
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.ExplosionDamageCalculator;
@@ -15,7 +16,7 @@ public interface PrimedTntAccessors {
     }
 
     @Accessor("owner")
-    void setOwner(LivingEntity entity);
+    void setOwner(EntityReference<LivingEntity> entity);
 
     @Accessor("usedPortal")
     boolean getUsedPortal();

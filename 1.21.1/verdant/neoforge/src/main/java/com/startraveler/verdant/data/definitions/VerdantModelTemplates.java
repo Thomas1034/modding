@@ -7,6 +7,56 @@ import net.minecraft.client.data.models.model.TextureSlot;
 
 public class VerdantModelTemplates {
 
+    public static final ModelTemplate WALL_SKULL = ModelTemplates.create(
+            "verdant:wall_skull",
+            TextureSlot.NORTH,
+            TextureSlot.SOUTH,
+            TextureSlot.EAST,
+            TextureSlot.WEST,
+            TextureSlot.UP,
+            TextureSlot.DOWN
+    );
+
+    public static final ModelTemplate SKULL_ROT0 = ModelTemplates.create(
+            "verdant:skull_rot0",
+            TextureSlot.NORTH,
+            TextureSlot.SOUTH,
+            TextureSlot.EAST,
+            TextureSlot.WEST,
+            TextureSlot.UP,
+            TextureSlot.DOWN
+    );
+
+    public static final ModelTemplate SKULL_ROT1 = ModelTemplates.create(
+            "verdant:skull_rot1",
+            TextureSlot.NORTH,
+            TextureSlot.SOUTH,
+            TextureSlot.EAST,
+            TextureSlot.WEST,
+            TextureSlot.UP,
+            TextureSlot.DOWN
+    );
+
+    public static final ModelTemplate SKULL_ROT2 = ModelTemplates.create(
+            "verdant:skull_rot2",
+            TextureSlot.NORTH,
+            TextureSlot.SOUTH,
+            TextureSlot.EAST,
+            TextureSlot.WEST,
+            TextureSlot.UP,
+            TextureSlot.DOWN
+    );
+
+    public static final ModelTemplate SKULL_ROT3 = ModelTemplates.create(
+            "verdant:skull_rot3",
+            TextureSlot.NORTH,
+            TextureSlot.SOUTH,
+            TextureSlot.EAST,
+            TextureSlot.WEST,
+            TextureSlot.UP,
+            TextureSlot.DOWN
+    );
+
     public static final ModelTemplate FISH_TRAP = ModelTemplates.create(
             "verdant:fish_trap_base",
             TextureSlot.PARTICLE,
@@ -29,7 +79,8 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.PLUS
     );
 
-    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create("verdant:double_sided_cube_column",
+    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create(
+            "verdant:double_sided_cube_column",
             TextureSlot.END,
             TextureSlot.SIDE
     );

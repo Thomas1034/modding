@@ -48,7 +48,6 @@ import java.util.function.Supplier;
 
 public class ExtensibleCandleCakeBlock extends AbstractCandleBlock {
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
-    protected static final float AABB_OFFSET = 1.0F;
     protected static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
     protected static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D, 9.0D, 14.0D, 9.0D);
     protected static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);

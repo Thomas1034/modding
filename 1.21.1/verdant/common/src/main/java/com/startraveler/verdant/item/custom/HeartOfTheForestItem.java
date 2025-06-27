@@ -21,9 +21,9 @@ import com.startraveler.verdant.block.custom.SpreadingRootsBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 
 public class HeartOfTheForestItem extends Item implements VerdantGrower {
 
@@ -33,7 +33,8 @@ public class HeartOfTheForestItem extends Item implements VerdantGrower {
 
     // Spreads the verdant around the player that holds it.
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity holder, int iInt, boolean isHeld) {
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot) {
+        super.inventoryTick(stack, level, holder, slot);
         // Ensure it is on the server.
         if (level instanceof ServerLevel serverLevel) {
 
@@ -44,7 +45,7 @@ public class HeartOfTheForestItem extends Item implements VerdantGrower {
                 BlockPos posToTry = SpreadingRootsBlock.withinDist(holder.getOnPos(), 3, level.random);
 
                 // Try to erode the block, then try to convert it.
-                this.erodeOrGrow(serverLevel, posToTry, holder.isInWaterOrBubble());
+                this.erodeOrGrow(serverLevel, posToTry, holder.isInWaterOrRain());
             }
         }
     }

@@ -43,7 +43,7 @@ public class TallThornBushBlock extends TallFlowerBlock {
             slowdownFactor = 1 - slowdownFactor;
             entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
             if (level instanceof ServerLevel serverLevel) {
-                Vec3 vec3 = entity.isControlledByClient() ? entity.getKnownMovement() : entity.oldPosition()
+                Vec3 vec3 = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition()
                         .subtract(entity.position());
                 if (vec3.horizontalDistanceSqr() > (double) 0.0F) {
                     double dx = Math.abs(vec3.x());

@@ -26,9 +26,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -108,7 +106,8 @@ public class AloeCropBlock extends CropBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             float slowdownFactor = slowdown.apply(state.getValue(this.getAgeProperty()));
@@ -118,7 +117,7 @@ public class AloeCropBlock extends CropBlock {
                 entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
             }
         }
-        super.entityInside(state, level, pos, entity);
+        super.entityInside(state, level, pos, entity, applier);
     }
 
     @Override

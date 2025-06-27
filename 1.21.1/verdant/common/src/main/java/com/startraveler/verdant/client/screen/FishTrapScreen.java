@@ -16,13 +16,11 @@
  */
 package com.startraveler.verdant.client.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.menu.FishTrapMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.CoreShaders;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -61,9 +59,8 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        // RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
+        // RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
@@ -76,7 +73,7 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
         // pixel width of texture to draw
         // pixel height of texture to draw
         guiGraphics.blit(
-                RenderType::guiTextured,
+                RenderPipelines.GUI_TEXTURED,
                 TEXTURE,
                 x,
                 y,
@@ -138,7 +135,7 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
         if (this.menu.isCrafting()) {
             // Draw the arrow
             guiGraphics.blit(
-                    RenderType::guiTextured,
+                    RenderPipelines.GUI_TEXTURED,
                     TEXTURE,
                     x + ARROW_BLIT_OFFSET_X,
                     y + ARROW_BLIT_OFFSET_Y,
@@ -155,7 +152,7 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
     private void renderSlot(GuiGraphics guiGraphics, int x, int y, int blitOffsetX, int blitOffsetY) {
         // Draw the slot
         guiGraphics.blit(
-                RenderType::guiTextured,
+                RenderPipelines.GUI_TEXTURED,
                 TEXTURE,
                 x + blitOffsetX,
                 y + blitOffsetY,

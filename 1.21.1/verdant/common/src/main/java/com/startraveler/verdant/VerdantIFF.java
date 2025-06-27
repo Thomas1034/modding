@@ -21,6 +21,7 @@ import com.startraveler.verdant.registry.DataComponentRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
@@ -67,7 +68,8 @@ public class VerdantIFF {
     protected static float getArmorFriendliness(Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
             float armorFriendliness = 0;
-            for (ItemStack stack : livingEntity.getArmorAndBodyArmorSlots()) {
+            for (EquipmentSlot slot: EquipmentSlot.values()) {
+                ItemStack stack = livingEntity.getItemBySlot(slot);
                 VerdantFriendliness value = stack.get(DataComponentRegistry.VERDANT_FRIENDLINESS.get());
                 armorFriendliness += value == null ? 0 : value.sway();
             }

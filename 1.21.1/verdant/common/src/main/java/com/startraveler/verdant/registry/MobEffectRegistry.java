@@ -42,10 +42,10 @@ public class MobEffectRegistry {
                     0x94ac02,
                     0.005f,
                     new RandomInflictedEffect.WeightedEffectHolder(20, 200, MobEffects.HUNGER),
-                    new RandomInflictedEffect.WeightedEffectHolder(10, 200, MobEffects.MOVEMENT_SLOWDOWN),
+                    new RandomInflictedEffect.WeightedEffectHolder(10, 200, MobEffects.SLOWNESS),
                     new RandomInflictedEffect.WeightedEffectHolder(10, 200, MobEffects.WEAKNESS),
-                    new RandomInflictedEffect.WeightedEffectHolder(10, 100, MobEffects.CONFUSION),
-                    new RandomInflictedEffect.WeightedEffectHolder(5, 200, MobEffects.DIG_SLOWDOWN),
+                    new RandomInflictedEffect.WeightedEffectHolder(10, 100, MobEffects.NAUSEA),
+                    new RandomInflictedEffect.WeightedEffectHolder(5, 200, MobEffects.MINING_FATIGUE),
                     new RandomInflictedEffect.WeightedEffectHolder(5, 200, MobEffects.POISON)
             )
     );
@@ -55,7 +55,7 @@ public class MobEffectRegistry {
                     1,
                     600,
                     RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(
-                            MobEffects.MOVEMENT_SLOWDOWN,
+                            MobEffects.SLOWNESS,
                             5,
                             4,
                             0
@@ -67,7 +67,7 @@ public class MobEffectRegistry {
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.DIG_SLOWDOWN, 5, 4, 2)
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.MINING_FATIGUE, 5, 4, 2)
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
@@ -90,8 +90,8 @@ public class MobEffectRegistry {
                     MobEffectCategory.NEUTRAL,
                     0x5c4033,
                     100,
-                    MobEffects.MOVEMENT_SPEED,
-                    MobEffects.DIG_SPEED
+                    MobEffects.SPEED,
+                    MobEffects.HASTE
             )
     );
     public static final RegistryObject<MobEffect, MobEffect> VERDANT_ENERGY = MOB_EFFECTS.register(
@@ -109,9 +109,9 @@ public class MobEffectRegistry {
     public static final RegistryObject<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register(
             "antidote", () -> new ImmunityEffect(
                     MobEffectCategory.BENEFICIAL, 0x3dffb5, List.of(
-                    Pair.of(0, MobEffects.CONFUSION),
+                    Pair.of(0, MobEffects.NAUSEA),
                     Pair.of(0, MobEffects.POISON),
-                    Pair.of(1, MobEffects.MOVEMENT_SLOWDOWN),
+                    Pair.of(1, MobEffects.SLOWNESS),
                     Pair.of(1, MobEffects.WITHER),
                     Pair.of(1, MobEffects.HUNGER),
                     Pair.of(2, MobEffects.BLINDNESS),

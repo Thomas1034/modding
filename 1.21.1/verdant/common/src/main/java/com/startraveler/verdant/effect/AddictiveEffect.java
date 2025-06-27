@@ -54,11 +54,14 @@ public class AddictiveEffect extends MobEffect {
     }
 
     public static void registerEffects() {
+        // Speak again the ancient oaths!
+        register(MobEffects.INSTANT_HEALTH, MobEffects.INSTANT_DAMAGE);
+        register(MobEffects.STRENGTH, MobEffects.WEAKNESS);
+        register(MobEffects.SPEED, MobEffects.SLOWNESS);
+        //
+
         register(MobEffects.GLOWING, MobEffects.INVISIBILITY);
-        register(MobEffects.DAMAGE_BOOST, MobEffects.WEAKNESS);
-        register(MobEffects.DIG_SLOWDOWN, MobEffects.DIG_SPEED);
-        register(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.MOVEMENT_SPEED);
-        register(MobEffects.HARM, MobEffects.HEAL);
+        register(MobEffects.MINING_FATIGUE, MobEffects.HASTE);
         register(MobEffects.HUNGER, MobEffects.SATURATION);
         register(MobEffects.REGENERATION, MobEffects.POISON);
     }

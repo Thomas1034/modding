@@ -8,18 +8,15 @@ import com.startraveler.verdant.util.CommonTags;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class VerdantItemTagProvider extends ItemTagsProvider {
-    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags) {
-        super(output, lookupProvider, blockTags, Constants.MOD_ID);
+public class VerdantItemTagProvider extends net.neoforged.neoforge.common.data.ItemTagsProvider {
+    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, Constants.MOD_ID);
     }
 
 

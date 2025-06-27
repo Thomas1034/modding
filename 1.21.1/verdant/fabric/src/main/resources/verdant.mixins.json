@@ -6,7 +6,6 @@
   "mixins": [
     "AbstractArrowAccessors",
     "ArrowAccessors",
-    "ArrowPostHurtEffectMixin",
     "BoggedLikeVerdantFriendsMixin",
     "DecreaseDetectionRangeMixin",
     "LivingEntityMixin",
@@ -19,7 +18,8 @@
     "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",
-    "ZombieConvertToRootedMixin"
+    "ZombieConvertToRootedMixin",
+    "FabricPistonStructureResolverMixin"
   ],
   "server": [],
   "client": [

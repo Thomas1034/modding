@@ -24,6 +24,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.Level;
@@ -49,7 +50,9 @@ public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
 
     // Inflicts asphyxiation on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
+
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 livingEntity.addEffect(ASPHYXIATION.get());

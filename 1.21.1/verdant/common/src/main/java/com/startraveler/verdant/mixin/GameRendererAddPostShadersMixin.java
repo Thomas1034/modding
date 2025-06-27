@@ -75,8 +75,10 @@ public class GameRendererAddPostShadersMixin {
                         .getPostChain(BLUR_POST_CHAIN_ID, LevelTargetBundle.MAIN_TARGETS);
                 if (postchain != null) {
                     float screenEffectScale = this.minecraft.options.screenEffectScale().get().floatValue();
+                    // TODO TODO TODO
+                    //postchain.setUniform("Radius", (2 + instance.getAmplifier()) * 4 * screenEffectScale);
 
-                    postchain.setUniform("Radius", (2 + instance.getAmplifier()) * 4 * screenEffectScale);
+                    // TODO
                     postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
                 }
             }

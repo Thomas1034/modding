@@ -13,6 +13,26 @@ import java.util.function.Function;
 
 public class VerdantTexturedModel {
 
+    public static final TexturedModel.Provider WALL_SKULL = TexturedModel.createDefault(
+            VerdantTextureMapping::skull,
+            VerdantModelTemplates.WALL_SKULL
+    );
+    public static final TexturedModel.Provider SKULL_ROT0 = TexturedModel.createDefault(
+            VerdantTextureMapping::skull,
+            VerdantModelTemplates.SKULL_ROT0
+    );
+    public static final TexturedModel.Provider SKULL_ROT1 = TexturedModel.createDefault(
+            VerdantTextureMapping::skull,
+            VerdantModelTemplates.SKULL_ROT1
+    );
+    public static final TexturedModel.Provider SKULL_ROT2 = TexturedModel.createDefault(
+            VerdantTextureMapping::skull,
+            VerdantModelTemplates.SKULL_ROT2
+    );
+    public static final TexturedModel.Provider SKULL_ROT3 = TexturedModel.createDefault(
+            VerdantTextureMapping::skull,
+            VerdantModelTemplates.SKULL_ROT3
+    );
 
     public static final TexturedModel.Provider FISH_TRAP = TexturedModel.createDefault(
             VerdantTextureMapping::fishTrap,
@@ -29,15 +49,18 @@ public class VerdantTexturedModel {
             ModelTemplates.CROSS
     );
 
-    public static final Function<Integer, TexturedModel.Provider> BLASTING_BLOSSOM = (age) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombFlower(block, age),
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BLOSSOM = (age) -> TexturedModel.createDefault(
+            (block) -> VerdantTextureMapping.bombFlower(block, age),
             VerdantModelTemplates.bombFlower(age)
     );
 
-    public static final Function<Integer, TexturedModel.Provider> BLASTING_BUNCH = (bombs) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombPile(block, bombs),
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BUNCH = (bombs) -> TexturedModel.createDefault(
+            (block) -> VerdantTextureMapping.bombPile(block, bombs),
             VerdantModelTemplates.bombPile(bombs)
     );
 
-    public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),
+    public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault(
+            (block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),
             VerdantModelTemplates.HUGE_ASTERISK
     );
 

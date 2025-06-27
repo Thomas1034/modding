@@ -4,8 +4,8 @@ import com.startraveler.verdant.mixin.AbstractArrowAccessors;
 import com.startraveler.verdant.mixin.EntityGetterInvoker;
 import com.startraveler.verdant.mixin.ThrownTridentDataIDGetter;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.Entity;
@@ -18,6 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
@@ -169,29 +171,20 @@ public class ThrownSpearEntity extends ThrownTrident {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(ValueInput tag) {
         super.readAdditionalSaveData(tag);
-        if (tag.contains(LOCKED_X_ROT_TAG)) {
-            this.lockedXRot = tag.getFloat(LOCKED_X_ROT_TAG);
-        }
-        if (tag.contains(LOCKED_Y_ROT_TAG)) {
-            this.lockedYRot = tag.getFloat(LOCKED_Y_ROT_TAG);
-        }
-        if (tag.contains(RELATIVE_POS_X_TAG) && tag.contains(RELATIVE_POS_Y_TAG) && tag.contains(RELATIVE_POS_Z_TAG)) {
-            double x = tag.getFloat(RELATIVE_POS_X_TAG);
-            double y = tag.getFloat(RELATIVE_POS_Y_TAG);
-            double z = tag.getFloat(RELATIVE_POS_Z_TAG);
-            this.relativePosition = new Vec3(x, y, z);
-        }
-        if (tag.contains(STUCK_ENTITY_ID_TAG)) {
-            this.targetEntityID = tag.getUUID(STUCK_ENTITY_ID_TAG);
-            this.isStuck = true;
-        }
-
+        this.lockedXRot = tag.getFloatOr(LOCKED_X_ROT_TAG, 0);
+        this.lockedYRot = tag.getFloatOr(LOCKED_Y_ROT_TAG, 0);
+        double x = tag.getFloatOr(RELATIVE_POS_X_TAG, 0);
+        double y = tag.getFloatOr(RELATIVE_POS_Y_TAG, 0);
+        double z = tag.getFloatOr(RELATIVE_POS_Z_TAG, 0);
+        this.relativePosition = new Vec3(x, y, z);
+        this.targetEntityID = tag.read(STUCK_ENTITY_ID_TAG, UUIDUtil.CODEC).orElse(null);
+        this.isStuck = this.targetEntityID != null;
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
+    public void addAdditionalSaveData(ValueOutput tag) {
         super.addAdditionalSaveData(tag);
         if (this.isStuck) {
             tag.putDouble(RELATIVE_POS_X_TAG, this.relativePosition.x);
@@ -199,7 +192,7 @@ public class ThrownSpearEntity extends ThrownTrident {
             tag.putDouble(RELATIVE_POS_Z_TAG, this.relativePosition.z);
             tag.putFloat(LOCKED_X_ROT_TAG, this.lockedXRot);
             tag.putFloat(LOCKED_Y_ROT_TAG, this.lockedYRot);
-            tag.putUUID(STUCK_ENTITY_ID_TAG, this.targetEntityID);
+            tag.store(STUCK_ENTITY_ID_TAG, UUIDUtil.CODEC, this.targetEntityID);
         }
     }
 

@@ -29,6 +29,9 @@ import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
+import org.joml.Vector3f;
+
+import java.util.Set;
 
 public class VerdantConduitSpecialRenderer implements NoDataSpecialModelRenderer {
     private final ModelPart model;
@@ -43,6 +46,13 @@ public class VerdantConduitSpecialRenderer implements NoDataSpecialModelRenderer
         p_386873_.translate(0.5F, 0.5F, 0.5F);
         this.model.render(p_386873_, vertexconsumer, p_387407_, p_387355_);
         p_386873_.popPose();
+    }
+
+    @Override
+    public void getExtents(Set<Vector3f> set) {
+        PoseStack posestack = new PoseStack();
+        posestack.translate(0.5F, 0.5F, 0.5F);
+        this.model.getExtentsForGui(posestack, set);
     }
 
     public record Unbaked() implements SpecialModelRenderer.Unbaked {

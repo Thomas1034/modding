@@ -21,7 +21,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -63,7 +63,7 @@ public class GuiAddShaderOverlaysMixin {
         float g = 0.4F * intensity;
         float b = 0.0F * intensity;
         guiGraphics.blit(
-                (location) -> RenderType.guiNauseaOverlay(),
+                RenderPipelines.GUI_NAUSEA_OVERLAY,
                 NAUSEA_LOCATION,
                 0,
                 0,

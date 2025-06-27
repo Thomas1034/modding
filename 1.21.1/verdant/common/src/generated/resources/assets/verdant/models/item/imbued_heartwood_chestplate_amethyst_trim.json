@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "verdant:item/imbued_heartwood_chestplate",
-    "layer1": "minecraft:trims/items/chestplate_trim_amethyst"
+    "layer1": "verdant:imbued_heartwood_chestplate_amethyst"
   }
 }

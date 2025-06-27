@@ -81,6 +81,7 @@ public class EntityTypeRegistry {
                     .sized(0.5f, 0.5f)
                     .build(key("thrown_spear"))
     );
+
     public static final RegistryObject<EntityType<?>, EntityType<BlockIgnoringPrimedTnt>> BLOCK_IGNORING_PRIMED_TNT = ENTITY_TYPES.register(
             "block_ignoring_tnt",
             () -> EntityType.Builder.<BlockIgnoringPrimedTnt>of(BlockIgnoringPrimedTnt::new, MobCategory.MISC)
@@ -91,6 +92,16 @@ public class EntityTypeRegistry {
                     .clientTrackingRange(10)
                     .updateInterval(10)
                     .build(key("block_ignoring_tnt"))
+    );
+
+    public static final RegistryObject<EntityType<?>, EntityType<BrambleEntity>> BRAMBLE = ENTITY_TYPES.register(
+            "bramble",
+            () -> EntityType.Builder.<BrambleEntity>of(BrambleEntity::new, MobCategory.MISC)
+                    .fireImmune()
+                    .sized(1.0f, 1.0f)
+                    .eyeHeight(0.5F)
+                    .clientTrackingRange(10)
+                    .build(key("bramble"))
     );
 
     public static final RegistryObject<EntityType<?>, EntityType<PoisonerEntity>> POISONER = ENTITY_TYPES.register(

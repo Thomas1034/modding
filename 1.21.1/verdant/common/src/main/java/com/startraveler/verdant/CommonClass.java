@@ -86,13 +86,13 @@ Changes:
 
 
 Features Added:
-
+- Chiseled Earth Bricks
 
 Bugs Fixed:
-- Blueweed had the wrong render type on the Fabric version.
-- The Timbermite spawn egg was the wrong color.
-- The Poisoner spawn egg was the wrong color.
+- Blasting Blossoms were not in the creative inventory
+- All effect icons were the wrong size
 
+Verdant resin blocks will stick only to each other, and not to other blocks!
  */
 public class CommonClass {
 
@@ -112,13 +112,14 @@ public class CommonClass {
         // your own abstraction layer. You can learn more about this in our provided services class. In this example
         // we have an interface in the common code and use a loader specific implementation to delegate our call to
         // the platform specific approach.
-        if (Services.PLATFORM.isModLoaded("verdant") && Services.PLATFORM.isDevelopmentEnvironment()) {
+        if (Services.PLATFORM.isModLoaded(Constants.MOD_ID) && Services.PLATFORM.isDevelopmentEnvironment()) {
             // Constants.LOG.debug("Verdant is loaded successfully.");
         }
 
         DataComponentRegistry.init();
         ItemRegistry.init();
         EntityTypeRegistry.init();
+
         BlockRegistry.init();
         MobEffectRegistry.init();
         PotionRegistry.init();

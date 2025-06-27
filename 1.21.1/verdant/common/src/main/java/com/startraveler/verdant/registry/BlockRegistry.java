@@ -23,11 +23,14 @@ import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
 import com.startraveler.verdant.block.loot.LootLocations;
+import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -36,6 +39,7 @@ import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -177,11 +181,22 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> EARTH_BRICK_STAIRS;
     public static final RegistryObject<Block, Block> EARTH_BRICK_SLAB;
     public static final RegistryObject<Block, Block> EARTH_BRICK_WALL;
+    public static final RegistryObject<Block, Block> CHISELED_EARTH_BRICKS;
     public static final RegistryObject<Block, Block> TOXIC_GRUS;
     public static final RegistryObject<Block, Block> BLUEWEED;
     public static final RegistryObject<Block, Block> POTTED_BLUEWEED;
     public static final RegistryObject<Block, Block> TALL_BUSH;
     public static final RegistryObject<Block, Block> TALL_THORN_BUSH;
+    public static final RegistryObject<Block, Block> SAP_BLOCK;
+    public static final RegistryObject<Block, Block> VERDANT_RESIN_BRICKS;
+    public static final RegistryObject<Block, Block> VERDANT_RESIN_BRICK_STAIRS;
+    public static final RegistryObject<Block, Block> VERDANT_RESIN_BRICK_SLAB;
+    public static final RegistryObject<Block, Block> VERDANT_RESIN_BRICK_WALL;
+    public static final RegistryObject<Block, Block> CHISELED_VERDANT_RESIN_BRICKS;
+    public static final RegistryObject<Block, Block> VERDANT_RESIN_BLOCK;
+    public static final RegistryObject<Block, Block> BRAMBLE_FRAME;
+    public static final RegistryObject<Block, Block> BRAMBLE_HEAD;
+    public static final RegistryObject<Block, Block> BRAMBLE_WALL_HEAD;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -412,7 +427,12 @@ public class BlockRegistry {
         );
         WILTED_STRANGLER_LEAVES = registerBlockWithItem(
                 "wilted_strangler_leaves",
-                () -> new LeavesBlock(properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").randomTicks())
+                () -> new UntintedParticleLeavesBlock(
+                        0.01f, ColorParticleOption.create(
+                        ParticleTypes.TINTED_LEAVES,
+                        0xFF003800
+                ), properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").randomTicks()
+                )
         );
         POISON_STRANGLER_LEAVES = registerBlockWithItem(
                 "poison_strangler_leaves",
@@ -547,7 +567,7 @@ public class BlockRegistry {
         );
         TIGER_LILY = registerBlockWithItem(
                 "tiger_lily",
-                () -> new FlowerBlock(MobEffects.DAMAGE_BOOST, 3.0f, properties(Blocks.BLUE_ORCHID, "tiger_lily"))
+                () -> new FlowerBlock(MobEffects.STRENGTH, 3.0f, properties(Blocks.BLUE_ORCHID, "tiger_lily"))
         );
         POTTED_TIGER_LILY = registerBlockWithoutItem(
                 "potted_tiger_lily", () -> new FlowerPotBlock(
@@ -829,7 +849,7 @@ public class BlockRegistry {
 
         WILD_UBE = registerBlockWithItem(
                 "wild_ube",
-                () -> new FlowerBlock(MobEffects.CONFUSION, 40, properties(Blocks.BLUE_ORCHID, "wild_ube"))
+                () -> new FlowerBlock(MobEffects.NAUSEA, 40, properties(Blocks.BLUE_ORCHID, "wild_ube"))
         );
 
         POTTED_WILD_UBE = registerBlockWithoutItem(
@@ -1035,6 +1055,13 @@ public class BlockRegistry {
                         .sound(SoundType.GRAVEL))
         );
 
+        CHISELED_EARTH_BRICKS = registerBlockWithItem(
+                "chiseled_earth_bricks",
+                () -> new Block(properties("chiseled_earth_bricks").mapColor(MapColor.DIRT)
+                        .strength(2.5F)
+                        .sound(SoundType.GRAVEL))
+        );
+
 
         TOXIC_GRUS = registerBlockWithItem(
                 "toxic_grus",
@@ -1051,13 +1078,15 @@ public class BlockRegistry {
                                 new SuspiciousStewEffects.Entry(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 140)
                         )), properties(Blocks.BLUE_ORCHID, "blueweed")
                 ) {
-                    private static final Supplier<MobEffectInstance> PHOTOSENSITIVITY = () -> new MobEffectInstance(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(),
+                    private static final Supplier<MobEffectInstance> PHOTOSENSITIVITY = () -> new MobEffectInstance(
+                            MobEffectRegistry.PHOTOSENSITIVITY.asHolder(),
                             300,
                             0
                     );
 
                     @Override
-                    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+                    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+                        super.entityInside(state, level, pos, entity, applier);
                         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
                             if (!level.isClientSide) {
                                 if (livingEntity instanceof ServerPlayer player) {
@@ -1090,6 +1119,78 @@ public class BlockRegistry {
                         properties(Blocks.SWEET_BERRY_BUSH, "tall_thorn_bush").noOcclusion()
                                 .strength(0.75F), 3.0f
                 )
+        );
+
+        SAP_BLOCK = registerBlockWithItem(
+                "sap_block",
+                () -> Services.SAP_BLOCK_PROVIDER.getSapBlock(properties("sap_block").noOcclusion()
+                        .lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                        .strength(1.5F)
+                        .sound(SoundType.SLIME_BLOCK))
+        );
+
+        VERDANT_RESIN_BLOCK = registerBlockWithItem(
+                "verdant_resin_block",
+                () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
+                        Blocks.RESIN_BLOCK,
+                        "verdant_resin_block"
+                ).lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN))
+        );
+
+        VERDANT_RESIN_BRICKS = registerBlockWithItem(
+                "verdant_resin_bricks",
+                () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
+                        Blocks.RESIN_BRICKS,
+                        "verdant_resin_bricks"
+                ).lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN))
+        );
+
+        VERDANT_RESIN_BRICK_STAIRS = registerBlockWithItem(
+                "verdant_resin_brick_stairs", () -> Services.RESIN_BLOCK_PROVIDER.getResinStair(
+                        VERDANT_RESIN_BRICKS,
+                        properties(Blocks.RESIN_BRICK_STAIRS, "verdant_resin_brick_stairs").lightLevel(state -> 2)
+                                .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                )
+        );
+
+        VERDANT_RESIN_BRICK_SLAB = registerBlockWithItem(
+                "verdant_resin_brick_slab",
+                () -> Services.RESIN_BLOCK_PROVIDER.getResinSlab(properties(
+                        Blocks.RESIN_BRICK_SLAB,
+                        "verdant_resin_brick_slab"
+                ).lightLevel(state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+        );
+
+        VERDANT_RESIN_BRICK_WALL = registerBlockWithItem(
+                "earth_verdant_resin_brick_wall",
+                () -> Services.RESIN_BLOCK_PROVIDER.getResinWall(properties(
+                        Blocks.RESIN_BRICK_WALL,
+                        "earth_verdant_resin_brick_wall"
+                ).lightLevel(
+                        state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+        );
+
+        CHISELED_VERDANT_RESIN_BRICKS = registerBlockWithItem(
+                "chiseled_verdant_resin_bricks",
+                () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
+                        Blocks.CHISELED_RESIN_BRICKS,
+                        "chiseled_verdant_resin_bricks"
+                ).lightLevel(
+                        state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+        );
+
+        BRAMBLE_FRAME = registerBlockWithItem("bramble_frame", () -> new FrameBlock(properties("bramble_frame")));
+
+        BRAMBLE_HEAD = registerBlockWithoutItem(
+                "bramble_head",
+                () -> new SimpleSkullBlock(properties(Blocks.ZOMBIE_HEAD, "bramble_head"))
+        );
+        BRAMBLE_WALL_HEAD = registerBlockWithoutItem(
+                "bramble_wall_head",
+                () -> new SimpleWallSkullBlock(properties(Blocks.ZOMBIE_WALL_HEAD, "bramble_wall_head"))
         );
 
     }

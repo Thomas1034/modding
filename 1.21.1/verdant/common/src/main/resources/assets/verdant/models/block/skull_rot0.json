@@ -1,0 +1,22 @@
+{
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "#up"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 8, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 8, 8], "texture": "#north"},
+				"east": {"uv": [0, 0, 8, 8], "texture": "#east"},
+				"south": {"uv": [0, 0, 8, 8], "texture": "#south"},
+				"west": {"uv": [0, 0, 8, 8], "texture": "#west"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#up"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#down"}
+			}
+		}
+	]
+}

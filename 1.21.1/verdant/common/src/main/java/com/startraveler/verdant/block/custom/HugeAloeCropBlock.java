@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -149,7 +150,8 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             float slowdownFactor = ((float) ((1 - Math.abs(this.getXPos(state))) + (1 - Math.abs(this.getZPos(state))) + (2 - state.getValue(
@@ -160,7 +162,6 @@ public class HugeAloeCropBlock extends Block {
                 entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
             }
         }
-        super.entityInside(state, level, pos, entity);
     }
 
     @Override

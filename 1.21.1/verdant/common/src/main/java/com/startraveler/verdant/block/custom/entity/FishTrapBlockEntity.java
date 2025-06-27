@@ -31,6 +31,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.WorldlyContainer;
@@ -45,6 +46,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -203,38 +207,60 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    public void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
 
-        int[] array = tag.getIntArray(SAVED_DATA_ACCESS_TAG);
+        int[] array = input.getIntArray(SAVED_DATA_ACCESS_TAG).orElse(new int[]{});
         int dataCount = this.getDataCount();
         for (int i = 0; i < dataCount && i < array.length; i++) {
             this.dataAccess.set(i, array[i]);
         }
-        ContainerHelper.loadAllItems(tag, this.items, registries);
+        ContainerHelper.loadAllItems(input, this.items);
     }
 
     // Save values into the passed CompoundTag here.
     @Override
-    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
+    public void saveAdditional(ValueOutput output) {
+
+        super.saveAdditional(output);
 
         int dataCount = this.getDataCount();
         int[] array = new int[dataCount];
         for (int i = 0; i < dataCount; i++) {
             array[i] = this.dataAccess.get(i);
         }
-        tag.putIntArray(SAVED_DATA_ACCESS_TAG, array);
+        output.putIntArray(SAVED_DATA_ACCESS_TAG, array);
 
-        ContainerHelper.saveAllItems(tag, this.items, registries);
+        ContainerHelper.saveAllItems(output, this.items);
     }
 
-    // Create an update tag here, like above.
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag, registries);
-        return tag;
+    protected Component getDefaultName() {
+        return this.getBlockState().getBlock().getName();
+    }
+
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.items;
+    }
+
+    @Override
+    protected void setItems(NonNullList<ItemStack> items) {
+        for (int i = 0; i < items.size(); i++) {
+            this.items.set(i, items.get(i));
+        }
+    }
+
+    @Override
+    protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
+        return new FishTrapMenu(
+                containerId,
+                inventory,
+                new FishTrapMenu.SyncedFishTrapMenuData(this.getBlockPos(), this.numBaitSlots, this.numOutputSlots),
+                this,
+                this.dataAccess,
+                ContainerLevelAccess.create(this.level, this.worldPosition)
+        );
     }
 
     // Return our packet here. This method returning a non-null result tells the game to use this packet for syncing.
@@ -243,6 +269,16 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         // The packet uses the CompoundTag returned by #getUpdateTag. An alternative overload of #create exists
         // that allows you to specify a custom update tag, including the ability to omit data the client might not need.
         return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    // Create an update tag here, like above.
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        ProblemReporter reporter = ProblemReporter.DISCARDING;
+        ValueOutput output = TagValueOutput.createWithContext(reporter, registries);
+        saveAdditional(output);
+        return tag;
     }
 
     public int getNumBaitSlots() {
@@ -271,41 +307,12 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         return slot + this.numBaitSlots;
     }
 
-
     public boolean isBaitSlot(int i) {
         return i >= 0 && i < this.numBaitSlots;
     }
 
     public boolean isOutputSlot(int i) {
         return i >= this.numBaitSlots && i < this.numOutputSlots;
-    }
-
-    @Override
-    protected Component getDefaultName() {
-        return this.getBlockState().getBlock().getName();
-    }
-
-    @Override
-    protected NonNullList<ItemStack> getItems() {
-        return this.items;
-    }
-
-    @Override
-    protected void setItems(NonNullList<ItemStack> items) {
-        for (int i = 0; i < items.size(); i++) {
-            this.items.set(i, items.get(i));
-        }
-    }
-
-    @Override
-    protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
-        return new FishTrapMenu(
-                containerId,
-                inventory,
-                new FishTrapMenu.SyncedFishTrapMenuData(this.getBlockPos(), this.numBaitSlots, this.numOutputSlots),
-                this,
-                this.dataAccess,
-                ContainerLevelAccess.create(this.level, this.worldPosition));
     }
 
     @Override
@@ -450,10 +457,12 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
             // Get the loot table.
             LootParams lootparams = (new LootParams.Builder(serverLevel)).withParameter(
                             LootContextParams.ORIGIN,
-                            this.getBlockPos().getCenter())
+                            this.getBlockPos().getCenter()
+                    )
                     .withParameter(
                             LootContextParams.TOOL,
-                            this.getBlockState().getBlock().asItem().getDefaultInstance())
+                            this.getBlockState().getBlock().asItem().getDefaultInstance()
+                    )
                     .withLuck(luck)
                     .create(LootContextParamSets.FISHING);
             LootTable loottable = serverLevel.getServer()

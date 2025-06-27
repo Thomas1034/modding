@@ -37,6 +37,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -90,12 +91,13 @@ public class TrapBlock extends Block {
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 4D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
-    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
+    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
+            MobEffectRegistry.TRAPPED.asHolder(),
             11,
             0
     );
     protected static final Supplier<MobEffectInstance> DIG_SLOWDOWN_EFFECT_GETTER = () -> new MobEffectInstance(
-            MobEffects.DIG_SLOWDOWN,
+            MobEffects.MINING_FATIGUE,
             11,
             1
     );
@@ -177,13 +179,13 @@ public class TrapBlock extends Block {
     // This and updateNeighbours are used to make sure that neighboring traps are
     // updated when this one is broken
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean simulate) {
-        if (!simulate && !state.is(newState.getBlock())) {
+    public void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean simulate) {
+        if (!simulate) {
             this.updateNeighbours(level, pos);
-            super.onRemove(state, level, pos, newState, false);
+            super.affectNeighborsAfterRemoval(state, level, pos, false);
         } else {
 
-            super.onRemove(state, level, pos, newState, simulate);
+            super.affectNeighborsAfterRemoval(state, level, pos, simulate);
         }
     }
 
@@ -197,7 +199,8 @@ public class TrapBlock extends Block {
         BlockState belowState = level.getBlockState(pos.below());
         Tool toolComponent = stack.get(DataComponents.TOOL);
         if (toolComponent != null) {
-            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(level,
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(
+                    level,
                     pos
             ) < 1.0f;
 
@@ -307,7 +310,8 @@ public class TrapBlock extends Block {
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         // If there is an entity inside, schedule a tick.
         if (!level.isClientSide) {
             // Only schedule a tick if the block is not currently shrinking.

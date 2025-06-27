@@ -32,8 +32,8 @@ public class BlowdartTippingIngredientRegistry {
         event.accept(
                 Items.PUFFERFISH, (builder -> builder.accept(
                         DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(), new BlowdartTippingIngredient(List.of(
-                                new MobEffectInstance(MobEffects.CONFUSION, 140, 0),
-                                new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 20, 0)
+                                new MobEffectInstance(MobEffects.NAUSEA, 140, 0),
+                                new MobEffectInstance(MobEffects.MINING_FATIGUE, 20, 0)
                         ))
                 ))
         );
@@ -82,7 +82,7 @@ public class BlowdartTippingIngredientRegistry {
                 Items.CRIMSON_ROOTS, (builder -> builder.accept(
                         DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
                         new BlowdartTippingIngredient(List.of(new MobEffectInstance(
-                                MobEffects.MOVEMENT_SLOWDOWN,
+                                MobEffects.SLOWNESS,
                                 70,
                                 0
                         )))
@@ -140,7 +140,7 @@ public class BlowdartTippingIngredientRegistry {
                 Items.GUNPOWDER, (builder -> builder.accept(
                         DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
                         new BlowdartTippingIngredient(List.of(new MobEffectInstance(
-                                MobEffects.MOVEMENT_SLOWDOWN,
+                                MobEffects.SLOWNESS,
                                 140,
                                 0
                         )))

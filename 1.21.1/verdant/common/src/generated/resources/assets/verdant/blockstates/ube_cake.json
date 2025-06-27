@@ -1,7 +1,7 @@
 {
   "variants": {
     "bites=0": {
-      "model": "verdant:block/ube_cake"
+      "model": "verdant:block/ube_cake_slice0"
     },
     "bites=1": {
       "model": "verdant:block/ube_cake_slice1"

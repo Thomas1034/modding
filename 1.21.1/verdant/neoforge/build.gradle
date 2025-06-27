@@ -2,7 +2,7 @@ plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
     // handles asset image creation for the wiki
-    id 'org.moddedmc.wiki.toolkit' version '0.2.5'
+    // id 'org.moddedmc.wiki.toolkit' version '0.2.5'
 }
 
 repositories {
@@ -13,7 +13,7 @@ dependencies {
     // ModDevGradle
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-neoforge
     // runtimeOnly
-    implementation "org.sinytra:item-asset-export-neoforge:1.1.0+1.21.4"
+    // implementation "org.sinytra:item-asset-export-neoforge:1.1.0+1.21.4"
     implementation "com.startraveler.rootbound:rootbound-neoforge-${minecraft_version}:${rootbound_version}"
     jarJar "com.startraveler.rootbound:rootbound-neoforge-${minecraft_version}:${rootbound_version}"
 }
@@ -51,7 +51,7 @@ neoForge {
         }
     }
 }
-
+/*
 wiki {
     docs {
         // The name of the object (verdant) should match the registered wiki project ID (if it exists).
@@ -64,5 +64,5 @@ wiki {
         }
     }
 }
-
+*/
 sourceSets.main.resources { srcDir 'src/generated/resources' }

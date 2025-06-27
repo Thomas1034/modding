@@ -13,7 +13,7 @@ import com.startraveler.verdant.data.*;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.TntRenderer;
@@ -114,7 +114,7 @@ public class VerdantClient {
             generator.addProvider(true, entityTypeTagsProvider);
             generator.addProvider(
                     true,
-                    new VerdantItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter())
+                    new VerdantItemTagProvider(packOutput, lookupProvider)
             );
 
             // Generate block and item models.
@@ -159,6 +159,7 @@ public class VerdantClient {
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+
             EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
@@ -167,9 +168,10 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
 
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), RenderType.CUTOUT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), RenderType.CUTOUT);
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), ChunkSectionLayer.CUTOUT);
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), ChunkSectionLayer.CUTOUT);
 
         });
     }

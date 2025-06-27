@@ -19,19 +19,14 @@ public class ItemStackUnbreakabilityMixin {
 
     @Inject(method = "applyDamage*", at = @At(value = "HEAD"), cancellable = true)
     private void verdant$applyUnbreakabilityEffects(int damage, @Coerce LivingEntity player, Consumer<Item> onBreak, CallbackInfo ci) {
-        //System.out.println("Running! Player is " + player + " and damage is " + damage);
         if (player != null) {
-            //System.out.println("The player has " + List.copyOf(player.getActiveEffects()));
             if (player.getActiveEffects()
                     .stream()
                     .anyMatch(instance -> instance.getEffect().is(VerdantTags.MobEffects.UNBREAKABLE))) {
-                //System.out.println("Should cancel!");
                 if (ci.isCancellable()) {
-                    //System.out.println("Canceling!");
                     ci.cancel();
                 }
             }
         }
     }
-
 }

@@ -27,6 +27,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,7 +50,8 @@ public class PoisonIvyPlantBlock extends StranglerTendrilPlantBlock {
 
     // Inflicts poison on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 if (livingEntity instanceof ServerPlayer player) {

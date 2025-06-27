@@ -27,6 +27,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -49,7 +50,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     public static final EnumProperty<Direction> VERTICAL_DIRECTION = BlockStateProperties.VERTICAL_DIRECTION;
     protected static final Supplier<MobEffectInstance> NAUSEA = () -> new MobEffectInstance(
-            MobEffects.CONFUSION,
+            MobEffects.NAUSEA,
             100,
             0
     );
@@ -62,7 +63,8 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     // Inflicts nausea on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(entity)) {
             if (!level.isClientSide) {
                 if (livingEntity instanceof ServerPlayer player) {

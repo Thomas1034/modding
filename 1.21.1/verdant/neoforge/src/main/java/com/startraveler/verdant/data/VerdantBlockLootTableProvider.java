@@ -414,10 +414,29 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(blastingBunch, blastingBunchTable);
 
         this.dropSelf(BlockRegistry.EARTH_BRICKS.get());
+        this.dropSelf(BlockRegistry.CHISELED_EARTH_BRICKS.get());
         this.dropSelf(BlockRegistry.EARTH_BRICK_STAIRS.get());
         this.dropSelf(BlockRegistry.EARTH_BRICK_WALL.get());
         this.add(BlockRegistry.EARTH_BRICK_SLAB.get(), this.createSlabItemTable(BlockRegistry.EARTH_BRICK_SLAB.get()));
         this.dropSelf(BlockRegistry.TOXIC_GRUS.get());
+
+
+        this.dropSelf(BlockRegistry.SAP_BLOCK.get());
+        this.dropSelf(BlockRegistry.VERDANT_RESIN_BLOCK.get());
+        this.dropSelf(BlockRegistry.VERDANT_RESIN_BRICKS.get());
+        this.dropSelf(BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get());
+        this.dropSelf(BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get());
+        this.dropSelf(BlockRegistry.VERDANT_RESIN_BRICK_WALL.get());
+        this.add(
+                BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get(),
+                this.createSlabItemTable(BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get())
+        );
+        this.dropSelf(BlockRegistry.BRAMBLE_FRAME.get());
+
+
+        this.dropOther(BlockRegistry.BRAMBLE_WALL_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
+        this.dropOther(BlockRegistry.BRAMBLE_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
+
     }
 
     @Override

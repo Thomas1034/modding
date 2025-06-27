@@ -33,6 +33,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -82,7 +83,7 @@ public class VerdantConduitRenderer implements BlockEntityRenderer<VerdantCondui
         this.cage = context.bakeLayer(ModelLayers.CONDUIT_CAGE);
     }
 
-    public void render(VerdantConduitBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int unknown1, int unknown2) {
+    public void render(VerdantConduitBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int unknown1, int unknown2, Vec3 unknown3) {
         float tickCount = (float) blockEntity.tickCount + partialTicks;
         if (!blockEntity.isActive()) {
             // float inactiveRotation = 0; //blockEntity.getActiveRotation(0.0F);

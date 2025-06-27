@@ -35,9 +35,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class RopeCoilItem extends Item implements ProjectileItem {
 
@@ -50,28 +51,6 @@ public class RopeCoilItem extends Item implements ProjectileItem {
 
     public RopeCoilItem(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
-        if (data != null) {
-            String baseKey = this.descriptionId;
-            if (data.length() > 0) {
-                tooltipComponents.add(Component.translatable(baseKey + ".length", data.length())
-                        .withStyle(ChatFormatting.GRAY));
-            }
-            if (data.hasHook()) {
-                tooltipComponents.add(Component.translatable(baseKey + ".hook").withStyle(ChatFormatting.GRAY));
-            }
-            if (data.lightLevel() > 0) {
-                tooltipComponents.add(Component.translatable(baseKey + ".glow", data.lightLevel())
-                        .withStyle(ChatFormatting.GRAY));
-            }
-            if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
-                tooltipComponents.add(Component.translatable(baseKey + "." + data.lantern().typeName).withStyle(ChatFormatting.GRAY));
-            }
-        }
     }
 
     @Override
@@ -102,6 +81,30 @@ public class RopeCoilItem extends Item implements ProjectileItem {
         player.awardStat(Stats.ITEM_USED.get(this));
         itemstack.consume(1, player);
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipComponents, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, consumer, tooltipFlag);
+        RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
+        if (data != null) {
+            String baseKey = this.descriptionId;
+            if (data.length() > 0) {
+                consumer.accept(Component.translatable(baseKey + ".length", data.length())
+                        .withStyle(ChatFormatting.GRAY));
+            }
+            if (data.hasHook()) {
+                consumer.accept(Component.translatable(baseKey + ".hook").withStyle(ChatFormatting.GRAY));
+            }
+            if (data.lightLevel() > 0) {
+                consumer.accept(Component.translatable(baseKey + ".glow", data.lightLevel())
+                        .withStyle(ChatFormatting.GRAY));
+            }
+            if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
+                consumer.accept(Component.translatable(baseKey + "." + data.lantern().typeName)
+                        .withStyle(ChatFormatting.GRAY));
+            }
+        }
     }
 
     @Override

@@ -16,6 +16,7 @@
  */
 package com.startraveler.verdant.client.item;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.startraveler.verdant.item.component.RopeCoilData;
 import com.startraveler.verdant.registry.DataComponentRegistry;
@@ -40,6 +41,11 @@ public record RopeHangingBlockProperty() implements SelectItemModelProperty<Rope
     public RopeCoilData.LanternOptions get(ItemStack itemStack, ClientLevel clientLevel, LivingEntity livingEntity, int i, ItemDisplayContext itemDisplayContext) {
         RopeCoilData d = itemStack.get(DataComponentRegistry.ROPE_COIL.get());
         return d == null ? RopeCoilData.LanternOptions.NONE : d.lantern();
+    }
+
+    @Override
+    public Codec<RopeCoilData.LanternOptions> valueCodec() {
+        return RopeCoilData.LanternOptions.CODEC;
     }
 
     @Override

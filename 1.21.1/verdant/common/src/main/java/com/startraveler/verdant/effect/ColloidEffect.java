@@ -36,7 +36,7 @@ public class ColloidEffect extends MobEffect {
             int baseTime = 5;
             int max = 5 * (amplifier + 2);
             for (int i = 0; i < max; i++) {
-                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, baseTime * (max - i), i));
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, baseTime * (max - i), i));
             }
         }
         return true;

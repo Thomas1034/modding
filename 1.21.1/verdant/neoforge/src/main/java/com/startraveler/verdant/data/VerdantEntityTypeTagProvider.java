@@ -27,6 +27,7 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityTypeRegistry.TIMBERMITE.get(),
                 EntityTypeRegistry.ROOTED.get(),
                 EntityTypeRegistry.POISONER.get(),
+                EntityTypeRegistry.BRAMBLE.get(),
                 EntityType.BOGGED,
                 EntityType.CREEPER,
                 EntityType.SPIDER,

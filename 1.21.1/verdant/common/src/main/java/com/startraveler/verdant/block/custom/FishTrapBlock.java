@@ -27,6 +27,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -141,17 +142,6 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
         );
     }
 
-    @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof FishTrapBlockEntity) {
-                ((FishTrapBlockEntity) blockEntity).drops();
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 
         if (!(level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrap) || !(player.level() instanceof ServerLevel serverLevel) || !(player instanceof ServerPlayer serverPlayer)) {
@@ -213,7 +203,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public ItemStack pickupBlock(Player player, LevelAccessor level, BlockPos pos, BlockState state) {
+    public ItemStack pickupBlock(LivingEntity player, LevelAccessor level, BlockPos pos, BlockState state) {
         ItemStack stack = SimpleWaterloggedBlock.super.pickupBlock(player, level, pos, state);
         if (!stack.isEmpty() && !level.isClientSide()) {
             level.setBlock(pos, this.setEnabled(level, level.getBlockState(pos), pos), 3);

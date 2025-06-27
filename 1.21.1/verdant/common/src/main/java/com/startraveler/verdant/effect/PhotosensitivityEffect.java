@@ -36,7 +36,7 @@ public class PhotosensitivityEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         int entityLightLevel = entity.level().getBrightness(LightLayer.SKY, entity.blockPosition());
-        if (entityLightLevel >= 0xF - (amplifier << 1) && (entity.tickCount % (40 / (amplifier + 1)) == 0) && level.isDay()) {
+        if (entityLightLevel >= 0xF - (amplifier << 1) && (entity.tickCount % (40 / (amplifier + 1)) == 0) && level.isBrightOutside()) {
             entity.hurtServer(
                     level,
                     new DamageSource(DamageSourceRegistry.get(

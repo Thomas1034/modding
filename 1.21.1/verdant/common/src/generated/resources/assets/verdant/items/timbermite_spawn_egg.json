@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -12571628
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -14552829
-      }
-    ]
+    "model": "verdant:item/timbermite_spawn_egg"
   }
 }

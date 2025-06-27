@@ -32,6 +32,7 @@ public class DartEntity extends Arrow {
     public DartEntity(EntityType<? extends Arrow> type, Level level) {
         super(type, level);
         ((ArrowAccessors) (this)).verdant$updateColor();
+
     }
 
     public DartEntity(Level level, LivingEntity thrower, ItemStack ammo, ItemStack bow) {
@@ -92,7 +93,7 @@ public class DartEntity extends Arrow {
     protected void onHitEntity(EntityHitResult result) {
         // Does _NOT_ invoke super.
         Entity hitEntity = result.getEntity();
-        double baseDamage = this.getBaseDamage();
+        double baseDamage = ((AbstractArrowAccessors) (this)).getBaseDamage();
         Entity owner = this.getOwner();
         DamageSource arrowDamageSource = this.damageSources().arrow(this, owner != null ? owner : this);
         if (this.getWeaponItem() != null) {
@@ -160,7 +161,7 @@ public class DartEntity extends Arrow {
                 this.doPostHurtEffects(livingentity);
                 if (livingentity != owner && livingentity instanceof Player && owner instanceof ServerPlayer && !this.isSilent()) {
                     ((ServerPlayer) owner).connection.send(new ClientboundGameEventPacket(
-                            ClientboundGameEventPacket.ARROW_HIT_PLAYER,
+                            ClientboundGameEventPacket.PLAY_ARROW_HIT_SOUND,
                             0.0F
                     ));
                 }
@@ -205,6 +206,5 @@ public class DartEntity extends Arrow {
                 }
             }
         }
-
     }
 }

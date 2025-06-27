@@ -21,10 +21,14 @@ import com.startraveler.verdant.util.OptionalDirection;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
@@ -56,7 +60,7 @@ public class GradientLeavesBlock extends LeavesBlock {
 
 
     public GradientLeavesBlock(Properties properties) {
-        super(properties);
+        super(0.01f, properties);
     }
 
     @Override
@@ -93,6 +97,15 @@ public class GradientLeavesBlock extends LeavesBlock {
         }
 
         return state;
+    }
+
+    @Override
+    protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
+        ColorParticleOption colorparticleoption = ColorParticleOption.create(
+                ParticleTypes.TINTED_LEAVES,
+                0xFF003800 /*level.getClientLeafTintColor(blockPos)*/
+        );
+        ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, colorparticleoption);
     }
 
     // Very important!

@@ -75,9 +75,16 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.GRUS_EMERALD_ORE.get());
                         output.accept(BlockRegistry.GRUS_DIAMOND_ORE.get());
                         output.accept(BlockRegistry.EARTH_BRICKS.get());
+                        output.accept(BlockRegistry.CHISELED_EARTH_BRICKS.get());
                         output.accept(BlockRegistry.EARTH_BRICK_SLAB.get());
                         output.accept(BlockRegistry.EARTH_BRICK_STAIRS.get());
                         output.accept(BlockRegistry.EARTH_BRICK_WALL.get());
+                        output.accept(BlockRegistry.VERDANT_RESIN_BLOCK.get());
+                        output.accept(BlockRegistry.VERDANT_RESIN_BRICKS.get());
+                        output.accept(BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get());
+                        output.accept(BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get());
+                        output.accept(BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get());
+                        output.accept(BlockRegistry.VERDANT_RESIN_BRICK_WALL.get());
                         output.accept(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
                         output.accept(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
                         output.accept(BlockRegistry.STRANGLER_LEAVES.get());
@@ -100,6 +107,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.IRON_SPIKES.get());
                         output.accept(BlockRegistry.WOODEN_TRAP.get());
                         output.accept(BlockRegistry.IRON_TRAP.get());
+                        output.accept(BlockRegistry.BLASTING_BLOSSOM.get());
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
@@ -139,6 +147,9 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.YOUNG_ALOE_LEAF.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.OLD_ALOE_LEAF.get());
+                        output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
@@ -215,6 +226,8 @@ public class CreativeModeTabRegistry {
                                         ItemRegistry.TIPPED_DART.get(),
                                         itemDisplayParameters.enabledFeatures()
                                 ));
+                        output.accept(ItemRegistry.BLASTING_BLOOM.get());
+                        output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".combat"))
                     .build()
@@ -232,6 +245,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
+                        output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());
                         output.accept(ItemRegistry.HEARTWOOD_AXE.get());
@@ -246,9 +260,6 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
-                        output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
-                        output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
-                        output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".tools"))
                     .build()

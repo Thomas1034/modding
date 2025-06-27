@@ -1,6 +1,7 @@
 package com.startraveler.verdant.data;
 
 import com.google.common.collect.Streams;
+import com.mojang.math.Quadrant;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.data.definitions.VerdantBlockFamilies;
@@ -15,8 +16,14 @@ import com.startraveler.verdant.util.Util;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.blockstates.*;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.ConditionBuilder;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.model.Variant;
+import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -62,39 +69,32 @@ public class VerdantModelProvider extends ModelProvider {
         Variant[] variants = new Variant[4 * 4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                variants[i + 4 * j] = Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.values()[i])
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.values()[j]);
+                variants[i + 4 * j] = VariantMutator.X_ROT.withValue(Quadrant.values()[i])
+                        .then(VariantMutator.Y_ROT.withValue(Quadrant.values()[i]))
+                        .apply(new Variant(model));
             }
         }
-        return MultiVariantGenerator.multiVariant(block, variants);
+        return MultiVariantGenerator.dispatch(block, BlockModelGenerators.variants(variants));
     }
 
     public static MultiPartGenerator createFishTrapBlock(Block block, ResourceLocation model) {
 
         return MultiPartGenerator.multiPart(block)
                 .with(
-                        Condition.condition().term(FishTrapBlock.FACING, Direction.NORTH),
-                        Variant.variant().with(VariantProperties.MODEL, model)
+                        new ConditionBuilder().term(FishTrapBlock.FACING, Direction.NORTH).build(),
+                        BlockModelGenerators.variants(new Variant(model))
                 )
                 .with(
-                        Condition.condition().term(FishTrapBlock.FACING, Direction.EAST),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, model)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                        new ConditionBuilder().term(FishTrapBlock.FACING, Direction.EAST).build(),
+                        BlockModelGenerators.variants(new Variant(model).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
                 )
                 .with(
-                        Condition.condition().term(FishTrapBlock.FACING, Direction.SOUTH),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, model)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                        new ConditionBuilder().term(FishTrapBlock.FACING, Direction.SOUTH).build(),
+                        BlockModelGenerators.variants(new Variant(model).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                 )
                 .with(
-                        Condition.condition().term(FishTrapBlock.FACING, Direction.WEST),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, model)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                        new ConditionBuilder().term(FishTrapBlock.FACING, Direction.WEST).build(),
+                        BlockModelGenerators.variants(new Variant(model).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
                 );
     }
 
@@ -102,54 +102,46 @@ public class VerdantModelProvider extends ModelProvider {
 
         return MultiPartGenerator.multiPart(block)
                 .with(
-                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.Y),
-                        Variant.variant().with(VariantProperties.MODEL, model)
+                        new ConditionBuilder().term(RotatedPillarBlock.AXIS, Direction.Axis.Y),
+                        BlockModelGenerators.variants(new Variant(model))
                 )
                 .with(
-                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.X),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, model)
-                                .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                        new ConditionBuilder().term(RotatedPillarBlock.AXIS, Direction.Axis.X),
+                        BlockModelGenerators.variants(new Variant(model))
+                                .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                                .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
                 )
                 .with(
-                        Condition.condition().term(RotatedPillarBlock.AXIS, Direction.Axis.Z),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, model)
-                                .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                        new ConditionBuilder().term(RotatedPillarBlock.AXIS, Direction.Axis.Z),
+                        BlockModelGenerators.variants(new Variant(model))
+                                .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
                 );
     }
 
     public static MultiPartGenerator createSpikesBlock(Block block, ResourceLocation model) {
         return MultiPartGenerator.multiPart(block).with(
-                Condition.condition().term(SpikesBlock.FACING, Direction.UP),
-                Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.UP),
+                BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
         ).with(
-                Condition.condition().term(SpikesBlock.FACING, Direction.DOWN),
-                Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.DOWN),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R180))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
         ).with(
-                Condition.condition().term(SpikesBlock.FACING, Direction.EAST),
-                Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.EAST),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
         ).with(
-                Condition.condition().term(SpikesBlock.FACING, Direction.SOUTH),
-                Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.SOUTH),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R180))
         ).with(
-                Condition.condition().term(SpikesBlock.FACING, Direction.WEST),
-                Variant.variant()
-                        .with(VariantProperties.MODEL, model)
-                        .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.WEST),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
         );
     }
 
@@ -158,50 +150,35 @@ public class VerdantModelProvider extends ModelProvider {
         for (int i : BombFlowerCropBlock.AGE.getPossibleValues()) {
             ResourceLocation model = modelFunction.apply(i);
             generator = generator.with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.UP)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.UP)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                    BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
             ).with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.DOWN)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.DOWN)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                    BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
             ).with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.EAST)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.EAST)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
             ).with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.SOUTH)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.SOUTH)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R180))
             ).with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.NORTH)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.NORTH)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+                    BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.X_ROT.withValue(Quadrant.R90))
             ).with(
-                    Condition.condition()
-                            .term(BombFlowerCropBlock.FACING, Direction.WEST)
+                    new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.WEST)
                             .term(BombFlowerCropBlock.AGE, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
             );
         }
 
@@ -213,23 +190,19 @@ public class VerdantModelProvider extends ModelProvider {
         for (int i : BombPileBlock.BOMBS.getPossibleValues()) {
             ResourceLocation model = modelFunction.apply(i);
             generator = generator.with(
-                    Condition.condition().term(BombPileBlock.FACING, Direction.EAST).term(BombPileBlock.BOMBS, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                    new ConditionBuilder().term(BombPileBlock.FACING, Direction.EAST).term(BombPileBlock.BOMBS, i),
+                    BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
             ).with(
-                    Condition.condition().term(BombPileBlock.FACING, Direction.SOUTH).term(BombPileBlock.BOMBS, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                    new ConditionBuilder().term(BombPileBlock.FACING, Direction.SOUTH).term(BombPileBlock.BOMBS, i),
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R180))
             ).with(
-                    Condition.condition().term(BombPileBlock.FACING, Direction.WEST).term(BombPileBlock.BOMBS, i),
-                    Variant.variant()
-                            .with(VariantProperties.MODEL, model)
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                    new ConditionBuilder().term(BombPileBlock.FACING, Direction.WEST).term(BombPileBlock.BOMBS, i),
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
             ).with(
-                    Condition.condition().term(BombPileBlock.FACING, Direction.NORTH).term(BombPileBlock.BOMBS, i),
-                    Variant.variant().with(VariantProperties.MODEL, model)
+                    new ConditionBuilder().term(BombPileBlock.FACING, Direction.NORTH).term(BombPileBlock.BOMBS, i),
+                    BlockModelGenerators.variants(new Variant(model))
             );
         }
 
@@ -237,7 +210,7 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
 
-    public static BlockStateGenerator createMirroredColumnGenerator(Block columnBlock, BiConsumer<ResourceLocation, ModelInstance> modelOutput, TextureMapping[] mappings, String[] suffixes) {
+    public static MultiVariantGenerator createMirroredColumnGenerator(Block columnBlock, BiConsumer<ResourceLocation, ModelInstance> modelOutput, TextureMapping[] mappings, String[] suffixes) {
         Stream<ResourceLocation> mirrored = Util.zip(
                 Arrays.stream(mappings),
                 Arrays.stream(suffixes),
@@ -266,15 +239,15 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
     public static MultiVariantGenerator createRotatedVariant(Block block, ResourceLocation... models) {
-        return MultiVariantGenerator.multiVariant(
-                block, Stream.concat(
-                        Arrays.stream(models).map(model -> Variant.variant().with(VariantProperties.MODEL, model)),
+        return MultiVariantGenerator.dispatch(
+                block, BlockModelGenerators.variants(Stream.concat(
+                        Arrays.stream(models).map(Variant::new),
                         Arrays.stream(models)
-                                .map(model -> Variant.variant()
-                                        .with(VariantProperties.MODEL, model)
-                                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                ).toArray(Variant[]::new)
+                                .map(model -> new Variant(model)
+                                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
 
+
+                ).toArray(Variant[]::new))
         );
     }
 
@@ -293,15 +266,116 @@ public class VerdantModelProvider extends ModelProvider {
 
 
                 generator = generator.with(
-                        Condition.condition()
-                                .term(HugeAloeCropBlock.Y_PROPERTY, j)
+                        new ConditionBuilder().term(HugeAloeCropBlock.Y_PROPERTY, j)
                                 .term(HugeAloeCropBlock.Z_PROPERTY, HugeAloeCropBlock.CENTER_COORD)
                                 .term(HugeAloeCropBlock.X_PROPERTY, HugeAloeCropBlock.CENTER_COORD)
-                                .term(HugeAloeCropBlock.AGE, i),
-                        Variant.variant().with(VariantProperties.MODEL, location)
+                                .term(HugeAloeCropBlock.AGE, i), BlockModelGenerators.variants(new Variant(location))
                 );
             }
         }
+
+        return generator;
+    }
+
+    public MultiPartGenerator createSkullBlock(Block block, Function<Integer, TexturedModel.Provider> model) {
+
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+
+        ResourceLocation location0 = model.apply(0).createWithSuffix(block, "_rot0", blockModels.modelOutput);
+        ResourceLocation location1 = model.apply(1).createWithSuffix(block, "_rot1", blockModels.modelOutput);
+        ResourceLocation location2 = model.apply(2).createWithSuffix(block, "_rot2", blockModels.modelOutput);
+        ResourceLocation location3 = model.apply(3).createWithSuffix(block, "_rot3", blockModels.modelOutput);
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 0),
+                BlockModelGenerators.variants(new Variant(location0).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 1),
+                BlockModelGenerators.variants(new Variant(location1).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 2),
+                BlockModelGenerators.variants(new Variant(location2).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 3),
+                BlockModelGenerators.variants(new Variant(location3).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+        );
+
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 4),
+                BlockModelGenerators.variants(new Variant(location0).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 5),
+                BlockModelGenerators.variants(new Variant(location1).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 6),
+                BlockModelGenerators.variants(new Variant(location2).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 7),
+                BlockModelGenerators.variants(new Variant(location3).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+        );
+
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 8),
+                BlockModelGenerators.variants(new Variant(location0).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 9),
+                BlockModelGenerators.variants(new Variant(location1).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 10),
+                BlockModelGenerators.variants(new Variant(location2).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 11),
+                BlockModelGenerators.variants(new Variant(location3).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+        );
+
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 12),
+                BlockModelGenerators.variants(new Variant(location0).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 13),
+                BlockModelGenerators.variants(new Variant(location1).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 14),
+                BlockModelGenerators.variants(new Variant(location2).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleSkullBlock.ROTATION, 15),
+                BlockModelGenerators.variants(new Variant(location3).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+        );
+
+        return generator;
+    }
+
+    public MultiPartGenerator createWallSkullBlock(Block block, Block skull, TexturedModel.Provider model) {
+
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+        ResourceLocation location = model.create(skull, blockModels.modelOutput);
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleWallSkullBlock.FACING, Direction.NORTH),
+                BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleWallSkullBlock.FACING, Direction.EAST),
+                BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleWallSkullBlock.FACING, Direction.SOUTH),
+                BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+        );
+        generator = generator.with(
+                new ConditionBuilder().term(SimpleWallSkullBlock.FACING, Direction.WEST),
+                BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+        );
 
         return generator;
     }
@@ -317,40 +391,28 @@ public class VerdantModelProvider extends ModelProvider {
 
 
                 generator = generator.with(
-                        Condition.condition()
-                                .term(TrapBlock.FACING, Direction.NORTH)
+                        new ConditionBuilder().term(TrapBlock.FACING, Direction.NORTH)
                                 .term(TrapBlock.STAGE, i)
                                 .term(TrapBlock.HIDDEN, b),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, location)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0)
+                        BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                 );
                 generator = generator.with(
-                        Condition.condition()
-                                .term(TrapBlock.FACING, Direction.EAST)
+                        new ConditionBuilder().term(TrapBlock.FACING, Direction.EAST)
                                 .term(TrapBlock.STAGE, i)
                                 .term(TrapBlock.HIDDEN, b),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, location)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+                        BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
                 );
                 generator = generator.with(
-                        Condition.condition()
-                                .term(TrapBlock.FACING, Direction.SOUTH)
+                        new ConditionBuilder().term(TrapBlock.FACING, Direction.SOUTH)
                                 .term(TrapBlock.STAGE, i)
                                 .term(TrapBlock.HIDDEN, b),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, location)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)
+                        BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                 );
                 generator = generator.with(
-                        Condition.condition()
-                                .term(TrapBlock.FACING, Direction.WEST)
+                        new ConditionBuilder().term(TrapBlock.FACING, Direction.WEST)
                                 .term(TrapBlock.STAGE, i)
                                 .term(TrapBlock.HIDDEN, b),
-                        Variant.variant()
-                                .with(VariantProperties.MODEL, location)
-                                .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                        BlockModelGenerators.variants(new Variant(location).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
                 );
             }
         }
@@ -358,7 +420,7 @@ public class VerdantModelProvider extends ModelProvider {
         return generator;
     }
 
-    protected BlockStateGenerator createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
+    protected MultiVariantGenerator createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[4 * overlays.length];
         for (int o = 0; o < overlays.length; o++) {
             String overlay = overlays[o];
@@ -368,15 +430,13 @@ public class VerdantModelProvider extends ModelProvider {
                     blockModels.modelOutput
             );
             for (int j = 0; j < 4; j++) {
-                variants[o * 4 + j] = Variant.variant()
-                        .with(VariantProperties.MODEL, modelLocation)
-                        .with(VariantProperties.Y_ROT, VariantProperties.Rotation.values()[j]);
+                variants[o * 4 + j] = new Variant(modelLocation).with(VariantMutator.Y_ROT.withValue(Quadrant.values()[j]));
             }
         }
-        return MultiVariantGenerator.multiVariant(block, variants);
+        return MultiVariantGenerator.dispatch(block, BlockModelGenerators.variants(variants));
     }
 
-    protected BlockStateGenerator createOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
+    protected MultiVariantGenerator createOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[overlays.length];
         for (int o = 0; o < overlays.length; o++) {
             String overlay = overlays[o];
@@ -386,13 +446,13 @@ public class VerdantModelProvider extends ModelProvider {
                     (overlays.length == 1 || trimmedOverlay.equals("default") || trimmedOverlay.equals("overlay_default")) ? "" : "_" + trimmedOverlay,
                     blockModels.modelOutput
             );
-            variants[o] = Variant.variant().with(VariantProperties.MODEL, modelLocation);
+            variants[o] = new Variant(modelLocation);
 
         }
-        return MultiVariantGenerator.multiVariant(block, variants);
+        return MultiVariantGenerator.dispatch(block, BlockModelGenerators.variants(variants));
     }
 
-    protected BlockStateGenerator createTumbledOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
+    protected MultiVariantGenerator createTumbledOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
         Variant[] variants = new Variant[4 * 4 * overlays.length];
         for (int o = 0; o < overlays.length; o++) {
             String overlay = overlays[o];
@@ -404,14 +464,12 @@ public class VerdantModelProvider extends ModelProvider {
             );
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    variants[o * 16 + i * 4 + j] = Variant.variant()
-                            .with(VariantProperties.MODEL, modelLocation)
-                            .with(VariantProperties.X_ROT, VariantProperties.Rotation.values()[i])
-                            .with(VariantProperties.Y_ROT, VariantProperties.Rotation.values()[j]);
+                    variants[o * 16 + i * 4 + j] = new Variant(modelLocation).with(VariantMutator.X_ROT.withValue(
+                            Quadrant.values()[i])).with(VariantMutator.Y_ROT.withValue(Quadrant.values()[j]));
                 }
             }
         }
-        return MultiVariantGenerator.multiVariant(block, variants);
+        return MultiVariantGenerator.dispatch(block, BlockModelGenerators.variants(variants));
     }
 
     public void candleCake(Block candleBlock, Block cakeBlock, Block candleCakeBlock) {
@@ -427,71 +485,22 @@ public class VerdantModelProvider extends ModelProvider {
                 VerdantTextureMapping.candleCake(cakeBlock, candleBlock, true),
                 this.blockModels.modelOutput
         );
-        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(candleCakeBlock)
+        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(candleCakeBlock)
                 .with(BlockModelGenerators.createBooleanModelDispatch(
                         BlockStateProperties.LIT,
-                        candleCakeLit,
-                        candleCakeBase
+                        BlockModelGenerators.variant(new Variant(candleCakeLit)),
+                        BlockModelGenerators.variant(new Variant(candleCakeBase))
                 )));
     }
 
     public void cakeBlock(Block cake, Item cakeItem) {
         this.blockModels.registerSimpleFlatItemModel(cakeItem);
-        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(cake)
-                .with(PropertyDispatch.property(BlockStateProperties.BITES)
-                        .select(
-                                0,
-                                Variant.variant()
-                                        .with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(cake))
-                        )
-                        .select(
-                                1,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice1")
-                                        )
-                        )
-                        .select(
-                                2,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice2")
-                                        )
-                        )
-                        .select(
-                                3,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice3")
-                                        )
-                        )
-                        .select(
-                                4,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice4")
-                                        )
-                        )
-                        .select(
-                                5,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice5")
-                                        )
-                        )
-                        .select(
-                                6,
-                                Variant.variant()
-                                        .with(
-                                                VariantProperties.MODEL,
-                                                ModelLocationUtils.getModelLocation(cake, "_slice6")
-                                        )
-                        )));
+        this.blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(cake)
+                .with(PropertyDispatch.initial(BlockStateProperties.BITES)
+                        .generate(n -> BlockModelGenerators.variant(new Variant(ModelLocationUtils.getModelLocation(
+                                cake,
+                                "_slice" + n
+                        ))))));
     }
 
     @Override
@@ -738,6 +747,16 @@ public class VerdantModelProvider extends ModelProvider {
         blastingBunch(BlockRegistry.BLASTING_BUNCH.get());
 
         blockModels.family(BlockRegistry.EARTH_BRICKS.get()).generateFor(VerdantBlockFamilies.EARTH_BRICKS);
+        blockModels.family(BlockRegistry.VERDANT_RESIN_BRICKS.get())
+                .generateFor(VerdantBlockFamilies.VERDANT_RESIN_BRICKS);
+
+        nonrotatablePillarBlock(BlockRegistry.CHISELED_EARTH_BRICKS.get());
+
+        blockModels.createNonTemplateModelBlock(BlockRegistry.SAP_BLOCK.get());
+        simpleBlockWithItem(BlockRegistry.VERDANT_RESIN_BLOCK.get());
+        blockModels.createNonTemplateModelBlock(BlockRegistry.BRAMBLE_FRAME.get());
+
+
         tumbledBlockWithItem(BlockRegistry.TOXIC_GRUS.get());
 
         blockModels.createDoublePlantWithDefaultItem(
@@ -748,6 +767,9 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockRegistry.TALL_THORN_BUSH.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED
         );
+
+        wallSkullBlock(BlockRegistry.BRAMBLE_WALL_HEAD.get(), BlockRegistry.BRAMBLE_HEAD.get());
+        skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 
@@ -786,25 +808,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                "helmet",
+                ItemRegistry.HEARTWOOD_HELMET.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                "chestplate",
+                ItemRegistry.HEARTWOOD_CHESTPLATE.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                "leggings",
+                ItemRegistry.HEARTWOOD_LEGGINGS.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                "boots",
+                ItemRegistry.HEARTWOOD_BOOTS.getId(),
                 false
         );
         handheldItem(ItemRegistry.HEARTWOOD_AXE.get());
@@ -820,25 +842,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                "helmet",
+                ItemRegistry.IMBUED_HEARTWOOD_HELMET.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                "chestplate",
+                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                "leggings",
+                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                "boots",
+                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.getId(),
                 false
         );
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
@@ -876,25 +898,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                "helmet",
+                ItemRegistry.THORNY_HEARTWOOD_HELMET.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                "chestplate",
+                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                "leggings",
+                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.getId(),
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                "boots",
+                ItemRegistry.THORNY_HEARTWOOD_BOOTS.getId(),
                 false
         );
         handheldItem(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
@@ -903,10 +925,9 @@ public class VerdantModelProvider extends ModelProvider {
         handheldItem(ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get());
         handheldItem(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
 
-
-        itemModels.generateSpawnEgg(ItemRegistry.ROOTED_SPAWN_EGG.get(), 0x223d23, 0x1ff227);
-        itemModels.generateSpawnEgg(ItemRegistry.TIMBERMITE_SPAWN_EGG.get(), 0x402c14, 0x21f103);
-        itemModels.generateSpawnEgg(ItemRegistry.POISONER_SPAWN_EGG.get(), 0x0e3001, 0xa9a197);
+        basicItem(ItemRegistry.ROOTED_SPAWN_EGG.get());
+        basicItem(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
+        basicItem(ItemRegistry.POISONER_SPAWN_EGG.get());
     }
 
     @Override
@@ -986,6 +1007,15 @@ public class VerdantModelProvider extends ModelProvider {
         ));
     }
 
+    protected void nonrotatablePillarBlock(Block block) {
+        TexturedModel model = TexturedModel.COLUMN.get(block)
+                .updateTextures(p_387400_ -> p_387400_.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block)));
+        this.blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
+                block,
+                BlockModelGenerators.variant(new Variant(model.create(block, this.blockModels.modelOutput)))
+        ));
+    }
+
     protected void tumbledBlockWithItem(Block block) {
         tumbledBlockWithItem(block, null);
     }
@@ -1034,6 +1064,23 @@ public class VerdantModelProvider extends ModelProvider {
 
         blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
     }
+
+    protected void wallSkullBlock(Block block, Block skull) {
+        blockModels.blockStateOutput.accept(createWallSkullBlock(block, skull, VerdantTexturedModel.WALL_SKULL));
+    }
+
+    protected void skullBlock(Block block) {
+        blockModels.blockStateOutput.accept(createSkullBlock(
+                block, i -> switch (i) {
+                    case 0 -> VerdantTexturedModel.SKULL_ROT0;
+                    case 1 -> VerdantTexturedModel.SKULL_ROT1;
+                    case 2 -> VerdantTexturedModel.SKULL_ROT2;
+                    case 3 -> VerdantTexturedModel.SKULL_ROT3;
+                    default -> null;
+                }
+        ));
+    }
+
 
     protected void trapBlock(Block block) {
         BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TRAP;
@@ -1123,7 +1170,10 @@ public class VerdantModelProvider extends ModelProvider {
                 .renderType(renderType)
                 .build()
                 .create(pottedBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pottedBlock, resourcelocation));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
+                pottedBlock,
+                BlockModelGenerators.plainVariant(resourcelocation)
+        ));
     }
 
     public void createPlantWithCustomPottedTexture(Block block, Block pottedBlock, ResourceLocation customPottedTexture, BlockModelGenerators.PlantType plantType, String renderType) {
@@ -1135,7 +1185,10 @@ public class VerdantModelProvider extends ModelProvider {
                 .renderType(renderType)
                 .build()
                 .create(pottedBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pottedBlock, resourcelocation));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
+                pottedBlock,
+                BlockModelGenerators.plainVariant(resourcelocation)
+        ));
     }
 
     public void createPottedOnly(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType, String renderType) {
@@ -1145,7 +1198,10 @@ public class VerdantModelProvider extends ModelProvider {
                 .renderType(renderType)
                 .build()
                 .create(pottedBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pottedBlock, resourcelocation));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
+                pottedBlock,
+                BlockModelGenerators.plainVariant(resourcelocation)
+        ));
     }
 
     public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
@@ -1159,24 +1215,28 @@ public class VerdantModelProvider extends ModelProvider {
                 .renderType(renderType)
                 .build()
                 .create(block, textureMapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourcelocation));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
+                block,
+                BlockModelGenerators.plainVariant(resourcelocation)
+        ));
     }
 
     public void createCrossBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<Integer> ageProperty, int... possibleValues) {
         if (ageProperty.getPossibleValues().size() != possibleValues.length) {
             throw new IllegalArgumentException("missing values for property: " + ageProperty);
         } else {
-            PropertyDispatch propertydispatch = PropertyDispatch.property(ageProperty).generate(p_388685_ -> {
-                String s = "_stage" + possibleValues[p_388685_];
-                TextureMapping texturemapping = TextureMapping.cross(TextureMapping.getBlockTexture(block, s));
-                ResourceLocation resourcelocation = plantType.getCross()
-                        .extend()
-                        .renderType(renderType)
-                        .build()
-                        .createWithSuffix(block, s, texturemapping, blockModels.modelOutput);
-                return Variant.variant().with(VariantProperties.MODEL, resourcelocation);
-            });
-            blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertydispatch));
+            PropertyDispatch<MultiVariant> propertydispatch = PropertyDispatch.initial(ageProperty)
+                    .generate(p_388685_ -> {
+                        String s = "_stage" + possibleValues[p_388685_];
+                        TextureMapping texturemapping = TextureMapping.cross(TextureMapping.getBlockTexture(block, s));
+                        ResourceLocation resourcelocation = plantType.getCross()
+                                .extend()
+                                .renderType(renderType)
+                                .build()
+                                .createWithSuffix(block, s, texturemapping, blockModels.modelOutput);
+                        return BlockModelGenerators.plainVariant(resourcelocation);
+                    });
+            blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertydispatch));
         }
     }
 
@@ -1190,7 +1250,7 @@ public class VerdantModelProvider extends ModelProvider {
         if (ageProperty.getPossibleValues().size() != possibleValues.length) {
             throw new IllegalArgumentException("missing values for property: " + ageProperty);
         } else {
-            PropertyDispatch propertydispatch = PropertyDispatch.property(ageProperty).generate(index -> {
+            PropertyDispatch<MultiVariant> propertydispatch = PropertyDispatch.initial(ageProperty).generate(index -> {
                 String s = "_stage" + possibleValues[index];
                 TextureMapping texture = VerdantTextureMapping.asterisk(
                         TextureMapping.getBlockTexture(block),
@@ -1201,9 +1261,9 @@ public class VerdantModelProvider extends ModelProvider {
                         .renderType(renderType)
                         .build()
                         .createWithSuffix(block, s, texture, blockModels.modelOutput);
-                return Variant.variant().with(VariantProperties.MODEL, resourcelocation);
+                return BlockModelGenerators.plainVariant(resourcelocation);
             });
-            blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertydispatch));
+            blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertydispatch));
         }
     }
 

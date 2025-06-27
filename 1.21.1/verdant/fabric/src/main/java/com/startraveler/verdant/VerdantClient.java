@@ -9,12 +9,12 @@ import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.registry.*;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.TntRenderer;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
@@ -106,7 +106,7 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_BLUEWEED,
                 BlockRegistry.VERDANT_CONDUIT
         );
-
+        markTranslucent(BlockRegistry.SAP_BLOCK);
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
@@ -118,6 +118,7 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
 
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
@@ -171,18 +172,27 @@ public class VerdantClient implements ClientModInitializer {
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutout(Supplier... blocks) {
         Arrays.stream(blocks)
-                .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
+                .forEach(block -> BlockRenderLayerMap.putBlock(
                         ((Supplier<Block>) block).get(),
-                        RenderType.cutout()
+                        ChunkSectionLayer.CUTOUT
+                ));
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public void markTranslucent(Supplier... blocks) {
+        Arrays.stream(blocks)
+                .forEach(block -> BlockRenderLayerMap.putBlock(
+                        ((Supplier<Block>) block).get(),
+                        ChunkSectionLayer.TRANSLUCENT
                 ));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void markCutoutMipped(Supplier... blocks) {
         Arrays.stream(blocks)
-                .forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(
+                .forEach(block -> BlockRenderLayerMap.putBlock(
                         ((Supplier<Block>) block).get(),
-                        RenderType.cutoutMipped()
+                        ChunkSectionLayer.CUTOUT_MIPPED
                 ));
     }
 
