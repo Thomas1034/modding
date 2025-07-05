@@ -41,6 +41,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -139,6 +140,21 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
         this.harvest = harvest;
     }
 
+    protected static void explode(Level level, BlockPos pos) {
+        if (level instanceof ServerLevel serverlevel) {
+            Vec3 center = pos.getCenter();
+            PrimedTnt bomb = new BlockIgnoringPrimedTnt(level, center.x, center.y, center.z, null);
+            bomb.setBlockState(BlockRegistry.BLASTING_BUNCH.get().defaultBlockState());
+            ((PrimedTntAccessors) bomb).setExplosionPower(3);
+            bomb.setDeltaMovement(Vec3.ZERO);
+            bomb.setFuse(20);
+            bomb.setBoundingBox(bomb.getBoundingBox().deflate(0.25, 0.25, 0.25));
+            bomb.refreshDimensions();
+            serverlevel.addFreshEntity(bomb);
+        }
+
+    }
+
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, Orientation orientation, boolean movedByPiston) {
         if (!this.canSurvive(state, level, pos)) {
@@ -150,7 +166,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     @Override
     protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
         if (state.getValue(AGE) == MAX_AGE) {
-            this.explode(level, pos);
+            explode(level, pos);
         }
     }
 
@@ -173,7 +189,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
 
             } else {
-                this.explode(level, pos);
+                explode(level, pos);
             }
             return InteractionResult.SUCCESS;
         } else {
@@ -182,7 +198,11 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@Nullable BlockState state, LevelReader level, BlockPos pos) {
+        if (null == state) {
+            return false;
+        }
+
         Direction facing = state.getValue(FACING);
         BlockState attachedTo = level.getBlockState(pos.relative(facing.getOpposite()));
         return attachedTo.isFaceSturdy(level, pos, facing) && super.canSurvive(state, level, pos);
@@ -225,7 +245,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
         BlockPos pos = hit.getBlockPos();
         if (state.getValue(AGE) > MIN_AGE) {
             level.setBlockAndUpdate(pos, state.setValue(AGE, MIN_AGE));
-            this.explode(level, pos);
+            explode(level, pos);
         }
     }
 
@@ -246,7 +266,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
         if (!entity.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && !entity.getType()
                 .is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES) && state.getValue(AGE) == MAX_AGE) {
             level.setBlockAndUpdate(pos, state.setValue(AGE, MIN_AGE));
-            this.explode(level, pos);
+            explode(level, pos);
         }
     }
 
@@ -261,21 +281,6 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, AGE);
-    }
-
-    protected void explode(Level level, BlockPos pos) {
-        if (level instanceof ServerLevel serverlevel) {
-            Vec3 center = pos.getCenter();
-            PrimedTnt bomb = new BlockIgnoringPrimedTnt(level, center.x, center.y, center.z, null);
-            bomb.setBlockState(BlockRegistry.BLASTING_BUNCH.get().defaultBlockState());
-            ((PrimedTntAccessors) bomb).setExplosionPower(3);
-            bomb.setDeltaMovement(Vec3.ZERO);
-            bomb.setFuse(20);
-            bomb.setBoundingBox(bomb.getBoundingBox().deflate(0.25, 0.25, 0.25));
-            bomb.refreshDimensions();
-            serverlevel.addFreshEntity(bomb);
-        }
-
     }
 
     @Override

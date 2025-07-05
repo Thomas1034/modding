@@ -12,14 +12,17 @@ import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.resources.CloseableResourceManager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.level.storage.DimensionDataStorage;
@@ -106,6 +109,10 @@ public class Verdant implements ModInitializer {
                     dataStorage.set(TimerListSavedData.TYPE, timerList);
                 }
             }
+        });
+
+        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((MinecraftServer var1, CloseableResourceManager var2, boolean var3) -> {
+            CommonClass.TRANSFORMERS.clear();
         });
 
         CommonClass.addCakeCandles();

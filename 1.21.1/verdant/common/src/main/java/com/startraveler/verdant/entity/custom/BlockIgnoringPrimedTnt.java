@@ -25,7 +25,7 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this.xo = x;
         this.yo = y;
         this.zo = z;
-        ((PrimedTntAccessors) this).setOwner(new EntityReference<>(owner));
+        ((PrimedTntAccessors) this).setOwner(owner == null ? null : new EntityReference<>(owner));
     }
 
     public void tick() {

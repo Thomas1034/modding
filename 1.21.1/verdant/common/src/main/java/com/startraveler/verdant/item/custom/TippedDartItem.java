@@ -9,7 +9,6 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.TooltipDisplay;
 
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class TippedDartItem extends DartItem {
@@ -19,11 +18,11 @@ public class TippedDartItem extends DartItem {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay components, Consumer<Component> consumer, TooltipFlag flag) {
-        PotionContents potionContents = stack.get(DataComponents.POTION_CONTENTS);
+        /*PotionContents potionContents = stack.get(DataComponents.POTION_CONTENTS);
         if (potionContents != null) {
             Objects.requireNonNull(components);
             PotionContents.addPotionTooltip(potionContents.getAllEffects(), consumer, 1.0F, context.tickRate());
-        }
+        }*/
 
     }
 

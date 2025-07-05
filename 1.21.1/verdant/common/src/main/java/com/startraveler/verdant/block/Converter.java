@@ -17,6 +17,7 @@
 package com.startraveler.verdant.block;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
+import com.startraveler.verdant.CommonClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -45,9 +46,8 @@ public interface Converter {
 
     default boolean convert(BlockState state, ServerLevel level, BlockPos pos) {
         RegistryAccess access = level.registryAccess();
-        // Retrieves the registry for block transformers.
-        Registry<BlockTransformer> transformers = access.lookupOrThrow(BlockTransformer.KEY);
-        BlockTransformer converter = transformers.get(this.getTransformer()).orElseThrow().value();
+        // Retrieves the block transformer.
+        BlockTransformer converter = CommonClass.TRANSFORMERS.get(access, this.getTransformer());
         // Gets the result of conversion. This could be null.
         BlockState newState = converter.get(state, access, level.random);
         // Check if the result is either unchanged or null.
@@ -56,7 +56,7 @@ public interface Converter {
             // Set the block iff it changed and is not null.
             level.setBlockAndUpdate(pos, newState);
             // Schedule a tick.
-            level.scheduleTick(pos, newState.getBlock(), 1);
+            // level.scheduleTick(pos, newState.getBlock(), 1);
             // Return true since conversion succeeded.
             return true;
         }

@@ -18,6 +18,7 @@ package com.startraveler.verdant.block.custom;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import com.startraveler.rootbound.featureset.FeatureSet;
+import com.startraveler.verdant.CommonClass;
 import com.startraveler.verdant.block.Hoeable;
 import com.startraveler.verdant.block.VerdantGrower;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
@@ -60,7 +61,8 @@ import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable, BonemealableBlock {
-
+    public static final float ACTIVE_SPREAD_RATE = 0.25f;
+    public static final float INACTIVE_SPREAD_RATE_FACTOR = 1f / 16f;
     // The maximum distance the block can be from water.
     public static final int MAX_DISTANCE = 7;
     // The minimum distance the block can be from water.
@@ -126,10 +128,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Also doesn't bother redirecting through an optional, to save on computational resources.
     // There's no need to make that many extra objects.
     protected static int getDistanceAt(BlockState state) {
-        if (state.getFluidState().is(FluidTags.WATER) || state.is(Blocks.WATER)) {
+        if (state.is(Blocks.WATER) || state.getFluidState().is(FluidTags.WATER)) {
             return 0;
         } else {
-            return state.hasProperty(WATER_DISTANCE) ? state.getValue(WATER_DISTANCE) : MAX_DISTANCE;
+            return state.getValueOrElse(WATER_DISTANCE, MAX_DISTANCE);
         }
     }
 
@@ -265,15 +267,15 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return Type.NEIGHBOR_SPREADER;
     }
 
-    protected BlockState updateDistance(BlockState state, Level level, BlockPos pos) {
+    protected BlockState updateState(BlockState state, Level level, BlockPos pos) {
         // First, get the block transformer. As usual, this is a moderately involved process.
         // These registers are synced; therefore, this works on the client and server equally well.
         // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
         // cross that bridge when I come to it.
-        Registry<BlockTransformer> blockTransformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
-        BlockTransformer erode = blockTransformers.get(BlockTransformerRegistry.EROSION).orElseThrow().value();
-        BlockTransformer erodeWet = blockTransformers.get(BlockTransformerRegistry.EROSION_WET).orElseThrow().value();
-        BlockTransformer roots = blockTransformers.get(BlockTransformerRegistry.VERDANT_ROOTS).orElseThrow().value();
+        RegistryAccess access = level.registryAccess();
+        BlockTransformer erode = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.EROSION);
+        BlockTransformer erodeWet = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.EROSION_WET);
+        BlockTransformer roots = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.VERDANT_ROOTS);
 
         // Now, update the state's activity and wetness.
         // But first, set up some variables that will be needed.
@@ -305,8 +307,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
             // Special cases.
             // These check for air above and below.
-            RegistryAccess access = level.registryAccess();
-            boolean overrideTicking;
             NeighborType adjacent = NeighborType.OTHER;
             if (direction == Direction.UP) {
                 adjacent = NeighborType.get(access, neighbor);
@@ -315,24 +315,19 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 adjacent = NeighborType.get(access, neighbor);
                 state = state.setValue(BELOW, adjacent);
             }
-            overrideTicking = adjacent != NeighborType.OTHER;
+            canBeActive |= adjacent != NeighborType.OTHER;
 
-            canBeActive |= overrideTicking;
             // If the block has not been marked as able to be active, check its neighbor
             // for the criteria.
             if (!canBeActive) {
                 // First, check whether the neighbor is a full block.
-                boolean isFullBlock = neighbor.isCollisionShapeFullBlock(level, neighborPos);
-                if (isFullBlock) {
+                if (neighbor.isCollisionShapeFullBlock(level, neighborPos)) {
                     // If the block can be rooted or eroded, it should not prevent the roots from
                     // growing.
-                    canBeActive = erode.isValidInput(
-                            level.registryAccess(),
+                    canBeActive = erode.isValidInput(access, neighbor) || erodeWet.isValidInput(
+                            access,
                             neighbor
-                    ) || erodeWet.isValidInput(
-                            level.registryAccess(),
-                            neighbor
-                    ) || roots.isValidInput(level.registryAccess(), neighbor);
+                    ) || roots.isValidInput(access, neighbor);
                 } else {
                     canBeActive = true;
                 }
@@ -343,8 +338,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 // Update the distance to be the minimum of the current lowest and the distance gotten from the
                 // neighbor (plus one).
                 distance = Math.min(distance, getDistanceAt(neighbor) + 1);
-                // DO NOT break out of the loop since the rest still needs to run.
-                // (Note to self: did this originally; it didn't go well. Recheck legacy code before copying it!)
             }
         }
         // Update and return the state.
@@ -390,30 +383,29 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateGrassy.get().get());
         }
-
         // If it is wet and should not be, or it is not wet but should be, swap.
         // Not-equal is being used as XOR here, to report a mismatch.
         else if (this.hasAlternateWetness && (this.isWet != this.canBeWet(state, level, pos))) {
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateWet.get().get());
         }
-
         // Erode or spread, and grow.
         if (rand.nextFloat() < this.chanceToSpread(state)) {
             boolean successfullySpread = this.grow(state, level, pos);
             state = state.setValue(SUCCESSFULLY_SPREAD, successfullySpread);
         }
-
         // Set the state in the world.
         if (state != originalState) {
             level.setBlockAndUpdate(pos, state);
         }
-
     }
 
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        BlockState updated = this.updateDistance(state, level, pos);
+        BlockState updated = this.updateState(state, level, pos);
         if (state != updated) {
+            // TODO centralize updates.
+            // DO NOT update the client here; instead, mark the chunk dirty and send an update to
+            // the client at the end of the tick, in a tick event.
             level.setBlockAndUpdate(pos, updated);
         }
     }
@@ -428,7 +420,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // updateShape function, which I'll try to simplify now that I've got that one working.
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.updateDistance(this.defaultBlockState(), context.getLevel(), context.getClickedPos());
+        return this.updateState(this.defaultBlockState(), context.getLevel(), context.getClickedPos());
     }
 
     // Very important!
@@ -439,7 +431,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     protected float chanceToSpread(BlockState state) {
-        return state.getValue(SUCCESSFULLY_SPREAD) ? 0.25f : 0.015625f;
+        return ACTIVE_SPREAD_RATE * (state.getValue(SUCCESSFULLY_SPREAD) ? 1 : INACTIVE_SPREAD_RATE_FACTOR);
     }
 
     public enum NeighborType implements StringRepresentable {

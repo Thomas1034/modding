@@ -1,18 +1,18 @@
-// 1.21.4	2025-03-31T00:22:30.2171215	Tags for minecraft:item mod id rootbound
-18fae267ca06ff8046ee35e0735c41eb827bace2 data/c/tags/item/fences/wooden.json
-e818ee7a05ad0e73456cc0bc4b9dcbbcbac3d401 data/c/tags/item/fence_gates/wooden.json
-9fe2c5332e57b0fe811513809e57199a822ded48 data/minecraft/tags/item/hanging_signs.json
-da213bd3a368a037626e49d34fe3f8290426992f data/minecraft/tags/item/logs.json
-da213bd3a368a037626e49d34fe3f8290426992f data/minecraft/tags/item/logs_that_burn.json
-0a5be2820d7eee4f67446ca7d10f23e3d8904d18 data/minecraft/tags/item/planks.json
-1f8606783da49c253a5709d461f90f68f33ed829 data/minecraft/tags/item/signs.json
-9538161f2afb259c3eeb0ddfa4a4e7bbba02ff61 data/minecraft/tags/item/wooden_buttons.json
-8d9ebcf7f24cc2bed2a870d4c2fe30bbfa24f8f8 data/minecraft/tags/item/wooden_doors.json
-18fae267ca06ff8046ee35e0735c41eb827bace2 data/minecraft/tags/item/wooden_fences.json
-208da4e883cae0a778073ac54b6cf1894d6d0637 data/minecraft/tags/item/wooden_pressure_plates.json
-75bec96bcea1bdfd62de93603b418ed611847e38 data/minecraft/tags/item/wooden_slabs.json
-75133de66a95a8e651e0b507d34777798a2dcaef data/minecraft/tags/item/wooden_stairs.json
-b7e3f30ed34a9bfc4aba052bd12a3a99917b7c98 data/minecraft/tags/item/wooden_trapdoors.json
+// 1.21.6	2025-07-04T18:10:25.7185239	Tags for minecraft:item mod id rootbound
+e095268664235cf53a4cc13632e35866d4bdd50f data/c/tags/item/fences/wooden.json
+b94e60ddf66f5ed5571830a119407272a44c8e66 data/c/tags/item/fence_gates/wooden.json
+3c51f70c50f01c975dadc12542cff8b393bb63bc data/minecraft/tags/item/hanging_signs.json
+f44fd8f1ca6d717b5fba07f16b0fba58c51bc638 data/minecraft/tags/item/logs.json
+f44fd8f1ca6d717b5fba07f16b0fba58c51bc638 data/minecraft/tags/item/logs_that_burn.json
+aad08d8f9db76e8aaebd3660a804af6f5dfa3864 data/minecraft/tags/item/planks.json
+7c37addd8fb7b311d2c156ec72ea2b855870b24b data/minecraft/tags/item/signs.json
+c265d233186aa3cbb7afc57feed84a9ce9290896 data/minecraft/tags/item/wooden_buttons.json
+d408c487056331d1be8d32f3e40fe1c9e598b9f0 data/minecraft/tags/item/wooden_doors.json
+e095268664235cf53a4cc13632e35866d4bdd50f data/minecraft/tags/item/wooden_fences.json
+d8d0596dcd9582afb4a2cc74a1445958d7e9ca14 data/minecraft/tags/item/wooden_pressure_plates.json
+1722f95a53a265024b1b5d3f80687a47c7524bd3 data/minecraft/tags/item/wooden_slabs.json
+b2567743cffff43706a7bd2b1634bcf17c56563e data/minecraft/tags/item/wooden_stairs.json
+d8dfa5d6856583594ad334217df283fe1e382da1 data/minecraft/tags/item/wooden_trapdoors.json
 c19e9536dc0ec5d9b320884ee848d12237ae4c8f data/rootbound/tags/item/dead_logs.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/rootbound/tags/item/heartwood_logs.json
 b882fcc87ee1e11b353599ee660a0f508225b174 data/rootbound/tags/item/strangler_logs.json

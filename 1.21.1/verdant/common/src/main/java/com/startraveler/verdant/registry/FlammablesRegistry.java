@@ -43,9 +43,12 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.ROPE, 60, 60);
         flammables.registerFlammability(BlockRegistry.ROTTEN_WOOD, 60, 60);
         flammables.registerFlammability(BlockRegistry.STINKING_BLOSSOM, 60, 100);
+        flammables.registerFlammability(BlockRegistry.BLUEWEED, 60, 100);
         flammables.registerFlammability(BlockRegistry.BLEEDING_HEART, 60, 100);
         flammables.registerFlammability(BlockRegistry.TIGER_LILY, 60, 100);
         flammables.registerFlammability(BlockRegistry.RUE, 60, 100);
+        flammables.registerFlammability(BlockRegistry.WILD_UBE, 60, 100);
+        flammables.registerFlammability(BlockRegistry.WILD_CASSAVA, 60, 100);
         flammables.registerFlammability(BlockRegistry.THORN_BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.BUSH, 60, 100);
         flammables.registerFlammability(BlockRegistry.TALL_THORN_BUSH, 60, 100);
@@ -55,6 +58,7 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.FRAME_BLOCK, 60, 100);
         flammables.registerFlammability(BlockRegistry.CHARRED_FRAME_BLOCK, 60, 100);
         flammables.registerFlammability(BlockRegistry.PAPER_FRAME, 60, 100);
+        flammables.registerFlammability(BlockRegistry.BLASTING_BUNCH, 60, 100);
     }
 
     public void registerFlammability(Block block, int flammability, int spreadSpeed) {

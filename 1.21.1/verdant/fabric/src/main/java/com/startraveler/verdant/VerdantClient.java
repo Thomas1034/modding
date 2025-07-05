@@ -29,14 +29,20 @@ import java.util.function.Supplier;
 
 public class VerdantClient implements ClientModInitializer {
 
-    // protected static final ModelLayerLocation STRANGLER_BOAT_LAYER = ModelLayers.register(WoodSets.STRANGLER.getName() + "_boat");
-
     // Handles client-only code.
     @Override
     public void onInitializeClient() {
         markCutoutMipped();
         // Mark some blocks as cutout.
         markCutout(
+                BlockRegistry.GRUS_COAL_ORE,
+                BlockRegistry.GRUS_COPPER_ORE,
+                BlockRegistry.GRUS_DIAMOND_ORE,
+                BlockRegistry.GRUS_EMERALD_ORE,
+                BlockRegistry.GRUS_GOLD_ORE,
+                BlockRegistry.GRUS_IRON_ORE,
+                BlockRegistry.GRUS_LAPIS_ORE,
+                BlockRegistry.GRUS_REDSTONE_ORE,
                 BlockRegistry.DIRT_COAL_ORE,
                 BlockRegistry.DIRT_COPPER_ORE,
                 BlockRegistry.DIRT_DIAMOND_ORE,

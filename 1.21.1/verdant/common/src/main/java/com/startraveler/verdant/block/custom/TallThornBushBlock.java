@@ -10,10 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TallFlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,14 +20,14 @@ import net.minecraft.world.phys.Vec3;
 public class TallThornBushBlock extends TallFlowerBlock {
     private final float damage;
 
-
     public TallThornBushBlock(Properties properties, float damage) {
         super(properties);
         this.damage = damage;
     }
 
-
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             double slowdownFactor = 0.2d;
@@ -41,7 +38,9 @@ public class TallThornBushBlock extends TallFlowerBlock {
                 slowdownFactor -= 0.1d;
             }
             slowdownFactor = 1 - slowdownFactor;
-            entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
+            if (slowdownFactor < 0.99) {
+                entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
+            }
             if (level instanceof ServerLevel serverLevel) {
                 Vec3 vec3 = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition()
                         .subtract(entity.position());
@@ -69,7 +68,6 @@ public class TallThornBushBlock extends TallFlowerBlock {
                         entity.hurtServer(serverLevel, source, cumulativeDamage);
                     }
                 }
-                return;
             }
         }
     }

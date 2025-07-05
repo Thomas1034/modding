@@ -17,9 +17,9 @@
 package com.startraveler.verdant.block;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
+import com.startraveler.verdant.CommonClass;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -40,11 +40,12 @@ public interface Eroder {
     }
 
     default boolean erode(BlockState state, ServerLevel level, BlockPos pos, boolean isWet) {
-        // Retrieves the registry for eroders.
-        Registry<BlockTransformer> transformers = level.registryAccess().lookupOrThrow(BlockTransformer.KEY);
+
         // Selects which eroder to use, depending on whether there is access to water.
-        BlockTransformer eroder = (transformers.get(isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION)).orElseThrow()
-                .value();
+        BlockTransformer eroder = CommonClass.TRANSFORMERS.get(
+                level.registryAccess(),
+                isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION
+        );
         // Gets the result of erosion. This could be null.
         BlockState newState = eroder.get(state, level.registryAccess(), level.random);
         // Check if the result is either unchanged or null.

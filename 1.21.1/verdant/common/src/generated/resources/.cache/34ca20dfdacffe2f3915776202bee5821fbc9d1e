@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-28T20:28:37.1521875	Tags for minecraft:block mod id verdant
+// 1.21.6	2025-06-27T00:17:25.404241	Tags for minecraft:block mod id verdant
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/block/gravels.json
 a7fe49bc7b3af55491706e65a6b9bed51887c38a data/c/tags/block/ores.json
 22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/block/ores/coal.json
@@ -20,11 +20,11 @@ dbc5dd39a4698d7039d3069a376c418d5a8d5093 data/minecraft/tags/block/bee_attractiv
 d5ee06e660bb2497568ce5289ae9dd1af65eb864 data/minecraft/tags/block/bee_growables.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/big_dripleaf_placeable.json
 228dd61829f5a76a24f91849b2651e632bbcee2c data/minecraft/tags/block/candle_cakes.json
-c8a4d9031084e478eab96a3fa95081a2f8990ad4 data/minecraft/tags/block/climbable.json
+265cd271cd5321f6f526c03805eaa10d64c66e09 data/minecraft/tags/block/climbable.json
 b32d57e2e595cb2a2fb123a98df777446706b470 data/minecraft/tags/block/crops.json
-2cc30033629388347b3c0b090379217ecf1812ef data/minecraft/tags/block/dead_bush_may_place_on.json
 3e751825ba571a76ea43f5b84beac47a8d100505 data/minecraft/tags/block/deepslate_ore_replaceables.json
 f634394119cdd826c0d4e1f7663ffe8bca2daa94 data/minecraft/tags/block/dirt.json
+b3d31f7449d36e1e9ec8311f923696fde0f38edf data/minecraft/tags/block/dry_vegetation_may_place_on.json
 54e0d55b1c5c43740878cc6b7d7691434d1352cd data/minecraft/tags/block/flower_pots.json
 6b4526a0d8aa8cad42160d1aece741183658b433 data/minecraft/tags/block/leaves.json
 d9f4fe11be6ef5c7e408176664bad9d38714e9ef data/minecraft/tags/block/logs.json
@@ -33,7 +33,7 @@ d9f4fe11be6ef5c7e408176664bad9d38714e9ef data/minecraft/tags/block/logs.json
 496be53ad49a2282005fe3ba6bff8f2de7382d07 data/minecraft/tags/block/mineable/axe.json
 1ffde5dca90678df149b3fd4c78095fdd90c1890 data/minecraft/tags/block/mineable/hoe.json
 f62378f9a32758f61247fa3726e8d0f2dd458fc4 data/minecraft/tags/block/mineable/pickaxe.json
-278171ed00cb47d5ffd9db17ae563808f2be792e data/minecraft/tags/block/mineable/shovel.json
+10ac474b08616ced7fed480f720ca4df85a9c8cb data/minecraft/tags/block/mineable/shovel.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/moss_replaceable.json
 4b09d24f0fe7e59fe92ecfe6e9e00afae8b351a8 data/minecraft/tags/block/mushroom_grow_block.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/overworld_carver_replaceables.json
@@ -41,13 +41,13 @@ f62378f9a32758f61247fa3726e8d0f2dd458fc4 data/minecraft/tags/block/mineable/pick
 24cdba12f06ee93e1b16ab2fbaebdc28634c0782 data/minecraft/tags/block/replaceable_by_trees.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/sculk_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/sculk_replaceable_world_gen.json
-f79184c9a3c115b5d795b3e5bc3bc883751881b0 data/minecraft/tags/block/slabs.json
+c15333d666426bd68b8c21c47ab8e8998aa82766 data/minecraft/tags/block/slabs.json
 6431fc014de5f013dff08f898e2faa5326d3f7ae data/minecraft/tags/block/small_dripleaf_placeable.json
 dbc5dd39a4698d7039d3069a376c418d5a8d5093 data/minecraft/tags/block/small_flowers.json
-3dadc355aa055fc04fc2ca92d3a9d8050d011f5c data/minecraft/tags/block/stairs.json
+2a32ddebd108e728ef8ea7fdbb11b6645feaaed8 data/minecraft/tags/block/stairs.json
 632e51d9e1da4c4a4177aad785022f0017eb7f97 data/minecraft/tags/block/stone_ore_replaceables.json
 fc0e36c48e21de2ebb93099449e0529758079ff1 data/minecraft/tags/block/sword_efficient.json
-8a068ef41a796af294e6b97201938cf77b3f7bdb data/minecraft/tags/block/walls.json
+3cf6fc8551f77d460ec25e282a352459ff229e78 data/minecraft/tags/block/walls.json
 50b25fccf90c88d6c1cc0205b9e802fdf7d8648a data/verdant/tags/block/allows_ash_spread.json
 0f31e47abb56f74b7354c88b1931bba3ff957249 data/verdant/tags/block/blocks_intangible.json
 35e1913aa11a17b44697ff09ba132a37571b842d data/verdant/tags/block/does_not_support_strangler_vines.json
@@ -63,3 +63,4 @@ b147fcff5c0b4d72df1cb7809b063b2562180832 data/verdant/tags/block/supports_strang
 175d3f86069f148b80603e7b2dd2b076cd96d72f data/verdant/tags/block/sustains_strangler_leaves.json
 fb839ea28f8f6f6a24733085b5f663a30be4704e data/verdant/tags/block/tendrils.json
 356027fe2d4c0a70d51b466f74ad653512e1302b data/verdant/tags/block/verdant_ground.json
+1723cdf29e113a621960f7accd94c497507574f3 data/verdant/tags/block/verdant_resin_blocks.json

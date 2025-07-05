@@ -4,7 +4,8 @@
     },
     "passes": [
         {
-            "program": "minecraft:post/color_convolve",
+            "vertex_shader": "minecraft:post/sobel",
+            "fragment_shader": "minecraft:post/color_convolve",
             "inputs": [
                 {
                     "sampler_name": "In",
@@ -12,29 +13,44 @@
                 }
             ],
             "output": "swap",
-            "uniforms": [
-                {
-                    "name": "RedMatrix",
-                    "values": [0.2989, 0.5870, 0.1140]
-                },
-                {
-                    "name": "GreenMatrix",
-                    "values": [0.2989, 0.5870, 0.1140]
-                },
-                {
-                    "name": "BlueMatrix",
-                    "values": [0.2989, 0.5870, 0.1140]
-                }
-            ]
+            "uniforms": {
+                "ColorConfig": [
+                    {
+                        "name": "RedMatrix",
+                        "type": "vec3",
+                        "value": [0.2989, 0.5870, 0.1140]
+                    },
+                    {
+                        "name": "GreenMatrix",
+                        "type": "vec3",
+                        "value": [0.2989, 0.5870, 0.1140]
+                    },
+                    {
+                        "name": "BlueMatrix",
+                        "type": "vec3",
+                        "value": [0.2989, 0.5870, 0.1140]
+                    }
+                ]
+            }
         },
         {
-            "program": "minecraft:post/blit",
+            "vertex_shader": "minecraft:post/blit",
+            "fragment_shader": "minecraft:post/blit",
             "inputs": [
                 {
                     "sampler_name": "In",
                     "target": "swap"
                 }
             ],
+            "uniforms": {
+                "BlitConfig": [
+                    {
+                        "name": "ColorModulate",
+                        "type": "vec4",
+                        "value": [ 1.0, 1.0, 1.0, 1.0 ]
+                    }
+                ]
+            },
             "output": "minecraft:main"
         }
     ]

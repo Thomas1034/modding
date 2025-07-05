@@ -7,7 +7,7 @@ import com.startraveler.verdant.util.CommonTags;
 import com.startraveler.verdant.util.XFactHDShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,11 +21,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,6 +39,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
@@ -64,43 +63,59 @@ public class BombPileBlock extends Block {
         this.registerDefaultState(this.getStateDefinition().any().setValue(BOMBS, MIN_BOMBS).setValue(UNSTABLE, false));
     }
 
-    private static void explode(Level level, BlockState state, BlockPos pos, LivingEntity entity) {
-        if (!level.isClientSide) {
-            PrimedTnt bomb = new PrimedTnt(level, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, entity);
-            ((PrimedTntAccessors) bomb).setExplosionPower(state.getValue(BOMBS) * 2);
-            bomb.setBlockState(state);
-            bomb.setFuse(NORMAL_FUSE);
-            level.addFreshEntity(bomb);
-            level.playSound(
-                    null,
-                    bomb.getX(),
-                    bomb.getY(),
-                    bomb.getZ(),
-                    SoundEvents.TNT_PRIMED,
-                    SoundSource.BLOCKS,
-                    1.0F,
-                    1.0F
-            );
-            level.gameEvent(entity, GameEvent.PRIME_FUSE, pos);
-        }
+
+    public static boolean prime(BlockState state, Level level, BlockPos pos) {
+        return prime(state, level, pos, null);
     }
 
-    public void whenCatchingFire(BlockState state, Level world, BlockPos pos, Direction face, LivingEntity igniter) {
-        explode(world, state, pos, igniter);
+    private static boolean prime(BlockState state, Level level, BlockPos pos, @Nullable LivingEntity entity) {
+        if (level instanceof ServerLevel serverlevel) {
+            if (serverlevel.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+                PrimedTnt bomb = new PrimedTnt(
+                        level,
+                        (double) pos.getX() + (double) 0.5F,
+                        (double) pos.getY(),
+                        (double) pos.getZ() + (double) 0.5F,
+                        entity
+                );
+                ((PrimedTntAccessors) bomb).setExplosionPower(state.getValue(BOMBS) * 2);
+                bomb.setBlockState(state);
+                bomb.setFuse(NORMAL_FUSE);
+                level.addFreshEntity(bomb);
+                level.playSound(
+                        (Entity) null,
+                        bomb.getX(),
+                        bomb.getY(),
+                        bomb.getZ(),
+                        SoundEvents.TNT_PRIMED,
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        1.0F
+                );
+                level.gameEvent(entity, GameEvent.PRIME_FUSE, pos);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Make NeoForge happy TODO replace with mixin to FireBlock?
+    public boolean onCaughtFire(BlockState state, Level level, BlockPos pos, @org.jetbrains.annotations.Nullable Direction direction, @Nullable LivingEntity igniter) {
+        return prime(state, level, pos, igniter);
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston) {
-        if (level.hasNeighborSignal(pos) || !this.canSurvive(state, level, pos)) {
-            whenCatchingFire(state, level, pos, null, null);
-            level.removeBlock(pos, false);
+    protected void neighborChanged(BlockState p_57457_, Level p_57458_, BlockPos p_57459_, Block p_57460_, @Nullable Orientation p_364510_, boolean p_57462_) {
+        if (p_57458_.hasNeighborSignal(p_57459_) && prime(p_57457_, p_57458_, p_57459_)) {
+            p_57458_.removeBlock(p_57459_, false);
         }
     }
 
+    @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!oldState.is(state.getBlock())) {
-            if (level.hasNeighborSignal(pos)) {
-                whenCatchingFire(state, level, pos, null, null);
+            if (level.hasNeighborSignal(pos) && prime(state, level, pos)) {
                 level.removeBlock(pos, false);
             }
         }
@@ -110,23 +125,31 @@ public class BombPileBlock extends Block {
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         int numBombs = state.getValue(BOMBS);
         Item item = stack.getItem();
-        if (stack.is(CommonTags.Items.TOOLS_IGNITER)) {
-            whenCatchingFire(state, level, pos, result.getDirection(), player);
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
-            if (stack.has(DataComponents.DAMAGE)) {
-                stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-            } else {
-                stack.consume(1, player);
-            }
-            player.awardStat(Stats.ITEM_USED.get(item));
-            return InteractionResult.SUCCESS;
-        } else if (numBombs < MAX_BOMBS && this.canIncreaseSize.test(stack)) {
+        if (numBombs < MAX_BOMBS && this.canIncreaseSize.test(stack)) {
             level.setBlockAndUpdate(pos, state.setValue(BOMBS, numBombs + 1));
             player.awardStat(Stats.ITEM_USED.get(item));
             stack.consume(1, player);
             return InteractionResult.SUCCESS;
-        } else {
+        } else if (!stack.is(Items.FLINT_AND_STEEL) && !stack.is(Items.FIRE_CHARGE) && !stack.is(CommonTags.Items.TOOLS_IGNITER)) {
             return super.useItemOn(stack, state, level, pos, player, hand, result);
+        } else {
+            if (prime(state, level, pos, player)) {
+                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+                if (stack.is(Items.FLINT_AND_STEEL)) {
+                    stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+                } else {
+                    stack.consume(1, player);
+                }
+
+                player.awardStat(Stats.ITEM_USED.get(item));
+            } else if (level instanceof ServerLevel serverLevel) {
+                if (!serverLevel.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+                    player.displayClientMessage(Component.translatable("block.minecraft.tnt.disabled"), true);
+                    return InteractionResult.PASS;
+                }
+            }
+
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -154,14 +177,9 @@ public class BombPileBlock extends Block {
         if (level instanceof ServerLevel serverlevel) {
             BlockPos blockpos = hit.getBlockPos();
             Entity entity = projectile.getOwner();
-            if (projectile.mayInteract(serverlevel, blockpos)) {
-                whenCatchingFire(
-                        state,
-                        level,
-                        blockpos,
-                        null,
-                        entity instanceof LivingEntity livingEntity ? livingEntity : null
-                );
+            if (projectile.isOnFire()
+                    && projectile.mayInteract(serverlevel, blockpos)
+                    && prime(state, level, blockpos, entity instanceof LivingEntity ? (LivingEntity) entity : null)) {
                 level.removeBlock(blockpos, false);
             }
         }
@@ -169,15 +187,17 @@ public class BombPileBlock extends Block {
 
     @Override
     public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
-        PrimedTnt bomb = new PrimedTnt(
-                level,
-                pos.getX() + 0.5,
-                pos.getY(),
-                pos.getZ() + 0.5,
-                explosion.getIndirectSourceEntity()
-        );
-        bomb.setFuse(1);
-        level.addFreshEntity(bomb);
+        if (level.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+            PrimedTnt bomb = new PrimedTnt(
+                    level,
+                    pos.getX() + 0.5,
+                    pos.getY(),
+                    pos.getZ() + 0.5,
+                    explosion.getIndirectSourceEntity()
+            );
+            bomb.setFuse(1);
+            level.addFreshEntity(bomb);
+        }
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -186,11 +206,12 @@ public class BombPileBlock extends Block {
     }
 
     @Override
-    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide() && !player.isCreative() && state.getValue(UNSTABLE)) {
-            whenCatchingFire(state, level, pos, null, null);
+    public BlockState playerWillDestroy(Level p_57445_, BlockPos p_57446_, BlockState p_57447_, Player p_57448_) {
+        if (!p_57445_.isClientSide() && !p_57448_.getAbilities().instabuild && p_57447_.getValue(UNSTABLE)) {
+            prime(p_57447_, p_57445_, p_57446_);
         }
-        return super.playerWillDestroy(level, pos, state, player);
+
+        return super.playerWillDestroy(p_57445_, p_57446_, p_57447_, p_57448_);
     }
 
     @Override

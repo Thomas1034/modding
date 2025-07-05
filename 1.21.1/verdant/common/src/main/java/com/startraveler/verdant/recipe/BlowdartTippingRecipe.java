@@ -26,11 +26,13 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -43,6 +45,8 @@ import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BlowdartTippingRecipe extends CustomRecipe {
@@ -143,7 +147,18 @@ public class BlowdartTippingRecipe extends CustomRecipe {
                                             .stream()
                                             .map(SuspiciousStewEffects.Entry::createEffectInstance))
                     ), directEffects.stream()
-            ).map(oldEffects -> new MobEffectInstance(
+            ).collect(Collectors.toMap(
+                    instance -> new EffectKey(instance.getEffect(), instance.getAmplifier()),
+                    Function.identity(),
+                    (effect1, effect2) -> new MobEffectInstance(
+                            effect1.getEffect(),
+                            effect1.getDuration() + effect2.getDuration(),
+                            effect1.getAmplifier(),
+                            effect1.isAmbient() && effect2.isAmbient(),
+                            effect1.isVisible() || effect2.isVisible(),
+                            effect1.showIcon() || effect2.showIcon()
+                    )
+            )).values().stream().map(oldEffects -> new MobEffectInstance(
                     oldEffects.getEffect(),
                     oldEffects.getDuration() * durationMultiplier,
                     oldEffects.getAmplifier(),
@@ -216,6 +231,9 @@ public class BlowdartTippingRecipe extends CustomRecipe {
             this.category = category;
             return this;
         }
+    }
+
+    public record EffectKey(Holder<MobEffect> effect, int amplifier) {
     }
 }
 

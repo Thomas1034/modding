@@ -12,6 +12,7 @@ import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -37,6 +38,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -83,6 +85,8 @@ public class Verdant {
         // Ticking Timers
         NeoForge.EVENT_BUS.addListener(Verdant::tickTimers);
 
+        // Clearing Cache
+        NeoForge.EVENT_BUS.addListener(Verdant::addReloadListeners);
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
     }
@@ -91,8 +95,7 @@ public class Verdant {
         if (event.getLevel() instanceof ServerLevel level) {
 
             DimensionDataStorage dataStorage = level.getDataStorage();
-            TimerListSavedData timerList = dataStorage
-                    .computeIfAbsent(TimerListSavedData.TYPE);
+            TimerListSavedData timerList = dataStorage.computeIfAbsent(TimerListSavedData.TYPE);
 
             List<BaseTimer> timers = timerList.getTimers();
 
@@ -106,6 +109,13 @@ public class Verdant {
                 dataStorage.set(TimerListSavedData.TYPE, timerList);
             }
         }
+    }
+
+    public static void addReloadListeners(AddServerReloadListenersEvent event) {
+        event.addListener(
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "clear_cache"),
+                CommonClass.TRANSFORMERS
+        );
     }
 
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {

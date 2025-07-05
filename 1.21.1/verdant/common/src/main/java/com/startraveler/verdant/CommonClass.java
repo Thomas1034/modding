@@ -19,6 +19,7 @@ package com.startraveler.verdant;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.*;
+import com.startraveler.verdant.util.ReloadableRegistryCache;
 import net.minecraft.world.level.block.Blocks;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
@@ -83,6 +84,7 @@ Need to fix: TODO
 // Credits: (other direct contributors only)
 /*
 Changes:
+// Rebalanced grass/flower growth rates, so flowers are more rare.
 
 
 Features Added:
@@ -91,10 +93,15 @@ Features Added:
 Bugs Fixed:
 - Blasting Blossoms were not in the creative inventory
 - All effect icons were the wrong size
+- Wild Ube, Wild Cassava, and Blueweed were not flammable.
+- Tipped Dart crafting recipes now properly add effect times.
+- Timbermite has brighter eyes.
 
 Verdant resin blocks will stick only to each other, and not to other blocks!
  */
 public class CommonClass {
+
+    public static final ReloadableRegistryCache.Transformers TRANSFORMERS = new ReloadableRegistryCache.Transformers();
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
     // write the majority of your code here and load it from your loader specific projects. This example has some

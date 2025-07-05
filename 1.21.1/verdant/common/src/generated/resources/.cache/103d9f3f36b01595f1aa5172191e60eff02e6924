@@ -1,4 +1,4 @@
-// 1.21.4	2025-03-31T00:22:30.2194195	Registries
+// 1.21.6	2025-07-04T23:28:02.4107465	Registries
 b0c6a8c47c0c5fcc4ba0ffc7206b700129fc4483 data/minecraft/verdant/bait_data/beef_data.json
 920a2df3c161a343a8402507beb3579dc4fc68f0 data/minecraft/verdant/bait_data/beetroot_seeds_data.json
 920d760df66260e2559bb75e68d27b55149b1cce data/minecraft/verdant/bait_data/bread_data.json
@@ -35,15 +35,15 @@ bc968c225fc114a8247af5170ede25c8350946fb data/minecraft/verdant/bait_data/sugar_
 340c4c798f6871d84f3210b4567bbec079c07fa6 data/verdant/damage_type/briar.json
 6fec246622dadd76af8d7986ac97dde65c155531 data/verdant/damage_type/photosensitive.json
 061b01971710b6be87b53ffacbc4728787bd7ee2 data/verdant/damage_type/toxic_ash.json
-3f3ac95be1e060e870bfaafedc0c894668a9b670 data/verdant/rootbound/block_transformer/erosion.json
+e4457d2d5c4a0b486dc03f75d098cd1670ffaabf data/verdant/rootbound/block_transformer/erosion.json
 3e7c98c6034a9b8f379369a968c95541797e5a4e data/verdant/rootbound/block_transformer/erosion_wet.json
 3817ea5970e390a481fee9a8d9cfc07b0fb23d75 data/verdant/rootbound/block_transformer/hoeing.json
-530a33cce26ba607c78935424ee129af7658b378 data/verdant/rootbound/block_transformer/toxic_ash.json
+0dfeb66a138de3f235a0b394eef82718e5623cac data/verdant/rootbound/block_transformer/toxic_ash.json
 cf93cbc87af8c201d3990f5189f860b834391f2c data/verdant/rootbound/block_transformer/verdant_roots.json
-9ba93b24dbda9ab0261c2e264a455a7ac94b49c3 data/verdant/rootbound/feature_set/above_ground.json
+61e9a0fcf96be6c753a595024a344201cf05ac1e data/verdant/rootbound/feature_set/above_ground.json
 f5f43492adbdca5178e022a76ba0b69fd6ae4271 data/verdant/rootbound/feature_set/always.json
 19b08dc772e29cce13090801c9dcaddabfec64e6 data/verdant/rootbound/feature_set/below_log.json
-33e8c0fb37680d0c69f4c0d8883431e8ad2a177d data/verdant/rootbound/feature_set/hanging.json
-d206e8577767ef16fff892d9b7599188c60dc810 data/verdant/rootbound/feature_set/water.json
+d0dddf657ca72650822d949d74b0c59c925fdc38 data/verdant/rootbound/feature_set/hanging.json
+69c9f3f56d302aae7b50dd9953d1e35c6cda8c93 data/verdant/rootbound/feature_set/water.json
 0c9f65dcbb53fe56193264121444cf1c65539a8e data/verdant/verdant/bait_data/coffee_berries_data.json
 d176cc53158f29a4998815f0c94018ee5540b4ab data/verdant/verdant/bait_data/roasted_coffee_data.json

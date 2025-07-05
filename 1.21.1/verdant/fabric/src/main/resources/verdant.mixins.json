@@ -8,18 +8,19 @@
     "ArrowAccessors",
     "BoggedLikeVerdantFriendsMixin",
     "DecreaseDetectionRangeMixin",
-    "LivingEntityMixin",
     "EntityGetterInvoker",
+    "FabricPistonStructureResolverMixin",
+    "FireBlockMixin",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
     "ItemStackUnbreakabilityMixin",
+    "LivingEntityMixin",
     "MobEffectInstanceAccessors",
     "PrimedTntAccessors",
     "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",
-    "ZombieConvertToRootedMixin",
-    "FabricPistonStructureResolverMixin"
+    "ZombieConvertToRootedMixin"
   ],
   "server": [],
   "client": [
