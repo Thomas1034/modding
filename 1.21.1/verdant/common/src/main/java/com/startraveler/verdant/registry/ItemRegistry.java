@@ -227,7 +227,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> MULCH_BAG = register(
             "mulch_bag",
             (properties) -> new FeaturePlacingItem(
-                    properties.durability(64), FeatureSetRegistry.MULCH
+                    properties, FeatureSetRegistry.MULCH
             )
     );
 

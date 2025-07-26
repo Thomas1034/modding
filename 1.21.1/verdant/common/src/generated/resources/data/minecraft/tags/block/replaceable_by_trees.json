@@ -3,11 +3,11 @@
     "#verdant:strangler_vines"
   ],
   "values": [
-    "verdant:poison_ivy",
+    "verdant:wild_cassava",
+    "verdant:wild_ube",
+    "verdant:wild_coffee",
     "verdant:poison_ivy_plant",
     "verdant:strangler_tendril_plant",
-    "verdant:strangler_tendril",
-    "verdant:tall_thorn_bush",
-    "verdant:tall_bush"
+    "verdant:strangler_tendril"
   ]
 }

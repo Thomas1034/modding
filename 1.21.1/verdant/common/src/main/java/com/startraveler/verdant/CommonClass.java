@@ -94,9 +94,11 @@ Changes:
 - Blasting Blossoms grow a quarter as fast as they used to grow
 - Buffed Heartwood tool and weapon durability
 - Thorns Upgrade Templates now require copper instead of gold
+- Added a tooltip telling how to upgrade rope coils, since it doesn't appear as a recipe
 
 Features Added:
 - Chiseled Earth Bricks
+- Mulch Bag, to help reduce tall grass
 
 Bugs Fixed:
 - Blasting Blossoms were not in the creative inventory

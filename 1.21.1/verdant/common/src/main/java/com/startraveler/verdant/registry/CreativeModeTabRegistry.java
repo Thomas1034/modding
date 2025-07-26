@@ -245,6 +245,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
+                        output.accept(ItemRegistry.MULCH_BAG.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());

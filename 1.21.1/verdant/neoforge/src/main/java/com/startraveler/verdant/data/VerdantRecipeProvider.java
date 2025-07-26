@@ -948,6 +948,16 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        // Mulch bag
+        shaped(
+                List.of("trt", "ttt", "ttt"),
+                List.of('t', 'r'),
+                List.of(ItemRegistry.THORN.get(), ItemRegistry.ROPE.get()),
+                RecipeCategory.TOOLS,
+                ItemRegistry.MULCH_BAG.get(),
+                1
+        );
+
         // TODO End of recipe definitions
     }
 

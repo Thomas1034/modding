@@ -1,4 +1,4 @@
-// 1.21.6	2025-07-25T23:05:33.6176649	Registries
+// 1.21.6	2025-07-26T01:47:58.6631062	Registries
 930d7e38ae9e8dd0373b2b644b158c67c543a76e data/minecraft/verdant/bait_data/baked_potato_data.json
 b0c6a8c47c0c5fcc4ba0ffc7206b700129fc4483 data/minecraft/verdant/bait_data/beef_data.json
 b2cc7a9547098e694290d15823a6679999c2cc4b data/minecraft/verdant/bait_data/beetroot_data.json
@@ -38,17 +38,17 @@ bc968c225fc114a8247af5170ede25c8350946fb data/minecraft/verdant/bait_data/sugar_
 340c4c798f6871d84f3210b4567bbec079c07fa6 data/verdant/damage_type/briar.json
 6fec246622dadd76af8d7986ac97dde65c155531 data/verdant/damage_type/photosensitive.json
 061b01971710b6be87b53ffacbc4728787bd7ee2 data/verdant/damage_type/toxic_ash.json
-c66038bb8c9d99af1bb4189e1c3cfd16136c33f5 data/verdant/rootbound/block_transformer/erosion.json
+deb40da75841cc76ae6438d4f2a99dd2e8a18ae0 data/verdant/rootbound/block_transformer/erosion.json
 3e7c98c6034a9b8f379369a968c95541797e5a4e data/verdant/rootbound/block_transformer/erosion_wet.json
 3817ea5970e390a481fee9a8d9cfc07b0fb23d75 data/verdant/rootbound/block_transformer/hoeing.json
-44f1ebffe4a01bf53eb2263930acc8cc0f86a017 data/verdant/rootbound/block_transformer/toxic_ash.json
+c48fb335619aeaccdbd73a83228c41d78ae03a53 data/verdant/rootbound/block_transformer/toxic_ash.json
 cf93cbc87af8c201d3990f5189f860b834391f2c data/verdant/rootbound/block_transformer/verdant_roots.json
-9025d66dabc9af531eb5e100faecab3401831915 data/verdant/rootbound/feature_set/above_ground.json
+2bc45ea4d62c056ba64b4dd7ebe406a0df8efe0d data/verdant/rootbound/feature_set/above_ground.json
 f5f43492adbdca5178e022a76ba0b69fd6ae4271 data/verdant/rootbound/feature_set/always.json
 19b08dc772e29cce13090801c9dcaddabfec64e6 data/verdant/rootbound/feature_set/below_log.json
-be7559bb6c4ea15d4fb476d788af94385f669d29 data/verdant/rootbound/feature_set/hanging.json
+cb8ef1db383f8abd33b371b6af8d0ce123829a5f data/verdant/rootbound/feature_set/hanging.json
 c16466afea54341010a763fba4e907ff541ff3c2 data/verdant/rootbound/feature_set/mulch.json
-7c5aba8a20e231a0eb816756d5364fa5dbacaa90 data/verdant/rootbound/feature_set/water.json
+5cdbff8b03559acdd5fd9137ca6f47f7ddd2fb26 data/verdant/rootbound/feature_set/water.json
 32f91ca73df20813bcd4647f934e501126d151d9 data/verdant/verdant/bait_data/baked_ube_data.json
 0c9f65dcbb53fe56193264121444cf1c65539a8e data/verdant/verdant/bait_data/coffee_berries_data.json
 42d31ca5a9379ae6dd5aa27230ee7cc1ccab10da data/verdant/verdant/bait_data/cooked_golden_cassava_data.json

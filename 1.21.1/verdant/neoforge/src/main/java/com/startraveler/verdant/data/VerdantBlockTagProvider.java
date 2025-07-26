@@ -223,12 +223,12 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
         this.tag(BlockTags.REPLACEABLE_BY_TREES).add(
-                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.WILD_CASSAVA.get(),
+                BlockRegistry.WILD_UBE.get(),
+                BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                BlockRegistry.STRANGLER_TENDRIL.get(),
-                BlockRegistry.TALL_THORN_BUSH.get(),
-                BlockRegistry.TALL_BUSH.get()
+                BlockRegistry.STRANGLER_TENDRIL.get()
         );
 
         this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(
