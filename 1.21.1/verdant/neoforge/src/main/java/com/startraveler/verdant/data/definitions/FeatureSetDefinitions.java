@@ -25,9 +25,9 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_BUSH));
         entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_GRASS));
         entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_BUSHES));
-        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.TALL_BUSHES));
         entries.add(configured(Rarity.UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
         entries.add(configured(Rarity.UNCOMMON, VegetationFeatures.VINES));
+        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.TALL_BUSHES));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.MOSS_CARPETS));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.RUE));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_CASSAVA));
@@ -98,4 +98,11 @@ public class FeatureSetDefinitions {
         return new ConfiguredFeatureSetEntry(feature.location(), weight);
     }
 
+    public static FeatureSet mulch() {
+        List<FeatureSet.Entry> entries = new ArrayList<>();
+        // entries.add(configured(1023, MiscOverworldFeatures.LAKE_LAVA));
+        entries.add(configured(1, JSONFeatures.MULCH));
+
+        return new FeatureSet(entries, FeatureSetRegistry.MULCH);
+    }
 }

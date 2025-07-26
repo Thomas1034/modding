@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import org.jetbrains.annotations.NotNull;
 
 public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
@@ -87,17 +88,7 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
 
         this.renderProgressArrow(guiGraphics, x, y);
 
-        int catchPercent = this.menu.getCatchPercent();
-        Component catchPercentComponent = Component.translatable(
-                "block.verdant.fish_trap.gui.bait",
-                catchPercent
-        ); // Component.literal(catchPercent + "%");
-        boolean isActive = true; //TODO this.menu.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
-        if (!isActive) {
-            catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_water");
-        } else if (catchPercent == 0) {
-            catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_bait");
-        }
+        Component catchPercentComponent = getCatchPercentComponent();
 
         this.renderText(
                 guiGraphics,
@@ -129,6 +120,21 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
                     OUTPUT_SLOT_BLIT_OFFSET_Y
             );
         }
+    }
+
+    private @NotNull Component getCatchPercentComponent() {
+        int catchPercent = this.menu.getCatchPercent();
+        Component catchPercentComponent = Component.translatable(
+                "block.verdant.fish_trap.gui.bait",
+                catchPercent
+        );
+        boolean isActive = true; //TODO this.menu.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
+        if (!isActive) {
+            catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_water");
+        } else if (catchPercent == 0) {
+            catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_bait");
+        }
+        return catchPercentComponent;
     }
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {

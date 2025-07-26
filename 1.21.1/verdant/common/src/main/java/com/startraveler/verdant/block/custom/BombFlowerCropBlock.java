@@ -133,6 +133,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
             Direction.WEST,
             SHAPE_MATURE_WEST
     );
+    private static final int TICKS_PER_STAGE = 4;
     protected final Function<RandomSource, ItemStack> harvest;
 
     public BombFlowerCropBlock(Properties properties, Function<RandomSource, ItemStack> harvest) {
@@ -178,6 +179,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
             level.setBlockAndUpdate(pos, state);
             if (stack.is(CommonTags.Items.TOOLS_SHEAR) || player.hasEffect(MobEffects.STRENGTH)) {
                 popResource(level, pos, this.harvest.apply(level.random));
+                stack.hurtAndBreak(1, player, hand);
                 level.playSound(
                         null,
                         pos,
@@ -233,7 +235,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.randomTick(state, level, pos, random);
         Services.CROP_EVENT_HELPER.fireEvent(
-                level, pos, state, true, () -> {
+                level, pos, state, random.nextDouble() < (1.0 / TICKS_PER_STAGE), () -> {
                     level.setBlockAndUpdate(pos, state.setValue(AGE, state.getValue(AGE) + 1));
                 }
         );

@@ -1,6 +1,6 @@
 {
   "data": {
-    "catch_chance": 0.9,
+    "catch_chance": 1.0,
     "consume_chance": 0.2
   },
   "item": "minecraft:cake"

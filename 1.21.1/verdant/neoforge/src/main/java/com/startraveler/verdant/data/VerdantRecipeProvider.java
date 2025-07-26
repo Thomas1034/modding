@@ -292,7 +292,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
         // Frame block
         shaped(
-                List.of("HTH", "T T", "HTH"),
+                List.of(" T ", "THT", " T "),
                 List.of('T', 'H'),
                 List.of(Items.STICK, ItemRegistry.THORN.get()),
                 RecipeCategory.BUILDING_BLOCKS,
@@ -942,7 +942,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("#S#", "#L#", "###"),
                 List.of('#', 'S', 'L'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.GOLD_INGOT, WoodSets.STRANGLER.getLogItems()),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.COPPER_INGOT, WoodSets.STRANGLER.getLogItems()),
                 RecipeCategory.COMBAT,
                 ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get(),
                 1

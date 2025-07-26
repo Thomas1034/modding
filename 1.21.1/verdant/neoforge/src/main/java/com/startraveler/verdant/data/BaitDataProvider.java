@@ -31,10 +31,15 @@ public class BaitDataProvider {
         add(bootstrap, Items.SUGAR, 0.4, 0.8);
         // add(bootstrap, ItemRegistry.STARCH.get(), 0.4, 0.8);
         add(bootstrap, Items.WHEAT, 0.5, 0.5);
+        add(bootstrap, Items.POTATO, 0.5, 0.5);
+        add(bootstrap, Items.BEETROOT, 0.5, 0.5);
+        add(bootstrap, ItemRegistry.UBE.get(), 0.5, 0.5);
         add(bootstrap, ItemRegistry.COFFEE_BERRIES.get(), 0.5, 0.5);
         add(bootstrap, Items.COD, 0.5, 0.5);
         add(bootstrap, Items.RABBIT, 0.5, 0.3);
         add(bootstrap, Items.SALMON, 0.5, 0.45);
+        add(bootstrap, Items.BAKED_POTATO, 0.55, 0.5);
+        add(bootstrap, ItemRegistry.BAKED_UBE.get(), 0.55, 0.5);
         // add(bootstrap, ItemRegistry.BAKED_UBE.get(), 0.5, 0.25);
         add(bootstrap, Items.CHICKEN, 0.55, 0.3);
         add(bootstrap, Items.MUTTON, 0.55, 0.3);
@@ -42,7 +47,6 @@ public class BaitDataProvider {
         add(bootstrap, Items.PORKCHOP, 0.6, 0.3);
         add(bootstrap, Items.COOKIE, 0.6, 0.8);
         // add(bootstrap, ItemRegistry.UBE_COOKIE.get(), 0.6, 0.8);
-        add(bootstrap, Items.BREAD, 0.6, 0.3);
         add(bootstrap, Items.ENDER_PEARL, 0.6, 0.1);
         add(bootstrap, ItemRegistry.ROASTED_COFFEE.get(), 0.8, 0.4);
         add(bootstrap, Items.PUMPKIN_PIE, 0.8, 0.2);
@@ -50,16 +54,19 @@ public class BaitDataProvider {
         add(bootstrap, Items.COOKED_RABBIT, 0.8, 0.2);
         add(bootstrap, Items.COOKED_CHICKEN, 0.85, 0.2);
         add(bootstrap, Items.COOKED_MUTTON, 0.85, 0.2);
-        add(bootstrap, Items.COOKED_PORKCHOP, 0.9, 0.2);
         add(bootstrap, Items.COOKED_BEEF, 0.85, 0.2);
+        add(bootstrap, Items.COOKED_PORKCHOP, 0.9, 0.2);
+        add(bootstrap, Items.BREAD, 0.9, 0.4);
         // add(bootstrap, ItemRegistry.UBE_CAKE.get(), 0.9, 0.2);
-        add(bootstrap, Items.CAKE, 0.9, 0.2);
+        add(bootstrap, Items.CAKE, 1.0, 0.2);
         add(bootstrap, Items.ENDER_EYE, 0.9, 0.05);
         // add(bootstrap, ItemRegistry.SPARKLING_STARCH.get(), 1.2, 0.3);
         // add(bootstrap, ItemRegistry.COOKED_GOLDEN_CASSAVA.get(), 1.2, 0.05);
         add(bootstrap, Items.GOLDEN_CARROT, 1.5, 0.2);
+        add(bootstrap, ItemRegistry.GOLDEN_BREAD.get(), 2.0, 0.1);
+        add(bootstrap, ItemRegistry.GOLDEN_CASSAVA.get(), 2.0, 0.1);
+        add(bootstrap, ItemRegistry.COOKED_GOLDEN_CASSAVA.get(), 2.0, 0.1);
         add(bootstrap, Items.FERMENTED_SPIDER_EYE, 2.5, 0.5);
-
     }
 
     public static void add(BootstrapContext<BaitData> bootstrap, Item item, double catchChance, double consumeChance) {

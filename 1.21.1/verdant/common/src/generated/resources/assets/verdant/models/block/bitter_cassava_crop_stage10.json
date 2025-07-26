@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "verdant:block/bitter_cassava_crop_stage10"
+    "crop": "verdant:block/bitter_cassava_crop_stage10"
   }
 }

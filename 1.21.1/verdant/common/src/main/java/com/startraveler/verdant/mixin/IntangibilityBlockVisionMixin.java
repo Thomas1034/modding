@@ -29,9 +29,8 @@ import org.spongepowered.asm.mixin.injection.At;
 public class IntangibilityBlockVisionMixin {
 
     @ModifyExpressionValue(method = "renderScreenEffect", at = @At(value = "FIELD", target = "net/minecraft/world/entity/player/Player.noPhysics : Z", opcode = Opcodes.GETFIELD, ordinal = 0))
-    private static boolean verdant$blockVisionWhenInsideBlocks(boolean original, @Local(ordinal = 0) Player player) {
+    private boolean verdant$blockVisionWhenInsideBlocks(boolean original, @Local(ordinal = 0) Player player) {
         return original && !IntangibilityEffect.isIntangible(player);
     }
-
 }
 

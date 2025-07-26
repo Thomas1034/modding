@@ -11,16 +11,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
+          "functions": [
             {
-              "block": "verdant:tall_thorn_bush",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
-              }
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
             }
           ],
-          "name": "verdant:tall_thorn_bush"
+          "name": "verdant:thorn"
         }
       ],
       "rolls": 1.0

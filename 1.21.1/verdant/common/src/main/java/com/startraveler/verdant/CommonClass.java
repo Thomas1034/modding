@@ -75,31 +75,44 @@ Ideas:
 Caltrops - eight thorns, one plank, for a consumable that deals damage and inflicts slowness when entities step on it.
 Lingers on the ground and will not hurt the person who threw it.
 
-
-Need to fix: TODO
-- Models of cross-crops not looking right.
-- Growth speed of bomb flowers.
-
  */
 // Credits: (other direct contributors only)
 /*
-Changes:
-// Rebalanced grass/flower growth rates, so flowers are more rare.
 
+
+// TODO fix ube cake model! fix advancement menu background!
+
+Changes:
+- Rebalanced grass/flower growth rates, so flowers are more rare.
+- Rebalanced some fish trap bait rates, and added a few missing items such as potatoes.
+- Halved the speed of the fish trap.
+- Timbermite has a brighter eye.
+- Frames cost less thorns.
+- Stinking Blossoms now require silk touch or shears to collect.
+- Tall bushes no longer drop themselves - they drop sticks/thorns instead. They can still be crafted from small bushes collected via silk touch.
+- Blueweed flowers have higher contrast
+- Blasting Blossoms grow a quarter as fast as they used to grow
+- Buffed Heartwood tool and weapon durability
+- Thorns Upgrade Templates now require copper instead of gold
 
 Features Added:
 - Chiseled Earth Bricks
 
 Bugs Fixed:
 - Blasting Blossoms were not in the creative inventory
+- Blasting Blossoms did not wear down the shears used to collect them
 - All effect icons were the wrong size
 - Wild Ube, Wild Cassava, and Blueweed were not flammable.
 - Tipped Dart crafting recipes now properly add effect times.
-- Timbermite has brighter eyes.
+- Toxic ash now spreads correctly.
+- Cassava and Ube crops now use the correct crop model.
+- Mineability block tags are actually correct for blocks other than wood sets. Not sure how I missed that.
+- Leafy Strangler Vines no longer provide x-ray.
 
 Verdant resin blocks will stick only to each other, and not to other blocks!
  */
 public class CommonClass {
+
 
     public static final ReloadableRegistryCache.Transformers TRANSFORMERS = new ReloadableRegistryCache.Transformers();
 
@@ -108,11 +121,11 @@ public class CommonClass {
     // code that gets invoked by the entry point of the loader specific projects.
     public static void init() {
 
-        Constants.LOG.info(
-                "Hello from Common init on {}! we are currently in a {} environment!",
-                Services.PLATFORM.getPlatformName(),
-                Services.PLATFORM.getEnvironmentName()
-        );
+//        Constants.LOG.info(
+//                "Hello from Common init on {}! we are currently in a {} environment!",
+//                Services.PLATFORM.getPlatformName(),
+//                Services.PLATFORM.getEnvironmentName()
+//        );
 
         // It is common for all supported loaders to provide a similar feature that can not be used directly in the
         // common code. A popular way to get around this is using Java's built-in service loader feature to create

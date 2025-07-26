@@ -1,5 +1,7 @@
 package com.startraveler.verdant.data;
 
+import com.startraveler.rootbound.data.RootboundItemTagProvider;
+import com.startraveler.rootbound.woodset.WoodSet;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
@@ -12,17 +14,17 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class VerdantItemTagProvider extends net.neoforged.neoforge.common.data.ItemTagsProvider {
-    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider, Constants.MOD_ID);
+public class VerdantItemTagProvider extends RootboundItemTagProvider {
+    public VerdantItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, Set<WoodSet> woodSets) {
+        super(output, lookupProvider, woodSets, Constants.MOD_ID);
     }
-
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-
+        super.addTags(provider);
         addDirtOres();
         addGrusOres();
 

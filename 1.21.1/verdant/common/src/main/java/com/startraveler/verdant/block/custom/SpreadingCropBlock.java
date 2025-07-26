@@ -105,9 +105,7 @@ public class SpreadingCropBlock extends CropBlock {
             } else if ((otherState.isAir() || otherState.is(BlockTags.CROPS)) && this.canSurvive(this.defaultBlockState(), level, offset)) {
                 setState = this.defaultBlockState().setValue(AGE, 0);
             }
-
             if (setState != null) {
-                level.destroyBlock(offset, true);
                 level.setBlockAndUpdate(offset, setState);
             }
         }

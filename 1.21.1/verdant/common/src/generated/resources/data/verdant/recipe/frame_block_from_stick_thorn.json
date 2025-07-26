@@ -7,9 +7,9 @@
     "T": "minecraft:stick"
   },
   "pattern": [
-    "HTH",
-    "T T",
-    "HTH"
+    " T ",
+    "THT",
+    " T "
   ],
   "result": {
     "count": 1,

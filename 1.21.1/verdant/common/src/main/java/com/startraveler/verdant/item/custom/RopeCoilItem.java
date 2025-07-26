@@ -104,7 +104,9 @@ public class RopeCoilItem extends Item implements ProjectileItem {
                 consumer.accept(Component.translatable(baseKey + "." + data.lantern().typeName)
                         .withStyle(ChatFormatting.GRAY));
             }
+
         }
+        consumer.accept(Component.translatable("item.verdant.rope_coil.crafting").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

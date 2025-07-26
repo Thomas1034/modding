@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "verdant:item/imbued_heartwood_leggings",
-    "layer1": "verdant:imbued_heartwood_leggings_redstone"
+    "layer1": "minecraft:trims/items/leggings_trim_redstone"
   }
 }

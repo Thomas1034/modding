@@ -1,14 +1,5 @@
 {
   "values": [
-    "minecraft:bedrock",
-    "minecraft:nether_portal",
-    "minecraft:barrier",
-    "minecraft:obsidian",
-    "minecraft:crying_obsidian",
-    "minecraft:sponge",
-    "minecraft:wet_sponge",
-    "minecraft:amethyst_block",
-    "minecraft:budding_amethyst",
     "minecraft:water",
     "verdant:toxic_dirt",
     "verdant:toxic_grus",

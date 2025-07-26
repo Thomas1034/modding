@@ -103,7 +103,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
         ColorParticleOption colorparticleoption = ColorParticleOption.create(
                 ParticleTypes.TINTED_LEAVES,
-                0xFF003800 /*level.getClientLeafTintColor(blockPos)*/
+                0xFF306830 /*level.getClientLeafTintColor(blockPos)*/
         );
         ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, colorparticleoption);
     }

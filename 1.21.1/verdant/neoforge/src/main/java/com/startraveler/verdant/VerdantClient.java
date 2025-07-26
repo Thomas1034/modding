@@ -66,7 +66,6 @@ public class VerdantClient {
         RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
     }
 
-
     public static void gatherData(final GatherDataEvent.Client event) {
         try {
 
@@ -103,7 +102,11 @@ public class VerdantClient {
             generator.addProvider(true, new VerdantRecipeProvider.Runner(packOutput, lookupProvider));
 
             // Generate data for the tags
-            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(packOutput, lookupProvider);
+            BlockTagsProvider blockTagsProvider = new VerdantBlockTagProvider(
+                    packOutput,
+                    lookupProvider,
+                    WoodSets.WOOD_SETS
+            );
             generator.addProvider(true, blockTagsProvider);
             MobEffectTagProvider mobEffectTagsProvider = new VerdantMobEffectTagProvider(packOutput, lookupProvider);
             generator.addProvider(true, mobEffectTagsProvider);
@@ -114,7 +117,7 @@ public class VerdantClient {
             generator.addProvider(true, entityTypeTagsProvider);
             generator.addProvider(
                     true,
-                    new VerdantItemTagProvider(packOutput, lookupProvider)
+                    new VerdantItemTagProvider(packOutput, lookupProvider, WoodSets.WOOD_SETS)
             );
 
             // Generate block and item models.

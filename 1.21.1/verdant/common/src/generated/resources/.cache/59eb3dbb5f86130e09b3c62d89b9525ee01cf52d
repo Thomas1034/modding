@@ -1,4 +1,4 @@
-// 1.21.6	2025-06-27T00:17:25.4187749	Loot Tables
+// 1.21.6	2025-07-08T21:49:58.1266283	Loot Tables
 4dc2ec93a6f9c5e87f696be223c9348a356b10dd data/minecraft/loot_table/blocks/zombie_head.json
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
@@ -12,7 +12,7 @@ afb8b97223d01fed96fa4b945c5d81214a11b837 data/verdant/loot_table/blocks/blue_can
 7eaa94eb4fc4a74c6ae5c511e12f7b492ddd4256 data/verdant/loot_table/blocks/bramble_frame.json
 a9a1ad4afe7a4c530e15a50d55a07e5bd809a9fb data/verdant/loot_table/blocks/bramble_head.json
 b7e58dbb792f138767be9f1c84693a2a31fce7c9 data/verdant/loot_table/blocks/brown_candle_ube_cake.json
-a85878d59aa311bc0d09d81019d20a7a16c88d61 data/verdant/loot_table/blocks/bush.json
+22c91ddff9b1d3c8066a83c46d13a8e7c0330cda data/verdant/loot_table/blocks/bush.json
 8a0417f77ca60abc300c2040199ff1f14f00e21c data/verdant/loot_table/blocks/candle_ube_cake.json
 095a903a1f45ced801bdd5d9c7b109604118368b data/verdant/loot_table/blocks/cassava_crop.json
 1992f42782da587529d5dece464c024f658cf70a data/verdant/loot_table/blocks/cassava_rooted_dirt.json
@@ -93,14 +93,14 @@ a6542bf0cb4c56f2c57770fb14b4b34966f02cad data/verdant/loot_table/blocks/rope.jso
 1a5be2bbb0ab001edc171fb95e8465b46c234fef data/verdant/loot_table/blocks/scree.json
 0d473e79ef287bd77e5c985d1bc012ed5e485b52 data/verdant/loot_table/blocks/small_aloe.json
 f02cc39f67550611360eb33d56030edccccc4895 data/verdant/loot_table/blocks/snapleaf.json
-f03c39b3ac62de1548022cd0913500973c9e56ae data/verdant/loot_table/blocks/stinking_blossom.json
+6da8d76b56b4b5c9fba5a063906f3cde751845a4 data/verdant/loot_table/blocks/stinking_blossom.json
 7296c5d4337ffa8a746495d81d344775043c3cef data/verdant/loot_table/blocks/stony_grus.json
 8b22723d542f0ecf53c676133183d811dc9730dc data/verdant/loot_table/blocks/strangler_leaves.json
 a0e48d933acbeacb9538264fec8e5f5cc28197f0 data/verdant/loot_table/blocks/strangler_tendril.json
 92fa231ab0df3e89e68118abf07d57bc0aec2a92 data/verdant/loot_table/blocks/strangler_tendril_plant.json
 7698ba83b3b91b496f0450abd722e8e6376087f8 data/verdant/loot_table/blocks/strangler_vine.json
-0f64cce400785b3ed6082d605637335b5ded1aaf data/verdant/loot_table/blocks/tall_bush.json
-228e0bc3cd03aa584f773d4b52edfdde4b3b266b data/verdant/loot_table/blocks/tall_thorn_bush.json
+dcbd6ccdef4d8eb7e0e8627622677e04b1ec0ce2 data/verdant/loot_table/blocks/tall_bush.json
+13755027e8364e0037d9a612b605d30b5884e2b8 data/verdant/loot_table/blocks/tall_thorn_bush.json
 eddc3c41e3c320cc7591c3607d81dbdf63b3e03c data/verdant/loot_table/blocks/thorny_strangler_leaves.json
 d1c89af7841ff5be88b16b0865acf824226a5668 data/verdant/loot_table/blocks/thorn_bush.json
 998fe8dce8b4418763ecc04b74c0ba49b5f622bc data/verdant/loot_table/blocks/tiger_lily.json

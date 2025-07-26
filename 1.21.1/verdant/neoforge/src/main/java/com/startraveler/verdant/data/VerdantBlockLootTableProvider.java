@@ -22,9 +22,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.TntBlock;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -51,6 +49,34 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     public VerdantBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
         this.knownBlocks = new HashSet<>();
+    }
+
+    protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
+        return createShearsDispatchTable(
+                block, this.applyExplosionDecay(
+                        block,
+                        LootItem.lootTableItem(item)
+                                .when(LootItemRandomChanceCondition.randomChance(chance))
+                                .apply(ApplyBonusCount.addUniformBonusCount(
+                                        registries.lookup(Registries.ENCHANTMENT)
+                                                .orElseThrow()
+                                                .getOrThrow(Enchantments.FORTUNE), 2
+                                ))
+                )
+        );
+    }
+
+    public LootTable.Builder createSingleItemTable(ItemLike item, List<Integer> range) {
+        return LootTable.lootTable().withPool((LootPool.Builder) this.applyExplosionCondition(
+                item,
+                LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(
+                                        range.get(0),
+                                        range.get(1)
+                                ))))
+        ));
     }
 
     @Override
@@ -151,20 +177,24 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 .setRolls(UniformGenerator.between(1, 3)));
         this.add(rottenWood, rottenWoodLoot);
 
-        this.dropSelf(BlockRegistry.STINKING_BLOSSOM.get());
+        requireSilkTouchOrShears(BlockRegistry.STINKING_BLOSSOM.get(), Items.WHEAT_SEEDS, List.of(0, 0));
 
         requireSilkTouch(BlockRegistry.THORN_BUSH.get(), ItemRegistry.THORN.get(), List.of(1, 3));
         this.add(BlockRegistry.POTTED_THORN_BUSH.get(), createPotFlowerItemTable(BlockRegistry.THORN_BUSH.get()));
-        requireSilkTouch(BlockRegistry.BUSH.get(), Items.STICK, List.of(2, 4));
+        requireSilkTouch(BlockRegistry.BUSH.get(), Items.STICK, List.of(1, 2));
         this.add(BlockRegistry.POTTED_BUSH.get(), createPotFlowerItemTable(BlockRegistry.BUSH.get()));
-        this.add(
-                BlockRegistry.TALL_BUSH.get(),
-                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
-        );
-        this.add(
-                BlockRegistry.TALL_THORN_BUSH.get(),
-                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
-        );
+
+        this.dropOther(BlockRegistry.TALL_BUSH.get(), Items.STICK, List.of(1, 2));
+        this.dropOther(BlockRegistry.TALL_THORN_BUSH.get(), ItemRegistry.THORN.get(), List.of(1, 3));
+
+        //        this.add(
+        //                BlockRegistry.TALL_BUSH.get(),
+        //                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
+        //        );
+        //        this.add(
+        //                BlockRegistry.TALL_THORN_BUSH.get(),
+        //                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
+        //        );
 
         dropSelf(BlockRegistry.WILD_COFFEE.get());
         this.add(BlockRegistry.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(BlockRegistry.WILD_COFFEE.get()));
@@ -445,22 +475,6 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         return this.knownBlocks;
     }
 
-
-    protected LootTable.Builder createChanceDrops(Block block, Item item, float chance) {
-        return createShearsDispatchTable(
-                block, this.applyExplosionDecay(
-                        block,
-                        LootItem.lootTableItem(item)
-                                .when(LootItemRandomChanceCondition.randomChance(chance))
-                                .apply(ApplyBonusCount.addUniformBonusCount(
-                                        registries.lookup(Registries.ENCHANTMENT)
-                                                .orElseThrow()
-                                                .getOrThrow(Enchantments.FORTUNE), 2
-                                ))
-                )
-        );
-    }
-
     protected LootTable.Builder createOreDrops(Block block, ItemLike item, List<Integer> range) {
         return createSilkTouchDispatchTable(
                 block, this.applyExplosionDecay(
@@ -475,6 +489,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                                         .getOrThrow(Enchantments.FORTUNE)))
                 )
         );
+    }
+
+    protected void dropOther(Block block, ItemLike item, List<Integer> range) {
+        this.add(block, this.createSingleItemTable(item, range));
     }
 
     protected LootTable.Builder createSilkTouchDrop(Block pBlock, Item item) {

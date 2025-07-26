@@ -419,7 +419,7 @@ public class BlockRegistry {
                 () -> new LeafyStranglerVineBlock(properties(Blocks.BIRCH_PLANKS, "leafy_strangler_vine").strength(
                         1.0f,
                         1.5f
-                ).randomTicks())
+                ).noOcclusion().randomTicks())
         );
         STRANGLER_LEAVES = registerBlockWithItem(
                 "strangler_leaves",
@@ -864,6 +864,7 @@ public class BlockRegistry {
                 () -> new ToxicDirtBlock(properties(Blocks.DIRT, "toxic_dirt"))
         );
 
+        // TODO change for DryVegetationBlock?
         DEAD_GRASS = registerBlockWithItem(
                 "dead_grass",
                 () -> new DeadTallGrassBlock(properties(Blocks.SHORT_GRASS, "dead_grass"))

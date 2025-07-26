@@ -52,7 +52,6 @@ public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
         super.entityInside(state, level, pos, entity, applier);
-
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
             if (!level.isClientSide) {
                 livingEntity.addEffect(ASPHYXIATION.get());

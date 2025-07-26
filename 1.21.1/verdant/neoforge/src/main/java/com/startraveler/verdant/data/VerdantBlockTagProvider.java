@@ -1,5 +1,7 @@
 package com.startraveler.verdant.data;
 
+import com.startraveler.rootbound.data.RootboundBlockTagProvider;
+import com.startraveler.rootbound.woodset.WoodSet;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.WoodSets;
@@ -10,18 +12,18 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class VerdantBlockTagProvider extends BlockTagsProvider {
-    public VerdantBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider, Constants.MOD_ID);
+public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
+    public VerdantBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, Set<WoodSet> woodSets) {
+        super(output, lookupProvider, woodSets, Constants.MOD_ID);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-
+        super.addTags(provider);
         // Mineables
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
@@ -81,6 +83,10 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_VINES);
         this.tag(BlockTags.SWORD_EFFICIENT).add(
+                BlockRegistry.BUSH.get(),
+                BlockRegistry.TALL_BUSH.get(),
+                BlockRegistry.THORN_BUSH.get(),
+                BlockRegistry.TALL_THORN_BUSH.get(),
                 BlockRegistry.STRANGLER_LEAVES.get(),
                 BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
                 BlockRegistry.POISON_STRANGLER_LEAVES.get(),
@@ -199,7 +205,8 @@ public class VerdantBlockTagProvider extends BlockTagsProvider {
                 BlockRegistry.STONY_GRUS.get(),
                 BlockRegistry.GRUS.get()
         );
-        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
+        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON)
+                .add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
         this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(

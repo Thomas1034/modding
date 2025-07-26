@@ -222,7 +222,13 @@ public class ItemRegistry {
                     BlockRegistry.UBE_CROP.get(),
                     properties.food(Foods.POISONOUS_POTATO, Consumables.POISONOUS_POTATO)
             )
+    );
 
+    public static final RegistryObject<Item, Item> MULCH_BAG = register(
+            "mulch_bag",
+            (properties) -> new FeaturePlacingItem(
+                    properties.durability(64), FeatureSetRegistry.MULCH
+            )
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_HORSE_ARMOR = register(

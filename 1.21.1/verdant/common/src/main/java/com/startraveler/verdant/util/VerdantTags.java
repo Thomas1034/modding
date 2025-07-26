@@ -71,7 +71,7 @@ public class VerdantTags {
                 "incorrect_for_imbued_heartwood_tool");
         public static final TagKey<Block> BLOCKS_INTANGIBLE = tag("blocks_intangible");
         public static final TagKey<Block> ALLOWS_ASH_SPREAD = tag("allows_ash_spread");
-        public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("allows_ash_spread");
+        public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("blocks_ash_spread");
         public static final TagKey<Block> VERDANT_RESIN_BLOCKS = tag("verdant_resin_blocks");
 
         private static TagKey<Block> tag(String name) {

@@ -19,6 +19,7 @@ package com.startraveler.verdant.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
@@ -43,9 +44,9 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
         Monster infestor = this.infestor.get().create(level, EntitySpawnReason.TRIGGERED);
         if (infestor != null) {
 
-            infestor.moveOrInterpolateTo(
+            infestor.snapTo(
                     pos.getBottomCenter(),
-                    0.0F,
+                    level.random.nextFloat() * Mth.TWO_PI,
                     0.0F
             );
             level.addFreshEntity(infestor);
@@ -53,6 +54,7 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
         }
     }
 
+    @Override
     protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean simulate) {
         super.spawnAfterBreak(state, level, pos, stack, simulate);
         if (level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !EnchantmentHelper.hasTag(
@@ -61,7 +63,6 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
         )) {
             this.spawnInfestation(level, pos);
         }
-
     }
 }
 

@@ -90,7 +90,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     /**
      * The tag name for this block entity's stored data.
      */
-    public static final String SAVED_DATA_ACCESS_TAG = "SavedData";
+    public static final String ARRAY_SAVED_DATA_ACCESS_TAG = "ArraySavedData";
     /**
      * The items currently placed in the slots of the fish trap.
      */
@@ -185,10 +185,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
             return builder.toString();
         }
     };
-    /**
-     * The current bait the fish trap is using.
-     */
-    private ItemStack currentBait;
 
 
     public FishTrapBlockEntity(BlockPos pos, BlockState blockState) {
@@ -203,14 +199,14 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         this.output = items.subList(numBaitSlots, numBaitSlots + numOutputSlots);
 
         this.dataAccess.set(CATCH_PROGRESS_INDEX, 10);
-        this.dataAccess.set(CYCLE_TIME_INDEX, 20);
+        this.dataAccess.set(CYCLE_TIME_INDEX, 40);
     }
 
     @Override
     public void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
 
-        int[] array = input.getIntArray(SAVED_DATA_ACCESS_TAG).orElse(new int[]{});
+        int[] array = input.getIntArray(ARRAY_SAVED_DATA_ACCESS_TAG).orElse(new int[]{});
         int dataCount = this.getDataCount();
         for (int i = 0; i < dataCount && i < array.length; i++) {
             this.dataAccess.set(i, array[i]);
@@ -229,7 +225,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         for (int i = 0; i < dataCount; i++) {
             array[i] = this.dataAccess.get(i);
         }
-        output.putIntArray(SAVED_DATA_ACCESS_TAG, array);
+        output.putIntArray(ARRAY_SAVED_DATA_ACCESS_TAG, array);
 
         ContainerHelper.saveAllItems(output, this.items);
     }
@@ -274,10 +270,11 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     // Create an update tag here, like above.
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag = super.getUpdateTag(registries);
         ProblemReporter reporter = ProblemReporter.DISCARDING;
-        ValueOutput output = TagValueOutput.createWithContext(reporter, registries);
-        saveAdditional(output);
+        TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
+        this.saveAdditional(output);
+        tag = tag.merge(output.buildResult());
         return tag;
     }
 
@@ -340,8 +337,9 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         return true;
     }
 
-    public void tick(Level level, BlockPos pos, BlockState state) {
 
+    public void tick(Level level, BlockPos pos, BlockState state) {
+        boolean needsUpdate = false;
         if (this.hasRecipe() && state.getValue(FishTrapBlock.ENABLED)) {
             this.increaseCraftingProgress();
 
@@ -349,12 +347,16 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
                 this.craftItem();
                 this.resetProgress();
             }
-            // This is probably important?
-            BlockEntity.setChanged(level, pos, state);
-            // This actually marks it as updated.
-            level.sendBlockUpdated(pos, state, state, 3);
-        } else {
+            needsUpdate = true;
+        } else if (this.getCatchProgress() > 0) {
             this.resetProgress();
+            needsUpdate = true;
+        }
+        if (needsUpdate) {
+            // This is important?
+
+            level.sendBlockUpdated(pos, state, state, 2);
+            BlockEntity.setChanged(level, pos, state);
         }
     }
 

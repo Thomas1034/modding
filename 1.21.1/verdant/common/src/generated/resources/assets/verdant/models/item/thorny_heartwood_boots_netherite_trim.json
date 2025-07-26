@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "verdant:item/thorny_heartwood_boots",
-    "layer1": "verdant:thorny_heartwood_boots_netherite"
+    "layer1": "minecraft:trims/items/boots_trim_netherite"
   }
 }

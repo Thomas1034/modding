@@ -13,6 +13,8 @@ import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.Util;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -243,8 +245,7 @@ public class VerdantModelProvider extends ModelProvider {
                 block, BlockModelGenerators.variants(Stream.concat(
                         Arrays.stream(models).map(Variant::new),
                         Arrays.stream(models)
-                                .map(model -> new Variant(model)
-                                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                                .map(model -> new Variant(model).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
 
 
                 ).toArray(Variant[]::new))
@@ -631,16 +632,14 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
-        createCrossBlock(
+        createCropBlock(
                 BlockRegistry.CASSAVA_CROP.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout",
                 CassavaCropBlock.AGE,
                 IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
         );
-        createCrossBlock(
+        createCropBlock(
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout",
                 CassavaCropBlock.AGE,
                 IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
@@ -657,13 +656,20 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
-        createCrossBlock(
+
+        createCropBlock(
                 BlockRegistry.UBE_CROP.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout",
                 SpreadingCropBlock.AGE,
                 IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
         );
+        //        createCrossBlock(
+        //                BlockRegistry.UBE_CROP.get(),
+        //                BlockModelGenerators.PlantType.NOT_TINTED,
+        //                "cutout",
+        //                SpreadingCropBlock.AGE,
+        //                IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
+        //        );
         trapBlock(BlockRegistry.WOODEN_TRAP.get());
         trapBlock(BlockRegistry.IRON_TRAP.get());
         trapBlock(BlockRegistry.SNAPLEAF.get());
@@ -808,25 +814,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                ItemRegistry.HEARTWOOD_HELMET.getId(),
+                ItemModelGenerators.TRIM_PREFIX_HELMET,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                ItemRegistry.HEARTWOOD_CHESTPLATE.getId(),
+                ItemModelGenerators.TRIM_PREFIX_CHESTPLATE,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                ItemRegistry.HEARTWOOD_LEGGINGS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_LEGGINGS,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.HEARTWOOD_ASSET,
-                ItemRegistry.HEARTWOOD_BOOTS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_BOOTS,
                 false
         );
         handheldItem(ItemRegistry.HEARTWOOD_AXE.get());
@@ -842,25 +848,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                ItemRegistry.IMBUED_HEARTWOOD_HELMET.getId(),
+                ItemModelGenerators.TRIM_PREFIX_HELMET,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.getId(),
+                ItemModelGenerators.TRIM_PREFIX_CHESTPLATE,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                ItemRegistry.IMBUED_HEARTWOOD_LEGGINGS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_LEGGINGS,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.IMBUED_HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.IMBUED_HEARTWOOD_ASSET,
-                ItemRegistry.IMBUED_HEARTWOOD_BOOTS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_BOOTS,
                 false
         );
         handheldItem(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
@@ -898,25 +904,25 @@ public class VerdantModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_HELMET.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                ItemRegistry.THORNY_HEARTWOOD_HELMET.getId(),
+                ItemModelGenerators.TRIM_PREFIX_HELMET,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.getId(),
+                ItemModelGenerators.TRIM_PREFIX_CHESTPLATE,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                ItemRegistry.THORNY_HEARTWOOD_LEGGINGS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_LEGGINGS,
                 false
         );
         itemModels.generateTrimmableItem(
                 ItemRegistry.THORNY_HEARTWOOD_BOOTS.get(),
                 ArmorMaterialRegistry.THORNY_HEARTWOOD_ASSET,
-                ItemRegistry.THORNY_HEARTWOOD_BOOTS.getId(),
+                ItemModelGenerators.TRIM_PREFIX_BOOTS,
                 false
         );
         handheldItem(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
@@ -928,6 +934,8 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.ROOTED_SPAWN_EGG.get());
         basicItem(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
         basicItem(ItemRegistry.POISONER_SPAWN_EGG.get());
+
+        basicItem(ItemRegistry.MULCH_BAG.get());
     }
 
     @Override
@@ -1237,6 +1245,31 @@ public class VerdantModelProvider extends ModelProvider {
                         return BlockModelGenerators.plainVariant(resourcelocation);
                     });
             blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertydispatch));
+        }
+    }
+
+    public void createCropBlock(Block cropBlock, String renderType, Property<Integer> ageProperty, int... ageToVisualStageMapping) {
+        this.blockModels.registerSimpleFlatItemModel(cropBlock.asItem());
+        createCropBlockWithoutItem(cropBlock, renderType, ageProperty, ageToVisualStageMapping);
+    }
+
+    public void createCropBlockWithoutItem(Block cropBlock, String renderType, Property<Integer> ageProperty, int... ageToVisualStageMapping) {
+        if (ageProperty.getPossibleValues().size() != ageToVisualStageMapping.length) {
+            throw new IllegalArgumentException();
+        } else {
+            Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap<>();
+            this.blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(cropBlock)
+                    .with(PropertyDispatch.initial(ageProperty).generate((p_408977_) -> {
+                        int i = ageToVisualStageMapping[p_408977_];
+                        return BlockModelGenerators.plainVariant(int2objectmap.computeIfAbsent(
+                                i, (stage) -> this.blockModels.createSuffixedVariant(
+                                        cropBlock,
+                                        "_stage" + stage,
+                                        ModelTemplates.CROP.extend().renderType(renderType).build(),
+                                        TextureMapping::crop
+                                )
+                        ));
+                    })));
         }
     }
 

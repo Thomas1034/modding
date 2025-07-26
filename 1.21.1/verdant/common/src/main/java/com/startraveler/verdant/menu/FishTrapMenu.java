@@ -55,7 +55,8 @@ public class FishTrapMenu extends AbstractContainerMenu {
                 extraData,
                 new SimpleContainer(inventory.getContainerSize()),
                 new SimpleContainerData(FishTrapBlockEntity.DATA_COUNT),
-                ContainerLevelAccess.NULL);
+                ContainerLevelAccess.NULL
+        );
     }
 
     // Server menu constructor
@@ -104,6 +105,17 @@ public class FishTrapMenu extends AbstractContainerMenu {
         return newStack;
     }
 
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        this.container.stopOpen(player);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return AbstractContainerMenu.stillValid(this.access, player, BlockRegistry.FISH_TRAP.get());
+    }
+
     protected void addThisInventorySlots() {
         int inputOffsetIfEven = FishTrapScreen.SLOT_WIDTH * ((this.getNumBaitSlots() + 1) % 2) / 2;
         for (int i = 0; i < this.getNumBaitSlots(); i++) {
@@ -112,7 +124,8 @@ public class FishTrapMenu extends AbstractContainerMenu {
                     this.container,
                     this.blockEntity.absoluteIndexForBaitSlot(i),
                     FishTrapScreen.BAIT_SLOT_BLIT_OFFSET_X + 1 + FishTrapScreen.SLOT_WIDTH * (i - this.getNumBaitSlots() / 2) + inputOffsetIfEven,
-                    FishTrapScreen.BAIT_SLOT_BLIT_OFFSET_Y + 1));
+                    FishTrapScreen.BAIT_SLOT_BLIT_OFFSET_Y + 1
+            ));
         }
 
         int outputOffsetIfEven = FishTrapScreen.SLOT_WIDTH * ((this.getNumOutputSlots() + 1) % 2) / 2;
@@ -121,24 +134,14 @@ public class FishTrapMenu extends AbstractContainerMenu {
                     this.container,
                     this.blockEntity.absoluteIndexForOutputSlot(i),
                     FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_X + 1 + FishTrapScreen.SLOT_WIDTH * (i - this.getNumOutputSlots() / 2) + outputOffsetIfEven,
-                    FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_Y + 1));
+                    FishTrapScreen.OUTPUT_SLOT_BLIT_OFFSET_Y + 1
+            ));
         }
-
-
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return AbstractContainerMenu.stillValid(this.access, player, BlockRegistry.FISH_TRAP.get());
-    }
-
-    @Override
-    public void removed(Player player) {
-        super.removed(player);
-        this.container.stopOpen(player);
     }
 
     public float getProgress() {
+        // Constants.LOG.warn("Data is: {}", this.data.get(FishTrapBlockEntity.CATCH_PROGRESS_INDEX));
+        // Constants.LOG.warn("Other data is: {}", this.blockEntity.getCatchProgress());
         return ((float) this.blockEntity.getCatchProgress()) / ((float) this.blockEntity.getCycleTime());
     }
 

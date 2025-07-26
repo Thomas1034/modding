@@ -44,4 +44,8 @@ public class PrintForTestingTimer extends BaseTimer {
         super.onFinish(level);
         System.out.println(this.toPrint);
     }
+
+    public MapCodec<? extends BaseTimer> codec() {
+        return CODEC;
+    }
 }

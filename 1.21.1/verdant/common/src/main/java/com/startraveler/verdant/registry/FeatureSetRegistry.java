@@ -26,6 +26,7 @@ public class FeatureSetRegistry {
     public static final ResourceLocation WATER = set("water");
     public static final ResourceLocation ALWAYS = set("always");
     public static final ResourceLocation BELOW_LOG = set("below_log");
+    public static final ResourceLocation MULCH = set("mulch");
 
     private static ResourceLocation set(String name) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);

@@ -75,6 +75,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("item.verdant.rope_coil.bell", "Bell");
         this.add("item.verdant.rope_coil.lantern", "Lantern");
         this.add("item.verdant.rope_coil.soul_lantern", "Soul Lantern");
+        this.add("item.verdant.rope_coil.crafting", "Craft with rope, a tripwire hook, and more to upgrade.");
         this.exclude(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), "Toxic Ash Bucket");
         this.exclude(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get(), "Toxic Solution Bucket");
         this.exclude(BlockRegistry.POISON_STRANGLER_LEAVES.get(), "Poison Ivy Covered Strangler Leaves");

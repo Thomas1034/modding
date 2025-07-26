@@ -1,7 +1,7 @@
 {
   "data": {
-    "catch_chance": 0.6,
-    "consume_chance": 0.3
+    "catch_chance": 0.9,
+    "consume_chance": 0.4
   },
   "item": "minecraft:bread"
 }

@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mulch",
+        "weight": 1
+      }
+    }
+  ],
+  "name": "verdant:mulch"
+}

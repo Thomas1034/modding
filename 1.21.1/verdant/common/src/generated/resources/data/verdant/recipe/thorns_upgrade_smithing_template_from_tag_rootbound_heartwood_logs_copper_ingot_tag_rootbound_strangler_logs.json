@@ -5,7 +5,7 @@
   "key": {
     "#": "#rootbound:heartwood_logs",
     "L": "#rootbound:strangler_logs",
-    "S": "minecraft:gold_ingot"
+    "S": "minecraft:copper_ingot"
   },
   "pattern": [
     "#S#",

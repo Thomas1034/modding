@@ -11,6 +11,7 @@
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
     "ItemStackUnbreakabilityMixin",
+    "LevelRendererAccessors",
     "LivingEntityMixin",
     "MobEffectInstanceAccessors",
     "PrimedTntAccessors",

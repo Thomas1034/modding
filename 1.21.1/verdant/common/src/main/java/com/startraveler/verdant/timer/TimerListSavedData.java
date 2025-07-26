@@ -17,7 +17,9 @@ public class TimerListSavedData extends SavedData {
     public static final String SAVED_DATA_KEY = Constants.MOD_ID + "_" + "timer_list";
     public static final String TIMER_KEY = "timers";
     public static final Codec<TimerListSavedData> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.list(
-                    (Codec<BaseTimer>) BaseTimer.CODEC_REGISTRY.forDispatch().dispatch(BaseTimer::codec, Function.identity()))
+                            (Codec<BaseTimer>) BaseTimer.CODEC_REGISTRY.forDispatch().dispatch(
+                                    BaseTimer::codec, Function.identity()
+                            ))
                     .fieldOf(TIMER_KEY)
                     .forGetter(
                             TimerListSavedData::getTimers))
@@ -55,10 +57,8 @@ public class TimerListSavedData extends SavedData {
 
     public static void removeTimer(ServerLevel level, BaseTimer timer) {
         TimerListSavedData list = fetch(level);
-        if (list != null) {
-            list.removeTimer(timer);
-            save(level, list);
-        }
+        list.removeTimer(timer);
+        save(level, list);
     }
 
     public void addTimer(BaseTimer timer) {

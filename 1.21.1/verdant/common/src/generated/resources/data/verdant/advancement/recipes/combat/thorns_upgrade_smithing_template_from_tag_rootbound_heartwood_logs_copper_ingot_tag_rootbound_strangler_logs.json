@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gold_ingot": {
+    "has_copper_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:gold_ingot"
+            "items": "minecraft:copper_ingot"
           }
         ]
       },
@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "verdant:thorns_upgrade_smithing_template_from_tag_rootbound_heartwood_logs_gold_ingot_tag_rootbound_strangler_logs"
+        "recipe": "verdant:thorns_upgrade_smithing_template_from_tag_rootbound_heartwood_logs_copper_ingot_tag_rootbound_strangler_logs"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -42,13 +42,13 @@
     [
       "has_the_recipe",
       "has_minecraft_root",
-      "has_gold_ingot",
+      "has_copper_ingot",
       "has_thorns_upgrade_smithing_template"
     ]
   ],
   "rewards": {
     "recipes": [
-      "verdant:thorns_upgrade_smithing_template_from_tag_rootbound_heartwood_logs_gold_ingot_tag_rootbound_strangler_logs"
+      "verdant:thorns_upgrade_smithing_template_from_tag_rootbound_heartwood_logs_copper_ingot_tag_rootbound_strangler_logs"
     ]
   }
 }

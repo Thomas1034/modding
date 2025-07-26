@@ -64,7 +64,8 @@ public class ToxicAshItem extends Item implements Converter {
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
 
-        if (level instanceof ServerLevel serverLevel && (state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD) || this.canConvert(state,
+        if (level instanceof ServerLevel serverLevel && (state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD) || this.canConvert(
+                state,
                 serverLevel
         ))) {
 
@@ -115,7 +116,8 @@ public class ToxicAshItem extends Item implements Converter {
                             itemStack.shrink(1);
                             return InteractionResult.SUCCESS_SERVER;
                         } else {
-                            return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(this.getEmptySuccessItem(itemStack,
+                            return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(this.getEmptySuccessItem(
+                                    itemStack,
                                     player
                             ));
                         }
@@ -143,22 +145,37 @@ public class ToxicAshItem extends Item implements Converter {
 
             BlockState state = level.getBlockState(current);
 
-            // Attempt to convert the block
-            if (state.is(VerdantTags.Blocks.BLOCKS_ASH_SPREAD) || this.canConvert(
-                    state,
-                    level
-            ) || state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD)) {
-                // Add neighboring positions to stack
-                stack.push(current.above());
-                stack.push(current.below());
-                stack.push(current.north());
-                stack.push(current.south());
-                stack.push(current.east());
-                stack.push(current.west());
 
-                // Spawn particles for visual feedback
-                // addDeathParticles(level, current, 0);
+            boolean blocksSpread = state.is(VerdantTags.Blocks.BLOCKS_ASH_SPREAD);
+            boolean convertible = this.canConvert(state, level);
+            boolean passable = state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD);
+            /* Constants.LOG.warn(
+                    "Position is {} Block is {} Blocks spread? {} Convertible? {} Passable {}",
+                    current,
+                    state,
+                    blocksSpread,
+                    convertible,
+                    passable
+            ); */
+
+            if (blocksSpread) {
+                continue;
             }
+            if (!convertible && !passable) {
+                continue;
+            }
+
+            // Add neighboring positions to stack
+            stack.push(current.above());
+            stack.push(current.below());
+            stack.push(current.north());
+            stack.push(current.south());
+            stack.push(current.east());
+            stack.push(current.west());
+
+            // Spawn particles for visual feedback
+            // addDeathParticles(level, current, 0);
+
         }
 
         for (BlockPos pos : visited) {
@@ -172,7 +189,7 @@ public class ToxicAshItem extends Item implements Converter {
         );
         List<LivingEntity> affectedEntities = level.getEntitiesOfClass(LivingEntity.class, bounds);
         for (LivingEntity entity : affectedEntities) {
-            if (visited.contains(entity.blockPosition())) {
+            if (visited.contains(entity.blockPosition()) || visited.contains(entity.getOnPos())) {
                 this.damageEntity(level, entity);
             }
         }

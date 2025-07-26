@@ -15,6 +15,7 @@ public class VerdantFeatureSetProvider {
         bootstrap.register(key(FeatureSetRegistry.WATER), FeatureSetDefinitions.water());
         bootstrap.register(key(FeatureSetRegistry.ALWAYS), FeatureSetDefinitions.always());
         bootstrap.register(key(FeatureSetRegistry.BELOW_LOG), FeatureSetDefinitions.belowLog());
+        bootstrap.register(key(FeatureSetRegistry.MULCH), FeatureSetDefinitions.mulch());
     }
 
     private static ResourceKey<FeatureSet> key(ResourceLocation location) {
