@@ -37,10 +37,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.component.BlockItemStateProperties;
-import net.minecraft.world.item.component.Consumables;
-import net.minecraft.world.item.component.UseCooldown;
-import net.minecraft.world.item.component.UseRemainder;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import java.util.List;
@@ -224,30 +221,32 @@ public class ItemRegistry {
             )
     );
 
-    public static final RegistryObject<Item, Item> MULCH_BAG = register(
-            "mulch_bag",
-            (properties) -> new FeaturePlacingItem(
-                    properties, FeatureSetRegistry.MULCH
-            )
+    public static final RegistryObject<Item, Item> MULCH_SACK = register(
+            "mulch_sack",
+            (properties) -> new FeaturePlacingItem(properties.durability(64), FeatureSetRegistry.MULCH)
+    );
+
+    public static final RegistryObject<Item, Item> SACK = register(
+            "sack",
+            properties -> new BundleItem(properties.stacksTo(1)
+                    .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_HORSE_ARMOR = register(
-            "heartwood_horse_armor", (properties) -> new Item(
-                    properties.stacksTo(1).horseArmor(ArmorMaterialRegistry.HEARTWOOD)
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
-                            )
-            )
+            "heartwood_horse_armor",
+            (properties) -> new Item(properties.stacksTo(1)
+                    .horseArmor(ArmorMaterialRegistry.HEARTWOOD)
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
+                    ))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_HELMET = register(
             "heartwood_helmet", ((properties) -> new Item(
 
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.HEARTWOOD,
-                                    ArmorType.HELMET
-                            )
+                    properties.stacksTo(1)
+                            .humanoidArmor(ArmorMaterialRegistry.HEARTWOOD, ArmorType.HELMET)
                             .component(
                                     DataComponentRegistry.DURABILITY_CHANGING.get(),
                                     DurabilityChanging.HEARTWOOD_ARMOR
@@ -255,73 +254,38 @@ public class ItemRegistry {
                             .component(
                                     DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
                                     VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+                            )))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_CHESTPLATE = register(
-            "heartwood_chestplate", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.HEARTWOOD,
-                                    ArmorType.CHESTPLATE
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "heartwood_chestplate",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.HEARTWOOD, ArmorType.CHESTPLATE)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_LEGGINGS = register(
-            "heartwood_leggings", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.HEARTWOOD,
-                                    ArmorType.LEGGINGS
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "heartwood_leggings",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.HEARTWOOD, ArmorType.LEGGINGS)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_BOOTS = register(
-            "heartwood_boots", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.HEARTWOOD,
-                                    ArmorType.BOOTS
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "heartwood_boots",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.HEARTWOOD, ArmorType.BOOTS)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
-            "heartwood_sword", ((properties) -> new Item(
-                    properties.stacksTo(1).sword(
-                                    ToolMaterialRegistry.HEARTWOOD,
-                                    3.0F,
-                                    -2.4F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_TOOLS
-                            )
-            ))
+            "heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.HEARTWOOD, 3.0F, -2.4F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_SHOVEL = register(
@@ -338,17 +302,10 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_PICKAXE = register(
-            "heartwood_pickaxe", ((properties) -> new Item(
-                    properties.stacksTo(1).pickaxe(
-                                    ToolMaterialRegistry.HEARTWOOD,
-                                    1.0F,
-                                    -2.8F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_TOOLS
-                            )
-            ))
+            "heartwood_pickaxe",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .pickaxe(ToolMaterialRegistry.HEARTWOOD, 1.0F, -2.8F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_AXE = register(
@@ -378,82 +335,79 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HORSE_ARMOR = register(
-            "imbued_heartwood_horse_armor", (properties) -> new Item(
-                    properties.stacksTo(1).horseArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD).component(
+            "imbued_heartwood_horse_armor",
+            (properties) -> new Item(properties.stacksTo(1)
+                    .horseArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD)
+                    .component(
                             DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
                             VerdantFriendliness.IMBUED_HEARTWOOD_HORSE_ARMOR
-                    )
-            )
+                    ))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HELMET = register(
-            "imbued_heartwood_helmet", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.HELMET)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
-                            )
-            ))
+            "imbued_heartwood_helmet",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.HELMET)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_CHESTPLATE = register(
-            "imbued_heartwood_chestplate", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.CHESTPLATE)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
-                            )
-            ))
+            "imbued_heartwood_chestplate",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.CHESTPLATE)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_LEGGINGS = register(
-            "imbued_heartwood_leggings", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.LEGGINGS)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
-                            )
-            ))
+            "imbued_heartwood_leggings",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.LEGGINGS)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_BOOTS = register(
-            "imbued_heartwood_boots", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.BOOTS)
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
-                            )
-            ))
+            "imbued_heartwood_boots",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.IMBUED_HEARTWOOD, ArmorType.BOOTS)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_ARMOR
+                    )
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SWORD = register(
-            "imbued_heartwood_sword", ((properties) -> new Item(
-                    properties.stacksTo(1).sword(
-                                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
-                                    3.0F,
-                                    -2.4F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
-                            )
-            ))
+            "imbued_heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.IMBUED_HEARTWOOD, 3.0F, -2.4F)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SHOVEL = register(
@@ -470,17 +424,13 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_PICKAXE = register(
-            "imbued_heartwood_pickaxe", ((properties) -> new Item(
-                    properties.stacksTo(1).pickaxe(
-                                    ToolMaterialRegistry.IMBUED_HEARTWOOD,
-                                    1.0F,
-                                    -2.8F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
-                            )
-            ))
+            "imbued_heartwood_pickaxe",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .pickaxe(ToolMaterialRegistry.IMBUED_HEARTWOOD, 1.0F, -2.8F)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                    )))
     );
 
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_AXE = register(
@@ -509,8 +459,7 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register(
-            "imbuement_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
     );
 
@@ -570,8 +519,10 @@ public class ItemRegistry {
             properties -> new SpawnEggItem(EntityTypeRegistry.POISONER.get(), properties)
     );
 
-    // TODO
-    public static final RegistryObject<Item, Item> BLOWGUN = register("blowgun", BlowgunItem::new);
+    public static final RegistryObject<Item, Item> BLOWGUN = register(
+            "blowgun",
+            properties -> new BlowgunItem(properties.durability(256))
+    );
 
 
     public static final RegistryObject<Item, Item> BLASTING_BLOSSOM_SPROUT = register(
@@ -603,95 +554,52 @@ public class ItemRegistry {
 
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HORSE_ARMOR = register(
-            "thorny_heartwood_horse_armor", (properties) -> new Item(
-                    properties.stacksTo(1).horseArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD)
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
-                            )
-            )
+            "thorny_heartwood_horse_armor",
+            (properties) -> new Item(properties.stacksTo(1)
+                    .horseArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD)
+                    .component(
+                            DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
+                            VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
+                    ))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HELMET = register(
-            "thorny_heartwood_helmet", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
-                                    ArmorType.HELMET
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "thorny_heartwood_helmet",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD, ArmorType.HELMET)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_CHESTPLATE = register(
-            "thorny_heartwood_chestplate", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
-                                    ArmorType.CHESTPLATE
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "thorny_heartwood_chestplate",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD, ArmorType.CHESTPLATE)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_LEGGINGS = register(
-            "thorny_heartwood_leggings", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
-                                    ArmorType.LEGGINGS
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "thorny_heartwood_leggings",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD, ArmorType.LEGGINGS)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_BOOTS = register(
-            "thorny_heartwood_boots", ((properties) -> new Item(
-                    properties.stacksTo(1).humanoidArmor(
-                                    ArmorMaterialRegistry.THORNY_HEARTWOOD,
-                                    ArmorType.BOOTS
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_ARMOR
-                            )
-                            .component(
-                                    DataComponentRegistry.VERDANT_FRIENDLINESS.get(),
-                                    VerdantFriendliness.HEARTWOOD_ARMOR
-                            )
-            ))
+            "thorny_heartwood_boots",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .humanoidArmor(ArmorMaterialRegistry.THORNY_HEARTWOOD, ArmorType.BOOTS)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
+                    .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SWORD = register(
-            "thorny_heartwood_sword", ((properties) -> new Item(
-                    properties.stacksTo(1).sword(
-                                    ToolMaterialRegistry.THORNY_HEARTWOOD,
-                                    3.0F,
-                                    -2.4F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_TOOLS
-                            )
-            ))
+            "thorny_heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.THORNY_HEARTWOOD, 3.0F, -2.4F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SHOVEL = register(
@@ -708,17 +616,10 @@ public class ItemRegistry {
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_PICKAXE = register(
-            "thorny_heartwood_pickaxe", ((properties) -> new Item(
-                    properties.stacksTo(1).pickaxe(
-                                    ToolMaterialRegistry.THORNY_HEARTWOOD,
-                                    1.0F,
-                                    -2.8F
-                            )
-                            .component(
-                                    DataComponentRegistry.DURABILITY_CHANGING.get(),
-                                    DurabilityChanging.HEARTWOOD_TOOLS
-                            )
-            ))
+            "thorny_heartwood_pickaxe",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .pickaxe(ToolMaterialRegistry.THORNY_HEARTWOOD, 1.0F, -2.8F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
 
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_AXE = register(
@@ -747,9 +648,13 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register(
-            "thorns_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register("thorns_upgrade_smithing_template",
             SmithingTemplateExtensions::createThornsUpgradeTemplate
+    );
+
+    public static final RegistryObject<Item, Item> MANGO = register(
+            "mango",
+            (properties) -> new Item(properties.food(Foods.APPLE))
     );
 
     public static void init() {
@@ -794,16 +699,16 @@ public class ItemRegistry {
             DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
             IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
@@ -818,16 +723,16 @@ public class ItemRegistry {
             ));
 
             THORNS_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             THORNS_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                            "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
-                    )).
+                    "item",
+                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
+            )).
 
                     withStyle(DESCRIPTION_FORMAT);
 

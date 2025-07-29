@@ -1,4 +1,4 @@
-// 1.21.6	2025-07-20T18:14:58.3460225	Model Definitions - verdant
+// 1.21.6	2025-07-28T23:32:09.1219454	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -95,6 +95,8 @@ bd64c3d0358ecaa28ad3fc6e6bc0554a6d345178 assets/verdant/blockstates/iron_trap.js
 9ebb57c343c7fe0bff3679d1daf1e012b4a7f7e8 assets/verdant/blockstates/light_gray_candle_ube_cake.json
 5bb5d4d4bb1464fba1225c4e2833b881b924739a assets/verdant/blockstates/lime_candle_ube_cake.json
 d140a99f3d12be243d722c8747c873fbab105de7 assets/verdant/blockstates/magenta_candle_ube_cake.json
+06e02d1bd97ba2be7c2f2c7f7201f6cbe7579aec assets/verdant/blockstates/mango_leaves.json
+95c54e82ee2d04ecf5e23aab352048ce2acb0e99 assets/verdant/blockstates/mango_sapling.json
 921c8b366654971a9149c08fae484676298e0e35 assets/verdant/blockstates/orange_candle_ube_cake.json
 2978313c4a2f35a2eafc5b0a15449a88ebba1e81 assets/verdant/blockstates/packed_gravel.json
 3e3b9d84f0c15c45df3d8d278b259586d0ab5e27 assets/verdant/blockstates/packed_scree.json
@@ -108,6 +110,7 @@ ac49969b97cf78b47962ee40ea01e6cf8e2c866d assets/verdant/blockstates/potted_bleed
 02e4f1e3d6e53c581f255bad70674a6a7ebf8f4e assets/verdant/blockstates/potted_blueweed.json
 a7c7fa8321970f2a85890b2aba610c0e88ac01d3 assets/verdant/blockstates/potted_bush.json
 830679a79abccaa6ca4c9bc25811360946075cf8 assets/verdant/blockstates/potted_coffee_crop.json
+8e547bd00a283584bded22d71f205293187667e7 assets/verdant/blockstates/potted_mango_sapling.json
 7c51f692c21230aa6472099a8cd5ff44c81a6f0c assets/verdant/blockstates/potted_rue.json
 7476fed6452d79460fdaa94079a49c7b5085ae39 assets/verdant/blockstates/potted_thorn_bush.json
 16c3bf1d425c5abf28bfc89846b4ee8091460b19 assets/verdant/blockstates/potted_tiger_lily.json
@@ -241,7 +244,10 @@ f850e461ac8fb1cf685704f4273c8e8bb7fb527f assets/verdant/items/imbued_heartwood_s
 10924ced3214f5a475991ac17c6445658979d0cd assets/verdant/items/iron_spikes.json
 e6fec70b38c26185f1485c22cfe01aa766ecdb93 assets/verdant/items/iron_trap.json
 647b3b27cd70cdc1e71065adf59bc5af3c22cfbd assets/verdant/items/leafy_strangler_vine.json
-74093f3cc9a2cb8d71e388a6441fd26ffc658bb8 assets/verdant/items/mulch_bag.json
+fa5df53390c4eed0b34c7c64203d1a459180ba29 assets/verdant/items/mango.json
+b19e3087da1e4e2ff10554aed6b8001df0ea9ec2 assets/verdant/items/mango_leaves.json
+9ccac451b480ff494f5f3ef72f3ff3508e93e39e assets/verdant/items/mango_sapling.json
+89d573d61f312a1c58d5c8b3366c674194d2d603 assets/verdant/items/mulch_sack.json
 6a28a9b7c4108b25a4356935e41398192223b7fa assets/verdant/items/old_aloe_leaf.json
 4ae8160d655f0f577e4d03b4e1177a3723834fe8 assets/verdant/items/packed_gravel.json
 56a99529e47c7f8028dca7e13c1d94e6e6c1639d assets/verdant/items/packed_scree.json
@@ -251,6 +257,7 @@ aac4f71a84189f5066ce18381fc8ab8ddfa3a277 assets/verdant/items/poison_arrow.json
 69b4b1144ac4f4fb98bb1f16d40d06fe917027cb assets/verdant/items/poison_ivy.json
 d73fc640ee16948e80c9ffd7cfb47aebe205e56d assets/verdant/items/poison_ivy_block.json
 3a0f024028cdabe3a39e88fa746d6d953ff90034 assets/verdant/items/poison_strangler_leaves.json
+1d71369853249ecddfae6429c34236304732ebf0 assets/verdant/items/potted_mango_sapling.json
 73a8d4ce44b7dafe8c9866ed2cb50ae4c9f60b1d assets/verdant/items/putrid_fertilizer.json
 926cbcbd8fdb6a0cd9d10f29d121a2ba4aad1346 assets/verdant/items/rancid_slime.json
 f47021724b31063d76a1eeb7d6721ad4fe01804e assets/verdant/items/roasted_coffee.json
@@ -260,6 +267,7 @@ d76cc3753abe4da33a9903695bd3e88063062c5f assets/verdant/items/rope_ladder.json
 46e0d80b4c3a31ea86cc52ab7b0511650a17b3df assets/verdant/items/rotten_compost.json
 0b503bde434ce89648c47fd2b8b61b267c63d6b9 assets/verdant/items/rotten_wood.json
 9e12f8e8e9e3d52932dc7e625690e691b5754cd2 assets/verdant/items/rue.json
+74d7675e2cdad5361711513b6f314325bd3f99f1 assets/verdant/items/sack.json
 5394ec0e8c1fffbdaa4015c5b74f29a798583a3f assets/verdant/items/sap_block.json
 12ebb031a45c1d55af5cd24034f2658bacc75b1b assets/verdant/items/scree.json
 85abb2c4055bdb6464f41d69d0ed0adee3d6ec8b assets/verdant/items/snapleaf.json
@@ -474,6 +482,10 @@ d0002983e68c2395886311fbfd07791c973dc463 assets/verdant/models/block/lime_candle
 4c2364dd83c534d6edfa2163a8a63a955cb54aff assets/verdant/models/block/lime_candle_ube_cake_lit.json
 4e030dbcd70d4865820de0a86caf0e5462e7b2d8 assets/verdant/models/block/magenta_candle_ube_cake.json
 55022103e72aeb9adf2fb176b92b60dc3ae56b68 assets/verdant/models/block/magenta_candle_ube_cake_lit.json
+bba814afc65245e8bf00ab721ece2e3d3137cb54 assets/verdant/models/block/mango_leaves_stage0.json
+073495030713175e42e312f44719b1e121b3c27b assets/verdant/models/block/mango_leaves_stage1.json
+2dc69977a0fa91a31875aa2d5381648db67ba864 assets/verdant/models/block/mango_leaves_stage2.json
+58242b7bfdc193ce278892392152f73789ccd5f9 assets/verdant/models/block/mango_sapling.json
 a1e6f7dc9c6aee4469412d452f81245f42b4b7ae assets/verdant/models/block/orange_candle_ube_cake.json
 5d485c8636bd7bfea3081d0c7381f0ae895992b6 assets/verdant/models/block/orange_candle_ube_cake_lit.json
 43a1aaf03bff9add4354d505b75b389dfdbd6e8c assets/verdant/models/block/packed_gravel.json
@@ -492,6 +504,7 @@ b0aec62b42aadc86b393db8b596de71f218de441 assets/verdant/models/block/poison_ivy_
 c2e0558e52aeb9b04a2196bfcafdd5a43eae729b assets/verdant/models/block/potted_blueweed.json
 5338af6322daa73dc5e9c4421426af5e7877cd3e assets/verdant/models/block/potted_bush.json
 fceae3be1b1e56645603448f4662020d58a29346 assets/verdant/models/block/potted_coffee_crop.json
+cef5e863e373c2fb422af544d7e55318b8d732fb assets/verdant/models/block/potted_mango_sapling.json
 c0db8047469250ace9e699177e4e9a9c89721d66 assets/verdant/models/block/potted_rue.json
 1a417d3e3d9822244c0487fb6c5bddbd2c722ff7 assets/verdant/models/block/potted_thorn_bush.json
 da54000a5741763c51c6c29ac9ae19284c1e96c2 assets/verdant/models/block/potted_tiger_lily.json
@@ -767,7 +780,9 @@ a9f95d6b0fafd770adb0a860b611be3f84315801 assets/verdant/models/item/imbuement_up
 cad018240194ad36ddfee279b0e7fe93044ff7f4 assets/verdant/models/item/iron_spikes.json
 6c1b612bc1209358226b19e7951efcb12d1a5eb0 assets/verdant/models/item/iron_trap.json
 e267d8b9df7b7f521a5a9b16c2e013487f58d80f assets/verdant/models/item/leafy_strangler_vine.json
-3e995d6a5ac683ac7e610ad8bf441af454d65af1 assets/verdant/models/item/mulch_bag.json
+445e71739090c916ed4dfd49f6205ab2d82dfdcb assets/verdant/models/item/mango.json
+726bceda45be42d9df55ba4bc673b409d67cad13 assets/verdant/models/item/mango_sapling.json
+a87a046bc6d96de130bd5340a97cbb8d8572b2b8 assets/verdant/models/item/mulch_sack.json
 b35c24f3622b43e33d6592109fe126c8bf682d5c assets/verdant/models/item/old_aloe_leaf.json
 260e7f58489c9b017f02a6ecd83df1ebea501bd5 assets/verdant/models/item/poisoner_spawn_egg.json
 863332605628c1cfef54f4ec3aa5552b376f2e05 assets/verdant/models/item/poison_arrow.json
@@ -779,6 +794,9 @@ f45f54f4bf38bb77bad5769e19e5e39339789bbf assets/verdant/models/item/rancid_slime
 ecdf8b766a1a02a1e0fb0a0e6aec597227a80cbd assets/verdant/models/item/rope_ladder.json
 0129a5e4e176f0c4830f5133df91b32ecaa0c1f4 assets/verdant/models/item/rotten_compost.json
 64822145207343360c2268e22c0332f22bd4c155 assets/verdant/models/item/rue.json
+6b695bc918ed1e7bb7ec511fa5aebdc15af95ae1 assets/verdant/models/item/sack.json
+225ba71fa9142bc9433856d546053782232a0f64 assets/verdant/models/item/sack_open_back.json
+48cf196d4e2a4851629cf8d2875ff7954c349891 assets/verdant/models/item/sack_open_front.json
 5ffff5f4b013fd8e60b131010f04bc50223a2977 assets/verdant/models/item/snapleaf.json
 61d922d06668b903df5c6d017393a74c950a8f98 assets/verdant/models/item/sparkling_starch.json
 7792c7a4f3df2daa00869eca4682b2e2684d736b assets/verdant/models/item/stable_blasting_bloom.json

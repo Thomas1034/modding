@@ -8,6 +8,10 @@ import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
+    public static TextureMapping fruitingLeaves(ResourceLocation block) {
+        return TextureMapping.cube(block).put(VerdantTextureSlot.OVERLAY, block.withSuffix("_overlay"));
+    }
+
     public static TextureMapping skull(Block block) {
         return (new TextureMapping()).put(TextureSlot.UP, TextureMapping.getBlockTexture(block, "_up"))
                 .put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_down"))

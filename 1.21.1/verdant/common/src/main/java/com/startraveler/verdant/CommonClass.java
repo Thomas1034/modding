@@ -95,10 +95,13 @@ Changes:
 - Buffed Heartwood tool and weapon durability
 - Thorns Upgrade Templates now require copper instead of gold
 - Added a tooltip telling how to upgrade rope coils, since it doesn't appear as a recipe
+- Blowguns now wear out, and require copper instead of iron
+- Parrots are no longer harmed by the Verdant Growth
+- Tweaked a few sounds
 
 Features Added:
 - Chiseled Earth Bricks
-- Mulch Bag, to help reduce tall grass
+- Mulch Sack, to help reduce tall grass
 
 Bugs Fixed:
 - Blasting Blossoms were not in the creative inventory

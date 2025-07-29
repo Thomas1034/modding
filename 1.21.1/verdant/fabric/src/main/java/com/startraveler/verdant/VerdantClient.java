@@ -10,9 +10,11 @@ import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -110,9 +112,17 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.BLASTING_BUNCH,
                 BlockRegistry.BLUEWEED,
                 BlockRegistry.POTTED_BLUEWEED,
-                BlockRegistry.VERDANT_CONDUIT
+                BlockRegistry.VERDANT_CONDUIT,
+                BlockRegistry.MANGO_SAPLING,
+                BlockRegistry.POTTED_MANGO_SAPLING
         );
         markTranslucent(BlockRegistry.SAP_BLOCK);
+        ColorProviderRegistry.BLOCK.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
+                        blockPos
+                ) : -12012264, BlockRegistry.MANGO_LEAVES.get()
+        );
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 

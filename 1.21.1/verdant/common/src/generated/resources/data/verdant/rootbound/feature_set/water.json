@@ -3,8 +3,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:drowned_hemlock",
-        "weight": 1
+        "configured_feature": "verdant:fixed_seagrass_tall",
+        "weight": 150
       }
     },
     {
@@ -24,8 +24,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:fixed_seagrass_tall",
-        "weight": 150
+        "configured_feature": "verdant:drowned_hemlock",
+        "weight": 1
       }
     }
   ],

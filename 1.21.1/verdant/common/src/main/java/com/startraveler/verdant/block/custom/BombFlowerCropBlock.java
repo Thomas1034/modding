@@ -183,7 +183,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
                 level.playSound(
                         null,
                         pos,
-                        SoundEvents.BOGGED_SHEAR,
+                        SoundEvents.SHEARS_SNIP,
                         SoundSource.BLOCKS,
                         1.0F,
                         0.8F + level.random.nextFloat() * 0.4F

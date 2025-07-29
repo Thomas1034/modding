@@ -12,6 +12,7 @@ import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.data.*;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -62,8 +63,18 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerRangeProperties);
         modBus.addListener(VerdantClient::registerSelectProperties);
         modBus.addListener(VerdantClient::registerConditionalProperties);
+        modBus.addListener(VerdantClient::registerTints);
 
         RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
+    }
+
+    public static void registerTints(final RegisterColorHandlersEvent.Block event) {
+        event.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
+                        blockPos
+                ) : -12012264, BlockRegistry.MANGO_LEAVES.get()
+        );
     }
 
     public static void gatherData(final GatherDataEvent.Client event) {
@@ -173,6 +184,7 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
 
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), ChunkSectionLayer.CUTOUT);
 

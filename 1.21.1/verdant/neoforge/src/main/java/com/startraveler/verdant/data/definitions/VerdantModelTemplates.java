@@ -137,6 +137,12 @@ public class VerdantModelTemplates {
             TextureSlot.SIDE,
             TextureSlot.BOTTOM
     );
+    public static final ModelTemplate FRUITING_LEAVES = ModelTemplates.create(
+            "verdant:fruiting_leaves",
+            TextureSlot.PARTICLE,
+            TextureSlot.ALL,
+            VerdantTextureSlot.OVERLAY
+    );
 
     public static ModelTemplate bombFlower(Integer age) {
         return age < BombFlowerCropBlock.MAX_AGE ? ModelTemplates.create(

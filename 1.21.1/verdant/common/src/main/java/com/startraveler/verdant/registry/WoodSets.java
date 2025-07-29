@@ -43,6 +43,20 @@ public class WoodSets {
             true
     ));
 
+    public static final WoodSet MANGO = register(new WoodSet(
+            Constants.MOD_ID,
+            "mango",
+            () -> BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.GUITAR)
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava(),
+            1,
+            true,
+            true
+    ));
+
     public static final WoodSet DEAD = register(new WoodSet(
             Constants.MOD_ID,
             "dead",

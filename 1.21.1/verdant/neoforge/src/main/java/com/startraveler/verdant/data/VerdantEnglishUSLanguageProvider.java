@@ -317,6 +317,11 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
             this.add(set.getPlanks().get(), name + " Planks");
             this.add(set.getSlab().get(), name + " Slab");
             this.add(set.getStairs().get(), name + " Stairs");
+            if (set.hasMosaic()) {
+                this.add(set.getMosaic().get(), name + " Mosaic");
+                this.add(set.getMosaicSlab().get(), name + " Mosaic Slab");
+                this.add(set.getMosaicStairs().get(), name + " Mosaic Stairs");
+            }
             this.add(set.getFence().get(), name + " Fence");
             this.add(set.getFenceGate().get(), name + " Fence Gate");
             this.add(set.getDoor().get(), name + " Door");

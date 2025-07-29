@@ -109,6 +109,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.IRON_TRAP.get());
                         output.accept(BlockRegistry.BLASTING_BLOSSOM.get());
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
+                        output.accept(BlockRegistry.DEAD_GRASS.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
                         output.accept(BlockRegistry.TALL_BUSH.get());
@@ -245,7 +246,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
-                        output.accept(ItemRegistry.MULCH_BAG.get());
+                        output.accept(ItemRegistry.SACK.get());
+                        output.accept(ItemRegistry.MULCH_SACK.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());

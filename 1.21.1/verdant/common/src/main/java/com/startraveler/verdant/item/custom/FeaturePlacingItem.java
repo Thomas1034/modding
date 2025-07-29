@@ -23,7 +23,6 @@ public class FeaturePlacingItem extends Item {
         this.featureSet = featureSet;
     }
 
-    // TODO Why doesn't this sync?
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
@@ -40,7 +39,7 @@ public class FeaturePlacingItem extends Item {
                         ItemStack result = this.getEmptySuccessItem(stack, player);
                         if (stack.getMaxDamage() > 0) {
                             stack.hurtAndConvertOnBreak(
-                                    result.getCount(),
+                                    1,
                                     result.getItem(),
                                     player,
                                     LivingEntity.getSlotForHand(context.getHand())
@@ -48,11 +47,12 @@ public class FeaturePlacingItem extends Item {
                         } else {
                             if (stack.getMaxStackSize() != 1) {
                                 stack.shrink(1);
+                                player.addItem(result);
                             } else {
                                 player.setItemInHand(context.getHand(), result);
                             }
                         }
-                        if (result.isEmpty()) {
+                        if (result.isEmpty() || stack.getDamageValue() < stack.getMaxDamage()) {
                             return InteractionResult.SUCCESS_SERVER;
                         } else {
                             return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(result);

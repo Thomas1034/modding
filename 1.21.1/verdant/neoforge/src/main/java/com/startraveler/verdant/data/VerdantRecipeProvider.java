@@ -873,7 +873,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("wb ", " wi", "  w"),
                 List.of('b', 'w', 'i'),
-                List.of(Items.BAMBOO, Tags.Items.RODS_WOODEN, Tags.Items.NUGGETS_IRON),
+                List.of(Items.BAMBOO, Tags.Items.RODS_WOODEN, Tags.Items.INGOTS_COPPER),
                 RecipeCategory.COMBAT,
                 ItemRegistry.BLOWGUN.get(),
                 1
@@ -948,13 +948,21 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
-        // Mulch bag
+        shaped(
+                List.of(" v ", "rrr", "rrr"),
+                List.of('v', 'r'),
+                List.of(Items.VINE, ItemRegistry.ROPE.get()),
+                RecipeCategory.TOOLS,
+                ItemRegistry.SACK.get(),
+                1
+        );
+        // Mulch sack
         shaped(
                 List.of("trt", "ttt", "ttt"),
                 List.of('t', 'r'),
                 List.of(ItemRegistry.THORN.get(), ItemRegistry.ROPE.get()),
                 RecipeCategory.TOOLS,
-                ItemRegistry.MULCH_BAG.get(),
+                ItemRegistry.MULCH_SACK.get(),
                 1
         );
 

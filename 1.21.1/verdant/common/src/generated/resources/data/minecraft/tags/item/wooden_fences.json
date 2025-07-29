@@ -1,7 +1,8 @@
 {
   "values": [
-    "verdant:heartwood_fence",
     "verdant:strangler_fence",
+    "verdant:mango_fence",
+    "verdant:heartwood_fence",
     "verdant:dead_fence"
   ]
 }

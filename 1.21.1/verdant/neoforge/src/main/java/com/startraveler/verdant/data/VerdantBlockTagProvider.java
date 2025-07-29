@@ -77,7 +77,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 BlockRegistry.POISON_IVY.get(),
-                BlockRegistry.POISON_IVY_PLANT.get()
+                BlockRegistry.POISON_IVY_PLANT.get(),
+                BlockRegistry.MANGO_LEAVES.get()
         );
 
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
@@ -308,6 +309,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.LEAFY_STRANGLER_VINE.get()
         );
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
+        this.tag(BlockTags.LEAVES).add(BlockRegistry.MANGO_LEAVES.get());
 
         // Vines
         this.tag(VerdantTags.Blocks.STRANGLER_VINES)
@@ -350,6 +352,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.WILD_CASSAVA.get()
         );
 
+        this.tag(BlockTags.SAPLINGS).add(BlockRegistry.MANGO_SAPLING.get());
+
         this.tag(BlockTags.BEE_ATTRACTIVE).add(
                 BlockRegistry.BLEEDING_HEART.get(),
                 BlockRegistry.BLUEWEED.get(),
@@ -359,7 +363,6 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.WILD_CASSAVA.get()
         );
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLEEDING_HEART.get());
-        ;
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_BLUEWEED.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_COFFEE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_COFFEE_CROP.get());
@@ -369,6 +372,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_RUE.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_CASSAVA.get());
         this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_WILD_UBE.get());
+        this.tag(BlockTags.FLOWER_POTS).add(BlockRegistry.POTTED_MANGO_SAPLING.get());
+
 
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);
@@ -424,8 +429,11 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LUSH_GROUND_REPLACEABLE);
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.BAMBOO_PLANTABLE_ON);
 
-        // Dead logs    
-        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
+        // Logs that don't support strangler vines
+        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)
+                .addTag(WoodSets.DEAD.getLogs());
+        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)
+                .addTag(WoodSets.MANGO.getLogs());
 
         //
         this.tag(BlockTags.WALLS)

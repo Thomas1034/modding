@@ -140,6 +140,8 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 BlockRegistry.IRON_SPIKES.get().asItem()
         );
 
+        this.tag(ItemTags.BUNDLES).add(ItemRegistry.SACK.get());
+
         addHeartwoodSet();
         addImbuedHeartwoodSet();
         addThornyHeartwoodSet();

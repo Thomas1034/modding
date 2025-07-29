@@ -18,6 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -26,9 +27,11 @@ import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
@@ -43,6 +46,8 @@ import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
+
+    protected static final float[] FRUIT_LEAVES_SAPLING_CHANCES = new float[]{0.50F, 0.75F, 0.9F, 1.0F};
 
     protected final Set<Block> knownBlocks;
 
@@ -79,6 +84,25 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         ));
     }
 
+    protected LootTable.Builder createFruitLeavesDrops(Block leavesBlock, Block saplingBlock, Item fruit, float... chances) {
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        return this.createLeavesDrops(leavesBlock, saplingBlock, chances)
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .when(this.hasShears().or(this.hasSilkTouch()).invert())
+                        .add(((LootPoolSingletonContainer.Builder) this.applyExplosionCondition(
+                                leavesBlock,
+                                LootItem.lootTableItem(fruit)
+                        )).when(BonusLevelTableCondition.bonusLevelFlatChance(
+                                registrylookup.getOrThrow(Enchantments.FORTUNE),
+                                0.005F,
+                                0.0055555557F,
+                                0.00625F,
+                                0.008333334F,
+                                0.025F
+                        ))));
+    }
+
     @Override
     protected void generate() {
 
@@ -89,7 +113,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         // BlockRegistry.VERDANT_HEARTWOOD.addLootTables(this);
         // BlockRegistry.VERDANT.addLootTables(this);
+        this.add(
+                BlockRegistry.MANGO_LEAVES.get(), this.createFruitLeavesDrops(
+                        BlockRegistry.MANGO_LEAVES.get(),
+                        BlockRegistry.MANGO_SAPLING.get(),
+                        ItemRegistry.MANGO.get(),
+                        NORMAL_LEAVES_SAPLING_CHANCES
+                )
+        );
 
+        this.dropSelf(BlockRegistry.MANGO_SAPLING.get());
+        this.add(BlockRegistry.POTTED_MANGO_SAPLING.get(), createPotFlowerItemTable(BlockRegistry.MANGO_SAPLING.get()));
         this.add(BlockRegistry.BLASTING_BLOSSOM.get(), noDrop());
         this.dropOther(BlockRegistry.SMALL_ALOE.get(), ItemRegistry.ALOE_LEAF.get());
         this.dropOther(BlockRegistry.LARGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());

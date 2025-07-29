@@ -24,6 +24,7 @@ import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.block.model.VariantMutator;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
@@ -37,8 +38,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.apache.commons.lang3.function.TriFunction;
+import org.apache.commons.lang3.mutable.Mutable;
+import org.apache.commons.lang3.mutable.MutableObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -774,8 +778,23 @@ public class VerdantModelProvider extends ModelProvider {
                 BlockModelGenerators.PlantType.NOT_TINTED
         );
 
+        createFruitingTintedLeaves(
+                BlockRegistry.MANGO_LEAVES.get(),
+                VerdantTexturedModel.FRUITING_LEAVES,
+                -12012264,
+                FruitingTintedParticleLeavesBlock.STAGES
+        );
+
+        blockModels.createPlantWithDefaultItem(
+                BlockRegistry.MANGO_SAPLING.get(),
+                BlockRegistry.POTTED_MANGO_SAPLING.get(),
+                BlockModelGenerators.PlantType.NOT_TINTED
+        );
+
         wallSkullBlock(BlockRegistry.BRAMBLE_WALL_HEAD.get(), BlockRegistry.BRAMBLE_HEAD.get());
         skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
+
+        basicItem(ItemRegistry.MANGO.get());
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 
@@ -935,7 +954,8 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
         basicItem(ItemRegistry.POISONER_SPAWN_EGG.get());
 
-        basicItem(ItemRegistry.MULCH_BAG.get());
+        itemModels.generateBundleModels(ItemRegistry.SACK.get());
+        basicItem(ItemRegistry.MULCH_SACK.get());
     }
 
     @Override
@@ -979,6 +999,38 @@ public class VerdantModelProvider extends ModelProvider {
     private ResourceLocation key(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
+
+    public void createFruitingTintedLeaves(Block block, Function<Integer, TexturedModel.Provider> provider, int tint, IntegerProperty ageProperty) {
+        int maxAge = ageProperty.getPossibleValues()
+                .stream()
+                .mapToInt(i -> i)
+                .max()
+                .orElse(0);
+
+        Mutable<ResourceLocation> itemModelLocation = new MutableObject<>();
+
+        Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap<>();
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(ageProperty)
+                        .generate((age) -> BlockModelGenerators.plainVariant(int2objectmap.computeIfAbsent(
+                                age, (stage) -> {
+                                    ResourceLocation modelLocation = this.blockModels.createSuffixedVariant(
+                                            block,
+                                            "_stage" + stage,
+                                            provider.apply(stage).get(block).getTemplate().extend()
+                                                    .renderType(RenderType.CUTOUT_MIPPED.getName())
+                                                    .build(),
+                                            VerdantTextureMapping::fruitingLeaves
+                                    );
+                                    if (stage == maxAge) {
+                                        itemModelLocation.setValue(modelLocation);
+                                    }
+                                    return modelLocation;
+                                }
+                        )))));
+        blockModels.registerSimpleTintedItemModel(block, itemModelLocation.getValue(), ItemModelUtils.constantTint(tint));
+    }
+
 
     private void basicItem(Item item) {
         itemModels.generateFlatItem(item, item, ModelTemplates.FLAT_ITEM);

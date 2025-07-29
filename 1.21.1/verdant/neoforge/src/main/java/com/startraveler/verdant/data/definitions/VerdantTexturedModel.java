@@ -13,6 +13,10 @@ import java.util.function.Function;
 
 public class VerdantTexturedModel {
 
+    public static final Function<Integer, TexturedModel.Provider> FRUITING_LEAVES = age -> TexturedModel.createDefault(
+            block -> VerdantTextureMapping.fruitingLeaves(TextureMapping.getBlockTexture(block)),
+            VerdantModelTemplates.FRUITING_LEAVES
+    );
     public static final TexturedModel.Provider WALL_SKULL = TexturedModel.createDefault(
             VerdantTextureMapping::skull,
             VerdantModelTemplates.WALL_SKULL

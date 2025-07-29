@@ -78,9 +78,17 @@ public class BlowgunItem extends ProjectileWeaponItem {
                         1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + power * 0.5F
                 );
 
+                // Damage item
+                // TODO select interaction hand
+                if (stack.getMaxDamage() > 0) {
+                    stack.hurtAndBreak(1, user, InteractionHand.MAIN_HAND);
+                }
+
 
                 // Drain air.
                 if (level instanceof ServerLevel serverLevel) {
+
+
                     int airToTake = getAirToTake(stack);
                     int newAirSupply = player.getAirSupply() - airToTake;
                     if (newAirSupply <= 0) {

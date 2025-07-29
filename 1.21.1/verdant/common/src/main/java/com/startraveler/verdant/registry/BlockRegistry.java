@@ -59,6 +59,9 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
+// TODO
+// Add fruity mango leaves, with two stages (unripe, ripe)
+// Add sign, trapdoor, door, and boat textures for mango.
 
 public class BlockRegistry {
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(
@@ -197,6 +200,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> BRAMBLE_FRAME;
     public static final RegistryObject<Block, Block> BRAMBLE_HEAD;
     public static final RegistryObject<Block, Block> BRAMBLE_WALL_HEAD;
+    public static final RegistryObject<Block, Block> MANGO_LEAVES;
+    public static final RegistryObject<Block, Block> MANGO_SAPLING;
+    public static final RegistryObject<Block, Block> POTTED_MANGO_SAPLING;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -1182,6 +1188,33 @@ public class BlockRegistry {
                 ).lightLevel(
                         state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
+
+        MANGO_LEAVES = registerBlockWithItem(
+                "mango_leaves",
+                () -> new FruitingTintedParticleLeavesBlock(
+                        0.02f,
+                        properties(Blocks.OAK_LEAVES, "mango_leaves"),
+                        randomSource -> new ItemStack(
+                                ItemRegistry.MANGO.get(),
+                                randomSource.nextIntBetweenInclusive(0, 2) / 2
+                        )
+                )
+        );
+
+        MANGO_SAPLING = registerBlockWithItem(
+                "mango_sapling",
+                () -> new SaplingBlock(VerdantTreeGrowers.MANGO, properties(Blocks.OAK_SAPLING, "mango_sapling"))
+        );
+
+
+        POTTED_MANGO_SAPLING = registerBlockWithItem(
+                "potted_mango_sapling",
+                () -> new FlowerPotBlock(
+                        BlockRegistry.MANGO_SAPLING.get(),
+                        properties(Blocks.POTTED_BLUE_ORCHID, "potted_mango_sapling").noOcclusion()
+                )
+        );
+
 
         BRAMBLE_FRAME = registerBlockWithItem("bramble_frame", () -> new FrameBlock(properties("bramble_frame")));
 
