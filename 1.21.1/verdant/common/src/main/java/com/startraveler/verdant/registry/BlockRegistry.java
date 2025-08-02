@@ -1196,7 +1196,7 @@ public class BlockRegistry {
                         properties(Blocks.OAK_LEAVES, "mango_leaves"),
                         randomSource -> new ItemStack(
                                 ItemRegistry.MANGO.get(),
-                                randomSource.nextIntBetweenInclusive(0, 2) / 2
+                                randomSource.nextIntBetweenInclusive(1, 2)
                         )
                 )
         );

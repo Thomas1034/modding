@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "verdant:block/mango_mosaic_slab"
+    },
+    "type=double": {
+      "model": "verdant:block/mango_mosaic"
+    },
+    "type=top": {
+      "model": "verdant:block/mango_mosaic_slab_top"
+    }
+  }
+}

@@ -124,6 +124,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.BLUEWEED.get());
                         output.accept(BlockRegistry.DROWNED_HEMLOCK.get());
                         output.accept(BlockRegistry.VERDANT_CONDUIT.get());
+                        output.accept(BlockRegistry.MANGO_SAPLING.get());
+                        output.accept(BlockRegistry.MANGO_LEAVES.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
                     .build()
@@ -179,6 +181,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.BAKED_UBE.get());
                         output.accept(ItemRegistry.UBE_COOKIE.get());
                         output.accept(ItemRegistry.UBE_CAKE.get());
+                        output.accept(ItemRegistry.MANGO.get());
+                        output.accept(ItemRegistry.GOLDEN_MANGO.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".foods"))
                     .build()

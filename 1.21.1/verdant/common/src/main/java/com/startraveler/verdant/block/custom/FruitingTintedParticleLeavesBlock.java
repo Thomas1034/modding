@@ -29,7 +29,7 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
 
     public static final IntegerProperty STAGES = BlockStateProperties.AGE_2;
     public static final int MAX_STAGES = 2;
-    private static final double GROWTH_CHANCE = 0.125;
+    private static final double GROWTH_CHANCE = 0.10;
     protected final Function<RandomSource, ItemStack> harvest;
 
     public FruitingTintedParticleLeavesBlock(float particleChance, Properties properties, Function<RandomSource, ItemStack> harvest) {
@@ -43,35 +43,10 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        int currentAge = state.getValue(STAGES);
-        if (currentAge == MAX_STAGES) {
-            state = state.setValue(STAGES, 0);
-            level.setBlockAndUpdate(pos, state);
-            if (stack.is(CommonTags.Items.TOOLS_SHEAR)) {
-                popResource(level, pos, this.harvest.apply(level.random));
-                stack.hurtAndBreak(1, player, hand);
-                level.playSound(
-                        null,
-                        pos,
-                        SoundEvents.SHEARS_SNIP,
-                        SoundSource.BLOCKS,
-                        1.0F,
-                        0.8F + level.random.nextFloat() * 0.4F
-                );
-                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
-            }
-            return InteractionResult.SUCCESS;
-        } else {
-            return super.useWithoutItem(state, level, pos, player, hitResult);
-        }
-    }
-
-    @Override
     protected void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource random) {
         int currentStage = state.getValue(STAGES);
         if (!this.decaying(state)) {
-            boolean randomRollSucceeds = random.nextDouble() > GROWTH_CHANCE;
+            boolean randomRollSucceeds = random.nextDouble() < GROWTH_CHANCE;
             Services.CROP_EVENT_HELPER.fireEvent(
                     serverLevel, pos, state, (currentStage < MAX_STAGES) && randomRollSucceeds, () -> {
                         serverLevel.setBlockAndUpdate(
@@ -88,6 +63,31 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(STAGES);
+    }
+
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        int currentAge = state.getValue(STAGES);
+        if (currentAge == MAX_STAGES) {
+            if (stack.is(CommonTags.Items.TOOLS_SHEAR)) {
+                state = state.setValue(STAGES, 0);
+                level.setBlockAndUpdate(pos, state);
+                popResourceFromFace(level, pos, hitResult.getDirection(), this.harvest.apply(level.random));
+                stack.hurtAndBreak(1, player, hand);
+                level.playSound(
+                        null,
+                        pos,
+                        SoundEvents.SHEARS_SNIP,
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        0.8F + level.random.nextFloat() * 0.4F
+                );
+                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
+            }
+            return InteractionResult.SUCCESS;
+        } else {
+            return super.useWithoutItem(state, level, pos, player, hitResult);
+        }
     }
 
     @Override

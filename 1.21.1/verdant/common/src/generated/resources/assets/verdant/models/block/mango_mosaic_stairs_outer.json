@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "verdant:block/mango_mosaic",
+    "side": "verdant:block/mango_mosaic",
+    "top": "verdant:block/mango_mosaic"
+  }
+}

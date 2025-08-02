@@ -1,4 +1,4 @@
-// 1.21.6	2025-07-27T23:06:54.5359156	Loot Tables
+// 1.21.6	2025-07-30T21:16:18.2674182	Loot Tables
 4dc2ec93a6f9c5e87f696be223c9348a356b10dd data/minecraft/loot_table/blocks/zombie_head.json
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
@@ -62,7 +62,7 @@ eb95a5fa4ec9242418078ebb59db7da62b64115a data/verdant/loot_table/blocks/light_bl
 24ef0e612991533c3f79d7cb90e6eb56c2254325 data/verdant/loot_table/blocks/light_gray_candle_ube_cake.json
 3a56217a5ad5e8a4c748e9390c6a2527888beb01 data/verdant/loot_table/blocks/lime_candle_ube_cake.json
 b393a0319e6fda920f4aa519614f6db839141a04 data/verdant/loot_table/blocks/magenta_candle_ube_cake.json
-ea1b05d56e0af8a20a55909f79ddea30692402fb data/verdant/loot_table/blocks/mango_leaves.json
+19de2200c58760db9385e3ef44f96993dbfa6aa6 data/verdant/loot_table/blocks/mango_leaves.json
 23d86ce8b704be04d0083f6c684ca2f94c2d868f data/verdant/loot_table/blocks/mango_sapling.json
 c7d51223653b8cc4362b8eb927a4b88819a3bbc8 data/verdant/loot_table/blocks/orange_candle_ube_cake.json
 ac8fb6c511fba180a2a1aba530f1986f77543e07 data/verdant/loot_table/blocks/packed_gravel.json

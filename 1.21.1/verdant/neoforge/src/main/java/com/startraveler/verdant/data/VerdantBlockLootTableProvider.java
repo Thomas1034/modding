@@ -1,9 +1,6 @@
 package com.startraveler.verdant.data;
 
-import com.startraveler.verdant.block.custom.BombPileBlock;
-import com.startraveler.verdant.block.custom.CassavaCropBlock;
-import com.startraveler.verdant.block.custom.SpreadingCropBlock;
-import com.startraveler.verdant.block.custom.StranglerVineBlock;
+import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
@@ -27,7 +24,6 @@ import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -90,7 +86,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .when(this.hasShears().or(this.hasSilkTouch()).invert())
-                        .add(((LootPoolSingletonContainer.Builder) this.applyExplosionCondition(
+                        .add((this.applyExplosionCondition(
                                 leavesBlock,
                                 LootItem.lootTableItem(fruit)
                         )).when(BonusLevelTableCondition.bonusLevelFlatChance(
@@ -100,7 +96,17 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                                 0.00625F,
                                 0.008333334F,
                                 0.025F
-                        ))));
+                        ))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .when(this.hasShears().or(this.hasSilkTouch()).invert())
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
+                                .setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(
+                                                FruitingTintedParticleLeavesBlock.STAGES,
+                                                FruitingTintedParticleLeavesBlock.MAX_STAGES
+                                        )))
+                        .add((this.applyExplosionCondition(leavesBlock, LootItem.lootTableItem(fruit)))));
     }
 
     @Override

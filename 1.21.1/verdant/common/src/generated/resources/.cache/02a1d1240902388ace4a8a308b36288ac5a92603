@@ -1,4 +1,4 @@
-// 1.21.6	2025-07-28T23:32:09.1219454	Model Definitions - verdant
+// 1.21.6	2025-08-01T23:54:57.477314	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -208,6 +208,7 @@ d60adafd8ee84774efaaae95316546f5985002e0 assets/verdant/items/fused_gravel.json
 4eb45d6c87bb2b71e0b9fd1ed25e512081f70b35 assets/verdant/items/fused_scree.json
 607cf08831f1356404583c35f5d9d80245174b56 assets/verdant/items/golden_bread.json
 1f0af92d9ba2f2512f6e1cf42c30a699c4da9bce assets/verdant/items/golden_cassava.json
+ccd4788958479b2dc659dfc69de265990ad263c2 assets/verdant/items/golden_mango.json
 77cbc7e2db2c71fee7f2af8c7c9cac4f3087b535 assets/verdant/items/grus.json
 de551600a55b246d4e70cfdfba8cd89471471154 assets/verdant/items/grus_coal_ore.json
 d7db98e7c548daa52e06ba826285b24200e2d859 assets/verdant/items/grus_copper_ore.json
@@ -666,6 +667,7 @@ ce2d77d985028c793bf3036be94abf0fe4c51319 assets/verdant/models/item/drowned_heml
 9836d817343a1061d2b125bfe90cfb0dc6d53521 assets/verdant/models/item/fragile_flask.json
 b1739d8351e56cc5e8e43a698f299eb0f2a510f0 assets/verdant/models/item/golden_bread.json
 3c823437c5ded1eeaea81271864c45e6bcc20c3a assets/verdant/models/item/golden_cassava.json
+ddbe5e4d76a4f9d77c1a5d0d2d2cf6553883aaf3 assets/verdant/models/item/golden_mango.json
 068cfa0db322a715a2c90682ac1a841d359493fe assets/verdant/models/item/heartwood_axe.json
 d6364866d9cc687410d2edbcb7a4bf26cb0e264c assets/verdant/models/item/heartwood_boots.json
 dc01cd6861131d2cbdcaa073a07ebe1d1ec01427 assets/verdant/models/item/heartwood_boots_amethyst_trim.json

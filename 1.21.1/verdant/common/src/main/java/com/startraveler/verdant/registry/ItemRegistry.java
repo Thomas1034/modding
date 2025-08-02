@@ -459,7 +459,8 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register("imbuement_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register(
+            "imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
     );
 
@@ -648,13 +649,22 @@ public class ItemRegistry {
             ))
     );
 
-    public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register("thorns_upgrade_smithing_template",
+    public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register(
+            "thorns_upgrade_smithing_template",
             SmithingTemplateExtensions::createThornsUpgradeTemplate
     );
 
     public static final RegistryObject<Item, Item> MANGO = register(
             "mango",
-            (properties) -> new Item(properties.food(Foods.APPLE))
+            (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(4)
+                    .saturationModifier(0.3F)
+                    .build()).component(DataComponents.CONSUMABLE, ConsumablesList.MANGO))
+    );
+    public static final RegistryObject<Item, Item> GOLDEN_MANGO = register(
+            "golden_mango",
+            (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(4)
+                    .saturationModifier(0.3F)
+                    .build()).component(DataComponents.CONSUMABLE, ConsumablesList.GOLDEN_MANGO))
     );
 
     public static void init() {
@@ -699,16 +709,16 @@ public class ItemRegistry {
             DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
             IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
@@ -723,16 +733,16 @@ public class ItemRegistry {
             ));
 
             THORNS_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             THORNS_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
-                    "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
-            )).
+                            "item",
+                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
+                    )).
 
                     withStyle(DESCRIPTION_FORMAT);
 

@@ -112,7 +112,23 @@ public class ConsumablesList {
                     1
             ))))
             .build();
-
+    public static final Consumable MANGO = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DRIED_KELP.consumeSeconds())
+            .onConsume(new ApplyStatusEffectsConsumeEffect(
+                    new MobEffectInstance(MobEffects.REGENERATION, 60, 1),
+                    1
+            ))
+            .build();
+    public static final Consumable GOLDEN_MANGO = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds())
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
+                    new MobEffectInstance(
+                            MobEffects.REGENERATION,
+                            300,
+                            2
+                    )
+            )))
+            .build();
 
     private ConsumablesList() {
     }

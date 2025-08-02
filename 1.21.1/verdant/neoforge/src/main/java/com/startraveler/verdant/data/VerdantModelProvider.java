@@ -795,6 +795,7 @@ public class VerdantModelProvider extends ModelProvider {
         skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
 
         basicItem(ItemRegistry.MANGO.get());
+        basicItem(ItemRegistry.GOLDEN_MANGO.get());
 
         basicItem(ItemRegistry.ALOE_PUP.get());
 

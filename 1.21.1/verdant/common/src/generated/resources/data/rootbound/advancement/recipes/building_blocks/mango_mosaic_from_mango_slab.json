@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mango_mosaic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:mango_mosaic"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mango_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:mango_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rootbound:mango_mosaic_from_mango_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mango_slab",
+      "has_mango_mosaic"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rootbound:mango_mosaic_from_mango_slab"
+    ]
+  }
+}

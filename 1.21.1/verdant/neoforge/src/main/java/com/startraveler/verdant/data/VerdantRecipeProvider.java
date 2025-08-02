@@ -966,6 +966,16 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        // Golden mango
+        shaped(
+                List.of("GGG", "GCG", "GGG"),
+                List.of('G', 'C'),
+                List.of(Items.GOLD_INGOT, ItemRegistry.MANGO.get()),
+                RecipeCategory.FOOD,
+                ItemRegistry.GOLDEN_MANGO.get(),
+                1
+        );
+
         // TODO End of recipe definitions
     }
 
