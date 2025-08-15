@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/fissure_base",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "back": "verdant:block/ooze_fissure_back",
+    "front": "verdant:block/ooze_fissure_front",
+    "particle": "verdant:block/ooze_fissure_front",
+    "side": "verdant:block/ooze_fissure_side"
+  }
+}

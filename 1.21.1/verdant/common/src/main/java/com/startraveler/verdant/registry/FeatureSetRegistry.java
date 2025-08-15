@@ -27,6 +27,7 @@ public class FeatureSetRegistry {
     public static final ResourceLocation ALWAYS = set("always");
     public static final ResourceLocation BELOW_LOG = set("below_log");
     public static final ResourceLocation MULCH = set("mulch");
+    public static final ResourceLocation LARGE_MULCH = set("large_mulch");
 
     private static ResourceLocation set(String name) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);

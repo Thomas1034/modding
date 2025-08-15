@@ -221,9 +221,13 @@ public class ItemRegistry {
             )
     );
 
-    public static final RegistryObject<Item, Item> MULCH_SACK = register(
-            "mulch_sack",
-            (properties) -> new FeaturePlacingItem(properties.durability(64), FeatureSetRegistry.MULCH)
+    public static final RegistryObject<Item, Item> MULCH_PILE = register(
+            "mulch_pile",
+            (properties) -> new FeaturePlacingItem(properties, FeatureSetRegistry.MULCH)
+    );
+    public static final RegistryObject<Item, Item> LARGE_MULCH_PILE = register(
+            "large_mulch_pile",
+            (properties) -> new FeaturePlacingItem(properties, FeatureSetRegistry.LARGE_MULCH)
     );
 
     public static final RegistryObject<Item, Item> SACK = register(
@@ -665,6 +669,15 @@ public class ItemRegistry {
             (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(4)
                     .saturationModifier(0.3F)
                     .build()).component(DataComponents.CONSUMABLE, ConsumablesList.GOLDEN_MANGO))
+    );
+
+    public static final RegistryObject<Item, Item> SAP_GLOB = register(
+            "sap_glob",
+            Item::new
+    );
+    public static final RegistryObject<Item, Item> VERDANT_RESIN_BRICK = register(
+            "verdant_resin_brick",
+            Item::new
     );
 
     public static void init() {

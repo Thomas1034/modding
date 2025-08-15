@@ -133,7 +133,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(BlockRegistry.BLASTING_BLOSSOM.get(), noDrop());
         this.dropOther(BlockRegistry.SMALL_ALOE.get(), ItemRegistry.ALOE_LEAF.get());
         this.dropOther(BlockRegistry.LARGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
-        this.dropOther(BlockRegistry.HUGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
+        // TODO
+        // this.dropOther(BlockRegistry.HUGE_ALOE.get(), ItemRegistry.ALOE_PUP.get());
         this.dropOther(BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
         this.dropSelf(BlockRegistry.GRUS.get());
         this.dropSelf(BlockRegistry.STONY_GRUS.get());
@@ -143,9 +144,14 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.ROPE_LADDER.get());
         this.dropSelf(BlockRegistry.FISH_TRAP.get());
         this.dropSelf(BlockRegistry.ANTIGORITE.get());
-        this.add(BlockRegistry.STRANGLER_VINE.get(), noDrop());
-        this.add(BlockRegistry.LEAFY_STRANGLER_VINE.get(), noDrop());
-        requireSilkTouch(BlockRegistry.STRANGLER_LEAVES.get(), Items.VINE, List.of(0, 1));
+        // Maybe move to leaves drop?
+        this.add(
+                BlockRegistry.STRANGLER_LEAVES.get(), this.createLeavesDrops(
+                        BlockRegistry.STRANGLER_LEAVES.get(),
+                        Blocks.VINE,
+                        NORMAL_LEAVES_SAPLING_CHANCES
+                )
+        );
         requireSilkTouch(BlockRegistry.WILTED_STRANGLER_LEAVES.get(), Items.STICK, List.of(0, 1));
         requireSilkTouch(BlockRegistry.POISON_STRANGLER_LEAVES.get(), BlockRegistry.POISON_IVY.get(), List.of(1, 3));
         requireSilkTouch(BlockRegistry.THORNY_STRANGLER_LEAVES.get(), ItemRegistry.THORN.get(), List.of(1, 3));
@@ -506,6 +512,8 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropOther(BlockRegistry.BRAMBLE_WALL_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
         this.dropOther(BlockRegistry.BRAMBLE_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
+
+        this.add(BlockRegistry.OOZE_FISSURE_BLOCK.get(), noDrop());
 
     }
 

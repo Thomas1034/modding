@@ -473,7 +473,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         // Slime from Aloe
-        shapeless(List.of(VerdantTags.Items.ALOES), List.of(3), RecipeCategory.TOOLS, Items.SLIME_BALL, 1);
+        shapeless(List.of(VerdantTags.Items.ALOES), List.of(3), RecipeCategory.TOOLS, Items.SLIME_BALL, 3);
 
 
         // Heartwood armor
@@ -942,7 +942,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("#S#", "#L#", "###"),
                 List.of('#', 'S', 'L'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.COPPER_INGOT, WoodSets.STRANGLER.getLogItems()),
+                List.of(WoodSets.STRANGLER.getLogItems(), Items.COPPER_INGOT, WoodSets.HEARTWOOD.getLogItems()),
                 RecipeCategory.COMBAT,
                 ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get(),
                 1
@@ -956,13 +956,22 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.SACK.get(),
                 1
         );
-        // Mulch sack
+        // Mulch pile
         shaped(
-                List.of("trt", "ttt", "ttt"),
+                List.of("ttt", "trt", "t t"),
                 List.of('t', 'r'),
-                List.of(ItemRegistry.THORN.get(), ItemRegistry.ROPE.get()),
+                List.of(VerdantTags.Items.MULCH_INGREDIENTS, ItemRegistry.ROPE.get()),
                 RecipeCategory.TOOLS,
-                ItemRegistry.MULCH_SACK.get(),
+                ItemRegistry.MULCH_PILE.get(),
+                1
+        );
+        // Large mulch pile
+        shaped(
+                List.of("pp", "pp"),
+                List.of('p'),
+                List.of(ItemRegistry.MULCH_PILE.get()),
+                RecipeCategory.TOOLS,
+                ItemRegistry.LARGE_MULCH_PILE.get(),
                 1
         );
 
@@ -973,6 +982,34 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(Items.GOLD_INGOT, ItemRegistry.MANGO.get()),
                 RecipeCategory.FOOD,
                 ItemRegistry.GOLDEN_MANGO.get(),
+                1
+        );
+
+        shaped(
+                List.of("ggg", "glg", "ggg"),
+                List.of('g', 'l'),
+                List.of(Items.SLIME_BALL, WoodSets.HEARTWOOD.getLog().get().asItem()),
+                RecipeCategory.BUILDING_BLOCKS,
+                ItemRegistry.SAP_GLOB.get(),
+                9
+        );
+        shaped(
+                List.of("ggg", "ggg", "ggg"),
+                List.of('g'),
+                List.of(ItemRegistry.SAP_GLOB.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.SAP_BLOCK.get(),
+                1
+        );
+        shapeless(RecipeCategory.MISC, BlockRegistry.SAP_BLOCK.get(), 1, ItemRegistry.SAP_GLOB.get(), 9);
+
+        smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_BRICK.get(), ItemRegistry.SAP_GLOB.get());
+        shaped(
+                List.of("bb", "bb"),
+                List.of('b'),
+                List.of(ItemRegistry.VERDANT_RESIN_BRICK.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BRICKS.get(),
                 1
         );
 

@@ -162,7 +162,9 @@ public class VerdantModelProvider extends ModelProvider {
             ).with(
                     new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.DOWN)
                             .term(BombFlowerCropBlock.AGE, i),
-                    BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
+                    BlockModelGenerators.variants(new Variant(model))
+                            .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
+                            .with(VariantMutator.X_ROT.withValue(Quadrant.R180))
             ).with(
                     new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.EAST)
                             .term(BombFlowerCropBlock.AGE, i),
@@ -187,6 +189,39 @@ public class VerdantModelProvider extends ModelProvider {
                             .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
             );
         }
+
+        return generator;
+    }
+
+    public static MultiPartGenerator createOozeFissure(Block block, ResourceLocation model) {
+        MultiPartGenerator generator = MultiPartGenerator.multiPart(block);
+        generator = generator.with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.UP),
+                BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
+        ).with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.DOWN),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R180))
+        ).with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.EAST),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
+        ).with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.SOUTH),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R180))
+        ).with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.NORTH),
+                BlockModelGenerators.variants(new Variant(model)).with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+        ).with(
+                new ConditionBuilder().term(BombFlowerCropBlock.FACING, Direction.WEST),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R270))
+        );
 
         return generator;
     }
@@ -744,7 +779,8 @@ public class VerdantModelProvider extends ModelProvider {
                 IntStream.range(0, ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getMaxAge() + 1).toArray()
         );
 
-        hugeAloeBlock(BlockRegistry.HUGE_ALOE.get());
+        // TODO
+        // hugeAloeBlock(BlockRegistry.HUGE_ALOE.get());
         mirroredColumnBlock(BlockRegistry.SCREE.get());
         mirroredColumnBlock(BlockRegistry.PACKED_SCREE.get());
         mirroredColumnBlock(BlockRegistry.FUSED_SCREE.get());
@@ -793,6 +829,12 @@ public class VerdantModelProvider extends ModelProvider {
 
         wallSkullBlock(BlockRegistry.BRAMBLE_WALL_HEAD.get(), BlockRegistry.BRAMBLE_HEAD.get());
         skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
+
+        oozeFissure(BlockRegistry.OOZE_FISSURE_BLOCK.get());
+
+
+        basicItem(ItemRegistry.SAP_GLOB.get());
+        basicItem(ItemRegistry.VERDANT_RESIN_BRICK.get());
 
         basicItem(ItemRegistry.MANGO.get());
         basicItem(ItemRegistry.GOLDEN_MANGO.get());
@@ -956,7 +998,8 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.POISONER_SPAWN_EGG.get());
 
         itemModels.generateBundleModels(ItemRegistry.SACK.get());
-        basicItem(ItemRegistry.MULCH_SACK.get());
+        basicItem(ItemRegistry.MULCH_PILE.get());
+        basicItem(ItemRegistry.LARGE_MULCH_PILE.get());
     }
 
     @Override
@@ -1029,7 +1072,11 @@ public class VerdantModelProvider extends ModelProvider {
                                     return modelLocation;
                                 }
                         )))));
-        blockModels.registerSimpleTintedItemModel(block, itemModelLocation.getValue(), ItemModelUtils.constantTint(tint));
+        blockModels.registerSimpleTintedItemModel(
+                block,
+                itemModelLocation.getValue(),
+                ItemModelUtils.constantTint(tint)
+        );
     }
 
 
@@ -1170,6 +1217,16 @@ public class VerdantModelProvider extends ModelProvider {
                         .get(block)
                         .updateTemplate(template -> template.extend().renderType("cutout").build())
                         .createWithSuffix(block, "_stage" + i, blockModels.modelOutput)
+        ));
+    }
+
+    protected void oozeFissure(Block block) {
+        blockModels.blockStateOutput.accept(createOozeFissure(
+                block,
+                VerdantTexturedModel.OOZE_FISSURE
+                        .get(block)
+                        .updateTemplate(template -> template.extend().renderType("cutout").build())
+                        .create(block, blockModels.modelOutput)
         ));
     }
 

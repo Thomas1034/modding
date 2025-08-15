@@ -15,6 +15,7 @@
     "LivingEntityMixin",
     "MobEffectInstanceAccessors",
     "PrimedTntAccessors",
+    "ServerPlayerMixinNeoForge",
     "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",

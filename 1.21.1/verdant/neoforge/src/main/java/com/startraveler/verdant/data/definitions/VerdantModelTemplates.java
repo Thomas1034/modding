@@ -67,6 +67,14 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.INSET_LOW
     );
 
+    public static final ModelTemplate OOZE_FISSURE = ModelTemplates.create(
+            "verdant:fissure_base",
+            TextureSlot.FRONT,
+            TextureSlot.BACK,
+            TextureSlot.SIDE,
+            TextureSlot.PARTICLE
+    );
+
     public static final ModelTemplate ASTERISK = ModelTemplates.create(
             "verdant:asterisk",
             TextureSlot.CROSS,
@@ -79,8 +87,7 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.PLUS
     );
 
-    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create(
-            "verdant:double_sided_cube_column",
+    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create("verdant:double_sided_cube_column",
             TextureSlot.END,
             TextureSlot.SIDE
     );

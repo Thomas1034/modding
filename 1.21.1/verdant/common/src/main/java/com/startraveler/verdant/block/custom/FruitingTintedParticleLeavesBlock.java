@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -29,7 +30,7 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
 
     public static final IntegerProperty STAGES = BlockStateProperties.AGE_2;
     public static final int MAX_STAGES = 2;
-    private static final double GROWTH_CHANCE = 0.10;
+    private static final double GROWTH_CHANCE = 0.0125;
     protected final Function<RandomSource, ItemStack> harvest;
 
     public FruitingTintedParticleLeavesBlock(float particleChance, Properties properties, Function<RandomSource, ItemStack> harvest) {
@@ -43,10 +44,10 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NotNull ServerLevel serverLevel, @NotNull BlockPos pos, RandomSource random) {
         int currentStage = state.getValue(STAGES);
+        boolean randomRollSucceeds = random.nextDouble() < GROWTH_CHANCE;
         if (!this.decaying(state)) {
-            boolean randomRollSucceeds = random.nextDouble() < GROWTH_CHANCE;
             Services.CROP_EVENT_HELPER.fireEvent(
                     serverLevel, pos, state, (currentStage < MAX_STAGES) && randomRollSucceeds, () -> {
                         serverLevel.setBlockAndUpdate(
@@ -56,17 +57,23 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
                     }
             );
         }
+        super.randomTick(
+                randomRollSucceeds && !this.decaying(state) ? serverLevel.getBlockState(pos) : state,
+                serverLevel,
+                pos,
+                random
+        );
 
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(STAGES);
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         int currentAge = state.getValue(STAGES);
         if (currentAge == MAX_STAGES) {
             if (stack.is(CommonTags.Items.TOOLS_SHEAR)) {
@@ -91,17 +98,17 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader levelReader, @NotNull BlockPos blockPos, BlockState blockState) {
         return blockState.getValue(STAGES) != MAX_STAGES;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public void performBonemeal(ServerLevel serverLevel, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, BlockState blockState) {
         serverLevel.setBlockAndUpdate(
                 blockPos,
                 blockState.setValue(STAGES, Math.min(blockState.getValue(STAGES) + 1, MAX_STAGES))

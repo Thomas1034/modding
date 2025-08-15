@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:mulch",
+        "weight": 1
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:large_mulch",
+        "weight": 63
+      }
+    }
+  ],
+  "name": "verdant:large_mulch"
+}

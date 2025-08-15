@@ -183,6 +183,7 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
+            EntityRenderers.register(EntityTypeRegistry.OOZE.get(), OozeRenderer::new);
 
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.POTTED_MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);

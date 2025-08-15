@@ -19,6 +19,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
@@ -157,6 +158,7 @@ public class Verdant {
         event.put(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes().build());
         event.put(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes().build());
         event.put(EntityTypeRegistry.BRAMBLE.get(), BrambleEntity.createAttributes().build());
+        event.put(EntityTypeRegistry.OOZE.get(), Monster.createMonsterAttributes().build());
     }
 
     public static void registerContainerCapabilities(RegisterCapabilitiesEvent event) {

@@ -73,6 +73,7 @@ public class VerdantTags {
         public static final TagKey<Block> ALLOWS_ASH_SPREAD = tag("allows_ash_spread");
         public static final TagKey<Block> BLOCKS_ASH_SPREAD = tag("blocks_ash_spread");
         public static final TagKey<Block> VERDANT_RESIN_BLOCKS = tag("verdant_resin_blocks");
+        public static final TagKey<Block> SUSTAINS_OOZE_FISSURE = tag("sustains_ooze_fissure");
 
         private static TagKey<Block> tag(String name) {
             TagKey<Block> tag = TagKey.create(
@@ -117,6 +118,7 @@ public class VerdantTags {
         public static final TagKey<Item> DARTS = tag("darts");
         public static final TagKey<Item> BLASTING_BLOSSOM_BOMBS = tag("blasting_blossom_bombs");
         public static final TagKey<Item> DART_EFFECT_BINDERS = tag("dart_effect_binders");
+        public static final TagKey<Item> MULCH_INGREDIENTS = tag("mulch_ingredients");
 
         private static TagKey<Item> tag(String name) {
             TagKey<Item> tag = TagKey.create(

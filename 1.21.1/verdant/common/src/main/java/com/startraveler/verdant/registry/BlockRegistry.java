@@ -172,7 +172,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> ROPE_LADDER;
     public static final RegistryObject<Block, Block> SMALL_ALOE;
     public static final RegistryObject<Block, Block> LARGE_ALOE;
+    /* TODO
     public static final RegistryObject<Block, Block> HUGE_ALOE;
+     */
     public static final RegistryObject<Block, Block> SCREE;
     public static final RegistryObject<Block, Block> PACKED_SCREE;
     public static final RegistryObject<Block, Block> FUSED_SCREE;
@@ -203,6 +205,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> MANGO_LEAVES;
     public static final RegistryObject<Block, Block> MANGO_SAPLING;
     public static final RegistryObject<Block, Block> POTTED_MANGO_SAPLING;
+    public static final RegistryObject<Block, Block> OOZE_FISSURE_BLOCK;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -610,7 +613,9 @@ public class BlockRegistry {
 
         SNAPLEAF = registerBlockWithItem(
                 "snapleaf", () -> new TrapBlock(
-                        properties(Blocks.OAK_LEAVES, "snapleaf").noCollission().noOcclusion(),
+                        properties(Blocks.OAK_LEAVES, "snapleaf").noCollission()
+                                .noOcclusion()
+                                .requiresCorrectToolForDrops(),
                         15,
                         3,
                         4,
@@ -943,12 +948,14 @@ public class BlockRegistry {
         LARGE_ALOE = registerBlockWithoutItem(
                 "large_aloe", () -> new AloeCropBlock(
                         (state, level, pos) -> {
+                            // TODO
+                            /*
                             if (false) {
                                 if (((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).canPlace(level, pos, true)) {
                                     ((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).placeFullBush(level, pos, 0);
                                 }
                             }
-
+                            */
 
                         },
                         (rand) -> new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2)),
@@ -970,6 +977,7 @@ public class BlockRegistry {
                 }
         );
 
+        /* TODO
         HUGE_ALOE = registerBlockWithoutItem(
                 "huge_aloe", () -> new HugeAloeCropBlock(
                         properties(Blocks.SWEET_BERRY_BUSH, "huge_aloe"),
@@ -977,6 +985,7 @@ public class BlockRegistry {
                         () -> ItemRegistry.ALOE_PUP.get()
                 )
         );
+        */
 
         SCREE = registerBlockWithItem(
                 "scree", () -> new ColoredFallingPillarBlock(
@@ -1215,6 +1224,15 @@ public class BlockRegistry {
                 )
         );
 
+        OOZE_FISSURE_BLOCK = registerBlockWithItem(
+                "ooze_fissure",
+                () -> new OozeFissureBlock(
+                        properties(Blocks.SPAWNER, "ooze_fissure").noOcclusion()
+                                .emissiveRendering((state, level, pos) -> state.getValue(OozeFissureBlock.ACTIVE))
+                                .lightLevel(state -> state.getValue(OozeFissureBlock.ACTIVE) ? 8 : 0)
+                )
+        );
+
 
         BRAMBLE_FRAME = registerBlockWithItem("bramble_frame", () -> new FrameBlock(properties("bramble_frame")));
 
@@ -1222,6 +1240,7 @@ public class BlockRegistry {
                 "bramble_head",
                 () -> new SimpleSkullBlock(properties(Blocks.ZOMBIE_HEAD, "bramble_head"))
         );
+
         BRAMBLE_WALL_HEAD = registerBlockWithoutItem(
                 "bramble_wall_head",
                 () -> new SimpleWallSkullBlock(properties(Blocks.ZOMBIE_WALL_HEAD, "bramble_wall_head"))

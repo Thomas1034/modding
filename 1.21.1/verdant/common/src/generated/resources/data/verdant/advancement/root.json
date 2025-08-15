@@ -17,7 +17,7 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "verdant:textures/gui/advancements/backgrounds/verdant.png",
+    "background": "verdant:gui/advancements/backgrounds/verdant",
     "description": {
       "translate": "advancements.verdant.root.description"
     },

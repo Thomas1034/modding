@@ -107,7 +107,7 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_RUE,
                 BlockRegistry.SMALL_ALOE,
                 BlockRegistry.LARGE_ALOE,
-                BlockRegistry.HUGE_ALOE,
+                // TODO BlockRegistry.HUGE_ALOE,
                 BlockRegistry.BLASTING_BLOSSOM,
                 BlockRegistry.BLASTING_BUNCH,
                 BlockRegistry.BLUEWEED,
@@ -117,6 +117,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_MANGO_SAPLING
         );
         markTranslucent(BlockRegistry.SAP_BLOCK);
+
+
         ColorProviderRegistry.BLOCK.register(
                 (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
                         blockAndTintGetter,
@@ -135,6 +137,7 @@ public class VerdantClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.OOZE.get(), OozeRenderer::new);
 
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),

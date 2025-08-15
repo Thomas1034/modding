@@ -1,6 +1,7 @@
 package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.advancement.InventoryChangeItemCountTrigger;
 import com.startraveler.verdant.advancement.VerdantPlantAttackTriggerInstance;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
@@ -11,6 +12,7 @@ import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -43,10 +45,7 @@ public class VerdantAdvancementProvider {
                 Component.translatable("advancements.verdant.root.title"),
                 Component.translatable("advancements.verdant.root.description"),
                 // The background texture. Use null if you don't want a background texture (for non-root advancements).
-                ResourceLocation.fromNamespaceAndPath(
-                        Constants.MOD_ID,
-                        "textures/gui/advancements/backgrounds/verdant.png"
-                ),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "gui/advancements/backgrounds/verdant"),
                 // The frame type. Valid values are AdvancementType.TASK, CHALLENGE, or GOAL.
                 AdvancementType.TASK,
                 // Whether to show the advancement toast or not.
@@ -117,6 +116,133 @@ public class VerdantAdvancementProvider {
                 writer,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overgrowth")
         );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.ROPE.get()),
+                Component.translatable("advancements.verdant.craft_rope.title"),
+                Component.translatable("advancements.verdant.craft_rope.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(overgrowth);
+        builder.addCriterion(
+                "craft_rope", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope_from_strangler_tendril")
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_rope")));
+        AdvancementHolder craft_rope = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.ROPE_COIL.get()),
+                Component.translatable("advancements.verdant.craft_rope_coil.title"),
+                Component.translatable("advancements.verdant.craft_rope_coil.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(craft_rope);
+        builder.addCriterion(
+                "craft_rope_coil", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope_coil_from_rope")
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_rope_coil")));
+        AdvancementHolder craft_rope_coil = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope_coil")
+        );
+
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.SACK.get()),
+                Component.translatable("advancements.verdant.craft_sack.title"),
+                Component.translatable("advancements.verdant.craft_sack.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(craft_rope);
+        builder.addCriterion(
+                "craft_sack", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sack_from_vine_rope")
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_sack")));
+        AdvancementHolder craft_sack = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_sack")
+        );
+
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.SACK.get()),
+                Component.translatable("advancements.verdant.many_sacks.title"),
+                Component.translatable("advancements.verdant.many_sacks.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(craft_sack);
+        builder.addCriterion(
+                "carry_sacks", InventoryChangeItemCountTrigger.TriggerInstance.hasItems(new ItemPredicate(
+                        Optional.of(HolderSet.direct(ItemRegistry.SACK.asHolder())),
+                        MinMaxBounds.Ints.atLeast(10),
+                        DataComponentMatchers.ANY
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("carry_sacks")));
+        AdvancementHolder many_sacks = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "many_sacks")
+        );
+
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.SACK.get()),
+                Component.translatable("advancements.verdant.too_many_sacks.title"),
+                Component.translatable("advancements.verdant.too_many_sacks.description"),
+                null,
+                AdvancementType.CHALLENGE,
+                true,
+                true,
+                true
+        );
+        builder.rewards(AdvancementRewards.Builder.experience(50));
+        builder.parent(many_sacks);
+        builder.addCriterion(
+                "carry_sacks", InventoryChangeItemCountTrigger.TriggerInstance.hasItems(new ItemPredicate(
+                        Optional.of(HolderSet.direct(ItemRegistry.SACK.asHolder())),
+                        MinMaxBounds.Ints.atLeast(28),
+                        DataComponentMatchers.ANY
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("carry_sacks")));
+        AdvancementHolder too_many_sacks = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "too_many_sacks")
+        );
+
 
         builder = Advancement.Builder.advancement();
         builder.display(
@@ -400,10 +526,11 @@ public class VerdantAdvancementProvider {
                 true,
                 true
         );
+        builder.rewards(AdvancementRewards.Builder.experience(85));
         builder.parent(deep_roots);
         builder.addCriterion(
                 "rip_them_all_down",
-                InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item()
+                InventoryChangeItemCountTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item()
                         .of(registries.lookupOrThrow(Registries.ITEM), WoodSets.HEARTWOOD.getLog().get())
                         .withCount(MinMaxBounds.Ints.atLeast(128)))
         );
@@ -496,7 +623,7 @@ public class VerdantAdvancementProvider {
                 true,
                 false
         );
-        builder.parent(trap_plant);
+        builder.parent(thorn_bush);
         builder.addCriterion(
                 "craft_spikes_rope",
                 RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(

@@ -105,11 +105,6 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        Shapes.join(
-                Shapes.join(Shapes.block(), Block.box(3, 3, 0, 13, 13, 2), BooleanOp.ONLY_FIRST),
-                Block.box(5, 5, 2, 11, 11, 4),
-                BooleanOp.ONLY_FIRST
-        );
         return BLOCK_SUPPORT_SHAPE.get(state.getValue(FACING));
     }
 

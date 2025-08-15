@@ -4,12 +4,14 @@
     "verdant:rooted",
     "verdant:poisoner",
     "verdant:bramble",
+    "verdant:ooze",
     "minecraft:bogged",
     "minecraft:creeper",
     "minecraft:spider",
     "minecraft:cave_spider",
     "minecraft:creaking",
     "minecraft:parrot",
+    "minecraft:slime",
     "#minecraft:impact_projectiles"
   ]
 }

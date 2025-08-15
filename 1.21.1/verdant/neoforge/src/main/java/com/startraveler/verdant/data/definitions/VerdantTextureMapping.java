@@ -26,6 +26,13 @@ public class VerdantTextureMapping {
                 .put(TextureSlot.END, TextureMapping.getBlockTexture(block, "_top"));
     }
 
+    public static TextureMapping oozeFissure(Block block) {
+        return (new TextureMapping()).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"))
+                .put(TextureSlot.BACK, TextureMapping.getBlockTexture(block, "_back"))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"))
+                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block, "_front"));
+    }
+
     public static TextureMapping asterisk(ResourceLocation plus, ResourceLocation cross) {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
     }
@@ -49,10 +56,7 @@ public class VerdantTextureMapping {
     }
 
     public static TextureMapping bombPile(Block block, int bombs) {
-        return new TextureMapping().put(
-                        VerdantTextureSlot.FLOWER,
-                        TextureMapping.getBlockTexture(block)
-                )
+        return new TextureMapping().put(VerdantTextureSlot.FLOWER, TextureMapping.getBlockTexture(block))
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block))
                 .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
     }

@@ -17,10 +17,7 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.item.component.BlowdartTippingIngredient;
-import com.startraveler.verdant.item.component.DurabilityChanging;
-import com.startraveler.verdant.item.component.RopeCoilData;
-import com.startraveler.verdant.item.component.VerdantFriendliness;
+import com.startraveler.verdant.item.component.*;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.component.DataComponentType;
@@ -33,7 +30,8 @@ public class DataComponentRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<DataComponentType<?>, DataComponentType<RopeCoilData>> ROPE_COIL = COMPONENTS.register("rope_coil",
+    public static final RegistryObject<DataComponentType<?>, DataComponentType<RopeCoilData>> ROPE_COIL = COMPONENTS.register(
+            "rope_coil",
             () -> DataComponentType.<RopeCoilData>builder().persistent(RopeCoilData.CODEC).build()
     );
 
@@ -46,6 +44,7 @@ public class DataComponentRegistry {
             "verdant_friendliness",
             () -> DataComponentType.<VerdantFriendliness>builder().persistent(VerdantFriendliness.CODEC).build()
     );
+
 
     public static final RegistryObject<DataComponentType<?>, DataComponentType<BlowdartTippingIngredient>> BLOWDART_TIPPING_INGREDIENT = COMPONENTS.register(
             "blowdart_tipping_ingredient",

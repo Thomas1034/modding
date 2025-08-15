@@ -144,6 +144,16 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
                 "advancements.verdant.overgrowth.description",
                 "Unleash the Verdant Growth upon an unsuspecting world. There is no going back."
         );
+        this.add("advancements.verdant.craft_sack.title", "Hacky Solution");
+        this.add("advancements.verdant.craft_sack.description", "Pack things into a smaller space with a sack of woven rope.");
+        this.add("advancements.verdant.craft_rope.title", "Not Quite Hithlain");
+        this.add("advancements.verdant.craft_rope.description", "Craft a rope of twisting fibers.");
+        this.add("advancements.verdant.craft_rope_coil.title", "Tossing Ideas Around");
+        this.add("advancements.verdant.craft_rope_coil.description", "Craft a way to place rope at a distance.");
+        this.add("advancements.verdant.many_sacks.title", "Sack Overflow");
+        this.add("advancements.verdant.many_sacks.description", "That's a lot of items!");
+        this.add("advancements.verdant.too_many_sacks.title", "No Turning Sack Now");
+        this.add("advancements.verdant.too_many_sacks.description", "Fill your inventory with sacks.");
         this.add("advancements.verdant.stand_on_verdant_ground.title", "What's All That Green Stuff?");
         this.add("advancements.verdant.stand_on_verdant_ground.description", "Set foot on a strange new type of grass");
         this.add("advancements.verdant.stinking_blossom.title", "It Makes Silage Smell Like Roses");

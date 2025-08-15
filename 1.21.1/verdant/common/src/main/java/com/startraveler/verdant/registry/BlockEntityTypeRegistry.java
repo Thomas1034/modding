@@ -18,6 +18,7 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.entity.FishTrapBlockEntity;
+import com.startraveler.verdant.block.custom.entity.OozeFissureBlockEntity;
 import com.startraveler.verdant.block.custom.entity.VerdantConduitBlockEntity;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
@@ -44,6 +45,11 @@ public class BlockEntityTypeRegistry {
     public static final RegistryObject<BlockEntityType<?>, BlockEntityType<VerdantConduitBlockEntity>> VERDANT_CONDUIT_BLOCK_ENTITY = BLOCK_ENTITIES.register(
             "verdant_conduit",
             () -> new BlockEntityType<>(VerdantConduitBlockEntity::new, Set.of(BlockRegistry.VERDANT_CONDUIT.get()))
+    );
+
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<OozeFissureBlockEntity>> OOZE_FISSURE_BLOCK_ENTITY = BLOCK_ENTITIES.register(
+            "ooze_fissure",
+            () -> new BlockEntityType<>(OozeFissureBlockEntity::new, Set.of(BlockRegistry.OOZE_FISSURE_BLOCK.get()))
     );
 
 

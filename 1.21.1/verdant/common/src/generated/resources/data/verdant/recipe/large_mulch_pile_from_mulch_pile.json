@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:large_mulch_pile",
+  "key": {
+    "p": "verdant:mulch_pile"
+  },
+  "pattern": [
+    "pp",
+    "pp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:large_mulch_pile"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "verdant:trap_plant",
+  "parent": "verdant:thorn_bush",
   "criteria": {
     "craft_spikes_rope": {
       "conditions": {

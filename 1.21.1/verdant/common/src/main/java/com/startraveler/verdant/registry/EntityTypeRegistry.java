@@ -114,6 +114,16 @@ public class EntityTypeRegistry {
                     .build(key("poisoner"))
     );
 
+    public static final RegistryObject<EntityType<?>, EntityType<OozeEntity>> OOZE = ENTITY_TYPES.register(
+            "ooze",
+            () -> EntityType.Builder.of(OozeEntity::new, MobCategory.MONSTER)
+                    .sized(0.52F, 0.52F)
+                    .eyeHeight(0.325F)
+                    .spawnDimensionsScale(4.0F)
+                    .clientTrackingRange(10)
+                    .build(key("ooze"))
+    );
+
     private static ResourceKey<EntityType<?>> key(String name) {
         return ResourceKey.create(
                 Registries.ENTITY_TYPE,

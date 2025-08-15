@@ -28,12 +28,14 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityTypeRegistry.ROOTED.get(),
                 EntityTypeRegistry.POISONER.get(),
                 EntityTypeRegistry.BRAMBLE.get(),
+                EntityTypeRegistry.OOZE.get(),
                 EntityType.BOGGED,
                 EntityType.CREEPER,
                 EntityType.SPIDER,
                 EntityType.CAVE_SPIDER,
                 EntityType.CREAKING,
-                EntityType.PARROT
+                EntityType.PARROT,
+                EntityType.SLIME
         );
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).addTag(EntityTypeTags.IMPACT_PROJECTILES);
         this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).add(

@@ -130,7 +130,6 @@ public class RootedEntity extends Zombie {
     }
 
     // Instantly convert skeletons and creepers.
-    // Currently, doesn't actually remove the dead entity!
     @Override
     public boolean doHurtTarget(ServerLevel level, Entity entity) {
         if (!super.doHurtTarget(level, entity)) {

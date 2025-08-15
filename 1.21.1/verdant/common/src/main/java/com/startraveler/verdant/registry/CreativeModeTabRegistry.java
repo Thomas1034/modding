@@ -79,6 +79,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.EARTH_BRICK_SLAB.get());
                         output.accept(BlockRegistry.EARTH_BRICK_STAIRS.get());
                         output.accept(BlockRegistry.EARTH_BRICK_WALL.get());
+                        output.accept(BlockRegistry.SAP_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICKS.get());
                         output.accept(BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get());
@@ -150,6 +151,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.YOUNG_ALOE_LEAF.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.OLD_ALOE_LEAF.get());
+                        output.accept(ItemRegistry.SAP_GLOB.get());
+                        output.accept(ItemRegistry.VERDANT_RESIN_BRICK.get());
                         output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
                         output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
                         output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
@@ -251,7 +254,8 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
                         output.accept(ItemRegistry.SACK.get());
-                        output.accept(ItemRegistry.MULCH_SACK.get());
+                        output.accept(ItemRegistry.MULCH_PILE.get());
+                        output.accept(ItemRegistry.LARGE_MULCH_PILE.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());

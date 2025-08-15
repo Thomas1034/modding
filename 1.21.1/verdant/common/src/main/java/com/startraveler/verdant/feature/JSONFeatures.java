@@ -57,6 +57,8 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MOSS_CARPETS = createKey("moss_carpets");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLASTING_BLOSSOMS = createKey("blasting_blossoms");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULCH = createKey("mulch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_MULCH = createKey("large_mulch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MANGO_SAPLING = createKey("mango_sapling");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(

@@ -23,6 +23,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.CloseableResourceManager;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.level.storage.DimensionDataStorage;
@@ -33,6 +34,7 @@ public class Verdant implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // WoodSet woodSet = new WoodSet()
 
         // This method is invoked by the Fabric mod loader when it is ready
         // to load your mod. You can access Fabric and Common code in this
@@ -64,6 +66,10 @@ public class Verdant implements ModInitializer {
         FabricDefaultAttributeRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(EntityTypeRegistry.BRAMBLE.get(), BrambleEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(
+                EntityTypeRegistry.OOZE.get(),
+                Monster.createMonsterAttributes().build()
+        );
 
         // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {

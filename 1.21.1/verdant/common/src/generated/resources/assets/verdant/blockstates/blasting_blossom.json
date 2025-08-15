@@ -13,7 +13,8 @@
     {
       "apply": {
         "model": "verdant:block/blasting_blossom_stage0",
-        "y": 90
+        "x": 180,
+        "y": 270
       },
       "when": {
         "age": "0",
@@ -76,7 +77,8 @@
     {
       "apply": {
         "model": "verdant:block/blasting_blossom_stage1",
-        "y": 90
+        "x": 180,
+        "y": 270
       },
       "when": {
         "age": "1",
@@ -139,7 +141,8 @@
     {
       "apply": {
         "model": "verdant:block/blasting_blossom_stage2",
-        "y": 90
+        "x": 180,
+        "y": 270
       },
       "when": {
         "age": "2",
@@ -202,7 +205,8 @@
     {
       "apply": {
         "model": "verdant:block/blasting_blossom_stage3",
-        "y": 90
+        "x": 180,
+        "y": 270
       },
       "when": {
         "age": "3",

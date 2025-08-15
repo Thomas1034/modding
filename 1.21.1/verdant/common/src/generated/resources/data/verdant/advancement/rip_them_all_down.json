@@ -3,16 +3,16 @@
   "criteria": {
     "rip_them_all_down": {
       "conditions": {
+        "counts": [
+          128
+        ],
         "items": [
           {
-            "count": {
-              "min": 128
-            },
             "items": "verdant:heartwood_log"
           }
         ]
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "verdant:inventory_change_item_count_trigger"
     }
   },
   "display": {

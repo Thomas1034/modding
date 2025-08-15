@@ -56,7 +56,6 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
 
 
         this.tag(ItemTags.COW_FOOD).add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get());
-        this.tag(ItemTags.HORSE_FOOD).add(ItemRegistry.STARCH.get());
         this.tag(ItemTags.PARROT_FOOD).add(ItemRegistry.STARCH.get());
         this.tag(ItemTags.PARROT_POISONOUS_FOOD).add(ItemRegistry.BITTER_STARCH.get());
         this.tag(ItemTags.SHEEP_FOOD).add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get());
@@ -73,7 +72,8 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 ItemRegistry.COFFEE_BERRIES.get(),
                 ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),
                 ItemRegistry.CASSAVA_CUTTINGS.get(),
-                ItemRegistry.UBE.get()
+                ItemRegistry.UBE.get(),
+                ItemRegistry.MANGO.get()
         );
         this.tag(Tags.Items.FOODS_BERRY).add(ItemRegistry.COFFEE_BERRIES.get());
         this.tag(Tags.Items.FOODS_FOOD_POISONING)
@@ -86,7 +86,11 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(Tags.Items.FOODS_VEGETABLE)
                 .add(ItemRegistry.COOKED_CASSAVA.get(), ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
         this.tag(Tags.Items.FOODS_GOLDEN)
-                .add(ItemRegistry.GOLDEN_BREAD.get(), ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
+                .add(
+                        ItemRegistry.GOLDEN_BREAD.get(),
+                        ItemRegistry.COOKED_GOLDEN_CASSAVA.get(),
+                        ItemRegistry.GOLDEN_MANGO.get()
+                );
 
         this.tag(Tags.Items.FOODS).add(
                 ItemRegistry.ROASTED_COFFEE.get(),
@@ -96,8 +100,11 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 ItemRegistry.COOKED_GOLDEN_CASSAVA.get(),
                 ItemRegistry.UBE.get(),
                 ItemRegistry.BAKED_UBE.get(),
-                ItemRegistry.UBE_COOKIE.get()
+                ItemRegistry.UBE_COOKIE.get(),
+                ItemRegistry.MANGO.get(),
+                ItemRegistry.GOLDEN_MANGO.get()
         );
+        this.tag(Tags.Items.FOODS_FRUIT).add(ItemRegistry.MANGO.get(), ItemRegistry.GOLDEN_MANGO.get());
         this.tag(Tags.Items.FOODS_EDIBLE_WHEN_PLACED).add(ItemRegistry.UBE_CAKE.get());
 
 
@@ -132,7 +139,14 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
 
         this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
 
-        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS).add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM);
+        this.tag(Tags.Items.SLIME_BALLS).add(ItemRegistry.SAP_GLOB.get());
+
+        this.tag(VerdantTags.Items.DART_EFFECT_BINDERS)
+                .add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM, ItemRegistry.SAP_GLOB.get());
+
+        this.tag(ItemTags.FROG_FOOD).add(ItemRegistry.SAP_GLOB.get());
+
+        this.tag(ItemTags.PARROT_FOOD).add(ItemRegistry.SAP_GLOB.get());
 
         this.tag(VerdantTags.Items.HAS_THORNS).add(
                 ItemRegistry.THORN.get().asItem(),
@@ -141,6 +155,21 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         );
 
         this.tag(ItemTags.BUNDLES).add(ItemRegistry.SACK.get());
+
+        this.tag(VerdantTags.Items.MULCH_INGREDIENTS)
+                .add(
+                        ItemRegistry.THORN.get(),
+                        Items.VINE,
+                        Items.LEAF_LITTER,
+                        Items.DRY_SHORT_GRASS,
+                        Items.DRY_TALL_GRASS,
+                        Items.SHORT_GRASS,
+                        Items.TALL_GRASS,
+                        Items.LEAF_LITTER,
+                        Items.SMALL_DRIPLEAF,
+                        Items.BIG_DRIPLEAF
+                );
+        this.tag(VerdantTags.Items.MULCH_INGREDIENTS).addTag(ItemTags.LEAVES);
 
         addHeartwoodSet();
         addImbuedHeartwoodSet();

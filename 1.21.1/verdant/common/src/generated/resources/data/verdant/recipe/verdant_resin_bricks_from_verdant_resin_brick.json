@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:verdant_resin_bricks",
+  "key": {
+    "b": "verdant:verdant_resin_brick"
+  },
+  "pattern": [
+    "bb",
+    "bb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:verdant_resin_bricks"
+  }
+}

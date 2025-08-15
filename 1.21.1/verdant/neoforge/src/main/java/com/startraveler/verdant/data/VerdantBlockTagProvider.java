@@ -78,7 +78,12 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
                 BlockRegistry.POISON_IVY.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
-                BlockRegistry.MANGO_LEAVES.get()
+                BlockRegistry.MANGO_LEAVES.get(),
+                BlockRegistry.SNAPLEAF.get(),
+                BlockRegistry.LARGE_ALOE.get(),
+                BlockRegistry.SMALL_ALOE.get() //,
+                // TODO
+                // BlockRegistry.HUGE_ALOE.get()
         );
 
         this.tag(BlockTags.SWORD_EFFICIENT).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
@@ -388,7 +393,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(BlockTags.CROPS).add(
                 BlockRegistry.SMALL_ALOE.get(),
                 BlockRegistry.LARGE_ALOE.get(),
-                BlockRegistry.HUGE_ALOE.get(),
+                // TODO
+                // BlockRegistry.HUGE_ALOE.get(),
                 BlockRegistry.UBE_CROP.get(),
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
@@ -398,7 +404,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(BlockTags.BEE_GROWABLES).add(
                 BlockRegistry.SMALL_ALOE.get(),
                 BlockRegistry.LARGE_ALOE.get(),
-                BlockRegistry.HUGE_ALOE.get(),
+                // TODO
+                // BlockRegistry.HUGE_ALOE.get(),
                 BlockRegistry.UBE_CROP.get(),
                 BlockRegistry.CASSAVA_CROP.get(),
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
@@ -430,10 +437,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.BAMBOO_PLANTABLE_ON);
 
         // Logs that don't support strangler vines
-        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)
-                .addTag(WoodSets.DEAD.getLogs());
-        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES)
-                .addTag(WoodSets.MANGO.getLogs());
+        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
+        this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.MANGO.getLogs());
 
         //
         this.tag(BlockTags.WALLS)
@@ -459,6 +464,16 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.CHISELED_VERDANT_RESIN_BRICKS.get(),
                 BlockRegistry.VERDANT_RESIN_BLOCK.get()
         );
+
+        this.tag(BlockTags.INCORRECT_FOR_STONE_TOOL).add(
+                BlockRegistry.SNAPLEAF.get(),
+                BlockRegistry.LARGE_ALOE.get(),
+                BlockRegistry.SMALL_ALOE.get() //,
+                // TODO
+                // BlockRegistry.HUGE_ALOE.get()
+        );
+
+        this.tag(VerdantTags.Blocks.SUSTAINS_OOZE_FISSURE).addTag(WoodSets.HEARTWOOD.getLogs());
 
 
         addDirtOres();
