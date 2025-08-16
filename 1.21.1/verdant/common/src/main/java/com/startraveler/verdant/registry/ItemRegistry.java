@@ -680,6 +680,7 @@ public class ItemRegistry {
             Item::new
     );
 
+
     public static void init() {
     }
 

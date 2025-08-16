@@ -6,6 +6,8 @@ import com.startraveler.verdant.entity.custom.BrambleEntity;
 import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
+import com.startraveler.verdant.fluid.VerdantFluidTypes;
+import com.startraveler.verdant.fluid.VerdantFluids;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.timer.BaseTimer;
 import com.startraveler.verdant.timer.PrintForTestingTimer;
@@ -21,14 +23,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.DimensionDataStorage;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -50,11 +52,17 @@ import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
 
 @Mod(Constants.MOD_ID)
 public class Verdant {
+
+
+    public static final DeferredBlock<LiquidBlock> SAP_FLOWING = null;
 
     public Verdant(final IEventBus eventBus) {
         // This method is invoked by the NeoForge mod loader when it is ready
@@ -88,6 +96,13 @@ public class Verdant {
 
         // Clearing Cache
         NeoForge.EVENT_BUS.addListener(Verdant::addReloadListeners);
+
+
+        // Fluids
+        VerdantFluids.register(eventBus);
+        VerdantFluidTypes.register(eventBus);
+        InnerRegistration.VERDANT_NEOFORGE_BLOCKS.register(eventBus);
+        InnerRegistration.VERDANT_NEOFORGE_ITEMS.register(eventBus);
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
     }
@@ -236,6 +251,34 @@ public class Verdant {
         }
         double stenchMultiplier = 1.0 / (1.0 + stenchLevel);
         event.modifyVisibility(stenchMultiplier);
+    }
+
+    public static class InnerRegistration {
+        public static final DeferredRegister.Blocks VERDANT_NEOFORGE_BLOCKS = DeferredRegister.createBlocks(Constants.MOD_ID);
+        public static final DeferredRegister.Items VERDANT_NEOFORGE_ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
+        public static final DeferredHolder<Item, Item> SAP_BUCKET = VERDANT_NEOFORGE_ITEMS.registerItem(
+                "sap_bucket",
+                (properties) -> new BucketItem(
+                        VerdantFluids.SOURCE_SAP.get(),
+                        properties.craftRemainder(Items.BUCKET).stacksTo(1)
+                )
+        );
+
+        public static final DeferredHolder<Block, LiquidBlock> SAP = VERDANT_NEOFORGE_BLOCKS.registerBlock(
+                "sap",
+                (properties) -> new LiquidBlock(
+                        VerdantFluids.SOURCE_SAP.get(),
+                        properties.mapColor(MapColor.EMERALD)
+                                .replaceable()
+                                .noCollission()
+                                .strength(100.0F)
+                                .pushReaction(
+                                        PushReaction.DESTROY)
+                                .noLootTable()
+                                .liquid()
+                                .sound(SoundType.EMPTY)
+                )
+        );
     }
 
 }

@@ -10,14 +10,17 @@ import com.startraveler.verdant.client.item.RopeLengthProperty;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.data.*;
+import com.startraveler.verdant.fluid.VerdantFluidTypes;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.TntRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
@@ -29,14 +32,19 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -64,8 +72,52 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerSelectProperties);
         modBus.addListener(VerdantClient::registerConditionalProperties);
         modBus.addListener(VerdantClient::registerTints);
+        modBus.addListener(VerdantClient::onRegisterClientExtensions);
 
         RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
+
+    }
+
+    @SubscribeEvent
+    static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(
+                new IClientFluidTypeExtensions() {
+                    private static final ResourceLocation UNDERWATER_LOCATION = ResourceLocation.withDefaultNamespace(
+                            "textures/misc/underwater.png");
+
+                    @Override
+                    public int getTintColor() {
+                        return VerdantFluidTypes.SAP_TINT;
+                    }
+
+                    @Override
+                    public @NotNull ResourceLocation getStillTexture() {
+                        return VerdantFluidTypes.WATER_STILL_RL;
+                    }
+
+                    @Override
+                    public @NotNull ResourceLocation getFlowingTexture() {
+                        return VerdantFluidTypes.WATER_FLOWING_RL;
+                    }
+
+                    @Override
+                    public ResourceLocation getOverlayTexture() {
+                        return VerdantFluidTypes.SAP_OVERLAY_RL;
+                    }
+
+                    @Override
+                    public ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+                        return UNDERWATER_LOCATION;
+                    }
+
+                    @Override
+                    public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
+                        return this.getTintColor();
+
+                    }
+
+                }, VerdantFluidTypes.SAP_FLUID_TYPE.value()
+        );
     }
 
     public static void registerTints(final RegisterColorHandlersEvent.Block event) {
