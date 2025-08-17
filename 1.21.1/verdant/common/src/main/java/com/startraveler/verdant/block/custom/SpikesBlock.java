@@ -24,19 +24,21 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class SpikesBlock extends AmethystClusterBlock {
 
     private final float damage;
 
     public SpikesBlock(Properties properties, float damage) {
-        super(5, 3, properties);
+        super(5, 10, properties);
         this.damage = damage;
     }
 
@@ -45,7 +47,9 @@ public class SpikesBlock extends AmethystClusterBlock {
         return false;
     }
 
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    @Override
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
         if (entity instanceof LivingEntity livingEntity) {
             double slowdownFactor = 0.2d;
             slowdownFactor = 1 - slowdownFactor;

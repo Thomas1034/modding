@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -47,6 +48,7 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityType.CREEPER
         );
         this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).addTag(EntityTypeTags.AQUATIC);
+        this.tag(Tags.EntityTypes.BOSSES).add(EntityTypeRegistry.BRAMBLE.get());
 
     }
 }

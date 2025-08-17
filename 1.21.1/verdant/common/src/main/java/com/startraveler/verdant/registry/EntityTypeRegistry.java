@@ -96,7 +96,7 @@ public class EntityTypeRegistry {
 
     public static final RegistryObject<EntityType<?>, EntityType<BrambleEntity>> BRAMBLE = ENTITY_TYPES.register(
             "bramble",
-            () -> EntityType.Builder.<BrambleEntity>of(BrambleEntity::new, MobCategory.MISC)
+            () -> EntityType.Builder.<BrambleEntity>of(BrambleEntity::new, MobCategory.MONSTER)
                     .fireImmune()
                     .sized(1.0f, 1.0f)
                     .eyeHeight(0.5F)

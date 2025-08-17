@@ -594,11 +594,11 @@ public class BlockRegistry {
         );
         WOODEN_SPIKES = registerBlockWithItem(
                 "wooden_spikes",
-                () -> new SpikesBlock(properties(Blocks.OAK_BUTTON, "wooden_spikes"), 3)
+                () -> new SpikesBlock(properties(Blocks.OAK_BUTTON, "wooden_spikes"), 2)
         );
         IRON_SPIKES = registerBlockWithItem(
                 "iron_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes"), 6)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes").noCollission(), 4)
         );
 
         WOODEN_TRAP = registerBlockWithItem(

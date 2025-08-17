@@ -79,11 +79,6 @@ Lingers on the ground and will not hurt the person who threw it.
 // Credits: (other direct contributors only)
 /*
 
-Changes:
-
-Features Added:
-
-Bugs Fixed:
 
  */
 public class CommonClass {

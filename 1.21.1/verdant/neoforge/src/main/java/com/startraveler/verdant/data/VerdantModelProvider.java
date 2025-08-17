@@ -134,6 +134,11 @@ public class VerdantModelProvider extends ModelProvider {
                         .with(VariantMutator.X_ROT.withValue(Quadrant.R180))
                         .with(VariantMutator.Y_ROT.withValue(Quadrant.R90))
         ).with(
+                new ConditionBuilder().term(SpikesBlock.FACING, Direction.NORTH),
+                BlockModelGenerators.variants(new Variant(model))
+                        .with(VariantMutator.X_ROT.withValue(Quadrant.R90))
+                        .with(VariantMutator.Y_ROT.withValue(Quadrant.R0))
+        ).with(
                 new ConditionBuilder().term(SpikesBlock.FACING, Direction.EAST),
                 BlockModelGenerators.variants(new Variant(model))
                         .with(VariantMutator.X_ROT.withValue(Quadrant.R90))

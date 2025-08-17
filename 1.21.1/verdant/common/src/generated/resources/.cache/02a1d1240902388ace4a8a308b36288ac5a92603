@@ -1,4 +1,4 @@
-// 1.21.6	2025-08-10T20:12:45.3462095	Model Definitions - verdant
+// 1.21.8	2025-08-16T19:12:20.8593806	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -87,7 +87,7 @@ ae01fc4adf7672eecf84ea03591d655ceff18546 assets/verdant/blockstates/grus_copper_
 68aace7464e7c8e087d0394d595b96f894568279 assets/verdant/blockstates/grus_lapis_ore.json
 03c224fc7c64e6df7072a35b1559fa2de15cbd24 assets/verdant/blockstates/grus_redstone_ore.json
 fa5a3584c9ed403e4f173feb42e651dd570f9ee7 assets/verdant/blockstates/imbued_heartwood_log.json
-3493c1701f1c9ac06a32f9241e4cb46e68811962 assets/verdant/blockstates/iron_spikes.json
+c884e9fe7768b47080e6fcc352c4e25bfd9b5785 assets/verdant/blockstates/iron_spikes.json
 bd64c3d0358ecaa28ad3fc6e6bc0554a6d345178 assets/verdant/blockstates/iron_trap.json
 524264f9a44a625b0cbde5e3c46c0bdc0deb7b79 assets/verdant/blockstates/large_aloe.json
 0808e79fab136fabe64d2e403ac91e8a5e4277fb assets/verdant/blockstates/light_blue_candle_ube_cake.json
@@ -157,7 +157,7 @@ cdb03c7123d1553c00931387465efa684f953964 assets/verdant/blockstates/wild_cassava
 7cc8ce856540d407bcac33040cf6761e39bc5167 assets/verdant/blockstates/wild_coffee.json
 1d5e73cbfd0cbe00505d649612975d5e8cdeb495 assets/verdant/blockstates/wild_ube.json
 3f773fbb9c6916c8d3343c857be33c952c656df0 assets/verdant/blockstates/wilted_strangler_leaves.json
-3f8b7135ab044dd23e7f27ace76cd0fbbd41985c assets/verdant/blockstates/wooden_spikes.json
+e5908c1e81011bf0bb9b792847f4c5249e6bc841 assets/verdant/blockstates/wooden_spikes.json
 13aa9c0206822de1de779c370bae70a71224677b assets/verdant/blockstates/wooden_trap.json
 e0d2f33d84d02ebf6af953d1acc231a58c0c30a5 assets/verdant/blockstates/yellow_candle_ube_cake.json
 7eadc38a0ec13d01859bfddb8b8b99b7b3d9aae3 assets/verdant/items/aloe_leaf.json
