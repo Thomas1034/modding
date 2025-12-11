@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:metal_grenade",
+  "ingredients": [
+    "minecraft:string",
+    "verdant:metal_bomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:metal_grenade"
+  }
+}

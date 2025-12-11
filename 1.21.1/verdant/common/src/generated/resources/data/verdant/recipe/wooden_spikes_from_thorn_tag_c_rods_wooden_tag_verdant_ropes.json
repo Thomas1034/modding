@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:wooden_spikes",
+  "key": {
+    "K": "#c:rods/wooden",
+    "R": "#verdant:ropes",
+    "T": "verdant:thorn"
+  },
+  "pattern": [
+    "TTT",
+    "TTT",
+    "KRK"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:wooden_spikes"
+  }
+}

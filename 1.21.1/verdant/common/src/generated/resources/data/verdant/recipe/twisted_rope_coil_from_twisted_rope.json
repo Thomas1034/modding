@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:twisted_rope_coil",
+  "key": {
+    "r": "verdant:twisted_rope"
+  },
+  "pattern": [
+    " r ",
+    "r r",
+    " r "
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:twisted_rope_coil"
+  }
+}

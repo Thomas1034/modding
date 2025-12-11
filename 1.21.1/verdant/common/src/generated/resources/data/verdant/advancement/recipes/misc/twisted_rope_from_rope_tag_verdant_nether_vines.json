@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:twisted_rope_from_rope_tag_verdant_nether_vines"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_twisted_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:twisted_rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "hasminecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#verdant:nether_vines"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rope",
+      "hasminecraft_root",
+      "has_twisted_rope"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:twisted_rope_from_rope_tag_verdant_nether_vines"
+    ]
+  }
+}

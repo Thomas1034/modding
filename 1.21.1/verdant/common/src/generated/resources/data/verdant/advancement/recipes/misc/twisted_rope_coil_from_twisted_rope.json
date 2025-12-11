@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:twisted_rope_coil_from_twisted_rope"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_twisted_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:twisted_rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_twisted_rope_coil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:twisted_rope_coil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_twisted_rope",
+      "has_twisted_rope_coil"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:twisted_rope_coil_from_twisted_rope"
+    ]
+  }
+}

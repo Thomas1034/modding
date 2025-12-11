@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:sap_lantern",
+  "key": {
+    "N": "#c:nuggets/iron",
+    "T": "verdant:sap_torch"
+  },
+  "pattern": [
+    "NNN",
+    "NTN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:sap_lantern"
+  }
+}

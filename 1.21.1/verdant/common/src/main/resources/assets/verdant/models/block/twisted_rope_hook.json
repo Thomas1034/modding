@@ -1,0 +1,12 @@
+{
+	"render_type": "minecraft:cutout",
+	"ambientocclusion": true,
+	"parent": "verdant:block/rope_hook",
+	"textures": {
+		"hook": "minecraft:block/tripwire_hook",
+		"particle": "minecraft:block/oak_planks",
+		"wood": "minecraft:block/oak_planks",
+		"rope": "verdant:block/twisted_rope_full",
+    "cross": "verdant:block/twisted_rope_down"
+	}
+}

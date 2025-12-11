@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "verdant:block/sap_lantern"
+    },
+    "hanging=true": {
+      "model": "verdant:block/sap_lantern_hanging"
+    }
+  }
+}

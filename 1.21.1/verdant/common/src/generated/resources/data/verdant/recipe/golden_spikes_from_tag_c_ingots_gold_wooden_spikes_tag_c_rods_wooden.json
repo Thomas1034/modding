@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:golden_spikes",
+  "key": {
+    "I": "#c:ingots/gold",
+    "R": "#c:rods/wooden",
+    "S": "verdant:wooden_spikes"
+  },
+  "pattern": [
+    "III",
+    "SSS",
+    "RRR"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:golden_spikes"
+  }
+}

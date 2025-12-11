@@ -1,0 +1,9 @@
+{
+  "render_type": "minecraft:cutout",
+	"ambientocclusion": true,
+	"parent": "verdant:block/rope",
+  "textures": {
+    "rope": "verdant:block/twisted_rope",
+    "particle": "#rope"
+  }
+}
