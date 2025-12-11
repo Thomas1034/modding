@@ -6,9 +6,11 @@
   "mixins": [
     "AbstractArrowAccessors",
     "ArrowAccessors",
+    "BaseFireBlockMixin",
     "BoggedLikeVerdantFriendsMixin",
     "DecreaseDetectionRangeMixin",
     "EntityGetterInvoker",
+    "ExplosionDamageCalculatorMixin",
     "FabricPistonStructureResolverMixin",
     "FireBlockMixin",
     "IntangibilityPlayerTickMixin",
@@ -17,8 +19,12 @@
     "LevelRendererAccessors",
     "LivingEntityMixin",
     "MobEffectInstanceAccessors",
+    "PotionBrewingMixin",
+    "PotionBrewingBuilderMixin",
     "PrimedTntAccessors",
+    "PrimedTntMixin",
     "ServerPlayerMixinFabric",
+    "SlimeMixin",
     "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",
@@ -29,8 +35,8 @@
     "ArrowRendererModelAccessor",
     "GameRendererAddPostShadersMixin",
     "GuiAddShaderOverlaysMixin",
-    "IntangibilityBlockVisionMixin",
-    "NumbnessHideStatsMixin"
+    "NumbnessHideStatsMixin",
+    "ScreenRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

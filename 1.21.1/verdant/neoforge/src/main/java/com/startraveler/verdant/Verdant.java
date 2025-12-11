@@ -7,9 +7,7 @@ import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.BaseTimer;
-import com.startraveler.verdant.timer.PrintForTestingTimer;
-import com.startraveler.verdant.timer.TimerListSavedData;
+import com.startraveler.verdant.timer.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +38,7 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
@@ -57,6 +56,7 @@ import java.util.List;
 public class Verdant {
 
     public Verdant(final IEventBus eventBus) {
+
         // This method is invoked by the NeoForge mod loader when it is ready
         // to load your mod. You can access NeoForge and Common code in this
         // project.
@@ -72,7 +72,7 @@ public class Verdant {
         eventBus.addListener(Verdant::registerEntityAttributes);
         // Dart Tipping Ingredients
         eventBus.addListener(Verdant::modifyDefaultComponents);
-
+        eventBus.addListener(Verdant::addBlocksToBlockEntities);
 
         // Caffeine
         NeoForge.EVENT_BUS.addListener(Verdant::onPlayerTryToSleepEvent);
@@ -90,6 +90,10 @@ public class Verdant {
         NeoForge.EVENT_BUS.addListener(Verdant::addReloadListeners);
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
+    }
+
+    public static void addBlocksToBlockEntities(BlockEntityTypeAddBlocksEvent event) {
+        // event.modify(BlockEntityType.MOB_SPAWNER, BlockRegistry.OVERGROWN_SPAWNER.get());
     }
 
     public static void tickTimers(LevelTickEvent.Post event) {
@@ -130,6 +134,8 @@ public class Verdant {
         event.enqueueWork(() -> {
 
             BaseTimer.CODEC_REGISTRY.register(PrintForTestingTimer.TYPE, PrintForTestingTimer.CODEC);
+            BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
+            BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
 
             FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
 

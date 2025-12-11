@@ -16,12 +16,14 @@
  */
 package com.startraveler.verdant.mixin;
 
+import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.MobEffectRegistry;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -34,10 +36,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.minecraft.client.gui.Gui.NAUSEA_LOCATION;
-
 @Mixin(Gui.class)
 public class GuiAddShaderOverlaysMixin {
+    @Unique
+    private static final ResourceLocation SAPPY_LOCATION = ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "textures/misc/sappy_outline.png"
+    );
+    @Shadow
+    @Final
+    public static ResourceLocation NAUSEA_LOCATION;
     @Shadow
     @Final
     private Minecraft minecraft;
@@ -47,13 +55,41 @@ public class GuiAddShaderOverlaysMixin {
         float screenEffectScale = this.minecraft.options.screenEffectScale().get().floatValue();
         Player player = this.minecraft.player;
         if (player != null) {
-            MobEffectInstance instance = player.getEffect(MobEffectRegistry.BLURRING.asHolder());
-            if (instance != null) {
+            MobEffectInstance blurringInstance = player.getEffect(MobEffectRegistry.BLURRING.asHolder());
+            if (blurringInstance != null) {
                 this.verdant$renderBlurredOverlay(guiGraphics, Mth.map(1.25f - screenEffectScale, 0, 1.2f, 0, 1));
+            }
+            MobEffectInstance sappyInstance = player.getEffect(MobEffectRegistry.SAPPY_VISION.asHolder());
+            if (sappyInstance != null) {
+                this.verdant$renderSappyOverlay(
+                        guiGraphics,
+                        1f
+                );
             }
         }
     }
 
+    @Unique
+    private void verdant$renderSappyOverlay(GuiGraphics guiGraphics, float intensity) {
+        int guiWidth = guiGraphics.guiWidth();
+        int guiHeight = guiGraphics.guiHeight();
+        float r = 1 * intensity;
+        float g = 1 * intensity;
+        float b = 1 * intensity;
+        guiGraphics.blit(
+                RenderPipelines.GUI_NAUSEA_OVERLAY,
+                SAPPY_LOCATION,
+                0,
+                0,
+                0.0F,
+                0.0F,
+                guiWidth,
+                guiHeight,
+                guiWidth,
+                guiHeight,
+                ARGB.colorFromFloat(intensity, r, g, b)
+        );
+    }
 
     @Unique
     private void verdant$renderBlurredOverlay(GuiGraphics guiGraphics, float intensity) {

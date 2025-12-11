@@ -8,6 +8,7 @@
     "ArrowAccessors",
     "BoggedLikeVerdantFriendsMixin",
     "EntityGetterInvoker",
+    "ExplosionDamageCalculatorMixin",
     "IntangibilityPlayerTickMixin",
     "ItemStackDurabilityChangingMixin",
     "ItemStackUnbreakabilityMixin",
@@ -15,10 +16,13 @@
     "LivingEntityMixin",
     "MobEffectInstanceAccessors",
     "PrimedTntAccessors",
+    "PrimedTntMixin",
     "ServerPlayerMixinNeoForge",
+    "SlimeMixin",
     "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",
+    "BaseFireBlockMixin",
     "ZombieConvertToRootedMixin"
   ],
   "server": [],
@@ -26,8 +30,8 @@
     "ArrowRendererModelAccessor",
     "GameRendererAddPostShadersMixin",
     "GuiAddShaderOverlaysMixin",
-    "IntangibilityBlockVisionMixin",
-    "NumbnessHideStatsMixin"
+    "NumbnessHideStatsMixin",
+    "ScreenRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

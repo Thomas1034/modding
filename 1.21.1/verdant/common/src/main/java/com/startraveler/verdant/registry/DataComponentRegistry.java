@@ -17,11 +17,16 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.item.component.*;
+import com.startraveler.verdant.item.component.BlowdartTippingIngredient;
+import com.startraveler.verdant.item.component.DurabilityChanging;
+import com.startraveler.verdant.item.component.RopeCoilData;
+import com.startraveler.verdant.item.component.VerdantFriendliness;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.util.ExtraCodecs;
 
 public class DataComponentRegistry {
 
@@ -29,6 +34,25 @@ public class DataComponentRegistry {
             Registries.DATA_COMPONENT_TYPE,
             Constants.MOD_ID
     );
+
+    public static final RegistryObject<DataComponentType<?>, DataComponentType<Integer>> MINING_CUBE_RADIUS = COMPONENTS.register(
+            "mining_cube_radius",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(ExtraCodecs.NON_NEGATIVE_INT)
+                    .networkSynchronized(ByteBufCodecs.INT)
+                    .cacheEncoding()
+                    .build()
+    );
+
+    public static final RegistryObject<DataComponentType<?>, DataComponentType<Float>> BOMB_TOSS_STRENGTH = COMPONENTS.register(
+            "bomb_toss_strength",
+            () -> DataComponentType.<Float>builder()
+                    .persistent(ExtraCodecs.NON_NEGATIVE_FLOAT)
+                    .networkSynchronized(ByteBufCodecs.FLOAT)
+                    .cacheEncoding()
+                    .build()
+    );
+
 
     public static final RegistryObject<DataComponentType<?>, DataComponentType<RopeCoilData>> ROPE_COIL = COMPONENTS.register(
             "rope_coil",

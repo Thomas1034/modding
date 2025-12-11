@@ -33,8 +33,4 @@ public class AntiGravityEffect extends MobEffect {
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
     }
-    @Override
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        return true;
-    }
 }

@@ -24,6 +24,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         super.addTags(provider);
+
         // Mineables
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
@@ -33,6 +34,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.FISH_TRAP.get(),
                 BlockRegistry.VERDANT_CONDUIT.get(),
                 BlockRegistry.ROPE_LADDER.get(),
+                BlockRegistry.OOZE_FISSURE_BLOCK.get(),
                 BlockRegistry.IMBUED_HEARTWOOD_LOG.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -81,7 +83,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.MANGO_LEAVES.get(),
                 BlockRegistry.SNAPLEAF.get(),
                 BlockRegistry.LARGE_ALOE.get(),
-                BlockRegistry.SMALL_ALOE.get() //,
+                BlockRegistry.SMALL_ALOE.get()
                 // TODO
                 // BlockRegistry.HUGE_ALOE.get()
         );
@@ -105,11 +107,22 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                BlockRegistry.COPPER_SPIKES.get(),
                 BlockRegistry.IRON_SPIKES.get(),
+                BlockRegistry.GOLDEN_SPIKES.get(),
+                BlockRegistry.COPPER_TRAP.get(),
                 BlockRegistry.IRON_TRAP.get(),
+                BlockRegistry.GOLDEN_TRAP.get(),
                 BlockRegistry.FUSED_GRAVEL.get(),
-                BlockRegistry.FUSED_SCREE.get()
+                BlockRegistry.FUSED_SCREE.get(),
+                BlockRegistry.TERRACOTTA_BOMB_PILE.get(),
+                BlockRegistry.METAL_BOMB_PILE.get()
         );
+
+        this.tag(VerdantTags.Blocks.MINEABLE_WITH_MACHETE).addTag(BlockTags.MINEABLE_WITH_HOE);
+        this.tag(VerdantTags.Blocks.MINEABLE_WITH_MACHETE).addTag(BlockTags.SWORD_INSTANTLY_MINES);
+        this.tag(VerdantTags.Blocks.MINEABLE_WITH_MACHETE).addTag(BlockTags.SWORD_EFFICIENT);
+
 
         this.tag(BlockTags.LEAVES).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
 
@@ -222,7 +235,9 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.POISON_IVY.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.ROPE.get(),
+                BlockRegistry.TWISTED_ROPE.get(),
                 BlockRegistry.ROPE_HOOK.get(),
+                BlockRegistry.TWISTED_ROPE_HOOK.get(),
                 BlockRegistry.ROPE_LADDER.get(),
                 BlockRegistry.SAP_BLOCK.get()
         );
@@ -234,7 +249,17 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                BlockRegistry.STRANGLER_TENDRIL.get()
+                BlockRegistry.STRANGLER_TENDRIL.get(),
+                BlockRegistry.SAP_BLOCK.get()
+        );
+        this.tag(VerdantTags.Blocks.REPLACEABLE_BY_BRAMBLE).addTags(
+                BlockTags.REPLACEABLE,
+                BlockTags.REPLACEABLE_BY_TREES,
+                BlockTags.REPLACEABLE_BY_MUSHROOMS,
+                BlockTags.MOSS_REPLACEABLE,
+                BlockTags.LUSH_GROUND_REPLACEABLE,
+                BlockTags.AZALEA_ROOT_REPLACEABLE,
+                BlockTags.SCULK_REPLACEABLE
         );
 
         this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(
@@ -250,10 +275,12 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.VERDANT_GRASS_CLAY.get()
         );
 
-        this.tag(VerdantTags.Blocks.ROPES_EXTEND)
-                .add(BlockRegistry.ROPE.get(), BlockRegistry.ROPE_HOOK.get(), Blocks.TRIPWIRE_HOOK);
+        this.tag(VerdantTags.Blocks.ROPES).add(BlockRegistry.ROPE.get(), BlockRegistry.TWISTED_ROPE.get());
 
-        this.tag(VerdantTags.Blocks.ROPE_HOOKS).add(Blocks.TRIPWIRE_HOOK, BlockRegistry.ROPE_HOOK.get());
+        this.tag(VerdantTags.Blocks.ROPE_HOOKS)
+                .add(Blocks.TRIPWIRE_HOOK, BlockRegistry.ROPE_HOOK.get(), BlockRegistry.TWISTED_ROPE_HOOK.get());
+        this.tag(VerdantTags.Blocks.ROPES_EXTEND).addTag(VerdantTags.Blocks.ROPE_HOOKS);
+        this.tag(VerdantTags.Blocks.ROPES_EXTEND).addTag(VerdantTags.Blocks.ROPES);
 
         this.tag(BlockTags.LOGS_THAT_BURN).add(BlockRegistry.ROTTEN_WOOD.get());
 
@@ -320,6 +347,25 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(VerdantTags.Blocks.STRANGLER_VINES)
                 .add(BlockRegistry.STRANGLER_VINE.get(), BlockRegistry.LEAFY_STRANGLER_VINE.get());
 
+
+        // Rotten wood
+        this.tag(VerdantTags.Blocks.ROTTEN_WOOD).add(BlockRegistry.ROTTEN_WOOD.get());
+
+        // Natural heartwood logs
+        this.tag(VerdantTags.Blocks.NATURAL_HEARTWOOD_LOGS).add(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
+        this.tag(VerdantTags.Blocks.NATURAL_HEARTWOOD_LOGS).addTag(WoodSets.HEARTWOOD.getLogs());
+
+        // Terrain altering features
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.BASE_STONE_OVERWORLD);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.REPLACEABLE_BY_TREES);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.MOSS_REPLACEABLE);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.AIR);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.LOGS_THAT_BURN);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.REPLACEABLE);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(BlockTags.DIRT);
+        this.tag(VerdantTags.Blocks.TERRAIN_ALTERING_FEATURES_AFFECT).addTag(VerdantTags.Blocks.VERDANT_GROUND);
+
+        // Tendril-like blocks
         this.tag(VerdantTags.Blocks.TENDRILS).add(
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
@@ -382,6 +428,12 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         // REMOVE vines from tree replaceables.
         this.tag(BlockTags.REPLACEABLE_BY_TREES).remove(VerdantTags.Blocks.STRANGLER_VINES);
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.STINKING_BLOSSOM.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.BLASTING_BLOSSOM.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.TALL_BUSH.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.TALL_THORN_BUSH.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.BUSH.get());
+        this.tag(BlockTags.REPLACEABLE_BY_TREES).add(BlockRegistry.THORN_BUSH.get());
 
         // Intangibility
         this.tag(VerdantTags.Blocks.BLOCKS_INTANGIBLE)
@@ -465,13 +517,16 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.VERDANT_RESIN_BLOCK.get()
         );
 
-        this.tag(BlockTags.INCORRECT_FOR_STONE_TOOL).add(
-                BlockRegistry.SNAPLEAF.get(),
-                BlockRegistry.LARGE_ALOE.get(),
-                BlockRegistry.SMALL_ALOE.get() //,
-                // TODO
-                // BlockRegistry.HUGE_ALOE.get()
-        );
+
+        this.tag(VerdantTags.Blocks.SAP_FIRE_BASE_BLOCKS).addTag(VerdantTags.Blocks.VERDANT_RESIN_BLOCKS);
+        this.tag(BlockTags.INFINIBURN_OVERWORLD).addTag(VerdantTags.Blocks.VERDANT_RESIN_BLOCKS);
+        this.tag(BlockTags.INFINIBURN_NETHER).addTag(VerdantTags.Blocks.VERDANT_RESIN_BLOCKS);
+        this.tag(BlockTags.INFINIBURN_END).addTag(VerdantTags.Blocks.VERDANT_RESIN_BLOCKS);
+
+        this.tag(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .add(BlockRegistry.SNAPLEAF.get(), BlockRegistry.LARGE_ALOE.get(), BlockRegistry.SMALL_ALOE.get());//,
+        // TODO
+        // BlockRegistry.HUGE_ALOE.get();
 
         this.tag(VerdantTags.Blocks.SUSTAINS_OOZE_FISSURE).addTag(WoodSets.HEARTWOOD.getLogs());
 

@@ -1,62 +1,40 @@
 {
-  "multipart": [
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "y": 90
-      },
-      "when": {
-        "facing": "up"
-      }
+  "variants": {
+    "axis=x,creaking_heart_state=awake": {
+      "model": "verdant:block/ooze_fissure_awake_horizontal",
+      "x": 90,
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "x": 180,
-        "y": 270
-      },
-      "when": {
-        "facing": "down"
-      }
+    "axis=x,creaking_heart_state=dormant": {
+      "model": "verdant:block/ooze_fissure_dormant_horizontal",
+      "x": 90,
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "x": 90,
-        "y": 90
-      },
-      "when": {
-        "facing": "east"
-      }
+    "axis=x,creaking_heart_state=uprooted": {
+      "model": "verdant:block/ooze_fissure_horizontal",
+      "x": 90,
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "x": 90,
-        "y": 180
-      },
-      "when": {
-        "facing": "south"
-      }
+    "axis=y,creaking_heart_state=awake": {
+      "model": "verdant:block/ooze_fissure_awake"
     },
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "x": 90
-      },
-      "when": {
-        "facing": "north"
-      }
+    "axis=y,creaking_heart_state=dormant": {
+      "model": "verdant:block/ooze_fissure_dormant"
     },
-    {
-      "apply": {
-        "model": "verdant:block/ooze_fissure",
-        "x": 90,
-        "y": 270
-      },
-      "when": {
-        "facing": "west"
-      }
+    "axis=y,creaking_heart_state=uprooted": {
+      "model": "verdant:block/ooze_fissure"
+    },
+    "axis=z,creaking_heart_state=awake": {
+      "model": "verdant:block/ooze_fissure_awake_horizontal",
+      "x": 90
+    },
+    "axis=z,creaking_heart_state=dormant": {
+      "model": "verdant:block/ooze_fissure_dormant_horizontal",
+      "x": 90
+    },
+    "axis=z,creaking_heart_state=uprooted": {
+      "model": "verdant:block/ooze_fissure_horizontal",
+      "x": 90
     }
-  ]
+  }
 }

@@ -16,7 +16,6 @@
  */
 package com.startraveler.verdant.item.custom;
 
-import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -126,7 +125,7 @@ public class RopeItem extends BlockItem {
                     dropPos.x,
                     dropPos.y,
                     dropPos.z,
-                    new ItemStack(BlockRegistry.ROPE.get(), remainingLength)
+                    new ItemStack(ropeBlock.getBlock(), remainingLength)
             ));
             if (shouldDropHook) {
                 Block.getDrops(hookBlock.defaultBlockState(), serverLevel, mutpos, null)
@@ -171,7 +170,7 @@ public class RopeItem extends BlockItem {
                 pos,
                 1,
                 false,
-                BlockRegistry.ROPE.get().defaultBlockState(),
+                this.getBlock().defaultBlockState(),
                 null,
                 null
         );

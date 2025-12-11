@@ -31,11 +31,13 @@ public class TriggerRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<CriterionTrigger<?>, VerdantPlantAttackTrigger> VERDANT_PLANT_ATTACK_TRIGGER = TRIGGERS.register("verdant_plant_attack_trigger",
+    public static final RegistryObject<CriterionTrigger<?>, VerdantPlantAttackTrigger> VERDANT_PLANT_ATTACK_TRIGGER = TRIGGERS.register(
+            "verdant_plant_attack_trigger",
             VerdantPlantAttackTrigger::new
     );
 
-    public static final RegistryObject<CriterionTrigger<?>, InventoryChangeItemCountTrigger> INVENTORY_CHANGE_ITEM_COUNT_TRIGGER = TRIGGERS.register("inventory_change_item_count_trigger",
+    public static final RegistryObject<CriterionTrigger<?>, InventoryChangeItemCountTrigger> INVENTORY_CHANGE_ITEM_COUNT_TRIGGER = TRIGGERS.register(
+            "inventory_change_item_count_trigger",
             InventoryChangeItemCountTrigger::new
     );
 

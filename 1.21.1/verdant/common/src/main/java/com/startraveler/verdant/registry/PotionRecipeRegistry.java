@@ -224,6 +224,8 @@ public class PotionRecipeRegistry {
                 Items.GLOWSTONE_DUST,
                 PotionRegistry.STRONG_PHOTOSENSITIVITY.asHolder()
         );
+
+        recipes.register(Items.GLASS_BOTTLE, ItemRegistry.BALSAM.get(), ItemRegistry.BALM.get());
     }
 
     public void register(ItemLike ingredient, Holder<Potion> normal, Holder<Potion> extended, Holder<Potion> strong) {

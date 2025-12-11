@@ -19,6 +19,7 @@ package com.startraveler.verdant.registry;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.entity.FishTrapBlockEntity;
 import com.startraveler.verdant.block.custom.entity.OozeFissureBlockEntity;
+import com.startraveler.verdant.block.custom.entity.OvergrownSpawnerBlockEntity;
 import com.startraveler.verdant.block.custom.entity.VerdantConduitBlockEntity;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
@@ -33,11 +34,13 @@ public class BlockEntityTypeRegistry {
             Registries.BLOCK_ENTITY_TYPE,
             Constants.MOD_ID
     );
+    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<OvergrownSpawnerBlockEntity>> OVERGROWN_SPAWNER = BLOCK_ENTITIES.register(
+            "overgrown_spawner",
+            () -> new BlockEntityType<>(OvergrownSpawnerBlockEntity::new, Set.of(BlockRegistry.OVERGROWN_SPAWNER.get()))
+    );
 
     public static void init() {
-    }
-
-    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY = BLOCK_ENTITIES.register(
+    }    public static final RegistryObject<BlockEntityType<?>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP_BLOCK_ENTITY = BLOCK_ENTITIES.register(
             "fish_trap",
             () -> new BlockEntityType<>(FishTrapBlockEntity::new, Set.of(BlockRegistry.FISH_TRAP.get()))
     );
@@ -51,6 +54,8 @@ public class BlockEntityTypeRegistry {
             "ooze_fissure",
             () -> new BlockEntityType<>(OozeFissureBlockEntity::new, Set.of(BlockRegistry.OOZE_FISSURE_BLOCK.get()))
     );
+
+
 
 
 }

@@ -39,6 +39,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class CoffeeCropBlock extends CropBlock {
 
@@ -52,7 +53,7 @@ public class CoffeeCropBlock extends CropBlock {
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext collisionContext) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext collisionContext) {
         if (state.getValue(AGE) == 0) {
             return SAPLING_SHAPE;
         } else {

@@ -16,67 +16,133 @@
  */
 package com.startraveler.verdant.item.component;
 
+import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.startraveler.verdant.registry.BlockRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BellAttachType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.function.Supplier;
 
-public record RopeCoilData(int length, boolean hasHook, int lightLevel, LanternOptions lantern) {
+public record RopeCoilData(int length,
+        boolean hasHook,
+        int lightLevel,
+        HangingBlockOptions hangingBlock,
+        Supplier<Block> ropeBlockSupplier) {
     public static final int MAX_LENGTH_FROM_CRAFTING = 32;
-
     public static final Codec<RopeCoilData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.INT.fieldOf("length").forGetter(RopeCoilData::length),
             Codec.BOOL.fieldOf("hasHook").forGetter(RopeCoilData::hasHook),
             Codec.INT.fieldOf("lightLevel").forGetter(RopeCoilData::lightLevel),
-            LanternOptions.CODEC.fieldOf("lantern").forGetter(RopeCoilData::lantern)
+            HangingBlockOptions.CODEC.fieldOf("hangingBlock").forGetter(RopeCoilData::hangingBlock),
+            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("rope").forGetter(RopeCoilData::ropeBlock)
     ).apply(instance, RopeCoilData::new));
+    public static final RopeCoilData DEFAULT = new RopeCoilData(
+            4,
+            false,
+            0,
+            HangingBlockOptions.NONE,
+            () -> BlockRegistry.ROPE.get()
+    );
+    public static final RopeCoilData DEFAULT_TWISTED = new RopeCoilData(
+            4,
+            false,
+            0,
+            HangingBlockOptions.NONE,
+            () -> BlockRegistry.TWISTED_ROPE.get()
+    );
 
+    public RopeCoilData(int length,
+                        boolean hasHook,
+                        int lightLevel,
+                        HangingBlockOptions hangingBlock,
+                        Block ropeBlockSupplier) {
+        this(length, hasHook, lightLevel, hangingBlock, () -> ropeBlockSupplier);
+    }
 
-    public enum LanternOptions implements StringRepresentable {
+    public Block ropeBlock() {
+        return this.ropeBlockSupplier.get();
+    }
 
-        NONE("none", Blocks.AIR.defaultBlockState()),
-        LANTERN("lantern", Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)),
+    public enum HangingBlockOptions implements StringRepresentable {
+
+        NONE("none", Items.AIR, Blocks.AIR.defaultBlockState()),
+        LANTERN(
+                "lantern",
+                Items.LANTERN,
+                Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
+        ),
         SOUL_LANTERN(
                 "soul_lantern",
+                Items.SOUL_LANTERN,
                 Blocks.SOUL_LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
+        ),
+        SAP_LANTERN(
+                "sap_lantern",
+                () -> BlockRegistry.SAP_LANTERN.get(),
+                () -> BlockRegistry.SAP_LANTERN.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true)
         ),
         BELL(
                 "bell",
+                Items.BELL,
                 Blocks.BELL.defaultBlockState().setValue(BlockStateProperties.BELL_ATTACHMENT, BellAttachType.CEILING)
+        ),
+        SHROOMLIGHT(
+                "shroomlight",
+                Items.SHROOMLIGHT,
+                Blocks.SHROOMLIGHT.defaultBlockState()
         );
 
-        public static final StringRepresentableCodec<LanternOptions> CODEC = StringRepresentable.fromEnum(LanternOptions::values);
-        private static final Map<String, LanternOptions> MAP = new HashMap<>();
-
-        static {
-            MAP.putAll(Arrays.stream(LanternOptions.values())
-                    .collect(Collectors.toMap(LanternOptions::getSerializedName, Function.identity())));
-        }
+        public static final StringRepresentableCodec<HangingBlockOptions> CODEC = StringRepresentable.fromEnum(
+                HangingBlockOptions::values);
 
         public final String typeName;
-        public final BlockState state;
+        public final Supplier<BlockState> state;
+        public final Supplier<ItemLike> item;
 
-        LanternOptions(String typeName, BlockState state) {
+        HangingBlockOptions(String typeName, Supplier<@NotNull ItemLike> item, Supplier<BlockState> state) {
             this.state = state;
+            this.item = item;
             this.typeName = typeName;
         }
 
-        public static LanternOptions bySerializedName(String name) {
-            return MAP.get(name);
+        HangingBlockOptions(String typeName, Item item, BlockState state) {
+            this.state = Suppliers.ofInstance(state);
+            this.item = Suppliers.ofInstance(item);
+            this.typeName = typeName;
+        }
+
+        public static HangingBlockOptions getOption(ItemStack stack) {
+            for (HangingBlockOptions option : HangingBlockOptions.values()) {
+                if (stack.is(option.getItem())) {
+                    return option;
+                }
+            }
+            return null;
+        }
+
+        public Item getItem() {
+            return this.item.get().asItem();
         }
 
         @Override
-        public String getSerializedName() {
+        public @NotNull String getSerializedName() {
             return this.typeName;
+        }
+
+        public BlockState getState() {
+            return this.state.get();
         }
     }
 }

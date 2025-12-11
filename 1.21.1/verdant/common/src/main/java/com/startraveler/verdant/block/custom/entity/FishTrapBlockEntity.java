@@ -54,6 +54,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
@@ -203,7 +204,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public void loadAdditional(ValueInput input) {
+    public void loadAdditional(@NotNull ValueInput input) {
         super.loadAdditional(input);
 
         int[] array = input.getIntArray(ARRAY_SAVED_DATA_ACCESS_TAG).orElse(new int[]{});
@@ -216,7 +217,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
 
     // Save values into the passed CompoundTag here.
     @Override
-    public void saveAdditional(ValueOutput output) {
+    public void saveAdditional(@NotNull ValueOutput output) {
 
         super.saveAdditional(output);
 
@@ -231,12 +232,12 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    protected Component getDefaultName() {
+    protected @NotNull Component getDefaultName() {
         return this.getBlockState().getBlock().getName();
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    protected @NotNull NonNullList<ItemStack> getItems() {
         return this.items;
     }
 
@@ -248,7 +249,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int containerId, Inventory inventory) {
+    protected @NotNull AbstractContainerMenu createMenu(int containerId, @NotNull Inventory inventory) {
         return new FishTrapMenu(
                 containerId,
                 inventory,
@@ -269,7 +270,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
 
     // Create an update tag here, like above.
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
         CompoundTag tag = super.getUpdateTag(registries);
         ProblemReporter reporter = ProblemReporter.DISCARDING;
         TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
@@ -521,17 +522,17 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     }
 
     @Override
-    public int[] getSlotsForFace(Direction side) {
+    public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
         return side == Direction.DOWN ? this.outputSlots : this.baitSlots;
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
+    public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStack, @Nullable Direction direction) {
         return direction != Direction.DOWN && this.isBaitSlot(index);
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
         return direction == Direction.DOWN && this.isOutputSlot(index);
     }
 }

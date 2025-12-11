@@ -18,8 +18,8 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.VerdantIFF;
-import com.startraveler.verdant.block.custom.InfestedRotatedPillarBlock;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.block.custom.InfestedRotatedPillarBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCandleCakeBlock;
 import com.startraveler.verdant.block.loot.LootLocations;
@@ -29,18 +29,16 @@ import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ColorRGBA;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.InsideBlockEffectApplier;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
@@ -49,10 +47,12 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.CreakingHeartState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Function;
@@ -109,7 +109,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> FISH_TRAP;
     public static final RegistryObject<Block, Block> ANTIGORITE;
     public static final RegistryObject<Block, Block> ROPE;
-    public static final RegistryObject<Block, Block> ROPE_HOOK;
+    public static final RegistryObject<Block, Block> TWISTED_ROPE;
+    public static final RegistryObject<Block, RopeHookBlock> ROPE_HOOK;
+    public static final RegistryObject<Block, RopeHookBlock> TWISTED_ROPE_HOOK;
     public static final RegistryObject<Block, Block> STINKING_BLOSSOM;
     public static final RegistryObject<Block, Block> BUSH;
     public static final RegistryObject<Block, Block> POTTED_BUSH;
@@ -127,8 +129,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> DROWNED_HEMLOCK_PLANT;
     public static final RegistryObject<Block, Block> WOODEN_SPIKES;
     public static final RegistryObject<Block, Block> IRON_SPIKES;
+    public static final RegistryObject<Block, Block> COPPER_SPIKES;
+    public static final RegistryObject<Block, Block> GOLDEN_SPIKES;
     public static final RegistryObject<Block, Block> WOODEN_TRAP;
+    public static final RegistryObject<Block, Block> COPPER_TRAP;
     public static final RegistryObject<Block, Block> IRON_TRAP;
+    public static final RegistryObject<Block, Block> GOLDEN_TRAP;
     public static final RegistryObject<Block, Block> SNAPLEAF;
     public static final RegistryObject<Block, Block> FRAME_BLOCK;
     public static final RegistryObject<Block, Block> CHARRED_FRAME_BLOCK;
@@ -206,6 +212,13 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> MANGO_SAPLING;
     public static final RegistryObject<Block, Block> POTTED_MANGO_SAPLING;
     public static final RegistryObject<Block, Block> OOZE_FISSURE_BLOCK;
+    public static final RegistryObject<Block, Block> OVERGROWN_SPAWNER;
+    public static final RegistryObject<Block, Block> METAL_BOMB_PILE;
+    public static final RegistryObject<Block, Block> TERRACOTTA_BOMB_PILE;
+    public static final RegistryObject<Block, Block> SAP_LANTERN;
+    public static final RegistryObject<Block, Block> SAP_TORCH;
+    public static final RegistryObject<Block, Block> SAP_WALL_TORCH;
+    public static final RegistryObject<Block, Block> SAP_FIRE;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -434,13 +447,12 @@ public class BlockRegistry {
                 "strangler_leaves",
                 () -> new StranglerLeavesBlock(properties(Blocks.ACACIA_LEAVES, "strangler_leaves").randomTicks())
         );
+
         WILTED_STRANGLER_LEAVES = registerBlockWithItem(
-                "wilted_strangler_leaves",
-                () -> new UntintedParticleLeavesBlock(
-                        0.01f, ColorParticleOption.create(
-                        ParticleTypes.TINTED_LEAVES,
-                        0xFF003800
-                ), properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").randomTicks()
+                "wilted_strangler_leaves", () -> new UntintedParticleLeavesBlock(
+                        0.01f,
+                        ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 0xFF003800),
+                        properties(Blocks.ACACIA_LEAVES, "wilted_strangler_leaves").randomTicks()
                 )
         );
         POISON_STRANGLER_LEAVES = registerBlockWithItem(
@@ -502,13 +514,27 @@ public class BlockRegistry {
         );
         ANTIGORITE = registerBlockWithItem("antigorite", () -> new Block(properties(Blocks.STONE, "antigorite")));
         ROPE = registerBlockWithoutItem(
-                "rope", () -> new RopeBlock(properties(Blocks.KELP, "rope").sound(SoundType.WOOL)
-
-                        .lightLevel((state) -> 2 * state.getValue(RopeBlock.GLOW_LEVEL)))
+                "rope", () -> new RopeBlock(
+                        properties(Blocks.KELP, "rope").sound(SoundType.WOOL)
+                                .ignitedByLava()
+                                .lightLevel((state) -> 2 * state.getValue(RopeBlock.GLOW_LEVEL)),
+                        BlockRegistry.ROPE_HOOK
+                )
+        );
+        TWISTED_ROPE = registerBlockWithoutItem(
+                "twisted_rope", () -> new RopeBlock(
+                        properties(Blocks.KELP, "twisted_rope").sound(SoundType.WOOL)
+                                .lightLevel((state) -> 3 * state.getValue(RopeBlock.GLOW_LEVEL)),
+                        BlockRegistry.TWISTED_ROPE_HOOK
+                )
         );
         ROPE_HOOK = registerBlockWithoutItem(
                 "rope_hook",
                 () -> new RopeHookBlock(properties(Blocks.TRIPWIRE_HOOK, "rope_hook"))
+        );
+        TWISTED_ROPE_HOOK = registerBlockWithoutItem(
+                "twisted_rope_hook",
+                () -> new RopeHookBlock(properties(Blocks.TRIPWIRE_HOOK, "twisted_rope_hook"))
         );
         BUSH = registerBlockWithItem(
                 "bush",
@@ -592,37 +618,51 @@ public class BlockRegistry {
                 "drowned_hemlock_plant",
                 () -> new HemlockPlantBlock(properties(Blocks.KELP_PLANT, "drowned_hemlock_plant"))
         );
+
         WOODEN_SPIKES = registerBlockWithItem(
                 "wooden_spikes",
-                () -> new SpikesBlock(properties(Blocks.OAK_BUTTON, "wooden_spikes"), 3)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "wooden_spikes").noCollission().noOcclusion(), 2)
+        );
+        COPPER_SPIKES = registerBlockWithItem(
+                "copper_spikes",
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "copper_spikes").noCollission().noOcclusion(), 3)
         );
         IRON_SPIKES = registerBlockWithItem(
                 "iron_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes"), 6)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes").noCollission().noOcclusion(), 4)
+        );
+        GOLDEN_SPIKES = registerBlockWithItem(
+                "golden_spikes",
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "golden_spikes").noCollission().noOcclusion(), 5)
         );
 
         WOODEN_TRAP = registerBlockWithItem(
                 "wooden_trap",
-                () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "wooden_trap"), 20, 5, 4)
+                () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "wooden_trap").noCollission().noOcclusion(), 20, 5, 4)
         );
-
+        COPPER_TRAP = registerBlockWithItem(
+                "copper_trap",
+                () -> new TrapBlock(
+                        properties(Blocks.COPPER_GRATE, "copper_trap").noCollission().noOcclusion(),
+                        4,
+                        1,
+                        4
+                )
+        );
         IRON_TRAP = registerBlockWithItem(
                 "iron_trap",
                 () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap").noCollission().noOcclusion(), 10, 2, 8)
+        );
+        GOLDEN_TRAP = registerBlockWithItem(
+                "golden_trap",
+                () -> new TrapBlock(properties(Blocks.IRON_BARS, "golden_trap").noCollission().noOcclusion(), 40, 5, 14)
         );
 
         SNAPLEAF = registerBlockWithItem(
                 "snapleaf", () -> new TrapBlock(
                         properties(Blocks.OAK_LEAVES, "snapleaf").noCollission()
                                 .noOcclusion()
-                                .requiresCorrectToolForDrops(),
-                        15,
-                        3,
-                        4,
-                        VerdantIFF::isEnemy,
-                        false,
-                        false,
-                        true
+                                .requiresCorrectToolForDrops(), 15, 3, 4, VerdantIFF::isEnemy, false, false, true
                 )
         );
 
@@ -696,7 +736,7 @@ public class BlockRegistry {
                 "wild_cassava", () -> new FlowerBlock(
                         MobEffectRegistry.CASSAVA_POISONING.asHolder(),
                         40,
-                        properties(Blocks.BLUE_ORCHID, "wild_cassava")
+                        properties(Blocks.BLUE_ORCHID, "wild_cassava").replaceable()
                 )
         );
 
@@ -860,7 +900,7 @@ public class BlockRegistry {
 
         WILD_UBE = registerBlockWithItem(
                 "wild_ube",
-                () -> new FlowerBlock(MobEffects.NAUSEA, 40, properties(Blocks.BLUE_ORCHID, "wild_ube"))
+                () -> new FlowerBlock(MobEffects.NAUSEA, 40, properties(Blocks.BLUE_ORCHID, "wild_ube").replaceable())
         );
 
         POTTED_WILD_UBE = registerBlockWithoutItem(
@@ -875,10 +915,9 @@ public class BlockRegistry {
                 () -> new ToxicDirtBlock(properties(Blocks.DIRT, "toxic_dirt"))
         );
 
-        // TODO change for DryVegetationBlock?
         DEAD_GRASS = registerBlockWithItem(
                 "dead_grass",
-                () -> new DeadTallGrassBlock(properties(Blocks.SHORT_GRASS, "dead_grass"))
+                () -> new DeadTallGrassBlock(properties(Blocks.SHORT_DRY_GRASS, "dead_grass"))
         );
 
         POISON_IVY_BLOCK = registerBlockWithItem(
@@ -939,7 +978,7 @@ public class BlockRegistry {
                                 BlockRegistry.LARGE_ALOE.get().defaultBlockState()
                         ),
                         (rand) -> new ItemStack(ItemRegistry.YOUNG_ALOE_LEAF.get(), rand.nextInt(0, 2)),
-                        () -> ItemRegistry.ALOE_PUP.get(),
+                        ItemRegistry.ALOE_PUP,
                         i -> 0f,
                         properties(Blocks.SWEET_BERRY_BUSH, "small_aloe")
                 )
@@ -965,7 +1004,7 @@ public class BlockRegistry {
                 ) {
 
                     @Override
-                    public IntegerProperty getAgeProperty() {
+                    public @NotNull IntegerProperty getAgeProperty() {
                         return BlockStateProperties.AGE_5;
                     }
 
@@ -1043,6 +1082,27 @@ public class BlockRegistry {
                 )
         );
 
+        METAL_BOMB_PILE = registerBlockWithoutItem(
+                "metal_bomb_pile", () -> new BombPileBlock(
+                        properties(Blocks.MELON, "metal_bomb_pile").randomTicks(),
+                        (stack) -> stack.is(VerdantTags.Items.METAL_BOMBS),
+                        true,
+                        true,
+                        2.0f
+                )
+        );
+
+        TERRACOTTA_BOMB_PILE = registerBlockWithoutItem(
+                "terracotta_bomb_pile",
+                () -> new BombPileBlock(
+                        properties(Blocks.MELON, "terracotta_bomb_pile").randomTicks(),
+                        (stack) -> stack.is(VerdantTags.Items.TERRACOTTA_BOMBS),
+                        false,
+                        true,
+                        1.5f
+                )
+        );
+
         EARTH_BRICKS = registerBlockWithItem(
                 "earth_bricks",
                 () -> new Block(properties("earth_bricks").mapColor(MapColor.DIRT)
@@ -1088,31 +1148,12 @@ public class BlockRegistry {
 
 
         BLUEWEED = registerBlockWithItem(
-                "blueweed", () -> new FlowerBlock(
+                "blueweed", () -> new EffectGivingFlowerBlock(
                         new SuspiciousStewEffects(List.of(
                                 new SuspiciousStewEffects.Entry(MobEffects.HUNGER, 280),
                                 new SuspiciousStewEffects.Entry(MobEffectRegistry.PHOTOSENSITIVITY.asHolder(), 140)
                         )), properties(Blocks.BLUE_ORCHID, "blueweed")
-                ) {
-                    private static final Supplier<MobEffectInstance> PHOTOSENSITIVITY = () -> new MobEffectInstance(
-                            MobEffectRegistry.PHOTOSENSITIVITY.asHolder(),
-                            300,
-                            0
-                    );
-
-                    @Override
-                    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-                        super.entityInside(state, level, pos, entity, applier);
-                        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
-                            if (!level.isClientSide) {
-                                if (livingEntity instanceof ServerPlayer player) {
-                                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
-                                }
-                                livingEntity.addEffect(PHOTOSENSITIVITY.get());
-                            }
-                        }
-                    }
-                }
+                )
         );
         POTTED_BLUEWEED = registerBlockWithoutItem(
                 "potted_blueweed", () -> new FlowerPotBlock(
@@ -1141,8 +1182,10 @@ public class BlockRegistry {
                 "sap_block",
                 () -> Services.SAP_BLOCK_PROVIDER.getSapBlock(properties("sap_block").noOcclusion()
                         .lightLevel(state -> 2)
+                        .noCollission()
                         .mapColor(MapColor.COLOR_LIGHT_GREEN)
                         .strength(1.5F)
+                        .forceSolidOn()
                         .sound(SoundType.SLIME_BLOCK))
         );
 
@@ -1177,7 +1220,8 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinSlab(properties(
                         Blocks.RESIN_BRICK_SLAB,
                         "verdant_resin_brick_slab"
-                ).lightLevel(state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+                ).lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
         VERDANT_RESIN_BRICK_WALL = registerBlockWithItem(
@@ -1185,8 +1229,8 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinWall(properties(
                         Blocks.RESIN_BRICK_WALL,
                         "earth_verdant_resin_brick_wall"
-                ).lightLevel(
-                        state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+                ).lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
         CHISELED_VERDANT_RESIN_BRICKS = registerBlockWithItem(
@@ -1194,13 +1238,12 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
                         Blocks.CHISELED_RESIN_BRICKS,
                         "chiseled_verdant_resin_bricks"
-                ).lightLevel(
-                        state -> 2).mapColor(MapColor.COLOR_LIGHT_GREEN))
+                ).lightLevel(state -> 2)
+                        .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
         MANGO_LEAVES = registerBlockWithItem(
-                "mango_leaves",
-                () -> new FruitingTintedParticleLeavesBlock(
+                "mango_leaves", () -> new FruitingTintedParticleLeavesBlock(
                         0.02f,
                         properties(Blocks.OAK_LEAVES, "mango_leaves"),
                         randomSource -> new ItemStack(
@@ -1217,19 +1260,101 @@ public class BlockRegistry {
 
 
         POTTED_MANGO_SAPLING = registerBlockWithItem(
-                "potted_mango_sapling",
-                () -> new FlowerPotBlock(
+                "potted_mango_sapling", () -> new FlowerPotBlock(
                         BlockRegistry.MANGO_SAPLING.get(),
                         properties(Blocks.POTTED_BLUE_ORCHID, "potted_mango_sapling").noOcclusion()
                 )
         );
 
         OOZE_FISSURE_BLOCK = registerBlockWithItem(
-                "ooze_fissure",
-                () -> new OozeFissureBlock(
+                "ooze_fissure", () -> new OozeFissureBlock(
                         properties(Blocks.SPAWNER, "ooze_fissure").noOcclusion()
-                                .emissiveRendering((state, level, pos) -> state.getValue(OozeFissureBlock.ACTIVE))
-                                .lightLevel(state -> state.getValue(OozeFissureBlock.ACTIVE) ? 8 : 0)
+                                .lightLevel(state -> state.getValue(OozeFissureBlock.STATE) == CreakingHeartState.AWAKE ? 8 : 0)
+                                .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
+                                .strength(10.0F), VerdantTags.Blocks.NATURAL_HEARTWOOD_LOGS
+                )
+        );
+
+        SAP_LANTERN = registerBlockWithItem(
+                "sap_lantern",
+                () -> new LanternBlock(
+                        properties(Blocks.LANTERN, "sap_lantern").lightLevel(state -> 15)
+                )
+        );
+
+        SAP_TORCH = registerBlockWithoutItem(
+                "sap_torch",
+                () -> new TorchBlock(
+                        ParticleTypes.FIREFLY,
+                        properties("sap_torch").noCollission()
+                                .instabreak()
+                                .sound(SoundType.WOOD)
+                                .pushReaction(PushReaction.DESTROY)
+                                .lightLevel(state -> 15)
+                ) {
+                    @Override
+                    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+                        double x = (double) pos.getX() + (double) 0.5F;
+                        double y = (double) pos.getY() + 0.7;
+                        double z = (double) pos.getZ() + (double) 0.5F;
+                        level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0F, 0.0F, 0.0F);
+                        if (random.nextInt(16) == 0) {
+                            level.addParticle(this.flameParticle, x, y + 0.425, z, 0.0F, 0.0F, 0.0F);
+                        }
+                    }
+                }
+        );
+
+
+        SAP_WALL_TORCH = registerBlockWithoutItem(
+                "sap_wall_torch",
+                () -> new WallTorchBlock(
+                        ParticleTypes.FIREFLY,
+                        properties("sap_wall_torch").noCollission()
+                                .instabreak()
+                                .sound(SoundType.WOOD)
+                                .pushReaction(PushReaction.DESTROY)
+                                .lightLevel(state -> 15)
+                ) {
+                    @Override
+                    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+                        Direction facingDirection = state.getValue(FACING);
+                        double centerX = (double) pos.getX() + (double) 0.5F;
+                        double centerY = (double) pos.getY() + 0.7;
+                        double centerZ = (double) pos.getZ() + (double) 0.5F;
+                        double verticalOffset = 0.22;
+                        double horizontalOffset = 0.27;
+                        Direction antifacingDirection = facingDirection.getOpposite();
+                        level.addParticle(
+                                ParticleTypes.SMOKE,
+                                centerX + horizontalOffset * (double) antifacingDirection.getStepX(),
+                                centerY + verticalOffset,
+                                centerZ + horizontalOffset * (double) antifacingDirection.getStepZ(),
+                                0.0F,
+                                0.0F,
+                                0.0F
+                        );
+
+                        if (random.nextInt(16) == 0) {
+                            level.addParticle(
+                                    this.flameParticle,
+                                    centerX + horizontalOffset * (double) antifacingDirection.getStepX(),
+                                    centerY + verticalOffset,
+                                    centerZ + horizontalOffset * (double) antifacingDirection.getStepZ(),
+                                    0.0F,
+                                    0.0F,
+                                    0.0F
+                            );
+                        }
+                    }
+                }
+        );
+
+        SAP_FIRE = registerBlockWithoutItem(
+                "sap_fire",
+                () -> new SapFireBlock(
+                        properties(Blocks.FIRE, "sap_fire").lightLevel(state -> 15)
                 )
         );
 
@@ -1238,12 +1363,18 @@ public class BlockRegistry {
 
         BRAMBLE_HEAD = registerBlockWithoutItem(
                 "bramble_head",
-                () -> new SimpleSkullBlock(properties(Blocks.ZOMBIE_HEAD, "bramble_head"))
+                () -> new SimpleSkullBlock(properties("bramble_head").strength(1.0F).pushReaction(PushReaction.DESTROY))
         );
 
         BRAMBLE_WALL_HEAD = registerBlockWithoutItem(
                 "bramble_wall_head",
-                () -> new SimpleWallSkullBlock(properties(Blocks.ZOMBIE_WALL_HEAD, "bramble_wall_head"))
+                () -> new SimpleWallSkullBlock(properties("bramble_wall_head").strength(1.0F)
+                        .pushReaction(PushReaction.DESTROY))
+        );
+
+        OVERGROWN_SPAWNER = registerBlockWithoutItem(
+                "overgrown_spawner",
+                () -> new VerdantSpawnerBlock(properties(Blocks.SPAWNER, "overgrown_spawner"))
         );
 
     }
@@ -1284,5 +1415,6 @@ public class BlockRegistry {
     private static ResourceKey<Block> id(String name) {
         return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
+
 }
 

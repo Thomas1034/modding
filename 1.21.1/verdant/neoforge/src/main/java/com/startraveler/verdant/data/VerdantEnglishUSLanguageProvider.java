@@ -15,6 +15,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
@@ -39,7 +40,6 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-
 
         // Delete all superfluous entries and manual override as need be.
         this.exclude(BlockRegistry.CANDLE_UBE_CAKE.get(), "Ube Cake with Candle");
@@ -75,9 +75,20 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("item.verdant.rope_coil.bell", "Bell");
         this.add("item.verdant.rope_coil.lantern", "Lantern");
         this.add("item.verdant.rope_coil.soul_lantern", "Soul Lantern");
+        this.add("item.verdant.rope_coil.shroomlight", "Shroomlight");
         this.add("item.verdant.rope_coil.crafting", "Craft with rope, a tripwire hook, and more to upgrade.");
-        this.exclude(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), "Toxic Ash Bucket");
-        this.exclude(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get(), "Toxic Solution Bucket");
+        this.add("item.verdant.twisted_rope_coil.length", "Length: %s");
+        this.add("item.verdant.twisted_rope_coil.hook", "Has Hook");
+        this.add("item.verdant.twisted_rope_coil.glow", "Glow: %s");
+        this.add("item.verdant.twisted_rope_coil.none", "None");
+        this.add("item.verdant.twisted_rope_coil.bell", "Bell");
+        this.add("item.verdant.twisted_rope_coil.lantern", "Lantern");
+        this.add("item.verdant.twisted_rope_coil.soul_lantern", "Soul Lantern");
+        this.add("item.verdant.twisted_rope_coil.shroomlight", "Shroomlight");
+        this.add("item.verdant.twisted_rope_coil.crafting", "Craft with twisted rope, a tripwire hook, and more to upgrade.");
+        this.exclude(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), "Bucket of Toxic Ash");
+        this.exclude(ItemRegistry.TOXIC_SOLUTION_BUCKET.get(), "Bucket of Toxic Solution");
+        this.exclude(ItemRegistry.OOZE_BUCKET.get(), "Bucket of Ooze");
         this.exclude(BlockRegistry.POISON_STRANGLER_LEAVES.get(), "Poison Ivy Covered Strangler Leaves");
         this.exclude(BlockRegistry.BLEEDING_HEART.get(), "Bleeding Heart Flower");
         this.exclude(BlockRegistry.BUSH.get(), "Tangled Bush");
@@ -100,28 +111,28 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
                 "Add heartwood armor, weapon, or tool"
         );
         this.excludedPotions.add(PotionRegistry.CAFFEINE.get());
-        this.excludedPotions.add(PotionRegistry.LONG_CAFFEINE.get());
-        this.excludedPotions.add(PotionRegistry.STRONG_CAFFEINE.get());
-        this.excludedPotions.add(PotionRegistry.LONG_STRONG_CAFFEINE.get());
         this.add("item.minecraft.potion.effect.caffeine", "Coffee");
         this.add("item.minecraft.splash_potion.effect.caffeine", "Splash Potion of Caffeine");
         this.add("item.minecraft.lingering_potion.effect.caffeine", "Lingering Potion of Caffeine");
+        this.add("item.minecraft.tipped_arrow.effect.caffeine", "Arrow of Caffeine");
+        this.add("item.verdant.tipped_dart.effect.caffeine", "Dart of Caffeine");
+        this.excludedPotions.add(PotionRegistry.STRONG_CAFFEINE.get());
         this.add("item.minecraft.potion.effect.strong_caffeine", "Sweet Coffee");
         this.add("item.minecraft.splash_potion.effect.strong_caffeine", "Splash Potion of Caffeine");
         this.add("item.minecraft.lingering_potion.effect.strong_caffeine", "Lingering Potion of Caffeine");
+        this.add("item.minecraft.tipped_arrow.effect.strong_caffeine", "Arrow of Caffeine");
+        this.add("item.verdant.tipped_dart.effect.strong_caffeine", "Dart of Caffeine");
+        this.excludedPotions.add(PotionRegistry.LONG_CAFFEINE.get());
         this.add("item.minecraft.potion.effect.long_caffeine", "Strong Coffee");
         this.add("item.minecraft.splash_potion.effect.long_caffeine", "Splash Potion of Caffeine");
         this.add("item.minecraft.lingering_potion.effect.long_caffeine", "Lingering Potion of Caffeine");
+        this.add("item.minecraft.tipped_arrow.effect.long_caffeine", "Arrow of Caffeine");
+        this.add("item.verdant.tipped_dart.effect.long_caffeine", "Dart of Caffeine");
+        this.excludedPotions.add(PotionRegistry.LONG_STRONG_CAFFEINE.get());
         this.add("item.minecraft.potion.effect.long_strong_caffeine", "Sweetened Strong Coffee");
         this.add("item.minecraft.splash_potion.effect.long_strong_caffeine", "Splash Potion of Caffeine");
         this.add("item.minecraft.lingering_potion.effect.long_strong_caffeine", "Lingering Potion of Caffeine");
-        this.add("item.minecraft.tipped_arrow.effect.caffeine", "Arrow of Caffeine");
-        this.add("item.minecraft.tipped_arrow.effect.long_caffeine", "Arrow of Caffeine");
-        this.add("item.minecraft.tipped_arrow.effect.strong_caffeine", "Arrow of Caffeine");
         this.add("item.minecraft.tipped_arrow.effect.long_strong_caffeine", "Arrow of Caffeine");
-        this.add("item.verdant.tipped_dart.effect.caffeine", "Dart of Caffeine");
-        this.add("item.verdant.tipped_dart.effect.long_caffeine", "Dart of Caffeine");
-        this.add("item.verdant.tipped_dart.effect.strong_caffeine", "Dart of Caffeine");
         this.add("item.verdant.tipped_dart.effect.long_strong_caffeine", "Dart of Caffeine");
 
         this.exclude(MobEffectRegistry.RED_GREEN.get(), "Red-Green Colorblind");
@@ -135,6 +146,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("death.attack.verdant.toxic_ash.message", "%s suffered chemical burns.");
         this.add("death.attack.verdant.toxic_ash.item.message", "%s suffered chemical burns thanks to %s.");
         this.add("death.attack.verdant.toxic_ash.player.message", "%s suffered chemical burns thanks to %s.");
+
         this.add("advancements.verdant.root.title", "The Verdant Growth");
         this.add("advancements.verdant.root.description", "A spreading plague of greenery is sealed in this world.");
         this.add("advancements.verdant.petrichor.title", "Petrichor");
@@ -167,8 +179,14 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("advancements.verdant.trap_plant.description", "Whoops.");
         this.add("advancements.verdant.poison_ivy.title", "Leaves of Three");
         this.add("advancements.verdant.poison_ivy.description", "Discover why those vines are poison green.");
+        this.add("advancements.verdant.toxic_ash.title", "Toxic Problem");
+        this.add("advancements.verdant.toxic_ash.description", "Smelt poison ivy to for an herbicidal product.");
+        this.add("advancements.verdant.toxic_fishing.title", "Toxic Fishing");
+        this.add("advancements.verdant.toxic_fishing.description", "Use toxic ashes to kill aquatic life.");
+        this.add("advancements.verdant.toxic_solution.title", "Toxic Solution");
+        this.add("advancements.verdant.toxic_solution.description", "Prepare to commit ecocide.");
         this.add("advancements.verdant.inedible.title", "Unfit for Human Consumption");
-        this.add("advancements.verdant.inedible.description", "Why did you even think that was a good idea?");
+        this.add("advancements.verdant.inedible.description", "Why did you even think eating that was a good idea?");
         this.add("advancements.verdant.aloe.title", "In Aloe Veritas");
         this.add("advancements.verdant.aloe.description", "Use aloe's soothing gel to remove a harmful effect.");
         this.add("advancements.verdant.wooden_spikes.title", "Someone Else's Problem");
@@ -179,6 +197,8 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("advancements.verdant.wooden_trap.description", "Develop traps.");
         this.add("advancements.verdant.iron_trap.title", "A Mind of Metal and Gears");
         this.add("advancements.verdant.iron_trap.description", "Create a more deadly variety of trap.");
+        this.add("advancements.verdant.golden_trap.title", "Gilded Cage");
+        this.add("advancements.verdant.golden_trap.description", "Build a trap worthy of royalty.");
         this.add("advancements.verdant.inside_tree.title", "A Spirit Too Delicate");
         this.add("advancements.verdant.inside_tree.description", "Get stuck inside a fast-growing tree.");
         this.add("advancements.verdant.strong_trees.title", "The Trees Are Strong");
@@ -328,9 +348,9 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
             this.add(set.getSlab().get(), name + " Slab");
             this.add(set.getStairs().get(), name + " Stairs");
             if (set.hasMosaic()) {
-                this.add(set.getMosaic().get(), name + " Mosaic");
-                this.add(set.getMosaicSlab().get(), name + " Mosaic Slab");
-                this.add(set.getMosaicStairs().get(), name + " Mosaic Stairs");
+                this.add(Objects.requireNonNull(set.getMosaic()).get(), name + " Mosaic");
+                this.add(Objects.requireNonNull(set.getMosaicSlab()).get(), name + " Mosaic Slab");
+                this.add(Objects.requireNonNull(set.getMosaicStairs()).get(), name + " Mosaic Stairs");
             }
             this.add(set.getFence().get(), name + " Fence");
             this.add(set.getFenceGate().get(), name + " Fence Gate");

@@ -150,7 +150,7 @@ public class BlowdartTippingIngredientRegistry {
         event.accept(
                 Items.ROTTEN_FLESH, (builder -> builder.accept(
                         DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get(),
-                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.POISON, 60, 0)))
+                        new BlowdartTippingIngredient(List.of(new MobEffectInstance(MobEffects.HUNGER, 80, 0)))
                 ))
         );
 

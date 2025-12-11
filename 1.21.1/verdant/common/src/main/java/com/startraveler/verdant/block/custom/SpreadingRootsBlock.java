@@ -248,22 +248,22 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Handles bone mealing. Fairly straightforward.
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
         return state.getValue(ACTIVE);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         return this.isValidBonemealTarget(level, pos, state);
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         this.grow(state, level, pos);
     }
 
     @Override
-    public Type getType() {
+    public @NotNull Type getType() {
         return Type.NEIGHBOR_SPREADER;
     }
 
@@ -298,8 +298,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         Direction[] directions = Direction.values();
         int numDirections = directions.length;
         Direction direction;
-        for (int i = 0; i < numDirections; i++) {
-            direction = directions[i];
+        for (Direction value : directions) {
+            direction = value;
 
             // If we don't know what's in that direction, check it.
             neighborPos.setWithOffset(pos, direction);
@@ -346,7 +346,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
 
         // Logic is too complicated to duplicate, most likely.
         tickAccess.scheduleTick(currentPos, this, 1);
@@ -356,7 +356,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Applies custom hoeing logic; I feel like doing this should be much easier.
     @Override
-    protected @NotNull InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 
         if (level instanceof ServerLevel serverLevel) {
             if (stack.is(ItemTags.HOES)) {
@@ -371,7 +371,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Handles spreading and updating wetness/grassiness.
     // This is anticipated to cause the most lag.
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void randomTick(BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         // If it is ticking while inactive, there is a problem.
         if (!state.getValue(ACTIVE)) {
             return;
@@ -396,11 +396,14 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
         // Set the state in the world.
         if (state != originalState) {
-            level.setBlockAndUpdate(pos, state);
+            BlockState updatedOriginalStateAfterFeaturePlacement = level.getBlockState(pos);
+            if (updatedOriginalStateAfterFeaturePlacement.is(this)) {
+                level.setBlockAndUpdate(pos, state);
+            }
         }
     }
 
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockState updated = this.updateState(state, level, pos);
         if (state != updated) {
             // TODO centralize updates.
@@ -460,7 +463,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
 
         @Override
-        public String getSerializedName() {
+        public @NotNull String getSerializedName() {
             return this.representation;
         }
     }

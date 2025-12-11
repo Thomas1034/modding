@@ -17,10 +17,6 @@ public class VerdantTexturedModel {
             block -> VerdantTextureMapping.fruitingLeaves(TextureMapping.getBlockTexture(block)),
             VerdantModelTemplates.FRUITING_LEAVES
     );
-    public static final TexturedModel.Provider OOZE_FISSURE = TexturedModel.createDefault(
-            VerdantTextureMapping::oozeFissure,
-            VerdantModelTemplates.OOZE_FISSURE
-    );
     public static final TexturedModel.Provider WALL_SKULL = TexturedModel.createDefault(
             VerdantTextureMapping::skull,
             VerdantModelTemplates.WALL_SKULL

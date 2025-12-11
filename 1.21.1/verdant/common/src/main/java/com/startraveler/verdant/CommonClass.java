@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.Blocks;
 //
 // Ideas for new effects:
 //
+// TODO Add firefly attractor! "You would not believe your eyes..."
 // TODO Ideas for future improvements:
 /*
  Make the rope coil recipe more customizable.
@@ -41,15 +42,11 @@ import net.minecraft.world.level.block.Blocks;
  Order of operations would be important, especially with operations
  that involve setting the length.
 
-TODO set up entity motion tracker, possibly make into library with block-transformer later.
-Search for TODO TODO TODO in Discord.
-Mixin to public void teleportTo(double x, double y, double z) and public Entity teleport(TeleportTransition teleportTransition), both in Entity.
-
 Add "tangled mats" which grow in the top layer of water (underwater) and slow down entities caught in them.
 Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots filling the whole blocks.
 Find use for them?
 
-Add manatees.
+Add manatees?
 
 Boss ideas:
 Stationary
@@ -58,16 +55,7 @@ Retreats underground if there are no players nearby
 AOE attack, like dragon's breath. Maybe summons thorn spike entities in an area?
 
 Advancements:
-"Born and Bred", "Walk through a thorn bush without taking damage."
-"That is just wrong on so many levels", "Use Toxic Ash as a shortcut while fishing."
-"In Aloe Veritas", "Use aloe's soothing gel to remove a harmful effect."
-"Kabloom", "Step on a volatile flower."
 "Minesweeper", "Collect a Blasting Bloom using shears."
-"Someone Else's Problem", "Craft Wooden Spikes."
-"Warning: Sharp Floor", "Craft Iron Spikes."
-"", "Place a Wooden Trap."
-"", "Place an Iron Trap."
-"Gilded Cage", "Place a Golden Trap." (add golden traps first)
 
 Compatibility
 
@@ -80,10 +68,47 @@ Lingers on the ground and will not hurt the person who threw it.
 /*
 
 Changes:
+- Reduced the damage that spikes do once again.
+- Tweaks to spike hitboxes (again).
+- Sap slows entities in it less, but gives a slowing potion effect.
+- Sap's model and texture changed.
+- Sap now obscures vision of entities inside it.
+- Tweaked heartwood log/wood textures.
+- Changed spawn probabilities of verdant growth features, as always.
+- Slightly changed the recipe for blasting blossom sprouts.
+- Massively nerfed stable blasting blooms; they now no longer destroy blocks. See "Features Added" for the new alternatives.
+- All bomb piles are gravity-affected and explode on landing. Have fun.
+- Throwable bombs (blasting blooms, terracotta grenades, metal grenades) now have a cooldown.
+- Made wild ube and cassava replaceable.
+- Heart of the Forest is now crafted using heart fragments and balsam.
+- Rearranged the creative mode tab contents.
 
 Features Added:
+- Copper and gold spikes and traps.
+- Juice and Nectar, alternatives to healing potions.
+- A few more advancements.
+- Oozes, darker-green slimes that can spawn holding flowers. They inflict potion effects corresponding to the flower they hold. Oozes will pick up flower items; use this to your advantage! Oozes drop sap globs when killed.
+- Small oozes can be picked up with water buckets and carried around, for convenience. This makes them friendlier and deal less damage.
+- Ooze fissures, uncommon features that rapidly spawn oozes around them. They are less productive after being harvested and re-placed.
+- Balsam, an item obtained from harvesting natural ooze fissures.
+- Balm, a healing item obtained from brewing balsam into an empty bottle.
+- Terracotta bombs, crafted from stable blasting blooms and bricks. These destroy terrain in a large radius.
+- Metal bombs, crafted from stable blasting blooms, copper ingots, and iron ingots. These destroy terrain in a very large radius with a fiery explosion.
+- Terracotta grenades, crafted from a terracotta bomb and a string, are a more powerful equivalent to the blasting bloom.
+- Metal grenades, crafted from a metal bomb and a string, are more powerful than terracotta grenades. Handle carefully!
+- Machetes, a new type of tool craftable in iron, diamond, and netherite, that mines plants in a 3x3x3 cube! Excellent for hacking through the underbrush or clearing land.
 
 Bugs Fixed:
+- Fragile blocks like rotten wood now break correctly when fallen upon.
+- Rotten flesh now correctly applies hunger to darts instead of poison.
+- Critical bugfix: diamonds no longer turn into emeralds when eroded.
+- Rope texture was misaligned.
+- Rope is now correctly ignited by lava.
+- Corrected the random sequence in the Timbermite loot table.
+- The group is now correct in the mod's properties... I forgot to change it from back when it was my name.
+- Somehow, I accidentally renamed zombie heads and altered their loot tables. I have no idea how I did this.
+- Sacks can no longer be crafted into bundles.
+- The achievement for golden traps had the same description, title, and image as the one for iron traps.
 
  */
 public class CommonClass {
@@ -95,11 +120,11 @@ public class CommonClass {
     // code that gets invoked by the entry point of the loader specific projects.
     public static void init() {
 
-//        Constants.LOG.info(
-//                "Hello from Common init on {}! we are currently in a {} environment!",
-//                Services.PLATFORM.getPlatformName(),
-//                Services.PLATFORM.getEnvironmentName()
-//        );
+        //        Constants.LOG.info(
+        //                "Hello from Common init on {}! we are currently in a {} environment!",
+        //                Services.PLATFORM.getPlatformName(),
+        //                Services.PLATFORM.getEnvironmentName()
+        //        );
 
         // It is common for all supported loaders to provide a similar feature that can not be used directly in the
         // common code. A popular way to get around this is using Java's built-in service loader feature to create

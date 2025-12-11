@@ -22,9 +22,12 @@ import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.List;
 
@@ -54,12 +57,7 @@ public class MobEffectRegistry {
                     MobEffectCategory.HARMFUL, 0x4B5320, 0.25f, new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(
-                            MobEffects.SLOWNESS,
-                            5,
-                            4,
-                            0
-                    )
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.SLOWNESS, 5, 4, 0)
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
@@ -67,7 +65,12 @@ public class MobEffectRegistry {
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
-                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(MobEffects.MINING_FATIGUE, 5, 4, 2)
+                    RandomInflictedEffect.WeightedEffectHolder.amplifierScaledByLevel(
+                            MobEffects.MINING_FATIGUE,
+                            5,
+                            4,
+                            2
+                    )
             ), new RandomInflictedEffect.WeightedEffectHolder(
                     1,
                     600,
@@ -86,13 +89,7 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> CAFFEINATED = MOB_EFFECTS.register(
             "caffeinated",
-            () -> new AddictiveEffect(
-                    MobEffectCategory.NEUTRAL,
-                    0x5c4033,
-                    100,
-                    MobEffects.SPEED,
-                    MobEffects.HASTE
-            )
+            () -> new AddictiveEffect(MobEffectCategory.NEUTRAL, 0x5c4033, 100, MobEffects.SPEED, MobEffects.HASTE)
     );
     public static final RegistryObject<MobEffect, MobEffect> VERDANT_ENERGY = MOB_EFFECTS.register(
             "verdant_energy",
@@ -147,6 +144,34 @@ public class MobEffectRegistry {
     public static final RegistryObject<MobEffect, MobEffect> BLURRING = MOB_EFFECTS.register(
             "blurring",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x808080)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> SAPPY = MOB_EFFECTS.register(
+            "sappy",
+            () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x6dc330).addAttributeModifier(
+                    Attributes.MOVEMENT_SPEED,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    -0.25F,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ).addAttributeModifier(
+                    Attributes.KNOCKBACK_RESISTANCE,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    0.25F,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ).addAttributeModifier(
+                    Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    0.25F,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ).addAttributeModifier(
+                    Attributes.ATTACK_KNOCKBACK,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    0.25F,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            )
+    );
+    public static final RegistryObject<MobEffect, MobEffect> SAPPY_VISION = MOB_EFFECTS.register(
+            "sappy_vision",
+            () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x157011)
     );
     public static final RegistryObject<MobEffect, MobEffect> COLORBLIND = MOB_EFFECTS.register(
             "colorblind",

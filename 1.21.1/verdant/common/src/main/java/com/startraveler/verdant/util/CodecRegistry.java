@@ -24,7 +24,6 @@ public class CodecRegistry<T> {
     }
 
     public ResourceLocation byValue(MapCodec<?> type) {
-
         return this.map.inverse().get(type);
     }
 

@@ -1,11 +1,12 @@
-// 1.21.6	2025-08-13T12:51:05.3044677	Advancements
+// 1.21.8	2025-10-17T23:18:12.9568955	Advancements
 ef5ced76890d463a8bff23d1bd72393352b1196f data/verdant/advancement/aloe.json
 e85e71f606ab947aac1ed1e2aa9af587ed52195a data/verdant/advancement/craft_rope.json
 137ee76897315e6dd22148b30b0f82d648bf9dd2 data/verdant/advancement/craft_rope_coil.json
 24cf96fb775c9412f593181252f8d31e82a63b45 data/verdant/advancement/craft_sack.json
 e7bd1ab21c5ac2e2332cea98ebc811699eeea07e data/verdant/advancement/deep_roots.json
+ea98dbfd8f672943b4f329d988f42e99ba492796 data/verdant/advancement/golden_trap.json
 46c81925477fc1361de4a60d1ee548095a70a217 data/verdant/advancement/inedible.json
-4ab4a09d9ecbeeb390abd362c2e17567221ea652 data/verdant/advancement/inside_tree.json
+8a578eb854dd43182bd74dbf64e9b8e7b9e0794f data/verdant/advancement/inside_tree.json
 a760ba7dc0efa06a4e7c33142f766cf995c67665 data/verdant/advancement/iron_spikes.json
 eb3a06378ec3ba3d8ea45edce5143a881ab63c7b data/verdant/advancement/iron_trap.json
 9f6d10a5c59a011fba7d06b564abe67eac89d5be data/verdant/advancement/many_sacks.json
@@ -19,6 +20,9 @@ bff8e61df0520448f21ec6f1819f808c358b01c1 data/verdant/advancement/stand_on_verda
 7ff0b752ce612a4141cd2b36bd5339a436f8556d data/verdant/advancement/strong_trees.json
 6eff2de3c93637db9ea9150fdd15d96a257098ca data/verdant/advancement/thorn_bush.json
 b06917c4a6930fe0d279e9ab6a2c95a660ae9ce8 data/verdant/advancement/too_many_sacks.json
+32f92f08d3a08ed93c7ba99659a0dbea5b31ee7a data/verdant/advancement/toxic_ash.json
+f026720c47c8a978c2f0ff1c94b495ac5ca814c8 data/verdant/advancement/toxic_fishing.json
+66702ffc64e3246d9e0499fadadb5e74a9b89707 data/verdant/advancement/toxic_solution.json
 43e1c5264af9bf76ebc15dfc02d86789aa6078fc data/verdant/advancement/trap_plant.json
 aec60945a5a2788dd4646056e52092df4e41462b data/verdant/advancement/wooden_spikes.json
 7ca8733edddb2307c4b9b0674db4efbde9717916 data/verdant/advancement/wooden_trap.json

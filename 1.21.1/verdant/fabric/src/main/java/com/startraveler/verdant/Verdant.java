@@ -6,9 +6,7 @@ import com.startraveler.verdant.entity.custom.PoisonerEntity;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.BaseTimer;
-import com.startraveler.verdant.timer.PrintForTestingTimer;
-import com.startraveler.verdant.timer.TimerListSavedData;
+import com.startraveler.verdant.timer.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
@@ -26,6 +24,7 @@ import net.minecraft.server.packs.resources.CloseableResourceManager;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.DimensionDataStorage;
 
 import java.util.List;
@@ -57,6 +56,7 @@ public class Verdant implements ModInitializer {
         // Register potion recipes
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
             PotionRecipeRegistry.init(builder::addMix, builder::registerItemRecipe);
+            builder.addContainer(Items.GLASS_BOTTLE);
         });
 
         FabricDefaultAttributeRegistry.register(
@@ -97,6 +97,8 @@ public class Verdant implements ModInitializer {
         )));
 
         BaseTimer.CODEC_REGISTRY.register(PrintForTestingTimer.TYPE, PrintForTestingTimer.CODEC);
+        BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
+        BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
 
         ServerTickEvents.END_WORLD_TICK.register((ServerLevel level) -> {
             DimensionDataStorage dataStorage = level.getDataStorage();
@@ -122,6 +124,8 @@ public class Verdant implements ModInitializer {
         });
 
         CommonClass.addCakeCandles();
+
+        // BlockEntityType.MOB_SPAWNER.addSupportedBlock(BlockRegistry.OVERGROWN_SPAWNER.get());
 
         Rootbound.initializeWoodSets(WoodSets.WOOD_SETS);
     }

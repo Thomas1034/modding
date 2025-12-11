@@ -1,4 +1,6 @@
 {
   "type": "verdant:rope_coil_upgrade",
-  "category": "equipment"
+  "category": "equipment",
+  "coil": "verdant:rope_coil",
+  "rope": "verdant:rope"
 }

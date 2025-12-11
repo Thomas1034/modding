@@ -18,6 +18,7 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.feature.custom.FixedSeagrassFeature;
+import com.startraveler.verdant.feature.custom.OozeFissureSpikeFeature;
 import com.startraveler.verdant.feature.custom.StranglerVineFeature;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
@@ -40,6 +41,10 @@ public class FeatureRegistry {
     public static final RegistryObject<Feature<?>, Feature<?>> STRANGLER_VINES = FEATURES.register(
             "strangler_vines",
             () -> new StranglerVineFeature(NoneFeatureConfiguration.CODEC)
+    );
+    public static final RegistryObject<Feature<?>, Feature<?>> OOZE_FISSURE_SPIKE = FEATURES.register(
+            "ooze_fissure_spike",
+            () -> new OozeFissureSpikeFeature(NoneFeatureConfiguration.CODEC)
     );
 
 

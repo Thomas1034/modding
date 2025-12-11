@@ -26,30 +26,30 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-public record RopeHangingBlockProperty() implements SelectItemModelProperty<RopeCoilData.LanternOptions> {
+public record RopeHangingBlockProperty() implements SelectItemModelProperty<RopeCoilData.HangingBlockOptions> {
 
     // The object to register that contains the relevant codecs
-    public static final SelectItemModelProperty.Type<RopeHangingBlockProperty, RopeCoilData.LanternOptions> TYPE = SelectItemModelProperty.Type.create(
+    public static final SelectItemModelProperty.Type<RopeHangingBlockProperty, RopeCoilData.HangingBlockOptions> TYPE = SelectItemModelProperty.Type.create(
             // The map codec for this property
             MapCodec.unit(new RopeHangingBlockProperty()),
             // The codec for the object being selected
             // Used to serialize the case entries ("when": <property value>)
-            RopeCoilData.LanternOptions.CODEC
+            RopeCoilData.HangingBlockOptions.CODEC
     );
 
     @Override
-    public RopeCoilData.LanternOptions get(ItemStack itemStack, ClientLevel clientLevel, LivingEntity livingEntity, int i, ItemDisplayContext itemDisplayContext) {
+    public RopeCoilData.HangingBlockOptions get(ItemStack itemStack, ClientLevel clientLevel, LivingEntity livingEntity, int i, ItemDisplayContext itemDisplayContext) {
         RopeCoilData d = itemStack.get(DataComponentRegistry.ROPE_COIL.get());
-        return d == null ? RopeCoilData.LanternOptions.NONE : d.lantern();
+        return d == null ? RopeCoilData.HangingBlockOptions.NONE : d.hangingBlock();
     }
 
     @Override
-    public Codec<RopeCoilData.LanternOptions> valueCodec() {
-        return RopeCoilData.LanternOptions.CODEC;
+    public Codec<RopeCoilData.HangingBlockOptions> valueCodec() {
+        return RopeCoilData.HangingBlockOptions.CODEC;
     }
 
     @Override
-    public Type<? extends SelectItemModelProperty<RopeCoilData.LanternOptions>, RopeCoilData.LanternOptions> type() {
+    public Type<? extends SelectItemModelProperty<RopeCoilData.HangingBlockOptions>, RopeCoilData.HangingBlockOptions> type() {
         return TYPE;
     }
 }

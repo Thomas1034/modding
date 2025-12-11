@@ -2,8 +2,11 @@ package com.startraveler.verdant.block.custom;
 
 import com.google.common.collect.ArrayTable;
 import com.google.common.collect.Table;
+import com.mojang.serialization.MapCodec;
+import com.startraveler.verdant.entity.custom.BlockIgnoringPrimedTnt;
 import com.startraveler.verdant.mixin.PrimedTntAccessors;
 import com.startraveler.verdant.util.CommonTags;
+import com.startraveler.verdant.util.PrimedTntMixinIndirection;
 import com.startraveler.verdant.util.XFactHDShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,6 +19,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -26,6 +30,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,15 +41,17 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
-public class BombPileBlock extends Block {
+public class BombPileBlock extends FallingBlock {
 
     public static final int MIN_BOMBS = 1;
     public static final int MAX_BOMBS = 8;
@@ -56,34 +64,73 @@ public class BombPileBlock extends Block {
     public static final BooleanProperty UNSTABLE = BlockStateProperties.UNSTABLE;
     public static final int NORMAL_FUSE = 20;
     protected final Predicate<ItemStack> canIncreaseSize;
+    protected final boolean hasFire;
+    protected final float explosionMultiplier;
+    protected final boolean blockDestroying;
 
     public BombPileBlock(Properties properties, Predicate<ItemStack> canIncreaseSize) {
+        this(properties, canIncreaseSize, false, false, 1.0f);
+    }
+
+    public BombPileBlock(Properties properties, Predicate<ItemStack> canIncreaseSize, boolean hasFire, boolean blockDestroying, float explosionMultiplier) {
         super(properties);
         this.canIncreaseSize = canIncreaseSize;
         this.registerDefaultState(this.getStateDefinition().any().setValue(BOMBS, MIN_BOMBS).setValue(UNSTABLE, false));
+        this.hasFire = hasFire;
+        this.explosionMultiplier = explosionMultiplier;
+        this.blockDestroying = blockDestroying;
     }
-
 
     public static boolean prime(BlockState state, Level level, BlockPos pos) {
         return prime(state, level, pos, null);
     }
 
     private static boolean prime(BlockState state, Level level, BlockPos pos, @Nullable LivingEntity entity) {
+        return prime(state, level, new Vec3(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5), entity);
+    }
+
+    private static boolean prime(BlockState state, Level level, Vec3 pos, @Nullable LivingEntity entity) {
         if (level instanceof ServerLevel serverlevel) {
             if (serverlevel.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
-                PrimedTnt bomb = new PrimedTnt(
-                        level,
-                        (double) pos.getX() + (double) 0.5F,
-                        (double) pos.getY(),
-                        (double) pos.getZ() + (double) 0.5F,
-                        entity
-                );
-                ((PrimedTntAccessors) bomb).setExplosionPower(state.getValue(BOMBS) * 2);
+
+                float explosionMultiplier = 2.0f;
+                boolean hasFire = false;
+                boolean blockDestroying = false;
+                if (state.getBlock() instanceof BombPileBlock bombPileBlock) {
+                    explosionMultiplier = bombPileBlock.explosionMultiplier;
+                    hasFire = bombPileBlock.hasFire;
+                    blockDestroying = bombPileBlock.blockDestroying;
+                }
+
+
+                PrimedTnt bomb;
+                if (!blockDestroying) {
+                    bomb = new BlockIgnoringPrimedTnt(
+                            level,
+                            pos.x(),
+                            pos.y(),
+                            pos.z(),
+                            entity
+                    );
+                } else {
+                    bomb = new PrimedTnt(
+                            level,
+                            pos.x(),
+                            pos.y(),
+                            pos.z(),
+                            entity
+                    );
+                    ((PrimedTntAccessors) bomb).setExplosionPower(state.getValue(BOMBS) * explosionMultiplier);
+                    if (hasFire) {
+                        ((PrimedTntMixinIndirection) bomb).verdant$setStartsFires();
+                    }
+                }
+
                 bomb.setBlockState(state);
                 bomb.setFuse(NORMAL_FUSE);
                 level.addFreshEntity(bomb);
                 level.playSound(
-                        (Entity) null,
+                        null,
                         bomb.getX(),
                         bomb.getY(),
                         bomb.getZ(),
@@ -101,28 +148,20 @@ public class BombPileBlock extends Block {
     }
 
     // Make NeoForge happy TODO replace with mixin to FireBlock?
-    public boolean onCaughtFire(BlockState state, Level level, BlockPos pos, @org.jetbrains.annotations.Nullable Direction direction, @Nullable LivingEntity igniter) {
+    @SuppressWarnings("UnusedReturnValue")
+    public boolean onCaughtFire(BlockState state, Level level, BlockPos pos, @Nullable Direction direction, @Nullable LivingEntity igniter) {
         return prime(state, level, pos, igniter);
     }
 
     @Override
-    protected void neighborChanged(BlockState p_57457_, Level p_57458_, BlockPos p_57459_, Block p_57460_, @Nullable Orientation p_364510_, boolean p_57462_) {
+    protected void neighborChanged(@NotNull BlockState p_57457_, Level p_57458_, @NotNull BlockPos p_57459_, @NotNull Block p_57460_, @Nullable Orientation p_364510_, boolean p_57462_) {
         if (p_57458_.hasNeighborSignal(p_57459_) && prime(p_57457_, p_57458_, p_57459_)) {
             p_57458_.removeBlock(p_57459_, false);
         }
     }
 
     @Override
-    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
-        if (!oldState.is(state.getBlock())) {
-            if (level.hasNeighborSignal(pos) && prime(state, level, pos)) {
-                level.removeBlock(pos, false);
-            }
-        }
-    }
-
-    @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected @NotNull InteractionResult useItemOn(ItemStack stack, BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult result) {
         int numBombs = state.getValue(BOMBS);
         Item item = stack.getItem();
         if (numBombs < MAX_BOMBS && this.canIncreaseSize.test(stack)) {
@@ -154,13 +193,13 @@ public class BombPileBlock extends Block {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
         BlockState attachedTo = level.getBlockState(pos.below());
         return attachedTo.isFaceSturdy(level, pos, Direction.UP) && super.canSurvive(state, level, pos);
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         int count = state.getValue(BOMBS);
         Direction facing = state.getValue(FACING);
         VoxelShape shape = SHAPES.get(count, facing);
@@ -173,7 +212,7 @@ public class BombPileBlock extends Block {
     }
 
     @Override
-    protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
+    protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
         if (level instanceof ServerLevel serverlevel) {
             BlockPos blockpos = hit.getBlockPos();
             Entity entity = projectile.getOwner();
@@ -186,7 +225,55 @@ public class BombPileBlock extends Block {
     }
 
     @Override
-    public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
+    protected @NotNull MapCodec<? extends FallingBlock> codec() {
+        throw new IllegalStateException("Block codecs are not yet implemented.");
+    }
+
+    @Override
+    protected void onPlace(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState oldState, boolean isMoving) {
+        if (!oldState.is(state.getBlock())) {
+            if (level.hasNeighborSignal(pos) && prime(state, level, pos)) {
+                level.removeBlock(pos, false);
+            }
+        }
+    }
+
+    @Override
+    protected void falling(@NotNull FallingBlockEntity entity) {
+        entity.disableDrop();
+    }
+
+    @Override
+    public int getDustColor(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos) {
+        return 0x494949;
+    }
+
+    @Override
+    public void onLand(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull BlockState replaceableState, @NotNull FallingBlockEntity fallingBlock) {
+        if (level instanceof ServerLevel serverLevel) {
+            Vec3 center = pos.getCenter();
+            serverLevel.explode(
+                    fallingBlock,
+                    center.x(),
+                    center.y(),
+                    center.z(),
+                    1.0f,
+                    Level.ExplosionInteraction.BLOCK
+            );
+        }
+    }
+
+    @Override
+    public void onBrokenAfterFall(@NotNull Level level, @NotNull BlockPos blockPos, FallingBlockEntity fallingBlockEntity) {
+        if (!fallingBlockEntity.isSilent()) {
+            level.levelEvent(LevelEvent.SOUND_POINTED_DRIPSTONE_LAND, blockPos, 0);
+        }
+        prime(fallingBlockEntity.getBlockState(), level, fallingBlockEntity.position(), null);
+
+    }
+
+    @Override
+    public void wasExploded(ServerLevel level, @NotNull BlockPos pos, @NotNull Explosion explosion) {
         if (level.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
             PrimedTnt bomb = new PrimedTnt(
                     level,
@@ -206,16 +293,16 @@ public class BombPileBlock extends Block {
     }
 
     @Override
-    public BlockState playerWillDestroy(Level p_57445_, BlockPos p_57446_, BlockState p_57447_, Player p_57448_) {
-        if (!p_57445_.isClientSide() && !p_57448_.getAbilities().instabuild && p_57447_.getValue(UNSTABLE)) {
-            prime(p_57447_, p_57445_, p_57446_);
+    public @NotNull BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+        if (!level.isClientSide() && !player.getAbilities().instabuild && state.getValue(UNSTABLE)) {
+            prime(state, level, pos);
         }
 
-        return super.playerWillDestroy(p_57445_, p_57446_, p_57447_, p_57448_);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public boolean dropFromExplosion(Explosion explosion) {
+    public boolean dropFromExplosion(@NotNull Explosion explosion) {
         return false;
     }
 

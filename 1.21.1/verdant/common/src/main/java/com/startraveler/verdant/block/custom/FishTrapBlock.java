@@ -48,6 +48,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -95,33 +96,33 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new FishTrapBlockEntity(pos, state);
     }
 
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return BLOCK_SUPPORT_SHAPE.get(state.getValue(FACING));
     }
 
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(
                 state);
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
         if (level.isClientSide()) {
             return null;
         }
@@ -137,7 +138,8 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
         );
     }
 
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
 
         if (!(level.getBlockEntity(pos) instanceof FishTrapBlockEntity fishTrap) || !(player.level() instanceof ServerLevel serverLevel) || !(player instanceof ServerPlayer serverPlayer)) {
             return InteractionResult.SUCCESS;
@@ -165,7 +167,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     // From DoublePlantBlock
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         BlockState blockstate = super.getStateForPlacement(context);
         if (blockstate == null) {
             return null;
@@ -180,7 +182,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
             tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
@@ -189,7 +191,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluid) {
+    public boolean placeLiquid(@NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluid) {
         boolean placed = SimpleWaterloggedBlock.super.placeLiquid(level, pos, state, fluid);
         if (placed && !level.isClientSide()) {
             level.setBlock(pos, this.setEnabled(level, level.getBlockState(pos), pos), 3);
@@ -198,7 +200,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public ItemStack pickupBlock(LivingEntity player, LevelAccessor level, BlockPos pos, BlockState state) {
+    public @NotNull ItemStack pickupBlock(LivingEntity player, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockState state) {
         ItemStack stack = SimpleWaterloggedBlock.super.pickupBlock(player, level, pos, state);
         if (!stack.isEmpty() && !level.isClientSide()) {
             level.setBlock(pos, this.setEnabled(level, level.getBlockState(pos), pos), 3);
@@ -208,7 +210,7 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING, WATERLOGGED, ENABLED);
     }

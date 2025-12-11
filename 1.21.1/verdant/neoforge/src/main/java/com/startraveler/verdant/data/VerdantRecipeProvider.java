@@ -22,6 +22,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -72,9 +73,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shapeless(List.of(ItemRegistry.ROASTED_COFFEE.get()), List.of(1), RecipeCategory.MISC, Items.BROWN_DYE, 1);
 
         shaped(
-                List.of(" f ", "fdf", " f "),
+                List.of("dfd", "fdf", "dfd"),
                 List.of('f', 'd'),
-                List.of(ItemRegistry.HEART_FRAGMENT.get(), VerdantTags.Items.VERDANT_GROUND),
+                List.of(ItemRegistry.HEART_FRAGMENT.get(), ItemRegistry.BALSAM.get()),
                 RecipeCategory.MISC,
                 ItemRegistry.HEART_OF_THE_FOREST.get(),
                 1
@@ -154,6 +155,13 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.ROPE.get(),
                 3
         );
+        shapeless(
+                List.of(ItemRegistry.ROPE.get(), VerdantTags.Items.NETHER_VINES),
+                List.of(1, 1),
+                RecipeCategory.MISC,
+                ItemRegistry.TWISTED_ROPE.get(),
+                2
+        );
         shaped(
                 List.of(" r ", "r r", " r "),
                 List.of('r'),
@@ -162,11 +170,26 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.ROPE_COIL.get(),
                 1
         );
+        shaped(
+                List.of(" r ", "r r", " r "),
+                List.of('r'),
+                List.of(ItemRegistry.TWISTED_ROPE.get()),
+                RecipeCategory.MISC,
+                ItemRegistry.TWISTED_ROPE_COIL.get(),
+                1
+        );
 
         shapeless(List.of(Items.WATER_BUCKET, Items.DIRT), List.of(1, 8), RecipeCategory.BUILDING_BLOCKS, Items.MUD, 8);
 
         // Register rope upgrading.
-        new RopeCoilUpgradeRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
+        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.ROPE.get())
+                .coil(ItemRegistry.ROPE_COIL.get())
+                .category(CraftingBookCategory.EQUIPMENT)
+                .save(output);
+        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.TWISTED_ROPE.get())
+                .coil(ItemRegistry.TWISTED_ROPE_COIL.get())
+                .category(CraftingBookCategory.EQUIPMENT)
+                .save(output);
         // Register dart tipping.
         new BlowdartTippingRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
 
@@ -183,7 +206,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("  P", " S ", "V  "),
                 List.of('P', 'S', 'V'),
-                List.of(ItemRegistry.THORN.get(), Items.STICK, Items.VINE),
+                List.of(ItemRegistry.THORN.get(), Tags.Items.RODS_WOODEN, Items.VINE),
                 RecipeCategory.COMBAT,
                 Items.ARROW,
                 1
@@ -207,7 +230,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
         shapeless(
-                List.of(ItemRegistry.ROPE.get(), Blocks.MUD),
+                List.of(VerdantTags.Items.ROPES, Blocks.MUD),
                 List.of(2, 1),
                 RecipeCategory.TOOLS,
                 Blocks.PACKED_MUD,
@@ -263,30 +286,48 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
         smeltingResultFromBase(BlockRegistry.FUSED_SCREE.get(), BlockRegistry.PACKED_SCREE.get());
 
-        // Thorn spikes item
+        // Spikes
         shaped(
                 List.of("TTT", "TTT", "KRK"),
                 List.of('T', 'K', 'R'),
-                List.of(ItemRegistry.THORN.get(), Items.STICK, Items.STRING),
-                RecipeCategory.BUILDING_BLOCKS,
+                List.of(ItemRegistry.THORN.get(), Tags.Items.RODS_WOODEN, Items.STRING),
+                RecipeCategory.DECORATIONS,
                 BlockRegistry.WOODEN_SPIKES.get(),
                 1
         );
         shaped(
                 List.of("TTT", "TTT", "KRK"),
                 List.of('T', 'K', 'R'),
-                List.of(ItemRegistry.THORN.get(), Items.STICK, BlockRegistry.ROPE.get()),
-                RecipeCategory.BUILDING_BLOCKS,
+                List.of(ItemRegistry.THORN.get(), Tags.Items.RODS_WOODEN, VerdantTags.Items.ROPES),
+                RecipeCategory.DECORATIONS,
                 BlockRegistry.WOODEN_SPIKES.get(),
                 1
+        );
+        // Copper spikes item
+        shaped(
+                List.of("III", "SSS", "RRR"),
+                List.of('I', 'S', 'R'),
+                List.of(Tags.Items.INGOTS_COPPER, BlockRegistry.WOODEN_SPIKES.get(), Tags.Items.RODS_WOODEN),
+                RecipeCategory.DECORATIONS,
+                BlockRegistry.COPPER_SPIKES.get(),
+                3
         );
         // Iron spikes item
         shaped(
-                List.of("NNN", "SSS", "III"),
-                List.of('N', 'S', 'I'),
-                List.of(Items.IRON_NUGGET, BlockRegistry.WOODEN_SPIKES.get(), Items.IRON_BARS),
-                RecipeCategory.BUILDING_BLOCKS,
+                List.of("III", "SSS", "RRR"),
+                List.of('I', 'S', 'R'),
+                List.of(Tags.Items.INGOTS_IRON, BlockRegistry.WOODEN_SPIKES.get(), Tags.Items.RODS_WOODEN),
+                RecipeCategory.DECORATIONS,
                 BlockRegistry.IRON_SPIKES.get(),
+                3
+        );
+        // Golden spikes item
+        shaped(
+                List.of("III", "SSS", "RRR"),
+                List.of('I', 'S', 'R'),
+                List.of(Tags.Items.INGOTS_GOLD, BlockRegistry.WOODEN_SPIKES.get(), Tags.Items.RODS_WOODEN),
+                RecipeCategory.DECORATIONS,
+                BlockRegistry.GOLDEN_SPIKES.get(),
                 3
         );
 
@@ -294,7 +335,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of(" T ", "THT", " T "),
                 List.of('T', 'H'),
-                List.of(Items.STICK, ItemRegistry.THORN.get()),
+                List.of(Tags.Items.RODS_WOODEN, ItemRegistry.THORN.get()),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.FRAME_BLOCK.get(),
                 1
@@ -314,18 +355,34 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
                         BlockRegistry.WOODEN_SPIKES.get(),
-                        Items.COPPER_INGOT,
-                        Items.STICK,
+                        ItemTags.PLANKS,
+                        Tags.Items.RODS_WOODEN,
                         BlockTags.WOODEN_PRESSURE_PLATES
-                ), RecipeCategory.MISC, BlockRegistry.WOODEN_TRAP.get(), 3
+                ), RecipeCategory.COMBAT, BlockRegistry.WOODEN_TRAP.get(), 3
         );
         shaped(
-                List.of("S S", "SCS", "TPT"),
-                List.of('S', 'C', 'T', 'P'),
-                List.of(BlockRegistry.IRON_SPIKES.get(), Items.IRON_INGOT, Items.STICK, Items.STONE_PRESSURE_PLATE),
-                RecipeCategory.MISC,
-                BlockRegistry.IRON_TRAP.get(),
-                3
+                List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
+                        BlockRegistry.COPPER_SPIKES.get(),
+                        Items.COPPER_INGOT,
+                        Tags.Items.RODS_WOODEN,
+                        BlockTags.WOODEN_PRESSURE_PLATES
+                ), RecipeCategory.COMBAT, BlockRegistry.COPPER_TRAP.get(), 3
+        );
+        shaped(
+                List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
+                        BlockRegistry.IRON_SPIKES.get(),
+                        Items.IRON_INGOT,
+                        Tags.Items.RODS_WOODEN,
+                        Items.STONE_PRESSURE_PLATE
+                ), RecipeCategory.COMBAT, BlockRegistry.IRON_TRAP.get(), 3
+        );
+        shaped(
+                List.of("S S", "SCS", "TPT"), List.of('S', 'C', 'T', 'P'), List.of(
+                        BlockRegistry.GOLDEN_SPIKES.get(),
+                        Items.GOLD_INGOT,
+                        Tags.Items.RODS_WOODEN,
+                        Items.LIGHT_WEIGHTED_PRESSURE_PLATE
+                ), RecipeCategory.COMBAT, BlockRegistry.GOLDEN_TRAP.get(), 3
         );
         shaped(
                 List.of("FPF", "LLL", "FPF"),
@@ -514,7 +571,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("P", "P", "S"),
                 List.of('P', 'S'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.COMBAT,
                 ItemRegistry.HEARTWOOD_SWORD.get(),
                 1
@@ -522,7 +579,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("PPP", " S ", " S "),
                 List.of('P', 'S'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.TOOLS,
                 ItemRegistry.HEARTWOOD_PICKAXE.get(),
                 1
@@ -530,7 +587,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("PP", "PS", " S"),
                 List.of('P', 'S'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.TOOLS,
                 ItemRegistry.HEARTWOOD_AXE.get(),
                 1
@@ -538,7 +595,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("PP", " S", " S"),
                 List.of('P', 'S'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.TOOLS,
                 ItemRegistry.HEARTWOOD_HOE.get(),
                 1
@@ -546,7 +603,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("P", "S", "S"),
                 List.of('P', 'S'),
-                List.of(WoodSets.HEARTWOOD.getLogItems(), Items.STICK),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.TOOLS,
                 ItemRegistry.HEARTWOOD_SHOVEL.get(),
                 1
@@ -654,7 +711,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), Items.WATER_BUCKET),
                 List.of(1, 1),
                 RecipeCategory.TOOLS,
-                ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get(),
+                ItemRegistry.TOXIC_SOLUTION_BUCKET.get(),
                 1
         );
 
@@ -672,7 +729,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("R R", "RSR", "R R"),
                 List.of('R', 'S'),
-                List.of(BlockRegistry.ROPE.get(), Items.STICK),
+                List.of(ItemRegistry.ROPE.get(), Tags.Items.RODS_WOODEN),
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.ROPE_LADDER.get(),
                 3
@@ -694,6 +751,22 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         shapeless(
+                List.of(Items.STRING, ItemRegistry.TERRACOTTA_BOMB.get()),
+                List.of(1, 1),
+                RecipeCategory.COMBAT,
+                ItemRegistry.TERRACOTTA_GRENADE.get(),
+                1
+        );
+
+        shapeless(
+                List.of(Items.STRING, ItemRegistry.METAL_BOMB.get()),
+                List.of(1, 1),
+                RecipeCategory.COMBAT,
+                ItemRegistry.METAL_GRENADE.get(),
+                1
+        );
+
+        shapeless(
                 List.of(Items.CHARCOAL, ItemRegistry.BLASTING_BLOOM.get()),
                 List.of(1, 1),
                 RecipeCategory.MISC,
@@ -701,23 +774,81 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
 
+        shaped(
+                List.of("C", "S", "R"),
+                List.of('C', 'S', 'R'),
+                List.of(ItemTags.COALS, Tags.Items.RODS_WOODEN, ItemRegistry.VERDANT_RESIN_CLUMP.get()),
+                RecipeCategory.DECORATIONS,
+                ItemRegistry.SAP_TORCH.get(),
+                4
+        );
+
+        shaped(
+                List.of("NNN", "NTN", "NNN"),
+                List.of('N', 'T'),
+                List.of(Tags.Items.NUGGETS_IRON, ItemRegistry.SAP_TORCH.get()),
+                RecipeCategory.DECORATIONS,
+                BlockRegistry.SAP_LANTERN.get(),
+                1
+        );
+
+        shaped(
+                List.of("II ", " I ", "SR "),
+                List.of('S', 'I', 'R'),
+                List.of(Tags.Items.RODS_WOODEN, Tags.Items.INGOTS_IRON, VerdantTags.Items.ROPES),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IRON_MACHETE.get(),
+                1
+        );
+        shaped(
+                List.of("II ", " I ", "SR "),
+                List.of('S', 'I', 'R'),
+                List.of(Tags.Items.RODS_WOODEN, Tags.Items.GEMS_DIAMOND, VerdantTags.Items.ROPES),
+                RecipeCategory.COMBAT,
+                ItemRegistry.DIAMOND_MACHETE.get(),
+                1
+        );
+        netheriteSmithing(
+                ItemRegistry.DIAMOND_MACHETE.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.NETHERITE_MACHETE.get()
+        );
+
+        shaped(
+                List.of("CCC", "BBB", "III"),
+                List.of('B', 'I', 'C'),
+                List.of(ItemRegistry.BLASTING_BLOOM.get(), Tags.Items.INGOTS_IRON, Tags.Items.INGOTS_COPPER),
+                RecipeCategory.COMBAT,
+                ItemRegistry.METAL_BOMB.get(),
+                3
+        );
+
+        shaped(
+                List.of("III", "BBB", "III"),
+                List.of('B', 'I'),
+                List.of(ItemRegistry.BLASTING_BLOOM.get(), Tags.Items.BRICKS_NORMAL),
+                RecipeCategory.TOOLS,
+                ItemRegistry.TERRACOTTA_BOMB.get(),
+                3
+        );
+
 
         shaped(
                 List.of("BCB", "BGB", "BFB"), List.of('B', 'C', 'G', 'F'), List.of(
                         ItemRegistry.BLASTING_BLOOM.get(),
-                        Items.MOSS_CARPET,
+                        Items.MOSS_BLOCK,
                         BlockRegistry.GRUS.get(),
                         BlockRegistry.PUTRID_FERTILIZER.get()
-                ), RecipeCategory.TOOLS, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
+                ), RecipeCategory.MISC, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
         );
 
         shaped(
                 List.of("BCB", "BGB", "BFB"), List.of('B', 'C', 'G', 'F'), List.of(
                         ItemRegistry.BLASTING_BLOOM.get(),
-                        Items.PALE_MOSS_CARPET,
+                        Items.PALE_MOSS_BLOCK,
                         BlockRegistry.GRUS.get(),
                         BlockRegistry.PUTRID_FERTILIZER.get()
-                ), RecipeCategory.TOOLS, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
+                ), RecipeCategory.MISC, ItemRegistry.BLASTING_BLOSSOM_SPROUT.get(), 2
         );
 
         shaped(
@@ -899,7 +1030,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shapeless(RecipeCategory.MISC, BlockRegistry.BUSH.get(), 2, BlockRegistry.TALL_BUSH.get(), 1);
 
 
-        // Thornification
+        // Adding thorns.
         thornsSmithing(ItemRegistry.HEARTWOOD_AXE.get(), RecipeCategory.TOOLS, ItemRegistry.THORNY_HEARTWOOD_AXE.get());
         thornsSmithing(ItemRegistry.HEARTWOOD_HOE.get(), RecipeCategory.TOOLS, ItemRegistry.THORNY_HEARTWOOD_HOE.get());
         thornsSmithing(
@@ -951,7 +1082,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of(" v ", "rrr", "rrr"),
                 List.of('v', 'r'),
-                List.of(Items.VINE, ItemRegistry.ROPE.get()),
+                List.of(Items.VINE, VerdantTags.Items.ROPES),
                 RecipeCategory.TOOLS,
                 ItemRegistry.SACK.get(),
                 1
@@ -960,7 +1091,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("ttt", "trt", "t t"),
                 List.of('t', 'r'),
-                List.of(VerdantTags.Items.MULCH_INGREDIENTS, ItemRegistry.ROPE.get()),
+                List.of(VerdantTags.Items.MULCH_INGREDIENTS, VerdantTags.Items.ROPES),
                 RecipeCategory.TOOLS,
                 ItemRegistry.MULCH_PILE.get(),
                 1
@@ -1003,7 +1134,9 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
         shapeless(RecipeCategory.MISC, BlockRegistry.SAP_BLOCK.get(), 1, ItemRegistry.SAP_GLOB.get(), 9);
 
-        smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_BRICK.get(), ItemRegistry.SAP_GLOB.get());
+        smeltingResultFromBase(BlockRegistry.VERDANT_RESIN_BLOCK.get(), BlockRegistry.SAP_BLOCK.get());
+        smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_CLUMP.get(), ItemRegistry.SAP_GLOB.get());
+        smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_BRICK.get(), ItemRegistry.VERDANT_RESIN_CLUMP.get());
         shaped(
                 List.of("bb", "bb"),
                 List.of('b'),
@@ -1011,6 +1144,23 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 RecipeCategory.BUILDING_BLOCKS,
                 BlockRegistry.VERDANT_RESIN_BRICKS.get(),
                 1
+        );
+
+        // Juice
+        shapeless(
+                List.of(ItemRegistry.MANGO.get(), Items.APPLE, Items.MELON_SLICE, Items.GLASS_BOTTLE),
+                List.of(1, 1, 1, 3),
+                RecipeCategory.FOOD,
+                ItemRegistry.JUICE_BOTTLE.get(),
+                3
+        );
+        shapeless(
+                List.of(
+                        ItemRegistry.GOLDEN_MANGO.get(),
+                        Items.GOLDEN_APPLE,
+                        Items.GLISTERING_MELON_SLICE,
+                        Items.GLASS_BOTTLE
+                ), List.of(1, 1, 1, 6), RecipeCategory.FOOD, ItemRegistry.NECTAR_BOTTLE.get(), 6
         );
 
         // TODO End of recipe definitions
@@ -1044,7 +1194,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(pattern, tokens, ingredients, recipeCategory, result, count, null);
     }
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "SameParameterValue"})
     protected void shaped(List<String> pattern, List<Character> tokens, List<Object> ingredients, RecipeCategory recipeCategory, ItemLike result, int count, String group) {
 
         ShapedRecipeBuilder recipe = shaped(recipeCategory, result, count);
@@ -1076,15 +1226,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
         }
 
         // Adds in the unlock trigger for the ingredients.
-        for (int i = 0; i < ingredients.size(); i++) {
-            if (ingredients.get(i) instanceof ItemLike) {
-                String name = getHasName((ItemLike) ingredients.get(i));
-                recipe = recipe.unlockedBy(name, has((ItemLike) ingredients.get(i)));
-            } else if (ingredients.get(i) instanceof TagKey) {
-                String name = "has_" + ((TagKey<Item>) ingredients.get(i)).registry().registry().toDebugFileName();
-                recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredients.get(i)));
+        for (Object ingredient : ingredients) {
+            if (ingredient instanceof ItemLike) {
+                String name = getHasName((ItemLike) ingredient);
+                recipe = recipe.unlockedBy(name, has((ItemLike) ingredient));
+            } else if (ingredient instanceof TagKey) {
+                String name = "has_" + ((TagKey<Item>) ingredient).registry().registry().toDebugFileName();
+                recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredient));
             } else {
-                throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredients.get(i));
+                throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredient);
             }
         }
         // Adds in the unlock trigger for the result.
@@ -1096,13 +1246,13 @@ public class VerdantRecipeProvider extends RecipeProvider {
         recipe.save(this.output, recipeName.toString());
     }
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "SameParameterValue"})
     protected void stonecutting(Object ingredient, RecipeCategory recipeCategory, ItemLike result, int count) {
 
         // The name of the recipe.
         String recipeName = this.modid + ":" + getItemName(result) + "_from_stonecutting_";
 
-        Ingredient toAdd = null;
+        Ingredient toAdd;
 
         // Determines what type of ingredient is there.
         if (ingredient instanceof ItemLike item) {
@@ -1171,17 +1321,14 @@ public class VerdantRecipeProvider extends RecipeProvider {
         }
 
         // Adds in the unlock triggers for the ingredients.
-        for (int i = 0; i < ingredients.size(); i++) {
-            if (ingredients.get(i) instanceof ItemLike) {
-                recipe = recipe.unlockedBy(
-                        getHasName((ItemLike) ingredients.get(i)),
-                        has((ItemLike) ingredients.get(i))
-                );
-            } else if (ingredients.get(i) instanceof TagKey) {
-                String name = "has" + ((TagKey<Item>) ingredients.get(i)).registry().registry().toDebugFileName();
-                recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredients.get(i)));
+        for (Object ingredient : ingredients) {
+            if (ingredient instanceof ItemLike) {
+                recipe = recipe.unlockedBy(getHasName((ItemLike) ingredient), has((ItemLike) ingredient));
+            } else if (ingredient instanceof TagKey) {
+                String name = "has" + ((TagKey<Item>) ingredient).registry().registry().toDebugFileName();
+                recipe = recipe.unlockedBy(name, has((TagKey<Item>) ingredient));
             } else {
-                throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredients.get(i));
+                throw new IllegalArgumentException("Unrecognized item or tag type: " + ingredient);
             }
         }
         // Adds in the unlock trigger for the result.
@@ -1194,6 +1341,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
 
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void foodCooking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime) {
         String group = (namespace(result) + ":" + getItemName(result));
         campfire(ingredients, category, result, experience, 2 * cookingTime, group);
@@ -1201,14 +1349,17 @@ public class VerdantRecipeProvider extends RecipeProvider {
         smoking(ingredients, category, result, experience, cookingTime / 2, group);
     }
 
+    @SuppressWarnings("unused")
     protected String hasName(ItemLike item) {
         return "has_" + name(item);
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void shapeless(RecipeCategory recipeCategory, ItemLike input, int inCount, ItemLike output, int count) {
         shapeless(recipeCategory, input, inCount, output, count, null);
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void shapeless(RecipeCategory recipeCategory, ItemLike input, int inCount, ItemLike output, int count, String group) {
         shapeless(List.of(input), List.of(inCount), recipeCategory, output, count, group);
     }
@@ -1272,6 +1423,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
     }
 
+    @SuppressWarnings("unused")
     protected void blasting(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
                 RecipeSerializer.BLASTING_RECIPE,
@@ -1314,12 +1466,12 @@ public class VerdantRecipeProvider extends RecipeProvider {
         }
 
         @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
+        protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider provider, @NotNull RecipeOutput output) {
             return new VerdantRecipeProvider(provider, output);
         }
 
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return "Verdant Recipe Provider";
         }
     }

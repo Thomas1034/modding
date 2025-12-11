@@ -2,7 +2,7 @@ package com.startraveler.verdant.data;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.advancement.InventoryChangeItemCountTrigger;
-import com.startraveler.verdant.advancement.VerdantPlantAttackTriggerInstance;
+import com.startraveler.verdant.advancement.VerdantPlantAttackTrigger;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.MobEffectRegistry;
@@ -17,6 +17,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -154,7 +155,8 @@ public class VerdantAdvancementProvider {
         );
         builder.parent(craft_rope);
         builder.addCriterion(
-                "craft_rope_coil", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                "craft_rope_coil",
+                RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
                         ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope_coil_from_rope")
                 ))
@@ -279,7 +281,7 @@ public class VerdantAdvancementProvider {
                 Component.translatable("advancements.verdant.inside_tree.title"),
                 Component.translatable("advancements.verdant.inside_tree.description"),
                 null,
-                AdvancementType.TASK,
+                AdvancementType.CHALLENGE,
                 true,
                 true,
                 true
@@ -313,7 +315,7 @@ public class VerdantAdvancementProvider {
         builder.parent(stand_on_verdant_ground);
         builder.addCriterion(
                 "stinking_blossom",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(
@@ -342,7 +344,8 @@ public class VerdantAdvancementProvider {
         );
         builder.parent(stand_on_verdant_ground);
         builder.addCriterion(
-                "thorn_bush", VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                "thorn_bush",
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.THORN_BUSH.get()))
@@ -351,7 +354,7 @@ public class VerdantAdvancementProvider {
         );
         builder.addCriterion(
                 "thorny_leaves",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(
                                 registries.lookupOrThrow(Registries.BLOCK),
                                 BlockRegistry.THORNY_STRANGLER_LEAVES.get()
@@ -377,7 +380,8 @@ public class VerdantAdvancementProvider {
         );
         builder.parent(thorn_bush);
         builder.addCriterion(
-                "trap_plant", VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                "trap_plant",
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.SNAPLEAF.get()))
@@ -403,7 +407,8 @@ public class VerdantAdvancementProvider {
         );
         builder.parent(stand_on_verdant_ground);
         builder.addCriterion(
-                "poison_ivy", VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                "poison_ivy",
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.POISON_IVY.get()))
@@ -412,7 +417,7 @@ public class VerdantAdvancementProvider {
         );
         builder.addCriterion(
                 "poison_ivy_plant",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(
@@ -424,7 +429,7 @@ public class VerdantAdvancementProvider {
         );
         builder.addCriterion(
                 "poison_ivy_above",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(registries.lookupOrThrow(Registries.BLOCK), BlockRegistry.POISON_IVY.get()))
@@ -433,7 +438,7 @@ public class VerdantAdvancementProvider {
         );
         builder.addCriterion(
                 "poison_ivy_plant_above",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block()
                                         .of(
@@ -445,7 +450,7 @@ public class VerdantAdvancementProvider {
         );
         builder.addCriterion(
                 "poison_leaves",
-                VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
+                VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance.instance(ContextAwarePredicate.create(new LocationCheck(
                         Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(
                                 registries.lookupOrThrow(Registries.BLOCK),
                                 BlockRegistry.POISON_STRANGLER_LEAVES.get()
@@ -462,6 +467,79 @@ public class VerdantAdvancementProvider {
         AdvancementHolder poison_ivy = builder.save(
                 writer,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "poison_ivy")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.TOXIC_ASH.get()),
+                Component.translatable("advancements.verdant.toxic_ash.title"),
+                Component.translatable("advancements.verdant.toxic_ash.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(poison_ivy);
+        builder.addCriterion(
+                "toxic_ash",
+                InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.TOXIC_ASH.get())
+        );
+        builder.requirements(AdvancementRequirements.allOf(List.of("toxic_ash")));
+        AdvancementHolder toxic_ash = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_ash")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.TOXIC_ASH_BLOCK.get()),
+                Component.translatable("advancements.verdant.toxic_fishing.title"),
+                Component.translatable("advancements.verdant.toxic_fishing.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(toxic_ash);
+        builder.addCriterion(
+                "toxic_fishing", PlayerHurtEntityTrigger.TriggerInstance.playerHurtEntity(
+                        Optional.of(DamagePredicate.Builder.damageInstance()
+                                .type(DamageSourcePredicate.Builder.damageType()
+                                        .tag(TagPredicate.is(VerdantTags.DamageSources.TOXIC_ASH))
+                                        .build()).build()),
+                        Optional.of(EntityPredicate.Builder.entity()
+                                .of(registries.lookupOrThrow(Registries.ENTITY_TYPE), EntityTypeTags.AQUATIC)
+                                .build())
+                )
+        );
+        builder.requirements(AdvancementRequirements.allOf(List.of("toxic_fishing")));
+        AdvancementHolder toxic_fishing = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_fishing")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(ItemRegistry.TOXIC_SOLUTION_BUCKET.get()),
+                Component.translatable("advancements.verdant.toxic_solution.title"),
+                Component.translatable("advancements.verdant.toxic_solution.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(toxic_ash);
+        builder.addCriterion(
+                "toxic_solution",
+                InventoryChangeTrigger.TriggerInstance.hasItems(ItemRegistry.TOXIC_SOLUTION_BUCKET.get())
+        );
+        builder.requirements(AdvancementRequirements.allOf(List.of("toxic_solution")));
+        AdvancementHolder toxic_solution = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_solution")
         );
 
         builder = Advancement.Builder.advancement();
@@ -723,6 +801,33 @@ public class VerdantAdvancementProvider {
         AdvancementHolder iron_trap = builder.save(
                 writer,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "iron_trap")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.GOLDEN_TRAP.get()),
+                Component.translatable("advancements.verdant.golden_trap.title"),
+                Component.translatable("advancements.verdant.golden_trap.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+        );
+        builder.parent(wooden_trap);
+        builder.addCriterion(
+                "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                        Registries.RECIPE,
+                        ResourceLocation.fromNamespaceAndPath(
+                                Constants.MOD_ID,
+                                "golden_trap_from_golden_spikes_gold_ingot_stick_gold_pressure_plate"
+                        )
+                ))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
+        AdvancementHolder golden_trap = builder.save(
+                writer,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "golden_trap")
         );
     }
 

@@ -37,24 +37,18 @@ import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 public class RopeCoilItem extends Item implements ProjectileItem {
-
-    public static final RopeCoilData DEFAULT_DATA_COMPONENT = new RopeCoilData(
-            4,
-            false,
-            0,
-            RopeCoilData.LanternOptions.NONE
-    );
 
     public RopeCoilItem(Properties properties) {
         super(properties);
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResult use(Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         level.playSound(
                 null,
@@ -83,12 +77,13 @@ public class RopeCoilItem extends Item implements ProjectileItem {
         return InteractionResult.SUCCESS;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipComponents, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull TooltipDisplay tooltipComponents, @NotNull Consumer<Component> consumer, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, consumer, tooltipFlag);
         RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
+        String baseKey = this.descriptionId;
         if (data != null) {
-            String baseKey = this.descriptionId;
             if (data.length() > 0) {
                 consumer.accept(Component.translatable(baseKey + ".length", data.length())
                         .withStyle(ChatFormatting.GRAY));
@@ -100,17 +95,17 @@ public class RopeCoilItem extends Item implements ProjectileItem {
                 consumer.accept(Component.translatable(baseKey + ".glow", data.lightLevel())
                         .withStyle(ChatFormatting.GRAY));
             }
-            if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
-                consumer.accept(Component.translatable(baseKey + "." + data.lantern().typeName)
+            if (data.hangingBlock() != RopeCoilData.HangingBlockOptions.NONE) {
+                consumer.accept(Component.translatable(baseKey + "." + data.hangingBlock().typeName)
                         .withStyle(ChatFormatting.GRAY));
             }
 
         }
-        consumer.accept(Component.translatable("item.verdant.rope_coil.crafting").withStyle(ChatFormatting.GRAY));
+        consumer.accept(Component.translatable(baseKey + ".crafting").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
+    public @NotNull Projectile asProjectile(@NotNull Level level, Position pos, @NotNull ItemStack stack, @NotNull Direction direction) {
         return new ThrownRopeEntity(level, pos.x(), pos.y(), pos.z(), stack);
     }
 }

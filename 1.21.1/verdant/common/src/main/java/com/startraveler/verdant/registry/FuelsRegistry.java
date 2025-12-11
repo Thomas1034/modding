@@ -46,11 +46,12 @@ public class FuelsRegistry {
         fuels.registerFuel(BlockRegistry.STRANGLER_VINE, WoodSet.BurnTimes.SIGN);
         fuels.registerFuel(BlockRegistry.LEAFY_STRANGLER_VINE, WoodSet.BurnTimes.SIGN);
         fuels.registerFuel(BlockRegistry.FRAME_BLOCK, WoodSet.BurnTimes.DOOR);
-
+        fuels.registerFuel(ItemRegistry.VERDANT_RESIN_CLUMP.get(), 12 * WoodSet.BurnTimes.SINGLE_ITEM);
+        fuels.registerFuel(ItemRegistry.BALSAM.get(), 24 * WoodSet.BurnTimes.SINGLE_ITEM);
     }
 
     public void registerFuel(ItemLike block, int burnTime) {
-        // Constants.LOG.warn("Setting itemLike {} to be fuel with {}", block, burnTime);
+        // Constants.LOG.warn("Setting itemLike {} to be a fuel with {}", block, burnTime);
         this.registrar.accept(block, burnTime);
     }
 

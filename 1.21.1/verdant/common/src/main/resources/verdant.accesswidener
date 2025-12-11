@@ -7,3 +7,20 @@ accessible    method    net/minecraft/world/level/block/CropBlock getGrowthSpeed
 accessible    field     net/minecraft/world/entity/ai/goal/target/NearestAttackableTargetGoal targetConditions Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
 accessible    field     net/minecraft/world/entity/ai/targeting/TargetingConditions selector Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;
 accessible    method    net/minecraft/world/level/block/SaplingBlock <init> (Lnet/minecraft/world/level/block/grower/TreeGrower;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible field net/minecraft/world/level/BaseSpawner minSpawnDelay I
+accessible field net/minecraft/world/level/BaseSpawner maxSpawnDelay I
+accessible field net/minecraft/world/level/BaseSpawner spawnCount I
+accessible field net/minecraft/world/level/BaseSpawner spawnRange I
+accessible field net/minecraft/world/level/BaseSpawner requiredPlayerRange I
+accessible field net/minecraft/world/level/BaseSpawner maxNearbyEntities I
+accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher blockColors Lnet/minecraft/client/color/block/BlockColors;
+accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher specialBlockModelRenderer Ljava/util/function/Supplier;
+accessible method net/minecraft/world/level/block/TorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/WallTorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible class net/minecraft/world/item/alchemy/PotionBrewing$Mix
+accessible field net/minecraft/world/item/alchemy/PotionBrewing containerMixes Ljava/util/List;
+accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix from Lnet/minecraft/core/Holder;
+accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix ingredient Lnet/minecraft/world/item/crafting/Ingredient;
+accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix to Lnet/minecraft/core/Holder;
+
+

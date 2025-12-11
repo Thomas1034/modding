@@ -21,7 +21,12 @@ import org.slf4j.LoggerFactory;
 
 public class Constants {
 
-	public static final String MOD_ID = "verdant";
-	public static final String MOD_NAME = "Verdant";
-	public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+    public static final String MOD_ID = "verdant";
+    public static final String MOD_NAME = "Verdant";
+    public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+
+    public static final float DEFAULT_EXPLOSION_DAMAGE_MULTIPLIER = 1f;
+    // Uses a ThreadLocal to modify the damage multiplier of explosions.
+    // ALWAYS use try-finally to reset to 1 when you're done!
+    public static final ThreadLocal<Float> EXPLOSION_DAMAGE_MULTIPLIER = ThreadLocal.withInitial(() -> DEFAULT_EXPLOSION_DAMAGE_MULTIPLIER);
 }

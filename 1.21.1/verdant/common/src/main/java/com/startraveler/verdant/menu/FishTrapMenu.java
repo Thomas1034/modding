@@ -31,6 +31,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class FishTrapMenu extends AbstractContainerMenu {
 
@@ -80,7 +81,7 @@ public class FishTrapMenu extends AbstractContainerMenu {
 
     // Shift + Player Inv Slot
     @Override
-    public ItemStack quickMoveStack(Player player, int invSlot) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot.hasItem()) {
@@ -106,13 +107,13 @@ public class FishTrapMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public void removed(Player player) {
+    public void removed(@NotNull Player player) {
         super.removed(player);
         this.container.stopOpen(player);
     }
 
     @Override
-    public boolean stillValid(Player player) {
+    public boolean stillValid(@NotNull Player player) {
         return AbstractContainerMenu.stillValid(this.access, player, BlockRegistry.FISH_TRAP.get());
     }
 

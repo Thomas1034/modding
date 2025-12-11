@@ -21,13 +21,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class FragileBlock extends Block {
     public FragileBlock(Properties properties) {
         super(properties);
     }
 
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    @Override
+    public void fallOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, double fallDistance) {
         // Prevents fall damage.
         // entity.causeFallDamage(fallDistance, 1.0F, entity.damageSources().fall());
         if (fallDistance >= 1.5) {

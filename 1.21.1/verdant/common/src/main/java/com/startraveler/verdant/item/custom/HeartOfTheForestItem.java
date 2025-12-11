@@ -24,6 +24,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class HeartOfTheForestItem extends Item implements VerdantGrower {
 
@@ -33,7 +34,7 @@ public class HeartOfTheForestItem extends Item implements VerdantGrower {
 
     // Spreads the verdant around the player that holds it.
     @Override
-    public void inventoryTick(ItemStack stack, ServerLevel level, Entity holder, EquipmentSlot slot) {
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull ServerLevel level, @NotNull Entity holder, EquipmentSlot slot) {
         super.inventoryTick(stack, level, holder, slot);
         // Ensure it is on the server.
         if (level instanceof ServerLevel serverLevel) {

@@ -43,6 +43,8 @@ import net.minecraft.world.level.block.state.properties.Property;
 import org.apache.commons.lang3.function.TriFunction;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -549,6 +551,8 @@ public class VerdantModelProvider extends ModelProvider {
         this.blockModels = blockModels;
         this.itemModels = itemModels;
 
+        simpleBlockWithItem(BlockRegistry.OVERGROWN_SPAWNER.get(), "cutout");
+
         fishTrapWithItem(BlockRegistry.FISH_TRAP.get());
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE.get());
         tumbledBlockWithItem(BlockRegistry.ROTTEN_WOOD.get());
@@ -709,11 +713,15 @@ public class VerdantModelProvider extends ModelProvider {
         //                SpreadingCropBlock.AGE,
         //                IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
         //        );
-        trapBlock(BlockRegistry.WOODEN_TRAP.get());
-        trapBlock(BlockRegistry.IRON_TRAP.get());
         trapBlock(BlockRegistry.SNAPLEAF.get());
+        trapBlock(BlockRegistry.WOODEN_TRAP.get());
+        trapBlock(BlockRegistry.COPPER_TRAP.get());
+        trapBlock(BlockRegistry.IRON_TRAP.get());
+        trapBlock(BlockRegistry.GOLDEN_TRAP.get());
         spikesBlockWithItem(BlockRegistry.WOODEN_SPIKES.get());
+        spikesBlockWithItem(BlockRegistry.COPPER_SPIKES.get());
         spikesBlockWithItem(BlockRegistry.IRON_SPIKES.get());
+        spikesBlockWithItem(BlockRegistry.GOLDEN_SPIKES.get());
         doubleSidedLogBlockWithItem(BlockRegistry.CHARRED_FRAME_BLOCK.get());
         doubleSidedLogBlockWithItem(BlockRegistry.FRAME_BLOCK.get());
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.IMBUED_HEARTWOOD_LOG.get(), TexturedModel.COLUMN);
@@ -791,6 +799,8 @@ public class VerdantModelProvider extends ModelProvider {
         blastingBlossom(BlockRegistry.BLASTING_BLOSSOM.get());
 
         blastingBunch(BlockRegistry.BLASTING_BUNCH.get());
+        blastingBunch(BlockRegistry.METAL_BOMB_PILE.get());
+        blastingBunch(BlockRegistry.TERRACOTTA_BOMB_PILE.get());
 
         blockModels.family(BlockRegistry.EARTH_BRICKS.get()).generateFor(VerdantBlockFamilies.EARTH_BRICKS);
         blockModels.family(BlockRegistry.VERDANT_RESIN_BRICKS.get())
@@ -830,8 +840,11 @@ public class VerdantModelProvider extends ModelProvider {
         wallSkullBlock(BlockRegistry.BRAMBLE_WALL_HEAD.get(), BlockRegistry.BRAMBLE_HEAD.get());
         skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
 
-        oozeFissure(BlockRegistry.OOZE_FISSURE_BLOCK.get());
+        blockModels.createCreakingHeart(BlockRegistry.OOZE_FISSURE_BLOCK.get());
 
+        blockModels.createNormalTorch(BlockRegistry.SAP_TORCH.get(), BlockRegistry.SAP_WALL_TORCH.get());
+        blockModels.createLantern(BlockRegistry.SAP_LANTERN.get());
+        createSoullikeFire(BlockRegistry.SAP_FIRE.get());
 
         basicItem(ItemRegistry.SAP_GLOB.get());
         basicItem(ItemRegistry.VERDANT_RESIN_BRICK.get());
@@ -849,11 +862,16 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.POISON_IVY.get().asItem());
         basicItem(BlockRegistry.DROWNED_HEMLOCK.get().asItem());
         basicItem(ItemRegistry.ROPE.get());
+        basicItem(ItemRegistry.TWISTED_ROPE.get());
         basicItem(BlockRegistry.WOODEN_SPIKES.get().asItem());
+        basicItem(BlockRegistry.COPPER_SPIKES.get().asItem());
         basicItem(BlockRegistry.IRON_SPIKES.get().asItem());
+        basicItem(BlockRegistry.GOLDEN_SPIKES.get().asItem());
         basicItem(BlockRegistry.SNAPLEAF.get().asItem());
         basicItem(BlockRegistry.WOODEN_TRAP.get().asItem());
+        basicItem(BlockRegistry.COPPER_TRAP.get().asItem());
         basicItem(BlockRegistry.IRON_TRAP.get().asItem());
+        basicItem(BlockRegistry.GOLDEN_TRAP.get().asItem());
         basicItem(ItemRegistry.ROTTEN_COMPOST.get());
         basicItem(ItemRegistry.HEART_OF_THE_FOREST.get());
         basicItem(ItemRegistry.HEART_FRAGMENT.get());
@@ -940,7 +958,7 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(BlockRegistry.ROPE_LADDER.get().asItem());
         basicItem(ItemRegistry.TOXIC_ASH.get());
         basicItem(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
-        basicItem(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
+        basicItem(ItemRegistry.TOXIC_SOLUTION_BUCKET.get());
         basicItem(BlockRegistry.DEAD_GRASS.get().asItem());
 
         basicItem(ItemRegistry.RANCID_SLIME.get());
@@ -953,8 +971,12 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.YOUNG_ALOE_LEAF.get());
         basicItem(ItemRegistry.OLD_ALOE_LEAF.get());
 
+        basicItem(ItemRegistry.METAL_BOMB.get());
+        basicItem(ItemRegistry.TERRACOTTA_BOMB.get());
         basicItem(ItemRegistry.STABLE_BLASTING_BLOOM.get());
         basicItem(ItemRegistry.BLASTING_BLOOM.get());
+        basicItem(ItemRegistry.TERRACOTTA_GRENADE.get());
+        basicItem(ItemRegistry.METAL_GRENADE.get());
         basicItem(ItemRegistry.BLASTING_BLOSSOM_SPROUT.get());
 
         basicItem(ItemRegistry.FRAGILE_FLASK.get());
@@ -996,23 +1018,42 @@ public class VerdantModelProvider extends ModelProvider {
         basicItem(ItemRegistry.ROOTED_SPAWN_EGG.get());
         basicItem(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
         basicItem(ItemRegistry.POISONER_SPAWN_EGG.get());
+        basicItem(ItemRegistry.OOZE_SPAWN_EGG.get());
 
         itemModels.generateBundleModels(ItemRegistry.SACK.get());
         basicItem(ItemRegistry.MULCH_PILE.get());
         basicItem(ItemRegistry.LARGE_MULCH_PILE.get());
+
+        basicItem(ItemRegistry.JUICE_BOTTLE.get());
+        basicItem(ItemRegistry.NECTAR_BOTTLE.get());
+
+        basicItem(ItemRegistry.BALSAM.get());
+        basicItem(ItemRegistry.BALM.get());
+
+        basicItem(ItemRegistry.OOZE_BUCKET.get());
+        basicItem(ItemRegistry.VERDANT_RESIN_CLUMP.get());
+
+        handheldItem(ItemRegistry.EARTHMOVER.get());
+        handheldItem(ItemRegistry.IRON_MACHETE.get());
+        handheldItem(ItemRegistry.DIAMOND_MACHETE.get());
+        handheldItem(ItemRegistry.NETHERITE_MACHETE.get());
+
     }
 
     @Override
-    protected Stream<? extends Holder<Block>> getKnownBlocks() {
+    protected @NotNull Stream<? extends Holder<Block>> getKnownBlocks() {
         List<Block> excluded = new ArrayList<>();
 
         excluded.add(BlockRegistry.STRANGLER_VINE.get());
         excluded.add(BlockRegistry.LEAFY_STRANGLER_VINE.get());
         excluded.add(BlockRegistry.ROPE.get());
+        excluded.add(BlockRegistry.TWISTED_ROPE.get());
         excluded.add(BlockRegistry.ROPE_LADDER.get());
         excluded.add(BlockRegistry.ROPE_HOOK.get());
+        excluded.add(BlockRegistry.TWISTED_ROPE_HOOK.get());
         excluded.add(BlockRegistry.STINKING_BLOSSOM.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get());
+        excluded.add(BlockRegistry.OVERGROWN_SPAWNER.get());
         WoodSets.WOOD_SETS.forEach(woodSet -> {
             woodSet.getBlockProvider().getEntries().forEach(registryObject -> excluded.add(registryObject.get()));
         });
@@ -1021,11 +1062,12 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
     @Override
-    protected Stream<? extends Holder<Item>> getKnownItems() {
+    protected @NotNull Stream<? extends Holder<Item>> getKnownItems() {
         List<Item> excluded = new ArrayList<>();
 
         excluded.add(ItemRegistry.BLOWGUN.get());
         excluded.add(ItemRegistry.ROPE_COIL.get());
+        excluded.add(ItemRegistry.TWISTED_ROPE_COIL.get());
         excluded.add(BlockRegistry.VERDANT_CONDUIT.get().asItem());
 
         WoodSets.WOOD_SETS.forEach(woodSet -> {
@@ -1034,6 +1076,20 @@ public class VerdantModelProvider extends ModelProvider {
 
 
         return super.getKnownItems().filter(entry -> !excluded.contains(entry.value()));
+    }
+
+    public void createSoullikeFire(Block block) {
+        MultiVariant floorFireModels = this.blockModels.createFloorFireModels(block);
+        MultiVariant sideFireModels = this.blockModels.createSideFireModels(block);
+        this.blockModels.blockStateOutput
+                .accept(
+                        MultiPartGenerator.multiPart(block)
+                                .with(floorFireModels)
+                                .with(sideFireModels)
+                                .with(sideFireModels.with(BlockModelGenerators.Y_ROT_90))
+                                .with(sideFireModels.with(BlockModelGenerators.Y_ROT_180))
+                                .with(sideFireModels.with(BlockModelGenerators.Y_ROT_270))
+                );
     }
 
     private String name(Block block) {
@@ -1045,11 +1101,7 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
     public void createFruitingTintedLeaves(Block block, Function<Integer, TexturedModel.Provider> provider, int tint, IntegerProperty ageProperty) {
-        int maxAge = ageProperty.getPossibleValues()
-                .stream()
-                .mapToInt(i -> i)
-                .max()
-                .orElse(0);
+        int maxAge = ageProperty.getPossibleValues().stream().mapToInt(i -> i).max().orElse(0);
 
         Mutable<ResourceLocation> itemModelLocation = new MutableObject<>();
 
@@ -1061,7 +1113,10 @@ public class VerdantModelProvider extends ModelProvider {
                                     ResourceLocation modelLocation = this.blockModels.createSuffixedVariant(
                                             block,
                                             "_stage" + stage,
-                                            provider.apply(stage).get(block).getTemplate().extend()
+                                            provider.apply(stage)
+                                                    .get(block)
+                                                    .getTemplate()
+                                                    .extend()
                                                     .renderType(RenderType.CUTOUT_MIPPED.getName())
                                                     .build(),
                                             VerdantTextureMapping::fruitingLeaves
@@ -1144,8 +1199,8 @@ public class VerdantModelProvider extends ModelProvider {
         ));
     }
 
-
-    protected void tumbledBlockWithItem(Block block, String renderType) {
+    @SuppressWarnings("SameParameterValue")
+    protected void tumbledBlockWithItem(Block block, @Nullable String renderType) {
         TexturedModel.Provider model = TexturedModel.CUBE;
 
         if (renderType != null) {
@@ -1220,16 +1275,6 @@ public class VerdantModelProvider extends ModelProvider {
         ));
     }
 
-    protected void oozeFissure(Block block) {
-        blockModels.blockStateOutput.accept(createOozeFissure(
-                block,
-                VerdantTexturedModel.OOZE_FISSURE
-                        .get(block)
-                        .updateTemplate(template -> template.extend().renderType("cutout").build())
-                        .create(block, blockModels.modelOutput)
-        ));
-    }
-
     protected void blastingBunch(Block block) {
         blockModels.blockStateOutput.accept(createBlastingBunch(
                 block,
@@ -1256,7 +1301,8 @@ public class VerdantModelProvider extends ModelProvider {
         ));
     }
 
-    protected void rotatedTopOverlaidBlockWithItem(Block block, Block base, String topOverlay, String[] overlays) {
+    @SuppressWarnings("SameParameterValue")
+    protected void rotatedTopOverlaidBlockWithItem(Block block, Block base, String topOverlay, @NotNull String[] overlays) {
         TriFunction<String, String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.TOP_OVERLAID_CUBE;
 
         Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(

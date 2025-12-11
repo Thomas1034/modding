@@ -49,15 +49,15 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.VERDANT_GRASS_CLAY.get());
                         output.accept(BlockRegistry.VERDANT_ROOTED_GRUS.get());
                         output.accept(BlockRegistry.VERDANT_GRASS_GRUS.get());
-                        output.accept(BlockRegistry.PACKED_GRAVEL.get());
                         output.accept(BlockRegistry.GRUS.get());
                         output.accept(BlockRegistry.STONY_GRUS.get());
-                        output.accept(BlockRegistry.SCREE.get());
                         output.accept(BlockRegistry.TOXIC_GRUS.get());
-                        output.accept(BlockRegistry.FUSED_GRAVEL.get());
+                        output.accept(BlockRegistry.SCREE.get());
                         output.accept(BlockRegistry.PACKED_SCREE.get());
                         output.accept(BlockRegistry.FUSED_SCREE.get());
                         output.accept(BlockRegistry.TOXIC_DIRT.get());
+                        output.accept(BlockRegistry.PACKED_GRAVEL.get());
+                        output.accept(BlockRegistry.FUSED_GRAVEL.get());
                         output.accept(BlockRegistry.DIRT_COAL_ORE.get());
                         output.accept(BlockRegistry.DIRT_COPPER_ORE.get());
                         output.accept(BlockRegistry.DIRT_IRON_ORE.get());
@@ -79,6 +79,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.EARTH_BRICK_SLAB.get());
                         output.accept(BlockRegistry.EARTH_BRICK_STAIRS.get());
                         output.accept(BlockRegistry.EARTH_BRICK_WALL.get());
+                        output.accept(BlockRegistry.OOZE_FISSURE_BLOCK.get());
                         output.accept(BlockRegistry.SAP_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICKS.get());
@@ -86,6 +87,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICK_WALL.get());
+                        output.accept(ItemRegistry.SAP_TORCH.get());
+                        output.accept(BlockRegistry.SAP_LANTERN.get());
                         output.accept(BlockRegistry.IMBUED_HEARTWOOD_LOG.get());
                         output.accept(BlockRegistry.WILTED_STRANGLER_LEAVES.get());
                         output.accept(BlockRegistry.STRANGLER_LEAVES.get());
@@ -100,21 +103,25 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.CHARRED_FRAME_BLOCK.get());
                         output.accept(BlockRegistry.PAPER_FRAME.get());
                         output.accept(BlockRegistry.ROPE.get());
+                        output.accept(BlockRegistry.TWISTED_ROPE.get());
                         output.accept(BlockRegistry.FISH_TRAP.get());
                         output.accept(BlockRegistry.POISON_IVY_BLOCK.get());
                         output.accept(BlockRegistry.TOXIC_ASH_BLOCK.get());
                         output.accept(BlockRegistry.PUTRID_FERTILIZER.get());
                         output.accept(BlockRegistry.WOODEN_SPIKES.get());
+                        output.accept(BlockRegistry.COPPER_SPIKES.get());
                         output.accept(BlockRegistry.IRON_SPIKES.get());
+                        output.accept(BlockRegistry.GOLDEN_SPIKES.get());
                         output.accept(BlockRegistry.WOODEN_TRAP.get());
+                        output.accept(BlockRegistry.COPPER_TRAP.get());
                         output.accept(BlockRegistry.IRON_TRAP.get());
+                        output.accept(BlockRegistry.GOLDEN_TRAP.get());
                         output.accept(BlockRegistry.BLASTING_BLOSSOM.get());
                         output.accept(BlockRegistry.STINKING_BLOSSOM.get());
-                        output.accept(BlockRegistry.DEAD_GRASS.get());
-                        output.accept(BlockRegistry.BUSH.get());
-                        output.accept(BlockRegistry.THORN_BUSH.get());
-                        output.accept(BlockRegistry.TALL_BUSH.get());
                         output.accept(BlockRegistry.TALL_THORN_BUSH.get());
+                        output.accept(BlockRegistry.MANGO_LEAVES.get());
+                        output.accept(BlockRegistry.MANGO_SAPLING.get());
+                        output.accept(ItemRegistry.ALOE_PUP.get());
                         output.accept(BlockRegistry.SNAPLEAF.get());
                         output.accept(BlockRegistry.WILD_CASSAVA.get());
                         output.accept(BlockRegistry.WILD_UBE.get());
@@ -124,9 +131,11 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.RUE.get());
                         output.accept(BlockRegistry.BLUEWEED.get());
                         output.accept(BlockRegistry.DROWNED_HEMLOCK.get());
+                        output.accept(BlockRegistry.DEAD_GRASS.get());
+                        output.accept(BlockRegistry.BUSH.get());
+                        output.accept(BlockRegistry.THORN_BUSH.get());
+                        output.accept(BlockRegistry.TALL_BUSH.get());
                         output.accept(BlockRegistry.VERDANT_CONDUIT.get());
-                        output.accept(BlockRegistry.MANGO_SAPLING.get());
-                        output.accept(BlockRegistry.MANGO_LEAVES.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".blocks"))
                     .build()
@@ -138,24 +147,27 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.HEART_OF_THE_FOREST.get()))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
-                        output.accept(ItemRegistry.HEART_FRAGMENT.get());
-                        output.accept(ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get());
-                        output.accept(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.THORN.get());
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.BITTER_CASSAVA_CUTTINGS.get());
                         output.accept(ItemRegistry.CASSAVA.get());
-                        output.accept(ItemRegistry.ALOE_PUP.get());
                         output.accept(ItemRegistry.YOUNG_ALOE_LEAF.get());
                         output.accept(ItemRegistry.ALOE_LEAF.get());
                         output.accept(ItemRegistry.OLD_ALOE_LEAF.get());
                         output.accept(ItemRegistry.SAP_GLOB.get());
+                        output.accept(ItemRegistry.VERDANT_RESIN_CLUMP.get());
                         output.accept(ItemRegistry.VERDANT_RESIN_BRICK.get());
+                        output.accept(ItemRegistry.BALSAM.get());
+                        output.accept(ItemRegistry.BALM.get());
+                        output.accept(ItemRegistry.HEART_FRAGMENT.get());
+                        output.accept(ItemRegistry.HEART_OF_THE_FOREST.get());
+                        output.accept(ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get());
+                        output.accept(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
                         output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
                         output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.OOZE_SPAWN_EGG.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".items"))
                     .build()
@@ -166,17 +178,12 @@ public class CreativeModeTabRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .icon(() -> new ItemStack(ItemRegistry.GOLDEN_BREAD.get()))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ItemRegistry.FRAGILE_FLASK.get());
                         output.accept(ItemRegistry.COFFEE_BERRIES.get());
                         output.accept(ItemRegistry.ROASTED_COFFEE.get());
-                        output.accept(ItemRegistry.ROTTEN_COMPOST.get());
-                        output.accept(ItemRegistry.RANCID_SLIME.get());
-                        output.accept(ItemRegistry.BITTER_CASSAVA.get());
-                        output.accept(ItemRegistry.GOLDEN_CASSAVA.get());
                         output.accept(ItemRegistry.COOKED_CASSAVA.get());
                         output.accept(ItemRegistry.COOKED_GOLDEN_CASSAVA.get());
-                        output.accept(ItemRegistry.STARCH.get());
                         output.accept(ItemRegistry.BITTER_STARCH.get());
+                        output.accept(ItemRegistry.STARCH.get());
                         output.accept(ItemRegistry.SPARKLING_STARCH.get());
                         output.accept(ItemRegistry.BITTER_BREAD.get());
                         output.accept(ItemRegistry.GOLDEN_BREAD.get());
@@ -186,6 +193,12 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.UBE_CAKE.get());
                         output.accept(ItemRegistry.MANGO.get());
                         output.accept(ItemRegistry.GOLDEN_MANGO.get());
+                        output.accept(ItemRegistry.JUICE_BOTTLE.get());
+                        output.accept(ItemRegistry.NECTAR_BOTTLE.get());
+                        output.accept(ItemRegistry.FRAGILE_FLASK.get());
+                        output.accept(ItemRegistry.BALM.get());
+                        output.accept(ItemRegistry.ROTTEN_COMPOST.get());
+                        output.accept(ItemRegistry.RANCID_SLIME.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".foods"))
                     .build()
@@ -198,10 +211,16 @@ public class CreativeModeTabRegistry {
                     .icon(() -> new ItemStack(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get()))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(BlockRegistry.WOODEN_SPIKES.get());
+                        output.accept(BlockRegistry.COPPER_SPIKES.get());
                         output.accept(BlockRegistry.IRON_SPIKES.get());
+                        output.accept(BlockRegistry.GOLDEN_SPIKES.get());
                         output.accept(BlockRegistry.WOODEN_TRAP.get());
+                        output.accept(BlockRegistry.COPPER_TRAP.get());
                         output.accept(BlockRegistry.IRON_TRAP.get());
-                        output.accept(ItemRegistry.POISON_ARROW.get());
+                        output.accept(BlockRegistry.GOLDEN_TRAP.get());
+                        output.accept(ItemRegistry.IRON_MACHETE.get());
+                        output.accept(ItemRegistry.DIAMOND_MACHETE.get());
+                        output.accept(ItemRegistry.NETHERITE_MACHETE.get());
                         output.accept(ItemRegistry.HEARTWOOD_SWORD.get());
                         output.accept(ItemRegistry.HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.HEARTWOOD_HELMET.get());
@@ -234,8 +253,13 @@ public class CreativeModeTabRegistry {
                                         ItemRegistry.TIPPED_DART.get(),
                                         itemDisplayParameters.enabledFeatures()
                                 ));
+                        output.accept(ItemRegistry.POISON_ARROW.get());
                         output.accept(ItemRegistry.BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
+                        output.accept(ItemRegistry.TERRACOTTA_GRENADE.get());
+                        output.accept(ItemRegistry.TERRACOTTA_BOMB.get());
+                        output.accept(ItemRegistry.METAL_GRENADE.get());
+                        output.accept(ItemRegistry.METAL_BOMB.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".combat"))
                     .build()
@@ -252,11 +276,13 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.ROPE_COIL.get());
                         output.accept(ItemRegistry.TOXIC_ASH.get());
                         output.accept(ItemRegistry.BUCKET_OF_TOXIC_ASH.get());
-                        output.accept(ItemRegistry.BUCKET_OF_TOXIC_SOLUTION.get());
+                        output.accept(ItemRegistry.TOXIC_SOLUTION_BUCKET.get());
                         output.accept(ItemRegistry.SACK.get());
                         output.accept(ItemRegistry.MULCH_PILE.get());
                         output.accept(ItemRegistry.LARGE_MULCH_PILE.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
+                        output.accept(ItemRegistry.TERRACOTTA_BOMB.get());
+                        output.accept(ItemRegistry.METAL_BOMB.get());
                         output.accept(ItemRegistry.ROTTEN_COMPOST.get());
                         output.accept(ItemRegistry.RANCID_SLIME.get());
                         output.accept(ItemRegistry.HEARTWOOD_AXE.get());
@@ -271,6 +297,9 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+                        output.accept(ItemRegistry.IRON_MACHETE.get());
+                        output.accept(ItemRegistry.DIAMOND_MACHETE.get());
+                        output.accept(ItemRegistry.NETHERITE_MACHETE.get());
                     })
                     .title(Component.translatable("creativetab." + Constants.MOD_ID + ".tools"))
                     .build()

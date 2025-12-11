@@ -3,19 +3,22 @@ package com.startraveler.verdant.timer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.startraveler.rootbound.Constants;
+import com.startraveler.verdant.Constants;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 
 public class PrintForTestingTimer extends BaseTimer {
 
-    public static final ResourceLocation TYPE = Constants.location("print_for_testing");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "print_for_testing"
+    );
     private static final String TO_PRINT_STRING = "to_print";
 
     public static final MapCodec<PrintForTestingTimer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codec.STRING.fieldOf(TO_PRINT_STRING).forGetter(PrintForTestingTimer::toPrint)).and
-            (baseData(instance)).apply(instance, PrintForTestingTimer::new));
-
+                    Codec.STRING.fieldOf(TO_PRINT_STRING).forGetter(PrintForTestingTimer::toPrint))
+            .and(baseData(instance))
+            .apply(instance, PrintForTestingTimer::new));
 
     protected final String toPrint;
 

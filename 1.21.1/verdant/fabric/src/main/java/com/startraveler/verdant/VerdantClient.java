@@ -69,6 +69,8 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.FISH_TRAP,
                 BlockRegistry.ROPE,
                 BlockRegistry.ROPE_HOOK,
+                BlockRegistry.TWISTED_ROPE,
+                BlockRegistry.TWISTED_ROPE_HOOK,
                 BlockRegistry.THORN_BUSH,
                 BlockRegistry.BUSH,
                 BlockRegistry.POTTED_THORN_BUSH,
@@ -89,9 +91,13 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.CHARRED_FRAME_BLOCK,
                 BlockRegistry.FRAME_BLOCK,
                 BlockRegistry.WOODEN_SPIKES,
+                BlockRegistry.COPPER_SPIKES,
                 BlockRegistry.IRON_SPIKES,
+                BlockRegistry.GOLDEN_SPIKES,
                 BlockRegistry.WOODEN_TRAP,
+                BlockRegistry.COPPER_TRAP,
                 BlockRegistry.IRON_TRAP,
+                BlockRegistry.GOLDEN_TRAP,
                 BlockRegistry.SNAPLEAF,
                 BlockRegistry.CASSAVA_CROP,
                 BlockRegistry.BITTER_CASSAVA_CROP,
@@ -114,9 +120,11 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_BLUEWEED,
                 BlockRegistry.VERDANT_CONDUIT,
                 BlockRegistry.MANGO_SAPLING,
-                BlockRegistry.POTTED_MANGO_SAPLING
+                BlockRegistry.POTTED_MANGO_SAPLING,
+                BlockRegistry.OVERGROWN_SPAWNER,
+                BlockRegistry.SAP_LANTERN
         );
-        markTranslucent(BlockRegistry.SAP_BLOCK);
+        markTranslucent(BlockRegistry.SAP_BLOCK, BlockRegistry.SAP_FIRE);
 
 
         ColorProviderRegistry.BLOCK.register(
@@ -142,6 +150,10 @@ public class VerdantClient implements ClientModInitializer {
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
                 VerdantConduitRenderer::new
+        );
+        BlockEntityRenderers.register(
+                BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(),
+                OvergrownSpawnerRenderer::new
         );
         SpecialModelRenderers.ID_MAPPER.put(
                 VerdantConduitSpecialRenderer.Unbaked.LOCATION,

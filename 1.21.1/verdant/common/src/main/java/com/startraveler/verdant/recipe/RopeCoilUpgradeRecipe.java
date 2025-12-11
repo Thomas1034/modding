@@ -16,6 +16,11 @@
  */
 package com.startraveler.verdant.recipe;
 
+import com.mojang.datafixers.Products;
+import com.mojang.datafixers.util.Function3;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.RopeBlock;
 import com.startraveler.verdant.item.component.RopeCoilData;
 import com.startraveler.verdant.registry.DataComponentRegistry;
@@ -27,32 +32,49 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 
 public class RopeCoilUpgradeRecipe extends CustomRecipe {
 
-    public RopeCoilUpgradeRecipe(CraftingBookCategory category) {
+    protected final Item coil;
+    protected final BlockItem rope;
+
+    public RopeCoilUpgradeRecipe(CraftingBookCategory category, Item coil, Item rope) {
         super(category);
+        this.coil = coil;
+        if (rope instanceof BlockItem ropeBlockItem) {
+            this.rope = ropeBlockItem;
+        } else {
+            throw new IllegalArgumentException("Passed non-block item as rope parameter to a rope coil upgrade recipe.");
+        }
     }
 
     @Override
-    public boolean matches(CraftingInput input, Level level) {
+    public boolean matches(@NotNull CraftingInput input, Level level) {
         return assemble(input, level.registryAccess()) != ItemStack.EMPTY;
     }
 
     @Override
-    public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+    public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.@NotNull Provider registries) {
         // There must be at least two items to perform the recipe.
         if (input.ingredientCount() < 2) {
             return ItemStack.EMPTY;
@@ -60,40 +82,44 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         // First, check to see if there is a rope coil somewhere here.
         // This is done by checking for the component.
         boolean ropeCoilIsPresent = false;
-        int ropeIndex = -1;
+        int ropeCoilIndex = -1;
         for (int i = 0; i < input.size(); i++) {
-            if (input.getItem(i).has(DataComponentRegistry.ROPE_COIL.get())) {
+            ItemStack item = input.getItem(i);
+            if (item.is(this.coil) && item.has(DataComponentRegistry.ROPE_COIL.get())) {
                 ropeCoilIsPresent = true;
-                ropeIndex = i;
+                ropeCoilIndex = i;
             }
         }
         // If no rope coil was found, return false.
         if (!ropeCoilIsPresent) {
             return ItemStack.EMPTY;
         }
-        // Otherwise, check for illegal items.
-        // This varies based on the component, so get the component!
-        RopeCoilData component = input.getItem(ropeIndex).get(DataComponentRegistry.ROPE_COIL.get());
+        // If a rope coil was found, make sure that it has the right component.
+        RopeCoilData component = input.getItem(ropeCoilIndex).get(DataComponentRegistry.ROPE_COIL.get());
         if (component == null) {
+            
             return ItemStack.EMPTY;
         }
         // The maximum allowed length that can be added to the coil.
         int remainingAllowedLength = RopeCoilData.MAX_LENGTH_FROM_CRAFTING - component.length();
+        // The maximum allowed glow ink that can be added to the coil.
         int remainingAllowedLightLevel = RopeBlock.GLOW_MAX - component.lightLevel();
         int resultLength = component.length();
         int resultLightLevel = component.lightLevel();
         // Whether adding a hook is allowed.
         boolean canAddHook = !component.hasHook();
         boolean resultHasHook = component.hasHook();
-        RopeCoilData.LanternOptions resultLantern = component.lantern();
+        RopeCoilData.HangingBlockOptions resultHangingBlock = component.hangingBlock();
         for (int i = 0; i < input.size(); i++) {
             // Skip the rope coil, it's allowed.
-            if (i == ropeIndex) {
+            
+            if (i == ropeCoilIndex) {
+                
                 continue;
             }
             ItemStack stack = input.getItem(i);
             Item item = stack.getItem();
-            if (item == ItemRegistry.ROPE.get()) {
+            if (stack.is(this.rope)) {
                 // If it is rope, decrement the amount of rope that can be added further.
                 if (remainingAllowedLength > 0) {
                     remainingAllowedLength--;
@@ -102,60 +128,63 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     // If no more rope can be added, the recipe fails.
                     return ItemStack.EMPTY;
                 }
-            } else if (item == Items.TRIPWIRE_HOOK) {
+            } else if (stack.is(Items.TRIPWIRE_HOOK)) {
                 // If it is a hook, check if a hook can be added.
                 // If not, fail. If so, disallow further hooks.
                 if (canAddHook) {
                     canAddHook = false;
                     resultHasHook = true;
                 } else {
+                    
                     return ItemStack.EMPTY;
                 }
-            } else if (item == Items.LANTERN) {
-                // If it is a hook, check if a hook can be added.
-                // If not, fail. If so, disallow further hooks.
-                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
-                    resultLantern = RopeCoilData.LanternOptions.LANTERN;
-                } else {
-                    return ItemStack.EMPTY;
-                }
-            } else if (item == Items.SOUL_LANTERN) {
-                // If it is a hook, check if a hook can be added.
-                // If not, fail. If so, disallow further hooks.
-                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
-                    resultLantern = RopeCoilData.LanternOptions.SOUL_LANTERN;
-                } else {
-                    return ItemStack.EMPTY;
-                }
-            } else if (item == Items.BELL) {
-                // If it is a hook, check if a hook can be added.
-                // If not, fail. If so, disallow further hooks.
-                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
-                    resultLantern = RopeCoilData.LanternOptions.BELL;
-                } else {
+            } else if (RopeCoilData.HangingBlockOptions.getOption(stack) instanceof RopeCoilData.HangingBlockOptions options) {
+                // If it is a hanging block, check if a hanging block can be added.
+                // If not, fail. If so, disallow further hanging blocks.
+                if (resultHangingBlock == RopeCoilData.HangingBlockOptions.NONE) {
+                    resultHangingBlock = options;
+                } else if (options != RopeCoilData.HangingBlockOptions.NONE) {
+                    Constants.LOG.warn(
+                            "Already has a hanging block {}, trying to add hanging block {} from item {}, returning empty.",
+                            resultHangingBlock,
+                            options,
+                            stack
+                    );
                     return ItemStack.EMPTY;
                 }
             } else if (item == Items.GLOW_INK_SAC) {
-                // If it is rope, decrement the amount of rope that can be added further.
+                // If it is glow ink, decrement the amount of glow ink that can be added further.
                 if (remainingAllowedLightLevel > 0) {
                     remainingAllowedLightLevel--;
                     resultLightLevel++;
                 } else {
-                    // If no more rope can be added, the recipe fails.
+                    // If no more glow ink can be added, the recipe fails.
+                    Constants.LOG.warn(
+                            "Light level is too high (original {} plus one item), returning empty.",
+                            resultLightLevel
+                    );
                     return ItemStack.EMPTY;
                 }
-            } else if (stack.has(DataComponentRegistry.ROPE_COIL.get())) {
+            } else if (stack.has(DataComponentRegistry.ROPE_COIL.get()) && stack.is(this.coil)) {
                 // Allow combining rope coils, if they're not too long and don't both have hooks.
                 RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
                 if (data == null) {
                     // This shouldn't happen... if it does, we have a problem.
+                    
                     return ItemStack.EMPTY;
                 }
                 if (data.length() <= remainingAllowedLength) {
+                    // If the length to be added is less than the remaining allowed length,
+                    // add it in!
                     remainingAllowedLength -= data.length();
                     resultLength += data.length();
                 } else {
                     // It's too long to be combined.
+                    Constants.LOG.warn(
+                            "Other coil is too long to be combined (original {} plus other {}), returning empty.",
+                            resultLength,
+                            data.length()
+                    );
                     return ItemStack.EMPTY;
                 }
                 if (data.hasHook()) {
@@ -167,13 +196,19 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     } else {
                         // It has a hook and a hook cannot be added.
                         // Fail.
+                        
                         return ItemStack.EMPTY;
                     }
                 }
-                if (resultLantern == RopeCoilData.LanternOptions.NONE) {
-                    resultLantern = data.lantern();
+                if (resultHangingBlock == RopeCoilData.HangingBlockOptions.NONE) {
+                    resultHangingBlock = data.hangingBlock();
                 } else {
-                    if (data.lantern() != RopeCoilData.LanternOptions.NONE) {
+                    if (data.hangingBlock() != RopeCoilData.HangingBlockOptions.NONE) {
+                        Constants.LOG.warn(
+                                "Already has a hanging block {}, trying to add hanging block {} from other coil, returning empty.",
+                                resultHangingBlock,
+                                data.hangingBlock()
+                        );
                         return ItemStack.EMPTY;
                     }
                 }
@@ -181,59 +216,131 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     remainingAllowedLightLevel -= data.lightLevel();
                     resultLightLevel += data.lightLevel();
                 } else {
-                    // It's too long to be combined.
+                    // It's got too high a light level to be combined.
+                    Constants.LOG.warn(
+                            "Light level is too high (original {} plus other {}), returning empty.",
+                            resultLightLevel,
+                            data.lightLevel()
+                    );
                     return ItemStack.EMPTY;
                 }
             }
         }
-        ItemStack result = new ItemStack(ItemRegistry.ROPE_COIL.get());
+        ItemStack result = new ItemStack(this.coil);
         result.set(
                 DataComponentRegistry.ROPE_COIL.get(),
-                new RopeCoilData(resultLength, resultHasHook, resultLightLevel, resultLantern)
+                new RopeCoilData(
+                        resultLength,
+                        resultHasHook,
+                        resultLightLevel,
+                        resultHangingBlock,
+                        this.rope.getBlock()
+                )
         );
+        
         return result;
     }
 
     @Override
-    public RecipeSerializer<? extends CustomRecipe> getSerializer() {
+    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return RecipeSerializerRegistry.ROPE_COIL_SERIALIZER.get();
     }
 
+    public Item getCoil() {
+        return this.coil;
+    }
+
+    public BlockItem getRope() {
+        return this.rope;
+    }
+
+    public static class Serializer<T extends RopeCoilUpgradeRecipe> implements RecipeSerializer<T> {
+        private final MapCodec<T> codec;
+        private final StreamCodec<RegistryFriendlyByteBuf, T> streamCodec; // RegistryFriendlyByteBuf
+
+        public Serializer(Factory<T> factory) {
+            Objects.requireNonNull(factory);
+            this.codec = RecordCodecBuilder.mapCodec((instance) -> {
+                Products.P3<RecordCodecBuilder.Mu<T>, CraftingBookCategory, Item, Item> products = instance.group(
+                        CraftingBookCategory.CODEC.fieldOf("category")
+                                .orElse(CraftingBookCategory.MISC)
+                                .forGetter(CraftingRecipe::category),
+                        BuiltInRegistries.ITEM.byNameCodec()
+                                .fieldOf("coil")
+                                .orElse(Items.AIR)
+                                .forGetter(RopeCoilUpgradeRecipe::getCoil),
+                        BuiltInRegistries.ITEM.byNameCodec()
+                                .fieldOf("rope")
+                                .orElse(Items.AIR)
+                                .forGetter(RopeCoilUpgradeRecipe::getRope)
+                );
+                Objects.requireNonNull(factory);
+                return products.apply(instance, factory);
+            });
+            StreamCodec<? super RegistryFriendlyByteBuf, CraftingBookCategory> craftingBookCategoryStreamCodec = CraftingBookCategory.STREAM_CODEC;
+            Function<T, CraftingBookCategory> categoryGetter = RopeCoilUpgradeRecipe::category;
+            StreamCodec<? super RegistryFriendlyByteBuf, Item> itemStreamCodec = ByteBufCodecs.fromCodec(
+                    BuiltInRegistries.ITEM.byNameCodec());
+            Function<T, Item> coilGetter = RopeCoilUpgradeRecipe::getCoil;
+            Function<T, Item> ropeGetter = RopeCoilUpgradeRecipe::getRope;
+            this.streamCodec = StreamCodec.composite(
+                    craftingBookCategoryStreamCodec,
+                    categoryGetter,
+                    itemStreamCodec,
+                    coilGetter,
+                    itemStreamCodec,
+                    ropeGetter,
+                    factory
+            );
+        }
+
+        @Override
+        public @NotNull MapCodec<T> codec() {
+            return this.codec;
+        }
+
+        @Override
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
+            return this.streamCodec;
+        }
+
+        @FunctionalInterface
+        public interface Factory<T extends RopeCoilUpgradeRecipe> extends Function3<CraftingBookCategory, Item, Item, T> {
+        }
+    }
 
     // Inspired by the implementation here: https://docs.neoforged.net/docs/resources/server/recipes/custom/#data-generation
     public static class Builder implements RecipeBuilder {
         protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
         @Nullable
         protected String group;
+        protected Item coil;
+        protected BlockItem rope;
         private CraftingBookCategory category;
 
         public Builder() {
         }
 
         @Override
-        public Builder unlockedBy(String name, Criterion<?> criterion) {
+        public @NotNull Builder unlockedBy(@NotNull String name, @NotNull Criterion<?> criterion) {
             this.criteria.put(name, criterion);
             return this;
         }
 
         @Override
-        public Builder group(@Nullable String group) {
+        public @NotNull Builder group(@Nullable String group) {
             this.group = group;
             return this;
         }
 
-        public Builder category(CraftingBookCategory category) {
-            this.category = category;
-            return this;
+        @Override
+        public @NotNull Item getResult() {
+            return this.coil;
         }
 
         @Override
-        public Item getResult() {
-            return ItemRegistry.ROPE_COIL.get();
-        }
-
-        @Override
-        public void save(RecipeOutput output, ResourceKey<Recipe<?>> key) {
+        public void save(RecipeOutput output, @NotNull ResourceKey<Recipe<?>> key) {
+            this.fillDefaults();
             Advancement.Builder advancement = output.advancement()
                     .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
                     .rewards(AdvancementRewards.Builder.recipe(key))
@@ -241,9 +348,33 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
             this.criteria.forEach(advancement::addCriterion);
             output.accept(
                     key,
-                    new RopeCoilUpgradeRecipe(this.category),
+                    new RopeCoilUpgradeRecipe(this.category, this.coil, this.rope),
                     advancement.build(key.location().withPrefix("recipes/"))
             );
+        }
+
+        private void fillDefaults() {
+            if (this.coil == null) {
+                this.coil = ItemRegistry.ROPE_COIL.get();
+            }
+            if (this.rope == null) {
+                this.rope = ItemRegistry.ROPE.get();
+            }
+        }
+
+        public Builder coil(Item coil) {
+            this.coil = coil;
+            return this;
+        }
+
+        public Builder rope(BlockItem rope) {
+            this.rope = rope;
+            return this;
+        }
+
+        public Builder category(CraftingBookCategory category) {
+            this.category = category;
+            return this;
         }
     }
 }

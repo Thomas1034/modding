@@ -19,11 +19,13 @@ package com.startraveler.verdant.registry;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.BombPileBlock;
 import com.startraveler.verdant.item.component.DurabilityChanging;
+import com.startraveler.verdant.item.component.RopeCoilData;
 import com.startraveler.verdant.item.component.VerdantFriendliness;
 import com.startraveler.verdant.item.custom.*;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.ConsumablesList;
+import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.Direction;
@@ -32,6 +34,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
@@ -39,6 +43,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
 import java.util.Map;
@@ -133,11 +138,20 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> ROPE_COIL = register(
             "rope_coil",
             (properties) -> new RopeCoilItem(properties.stacksTo(8)
-                    .component(DataComponentRegistry.ROPE_COIL.get(), RopeCoilItem.DEFAULT_DATA_COMPONENT))
+                    .component(DataComponentRegistry.ROPE_COIL.get(), RopeCoilData.DEFAULT))
     );
-    public static final RegistryObject<Item, Item> ROPE = register(
+    public static final RegistryObject<Item, Item> TWISTED_ROPE_COIL = register(
+            "twisted_rope_coil",
+            (properties) -> new RopeCoilItem(properties.stacksTo(8)
+                    .component(DataComponentRegistry.ROPE_COIL.get(), RopeCoilData.DEFAULT_TWISTED))
+    );
+    public static final RegistryObject<Item, RopeItem> ROPE = register(
             "rope",
             (properties) -> new RopeItem(BlockRegistry.ROPE.get(), properties)
+    );
+    public static final RegistryObject<Item, RopeItem> TWISTED_ROPE = register(
+            "twisted_rope",
+            (properties) -> new RopeItem(BlockRegistry.TWISTED_ROPE.get(), properties)
     );
     public static final RegistryObject<Item, Item> POISON_ARROW = register("poison_arrow", PoisonArrowItem::new);
     public static final RegistryObject<Item, Item> HEART_OF_THE_FOREST = register(
@@ -482,7 +496,7 @@ public class ItemRegistry {
             )
     );
 
-    public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_SOLUTION = register(
+    public static final RegistryObject<Item, Item> TOXIC_SOLUTION_BUCKET = register(
             "toxic_solution_bucket", (properties) -> new ToxicAshItem(
                     properties.stacksTo(1)
                             .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(Items.BUCKET))),
@@ -524,9 +538,74 @@ public class ItemRegistry {
             properties -> new SpawnEggItem(EntityTypeRegistry.POISONER.get(), properties)
     );
 
+    public static final RegistryObject<Item, Item> OOZE_BUCKET = register(
+            "ooze_bucket",
+            properties -> new MobBucketItem(
+                    EntityTypeRegistry.OOZE.get(),
+                    Fluids.WATER,
+                    SoundEvents.SLIME_SQUISH_SMALL,
+                    properties.stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)
+            )
+    );
+
+    public static final RegistryObject<Item, Item> OOZE_SPAWN_EGG = register(
+            "ooze_spawn_egg",
+            properties -> new SpawnEggItem(EntityTypeRegistry.OOZE.get(), properties)
+    );
+
     public static final RegistryObject<Item, Item> BLOWGUN = register(
             "blowgun",
             properties -> new BlowgunItem(properties.durability(256))
+    );
+
+    public static final RegistryObject<Item, Item> EARTHMOVER = register(
+            "earthmover",
+            properties -> new CubeMiningItem(properties.tool(
+                    ToolMaterial.DIAMOND,
+                    BlockTags.MINEABLE_WITH_SHOVEL,
+                    -1.0f,
+                    -1.0f,
+                    0.0f
+            ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1))
+    );
+
+    public static final RegistryObject<Item, Item> IRON_MACHETE = register(
+            "iron_machete",
+            properties -> new CubeMiningItem(
+                    properties.tool(
+                            ToolMaterial.IRON,
+                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
+                            1.0f,
+                            -1.4f,
+                            0.0f
+                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+            )
+    );
+
+    public static final RegistryObject<Item, Item> DIAMOND_MACHETE = register(
+            "diamond_machete",
+            properties -> new CubeMiningItem(
+                    properties.tool(
+                            ToolMaterial.DIAMOND,
+                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
+                            1.0f,
+                            -1.4f,
+                            0.0f
+                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+            )
+    );
+
+    public static final RegistryObject<Item, Item> NETHERITE_MACHETE = register(
+            "netherite_machete",
+            properties -> new CubeMiningItem(
+                    properties.tool(
+                            ToolMaterial.NETHERITE,
+                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
+                            1.0f,
+                            -1.4f,
+                            0.0f
+                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+            )
     );
 
 
@@ -538,12 +617,59 @@ public class ItemRegistry {
             "stable_blasting_bloom",
             (properties) -> new BlockItem(BlockRegistry.BLASTING_BUNCH.get(), properties)
     );
-    public static final RegistryObject<Item, Item> BLASTING_BLOOM = register(
+    public static final RegistryObject<Item, Item> METAL_BOMB = register(
+            "metal_bomb",
+            (properties) -> new BlockItem(BlockRegistry.METAL_BOMB_PILE.get(), properties)
+    );
+    public static final RegistryObject<Item, Item> TERRACOTTA_BOMB = register(
+            "terracotta_bomb",
+            (properties) -> new BlockItem(BlockRegistry.TERRACOTTA_BOMB_PILE.get(), properties)
+    );
+
+    public static final RegistryObject<Item, ThrowableBombItem> BLASTING_BLOOM = register(
             "blasting_bloom", (properties) -> new ThrowableBombItem(
                     properties.component(
                             DataComponents.BLOCK_STATE,
                             new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
-                    ), () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
+                    ).component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f)),
+                    () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
+            )
+    );
+
+    public static final RegistryObject<Item, ThrowableBombItem> TERRACOTTA_GRENADE = register(
+            "terracotta_grenade", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                                    DataComponents.BLOCK_STATE,
+                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                            )
+                            .component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f))
+                            .component(
+                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
+                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
+                            ),
+                    () -> BlockRegistry.TERRACOTTA_BOMB_PILE.get().defaultBlockState(),
+                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 1.5f,
+                    3 * (ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 4),
+                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 1.50f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
+            )
+    );
+
+    public static final RegistryObject<Item, ThrowableBombItem> METAL_GRENADE = register(
+            "metal_grenade", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                                    DataComponents.BLOCK_STATE,
+                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                            )
+                            .component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f))
+                            .component(
+                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
+                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
+                            ), () -> BlockRegistry.METAL_BOMB_PILE.get().defaultBlockState(),
+                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2.0f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 2,
+                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 2.00f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
             )
     );
 
@@ -671,19 +797,58 @@ public class ItemRegistry {
                     .build()).component(DataComponents.CONSUMABLE, ConsumablesList.GOLDEN_MANGO))
     );
 
-    public static final RegistryObject<Item, Item> SAP_GLOB = register(
-            "sap_glob",
-            Item::new
+    public static final RegistryObject<Item, Item> SAP_GLOB = register("sap_glob", Item::new);
+    public static final RegistryObject<Item, Item> VERDANT_RESIN_CLUMP = register("verdant_resin_clump", Item::new);
+    public static final RegistryObject<Item, Item> VERDANT_RESIN_BRICK = register("verdant_resin_brick", Item::new);
+
+    public static final RegistryObject<Item, Item> JUICE_BOTTLE = register(
+            "juice_bottle",
+            (properties) -> new Item(properties.food((new FoodProperties.Builder()).nutrition(2)
+                            .saturationModifier(0.1F)
+                            .alwaysEdible()
+                            .build())
+                    .component(DataComponents.CONSUMABLE, ConsumablesList.JUICE_BOTTLE)
+                    .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
+                    .stacksTo(16))
     );
-    public static final RegistryObject<Item, Item> VERDANT_RESIN_BRICK = register(
-            "verdant_resin_brick",
-            Item::new
+
+    public static final RegistryObject<Item, Item> NECTAR_BOTTLE = register(
+            "nectar_bottle",
+            (properties) -> new Item(properties.food(Foods.HONEY_BOTTLE)
+                    .component(DataComponents.CONSUMABLE, ConsumablesList.NECTAR_BOTTLE)
+                    .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
+                    .stacksTo(16))
+    );
+
+    public static final RegistryObject<Item, Item> BALSAM = register("balsam", Item::new);
+
+    public static final RegistryObject<Item, Item> BALM = register(
+            "balm", (properties) -> new Item(properties.food(
+                    new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
+                    ConsumablesList.BALM
+            ).component(
+                    DataComponents.USE_COOLDOWN,
+                    new UseCooldown(
+                            30,
+                            Optional.of(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "balm"))
+                    )
+            ))
+    );
+
+    public static final RegistryObject<Item, Item> SAP_TORCH = register(
+            "sap_torch",
+            (properties) -> new StandingAndWallBlockItem(
+                    BlockRegistry.SAP_TORCH.get(),
+                    BlockRegistry.SAP_WALL_TORCH.get(),
+                    Direction.DOWN,
+                    properties
+            )
     );
 
     public static void init() {
     }
 
-    public static RegistryObject<Item, Item> register(String name, Function<Item.Properties, Item> supplier) {
+    public static <T extends Item> RegistryObject<Item, T> register(String name, Function<Item.Properties, T> supplier) {
         return ITEMS.register(name, () -> supplier.apply(properties(name)));
     }
 

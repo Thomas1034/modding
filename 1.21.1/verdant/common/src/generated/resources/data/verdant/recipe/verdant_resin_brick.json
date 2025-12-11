@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "verdant:sap_glob",
+  "ingredient": "verdant:verdant_resin_clump",
   "result": {
     "count": 1,
     "id": "verdant:verdant_resin_brick"

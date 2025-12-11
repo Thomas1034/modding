@@ -32,8 +32,8 @@ public class RecipeSerializerRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<RecipeSerializer<?>, CustomRecipe.Serializer<RopeCoilUpgradeRecipe>> ROPE_COIL_SERIALIZER = SERIALIZERS.register("rope_coil_upgrade",
-            () -> new CustomRecipe.Serializer<>(RopeCoilUpgradeRecipe::new)
+    public static final RegistryObject<RecipeSerializer<?>, RopeCoilUpgradeRecipe.Serializer<RopeCoilUpgradeRecipe>> ROPE_COIL_SERIALIZER = SERIALIZERS.register("rope_coil_upgrade",
+            () -> new RopeCoilUpgradeRecipe.Serializer<>(RopeCoilUpgradeRecipe::new)
     );
 
     public static final RegistryObject<RecipeSerializer<?>, CustomRecipe.Serializer<BlowdartTippingRecipe>> BLOWDART_TIPPING_SERIALIZER = SERIALIZERS.register("blowdart_tipping",

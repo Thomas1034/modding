@@ -40,6 +40,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +48,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-// TODO handle logic when placed by the player.
 public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
 
     public static final int MIN_AGE = 0;
@@ -221,7 +221,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
     // Updates the block whenever there is a change next to it.
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
 
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
             tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
@@ -234,8 +234,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         }
 
         boolean hasAnyFace = false;
-        for (int i = 0; i < FACES.length; i++) {
-            if (state.getValue(FACES[i]) > MIN_AGE) {
+        for (IntegerProperty face : FACES) {
+            if (state.getValue(face) > MIN_AGE) {
                 hasAnyFace = true;
                 break;
             }
@@ -248,7 +248,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         // Try to get the cached shape.
         VoxelShape shape = CACHED_SHAPES.get(state);
         if (shape == null) {
@@ -268,7 +268,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         this.grow(state, level, pos);
     }
 
@@ -279,7 +279,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         // grow to connect the two.
         BlockState above = level.getBlockState(pos.above());
         BlockState below = level.getBlockState(pos.below());
-        if (above.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && below.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
+        if (above.is(WoodSets.HEARTWOOD.getLogs()) && below.is(WoodSets.HEARTWOOD.getLogs())) {
             // System.out.println("There was heartwood both above and below the block.");
             return false;
         }
@@ -289,7 +289,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             BlockPos neighborPos = pos.relative(d);
             BlockState neighbor = level.getBlockState(neighborPos);
 
-            if (neighbor.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
+            if (neighbor.is(WoodSets.HEARTWOOD.getLogs())) {
                 // System.out.println("Found verdant heartwood on the " + d + " side.");
                 return true;
             }
@@ -330,18 +330,18 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         }
 
         // Then, check if this log is a mature verdant log.
-        if (host.is(VerdantTags.Blocks.HEARTWOOD_LOGS)) {
+        if (host.is(WoodSets.HEARTWOOD.getLogs())) {
             return false;
         }
 
         // Then, check if this log is a verdant log and has a mature neighbor.
         // If so, return early.
-        if (host.is(VerdantTags.Blocks.STRANGLER_LOGS) && this.hasMatureVerdantLogNeighbors(level, pos)) {
+        if (host.is(WoodSets.STRANGLER.getLogs()) && this.hasMatureVerdantLogNeighbors(level, pos)) {
             return false;
         }
 
         // Check if this log has neighboring logs or decayed wood.
-        if (!host.is(VerdantTags.Blocks.STRANGLER_LOGS) && !this.hasLogOrVineNeighbors(level, pos)) {
+        if (!host.is(WoodSets.STRANGLER.getLogs()) && !this.hasLogOrVineNeighbors(level, pos)) {
             shouldDecayToAir = true;
         }
 
@@ -390,7 +390,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             level.addDestroyBlockEffect(pos, host);
             // Save the host state.
             // If the host is verdant, mature it.
-            if (host.is(VerdantTags.Blocks.STRANGLER_LOGS)) {
+            if (host.is(WoodSets.STRANGLER.getLogs())) {
                 level.setBlockAndUpdate(pos, this.heartwood.apply(level.random).defaultBlockState());
             }
             // Otherwise rot it.
@@ -559,23 +559,23 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(EAST, WEST, UP, DOWN, SOUTH, NORTH, BlockStateProperties.WATERLOGGED);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader levelReader, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         this.grow(state, level, pos);
     }
 

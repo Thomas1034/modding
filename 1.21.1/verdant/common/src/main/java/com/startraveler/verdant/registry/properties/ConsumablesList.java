@@ -17,7 +17,7 @@
 package com.startraveler.verdant.registry.properties;
 
 import com.startraveler.verdant.item.component.AmplifyEffectsConsumeEffect;
-import com.startraveler.verdant.item.component.DiminishEffectConsumeEffect;
+import com.startraveler.verdant.item.component.RemoveMobEffectsConsumeEffect;
 import com.startraveler.verdant.registry.MobEffectRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -43,31 +43,45 @@ public class ConsumablesList {
 
     public static final Consumable ALOE_LEAF = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .onConsume(new RemoveMobEffectsConsumeEffect(MobEffectCategory.HARMFUL))
+            .animation(ItemUseAnimation.CROSSBOW)
+            .sound(Holder.direct(SoundEvents.EMPTY))
+            .hasConsumeParticles(false)
+            .build();
+
+    public static final Consumable BALM = Consumables.defaultFood()
+            .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds())
+            .onConsume(new RemoveMobEffectsConsumeEffect(
+                    MobEffectCategory.HARMFUL,
+                    RemoveMobEffectsConsumeEffect.REMOVE_ALL_IN_CATEGORY
+            ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 600, 0)))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(
+                    MobEffectRegistry.ANTIDOTE.asHolder(),
+                    600,
+                    3
+            )))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
     public static final Consumable YOUNG_ALOE_LEAF = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .onConsume(new RemoveMobEffectsConsumeEffect(MobEffectCategory.HARMFUL))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
     public static final Consumable OLD_ALOE_LEAF = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new DiminishEffectConsumeEffect(MobEffectCategory.HARMFUL))
+            .onConsume(new RemoveMobEffectsConsumeEffect(MobEffectCategory.HARMFUL))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))
             .hasConsumeParticles(false)
             .build();
     public static final Consumable COFFEE_BERRY = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
-            .onConsume(new ApplyStatusEffectsConsumeEffect(
-                    new MobEffectInstance(MobEffects.SPEED, 200, 0),
-                    0.9F
-            ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.SPEED, 200, 0), 0.9F))
             .build();
     public static final Consumable ROASTED_COFFEE = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds() / 2.0f)
@@ -114,20 +128,23 @@ public class ConsumablesList {
             .build();
     public static final Consumable MANGO = Consumables.defaultFood()
             .consumeSeconds(Consumables.DRIED_KELP.consumeSeconds())
-            .onConsume(new ApplyStatusEffectsConsumeEffect(
-                    new MobEffectInstance(MobEffects.REGENERATION, 60, 1),
-                    1
-            ))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1), 1))
+            .build();
+    public static final Consumable JUICE_BOTTLE = Consumables.defaultDrink()
+            .consumeSeconds(Consumables.HONEY_BOTTLE.consumeSeconds())
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 18, 3), 1))
+            .build();
+    public static final Consumable NECTAR_BOTTLE = Consumables.defaultDrink()
+            .consumeSeconds(Consumables.HONEY_BOTTLE.consumeSeconds())
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 18, 4), 1))
             .build();
     public static final Consumable GOLDEN_MANGO = Consumables.defaultFood()
             .consumeSeconds(Consumables.DEFAULT_FOOD.consumeSeconds())
-            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(
-                            MobEffects.REGENERATION,
-                            300,
-                            2
-                    )
-            )))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(new MobEffectInstance(
+                    MobEffects.REGENERATION,
+                    300,
+                    2
+            ))))
             .build();
 
     private ConsumablesList() {

@@ -26,6 +26,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ProblemReporter;
@@ -125,6 +126,11 @@ public class VerdantClient {
                     packOutput,
                     lookupProvider
             );
+            DamageTypeTagsProvider damageTypeTagsProvider = new VerdantDamageSourceTagProvider(
+                    packOutput,
+                    lookupProvider
+            );
+            generator.addProvider(true, damageTypeTagsProvider);
             generator.addProvider(true, entityTypeTagsProvider);
             generator.addProvider(
                     true,
@@ -189,6 +195,8 @@ public class VerdantClient {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.POTTED_MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), ChunkSectionLayer.CUTOUT);
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAP_FIRE.get(), ChunkSectionLayer.TRANSLUCENT);
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAP_LANTERN.get(), ChunkSectionLayer.CUTOUT);
 
         });
     }
@@ -205,6 +213,12 @@ public class VerdantClient {
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
                 // A function of BlockEntityRendererProvider.Context to BlockEntityRenderer.
                 VerdantConduitRenderer::new
+        );
+        event.registerBlockEntityRenderer(
+                // The block entity type to register the renderer for.
+                BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(),
+                // A function of BlockEntityRendererProvider.Context to BlockEntityRenderer.
+                OvergrownSpawnerRenderer::new
         );
     }
 

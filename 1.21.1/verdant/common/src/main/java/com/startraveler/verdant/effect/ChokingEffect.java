@@ -23,6 +23,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import org.jetbrains.annotations.NotNull;
 
 public class ChokingEffect extends MobEffect {
 
@@ -33,7 +34,7 @@ public class ChokingEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, @NotNull LivingEntity entity, int amplifier) {
         super.applyEffectTick(level, entity, amplifier);
 
         float amountOfAirToTake = 2 * amplifier + 5.5f;

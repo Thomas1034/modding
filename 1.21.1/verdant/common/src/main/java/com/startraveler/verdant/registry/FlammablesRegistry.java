@@ -40,7 +40,7 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.STRANGLER_VINE, 60, 60);
         flammables.registerFlammability(BlockRegistry.LEAFY_STRANGLER_VINE, 60, 60);
         flammables.registerFlammability(BlockRegistry.STRANGLER_TENDRIL, 60, 60);
-        flammables.registerFlammability(BlockRegistry.ROPE, 60, 60);
+        flammables.registerFlammability(BlockRegistry.ROPE, 60, 100);
         flammables.registerFlammability(BlockRegistry.ROTTEN_WOOD, 60, 60);
         flammables.registerFlammability(BlockRegistry.STINKING_BLOSSOM, 60, 100);
         flammables.registerFlammability(BlockRegistry.BLUEWEED, 60, 100);

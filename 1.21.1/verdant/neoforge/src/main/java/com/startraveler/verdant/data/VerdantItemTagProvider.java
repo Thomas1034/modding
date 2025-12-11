@@ -28,9 +28,13 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         addDirtOres();
         addGrusOres();
 
+        this.tag(VerdantTags.Items.EMPTY_FOR_TESTING);
+
         this.tag(ItemTags.WALLS).add(BlockRegistry.EARTH_BRICK_WALL.get().asItem());
         this.tag(ItemTags.STAIRS).add(BlockRegistry.EARTH_BRICK_STAIRS.get().asItem());
         this.tag(ItemTags.SLABS).add(BlockRegistry.EARTH_BRICK_SLAB.get().asItem());
+
+        this.tag(ItemTags.DIRT).add(BlockRegistry.GRUS.get().asItem());
 
         // Verdant ground
         this.tag(VerdantTags.Items.VERDANT_GROUND).add(
@@ -46,13 +50,15 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 .add(BlockRegistry.STRANGLER_VINE.get().asItem(), BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem());
         tag(Tags.Items.FERTILIZERS).add(ItemRegistry.ROTTEN_COMPOST.get(), ItemRegistry.RANCID_SLIME.get());
 
-        this.tag(ItemTags.SMALL_FLOWERS).add(
+
+        this.tag(VerdantTags.Items.VERDANT_SMALL_FLOWERS).add(
                 BlockRegistry.BLEEDING_HEART.get().asItem(),
                 BlockRegistry.BLUEWEED.get().asItem(),
                 BlockRegistry.WILD_COFFEE.get().asItem(),
                 BlockRegistry.RUE.get().asItem(),
                 BlockRegistry.TIGER_LILY.get().asItem()
         );
+        this.tag(ItemTags.SMALL_FLOWERS).addTag(VerdantTags.Items.VERDANT_SMALL_FLOWERS);
 
 
         this.tag(ItemTags.COW_FOOD).add(ItemRegistry.STARCH.get(), ItemRegistry.BITTER_STARCH.get());
@@ -112,6 +118,12 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(VerdantTags.Items.CRAFTS_TO_ROPES)
                 .add(Items.VINE, Items.STRING, BlockRegistry.STRANGLER_TENDRIL.get().asItem());
 
+        this.tag(VerdantTags.Items.ROPES)
+                .add(ItemRegistry.ROPE.get(), ItemRegistry.TWISTED_ROPE.get());
+
+        this.tag(VerdantTags.Items.NETHER_VINES)
+                .add(Items.TWISTING_VINES, Items.WEEPING_VINES);
+
         this.tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(
                 ItemRegistry.CASSAVA_CUTTINGS.get(),
                 ItemRegistry.BITTER_CASSAVA_CUTTINGS.get(),
@@ -136,10 +148,14 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(Tags.Items.GRAVELS).add(BlockRegistry.SCREE.get().asItem());
 
         this.tag(VerdantTags.Items.BLASTING_BLOSSOM_BOMBS).add(ItemRegistry.STABLE_BLASTING_BLOOM.get());
+        this.tag(VerdantTags.Items.METAL_BOMBS).add(ItemRegistry.METAL_BOMB.get());
+        this.tag(VerdantTags.Items.TERRACOTTA_BOMBS).add(ItemRegistry.TERRACOTTA_BOMB.get());
 
         this.tag(VerdantTags.Items.DARTS).add(ItemRegistry.DART.get(), ItemRegistry.TIPPED_DART.get());
 
         this.tag(Tags.Items.SLIME_BALLS).add(ItemRegistry.SAP_GLOB.get());
+
+        this.tag(ItemTags.BREWING_FUEL).add(ItemRegistry.BALSAM.get());
 
         this.tag(VerdantTags.Items.DART_EFFECT_BINDERS)
                 .add(Items.SLIME_BALL, Items.HONEY_BOTTLE, Items.MAGMA_CREAM, ItemRegistry.SAP_GLOB.get());
@@ -154,7 +170,7 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 BlockRegistry.IRON_SPIKES.get().asItem()
         );
 
-        this.tag(ItemTags.BUNDLES).add(ItemRegistry.SACK.get());
+        // this.tag(ItemTags.BUNDLES).add(ItemRegistry.SACK.get());
 
         this.tag(VerdantTags.Items.MULCH_INGREDIENTS)
                 .add(
@@ -170,6 +186,15 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                         Items.BIG_DRIPLEAF
                 );
         this.tag(VerdantTags.Items.MULCH_INGREDIENTS).addTag(ItemTags.LEAVES);
+
+
+        this.tag(ItemTags.SHOVELS).add(ItemRegistry.EARTHMOVER.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.IRON_MACHETE.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.DIAMOND_MACHETE.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.NETHERITE_MACHETE.get());
+        this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.IRON_MACHETE.get());
+        this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.DIAMOND_MACHETE.get());
+        this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.NETHERITE_MACHETE.get());
 
         addHeartwoodSet();
         addImbuedHeartwoodSet();

@@ -1,109 +1,157 @@
 package com.startraveler.verdant.block.custom.entity;
 
-import com.startraveler.verdant.VerdantIFF;
 import com.startraveler.verdant.block.custom.OozeFissureBlock;
 import com.startraveler.verdant.registry.BlockEntityTypeRegistry;
-import com.startraveler.verdant.util.VerdantTags;
+import com.startraveler.verdant.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Slime;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.SpawnData;
+import net.minecraft.world.level.Spawner;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CreakingHeartBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.block.state.properties.CreakingHeartState;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 
-public class OozeFissureBlockEntity extends BlockEntity {
+public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
+    protected static final int OOZE_FISSURE_MIN_SPAWN_DELAY = 80;
+    protected static final int OOZE_FISSURE_MAX_SPAWN_DELAY = 160;
+    protected static final int OOZE_FISSURE_SPAWN_COUNT = 2;
+    protected static final int OOZE_FISSURE_MAX_NEARBY_ENTITIES = 6;
+    protected static final int OOZE_FISSURE_REQUIRED_PLAYER_RANGE = 16;
+    protected static final int OOZE_FISSURE_SPAWN_RANGE = 4;
+    protected static final int DELAY_FACTOR_IF_NOT_NATURAL = 20;
+    protected final BaseSpawner spawner = new BaseSpawner() {
+        @Override
+        public void setNextSpawnData(@Nullable Level level, @NotNull BlockPos pos, @NotNull SpawnData spawnData) {
+            super.setNextSpawnData(level, pos, spawnData);
+            if (level != null) {
+                BlockState blockstate = level.getBlockState(pos);
+                level.sendBlockUpdated(pos, blockstate, blockstate, 260);
+            }
+        }
 
-    private static final double ACTIVATION_DISTANCE = 32;
-    private static final int MAX_NEARBY_MONSTERS = 16;
+        @Override
+        public void broadcastEvent(Level level, @NotNull BlockPos pos, int event) {
+
+            level.blockEvent(pos, Blocks.SPAWNER, event, 0);
+        }
+    };
+    private int outputSignal = 0;
 
     public OozeFissureBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityTypeRegistry.OOZE_FISSURE_BLOCK_ENTITY.get(), pos, blockState);
+        this.spawner.minSpawnDelay = OOZE_FISSURE_MIN_SPAWN_DELAY;
+        this.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY;
+        this.spawner.spawnCount = OOZE_FISSURE_SPAWN_COUNT;
+        this.spawner.maxNearbyEntities = OOZE_FISSURE_MAX_NEARBY_ENTITIES;
+        this.spawner.requiredPlayerRange = OOZE_FISSURE_REQUIRED_PLAYER_RANGE;
+        this.spawner.spawnRange = OOZE_FISSURE_SPAWN_RANGE;
     }
 
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, OozeFissureBlockEntity blockEntity) {
-
+        if (state.getOptionalValue(OozeFissureBlock.STATE)
+                .orElse(CreakingHeartState.UPROOTED) == CreakingHeartState.AWAKE) {
+            blockEntity.spawner.clientTick(level, pos);
+        }
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, OozeFissureBlockEntity blockEntity) {
-        boolean willPerformComplexTickLogic = level.random.nextFloat() < ((1.0 / 20.0) * (1.0 / 10.0));
-        if (!willPerformComplexTickLogic) {
-            return;
-        }
-
-        int countOfBlocksAround = blockEntity.getCountOfOozingBlocksAroundPos(level, pos, state);
-
-        if (countOfBlocksAround < 1) {
-            return;
-        }
-
-        int playerCount = 0;
-        List<? extends Player> players = level.players();
-        int numberOfPlayers = players.size();
-        Vec3 center = pos.getCenter();
-        for (int i = 0; i < numberOfPlayers; i++) {
-            Player player = players.get(i);
-            if (player.distanceToSqr(center) < ACTIVATION_DISTANCE && VerdantIFF.isEnemy(player)) {
-                playerCount++;
+        if (level instanceof ServerLevel serverLevel) {
+            int outputSignal = blockEntity.computeAnalogOutputSignal();
+            if (blockEntity.outputSignal != outputSignal) {
+                blockEntity.outputSignal = outputSignal;
+                level.updateNeighbourForOutputSignal(pos, Blocks.CREAKING_HEART);
             }
+            BlockState updatedFissureState = OozeFissureBlockEntity.updateFissureState(level, state, pos);
+
+            if (updatedFissureState != state) {
+                state = updatedFissureState;
+                level.setBlockAndUpdate(pos, state);
+            }
+
+            if (!state.getOptionalValue(OozeFissureBlock.NATURAL).orElse(false)) {
+                blockEntity.spawner.minSpawnDelay = OOZE_FISSURE_MIN_SPAWN_DELAY * DELAY_FACTOR_IF_NOT_NATURAL;
+                blockEntity.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY * DELAY_FACTOR_IF_NOT_NATURAL;
+            } else {
+                blockEntity.spawner.minSpawnDelay = OOZE_FISSURE_MIN_SPAWN_DELAY;
+                blockEntity.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY;
+            }
+
+            if (state.getOptionalValue(OozeFissureBlock.STATE)
+                    .orElse(CreakingHeartState.UPROOTED) == CreakingHeartState.AWAKE) {
+                blockEntity.spawner.serverTick(serverLevel, pos);
+            }
+
+
+            if (blockEntity.spawner.getOrCreateDisplayEntity(level, pos) == null) {
+                blockEntity.setEntityId(EntityTypeRegistry.OOZE.get(), serverLevel.random);
+            }
+
+
         }
 
-        if (playerCount < 1) {
-            return;
+    }
+
+
+    public static BlockState updateFissureState(Level level, BlockState state, BlockPos pos) {
+        if (!(state.getBlock() instanceof OozeFissureBlock oozeFissureBlock)) {
+            return state;
         }
-
-        int monstersAround = level.getEntitiesOfClass(
-                Monster.class,
-                AABB.ofSize(pos.getCenter(), ACTIVATION_DISTANCE, ACTIVATION_DISTANCE, ACTIVATION_DISTANCE)
-        ).size();
-
-        if (monstersAround < MAX_NEARBY_MONSTERS) {
-            Slime slime = new Slime(EntityType.SLIME, level);
-            slime.setSize(4, true);
-            slime.setPos(pos.getCenter().add(state.getValue(OozeFissureBlock.FACING).getUnitVec3().scale(0.5)));
-            level.addFreshEntity(slime);
+        if (!oozeFissureBlock.hasRequiredLogs(state, level, pos)) {
+            return state.setValue(CreakingHeartBlock.STATE, CreakingHeartState.UPROOTED);
+        } else {
+            boolean timeAgreeing = OozeFissureBlock.timeAgreeing(level);
+            return state.setValue(
+                    CreakingHeartBlock.STATE,
+                    timeAgreeing ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT
+            );
         }
     }
 
-    protected int getCountOfOozingBlocksAroundPos(Level level, BlockPos pos, BlockState state) {
-        if (!state.getValue(OozeFissureBlock.ACTIVE)) {
-            return 0;
-        }
-        Direction facing = state.getValue(OozeFissureBlock.FACING);
-        Direction[] perps = getPerpendicularDirections(facing);
-        Direction ortho = perps[1];
-        Direction cross = perps[0];
-        int count = 0;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                for (int k = 0; k < 2; k++) {
-                    BlockPos relativePos = pos.relative(facing, -k).relative(ortho, i).relative(cross, j);
-                    BlockState relativeState = level.getBlockState(relativePos);
-                    if (relativeState.is(VerdantTags.Blocks.SUSTAINS_OOZE_FISSURE)) {
-                        count++;
-                    }
-                }
-            }
-        }
-
-        return count;
+    protected int computeAnalogOutputSignal() {
+        return 15; // TODO find reasonable useful output signal.
     }
 
-    public Direction[] getPerpendicularDirections(Direction dir) {
-        return switch (dir) {
-            case Direction.EAST -> new Direction[]{Direction.UP, Direction.SOUTH};
-            case Direction.WEST -> new Direction[]{Direction.SOUTH, Direction.UP};
-            case Direction.UP -> new Direction[]{Direction.SOUTH, Direction.EAST};
-            case Direction.DOWN -> new Direction[]{Direction.EAST, Direction.SOUTH};
-            case Direction.SOUTH -> new Direction[]{Direction.EAST, Direction.UP};
-            case Direction.NORTH -> new Direction[]{Direction.UP, Direction.EAST};
-        };
+
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
+        CompoundTag compoundtag = this.saveCustomOnly(registries);
+        compoundtag.remove("SpawnPotentials");
+        return compoundtag;
+    }
+
+    public boolean triggerEvent(int id, int type) {
+        if (this.level != null) {
+            return this.spawner.onEventTriggered(this.level, id) || super.triggerEvent(id, type);
+        }
+        return super.triggerEvent(id, type);
+    }
+
+    public void setEntityId(@NotNull EntityType<?> type, @NotNull RandomSource random) {
+        this.spawner.setEntityId(type, this.level, random, this.worldPosition);
+        this.setChanged();
+    }
+
+    public BaseSpawner getSpawner() {
+        return this.spawner;
+    }
+
+    public int getAnalogOutputSignal() {
+        return this.outputSignal;
     }
 }

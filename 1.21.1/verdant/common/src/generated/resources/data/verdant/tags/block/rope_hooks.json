@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:tripwire_hook",
-    "verdant:rope_hook"
+    "verdant:rope_hook",
+    "verdant:twisted_rope_hook"
   ]
 }

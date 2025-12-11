@@ -110,7 +110,7 @@ public class BlockTransformerDefinitions {
         data.add(direct(Blocks.DEEPSLATE_REDSTONE_ORE, BlockRegistry.GRUS_REDSTONE_ORE.get()));
         data.add(direct(Blocks.DEEPSLATE_LAPIS_ORE, BlockRegistry.GRUS_LAPIS_ORE.get()));
         data.add(direct(Blocks.DEEPSLATE_EMERALD_ORE, BlockRegistry.GRUS_EMERALD_ORE.get()));
-        data.add(direct(Blocks.DEEPSLATE_DIAMOND_ORE, BlockRegistry.GRUS_EMERALD_ORE.get()));
+        data.add(direct(Blocks.DEEPSLATE_DIAMOND_ORE, BlockRegistry.GRUS_DIAMOND_ORE.get()));
         // Stone ores to dirt ores
         data.add(direct(Blocks.COAL_ORE, BlockRegistry.DIRT_COAL_ORE.get()));
         data.add(direct(Blocks.COPPER_ORE, BlockRegistry.DIRT_COPPER_ORE.get()));

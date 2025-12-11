@@ -18,7 +18,7 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.item.component.AmplifyEffectsConsumeEffect;
-import com.startraveler.verdant.item.component.DiminishEffectConsumeEffect;
+import com.startraveler.verdant.item.component.RemoveMobEffectsConsumeEffect;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -30,9 +30,9 @@ public class ConsumeEffectRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<ConsumeEffect.Type<?>, ConsumeEffect.Type<DiminishEffectConsumeEffect>> DIMINISH_EFFECT = EFFECTS.register(
-            "diminish_effect",
-            () -> new ConsumeEffect.Type<>(DiminishEffectConsumeEffect.CODEC, DiminishEffectConsumeEffect.STREAM_CODEC)
+    public static final RegistryObject<ConsumeEffect.Type<?>, ConsumeEffect.Type<RemoveMobEffectsConsumeEffect>> REMOVE_EFFECTS = EFFECTS.register(
+            "remove_effects",
+            () -> new ConsumeEffect.Type<>(RemoveMobEffectsConsumeEffect.CODEC, RemoveMobEffectsConsumeEffect.STREAM_CODEC)
     );
 
     public static final RegistryObject<ConsumeEffect.Type<?>, ConsumeEffect.Type<AmplifyEffectsConsumeEffect>> AMPLIFY_EFFECTS = EFFECTS.register(

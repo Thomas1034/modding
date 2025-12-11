@@ -32,6 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class IntangibilityEffect extends MobEffect {
 
@@ -47,8 +48,6 @@ public class IntangibilityEffect extends MobEffect {
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
     }
-
-    // TODO: Cool plant, causes blindness: https://en.wikipedia.org/wiki/Euphorbia_tirucalli
 
     // Returns true if the player can go through the blocks beneath and at their position.
     // This prevents the player from falling out of the world, and enables them to stand on
@@ -68,7 +67,7 @@ public class IntangibilityEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, @NotNull LivingEntity entity, int amplifier) {
 
         if (entity instanceof Player player) {
 

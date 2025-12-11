@@ -24,6 +24,7 @@
     "description": {
       "translate": "advancements.verdant.inside_tree.description"
     },
+    "frame": "challenge",
     "hidden": true,
     "icon": {
       "count": 1,

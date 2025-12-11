@@ -20,33 +20,38 @@ public class FeatureSetDefinitions {
         List<FeatureSet.Entry> entries = new ArrayList<>();
 
         entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_GRASS_JUNGLE));
-        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_TALL_GRASS));
-        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_LARGE_FERN));
-        entries.add(configured(Rarity.VERY_COMMON, VegetationFeatures.PATCH_BUSH));
+        entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_TALL_GRASS));
+        entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_BUSH));
+        entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_GRASS));
+        entries.add(configured(Rarity.EXTREMELY_COMMON, VegetationFeatures.PATCH_LARGE_FERN));
         entries.add(configured(Rarity.COMMON, VegetationFeatures.PATCH_GRASS));
+        entries.add(configured(Rarity.UNCOMMON, JSONFeatures.TALL_BUSHES));
         entries.add(configured(Rarity.UNCOMMON, JSONFeatures.MIXED_BUSHES));
         entries.add(configured(Rarity.UNCOMMON, JSONFeatures.STINKING_BLOSSOM_FLOOR));
         entries.add(configured(Rarity.UNCOMMON, VegetationFeatures.VINES));
-        entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.TALL_BUSHES));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.MOSS_CARPETS));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.RUE));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_CASSAVA));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_UBE));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.BLEEDING_HEART));
+        entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.MIXED_MUSHROOMS));
 
         entries.add(configured(Rarity.RARE, JSONFeatures.MIXED_FLOWERS));
-        entries.add(configured(Rarity.RARE, JSONFeatures.MIXED_MUSHROOMS));
         entries.add(configured(Rarity.RARE, JSONFeatures.COFFEE));
         entries.add(configured(Rarity.RARE, JSONFeatures.BAMBOO));
+        entries.add(configured(Rarity.RARE, VegetationFeatures.PATCH_FIREFLY_BUSH));
+
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.LILIES));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.ORCHIDS));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.BLUEWEED));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.ALOES));
+        entries.add(configured(Rarity.VERY_RARE, VegetationFeatures.PATCH_DRY_GRASS));
 
-        entries.add(configured(Rarity.EXTREMELY_RARE, VegetationFeatures.PATCH_FIREFLY_BUSH));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.BLASTING_BLOSSOMS));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
+        entries.add(configured(Rarity.EXTREMELY_RARE, VegetationFeatures.PATCH_BERRY_BUSH));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MANGO_SAPLING));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.OOZE_FISSURE_SPIKE));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
     }

@@ -17,6 +17,7 @@
 package com.startraveler.verdant.block.custom;
 
 import com.startraveler.verdant.registry.BlockRegistry;
+import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.OptionalDirection;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
@@ -120,7 +121,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // Check for nearby blocks
 
         Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(
-                BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LOGS) || stateToCheck.is(
+                BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(WoodSets.STRANGLER.getLogs()) || stateToCheck.is(
                 VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES));
         int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
 
@@ -319,7 +320,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
 
                     BlockState stateToCheck = level.getBlockState(pos);
                     if (!stateToCheck.isAir() && !stateToCheck.is(BlockTags.REPLACEABLE) && !stateToCheck.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES) && !stateToCheck.is(
-                            VerdantTags.Blocks.STRANGLER_LOGS) && !stateToCheck.is(VerdantTags.Blocks.HEARTWOOD_LOGS) && !stateToCheck.is(
+                            WoodSets.STRANGLER.getLogs()) && !stateToCheck.is(WoodSets.HEARTWOOD.getLogs()) && !stateToCheck.is(
                             VerdantTags.Blocks.STRANGLER_LEAVES) && !stateToCheck.is(BlockTags.LEAVES) && !stateToCheck.is(
                             BlockTags.LOGS)) {
                         return false;

@@ -104,6 +104,13 @@
           {
             "model": {
               "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/sap_lantern"
+            },
+            "when": "sap_lantern"
+          },
+          {
+            "model": {
+              "type": "minecraft:model",
               "model": "verdant:item/rope_coil/hanging/soul_lantern"
             },
             "when": "soul_lantern"
@@ -121,6 +128,13 @@
               "model": "verdant:item/rope_coil/hanging/bell"
             },
             "when": "bell"
+          },
+          {
+            "model": {
+              "type": "minecraft:model",
+              "model": "verdant:item/rope_coil/hanging/shroomlight"
+            },
+            "when": "shroomlight"
           }
         ],
         "fallback": {

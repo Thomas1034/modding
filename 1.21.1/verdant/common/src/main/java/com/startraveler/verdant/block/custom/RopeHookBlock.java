@@ -17,7 +17,6 @@
 package com.startraveler.verdant.block.custom;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,6 +26,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -40,6 +40,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Mostly copied from TripWireHookBlock, since this is a reduced-functionality version.
@@ -56,8 +57,8 @@ public class RopeHookBlock extends Block {
         super(properties);
     }
 
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos pos, Direction direction, BlockPos otherPos, BlockState otherState, RandomSource random) {
-        if (direction == Direction.DOWN && !otherState.is(BlockRegistry.ROPE.get())) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos otherPos, @NotNull BlockState otherState, @NotNull RandomSource random) {
+        if (direction == Direction.DOWN && !otherState.is(VerdantTags.Blocks.ROPES)) {
             return BlockTransformer.copyProperties(state, Blocks.TRIPWIRE_HOOK);
         }
         return this.canSurvive(state, level, pos) ? super.updateShape(
@@ -73,14 +74,15 @@ public class RopeHookBlock extends Block {
     }
 
     @Override
-    public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 
-        Block ropeBlock = BlockRegistry.ROPE.get();
         // Check if the user is holding this item.
         // If not, return.
-        if (!player.getItemInHand(hand).is(ropeBlock.asItem())) {
+        if (!stack.is(VerdantTags.Items.ROPES) || !(stack.getItem() instanceof BlockItem ropeItem)) {
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
         }
+        Block ropeBlock = ropeItem.getBlock();
+
 
         // Start scanning for blocks, if it is server side.
         boolean hasFound = false;
@@ -108,12 +110,12 @@ public class RopeHookBlock extends Block {
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -126,7 +128,7 @@ public class RopeHookBlock extends Block {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return switch (state.getValue(FACING)) {
             case WEST -> WEST_AABB;
             case SOUTH -> SOUTH_AABB;
@@ -136,7 +138,7 @@ public class RopeHookBlock extends Block {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean includeData) {
         return new ItemStack(Blocks.TRIPWIRE_HOOK);
     }
 

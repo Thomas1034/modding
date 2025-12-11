@@ -1,5 +1,6 @@
 package com.startraveler.verdant.entity.custom;
 
+import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.mixin.PrimedTntAccessors;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,12 +13,15 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 
 public class BlockIgnoringPrimedTnt extends PrimedTnt {
+    protected float damageMultiplier = 1.0f;
+
     public BlockIgnoringPrimedTnt(EntityType<? extends PrimedTnt> entityType, Level level) {
         super(entityType, level);
     }
 
     public BlockIgnoringPrimedTnt(Level level, double x, double y, double z, LivingEntity owner) {
         this(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), level);
+
         this.setPos(x, y, z);
         double d0 = level.random.nextDouble() * (double) ((float) Math.PI * 2F);
         this.setDeltaMovement(-Math.sin(d0) * 0.02, 0.2F, -Math.cos(d0) * 0.02);
@@ -26,6 +30,14 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this.yo = y;
         this.zo = z;
         ((PrimedTntAccessors) this).setOwner(owner == null ? null : new EntityReference<>(owner));
+    }
+
+    public float getDamageMultiplier() {
+        return this.damageMultiplier;
+    }
+
+    public void setDamageMultiplier(float damageMultiplier) {
+        this.damageMultiplier = damageMultiplier;
     }
 
     public void tick() {
@@ -63,17 +75,23 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
     }
 
     protected void explode() {
-        this.level().explode(
-                this,
-                Explosion.getDefaultDamageSource(this.level(), this),
-                ((PrimedTntAccessors) this).getUsedPortal() ? PrimedTntAccessors.getUsedPortalDamageCalculator() : null,
-                this.getX(),
-                this.getY(0.0625F),
-                this.getZ(),
-                ((PrimedTntAccessors) this).getExplosionPower(),
-                false,
-                Level.ExplosionInteraction.NONE
-        );
+        try {
+            Constants.EXPLOSION_DAMAGE_MULTIPLIER.set(this.damageMultiplier);
+            this.level().explode(
+                    this,
+                    Explosion.getDefaultDamageSource(this.level(), this),
+                    ((PrimedTntAccessors) this).getUsedPortal() ? PrimedTntAccessors.getUsedPortalDamageCalculator() : null,
+                    this.getX(),
+                    this.getY(0.0625F),
+                    this.getZ(),
+                    ((PrimedTntAccessors) this).getExplosionPower(),
+                    false,
+                    Level.ExplosionInteraction.NONE
+            );
+        } finally {
+            Constants.EXPLOSION_DAMAGE_MULTIPLIER.set(Constants.DEFAULT_EXPLOSION_DAMAGE_MULTIPLIER);
+        }
+
 
     }
 
