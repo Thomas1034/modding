@@ -31,15 +31,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:strangler_tendril_ceiling",
-        "weight": 5
+        "configured_feature": "verdant:hanging_roots",
+        "weight": 100
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:hanging_roots",
-        "weight": 100
+        "configured_feature": "verdant:strangler_tendril_ceiling",
+        "weight": 5
       }
     },
     {

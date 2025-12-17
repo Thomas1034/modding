@@ -57,7 +57,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
 
 // TODO
 // Add fruity mango leaves, with two stages (unripe, ripe)
@@ -590,7 +589,7 @@ public class BlockRegistry {
         BLEEDING_HEART = registerBlockWithItem(
                 "bleeding_heart", () -> new FlowerBlock(
                         MobEffectRegistry.FOOD_POISONING.asHolder(),
-                        40,
+                        10,
                         properties(Blocks.BLUE_ORCHID, "bleeding_heart")
                 )
         );
@@ -938,7 +937,7 @@ public class BlockRegistry {
 
         RUE = registerBlockWithItem(
                 "rue",
-                () -> new FlowerBlock(MobEffectRegistry.BLURRING.asHolder(), 40, properties(Blocks.BLUE_ORCHID, "rue"))
+                () -> new FlowerBlock(MobEffectRegistry.BLURRING.asHolder(), 10, properties(Blocks.BLUE_ORCHID, "rue"))
         );
 
         POTTED_RUE = registerBlockWithoutItem(
@@ -987,18 +986,9 @@ public class BlockRegistry {
         LARGE_ALOE = registerBlockWithoutItem(
                 "large_aloe", () -> new AloeCropBlock(
                         (state, level, pos) -> {
-                            // TODO
-                            /*
-                            if (false) {
-                                if (((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).canPlace(level, pos, true)) {
-                                    ((HugeAloeCropBlock) BlockRegistry.HUGE_ALOE.get()).placeFullBush(level, pos, 0);
-                                }
-                            }
-                            */
-
                         },
                         (rand) -> new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2)),
-                        () -> ItemRegistry.ALOE_PUP.get(),
+                        ItemRegistry.ALOE_PUP,
                         (i -> i / 10f),
                         properties(Blocks.SWEET_BERRY_BUSH, "large_aloe")
                 ) {
@@ -1015,16 +1005,6 @@ public class BlockRegistry {
 
                 }
         );
-
-        /* TODO
-        HUGE_ALOE = registerBlockWithoutItem(
-                "huge_aloe", () -> new HugeAloeCropBlock(
-                        properties(Blocks.SWEET_BERRY_BUSH, "huge_aloe"),
-                        (rand) -> new ItemStack(ItemRegistry.OLD_ALOE_LEAF.get(), rand.nextInt(2, 5)),
-                        () -> ItemRegistry.ALOE_PUP.get()
-                )
-        );
-        */
 
         SCREE = registerBlockWithItem(
                 "scree", () -> new ColoredFallingPillarBlock(
@@ -1398,10 +1378,6 @@ public class BlockRegistry {
 
     protected static <T extends Block> RegistryObject<Block, T> registerBlockWithoutItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
-    }
-
-    private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
-        return (state) -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
     }
 
     private static BlockBehaviour.Properties properties(String name) {

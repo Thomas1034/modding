@@ -1,10 +1,10 @@
-// 1.21.8	2025-10-17T23:18:12.9568955	Advancements
+// 1.21.8	2025-12-16T16:27:07.0316402	Advancements
 ef5ced76890d463a8bff23d1bd72393352b1196f data/verdant/advancement/aloe.json
 e85e71f606ab947aac1ed1e2aa9af587ed52195a data/verdant/advancement/craft_rope.json
 137ee76897315e6dd22148b30b0f82d648bf9dd2 data/verdant/advancement/craft_rope_coil.json
 24cf96fb775c9412f593181252f8d31e82a63b45 data/verdant/advancement/craft_sack.json
 e7bd1ab21c5ac2e2332cea98ebc811699eeea07e data/verdant/advancement/deep_roots.json
-ea98dbfd8f672943b4f329d988f42e99ba492796 data/verdant/advancement/golden_trap.json
+403ceb2f56c77a096cee73898c4b57dda9b004f1 data/verdant/advancement/golden_trap.json
 46c81925477fc1361de4a60d1ee548095a70a217 data/verdant/advancement/inedible.json
 8a578eb854dd43182bd74dbf64e9b8e7b9e0794f data/verdant/advancement/inside_tree.json
 a760ba7dc0efa06a4e7c33142f766cf995c67665 data/verdant/advancement/iron_spikes.json

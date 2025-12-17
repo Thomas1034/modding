@@ -82,6 +82,8 @@ Changes:
 - Made wild ube and cassava replaceable.
 - Heart of the Forest is now crafted using heart fragments and balsam.
 - Rearranged the creative mode tab contents.
+- Increased the yield of gunpowder crafting with blasting blossoms.
+- Decreased the suspicious soup time of Bleeding Hearts and Rue.
 
 Features Added:
 - Copper and gold spikes and traps.

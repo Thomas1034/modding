@@ -177,6 +177,10 @@ public class MobEffectRegistry {
             "colorblind",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0xC0C0C0)
     );
+    public static final RegistryObject<MobEffect, MobEffect> SHARPENING = MOB_EFFECTS.register(
+            "sharpening",
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0xFFFFFF)
+    );
     public static final RegistryObject<MobEffect, MobEffect> RED_GREEN = MOB_EFFECTS.register(
             "red_green",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x0000FF)

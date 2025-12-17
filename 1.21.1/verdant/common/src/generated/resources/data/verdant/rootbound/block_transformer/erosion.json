@@ -61,11 +61,11 @@
       "block": "verdant:stony_grus",
       "results": [
         {
-          "name": "verdant:grus",
-          "weight": 8191
+          "name": "verdant:grus_emerald_ore"
         },
         {
-          "name": "verdant:grus_emerald_ore"
+          "name": "verdant:grus",
+          "weight": 8191
         }
       ]
     },

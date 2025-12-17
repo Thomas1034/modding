@@ -1,4 +1,4 @@
-// 1.21.8	2025-11-03T20:17:50.288014	Registries
+// 1.21.8	2025-12-16T17:17:39.3400875	Registries
 930d7e38ae9e8dd0373b2b644b158c67c543a76e data/minecraft/verdant/bait_data/baked_potato_data.json
 b0c6a8c47c0c5fcc4ba0ffc7206b700129fc4483 data/minecraft/verdant/bait_data/beef_data.json
 b2cc7a9547098e694290d15823a6679999c2cc4b data/minecraft/verdant/bait_data/beetroot_data.json
@@ -38,15 +38,15 @@ bc968c225fc114a8247af5170ede25c8350946fb data/minecraft/verdant/bait_data/sugar_
 340c4c798f6871d84f3210b4567bbec079c07fa6 data/verdant/damage_type/briar.json
 6fec246622dadd76af8d7986ac97dde65c155531 data/verdant/damage_type/photosensitive.json
 061b01971710b6be87b53ffacbc4728787bd7ee2 data/verdant/damage_type/toxic_ash.json
-cf8915720f59a8c74c3a4443c36c0fb34e56376a data/verdant/rootbound/block_transformer/erosion.json
+6422d0c3783c559ebd9fdbb008e0060884dae8ee data/verdant/rootbound/block_transformer/erosion.json
 3e7c98c6034a9b8f379369a968c95541797e5a4e data/verdant/rootbound/block_transformer/erosion_wet.json
 3817ea5970e390a481fee9a8d9cfc07b0fb23d75 data/verdant/rootbound/block_transformer/hoeing.json
-a2ec6674ea11baf56fdcc8cef2e5513f79434991 data/verdant/rootbound/block_transformer/toxic_ash.json
+fe229c6c7318e7c22d415a7c90b9267a2ddda45e data/verdant/rootbound/block_transformer/toxic_ash.json
 cf93cbc87af8c201d3990f5189f860b834391f2c data/verdant/rootbound/block_transformer/verdant_roots.json
-34c44bed89d8cd216de9f0953505722c1f1deab6 data/verdant/rootbound/feature_set/above_ground.json
+2711125332b066c0b0843a7f0b8895bb6fea000d data/verdant/rootbound/feature_set/above_ground.json
 f5f43492adbdca5178e022a76ba0b69fd6ae4271 data/verdant/rootbound/feature_set/always.json
 19b08dc772e29cce13090801c9dcaddabfec64e6 data/verdant/rootbound/feature_set/below_log.json
-a1d2456436dbb9b51907d0976b8d5a290e4a263b data/verdant/rootbound/feature_set/hanging.json
+11cd293c77ad3dd5d92377611cff22bd618d73aa data/verdant/rootbound/feature_set/hanging.json
 91a641b33e5b8a12f7ae91527843a775e0010837 data/verdant/rootbound/feature_set/large_mulch.json
 75ada59ebf1cc39d0f9fabfc592a15394d0a7f91 data/verdant/rootbound/feature_set/mulch.json
 efdc121ba4a2915e6c5846da39b43e95bd82d1c5 data/verdant/rootbound/feature_set/water.json

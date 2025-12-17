@@ -1,7 +1,6 @@
 package com.startraveler.verdant.entity.custom;
 
 import com.google.common.base.Suppliers;
-import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.util.VerdantTags;
@@ -36,6 +35,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.Level;
@@ -46,7 +46,6 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -58,11 +57,13 @@ public class OozeEntity extends Slime implements Bucketable {
             ParticleTypes.ITEM,
             new ItemStack(ItemRegistry.SAP_GLOB.get())
     ));
+    public static final int CHANCE_TO_INCREASE_SIZE = 128;
+    public static final int CHANCE_TO_HOLD_FLOWER = 4;
+    public static final int CHANCE_TO_BE_OOZING = 16;
     private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(
             OozeEntity.class,
             EntityDataSerializers.BOOLEAN
     );
-
 
     public OozeEntity(EntityType<? extends OozeEntity> type, Level level) {
         super(type, level);
@@ -109,6 +110,7 @@ public class OozeEntity extends Slime implements Bucketable {
         return this.fromBucket() ? Math.max(0, (super.getAttackDamage() / 4) - 1) : (super.getAttackDamage() + 1.0F);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public @Nullable SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor serverLevelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull EntitySpawnReason entitySpawnReason, @Nullable SpawnGroupData spawnGroupData) {
         SpawnGroupData result = super.finalizeSpawn(
@@ -119,9 +121,9 @@ public class OozeEntity extends Slime implements Bucketable {
         );
 
         RandomSource random = serverLevelAccessor.getRandom();
-        boolean shouldIncreaseSize = random.nextInt(128) == 0;
-        boolean shouldHoldFlower = random.nextInt(4) != 0;
-        boolean shouldBeOozing = random.nextInt(16) == 0;
+        boolean shouldIncreaseSize = random.nextInt(CHANCE_TO_INCREASE_SIZE) == 0;
+        boolean shouldHoldFlower = random.nextInt(CHANCE_TO_HOLD_FLOWER) != 0;
+        boolean shouldBeOozing = random.nextInt(CHANCE_TO_BE_OOZING) == 0;
 
         if (shouldIncreaseSize) {
             this.setSize(2 * this.getSize(), true);
@@ -129,9 +131,13 @@ public class OozeEntity extends Slime implements Bucketable {
 
         if (shouldHoldFlower) {
             if (this.getMainHandItem().isEmpty()) {
-                ArrayList<Holder<Item>> allFlowers = Lists.newArrayList(BuiltInRegistries.ITEM.getTagOrEmpty(VerdantTags.Items.VERDANT_SMALL_FLOWERS));
 
-                Holder<Item> randomFlower = allFlowers.get(random.nextInt(allFlowers.size()));
+
+                Holder<Item> randomFlower = BuiltInRegistries.ITEM.getRandomElementOf(
+                        VerdantTags.Items.VERDANT_SMALL_FLOWERS,
+                        random
+                ).orElse(
+                        Items.AIR.builtInRegistryHolder());
 
                 this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(randomFlower));
                 if (!this.getMainHandItem().isEmpty()) {

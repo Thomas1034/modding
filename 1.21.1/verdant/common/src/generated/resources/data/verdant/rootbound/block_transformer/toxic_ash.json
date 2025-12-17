@@ -74,12 +74,12 @@
       }
     },
     {
-      "block": "minecraft:brain_coral",
-      "result": "minecraft:dead_brain_coral"
-    },
-    {
       "block": "minecraft:bubble_coral",
       "result": "minecraft:dead_bubble_coral"
+    },
+    {
+      "block": "minecraft:brain_coral",
+      "result": "minecraft:dead_brain_coral"
     },
     {
       "block": "minecraft:tube_coral",

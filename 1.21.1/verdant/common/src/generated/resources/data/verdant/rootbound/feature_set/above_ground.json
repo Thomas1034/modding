@@ -66,13 +66,6 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:wild_cassava",
-        "weight": 25
-      }
-    },
-    {
-      "type": "configured",
-      "entry": {
         "configured_feature": "minecraft:patch_dry_grass",
         "weight": 2
       }
@@ -81,6 +74,13 @@
       "type": "configured",
       "entry": {
         "configured_feature": "verdant:rue",
+        "weight": 25
+      }
+    },
+    {
+      "type": "configured",
+      "entry": {
+        "configured_feature": "verdant:wild_cassava",
         "weight": 25
       }
     },
@@ -150,8 +150,8 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:ooze_fissure_spike",
-        "weight": 1
+        "configured_feature": "minecraft:patch_grass",
+        "weight": 100
       }
     },
     {
@@ -178,15 +178,15 @@
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "minecraft:patch_grass",
-        "weight": 100
+        "configured_feature": "verdant:tall_bushes",
+        "weight": 50
       }
     },
     {
       "type": "configured",
       "entry": {
-        "configured_feature": "verdant:tall_bushes",
-        "weight": 50
+        "configured_feature": "verdant:ooze_fissure_spike",
+        "weight": 1
       }
     },
     {

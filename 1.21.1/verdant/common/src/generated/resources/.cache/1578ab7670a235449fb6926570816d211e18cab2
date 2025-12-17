@@ -1,7 +1,7 @@
-// 1.21.8	2025-11-03T20:17:50.2731239	Tags for minecraft:item mod id verdant
+// 1.21.8	2025-12-16T17:17:39.3148252	Tags for minecraft:item mod id verdant
 0db16607e590b7d02858b4966d49ca996ca30097 data/c/tags/item/crops.json
-c58bea7b7eb7528b858f628b6e56988882aeb795 data/c/tags/item/fences/wooden.json
-0db49c2678f8247cb02bb6aa2c2766fb6ac1b6f2 data/c/tags/item/fence_gates/wooden.json
+74023eb4ac46a3e8abadfb64b9adc916fd1fc60b data/c/tags/item/fences/wooden.json
+f82325b29c8c60c00ea994198381d6dd10f70849 data/c/tags/item/fence_gates/wooden.json
 e56b723a0ff94cebfdead5fd310f793a46ac4c31 data/c/tags/item/fertilizers.json
 d667fdf670f5a30b52602752f1509a5d73334ed7 data/c/tags/item/foods.json
 f19fb21150ca3d7b98db489d008ae3bdb213fe46 data/c/tags/item/foods/berry.json
@@ -41,20 +41,20 @@ e0dd371f753b370082374ce7fb770e6e32b6d2af data/minecraft/tags/item/enchantable/mi
 7d5ef43918bf5a86621375b71ae17420eba6fbba data/minecraft/tags/item/enchantable/sword.json
 1eac3e9420343192df7686bfb8c297702580aaf6 data/minecraft/tags/item/foot_armor.json
 23d8096aa3c91ccd62d73abb6ada0c636478af4d data/minecraft/tags/item/frog_food.json
-7409d6c50ddc38ff6a6df26e51327c89db4d5665 data/minecraft/tags/item/hanging_signs.json
+5d11c66d72f1ff57b9539ca54ad088a0320e0b41 data/minecraft/tags/item/hanging_signs.json
 9571046bb7a1afec0377a561527136bf13f8188d data/minecraft/tags/item/head_armor.json
 82b4ea42023f340e9ae36bbfefd3b832abd423fc data/minecraft/tags/item/hoes.json
 aed77c2e699aece3b0ba346bf342d1365d64d244 data/minecraft/tags/item/leg_armor.json
-6ccfcb05a7f9a27aae0bde4938129a46e10365d3 data/minecraft/tags/item/logs.json
-6ccfcb05a7f9a27aae0bde4938129a46e10365d3 data/minecraft/tags/item/logs_that_burn.json
+5ae865d24f8d2c3d0538a99fddc6746cb06191b8 data/minecraft/tags/item/logs.json
+5ae865d24f8d2c3d0538a99fddc6746cb06191b8 data/minecraft/tags/item/logs_that_burn.json
 3ebf0e13c3ceadaf68ab935cf614fb6c59841a8e data/minecraft/tags/item/parrot_food.json
 ba75187305edb0db84dcf583e94b6e52f734b1b8 data/minecraft/tags/item/parrot_poisonous_food.json
 9ef4d473e104193a9649db5dc84dd9c28fdae63b data/minecraft/tags/item/pickaxes.json
 b0c7a5db43b6154dde24dbd0361c8eeb1500466f data/minecraft/tags/item/pig_food.json
-58e488bf9ef726315950ab8835decc6a0f61d7b7 data/minecraft/tags/item/planks.json
+a1dc216d487d1ea00de56974c4f7c656393fcf04 data/minecraft/tags/item/planks.json
 8060535043270a900b1bda76a78c27db77379887 data/minecraft/tags/item/sheep_food.json
 626cb8107fe4545d428689cb2b0ad5078811891d data/minecraft/tags/item/shovels.json
-59127b337dcf5954ee036dc2ab0539fa3acfa2db data/minecraft/tags/item/signs.json
+f8034cfdb14b2ec115c04498e50b02cc4d3fbd25 data/minecraft/tags/item/signs.json
 f79184c9a3c115b5d795b3e5bc3bc883751881b0 data/minecraft/tags/item/slabs.json
 22ad4f4c204bec6c0955ae685cf4d39d016d427d data/minecraft/tags/item/small_flowers.json
 3dadc355aa055fc04fc2ca92d3a9d8050d011f5c data/minecraft/tags/item/stairs.json
@@ -63,13 +63,13 @@ d8ae55554944a9bdcb3c2a907a1a2898a5e00853 data/minecraft/tags/item/swords.json
 0ae24cb1278bd03fe6cbb847e80f5441bc7cf804 data/minecraft/tags/item/villager_picks_up.json
 a82420a567ff4584d112cc68bc5fa646de3f346e data/minecraft/tags/item/villager_plantable_seeds.json
 8a068ef41a796af294e6b97201938cf77b3f7bdb data/minecraft/tags/item/walls.json
-0c741b2050eccb2986a5cb70ec7d30e478fb92fe data/minecraft/tags/item/wooden_buttons.json
-f269407676cb854f772bb989b9d0dfcece27e9de data/minecraft/tags/item/wooden_doors.json
-c58bea7b7eb7528b858f628b6e56988882aeb795 data/minecraft/tags/item/wooden_fences.json
-ffc32af3b39091462b4a4227403eb5316e462405 data/minecraft/tags/item/wooden_pressure_plates.json
-68f04337b279176ad6a353320f7932068b04ebce data/minecraft/tags/item/wooden_slabs.json
-f629692125ddfa0db3aef4a64c5b7356a1613e8d data/minecraft/tags/item/wooden_stairs.json
-8d33b801b97a96e8f5dccb94978fb4f6795f27e9 data/minecraft/tags/item/wooden_trapdoors.json
+0fc3bc1f272d3d841ef5ca03cb1c7114d84f3c27 data/minecraft/tags/item/wooden_buttons.json
+e8ae0b7d26efc120675a8c186521f356d0c9dbf3 data/minecraft/tags/item/wooden_doors.json
+74023eb4ac46a3e8abadfb64b9adc916fd1fc60b data/minecraft/tags/item/wooden_fences.json
+b9a420e14bd70eb6c6ff8c5d6cd32afb02eb0861 data/minecraft/tags/item/wooden_pressure_plates.json
+5ffb34b2b8d1a52bc4f04aa9a6b78005ab0551e9 data/minecraft/tags/item/wooden_slabs.json
+01475d71b0dcb9f358f8af1ff4cd8af4ad306827 data/minecraft/tags/item/wooden_stairs.json
+62c1ee616729db8f056b5e9296447f795af3de3d data/minecraft/tags/item/wooden_trapdoors.json
 c19e9536dc0ec5d9b320884ee848d12237ae4c8f data/rootbound/tags/item/dead_logs.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/rootbound/tags/item/heartwood_logs.json
 151a8feda09fc60424b965e90ac1efd6f4696a7d data/rootbound/tags/item/mango_logs.json

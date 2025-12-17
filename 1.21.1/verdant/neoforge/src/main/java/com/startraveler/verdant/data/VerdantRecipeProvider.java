@@ -771,7 +771,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(1, 1),
                 RecipeCategory.MISC,
                 Items.GUNPOWDER,
-                1
+                2
         );
 
         shaped(
@@ -1438,12 +1438,12 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
     }
 
-    protected <T extends AbstractCookingRecipe> void cooking(RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> factory, List<ItemLike> ingredients, RecipeCategory category, ItemLike pResult, float experience, int cookingTime, String group, String recipeName) {
+    protected <T extends AbstractCookingRecipe> void cooking(RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> factory, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group, String recipeName) {
         for (ItemLike itemlike : ingredients) {
             SimpleCookingRecipeBuilder.generic(
                             Ingredient.of(itemlike),
                             category,
-                            pResult,
+                            result,
                             experience,
                             cookingTime,
                             cookingSerializer,
@@ -1453,7 +1453,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
                     .unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(
                             this.output,
-                            this.modid + ":" + getItemName(pResult) + recipeName + "_" + getItemName(itemlike)
+                            this.modid + ":" + getItemName(result) + recipeName + "_" + getItemName(itemlike)
                     );
         }
     }

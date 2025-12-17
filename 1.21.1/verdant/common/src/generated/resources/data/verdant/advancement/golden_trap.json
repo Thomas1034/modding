@@ -10,14 +10,14 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.verdant.iron_trap.description"
+      "translate": "advancements.verdant.golden_trap.description"
     },
     "icon": {
       "count": 1,
-      "id": "verdant:iron_trap"
+      "id": "verdant:golden_trap"
     },
     "title": {
-      "translate": "advancements.verdant.iron_trap.title"
+      "translate": "advancements.verdant.golden_trap.title"
     }
   },
   "requirements": [

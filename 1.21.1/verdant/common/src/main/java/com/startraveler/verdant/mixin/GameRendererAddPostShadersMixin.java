@@ -49,6 +49,11 @@ public class GameRendererAddPostShadersMixin {
             "sepia"
     );
     @Unique
+    private static final ResourceLocation SHARPEN_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "sharpen"
+    );
+    @Unique
     private static final ResourceLocation RED_GREEN_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
             Constants.MOD_ID,
             "red_green"
@@ -74,11 +79,6 @@ public class GameRendererAddPostShadersMixin {
                 PostChain postchain = this.minecraft.getShaderManager()
                         .getPostChain(BLUR_POST_CHAIN_ID, LevelTargetBundle.MAIN_TARGETS);
                 if (postchain != null) {
-                    float screenEffectScale = this.minecraft.options.screenEffectScale().get().floatValue();
-                    // TODO TODO TODO
-                    //postchain.setUniform("Radius", (2 + instance.getAmplifier()) * 4 * screenEffectScale);
-
-                    // TODO
                     postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
                 }
             }
@@ -95,6 +95,23 @@ public class GameRendererAddPostShadersMixin {
             if (instance != null) {
                 PostChain postchain = this.minecraft.getShaderManager()
                         .getPostChain(COLORBLIND_POST_CHAIN_ID, LevelTargetBundle.MAIN_TARGETS);
+                if (postchain != null) {
+                    postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
+                }
+            }
+        }
+    }
+
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;doEntityOutline()V", shift = At.Shift.AFTER))
+    private void verdant$addSharpenFilter(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {
+
+        Player player = this.minecraft.player;
+        if (player != null) {
+            MobEffectInstance instance = player.getEffect(MobEffectRegistry.SHARPENING.asHolder());
+
+            if (instance != null) {
+                PostChain postchain = this.minecraft.getShaderManager()
+                        .getPostChain(SHARPEN_POST_CHAIN_ID, LevelTargetBundle.MAIN_TARGETS);
                 if (postchain != null) {
                     postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
                 }
