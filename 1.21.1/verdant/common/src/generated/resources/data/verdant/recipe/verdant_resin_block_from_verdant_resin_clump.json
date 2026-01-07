@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:verdant_resin_block",
+  "key": {
+    "g": "verdant:verdant_resin_clump"
+  },
+  "pattern": [
+    "ggg",
+    "ggg",
+    "ggg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:verdant_resin_block"
+  }
+}

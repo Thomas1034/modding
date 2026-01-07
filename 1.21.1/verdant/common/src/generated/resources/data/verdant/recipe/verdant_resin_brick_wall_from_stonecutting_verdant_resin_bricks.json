@@ -1,9 +1,9 @@
 {
   "type": "minecraft:stonecutting",
-  "group": "verdant:earth_verdant_resin_brick_wall",
+  "group": "verdant:verdant_resin_brick_wall",
   "ingredient": "verdant:verdant_resin_bricks",
   "result": {
     "count": 1,
-    "id": "verdant:earth_verdant_resin_brick_wall"
+    "id": "verdant:verdant_resin_brick_wall"
   }
 }

@@ -4,10 +4,6 @@
     "verdant:heartwood_wood",
     "verdant:stripped_heartwood_log",
     "verdant:stripped_heartwood_wood",
-    "verdant:mango_log",
-    "verdant:mango_wood",
-    "verdant:stripped_mango_log",
-    "verdant:stripped_mango_wood",
     "verdant:dead_log",
     "verdant:dead_wood",
     "verdant:stripped_dead_log",
@@ -16,6 +12,10 @@
     "verdant:strangler_wood",
     "verdant:stripped_strangler_log",
     "verdant:stripped_strangler_wood",
+    "verdant:mango_log",
+    "verdant:mango_wood",
+    "verdant:stripped_mango_log",
+    "verdant:stripped_mango_wood",
     "verdant:rotten_wood",
     "verdant:imbued_heartwood_log"
   ]

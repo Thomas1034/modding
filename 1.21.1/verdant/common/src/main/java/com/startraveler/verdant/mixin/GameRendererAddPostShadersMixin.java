@@ -58,6 +58,11 @@ public class GameRendererAddPostShadersMixin {
             Constants.MOD_ID,
             "red_green"
     );
+    @Unique
+    private static final ResourceLocation DEPTH_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+            Constants.MOD_ID,
+            "depth"
+    );
     @Shadow
     @Final
     private static ResourceLocation BLUR_POST_CHAIN_ID;
@@ -101,6 +106,25 @@ public class GameRendererAddPostShadersMixin {
             }
         }
     }
+
+
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;doEntityOutline()V", shift = At.Shift.AFTER))
+    private void verdant$addDepthFilter(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {
+
+        Player player = this.minecraft.player;
+        if (player != null) {
+            MobEffectInstance instance = player.getEffect(MobEffectRegistry.DEPTH.asHolder());
+
+            if (instance != null) {
+                PostChain postchain = this.minecraft.getShaderManager()
+                        .getPostChain(DEPTH_POST_CHAIN_ID, LevelTargetBundle.MAIN_TARGETS);
+                if (postchain != null) {
+                    postchain.process(this.minecraft.getMainRenderTarget(), this.resourcePool);
+                }
+            }
+        }
+    }
+
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;doEntityOutline()V", shift = At.Shift.AFTER))
     private void verdant$addSharpenFilter(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {

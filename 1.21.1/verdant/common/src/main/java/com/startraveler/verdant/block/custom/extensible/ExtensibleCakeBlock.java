@@ -137,7 +137,7 @@ public class ExtensibleCakeBlock extends CakeBlock {
             }
         }
 
-        return eat(level, pos, state, player);
+        return eatCustom(level, pos, state, player);
     }
 
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {

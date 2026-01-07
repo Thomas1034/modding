@@ -1156,6 +1156,7 @@ public class VerdantModelProvider extends ModelProvider {
         blockModels.createTrivialBlock(block, TexturedModel.CUBE);
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void simpleBlockWithItem(Block block, String renderType) {
         blockModels.createTrivialBlock(
                 block,

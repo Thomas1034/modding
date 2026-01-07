@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "verdant:earth_verdant_resin_brick_wall",
+  "group": "verdant:verdant_resin_brick_wall",
   "key": {
     "E": "verdant:verdant_resin_bricks"
   },
@@ -11,6 +11,6 @@
   ],
   "result": {
     "count": 6,
-    "id": "verdant:earth_verdant_resin_brick_wall"
+    "id": "verdant:verdant_resin_brick_wall"
   }
 }

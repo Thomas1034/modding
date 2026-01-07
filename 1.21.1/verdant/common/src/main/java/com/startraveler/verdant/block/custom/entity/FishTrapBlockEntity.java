@@ -59,6 +59,7 @@ import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class FishTrapBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
@@ -100,10 +101,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
      * A restricted view of the items placed in the slots of the fish trap. Only has access to the bait items.
      */
     private final List<ItemStack> bait;
-    /**
-     * A restricted view of the items placed in the slots of the fish trap. Only has access to the output items.
-     */
-    private final List<ItemStack> output;
     private final int[] baitSlots;
     private final int[] outputSlots;
     /**
@@ -197,7 +194,6 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         this.cycleTime = 30;
         this.items = NonNullList.withSize(this.numBaitSlots + this.numOutputSlots, ItemStack.EMPTY);
         this.bait = items.subList(0, numBaitSlots);
-        this.output = items.subList(numBaitSlots, numBaitSlots + numOutputSlots);
 
         this.dataAccess.set(CATCH_PROGRESS_INDEX, 10);
         this.dataAccess.set(CYCLE_TIME_INDEX, 40);
@@ -256,7 +252,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
                 new FishTrapMenu.SyncedFishTrapMenuData(this.getBlockPos(), this.numBaitSlots, this.numOutputSlots),
                 this,
                 this.dataAccess,
-                ContainerLevelAccess.create(this.level, this.worldPosition)
+                ContainerLevelAccess.create(Objects.requireNonNull(this.level), this.worldPosition)
         );
     }
 
@@ -275,7 +271,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         ProblemReporter reporter = ProblemReporter.DISCARDING;
         TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
         this.saveAdditional(output);
-        tag = tag.merge(output.buildResult());
+        tag.merge(output.buildResult());
         return tag;
     }
 
@@ -318,8 +314,9 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         return this.items.size();
     }
 
+    @SuppressWarnings("unused")
     public void drops() {
-        Containers.dropContents(this.level, this.worldPosition, this.items);
+        Containers.dropContents(Objects.requireNonNull(this.level), this.worldPosition, this.items);
     }
 
     public int getCatchPercent() {
@@ -380,7 +377,10 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         // Arrays.toString(this.getBait()));
         for (ItemStack stack : this.bait) {
             if (null == best) {
-                best = BaitDataAccess.lookupOrCache(this.level.registryAccess(), stack.getItem());
+                best = BaitDataAccess.lookupOrCache(
+                        Objects.requireNonNull(this.level).registryAccess(),
+                        stack.getItem()
+                );
                 bestStack = stack;
             } else {
                 BaitData.InnerData other = BaitDataAccess.lookupOrCache(this.level.registryAccess(), stack.getItem());
@@ -488,7 +488,10 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
     private int openSpaceInSlot(int slot, ItemStack contents, Item item, int count) {
         boolean isBaitOrOutput = true;
         if (this.isBaitSlot(slot)) {
-            isBaitOrOutput = BaitDataAccess.lookupOrCache(this.level.registryAccess(), item) != null;
+            isBaitOrOutput = BaitDataAccess.lookupOrCache(
+                    Objects.requireNonNull(this.level).registryAccess(),
+                    item
+            ) != null;
         }
         return isBaitOrOutput ? contents.isEmpty() ? item.getDefaultInstance()
                 .getMaxStackSize() : contents.is(item) ? contents.getMaxStackSize() - contents.getCount() : 0 : 0;

@@ -86,12 +86,6 @@ public class VerdantClient {
             PackOutput packOutput = generator.getPackOutput();
             CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-            /*
-            Debugging purposes only.
-            BuiltInRegistries.REGISTRY.stream()
-                    .forEach(registry -> Constants.LOG.warn("Found registry {} ", registry.key().location()));
-            */
-
             // Loot tables.
             generator.addProvider(
                     true, new LootTableProvider(
@@ -104,7 +98,7 @@ public class VerdantClient {
                             lookupProvider
                     ) {
                         @Override
-                        protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.Collector collector) {
+                        protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.@NotNull Collector collector) {
                             // Do not validate at all, per what people online said.
                         }
                     }
@@ -132,10 +126,7 @@ public class VerdantClient {
             );
             generator.addProvider(true, damageTypeTagsProvider);
             generator.addProvider(true, entityTypeTagsProvider);
-            generator.addProvider(
-                    true,
-                    new VerdantItemTagProvider(packOutput, lookupProvider, WoodSets.WOOD_SETS)
-            );
+            generator.addProvider(true, new VerdantItemTagProvider(packOutput, lookupProvider, WoodSets.WOOD_SETS));
 
             // Generate block and item models.
             generator.addProvider(true, new VerdantModelProvider(packOutput));
@@ -146,9 +137,6 @@ public class VerdantClient {
                             packOutput,
                             lookupProvider,
                             new RegistrySetBuilder().add(Registries.DAMAGE_TYPE, VerdantDamageSourceProvider::register)
-                                    // .add(TileSet.KEY, VerdantTileSetProvider::register)
-                                    // .add(StructureTile.KEY, VerdantStructureTileProvider::register)
-                                    // .add(TileConnection.KEY, VerdantTileConnectionProvider::register)
                                     .add(BaitData.KEY, BaitDataProvider::register)
                                     .add(BlockTransformer.KEY, VerdantBlockTransformerProvider::register)
                                     .add(FeatureSet.KEY, VerdantFeatureSetProvider::register),
@@ -177,6 +165,7 @@ public class VerdantClient {
     }
 
 
+    @SuppressWarnings("deprecation")
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
 

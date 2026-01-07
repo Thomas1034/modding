@@ -74,6 +74,7 @@ Changes:
 - Sap's model and texture changed.
 - Sap now obscures vision of entities inside it.
 - Tweaked heartwood log/wood textures.
+- Tweaked strangler door/trapdoor textures.
 - Changed spawn probabilities of verdant growth features, as always.
 - Slightly changed the recipe for blasting blossom sprouts.
 - Massively nerfed stable blasting blooms; they now no longer destroy blocks. See "Features Added" for the new alternatives.
@@ -101,13 +102,16 @@ Features Added:
 - Machetes, a new type of tool craftable in iron, diamond, and netherite, that mines plants in a 3x3x3 cube! Excellent for hacking through the underbrush or clearing land.
 
 Bugs Fixed:
+- Ube cakes now restore the correct amount of food and saturation.
+- Resin brick walls were misnamed. This will cause all existing ones to disappear. Sorry.
+- Resin blocks can now be crafted directly from resin clumps.
 - Fragile blocks like rotten wood now break correctly when fallen upon.
 - Rotten flesh now correctly applies hunger to darts instead of poison.
 - Critical bugfix: diamonds no longer turn into emeralds when eroded.
 - Rope texture was misaligned.
 - Rope is now correctly ignited by lava.
 - Corrected the random sequence in the Timbermite loot table.
-- The group is now correct in the mod's properties... I forgot to change it from back when it was my name.
+- The group is now correct in the mod's properties... I forgot to change it from back when it was my name. Forget you saw that.
 - Somehow, I accidentally renamed zombie heads and altered their loot tables. I have no idea how I did this.
 - Sacks can no longer be crafted into bundles.
 - The achievement for golden traps had the same description, title, and image as the one for iron traps.

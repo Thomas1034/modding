@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "verdant:earth_verdant_resin_brick_wall"
+          "name": "verdant:verdant_resin_brick_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/earth_verdant_resin_brick_wall"
+  "random_sequence": "verdant:blocks/verdant_resin_brick_wall"
 }

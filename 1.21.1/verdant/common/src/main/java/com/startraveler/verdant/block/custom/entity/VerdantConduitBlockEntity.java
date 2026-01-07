@@ -65,6 +65,8 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
     }
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, VerdantConduitBlockEntity blockEntity) {
+
+        // Constants.LOG.warn("There are {} ticks on the client.", blockEntity.tickCount);
         ++blockEntity.tickCount;
         long i = level.getGameTime();
         if (i % REEVALUATE_EVERY == 0L) {
@@ -80,6 +82,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, VerdantConduitBlockEntity blockEntity) {
 
+        // Constants.LOG.warn("There are {} ticks on the server.", blockEntity.tickCount);
         ++blockEntity.tickCount;
         long gameTime = level.getGameTime();
         if (gameTime % REEVALUATE_EVERY == 0L) {
@@ -112,7 +115,8 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
 
                     BlockState forBoneMealing = level.getBlockState(growAt);
                     Block block = forBoneMealing.getBlock();
-                    if (block instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel,
+                    if (block instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(
+                            serverLevel,
                             growAt,
                             forBoneMealing
                     )) {

@@ -1,4 +1,4 @@
-// 1.21.8	2025-11-02T18:36:40.5588389	Loot Tables
+// 1.21.8	2026-01-04T18:49:37.6038458	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_table/blocks/bitter_cassava_rooted_dirt.json
@@ -38,7 +38,6 @@ cdd0e8af3fb85fad77c55c4668255708c1fd2e0c data/verdant/loot_table/blocks/drowned_
 9064c792b6736f9bb9a12b8e627011a329473aee data/verdant/loot_table/blocks/earth_brick_slab.json
 28cf8f7ec5e0a9ad041a9a2e3c17d0e6d48565c0 data/verdant/loot_table/blocks/earth_brick_stairs.json
 2cd0a3a3a6488182e0dd3c7fabe715524fab6287 data/verdant/loot_table/blocks/earth_brick_wall.json
-7ae825ad75ccf8b1bcad03f3e35d4f4f17165ef3 data/verdant/loot_table/blocks/earth_verdant_resin_brick_wall.json
 d27de00356674d043796e3b835f1a9aaf83a5beb data/verdant/loot_table/blocks/fish_trap.json
 c281c354bd98abf5465b2960e92377684fbfe401 data/verdant/loot_table/blocks/frame_block.json
 4c47996b61ba2a250a4e39528ed08fbdc51a32bb data/verdant/loot_table/blocks/fused_gravel.json
@@ -134,6 +133,7 @@ c94fbc99ef42c6b33ddf28cd48efe06093c52e84 data/verdant/loot_table/blocks/verdant_
 1a0243182ead13f90a46a5635a0da843fa19f9ba data/verdant/loot_table/blocks/verdant_resin_bricks.json
 3a349d904341f19e794f60fc2cccc03450bed9f7 data/verdant/loot_table/blocks/verdant_resin_brick_slab.json
 40374b28d89f8837c97a12c2342b2a68b690e1fd data/verdant/loot_table/blocks/verdant_resin_brick_stairs.json
+8d438b16c24f4ac21bc9a811dc1cb6bbf8814c43 data/verdant/loot_table/blocks/verdant_resin_brick_wall.json
 8856ce1d4cb8fd21afb70e9fa921c1852efcd7a1 data/verdant/loot_table/blocks/verdant_rooted_clay.json
 f18e0e79d59e2be89c7f4a454d83245b6509d67e data/verdant/loot_table/blocks/verdant_rooted_dirt.json
 50d94f5e523bc913c884fae1aaf2c16d12f00ec0 data/verdant/loot_table/blocks/verdant_rooted_grus.json

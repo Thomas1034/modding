@@ -1133,6 +1133,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
         shapeless(RecipeCategory.MISC, BlockRegistry.SAP_BLOCK.get(), 1, ItemRegistry.SAP_GLOB.get(), 9);
+        shaped(
+                List.of("ggg", "ggg", "ggg"),
+                List.of('g'),
+                List.of(ItemRegistry.VERDANT_RESIN_CLUMP.get()),
+                RecipeCategory.BUILDING_BLOCKS,
+                BlockRegistry.VERDANT_RESIN_BLOCK.get(),
+                1
+        );
+        shapeless(RecipeCategory.MISC, BlockRegistry.VERDANT_RESIN_BLOCK.get(), 1, ItemRegistry.VERDANT_RESIN_CLUMP.get(), 9);
 
         smeltingResultFromBase(BlockRegistry.VERDANT_RESIN_BLOCK.get(), BlockRegistry.SAP_BLOCK.get());
         smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_CLUMP.get(), ItemRegistry.SAP_GLOB.get());

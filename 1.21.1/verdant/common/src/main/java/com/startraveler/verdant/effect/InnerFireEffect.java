@@ -25,6 +25,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class InnerFireEffect extends MobEffect {
 
@@ -36,7 +37,7 @@ public class InnerFireEffect extends MobEffect {
 
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, LivingEntity entity, int amplifier) {
         if (!entity.fireImmune()) {
             int fireTime = (amplifier + 1) * FIRE_TICKS_PER_LEVEL;
             if (entity.getRemainingFireTicks() < fireTime) {

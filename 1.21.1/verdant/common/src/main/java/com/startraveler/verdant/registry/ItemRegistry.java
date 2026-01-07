@@ -51,7 +51,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class ItemRegistry {
-
+    
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
 
     public static final RegistryObject<Item, Item> FRAGILE_FLASK = register(
@@ -504,14 +504,6 @@ public class ItemRegistry {
                     8
             )
     );
-
-    /*
-    public static final RegistryObject<Item, Item> HUNTING_SPEAR = register(
-            "hunting_spear",
-            (properties) -> new HuntingSpearItem(properties.stacksTo(16))
-    );
-    */
-
 
     public static final RegistryObject<Item, Item> DART = register(
             "dart",

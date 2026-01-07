@@ -7,7 +7,8 @@ import java.util.stream.StreamSupport;
 
 public class Util {
 
-    public static <A, B, R> Stream<R> zip(Stream<A> stream1, Stream<B> stream2, BiFunction<A, B, R> zipper) {
+
+    public static <A, B, R> Stream<R> zip(Stream<A> stream1, Stream<B> stream2, BiFunction<? super A, ? super B, ? extends R> zipper) {
         Iterator<A> iterator1 = stream1.iterator();
         Iterator<B> iterator2 = stream2.iterator();
         Iterable<R> iterable = () -> new Iterator<>() {
@@ -21,7 +22,8 @@ public class Util {
                 return zipper.apply(iterator1.next(), iterator2.next());
             }
         };
-        return StreamSupport.stream(iterable.spliterator(), false);
+        return StreamSupport.stream(iterable.spliterator(), false).onClose(stream1::close)
+                .onClose(stream2::close);
     }
 
 }

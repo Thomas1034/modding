@@ -28,24 +28,19 @@ import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.BlockProperties;
 import com.startraveler.verdant.util.VerdantTags;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.CreakingHeartState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -1073,8 +1068,7 @@ public class BlockRegistry {
         );
 
         TERRACOTTA_BOMB_PILE = registerBlockWithoutItem(
-                "terracotta_bomb_pile",
-                () -> new BombPileBlock(
+                "terracotta_bomb_pile", () -> new BombPileBlock(
                         properties(Blocks.MELON, "terracotta_bomb_pile").randomTicks(),
                         (stack) -> stack.is(VerdantTags.Items.TERRACOTTA_BOMBS),
                         false,
@@ -1205,10 +1199,10 @@ public class BlockRegistry {
         );
 
         VERDANT_RESIN_BRICK_WALL = registerBlockWithItem(
-                "earth_verdant_resin_brick_wall",
+                "verdant_resin_brick_wall",
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinWall(properties(
                         Blocks.RESIN_BRICK_WALL,
-                        "earth_verdant_resin_brick_wall"
+                        "verdant_resin_brick_wall"
                 ).lightLevel(state -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
@@ -1258,84 +1252,37 @@ public class BlockRegistry {
 
         SAP_LANTERN = registerBlockWithItem(
                 "sap_lantern",
-                () -> new LanternBlock(
-                        properties(Blocks.LANTERN, "sap_lantern").lightLevel(state -> 15)
-                )
+                () -> new LanternBlock(properties(Blocks.LANTERN, "sap_lantern").lightLevel(state -> 15))
         );
 
         SAP_TORCH = registerBlockWithoutItem(
-                "sap_torch",
-                () -> new TorchBlock(
+                "sap_torch", () -> new SapTorchBlock(
                         ParticleTypes.FIREFLY,
-                        properties("sap_torch").noCollission()
+                        BlockRegistry.properties("sap_torch")
+                                .noCollission()
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
                                 .lightLevel(state -> 15)
-                ) {
-                    @Override
-                    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-                        double x = (double) pos.getX() + (double) 0.5F;
-                        double y = (double) pos.getY() + 0.7;
-                        double z = (double) pos.getZ() + (double) 0.5F;
-                        level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0F, 0.0F, 0.0F);
-                        if (random.nextInt(16) == 0) {
-                            level.addParticle(this.flameParticle, x, y + 0.425, z, 0.0F, 0.0F, 0.0F);
-                        }
-                    }
-                }
+                )
         );
 
 
         SAP_WALL_TORCH = registerBlockWithoutItem(
-                "sap_wall_torch",
-                () -> new WallTorchBlock(
+                "sap_wall_torch", () -> new SapWallTorchBlock(
                         ParticleTypes.FIREFLY,
-                        properties("sap_wall_torch").noCollission()
+                        BlockRegistry.properties("sap_wall_torch")
+                                .noCollission()
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
                                 .lightLevel(state -> 15)
-                ) {
-                    @Override
-                    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-                        Direction facingDirection = state.getValue(FACING);
-                        double centerX = (double) pos.getX() + (double) 0.5F;
-                        double centerY = (double) pos.getY() + 0.7;
-                        double centerZ = (double) pos.getZ() + (double) 0.5F;
-                        double verticalOffset = 0.22;
-                        double horizontalOffset = 0.27;
-                        Direction antifacingDirection = facingDirection.getOpposite();
-                        level.addParticle(
-                                ParticleTypes.SMOKE,
-                                centerX + horizontalOffset * (double) antifacingDirection.getStepX(),
-                                centerY + verticalOffset,
-                                centerZ + horizontalOffset * (double) antifacingDirection.getStepZ(),
-                                0.0F,
-                                0.0F,
-                                0.0F
-                        );
-
-                        if (random.nextInt(16) == 0) {
-                            level.addParticle(
-                                    this.flameParticle,
-                                    centerX + horizontalOffset * (double) antifacingDirection.getStepX(),
-                                    centerY + verticalOffset,
-                                    centerZ + horizontalOffset * (double) antifacingDirection.getStepZ(),
-                                    0.0F,
-                                    0.0F,
-                                    0.0F
-                            );
-                        }
-                    }
-                }
+                )
         );
 
         SAP_FIRE = registerBlockWithoutItem(
                 "sap_fire",
-                () -> new SapFireBlock(
-                        properties(Blocks.FIRE, "sap_fire").lightLevel(state -> 15)
-                )
+                () -> new SapFireBlock(properties(Blocks.FIRE, "sap_fire").lightLevel(state -> 15))
         );
 
 
