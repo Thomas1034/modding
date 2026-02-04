@@ -11,7 +11,6 @@ import com.thomas.verdant.effect.ModMobEffects;
 import com.thomas.verdant.growth.VerdantGrower;
 import com.thomas.verdant.util.ModTags;
 
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +26,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags.Blocks;
 
 public class VerdantConduitBlockEntity extends BlockEntity {
-
+	
 	private List<BeaconBeamSection> beamSections = Lists.newArrayList();
 	private boolean isActive = false;
 	private static final float[] BASE_TINT = new float[] { 0.25f, 1.0f, 0.15f };
@@ -44,8 +43,8 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 		VerdantConduitBlockEntity verdantHeart = (VerdantConduitBlockEntity) be;
 		int bonusGrowth = verdantHeart.bonusGrowthRange;
 		state = updateActivity(level, pos, state, verdantHeart);
-		if (level instanceof ClientLevel clientLevel) {
-			updateBeamSections(clientLevel, pos, state, verdantHeart);
+		if (level.isClientSide) {
+			updateBeamSections(level, pos, state, verdantHeart);
 		} else if (level instanceof ServerLevel serverLevel) {
 			for (int i = 0; i < 2 * bonusGrowth * bonusGrowth + 8; i++) {
 				grow(serverLevel, pos, state, verdantHeart, BASE_GROWTH_RANGE);
@@ -142,7 +141,7 @@ public class VerdantConduitBlockEntity extends BlockEntity {
 
 	};
 
-	private static void updateBeamSections(ClientLevel level, BlockPos pos, BlockState state,
+	private static void updateBeamSections(Level level, BlockPos pos, BlockState state,
 			VerdantConduitBlockEntity verdantHeart) {
 		// System.out.println("Updating beam sections at " + pos);
 		if (!verdantHeart.isActive()) {

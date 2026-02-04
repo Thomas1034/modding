@@ -105,6 +105,7 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     }
 
 
+    @SuppressWarnings("ConstantValue")
     public static BlockState updateFissureState(Level level, BlockState state, BlockPos pos) {
         if (!(state.getBlock() instanceof OozeFissureBlock oozeFissureBlock)) {
             return state;
@@ -121,7 +122,7 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     }
 
     protected int computeAnalogOutputSignal() {
-        return 15; // TODO find reasonable useful output signal.
+        return 15;
     }
 
 
@@ -145,10 +146,6 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     public void setEntityId(@NotNull EntityType<?> type, @NotNull RandomSource random) {
         this.spawner.setEntityId(type, this.level, random, this.worldPosition);
         this.setChanged();
-    }
-
-    public BaseSpawner getSpawner() {
-        return this.spawner;
     }
 
     public int getAnalogOutputSignal() {

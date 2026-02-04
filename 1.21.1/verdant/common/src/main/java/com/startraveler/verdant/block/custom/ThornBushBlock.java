@@ -33,20 +33,20 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class ThornBushBlock extends BushBlock {
 
-    private final float damage;
+    protected final float damage;
 
     public ThornBushBlock(Properties properties, float damage) {
         super(properties);
         this.damage = damage;
     }
 
-    @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
-        if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
+    @SuppressWarnings("unused")
+    public static void entityInsideThorns(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, float damage) {
+        if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && entity.getType() != EntityType.FOX && VerdantIFF.isEnemy(
                 livingEntity)) {
             double slowdownFactor = 0.2d;
             if (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(VerdantTags.Items.VERDANT_FRIENDLY_ARMORS)) {
@@ -66,10 +66,10 @@ public class ThornBushBlock extends BushBlock {
                     double dz = Math.abs(vec3.z());
                     float cumulativeDamage = 0;
                     if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && !entity.isShiftKeyDown()) {
-                        cumulativeDamage += this.damage / 2;
+                        cumulativeDamage += damage / 2;
                     }
                     if (dy >= (double) 0.003F) {
-                        cumulativeDamage += this.damage;
+                        cumulativeDamage += damage;
                     }
 
                     if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && cumulativeDamage > 0.5f) {
@@ -89,12 +89,18 @@ public class ThornBushBlock extends BushBlock {
     }
 
     @Override
-    public MapCodec<BushBlock> codec() {
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
+        entityInsideThorns(state, level, pos, entity, this.damage);
+    }
+
+    @Override
+    public @NotNull MapCodec<BushBlock> codec() {
         throw new IllegalStateException("This block doesn't have a codec yet!");
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
         return this.damage == 0;
     }
 }

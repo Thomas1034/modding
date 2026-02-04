@@ -1,8 +1,8 @@
 {
   "values": [
     "verdant:heartwood_pressure_plate",
-    "verdant:dead_pressure_plate",
     "verdant:strangler_pressure_plate",
+    "verdant:dead_pressure_plate",
     "verdant:mango_pressure_plate"
   ]
 }

@@ -3,6 +3,7 @@ package com.startraveler.verdant.item.custom;
 import com.startraveler.verdant.registry.DataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -33,7 +34,7 @@ public class CubeMiningItem extends Item {
             int miningRadius = stack.getOrDefault(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 0);
             Tool thisTool = stack.get(DataComponents.TOOL);
 
-            if (thisTool != null) {
+            if (thisTool != null && miningRadius > 0) {
                 float centerMiningSpeed = thisTool.getMiningSpeed(state);
                 float centerDestroySpeed = state.getDestroySpeed(level, pos);
                 boolean centerIsCorrectForDrops = thisTool.isCorrectForDrops(state);
@@ -69,7 +70,11 @@ public class CubeMiningItem extends Item {
                                 otherDestroySpeed,
                                 0f
                         ) || otherDestroySpeed <= 0) {
-                            level.destroyBlock(positionToMine, true);
+                            if (miningEntity instanceof ServerPlayer player) {
+                                player.gameMode.destroyBlock(positionToMine);
+                            } else {
+                                level.destroyBlock(positionToMine, true);
+                            }
                         }
                     }
                 }

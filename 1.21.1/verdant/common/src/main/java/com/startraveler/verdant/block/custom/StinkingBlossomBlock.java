@@ -17,23 +17,25 @@
 package com.startraveler.verdant.block.custom;
 
 import com.startraveler.verdant.VerdantIFF;
+import com.startraveler.verdant.registry.MobEffectRegistry;
 import com.startraveler.verdant.registry.TriggerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SporeBlossomBlock;
@@ -41,9 +43,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class StinkingBlossomBlock extends SporeBlossomBlock {
@@ -61,26 +67,12 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
         super(properties);
     }
 
-    // Inflicts nausea on anything inside.
-    @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
-        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(entity)) {
-            if (!level.isClientSide) {
-                if (livingEntity instanceof ServerPlayer player) {
-                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
-                }
-                livingEntity.addEffect(NAUSEA.get());
-            }
-        }
-    }
-
-    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, @NotNull LevelReader level, BlockPos pos) {
         Direction direction = state.getValue(VERTICAL_DIRECTION);
         return Block.canSupportCenter(level, pos.relative(direction.getOpposite()), direction) && !level.isWaterAt(pos);
     }
 
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
         return (facing == Direction.DOWN || facing == Direction.UP) && !this.canSurvive(
                 state,
                 level,
@@ -97,15 +89,19 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
         );
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
-        int i = pos.getX();
-        int j = pos.getY();
-        int k = pos.getZ();
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, BlockPos pos, @NotNull RandomSource rand) {
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
-
+        int verticalFactor = (state.getValue(VERTICAL_DIRECTION) == Direction.UP ? 1 : -1);
         for (int l = 0; l < 14; ++l) {
-            mutablePos.set(i + Mth.nextInt(rand, -10, 10), j - rand.nextInt(10), k + Mth.nextInt(rand, -10, 10));
+            mutablePos.set(
+                    x + Mth.nextInt(rand, -10, 10),
+                    y + verticalFactor * rand.nextInt(10),
+                    z + Mth.nextInt(rand, -10, 10)
+            );
             BlockState blockstate = level.getBlockState(mutablePos);
             if (!blockstate.isCollisionShapeFullBlock(level, mutablePos)) {
                 level.addParticle(
@@ -122,7 +118,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return state.getValue(VERTICAL_DIRECTION) == Direction.UP ? FLOOR_SHAPE : CEILING_SHAPE;
     }
 
@@ -134,9 +130,45 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     // Very important!
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(VERTICAL_DIRECTION);
+    }
+
+    @Override
+    protected void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean dropExperience) {
+        super.spawnAfterBreak(state, level, pos, stack, dropExperience);
+        // Create a cloud that gives nausea and stench when the flower is broken.
+        if (level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+            Vec3 center = pos.getCenter();
+            AreaEffectCloud areaEffectCloud = new AreaEffectCloud(level, center.x, center.y, center.z);
+            areaEffectCloud.setRadius(2.0F);
+            areaEffectCloud.setDuration(80);
+            areaEffectCloud.setRadiusPerTick(0.0F);
+            areaEffectCloud.setPotionContents(new PotionContents(
+                    Optional.empty(),
+                    Optional.of(0x798f35),
+                    List.of(
+                            new MobEffectInstance(MobEffects.NAUSEA, 240, 0),
+                            new MobEffectInstance(MobEffectRegistry.STENCH.asHolder(), 800, 0)
+                    ),
+                    Optional.empty()
+            ));
+            level.addFreshEntity(areaEffectCloud);
+        }
+    }
+
+    // Inflicts nausea on anything inside.
+    @Override
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
+        super.entityInside(state, level, pos, entity, applier);
+        if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(entity)) {
+            if (!level.isClientSide) {
+                if (livingEntity instanceof ServerPlayer player) {
+                    TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
+                }
+                livingEntity.addEffect(NAUSEA.get());
+            }
+        }
     }
 }

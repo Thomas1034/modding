@@ -1,8 +1,8 @@
 {
   "values": [
     "verdant:heartwood_door",
-    "verdant:dead_door",
     "verdant:strangler_door",
+    "verdant:dead_door",
     "verdant:mango_door"
   ]
 }

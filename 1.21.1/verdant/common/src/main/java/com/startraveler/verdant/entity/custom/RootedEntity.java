@@ -36,6 +36,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class RootedEntity extends Zombie {
 
@@ -43,7 +44,7 @@ public class RootedEntity extends Zombie {
         super(type, level);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.@NotNull Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.FOLLOW_RANGE, 45.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.20F)
@@ -131,7 +132,7 @@ public class RootedEntity extends Zombie {
 
     // Instantly convert skeletons and creepers.
     @Override
-    public boolean doHurtTarget(ServerLevel level, Entity entity) {
+    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity entity) {
         if (!super.doHurtTarget(level, entity)) {
             return false;
         } else {
@@ -146,7 +147,7 @@ public class RootedEntity extends Zombie {
     }
 
     @Override
-    public boolean killedEntity(ServerLevel level, LivingEntity entity) {
+    public boolean killedEntity(@NotNull ServerLevel level, @NotNull LivingEntity entity) {
         boolean flag = super.killedEntity(level, entity);
         boolean converted = false;
         if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && entity instanceof Villager villager) {

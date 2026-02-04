@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.mojang.datafixers.util.Pair;
 import com.thomas.verdant.datagen.DataParseableProvider;
 import com.thomas.verdant.util.blocktransformers.BlockTransformer;
 import com.thomas.verdant.util.data.DataAccessor;
@@ -20,16 +19,6 @@ import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.entity.BoatRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
@@ -102,7 +91,6 @@ import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -112,7 +100,6 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -214,21 +201,11 @@ public class WoodSet {
 	}
 
 	@SubscribeEvent
-	protected void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerBlockEntityRenderer(this.signBlockEntity.get(), SignRenderer::new);
-		event.registerBlockEntityRenderer(this.hangingSignBlockEntity.get(), HangingSignRenderer::new);
-	}
-
-	@SubscribeEvent
 	protected void registerDispenserBehaviors(FMLCommonSetupEvent event) {
-		DispenserBlock.registerBehavior(this.boatItem.get(), new WoodSetBoatDispenseItemBehavior());
-		DispenserBlock.registerBehavior(this.chestBoatItem.get(), new WoodSetBoatDispenseItemBehavior(true));
-	}
-
-	@SubscribeEvent
-	protected void registerER(FMLClientSetupEvent event) {
-		EntityRenderers.register(this.boatEntity.get(), context -> this.new WoodSetBoatRenderer(context, false));
-		EntityRenderers.register(this.chestBoatEntity.get(), context -> this.new WoodSetBoatRenderer(context, true));
+		event.enqueueWork(() -> {
+			DispenserBlock.registerBehavior(this.boatItem.get(), new WoodSetBoatDispenseItemBehavior());
+			DispenserBlock.registerBehavior(this.chestBoatItem.get(), new WoodSetBoatDispenseItemBehavior(true));
+		});
 	}
 
 	protected void registerBlocks() {
@@ -1586,46 +1563,6 @@ public class WoodSet {
 		public Item getDropItem() {
 
 			return WoodSet.this.chestBoatItem.get();
-		}
-	}
-
-	public class WoodSetBoatRenderer extends BoatRenderer {
-
-		private final Pair<ResourceLocation, ListModel<Boat>> modelWithLocation;
-
-		public WoodSetBoatRenderer(EntityRendererProvider.Context context, boolean isChestBoat) {
-			super(context, isChestBoat);
-			this.modelWithLocation = Pair.of(this.getTextureLocation(isChestBoat),
-					this.createBoatModel(context, isChestBoat));
-		}
-
-		private ResourceLocation getTextureLocation(boolean chestBoat) {
-			return new ResourceLocation(WoodSet.this.modid,
-					chestBoat ? "textures/entity/chest_boat/" + WoodSet.this.baseName + ".png"
-							: "textures/entity/boat/" + WoodSet.this.baseName + ".png");
-		}
-
-		private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, boolean isChestBoat) {
-			ModelLayerLocation modellayerlocation = isChestBoat ? this.createChestBoatModelName()
-					: this.createBoatModelName();
-			ModelPart modelpart = context.bakeLayer(modellayerlocation);
-			return isChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
-		}
-
-		public ModelLayerLocation createBoatModelName() {
-			return createLocation("boat/" + WoodSet.this.baseName, "main");
-		}
-
-		public ModelLayerLocation createChestBoatModelName() {
-			return createLocation("chest_boat/" + WoodSet.this.baseName, "main");
-		}
-
-		private ModelLayerLocation createLocation(String path, String model) {
-			return new ModelLayerLocation(new ResourceLocation(WoodSet.this.modid, path), model);
-		}
-
-		public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
-			return this.modelWithLocation;
 		}
 	}
 

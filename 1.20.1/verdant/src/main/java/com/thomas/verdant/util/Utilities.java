@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -558,7 +557,7 @@ public class Utilities {
 		}
 	}
 
-	public static void addParticlesAroundPositionClient(ClientLevel level, Vec3 position, ParticleOptions particle,
+	public static void addParticlesAroundPositionClient(Level level, Vec3 position, ParticleOptions particle,
 			double boxSize) {
 		for (int i = 0; i < 5; ++i) {
 			double dx = level.random.nextGaussian() * 0.02D;

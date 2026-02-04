@@ -30,8 +30,7 @@ import net.minecraft.world.level.block.Blocks;
 //
 // Ideas for new effects:
 //
-// TODO Add firefly attractor! "You would not believe your eyes..."
-// TODO Ideas for future improvements:
+// TODO Add firefly attractor achievement! "You would not believe your eyes..."
 /*
  Make the rope coil recipe more customizable.
  Don't hard-code the items; instead, have them be defined in the JSON
@@ -63,11 +62,14 @@ Ideas:
 Caltrops - eight thorns, one plank, for a consumable that deals damage and inflicts slowness when entities step on it.
 Lingers on the ground and will not hurt the person who threw it.
 
- */
+*/
 // Credits: (other direct contributors only)
 /*
 
 Changes:
+- Stinking blossoms now produce particles over the correct volume.
+- Stinking blossoms now produce a temporary stench cloud when broken. This has its benefits!
+- Thorny strangler leaves now only deal damage when you are moving.
 - Reduced the damage that spikes do once again.
 - Tweaks to spike hitboxes (again).
 - Sap slows entities in it less, but gives a slowing potion effect.
@@ -90,7 +92,7 @@ Features Added:
 - Copper and gold spikes and traps.
 - Juice and Nectar, alternatives to healing potions.
 - A few more advancements.
-- Oozes, darker-green slimes that can spawn holding flowers. They inflict potion effects corresponding to the flower they hold. Oozes will pick up flower items; use this to your advantage! Oozes drop sap globs when killed.
+- Oozes, darker-green slimes that can spawn holding flowers. They inflict potion effects corresponding to the flower they hold. Some Oozes can pick up flower items; use this to your advantage! Oozes drop sap globs when killed.
 - Small oozes can be picked up with water buckets and carried around, for convenience. This makes them friendlier and deal less damage.
 - Ooze fissures, uncommon features that rapidly spawn oozes around them. They are less productive after being harvested and re-placed.
 - Balsam, an item obtained from harvesting natural ooze fissures.
@@ -124,6 +126,7 @@ public class CommonClass {
     // The loader specific projects are able to import and use any code from the common project. This allows you to
     // write the majority of your code here and load it from your loader specific projects. This example has some
     // code that gets invoked by the entry point of the loader specific projects.
+    @SuppressWarnings("StatementWithEmptyBody")
     public static void init() {
 
         //        Constants.LOG.info(

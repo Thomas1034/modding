@@ -72,6 +72,8 @@ public class Verdant {
         eventBus.addListener(Verdant::registerEntityAttributes);
         // Dart Tipping Ingredients
         eventBus.addListener(Verdant::modifyDefaultComponents);
+
+        // General
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
 
         // Caffeine
@@ -93,6 +95,7 @@ public class Verdant {
     }
 
     public static void addBlocksToBlockEntities(BlockEntityTypeAddBlocksEvent event) {
+
         // event.modify(BlockEntityType.MOB_SPAWNER, BlockRegistry.OVERGROWN_SPAWNER.get());
     }
 

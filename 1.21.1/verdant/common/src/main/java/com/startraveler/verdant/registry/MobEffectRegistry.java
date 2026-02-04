@@ -145,10 +145,6 @@ public class MobEffectRegistry {
             "blurring",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x808080)
     );
-    public static final RegistryObject<MobEffect, MobEffect> DEPTH = MOB_EFFECTS.register(
-            "depth",
-            () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x000000)
-    );
     public static final RegistryObject<MobEffect, MobEffect> SAPPY = MOB_EFFECTS.register(
             "sappy",
             () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x6dc330).addAttributeModifier(
