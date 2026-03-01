@@ -17,18 +17,18 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class BlockTransformerRegistry {
 
-    public static final ResourceLocation EROSION = transformer("erosion");
-    public static final ResourceLocation EROSION_WET = transformer("erosion_wet");
-    public static final ResourceLocation HOEING = transformer("hoeing");
-    public static final ResourceLocation VERDANT_ROOTS = transformer("verdant_roots");
-    public static final ResourceLocation TOXIC_ASH = transformer("toxic_ash");
+    public static final Identifier EROSION = transformer("erosion");
+    public static final Identifier EROSION_WET = transformer("erosion_wet");
+    public static final Identifier HOEING = transformer("hoeing");
+    public static final Identifier VERDANT_ROOTS = transformer("verdant_roots");
+    public static final Identifier TOXIC_ASH = transformer("toxic_ash");
 
-    private static ResourceLocation transformer(String name) {
-        return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);
+    private static Identifier transformer(String name) {
+        return Identifier.fromNamespaceAndPath(Constants.MOD_ID, name);
     }
 
 

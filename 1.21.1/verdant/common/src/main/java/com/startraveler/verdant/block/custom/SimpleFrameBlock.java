@@ -36,6 +36,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterloggedBlock {
 
@@ -64,20 +65,20 @@ public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterl
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false));
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(WATERLOGGED);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         boolean flag = fluidstate.getType() == Fluids.WATER;
         return super.getStateForPlacement(context).setValue(WATERLOGGED, flag);
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
             scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
@@ -86,17 +87,17 @@ public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterl
 
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+    public @NotNull VoxelShape getBlockSupportShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    protected @NotNull VoxelShape getInteractionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return switch (state.getValue(AXIS)) {
             case Z -> Z_SHAPE_THICK;
             case Y -> Y_SHAPE_THICK;
@@ -105,7 +106,7 @@ public class SimpleFrameBlock extends RotatedPillarBlock implements SimpleWaterl
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 
         return switch (state.getValue(AXIS)) {
             case Z -> Z_SHAPE;

@@ -21,10 +21,11 @@ import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityTypeRegistry {
 
@@ -33,19 +34,19 @@ public class EntityTypeRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<EntityType<?>, EntityType<ThrownRopeEntity>> THROWN_ROPE = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull ThrownRopeEntity>> THROWN_ROPE = ENTITY_TYPES.register(
             "thrown_rope",
             () -> EntityType.Builder.<ThrownRopeEntity>of(ThrownRopeEntity::new, MobCategory.MISC)
                     .sized(0.8f, 0.8f)
                     .build(key("thrown_rope"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<TimbermiteEntity>> TIMBERMITE = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull TimbermiteEntity>> TIMBERMITE = ENTITY_TYPES.register(
             "timbermite",
             () -> EntityType.Builder.of(TimbermiteEntity::new, MobCategory.MONSTER)
                     .sized(0.4f, 0.3f)
                     .build(key("timbermite"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<PoisonArrowEntity>> POISON_ARROW = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull PoisonArrowEntity>> POISON_ARROW = ENTITY_TYPES.register(
             "poison_arrow",
             () -> EntityType.Builder.<PoisonArrowEntity>of(PoisonArrowEntity::new, MobCategory.MISC)
                     .noLootTable()
@@ -55,7 +56,7 @@ public class EntityTypeRegistry {
                     .updateInterval(20)
                     .build(key("poison_arrow"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<DartEntity>> DART = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull DartEntity>> DART = ENTITY_TYPES.register(
             "dart",
             () -> EntityType.Builder.<DartEntity>of(DartEntity::new, MobCategory.MISC)
                     .noLootTable()
@@ -65,7 +66,7 @@ public class EntityTypeRegistry {
                     .updateInterval(20)
                     .build(key("dart"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<RootedEntity>> ROOTED = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull RootedEntity>> ROOTED = ENTITY_TYPES.register(
             "rooted",
             () -> EntityType.Builder.of(RootedEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.95F)
@@ -75,14 +76,9 @@ public class EntityTypeRegistry {
                     .clientTrackingRange(8)
                     .build(key("rooted"))
     );
-    public static final RegistryObject<EntityType<?>, EntityType<ThrownSpearEntity>> THROWN_SPEAR = ENTITY_TYPES.register(
-            "thrown_spear",
-            () -> EntityType.Builder.<ThrownSpearEntity>of(ThrownSpearEntity::new, MobCategory.MISC)
-                    .sized(0.5f, 0.5f)
-                    .build(key("thrown_spear"))
-    );
 
-    public static final RegistryObject<EntityType<?>, EntityType<BlockIgnoringPrimedTnt>> BLOCK_IGNORING_PRIMED_TNT = ENTITY_TYPES.register(
+
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull BlockIgnoringPrimedTnt>> BLOCK_IGNORING_PRIMED_TNT = ENTITY_TYPES.register(
             "block_ignoring_tnt",
             () -> EntityType.Builder.<BlockIgnoringPrimedTnt>of(BlockIgnoringPrimedTnt::new, MobCategory.MISC)
                     .noLootTable()
@@ -94,9 +90,9 @@ public class EntityTypeRegistry {
                     .build(key("block_ignoring_tnt"))
     );
 
-    public static final RegistryObject<EntityType<?>, EntityType<BrambleEntity>> BRAMBLE = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull BrambleEntity>> BRAMBLE = ENTITY_TYPES.register(
             "bramble",
-            () -> EntityType.Builder.<BrambleEntity>of(BrambleEntity::new, MobCategory.MISC)
+            () -> EntityType.Builder.of(BrambleEntity::new, MobCategory.MISC)
                     .fireImmune()
                     .sized(1.0f, 1.0f)
                     .eyeHeight(0.5F)
@@ -104,9 +100,9 @@ public class EntityTypeRegistry {
                     .build(key("bramble"))
     );
 
-    public static final RegistryObject<EntityType<?>, EntityType<PoisonerEntity>> POISONER = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull PoisonerEntity>> POISONER = ENTITY_TYPES.register(
             "poisoner",
-            () -> EntityType.Builder.<PoisonerEntity>of(PoisonerEntity::new, MobCategory.MONSTER)
+            () -> EntityType.Builder.of(PoisonerEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.95F)
                     .eyeHeight(1.62F)
                     .passengerAttachments(2.2625F)
@@ -114,7 +110,7 @@ public class EntityTypeRegistry {
                     .build(key("poisoner"))
     );
 
-    public static final RegistryObject<EntityType<?>, EntityType<OozeEntity>> OOZE = ENTITY_TYPES.register(
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull OozeEntity>> OOZE = ENTITY_TYPES.register(
             "ooze",
             () -> EntityType.Builder.of(OozeEntity::new, MobCategory.MONSTER)
                     .sized(0.52F, 0.52F)
@@ -124,11 +120,26 @@ public class EntityTypeRegistry {
                     .build(key("ooze"))
     );
 
+
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull BlockPlacingProjectile>> BLOCK_PLACING_PROJECTILE = ENTITY_TYPES.register(
+            "block_placer",
+            () -> EntityType.Builder.<BlockPlacingProjectile>of(BlockPlacingProjectile::new, MobCategory.MISC)
+                    .sized(0.8f, 0.8f)
+                    .build(key("block_placer"))
+    );
+
+    public static final RegistryObject<EntityType<?>, EntityType<@NotNull SkullSpiderEntity>> SKULL_SPIDER = ENTITY_TYPES.register(
+            "skull_spider",
+            () -> EntityType.Builder.of(SkullSpiderEntity::new, MobCategory.MONSTER)
+                    .sized(0.85F, 0.5F)
+                    .eyeHeight(0.45F)
+                    .clientTrackingRange(8)
+                    .notInPeaceful()
+                    .build(key("skull_spider"))
+    );
+
     private static ResourceKey<EntityType<?>> key(String name) {
-        return ResourceKey.create(
-                Registries.ENTITY_TYPE,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
-        );
+        return ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public static void init() {

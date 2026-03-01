@@ -22,7 +22,7 @@ import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
@@ -149,22 +149,22 @@ public class MobEffectRegistry {
             "sappy",
             () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x6dc330).addAttributeModifier(
                     Attributes.MOVEMENT_SPEED,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
                     -0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.KNOCKBACK_RESISTANCE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.ATTACK_KNOCKBACK,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             )

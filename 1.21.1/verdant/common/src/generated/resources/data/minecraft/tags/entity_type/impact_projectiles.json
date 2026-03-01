@@ -1,5 +1,6 @@
 {
   "values": [
-    "verdant:thrown_rope"
+    "verdant:thrown_rope",
+    "verdant:block_placer"
   ]
 }

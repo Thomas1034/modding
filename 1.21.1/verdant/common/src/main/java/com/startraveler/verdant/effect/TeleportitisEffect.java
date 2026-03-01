@@ -24,10 +24,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.animal.fox.Fox;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class TeleportitisEffect extends MobEffect {
     private final float diameter;
@@ -38,9 +39,9 @@ public class TeleportitisEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-        int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
-        if (timeSinceHurt < 2) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, LivingEntity entity, int amplifier) {
+        int timeSinceHurt = entity.hurtDuration - entity.hurtTime;
+        if (timeSinceHurt < 2 && entity.hurtDuration > 0) {
             int radius = (int) (this.diameter * (amplifier + 1));
             boolean teleportSucceeded = false;
             for (int i = 0; i < 16; ++i) {

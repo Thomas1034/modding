@@ -12,14 +12,14 @@ import com.startraveler.verdant.timer.PlaceBlocksTimer;
 import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.VerdantTags;
-import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -32,7 +32,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.AbstractGolem;
+import net.minecraft.world.entity.animal.golem.AbstractGolem;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -84,7 +84,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40.0);
     }
 
-    public static void emitConversionSphere(ServerLevel level, BlockPos pos, int maxRadius, ResourceLocation transformer, int delay, int step) {
+    public static void emitConversionSphere(ServerLevel level, BlockPos pos, int maxRadius, Identifier transformer, int delay, int step) {
 
         List<List<BlockPos>> positions = new ArrayList<>(Stream.generate(ArrayList<BlockPos>::new)
                 .limit(maxRadius)
@@ -127,6 +127,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
         return 2 * each.getY();
     }
 
+    @SuppressWarnings("unused")
     public static Integer sortByZ(BlockPos center, BlockPos each) {
         return 2 * each.getZ();
     }
@@ -198,7 +199,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
     @Override
     public void tick() {
         super.tick();
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
 
             // Clear all effects.
             this.removeAllEffects();
@@ -333,6 +334,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
                 );
             }
 
+            @SuppressWarnings("unused")
             int currentDelay = maxRadius * delayBetweenRings * numberOfErosions + delayBetweenRings * 3;
 
             TimerListSavedData.addTimer(

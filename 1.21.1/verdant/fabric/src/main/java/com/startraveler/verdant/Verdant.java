@@ -1,33 +1,34 @@
 package com.startraveler.verdant;
 
 import com.startraveler.rootbound.Rootbound;
-import com.startraveler.verdant.entity.custom.BrambleEntity;
-import com.startraveler.verdant.entity.custom.PoisonerEntity;
-import com.startraveler.verdant.entity.custom.RootedEntity;
-import com.startraveler.verdant.entity.custom.TimbermiteEntity;
+import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.*;
+import com.startraveler.verdant.timer.BaseTimer;
+import com.startraveler.verdant.timer.BlockTransformerTimer;
+import com.startraveler.verdant.timer.PlaceBlocksTimer;
+import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.CloseableResourceManager;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.storage.DimensionDataStorage;
-
-import java.util.List;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class Verdant implements ModInitializer {
 
@@ -70,6 +71,10 @@ public class Verdant implements ModInitializer {
                 EntityTypeRegistry.OOZE.get(),
                 Monster.createMonsterAttributes().build()
         );
+        FabricDefaultAttributeRegistry.register(
+                EntityTypeRegistry.SKULL_SPIDER.get(),
+                SkullSpiderEntity.createSkullSpiderAttributes().build()
+        );
 
         // Block caffeine from sleeping
         EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
@@ -91,8 +96,7 @@ public class Verdant implements ModInitializer {
                 HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState())
         );
 
-        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(
-                item,
+        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(item,
                 builder -> biConsumerConsumer.accept(builder::set)
         )));
 
@@ -100,32 +104,16 @@ public class Verdant implements ModInitializer {
         BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
         BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
 
-        ServerTickEvents.END_WORLD_TICK.register((ServerLevel level) -> {
-            DimensionDataStorage dataStorage = level.getDataStorage();
-            TimerListSavedData timerList = dataStorage.get(
-                    TimerListSavedData.TYPE
-            );
-            if (timerList != null) {
-                List<BaseTimer> timers = timerList.getTimers();
-                if (!timers.isEmpty()) {
-                    for (BaseTimer timer : timers) {
-                        boolean result = timer.handleTick(level);
-                        if (!result) {
-                            timerList.removeTimer(timer);
-                        }
-                    }
-                    dataStorage.set(TimerListSavedData.TYPE, timerList);
-                }
-            }
-        });
+        PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) -> CommonClass.spawnSpiderlingsOnBlockBreak(level,
+                player,
+                blockPos,
+                blockState
+        ));
 
-        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((MinecraftServer var1, CloseableResourceManager var2, boolean var3) -> {
-            CommonClass.TRANSFORMERS.clear();
-        });
+        ServerTickEvents.END_WORLD_TICK.register(CommonClass::tickTimers);
+
 
         CommonClass.addCakeCandles();
-
-        // BlockEntityType.MOB_SPAWNER.addSupportedBlock(BlockRegistry.OVERGROWN_SPAWNER.get());
 
         Rootbound.initializeWoodSets(WoodSets.WOOD_SETS);
     }

@@ -34,6 +34,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -71,7 +72,7 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 
         try {
             return SHAPE_BY_AGE[this.getAge(state)];
@@ -81,7 +82,7 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    public IntegerProperty getAgeProperty() {
+    public @NotNull IntegerProperty getAgeProperty() {
         return AGE;
     }
 
@@ -91,7 +92,7 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (!level.isLoaded(pos) || !level.isLoaded(pos.above())) {
             return;
         }
@@ -154,9 +155,9 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    public void growCrops(Level level, BlockPos pos, BlockState state) {
+    public void growCrops(Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
         // Deny client side.
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return;
         }
 
@@ -187,16 +188,13 @@ public class CassavaCropBlock extends CropBlock {
         } else if (nextAge == maxAge) {
             level.setBlockAndUpdate(pos.below(2), this.underneath.get());
             level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
-        } else if (thisAge == maxAge) {
-            // Do nothing
-        } else {
-
+        } else if (thisAge != maxAge) {
             level.setBlockAndUpdate(pos, this.getStateForAge(nextAge));
         }
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return (super.canSurvive(state, level, pos) || (level.getBlockState(pos.below(1))
                 .is(this) && level.getBlockState(pos.below())
                 .getValue(AGE) == FIRST_STAGE_MAX_AGE) || this.alsoSurvivesOn.test(level.getBlockState(pos.below(1)))) && (this.getAge(
@@ -204,12 +202,12 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    protected ItemLike getBaseSeedId() {
+    protected @NotNull ItemLike getBaseSeedId() {
         return this.item.get();
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         // Check if it is first stage max; if so, check above it.
         if (this.getAge(state) == FIRST_STAGE_MAX_AGE) {
             BlockState above = level.getBlockState(pos.above());
@@ -223,7 +221,7 @@ public class CassavaCropBlock extends CropBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(AGE);
     }
 }

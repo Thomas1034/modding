@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/block",
-	"ambientocclusion": false,
+	"ambientocclusion": true,
 	"textures": {
     "particle": "#all"
   },
@@ -18,21 +18,27 @@
       ],
       "faces": {
         "down": {
+          "tintindex": 0,
           "texture": "#all"
         },
         "up": {
+          "tintindex": 0,
           "texture": "#all"
         },
         "north": {
+          "tintindex": 0,
           "texture": "#all"
         },
         "south": {
+          "tintindex": 0,
           "texture": "#all"
         },
         "west": {
+          "tintindex": 0,
           "texture": "#all"
         },
         "east": {
+          "tintindex": 0,
           "texture": "#all"
         }
       }

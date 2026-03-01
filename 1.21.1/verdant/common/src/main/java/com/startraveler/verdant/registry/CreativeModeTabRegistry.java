@@ -166,6 +166,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUEMENT_UPGRADE_SMITHING_TEMPLATE.get());
                         output.accept(ItemRegistry.ROOTED_SPAWN_EGG.get());
                         output.accept(ItemRegistry.TIMBERMITE_SPAWN_EGG.get());
+                        output.accept(ItemRegistry.SKULL_SPIDER_SPAWN_EGG.get());
                         output.accept(ItemRegistry.POISONER_SPAWN_EGG.get());
                         output.accept(ItemRegistry.OOZE_SPAWN_EGG.get());
                     })
@@ -218,10 +219,12 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.COPPER_TRAP.get());
                         output.accept(BlockRegistry.IRON_TRAP.get());
                         output.accept(BlockRegistry.GOLDEN_TRAP.get());
+                        output.accept(ItemRegistry.COPPER_MACHETE.get());
                         output.accept(ItemRegistry.IRON_MACHETE.get());
                         output.accept(ItemRegistry.DIAMOND_MACHETE.get());
                         output.accept(ItemRegistry.NETHERITE_MACHETE.get());
                         output.accept(ItemRegistry.HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.HEARTWOOD_SPEAR.get());
                         output.accept(ItemRegistry.HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.HEARTWOOD_HELMET.get());
                         output.accept(ItemRegistry.HEARTWOOD_CHESTPLATE.get());
@@ -229,6 +232,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.HEARTWOOD_BOOTS.get());
                         output.accept(ItemRegistry.HEARTWOOD_HORSE_ARMOR.get());
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.THORNY_HEARTWOOD_SPEAR.get());
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_HELMET.get());
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_CHESTPLATE.get());
@@ -236,6 +240,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_BOOTS.get());
                         output.accept(ItemRegistry.THORNY_HEARTWOOD_HORSE_ARMOR.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+                        output.accept(ItemRegistry.IMBUED_HEARTWOOD_SPEAR.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_AXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HELMET.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_CHESTPLATE.get());
@@ -280,6 +285,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.SACK.get());
                         output.accept(ItemRegistry.MULCH_PILE.get());
                         output.accept(ItemRegistry.LARGE_MULCH_PILE.get());
+                        output.accept(ItemRegistry.MULCH_BUCKET.get());
                         output.accept(ItemRegistry.STABLE_BLASTING_BLOOM.get());
                         output.accept(ItemRegistry.TERRACOTTA_BOMB.get());
                         output.accept(ItemRegistry.METAL_BOMB.get());
@@ -297,6 +303,7 @@ public class CreativeModeTabRegistry {
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_HOE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
                         output.accept(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
+                        output.accept(ItemRegistry.COPPER_MACHETE.get());
                         output.accept(ItemRegistry.IRON_MACHETE.get());
                         output.accept(ItemRegistry.DIAMOND_MACHETE.get());
                         output.accept(ItemRegistry.NETHERITE_MACHETE.get());

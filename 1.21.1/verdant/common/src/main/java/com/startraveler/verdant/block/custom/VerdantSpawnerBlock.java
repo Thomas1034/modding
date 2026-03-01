@@ -36,7 +36,7 @@ public class VerdantSpawnerBlock extends BaseEntityBlock {
         return createTickerHelper(
                 type,
                 BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(),
-                level.isClientSide ? OvergrownSpawnerBlockEntity::clientTick : OvergrownSpawnerBlockEntity::serverTick
+                level.isClientSide() ? OvergrownSpawnerBlockEntity::clientTick : OvergrownSpawnerBlockEntity::serverTick
         );
     }
 

@@ -18,9 +18,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -171,7 +171,7 @@ public class DartEntity extends Arrow {
                     ((AbstractArrowAccessors) (this)).verdant$getPiercedAndKilledEntities().add(livingentity);
                 }
 
-                if (!this.level().isClientSide && owner instanceof ServerPlayer serverPlayer) {
+                if (!this.level().isClientSide() && owner instanceof ServerPlayer serverPlayer) {
                     if (((AbstractArrowAccessors) (this)).verdant$getPiercedAndKilledEntities() != null) {
                         CriteriaTriggers.KILLED_BY_ARROW.trigger(
                                 serverPlayer,
@@ -194,7 +194,7 @@ public class DartEntity extends Arrow {
             }
         } else {
             hitEntity.setRemainingFireTicks(hitEntityRemainingFireTicks);
-            this.deflect(ProjectileDeflection.REVERSE, hitEntity, this.getOwner(), false);
+            this.deflect(ProjectileDeflection.REVERSE, hitEntity, this.owner, false);
             this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
             Level level = this.level();
             if (level instanceof ServerLevel serverLevel) {

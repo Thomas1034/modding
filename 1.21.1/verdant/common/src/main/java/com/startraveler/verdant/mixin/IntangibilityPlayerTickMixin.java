@@ -17,21 +17,29 @@
 package com.startraveler.verdant.mixin;
 
 import com.startraveler.verdant.effect.IntangibilityEffect;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import org.objectweb.asm.Opcodes;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// TODO needs opcode in At?
 @Mixin(Player.class)
-public class IntangibilityPlayerTickMixin {
-    @Inject(method = "tick", at = @At(value = "FIELD", target = "net/minecraft/world/entity/player/Player.takeXpDelay : I", opcode = Opcodes.GETFIELD, ordinal = 0))
+public abstract class IntangibilityPlayerTickMixin extends LivingEntity {
+
+    protected IntangibilityPlayerTickMixin(EntityType<? extends LivingEntity> p_20966_, Level p_20967_) {
+        super(p_20966_, p_20967_);
+    }
+
+    @Inject(method = "tick", at = @At(value = "FIELD", target = "net/minecraft/world/entity/player/Player.takeXpDelay : I", ordinal = 0))
     public void verdant$setNoPhysicsForIntangibility(CallbackInfo ci) {
         if (IntangibilityEffect.isIntangible(((Player) (Object) this))) {
-            boolean shouldBeIntangible = IntangibilityEffect.canGoThroughBlockBeneath((Player) (Object) (this));
-            ((Player) (Object) this).noPhysics = shouldBeIntangible;
-            ((Player) (Object) this).setOnGround(!shouldBeIntangible);
+            boolean shouldBeIntangible = IntangibilityEffect.canGoThroughBlockBeneath(this);
+            this.noPhysics = shouldBeIntangible;
+            this.setOnGround(!shouldBeIntangible);
         }
     }
 }

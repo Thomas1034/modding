@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:block/dirt_diamond_ore"
+    "model": "verdant:block/dirt_diamond_ore_item",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -1
+      }
+    ]
   }
 }

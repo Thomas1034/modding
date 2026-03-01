@@ -25,7 +25,6 @@ import net.minecraft.world.level.material.MapColor;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Supplier;
 
 public class WoodSets {
 
@@ -47,12 +46,12 @@ public class WoodSets {
     public static final WoodSet MANGO = register(new WoodSet(
             Constants.MOD_ID,
             "mango",
-            (Supplier<BlockBehaviour.Properties>) (() -> BlockBehaviour.Properties.of()
+            () -> BlockBehaviour.Properties.of()
                     .mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.GUITAR)
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
-                    .ignitedByLava()),
+                    .ignitedByLava(),
             1,
             true,
             true

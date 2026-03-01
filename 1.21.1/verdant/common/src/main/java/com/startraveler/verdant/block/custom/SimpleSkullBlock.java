@@ -52,7 +52,7 @@ public class SimpleSkullBlock extends Block {
                 .setValue(ROTATION, RotationSegment.convertToSegment(context.getRotation())) : null;
     }
 
-    protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(ROTATION);
     }

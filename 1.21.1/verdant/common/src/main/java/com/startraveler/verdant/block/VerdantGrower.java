@@ -18,7 +18,7 @@ package com.startraveler.verdant.block;
 
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -39,7 +39,7 @@ public interface VerdantGrower extends Converter, Eroder {
     }
 
     @Override
-    default ResourceLocation getTransformer() {
+    default Identifier getTransformer() {
         return BlockTransformerRegistry.VERDANT_ROOTS;
     }
 }

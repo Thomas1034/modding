@@ -17,9 +17,9 @@
 package com.startraveler.verdant.block;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.CommonClass;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -31,23 +31,24 @@ import net.minecraft.world.level.block.state.BlockState;
 // If the block transformer returns null, no changes are made.
 public interface Eroder {
 
-
     // Performs erosion.
     // Must be called server-side.
     // Returns true if a change was made to the world (i.e. erosion succeeded)
+    @SuppressWarnings("unused")
     default boolean erode(ServerLevel level, BlockPos pos, boolean isWet) {
         return this.erode(level.getBlockState(pos), level, pos, isWet);
     }
 
     default boolean erode(BlockState state, ServerLevel level, BlockPos pos, boolean isWet) {
+        RegistryAccess access = level.registryAccess();
 
         // Selects which eroder to use, depending on whether there is access to water.
-        BlockTransformer eroder = CommonClass.TRANSFORMERS.get(
-                level.registryAccess(),
+        BlockTransformer eroder = BlockTransformer.SAFE_CACHE.get(
+                access,
                 isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION
         );
         // Gets the result of erosion. This could be null.
-        BlockState newState = eroder.get(state, level.registryAccess(), level.random);
+        BlockState newState = eroder.get(state, access, level.random);
         // Check if the result is either unchanged or null.
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {

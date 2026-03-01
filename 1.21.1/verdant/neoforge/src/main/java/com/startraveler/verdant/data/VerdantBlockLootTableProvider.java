@@ -5,13 +5,13 @@ import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.WoodSets;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 
 public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
+    @SuppressWarnings("unused")
     protected static final float[] FRUIT_LEAVES_SAPLING_CHANCES = new float[]{0.50F, 0.75F, 0.9F, 1.0F};
 
     protected final Set<Block> knownBlocks;
@@ -68,7 +69,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     public LootTable.Builder createSingleItemTable(ItemLike item, List<Integer> range) {
-        return LootTable.lootTable().withPool((LootPool.Builder) this.applyExplosionCondition(
+        return LootTable.lootTable().withPool(this.applyExplosionCondition(
                 item,
                 LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
@@ -101,7 +102,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                         .setRolls(ConstantValue.exactly(1.0F))
                         .when(this.hasShears().or(this.hasSilkTouch()).invert())
                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
-                                .setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties()
+                                .setProperties(net.minecraft.advancements.criterion.StatePropertiesPredicate.Builder.properties()
                                         .hasProperty(
                                                 FruitingTintedParticleLeavesBlock.STAGES,
                                                 FruitingTintedParticleLeavesBlock.MAX_STAGES
@@ -119,8 +120,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropOther(BlockRegistry.OVERGROWN_SPAWNER.get(), Items.EMERALD);
 
-        // BlockRegistry.VERDANT_HEARTWOOD.addLootTables(this);
-        // BlockRegistry.VERDANT.addLootTables(this);
+
         this.add(
                 BlockRegistry.MANGO_LEAVES.get(), this.createFruitLeavesDrops(
                         BlockRegistry.MANGO_LEAVES.get(),
@@ -231,15 +231,6 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropOther(BlockRegistry.TALL_BUSH.get(), Items.STICK, List.of(1, 2));
         this.dropOther(BlockRegistry.TALL_THORN_BUSH.get(), ItemRegistry.THORN.get(), List.of(1, 3));
-
-        //        this.add(
-        //                BlockRegistry.TALL_BUSH.get(),
-        //                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
-        //        );
-        //        this.add(
-        //                BlockRegistry.TALL_THORN_BUSH.get(),
-        //                block -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
-        //        );
 
         dropSelf(BlockRegistry.WILD_COFFEE.get());
         this.add(BlockRegistry.POTTED_WILD_COFFEE.get(), createPotFlowerItemTable(BlockRegistry.WILD_COFFEE.get()));
@@ -599,10 +590,12 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(base, block -> createSilkTouchDrop(base, withoutSilk.asItem()));
     }
 
+    @SuppressWarnings("unused")
     protected void requireSilkTouchOrShears(Block base, ItemLike withoutSilk) {
         this.add(base, block -> createSilkTouchOrShearsDrop(base, withoutSilk.asItem()));
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected void requireSilkTouchOrShears(Block base, ItemLike withoutSilk, List<Integer> range) {
         this.add(base, block -> createSilkTouchOrShearsDrop(base, withoutSilk.asItem(), range));
     }
@@ -612,7 +605,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected void requireSilkTouchDropsOther(Block base, Block source) {
-        ResourceLocation sourceLoc = BuiltInRegistries.BLOCK.getKey(source).withPrefix("blocks/");
+        Identifier sourceLoc = BuiltInRegistries.BLOCK.getKey(source).withPrefix("blocks/");
         this.add(base, block -> this.createSilkTouchOrOtherDrop(block, sourceLoc));
     }
 
@@ -620,7 +613,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.add(base, block -> createOreDrops(base, drop, range));
     }
 
-    protected LootTable.Builder createSilkTouchOrOtherDrop(Block block, ResourceLocation source) {
+    protected LootTable.Builder createSilkTouchOrOtherDrop(Block block, Identifier source) {
         return createSilkTouchDispatchTable(
                 block,
                 this.applyExplosionDecay(

@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.registry.TriggerRegistry;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderSet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<InventoryChangeItemCountTrigger.TriggerInstance> {
+public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<InventoryChangeItemCountTrigger.@NotNull TriggerInstance> {
     public InventoryChangeItemCountTrigger() {
     }
 
@@ -49,11 +49,12 @@ public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<Inve
             }
         }
 
-        public static Criterion<TriggerInstance> hasItems(ItemPredicate.Builder... items) {
+        @SuppressWarnings("unused")
+        public static Criterion<@NotNull TriggerInstance> hasItems(ItemPredicate.Builder... items) {
             return hasItems(Stream.of(items).map(ItemPredicate.Builder::build).toArray(ItemPredicate[]::new));
         }
 
-        public static Criterion<TriggerInstance> hasItems(ItemPredicate... items) {
+        public static Criterion<@NotNull TriggerInstance> hasItems(ItemPredicate... items) {
             return TriggerRegistry.INVENTORY_CHANGE_ITEM_COUNT_TRIGGER.get().createCriterion(new TriggerInstance(
                     Optional.empty(),
                     Arrays.stream(items)
@@ -63,7 +64,8 @@ public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<Inve
             ));
         }
 
-        public static Criterion<TriggerInstance> hasItems(ItemLike... items) {
+        @SuppressWarnings({"deprecation","unused"})
+        public static Criterion<@NotNull TriggerInstance> hasItems(ItemLike... items) {
             ItemPredicate[] itemPredicates = new ItemPredicate[items.length];
 
             for (int i = 0; i < items.length; ++i) {
@@ -77,10 +79,9 @@ public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<Inve
             return hasItems(itemPredicates);
         }
 
+        @SuppressWarnings("unused")
         public boolean matches(Inventory inventory, ItemStack stack) {
-            if (this.items.isEmpty()) {
-                return true;
-            } else {
+            if (!this.items.isEmpty()) {
 
                 Object2IntArrayMap<ItemPredicate> conditions = new Object2IntArrayMap<>();
                 this.items.forEach(item -> conditions.put(item, 0));
@@ -106,8 +107,8 @@ public class InventoryChangeItemCountTrigger extends SimpleCriterionTrigger<Inve
                         return false;
                     }
                 }
-                return true; // all passed
             }
+            return true;
 
 
         }

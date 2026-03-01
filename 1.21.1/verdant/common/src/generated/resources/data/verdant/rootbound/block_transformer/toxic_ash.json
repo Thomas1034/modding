@@ -4,13 +4,13 @@
     {
       "result": "minecraft:air",
       "tag": {
-        "location": "minecraft:leaves"
+        "id": "minecraft:leaves"
       }
     },
     {
       "result": "minecraft:air",
       "tag": {
-        "location": "minecraft:flowers"
+        "id": "minecraft:flowers"
       }
     },
     {
@@ -21,11 +21,11 @@
       "block": "minecraft:short_grass",
       "results": [
         {
-          "name": "verdant:dead_grass"
-        },
-        {
           "name": "minecraft:air",
           "weight": 2
+        },
+        {
+          "name": "verdant:dead_grass"
         }
       ]
     },
@@ -40,7 +40,7 @@
         }
       ],
       "tag": {
-        "location": "minecraft:logs_that_burn"
+        "id": "minecraft:logs_that_burn"
       }
     },
     {
@@ -55,11 +55,11 @@
       "block": "minecraft:fern",
       "results": [
         {
-          "name": "verdant:dead_grass"
-        },
-        {
           "name": "minecraft:air",
           "weight": 2
+        },
+        {
+          "name": "verdant:dead_grass"
         }
       ]
     },
@@ -70,52 +70,32 @@
     {
       "result": "minecraft:water",
       "tag": {
-        "location": "minecraft:underwater_bonemeals"
+        "id": "minecraft:underwater_bonemeals"
       }
-    },
-    {
-      "block": "minecraft:brain_coral",
-      "result": "minecraft:dead_brain_coral"
-    },
-    {
-      "block": "minecraft:tube_coral_block",
-      "result": "minecraft:dead_tube_coral_block"
-    },
-    {
-      "block": "minecraft:horn_coral",
-      "result": "minecraft:dead_horn_coral"
-    },
-    {
-      "block": "minecraft:bubble_coral_wall_fan",
-      "result": "minecraft:dead_bubble_coral_wall_fan"
-    },
-    {
-      "block": "minecraft:bubble_coral_block",
-      "result": "minecraft:dead_bubble_coral_block"
-    },
-    {
-      "block": "minecraft:fire_coral_fan",
-      "result": "minecraft:dead_fire_coral_fan"
-    },
-    {
-      "block": "minecraft:brain_coral_wall_fan",
-      "result": "minecraft:dead_brain_coral_wall_fan"
     },
     {
       "block": "minecraft:tube_coral_fan",
       "result": "minecraft:dead_tube_coral_fan"
     },
     {
-      "block": "minecraft:fire_coral_wall_fan",
-      "result": "minecraft:dead_fire_coral_wall_fan"
+      "block": "minecraft:brain_coral_fan",
+      "result": "minecraft:dead_brain_coral_fan"
     },
     {
-      "block": "minecraft:horn_coral_wall_fan",
-      "result": "minecraft:dead_horn_coral_wall_fan"
+      "block": "minecraft:horn_coral_fan",
+      "result": "minecraft:dead_horn_coral_fan"
+    },
+    {
+      "block": "minecraft:brain_coral",
+      "result": "minecraft:dead_brain_coral"
     },
     {
       "block": "minecraft:bubble_coral_fan",
       "result": "minecraft:dead_bubble_coral_fan"
+    },
+    {
+      "block": "minecraft:tube_coral_wall_fan",
+      "result": "minecraft:dead_tube_coral_wall_fan"
     },
     {
       "block": "minecraft:brain_coral_block",
@@ -126,8 +106,28 @@
       "result": "minecraft:dead_bubble_coral"
     },
     {
-      "block": "minecraft:horn_coral_fan",
-      "result": "minecraft:dead_horn_coral_fan"
+      "block": "minecraft:horn_coral",
+      "result": "minecraft:dead_horn_coral"
+    },
+    {
+      "block": "minecraft:horn_coral_wall_fan",
+      "result": "minecraft:dead_horn_coral_wall_fan"
+    },
+    {
+      "block": "minecraft:brain_coral_wall_fan",
+      "result": "minecraft:dead_brain_coral_wall_fan"
+    },
+    {
+      "block": "minecraft:fire_coral_fan",
+      "result": "minecraft:dead_fire_coral_fan"
+    },
+    {
+      "block": "minecraft:bubble_coral_block",
+      "result": "minecraft:dead_bubble_coral_block"
+    },
+    {
+      "block": "minecraft:fire_coral_block",
+      "result": "minecraft:dead_fire_coral_block"
     },
     {
       "block": "minecraft:tube_coral",
@@ -138,20 +138,20 @@
       "result": "minecraft:dead_fire_coral"
     },
     {
+      "block": "minecraft:fire_coral_wall_fan",
+      "result": "minecraft:dead_fire_coral_wall_fan"
+    },
+    {
       "block": "minecraft:horn_coral_block",
       "result": "minecraft:dead_horn_coral_block"
     },
     {
-      "block": "minecraft:fire_coral_block",
-      "result": "minecraft:dead_fire_coral_block"
+      "block": "minecraft:tube_coral_block",
+      "result": "minecraft:dead_tube_coral_block"
     },
     {
-      "block": "minecraft:brain_coral_fan",
-      "result": "minecraft:dead_brain_coral_fan"
-    },
-    {
-      "block": "minecraft:tube_coral_wall_fan",
-      "result": "minecraft:dead_tube_coral_wall_fan"
+      "block": "minecraft:bubble_coral_wall_fan",
+      "result": "minecraft:dead_bubble_coral_wall_fan"
     },
     {
       "block": "verdant:drowned_hemlock",
@@ -212,13 +212,13 @@
     {
       "result": "minecraft:air",
       "tag": {
-        "location": "minecraft:crops"
+        "id": "minecraft:crops"
       }
     },
     {
       "result": "verdant:toxic_dirt",
       "tag": {
-        "location": "minecraft:dirt"
+        "id": "minecraft:dirt"
       }
     },
     {

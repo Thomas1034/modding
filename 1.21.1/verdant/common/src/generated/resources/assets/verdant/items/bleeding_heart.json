@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:item/bleeding_heart"
+    "model": "verdant:item/bleeding_heart",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -1
+      }
+    ]
   }
 }

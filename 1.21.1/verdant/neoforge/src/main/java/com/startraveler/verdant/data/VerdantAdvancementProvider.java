@@ -9,14 +9,14 @@ import com.startraveler.verdant.registry.MobEffectRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -46,7 +46,7 @@ public class VerdantAdvancementProvider {
                 Component.translatable("advancements.verdant.root.title"),
                 Component.translatable("advancements.verdant.root.description"),
                 // The background texture. Use null if you don't want a background texture (for non-root advancements).
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "gui/advancements/backgrounds/verdant"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "gui/advancements/backgrounds/verdant"),
                 // The frame type. Valid values are AdvancementType.TASK, CHALLENGE, or GOAL.
                 AdvancementType.TASK,
                 // Whether to show the advancement toast or not.
@@ -63,7 +63,7 @@ public class VerdantAdvancementProvider {
                         .setY(MinMaxBounds.Doubles.ANY))
         );
         builder.requirements(AdvancementRequirements.allOf(List.of("always")));
-        AdvancementHolder root = builder.save(writer, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "root"));
+        AdvancementHolder root = builder.save(writer, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "root"));
 
 
         builder = Advancement.Builder.advancement();
@@ -87,7 +87,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("pyramid")));
         AdvancementHolder petrichor = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "petrichor")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "petrichor")
         );
 
 
@@ -115,7 +115,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("heart", "conduit")));
         AdvancementHolder overgrowth = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "overgrowth")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "overgrowth")
         );
 
         builder = Advancement.Builder.advancement();
@@ -133,13 +133,13 @@ public class VerdantAdvancementProvider {
         builder.addCriterion(
                 "craft_rope", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope_from_strangler_tendril")
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope_from_strangler_tendril")
                 ))
         );
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_rope")));
         AdvancementHolder craft_rope = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope")
         );
 
         builder = Advancement.Builder.advancement();
@@ -158,13 +158,13 @@ public class VerdantAdvancementProvider {
                 "craft_rope_coil",
                 RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope_coil_from_rope")
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope_coil_from_rope")
                 ))
         );
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_rope_coil")));
         AdvancementHolder craft_rope_coil = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope_coil")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "craft_rope_coil")
         );
 
 
@@ -183,13 +183,13 @@ public class VerdantAdvancementProvider {
         builder.addCriterion(
                 "craft_sack", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sack_from_vine_rope")
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, "sack_from_vine_rope")
                 ))
         );
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_sack")));
         AdvancementHolder craft_sack = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "craft_sack")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "craft_sack")
         );
 
 
@@ -215,7 +215,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("carry_sacks")));
         AdvancementHolder many_sacks = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "many_sacks")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "many_sacks")
         );
 
 
@@ -242,7 +242,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("carry_sacks")));
         AdvancementHolder too_many_sacks = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "too_many_sacks")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "too_many_sacks")
         );
 
 
@@ -271,7 +271,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("on_verdant_ground")));
         AdvancementHolder stand_on_verdant_ground = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stand_on_verdant_ground")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "stand_on_verdant_ground")
         );
 
 
@@ -297,7 +297,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("inside_tree")));
         AdvancementHolder inside_tree = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "inside_tree")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "inside_tree")
         );
 
 
@@ -328,7 +328,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("stinking_blossom")));
         AdvancementHolder stinking_blossom = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stinking_blossom")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "stinking_blossom")
         );
 
         builder = Advancement.Builder.advancement();
@@ -364,7 +364,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("thorn_bush", "thorny_leaves")));
         AdvancementHolder thorn_bush = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "thorn_bush")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "thorn_bush")
         );
 
         builder = Advancement.Builder.advancement();
@@ -391,7 +391,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("trap_plant")));
         AdvancementHolder trap_plant = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "trap_plant")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "trap_plant")
         );
 
         builder = Advancement.Builder.advancement();
@@ -466,7 +466,7 @@ public class VerdantAdvancementProvider {
         ))));
         AdvancementHolder poison_ivy = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "poison_ivy")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "poison_ivy")
         );
 
         builder = Advancement.Builder.advancement();
@@ -488,7 +488,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("toxic_ash")));
         AdvancementHolder toxic_ash = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_ash")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "toxic_ash")
         );
 
         builder = Advancement.Builder.advancement();
@@ -517,7 +517,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("toxic_fishing")));
         AdvancementHolder toxic_fishing = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_fishing")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "toxic_fishing")
         );
 
         builder = Advancement.Builder.advancement();
@@ -539,7 +539,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("toxic_solution")));
         AdvancementHolder toxic_solution = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "toxic_solution")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "toxic_solution")
         );
 
         builder = Advancement.Builder.advancement();
@@ -558,7 +558,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("log")));
         AdvancementHolder strong_trees = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "strong_trees")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "strong_trees")
         );
 
 
@@ -589,7 +589,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("deep_roots")));
         AdvancementHolder deep_roots = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "deep_roots")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "deep_roots")
         );
 
 
@@ -616,7 +616,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.allOf(List.of("rip_them_all_down")));
         AdvancementHolder rip_them_all_down = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rip_them_all_down")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rip_them_all_down")
         );
 
         builder = Advancement.Builder.advancement();
@@ -649,7 +649,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("rotten", "rancid")));
         AdvancementHolder inedible = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "inedible")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "inedible")
         );
 
         builder = Advancement.Builder.advancement();
@@ -688,7 +688,7 @@ public class VerdantAdvancementProvider {
 
         );
         builder.requirements(AdvancementRequirements.anyOf(List.of("young", "normal", "old")));
-        AdvancementHolder aloe = builder.save(writer, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "aloe"));
+        AdvancementHolder aloe = builder.save(writer, Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe"));
 
         builder = Advancement.Builder.advancement();
         builder.display(
@@ -706,21 +706,21 @@ public class VerdantAdvancementProvider {
                 "craft_spikes_rope",
                 RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_rope")
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_rope")
                 ))
         );
         builder.addCriterion(
                 "craft_spikes_string",
                 RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_string")
+                        Identifier.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes_from_thorn_stick_string")
                 ))
         );
 
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_spikes_rope", "craft_spikes_string")));
         AdvancementHolder wooden_spikes = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "wooden_spikes")
         );
 
         builder = Advancement.Builder.advancement();
@@ -738,7 +738,7 @@ public class VerdantAdvancementProvider {
         builder.addCriterion(
                 "craft_spikes", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(
+                        Identifier.fromNamespaceAndPath(
                                 Constants.MOD_ID,
                                 "iron_spikes_from_iron_nugget_wooden_spikes_iron_bars"
                         )
@@ -747,7 +747,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_spikes")));
         AdvancementHolder iron_spikes = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "iron_spikes")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "iron_spikes")
         );
 
         builder = Advancement.Builder.advancement();
@@ -764,7 +764,7 @@ public class VerdantAdvancementProvider {
         builder.parent(wooden_spikes);
         builder.addCriterion(
                 "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
-                        Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(
+                        Registries.RECIPE, Identifier.fromNamespaceAndPath(
                                 Constants.MOD_ID,
                                 "wooden_trap_from_wooden_spikes_copper_ingot_stick_tag_minecraft_wooden_pressure_plates"
                         )
@@ -773,7 +773,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
         AdvancementHolder wooden_trap = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wooden_trap")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "wooden_trap")
         );
 
         builder = Advancement.Builder.advancement();
@@ -791,7 +791,7 @@ public class VerdantAdvancementProvider {
         builder.addCriterion(
                 "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(
+                        Identifier.fromNamespaceAndPath(
                                 Constants.MOD_ID,
                                 "iron_trap_from_iron_spikes_iron_ingot_stick_stone_pressure_plate"
                         )
@@ -800,7 +800,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
         AdvancementHolder iron_trap = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "iron_trap")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "iron_trap")
         );
 
         builder = Advancement.Builder.advancement();
@@ -818,7 +818,7 @@ public class VerdantAdvancementProvider {
         builder.addCriterion(
                 "craft_trap", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
-                        ResourceLocation.fromNamespaceAndPath(
+                        Identifier.fromNamespaceAndPath(
                                 Constants.MOD_ID,
                                 "golden_trap_from_golden_spikes_gold_ingot_stick_gold_pressure_plate"
                         )
@@ -827,7 +827,7 @@ public class VerdantAdvancementProvider {
         builder.requirements(AdvancementRequirements.anyOf(List.of("craft_trap")));
         AdvancementHolder golden_trap = builder.save(
                 writer,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "golden_trap")
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "golden_trap")
         );
     }
 

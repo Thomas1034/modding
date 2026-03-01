@@ -87,7 +87,7 @@ public class CoffeeCropBlock extends CropBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(AGE);
     }
 

@@ -20,7 +20,7 @@ import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.registry.MobEffectRegistry;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -43,7 +43,7 @@ public class IntangibilityEffect extends MobEffect {
         // Decrease gravity by 80%
         this.addAttributeModifier(
                 Attributes.GRAVITY,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "intangibility/less_gravity"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "intangibility/less_gravity"),
                 -0.8,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );
@@ -52,7 +52,7 @@ public class IntangibilityEffect extends MobEffect {
     // Returns true if the player can go through the blocks beneath and at their position.
     // This prevents the player from falling out of the world, and enables them to stand on
     // intangible blocks.
-    public static boolean canGoThroughBlockBeneath(Player player) {
+    public static boolean canGoThroughBlockBeneath(LivingEntity player) {
         BlockPos atPos = player.blockPosition();
         Level level = player.level();
         BlockState belowState = level.getBlockState(atPos.below());

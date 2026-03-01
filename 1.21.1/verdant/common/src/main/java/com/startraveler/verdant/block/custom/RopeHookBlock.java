@@ -163,7 +163,7 @@ public class RopeHookBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(FACING);
     }
 }

@@ -17,11 +17,9 @@
 package com.startraveler.verdant.block;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.CommonClass;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,23 +29,36 @@ public interface Converter {
     // Performs block conversion.
     // Must be called server-side.
     // Returns true if a change was made to the world (i.e. conversion succeeded)
+    @SuppressWarnings("UnusedReturnValue")
     default boolean convert(ServerLevel level, BlockPos pos) {
         return this.convert(level.getBlockState(pos), level, pos);
     }
 
     // Returns true if block conversion is possible, false otherwise.
     default boolean canConvert(BlockState state, Level level) {
+
+        return this.getTransformer(level).isValidInput(level.registryAccess(), state);
+    }
+
+    // Returns true if block conversion is possible, false otherwise.
+    @SuppressWarnings("CommentedOutCode")
+    default BlockTransformer getTransformer(Level level) {
+
         RegistryAccess access = level.registryAccess();
+
+        /*
         // Retrieves the registry for block transformers.
         Registry<BlockTransformer> transformers = access.lookupOrThrow(BlockTransformer.KEY);
-        BlockTransformer converter = transformers.get(this.getTransformer()).orElseThrow().value();
-        return converter.isValidInput(access, state);
+        return transformers.get(this.getTransformer()).orElseThrow().value();
+        */
+
+        return BlockTransformer.SAFE_CACHE.get(access, this.getTransformer());
     }
 
     default boolean convert(BlockState state, ServerLevel level, BlockPos pos) {
         RegistryAccess access = level.registryAccess();
         // Retrieves the block transformer.
-        BlockTransformer converter = CommonClass.TRANSFORMERS.get(access, this.getTransformer());
+        BlockTransformer converter = this.getTransformer(level);
         // Gets the result of conversion. This could be null.
         BlockState newState = converter.get(state, access, level.random);
         // Check if the result is either unchanged or null.
@@ -64,7 +75,7 @@ public interface Converter {
         return false;
     }
 
-    ResourceLocation getTransformer();
+    Identifier getTransformer();
 
 }
 

@@ -21,7 +21,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.damagesource.DamageType;
 
 public class DamageSourceRegistry {
@@ -31,7 +31,7 @@ public class DamageSourceRegistry {
     public static ResourceKey<DamageType> TOXIC_ASH = create("toxic_ash");
 
     private static ResourceKey<DamageType> create(String name) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
     public static Holder<DamageType> get(RegistryAccess access, ResourceKey<DamageType> key) {

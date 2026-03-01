@@ -22,6 +22,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
 public class AdrenalineEffect extends MobEffect {
     public AdrenalineEffect(MobEffectCategory category, int color) {
@@ -29,9 +30,9 @@ public class AdrenalineEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-        int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
-        if (timeSinceHurt < 2) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, LivingEntity entity, int amplifier) {
+        int timeSinceHurt = entity.hurtDuration - entity.hurtTime;
+        if (timeSinceHurt < 2 && entity.hurtDuration > 0) {
             entity.addEffect(new MobEffectInstance(MobEffects.SPEED, 200, 2 * (amplifier + 1) - 1));
         }
         return true;

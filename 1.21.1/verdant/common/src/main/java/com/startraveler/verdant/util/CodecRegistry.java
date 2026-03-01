@@ -3,13 +3,13 @@ package com.startraveler.verdant.util;
 import com.google.common.collect.HashBiMap;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class CodecRegistry<T> {
 
-    private final HashBiMap<ResourceLocation, MapCodec<? extends T>> map = HashBiMap.create();
+    private final HashBiMap<Identifier, MapCodec<? extends T>> map = HashBiMap.create();
 
-    public <S extends T> CodecRegistryEntry<S> register(ResourceLocation location, MapCodec<S> type) {
+    public <S extends T> CodecRegistryEntry<S> register(Identifier location, MapCodec<S> type) {
         if (type != null) {
             this.map.put(location, type);
         } else {
@@ -19,22 +19,22 @@ public class CodecRegistry<T> {
         return new CodecRegistryEntry<>(location, type);
     }
 
-    public MapCodec<? extends T> byKey(ResourceLocation location) {
+    public MapCodec<? extends T> byKey(Identifier location) {
         return this.map.get(location);
     }
 
-    public ResourceLocation byValue(MapCodec<?> type) {
+    public Identifier byValue(MapCodec<?> type) {
         return this.map.inverse().get(type);
     }
 
     public Codec<MapCodec<? extends T>> forDispatch() {
-        return ResourceLocation.CODEC.xmap(
+        return Identifier.CODEC.xmap(
                 this::byKey,
                 this::byValue
         );
     }
 
-    public record CodecRegistryEntry<S>(ResourceLocation location, MapCodec<S> codec) {
+    public record CodecRegistryEntry<S>(Identifier location, MapCodec<S> codec) {
     }
 
 }

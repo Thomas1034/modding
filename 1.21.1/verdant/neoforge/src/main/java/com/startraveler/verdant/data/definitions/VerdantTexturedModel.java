@@ -4,7 +4,7 @@ import com.startraveler.verdant.Constants;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -90,7 +90,7 @@ public class VerdantTexturedModel {
             (block) -> VerdantTextureMapping.overlaidCubeBlock(
                     block,
                     base,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/")
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/")
             ),
             VerdantModelTemplates.OVERLAID_CUBE
     );
@@ -99,8 +99,8 @@ public class VerdantTexturedModel {
             (block) -> VerdantTextureMapping.topOverlaidCubeBlock(
                     block,
                     base,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/"),
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, topOverlay).withPrefix("block/")
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/"),
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, topOverlay).withPrefix("block/")
             ), VerdantModelTemplates.TOP_OVERLAID_CUBE
     );
 

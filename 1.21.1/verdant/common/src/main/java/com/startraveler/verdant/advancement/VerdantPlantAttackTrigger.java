@@ -21,19 +21,21 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.registry.TriggerRegistry;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class VerdantPlantAttackTrigger extends SimpleCriterionTrigger<VerdantPlantAttackTrigger.VerdantPlantAttackTriggerInstance> {
+public class VerdantPlantAttackTrigger extends SimpleCriterionTrigger<VerdantPlantAttackTrigger.@NotNull VerdantPlantAttackTriggerInstance> {
     @Override
-    public Codec<VerdantPlantAttackTriggerInstance> codec() {
+    public @NotNull Codec<VerdantPlantAttackTriggerInstance> codec() {
         return VerdantPlantAttackTriggerInstance.CODEC;
     }
 
     public void trigger(ServerPlayer player) {
+
         this.trigger(
                 player,
                 // The condition checker method within the SimpleCriterionTrigger.SimpleInstance subclass
@@ -48,9 +50,7 @@ public class VerdantPlantAttackTrigger extends SimpleCriterionTrigger<VerdantPla
                                 .forGetter(VerdantPlantAttackTriggerInstance::player))
                 .apply(instance, VerdantPlantAttackTriggerInstance::new));
 
-        // In this example, EXAMPLE_TRIGGER is a DeferredHolder<CriterionTrigger<?>, ExampleTrigger>.
-        // See below for how to register triggers.
-        public static Criterion<VerdantPlantAttackTriggerInstance> instance(ContextAwarePredicate player) {
+        public static Criterion<@NotNull VerdantPlantAttackTriggerInstance> instance(ContextAwarePredicate player) {
             return TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get()
                     .createCriterion(new VerdantPlantAttackTriggerInstance(Optional.of(player)));
         }

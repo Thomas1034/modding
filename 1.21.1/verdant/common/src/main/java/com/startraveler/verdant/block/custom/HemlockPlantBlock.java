@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.KelpPlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -49,29 +50,29 @@ public class HemlockPlantBlock extends KelpPlantBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         super.randomTick(state, level, pos, rand);
         this.tick(state, level, pos, rand);
     }
 
     // Inflicts poison on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 livingEntity.addEffect(ASPHYXIATION.get());
             }
         }
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
     }
 
     @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) BlockRegistry.DROWNED_HEMLOCK.get();
     }
 }

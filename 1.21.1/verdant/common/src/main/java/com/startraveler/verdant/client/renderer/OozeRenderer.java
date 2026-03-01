@@ -4,34 +4,39 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.client.layer.OozeOuterLayer;
 import com.startraveler.verdant.entity.custom.OozeEntity;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.block.MovingBlockRenderState;
 import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, SlimeModel> {
+public class OozeRenderer extends MobRenderer<@NotNull OozeEntity, @NotNull OozeRenderState, @NotNull SlimeModel> {
+
     public static final int MIN_BLOCK_LIGHT = 4;
-    public static final ResourceLocation OOZE_LOCATION = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier OOZE_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/entity/slime/ooze.png"
     );
+    @SuppressWarnings("unused")
     public static final int FULL_BRIGHT = 15728880;
 
     private final ItemModelResolver itemModelResolver;
@@ -45,16 +50,13 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
     }
 
     @Override
-    public void render(@NotNull OozeRenderState renderState, @NotNull PoseStack poseStack, @NotNull MultiBufferSource source, int tint) {
+    public void submit(OozeRenderState renderState, @NotNull PoseStack poseStack, @NotNull SubmitNodeCollector submitNodeCollector, @NotNull CameraRenderState state) {
         poseStack.pushPose();
         this.setupRotations(renderState, poseStack, renderState.bodyRot, renderState.scale);
 
         float oozeSize = renderState.size * ((7f + (1f / 8f)) / 16f);
 
-        if (renderState.item != null) {
-            poseStack.translate(0f, 0.5, 0f);
-            renderState.item.render(poseStack, source, FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
-        } else {
+        if (renderState.block != null) {
 
             float flowerScaleFactor = renderState.size == 1 ? 1 : (8f / 16f + 3f / 16f * renderState.size);
             poseStack.scale(flowerScaleFactor, flowerScaleFactor, flowerScaleFactor);
@@ -69,16 +71,20 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
 
             poseStack.translate(-0.5f, scaledFlowerOffset + fixedFlowerOffset, -0.5f);
 
-            this.renderSingleBlock(renderState.block, poseStack, source, FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+            // Offset to make up for the world offset.
+            Vec3 blockOffset = renderState.block.blockState.getOffset(renderState.block.blockPos);
+            poseStack.translate(blockOffset.scale(-1));
+
+            submitNodeCollector.submitMovingBlock(poseStack, renderState.block);
         }
 
         poseStack.popPose();
-        super.render(renderState, poseStack, source, tint);
 
+        super.submit(renderState, poseStack, submitNodeCollector, state);
     }
 
     @Override
-    public @NotNull ResourceLocation getTextureLocation(@NotNull OozeRenderState state) {
+    public @NotNull Identifier getTextureLocation(@NotNull OozeRenderState state) {
         return OOZE_LOCATION;
     }
 
@@ -89,13 +95,25 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
 
     public void extractRenderState(@NotNull OozeEntity ooze, @NotNull OozeRenderState renderState, float partialTick) {
         super.extractRenderState(ooze, renderState, partialTick);
+
+
         renderState.squish = Mth.lerp(partialTick, ooze.oSquish, ooze.squish);
         renderState.size = ooze.getSize();
         ItemStack mainHandItem = ooze.getMainHandItem();
 
+
         if (mainHandItem.getItem() instanceof BlockItem blockItem) {
-            renderState.block = blockItem.getBlock().defaultBlockState();
+            MovingBlockRenderState blockRenderState = new MovingBlockRenderState();
+            BlockPos oozePos = ooze.blockPosition();
+            BlockPos blockPos = BlockPos.containing(oozePos.getX(), ooze.getBoundingBox().maxY, oozePos.getZ());
+            blockRenderState.randomSeedPos = blockPos;
+            blockRenderState.blockPos = blockPos;
+            blockRenderState.blockState = blockItem.getBlock().defaultBlockState();
+            blockRenderState.level = ooze.level();
+            blockRenderState.biome = ooze.level().getBiome(blockPos);
+
             renderState.item = null;
+            renderState.block = blockRenderState;
         } else {
             renderState.item = new ItemStackRenderState();
             this.itemModelResolver.updateForNonLiving(
@@ -117,6 +135,7 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
         return new OozeRenderState();
     }
 
+    @SuppressWarnings("unused")
     public void renderSingleBlock(BlockState state, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         RenderShape renderShape = state.getRenderShape();
         if (renderShape != RenderShape.INVISIBLE) {
@@ -127,7 +146,7 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
             float blue = (float) (color & 255) / 255.0F;
             ModelBlockRenderer.renderModel(
                     poseStack.last(),
-                    bufferSource.getBuffer(RenderType.cutout()),
+                    bufferSource.getBuffer(RenderTypes.translucentMovingBlock()),
                     blockStateModel,
                     red,
                     green,
@@ -135,15 +154,13 @@ public class OozeRenderer extends MobRenderer<OozeEntity, OozeRenderState, Slime
                     packedLight,
                     packedOverlay
             );
-            this.blockRenderDispatcher.specialBlockModelRenderer.get()
-                    .renderByBlock(
-                            state.getBlock(),
-                            ItemDisplayContext.NONE,
-                            poseStack,
-                            bufferSource,
-                            packedLight,
-                            packedOverlay
-                    );
+            this.blockRenderDispatcher.renderSingleBlock(
+                    state,
+                    poseStack,
+                    bufferSource,
+                    packedLight,
+                    packedOverlay
+            );
         }
     }
 

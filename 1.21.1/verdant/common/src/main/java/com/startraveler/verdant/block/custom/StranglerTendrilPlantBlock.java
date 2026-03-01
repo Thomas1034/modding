@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class StranglerTendrilPlantBlock extends GrowingPlantBodyBlock {
     protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
@@ -47,23 +48,23 @@ public class StranglerTendrilPlantBlock extends GrowingPlantBodyBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         super.randomTick(state, level, pos, rand);
         this.tick(state, level, pos, rand);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
     }
 
     @Override
-    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+    protected @NotNull MapCodec<? extends GrowingPlantBodyBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
         BlockPos blockpos = pos.relative(this.growthDirection.getOpposite());
         BlockState blockstate = level.getBlockState(blockpos);
         return this.canAttachTo(blockstate) && (blockstate.is(this.getHeadBlock()) || blockstate.is(this.getBodyBlock()) || blockstate.isFaceSturdy(
@@ -74,13 +75,13 @@ public class StranglerTendrilPlantBlock extends GrowingPlantBodyBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         Vec3 offset = state.getOffset(pos);
         return super.getShape(state, level, pos, context).move(offset);
     }
 
     @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) BlockRegistry.STRANGLER_TENDRIL.get();
     }
 }

@@ -18,7 +18,6 @@ package com.startraveler.verdant.block.custom;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import com.startraveler.rootbound.featureset.FeatureSet;
-import com.startraveler.verdant.CommonClass;
 import com.startraveler.verdant.block.Hoeable;
 import com.startraveler.verdant.block.VerdantGrower;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
@@ -81,8 +80,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // These are used for caching surrounding blocks, to optimize spreading mechanics.
     public static final BooleanProperty SUCCESSFULLY_SPREAD = BooleanProperty.create("successfully_spread");
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
-    public static final EnumProperty<NeighborType> ABOVE = EnumProperty.create("above", NeighborType.class);
-    public static final EnumProperty<NeighborType> BELOW = EnumProperty.create("below", NeighborType.class);
+    public static final EnumProperty<@NotNull NeighborType> ABOVE = EnumProperty.create("above", NeighborType.class);
+    public static final EnumProperty<@NotNull NeighborType> BELOW = EnumProperty.create("below", NeighborType.class);
     // The list of offsets to spread to.
     protected final List<int[]> offsetsToSpreadTo = generateOffsetsInRadius(SPREAD_DISTANCE);
     // These store properties of the block internally; this allows me to reuse this class
@@ -273,9 +272,9 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
         // cross that bridge when I come to it.
         RegistryAccess access = level.registryAccess();
-        BlockTransformer erode = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.EROSION);
-        BlockTransformer erodeWet = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.EROSION_WET);
-        BlockTransformer roots = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.VERDANT_ROOTS);
+        BlockTransformer erode = BlockTransformer.SAFE_CACHE.get(access, BlockTransformerRegistry.EROSION);
+        BlockTransformer erodeWet = BlockTransformer.SAFE_CACHE.get(access, BlockTransformerRegistry.EROSION_WET);
+        BlockTransformer roots = BlockTransformer.SAFE_CACHE.get(access, BlockTransformerRegistry.VERDANT_ROOTS);
 
         // Now, update the state's activity and wetness.
         // But first, set up some variables that will be needed.
@@ -296,7 +295,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
         // Checking every neighbor:
         Direction[] directions = Direction.values();
-        int numDirections = directions.length;
         Direction direction;
         for (Direction value : directions) {
             direction = value;
@@ -429,7 +427,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW, SUCCESSFULLY_SPREAD);
     }
 

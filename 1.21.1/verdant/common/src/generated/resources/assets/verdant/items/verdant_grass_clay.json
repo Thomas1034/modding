@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:block/verdant_grass_clay"
+    "model": "verdant:block/verdant_grass_clay_item",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -12012264
+      }
+    ]
   }
 }

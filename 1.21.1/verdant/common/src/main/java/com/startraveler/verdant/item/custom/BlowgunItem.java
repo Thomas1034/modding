@@ -11,13 +11,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -32,7 +33,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
         super(properties);
     }
 
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResult use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         // Constants.LOG.warn("Player air {}, max {}", player.getAirSupply(), player.getMaxAirSupply());
         boolean hasAmmo = !player.getProjectile(itemStack).isEmpty();
@@ -45,7 +46,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
         }
     }
 
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity user) {
         if (user instanceof Player player) {
             ItemStack itemstack = player.getProjectile(stack);
             if (!itemstack.isEmpty()) {
@@ -110,17 +111,15 @@ public class BlowgunItem extends ProjectileWeaponItem {
 
                 player.awardStat(Stats.ITEM_USED.get(this));
             }
-            return stack;
-        } else {
-            return stack;
         }
+        return stack;
     }
 
-    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+    public @NotNull ItemUseAnimation getUseAnimation(@NotNull ItemStack stack) {
         return ItemUseAnimation.TOOT_HORN;
     }
 
-    public int getUseDuration(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity user) {
         return MAX_BLOW_DURATION;
     }
 
@@ -128,7 +127,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
         return AIR_TO_TAKE;
     }
 
-    public Predicate<ItemStack> getAllSupportedProjectiles() {
+    public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
         return DART_ONLY;
     }
 
@@ -136,7 +135,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
         return DEFAULT_RANGE;
     }
 
-    protected void shootProjectile(LivingEntity entity, Projectile projectile, int p_330631_, float velocity, float inaccuracy, float yRotationOffset, LivingEntity unknown) {
+    protected void shootProjectile(@NotNull LivingEntity entity, Projectile projectile, int p_330631_, float velocity, float inaccuracy, float yRotationOffset, LivingEntity unknown) {
         projectile.shootFromRotation(
                 entity,
                 entity.getXRot(),
@@ -148,7 +147,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
     }
 
     @Override
-    protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack ammo, boolean isCrit) {
+    protected @NotNull Projectile createProjectile(@NotNull Level level, @NotNull LivingEntity shooter, @NotNull ItemStack weapon, ItemStack ammo, boolean isCrit) {
         Item ammoItem = ammo.getItem();
         DartItem dart;
         if (ammoItem instanceof DartItem dartItem) {

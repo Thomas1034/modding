@@ -43,6 +43,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -53,108 +54,120 @@ public class ExtensibleCandleCakeBlock extends AbstractCandleBlock {
     protected static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);
     private static final Iterable<Vec3> PARTICLE_OFFSETS = ImmutableList.of(new Vec3(0.5D, 1.0D, 0.5D));
 
-    private final Supplier<Block> baseCake;
+    protected final Supplier<@NotNull Block> baseCake;
+    protected final Supplier<@NotNull Block> candle;
 
-    public ExtensibleCandleCakeBlock(Block candle, Supplier<Block> baseCake, Properties properties) {
-        // TODO This still overwrites the existing candle cake. Fix by reimplementing...
-        // everything.
+    public ExtensibleCandleCakeBlock(Supplier<@NotNull Block> candle, Supplier<@NotNull Block> baseCake, Properties properties) {
         super(properties);
+        this.candle = candle;
         this.baseCake = baseCake;
-        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.FALSE));
     }
 
     private static boolean candleHit(BlockHitResult hit) {
-        return hit.getLocation().y - (double) hit.getBlockPos().getY() > 0.5;
+        return (hit.getLocation().y - hit.getBlockPos().getY()) > 0.5;
+    }
+
+    public Supplier<Block> getCandle() {
+        return this.candle;
     }
 
     @Override
-    protected MapCodec<? extends AbstractCandleBlock> codec() {
+    protected @NotNull MapCodec<? extends AbstractCandleBlock> codec() {
         throw new IllegalStateException("Codecs aren't implementing yet.");
     }
 
     @Override
-    protected Iterable<Vec3> getParticleOffsets(BlockState p_152868_) {
+    protected @NotNull Iterable<Vec3> getParticleOffsets(@NotNull BlockState state) {
         return PARTICLE_OFFSETS;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_152905_) {
-        p_152905_.add(LIT);
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(LIT);
     }
 
     @Override
-    protected boolean isPathfindable(BlockState p_152870_, PathComputationType p_152873_) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
         return false;
     }
 
     @Override
-    protected BlockState updateShape(BlockState p_152898_, LevelReader p_374136_, ScheduledTickAccess p_374358_, BlockPos p_152902_, Direction p_152899_, BlockPos p_152903_, BlockState p_152900_, RandomSource p_374518_) {
-        return p_152899_ == Direction.DOWN && !p_152898_.canSurvive(
-                p_374136_,
-                p_152902_
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
+        return direction == Direction.DOWN && !state.canSurvive(
+                level,
+                pos
         ) ? Blocks.AIR.defaultBlockState() : super.updateShape(
-                p_152898_,
-                p_374136_,
-                p_374358_,
-                p_152902_,
-                p_152899_,
-                p_152903_,
-                p_152900_,
-                p_374518_
+                state,
+                level,
+                tickAccess,
+                pos,
+                direction,
+                neighborPos,
+                neighborState,
+                random
         );
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState p_316519_, Level p_316226_, BlockPos p_316122_, Player p_316438_, BlockHitResult p_316849_) {
-        InteractionResult interactionresult = ((ExtensibleCakeBlock) this.baseCake.get()).eatCustom(
-                p_316226_,
-                p_316122_,
-                this.baseCake.get().defaultBlockState(),
-                p_316438_
-        );
-        if (interactionresult.consumesAction()) {
-            dropResources(p_316519_, p_316226_, p_316122_);
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        Block baseCake = this.baseCake.get();
+        InteractionResult interactionResult = InteractionResult.PASS;
+        if (baseCake instanceof ExtensibleCakeBlock extensibleCakeBlock) {
+            interactionResult = extensibleCakeBlock.eatCustom(
+                    level,
+                    pos,
+                    this.baseCake.get().defaultBlockState(),
+                    player
+            );
         }
 
-        return interactionresult;
+        if (interactionResult.consumesAction()) {
+            dropResources(state, level, pos);
+        }
+
+        return interactionResult;
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack p_316571_, BlockState p_316514_, Level p_316171_, BlockPos p_316112_, Player p_316172_, InteractionHand p_316257_, BlockHitResult p_316286_) {
-        if (p_316571_.is(Items.FLINT_AND_STEEL) || p_316571_.is(Items.FIRE_CHARGE)) {
-            return InteractionResult.PASS;
-        } else if (candleHit(p_316286_) && p_316571_.isEmpty() && p_316514_.getValue(LIT)) {
-            extinguish(p_316172_, p_316514_, p_316171_, p_316112_);
-            return InteractionResult.SUCCESS;
+    protected @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        if (!stack.is(Items.FLINT_AND_STEEL) && !stack.is(Items.FIRE_CHARGE)) {
+            if (candleHit(hitResult) && stack.isEmpty() && state.getValue(LIT)) {
+                extinguish(player, state, level, pos);
+                return InteractionResult.SUCCESS;
+            } else {
+                return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+            }
         } else {
-            return super.useItemOn(p_316571_, p_316514_, p_316171_, p_316112_, p_316172_, p_316257_, p_316286_);
+            return InteractionResult.PASS;
         }
     }
 
     @Override
-    protected boolean hasAnalogOutputSignal(BlockState p_152909_) {
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState p_152909_) {
         return true;
     }
 
     @Override
-    protected boolean canSurvive(BlockState p_152891_, LevelReader p_152892_, BlockPos p_152893_) {
-        return p_152892_.getBlockState(p_152893_.below()).isSolid();
+    protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        return level.getBlockState(belowPos).isFaceSturdy(level, belowPos, Direction.UP);
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState p_152880_, Level p_152881_, BlockPos p_152882_) {
+    protected int getAnalogOutputSignal(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return CakeBlock.FULL_CAKE_SIGNAL;
     }
 
     @Override
-    protected VoxelShape getShape(BlockState p_152875_, BlockGetter p_152876_, BlockPos p_152877_, CollisionContext p_152878_) {
+    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext collisionContext) {
         return SHAPE;
     }
 
     @Override
-    protected ItemStack getCloneItemStack(LevelReader p_304662_, BlockPos p_152863_, BlockState p_152864_, boolean p_387122_) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean includeData) {
         return new ItemStack(this.baseCake.get());
     }
-
 }
 

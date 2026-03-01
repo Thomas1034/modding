@@ -148,7 +148,7 @@ public class FertilizerRotatedPillarBlock extends RotatedPillarBlock {
     public static boolean boneMeal(Level level, BlockPos pos, Direction relative) {
         BlockPos offset = pos.relative(relative);
         if (growCrop(level, pos)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 level.levelEvent(1505, pos, 15);
             }
             return true;
@@ -156,7 +156,7 @@ public class FertilizerRotatedPillarBlock extends RotatedPillarBlock {
             BlockState blockstate = level.getBlockState(pos);
             boolean flag = blockstate.isFaceSturdy(level, pos, relative);
             if (flag && growWaterPlant(level, offset, relative)) {
-                if (!level.isClientSide) {
+                if (!level.isClientSide()) {
                     level.levelEvent(1505, offset, 15);
                 }
 

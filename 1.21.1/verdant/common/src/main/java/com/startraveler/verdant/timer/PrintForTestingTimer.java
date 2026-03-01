@@ -4,12 +4,12 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.Constants;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 
 public class PrintForTestingTimer extends BaseTimer {
 
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier TYPE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "print_for_testing"
     );
@@ -22,7 +22,7 @@ public class PrintForTestingTimer extends BaseTimer {
 
     protected final String toPrint;
 
-    protected PrintForTestingTimer(String toPrint, long timeRemaining, ResourceLocation type) {
+    protected PrintForTestingTimer(String toPrint, long timeRemaining, Identifier type) {
         super(timeRemaining, type);
         this.toPrint = toPrint;
     }

@@ -15,11 +15,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 public class SimpleWallSkullBlock extends Block {
-    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<@NotNull Direction> FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(
             ImmutableMap.of(
                     Direction.NORTH,
@@ -39,18 +40,20 @@ public class SimpleWallSkullBlock extends Block {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         BlockState blockState = super.getStateForPlacement(context);
-        BlockGetter blockGetter = context.getLevel();
-        BlockPos blockPos = context.getClickedPos();
-        Direction[] directions = context.getNearestLookingDirections();
+        if (blockState != null) {
+            BlockGetter blockGetter = context.getLevel();
+            BlockPos blockPos = context.getClickedPos();
+            Direction[] directions = context.getNearestLookingDirections();
 
-        for (Direction direction : directions) {
-            if (direction.getAxis().isHorizontal()) {
-                Direction opposite = direction.getOpposite();
-                blockState = blockState.setValue(FACING, opposite);
-                if (!blockGetter.getBlockState(blockPos.relative(direction)).canBeReplaced(context)) {
-                    return blockState;
+            for (Direction direction : directions) {
+                if (direction.getAxis().isHorizontal()) {
+                    Direction opposite = direction.getOpposite();
+                    blockState = blockState.setValue(FACING, opposite);
+                    if (!blockGetter.getBlockState(blockPos.relative(direction)).canBeReplaced(context)) {
+                        return blockState;
+                    }
                 }
             }
         }
@@ -58,23 +61,23 @@ public class SimpleWallSkullBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return AABBS.get(state.getValue(FACING));
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -577,6 +577,14 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 1
         );
         shaped(
+                List.of("  P", " S ", "S  "),
+                List.of('P', 'S'),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
+                RecipeCategory.COMBAT,
+                ItemRegistry.HEARTWOOD_SPEAR.get(),
+                1
+        );
+        shaped(
                 List.of("PPP", " S ", " S "),
                 List.of('P', 'S'),
                 List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.RODS_WOODEN),
@@ -635,6 +643,11 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.HEARTWOOD_SWORD.get(),
                 RecipeCategory.COMBAT,
                 ItemRegistry.IMBUED_HEARTWOOD_SWORD.get()
+        );
+        imbuementSmithing(
+                ItemRegistry.HEARTWOOD_SPEAR.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.IMBUED_HEARTWOOD_SPEAR.get()
         );
         imbuementSmithing(
                 ItemRegistry.HEARTWOOD_HELMET.get(),
@@ -789,6 +802,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 List.of(Tags.Items.NUGGETS_IRON, ItemRegistry.SAP_TORCH.get()),
                 RecipeCategory.DECORATIONS,
                 BlockRegistry.SAP_LANTERN.get(),
+                1
+        );
+
+        shaped(
+                List.of("II ", " I ", "SR "),
+                List.of('S', 'I', 'R'),
+                List.of(Tags.Items.RODS_WOODEN, Tags.Items.INGOTS_COPPER, VerdantTags.Items.ROPES),
+                RecipeCategory.COMBAT,
+                ItemRegistry.COPPER_MACHETE.get(),
                 1
         );
 
@@ -1049,6 +1071,11 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.THORNY_HEARTWOOD_SWORD.get()
         );
         thornsSmithing(
+                ItemRegistry.HEARTWOOD_SPEAR.get(),
+                RecipeCategory.COMBAT,
+                ItemRegistry.THORNY_HEARTWOOD_SPEAR.get()
+        );
+        thornsSmithing(
                 ItemRegistry.HEARTWOOD_HELMET.get(),
                 RecipeCategory.COMBAT,
                 ItemRegistry.THORNY_HEARTWOOD_HELMET.get()
@@ -1096,6 +1123,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 ItemRegistry.MULCH_PILE.get(),
                 1
         );
+        // Mulch bucket
+        shaped(
+                List.of("ttt", "trt", "ttt"),
+                List.of('t', 'r'),
+                List.of(ItemRegistry.LARGE_MULCH_PILE.get(), Items.BUCKET),
+                RecipeCategory.TOOLS,
+                ItemRegistry.MULCH_BUCKET.get(),
+                1
+        );
         // Large mulch pile
         shaped(
                 List.of("pp", "pp"),
@@ -1141,7 +1177,13 @@ public class VerdantRecipeProvider extends RecipeProvider {
                 BlockRegistry.VERDANT_RESIN_BLOCK.get(),
                 1
         );
-        shapeless(RecipeCategory.MISC, BlockRegistry.VERDANT_RESIN_BLOCK.get(), 1, ItemRegistry.VERDANT_RESIN_CLUMP.get(), 9);
+        shapeless(
+                RecipeCategory.MISC,
+                BlockRegistry.VERDANT_RESIN_BLOCK.get(),
+                1,
+                ItemRegistry.VERDANT_RESIN_CLUMP.get(),
+                9
+        );
 
         smeltingResultFromBase(BlockRegistry.VERDANT_RESIN_BLOCK.get(), BlockRegistry.SAP_BLOCK.get());
         smeltingResultFromBase(ItemRegistry.VERDANT_RESIN_CLUMP.get(), ItemRegistry.SAP_GLOB.get());
@@ -1171,8 +1213,6 @@ public class VerdantRecipeProvider extends RecipeProvider {
                         Items.GLASS_BOTTLE
                 ), List.of(1, 1, 1, 6), RecipeCategory.FOOD, ItemRegistry.NECTAR_BOTTLE.get(), 6
         );
-
-        // TODO End of recipe definitions
     }
 
     protected void thornsSmithing(Item ingredientItem, RecipeCategory category, Item resultItem) {
@@ -1386,8 +1426,8 @@ public class VerdantRecipeProvider extends RecipeProvider {
     }
 
     @SuppressWarnings("deprecation")
-    protected ResourceLocation identifier(ItemLike item) {
-        return item.asItem().builtInRegistryHolder().key().location();
+    protected Identifier identifier(ItemLike item) {
+        return item.asItem().builtInRegistryHolder().key().identifier();
     }
 
     protected void campfire(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {

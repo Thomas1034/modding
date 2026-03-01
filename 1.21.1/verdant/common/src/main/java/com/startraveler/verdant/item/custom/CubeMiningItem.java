@@ -1,8 +1,10 @@
 package com.startraveler.verdant.item.custom;
 
+import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.DataComponentRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,13 +32,13 @@ public class CubeMiningItem extends Item {
 
         boolean result = super.mineBlock(stack, level, state, pos, miningEntity);
 
-        if (result) {
+        if (result && level instanceof ServerLevel serverLevel) {
             int miningRadius = stack.getOrDefault(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 0);
             Tool thisTool = stack.get(DataComponents.TOOL);
 
             if (thisTool != null && miningRadius > 0) {
                 float centerMiningSpeed = thisTool.getMiningSpeed(state);
-                float centerDestroySpeed = state.getDestroySpeed(level, pos);
+                float centerDestroySpeed = state.getDestroySpeed(serverLevel, pos);
                 boolean centerIsCorrectForDrops = thisTool.isCorrectForDrops(state);
 
                 if ((centerMiningSpeed > thisTool.defaultMiningSpeed() && centerIsCorrectForDrops) || Mth.equal(
@@ -45,7 +47,11 @@ public class CubeMiningItem extends Item {
                 ) || centerDestroySpeed <= 0) {
 
                     Iterable<BlockPos> positionsToMine = BlockPos.betweenClosed(
-                            pos.offset(-miningRadius, -miningRadius, -miningRadius),
+                            pos.offset(
+                                    -miningRadius,
+                                    -miningRadius,
+                                    -miningRadius
+                            ),
                             pos.offset(miningRadius, miningRadius, miningRadius)
                     );
 
@@ -62,7 +68,7 @@ public class CubeMiningItem extends Item {
                         }
 
                         float otherMiningSpeed = thisTool.getMiningSpeed(otherState);
-                        float otherDestroySpeed = otherState.getDestroySpeed(level, positionToMine);
+                        float otherDestroySpeed = otherState.getDestroySpeed(serverLevel, positionToMine);
                         boolean otherIsCorrectForDrops = thisTool.isCorrectForDrops(otherState);
 
 
@@ -71,9 +77,22 @@ public class CubeMiningItem extends Item {
                                 0f
                         ) || otherDestroySpeed <= 0) {
                             if (miningEntity instanceof ServerPlayer player) {
-                                player.gameMode.destroyBlock(positionToMine);
+                                // TODO Causes infinite recursion since it calls this method again.
+                                Services.BLOCK_EVENT_HELPER.fire(
+                                        serverLevel,
+                                        player.gameMode(),
+                                        player,
+                                        positionToMine,
+                                        otherState,
+                                        (lambdaServerLevel, lambdaGameMode, lambdaPlayer, lambdaPos, lambdaState) -> level.destroyBlock(
+                                                lambdaPos,
+                                                true,
+                                                lambdaPlayer,
+                                                512
+                                        )
+                                );
                             } else {
-                                level.destroyBlock(positionToMine, true);
+                                level.destroyBlock(positionToMine, true, miningEntity, 512);
                             }
                         }
                     }

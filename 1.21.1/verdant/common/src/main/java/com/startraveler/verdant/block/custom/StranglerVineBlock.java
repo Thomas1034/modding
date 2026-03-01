@@ -317,8 +317,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     }
 
     // Tries to consume the neighboring log.
-    // Returns true if it succeeds.
-    private boolean tryConsumeLog(Level level, BlockPos pos) {
+    private void tryConsumeLog(Level level, BlockPos pos) {
 
 
         BlockState host = level.getBlockState(pos);
@@ -326,18 +325,18 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
         // First, check if the host is a log.
         if (!canSupportStranglerVine(host)) {
-            return false;
+            return;
         }
 
         // Then, check if this log is a mature verdant log.
         if (host.is(WoodSets.HEARTWOOD.getLogs())) {
-            return false;
+            return;
         }
 
         // Then, check if this log is a verdant log and has a mature neighbor.
         // If so, return early.
         if (host.is(WoodSets.STRANGLER.getLogs()) && this.hasMatureVerdantLogNeighbors(level, pos)) {
-            return false;
+            return;
         }
 
         // Check if this log has neighboring logs or decayed wood.
@@ -404,7 +403,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             level.destroyBlock(pos, false);
         }
 
-        return canConsume;
     }
 
     public void grow(BlockState state, Level level, BlockPos pos) {
@@ -416,12 +414,11 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         boolean isMature = this.growInPlace(level, pos);
 
         // If it is mature, try to consume the log.
-        boolean hasConsumed = false;
         if (isMature) {
             // Consume the log in every adjacent direction.
             for (Direction d : Direction.values()) {
                 if (state.getValue(PROPERTY_FOR_FACE.get(d)) == MAX_AGE) {
-                    hasConsumed |= this.tryConsumeLog(level, pos.relative(d));
+                    this.tryConsumeLog(level, pos.relative(d));
                 }
             }
         }
@@ -463,7 +460,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         }
         if (!isMature || grownIntoLog) {
             level.setBlockAndUpdate(pos, state);
-        } else if (isMature && !grownIntoLog && state.getValue(DOWN) == MAX_AGE) {
+        } else if (state.getValue(DOWN) == MAX_AGE) {
             if (!(state.getBlock() instanceof LeafyStranglerVineBlock)) {
                 level.setBlockAndUpdate(
                         pos,
@@ -530,7 +527,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         // Store the previous block there.
         BlockState replaced = level.getBlockState(pos);
         // Place the vine block there. Leafy if it is replacing leaves.
-        BlockState placed = BlockRegistry.STRANGLER_VINE.get().defaultBlockState();
+        BlockState placed = this.defaultBlockState();
 
         // Find every direction it can grow there.
         boolean canGrowToAnyFace = false;
@@ -559,7 +556,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(EAST, WEST, UP, DOWN, SOUTH, NORTH, BlockStateProperties.WATERLOGGED);
     }

@@ -23,7 +23,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,13 +39,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 public class GuiAddShaderOverlaysMixin {
     @Unique
-    private static final ResourceLocation SAPPY_LOCATION = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier SAPPY_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/misc/sappy_outline.png"
     );
     @Shadow
     @Final
-    public static ResourceLocation NAUSEA_LOCATION;
+    public static Identifier NAUSEA_LOCATION;
     @Shadow
     @Final
     private Minecraft minecraft;

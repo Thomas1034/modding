@@ -61,11 +61,11 @@
       "block": "verdant:stony_grus",
       "results": [
         {
-          "name": "verdant:grus",
-          "weight": 8191
+          "name": "verdant:grus_emerald_ore"
         },
         {
-          "name": "verdant:grus_emerald_ore"
+          "name": "verdant:grus",
+          "weight": 8191
         }
       ]
     },
@@ -73,11 +73,11 @@
       "block": "minecraft:coarse_dirt",
       "results": [
         {
-          "name": "minecraft:dirt",
-          "weight": 16383
+          "name": "verdant:dirt_emerald_ore"
         },
         {
-          "name": "verdant:dirt_emerald_ore"
+          "name": "minecraft:dirt",
+          "weight": 16383
         }
       ]
     },
@@ -344,9 +344,6 @@
     {
       "results": [
         {
-          "name": "minecraft:lime_stained_glass"
-        },
-        {
           "name": "minecraft:air"
         },
         {
@@ -356,18 +353,17 @@
         {
           "name": "minecraft:brown_stained_glass",
           "weight": 7
+        },
+        {
+          "name": "minecraft:lime_stained_glass"
         }
       ],
       "tag": {
-        "location": "c:glass_blocks/cheap"
+        "id": "c:glass_blocks/cheap"
       }
     },
     {
       "results": [
-        {
-          "name": "minecraft:brown_stained_glass_pane",
-          "weight": 7
-        },
         {
           "name": "minecraft:lime_stained_glass_pane"
         },
@@ -376,11 +372,15 @@
           "weight": 7
         },
         {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
+        },
+        {
           "name": "minecraft:air"
         }
       ],
       "tag": {
-        "location": "c:glass_panes"
+        "id": "c:glass_panes"
       }
     }
   ]

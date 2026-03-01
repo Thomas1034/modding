@@ -33,8 +33,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
 public class OozeFissureBlock extends BaseEntityBlock {
-    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
-    public static final EnumProperty<CreakingHeartState> STATE = BlockStateProperties.CREAKING_HEART_STATE;
+    public static final EnumProperty<Direction.@NotNull Axis> AXIS = BlockStateProperties.AXIS;
+    public static final EnumProperty<@NotNull CreakingHeartState> STATE = BlockStateProperties.CREAKING_HEART_STATE;
     public static final BooleanProperty NATURAL = BlockStateProperties.NATURAL;
     protected final TagKey<Block> requiredLogs;
 
@@ -48,9 +48,10 @@ public class OozeFissureBlock extends BaseEntityBlock {
 
     }
 
+    @SuppressWarnings("unused")
     public static boolean timeAgreeing(Level level) {
         // Confederate season else no creature seeing
-        return true || CreakingHeartBlock.isNaturalNight(level); // TODO refine?
+        return true; // TODO refine when they spawn?
     }
 
     @Override
@@ -89,7 +90,7 @@ public class OozeFissureBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(AXIS, STATE, NATURAL);
     }
@@ -129,7 +130,7 @@ public class OozeFissureBlock extends BaseEntityBlock {
         return createTickerHelper(
                 type,
                 BlockEntityTypeRegistry.OOZE_FISSURE_BLOCK_ENTITY.get(),
-                level.isClientSide ? OozeFissureBlockEntity::clientTick : OozeFissureBlockEntity::serverTick
+                level.isClientSide() ? OozeFissureBlockEntity::clientTick : OozeFissureBlockEntity::serverTick
         );
     }
 
@@ -174,7 +175,7 @@ public class OozeFissureBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
         if (state.getValue(STATE) == CreakingHeartState.UPROOTED) {
             return 0;
         } else {

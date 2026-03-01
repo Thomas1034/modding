@@ -85,7 +85,10 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("item.verdant.twisted_rope_coil.lantern", "Lantern");
         this.add("item.verdant.twisted_rope_coil.soul_lantern", "Soul Lantern");
         this.add("item.verdant.twisted_rope_coil.shroomlight", "Shroomlight");
-        this.add("item.verdant.twisted_rope_coil.crafting", "Craft with twisted rope, a tripwire hook, and more to upgrade.");
+        this.add(
+                "item.verdant.twisted_rope_coil.crafting",
+                "Craft with twisted rope, a tripwire hook, and more to upgrade."
+        );
         this.exclude(ItemRegistry.BUCKET_OF_TOXIC_ASH.get(), "Bucket of Toxic Ash");
         this.exclude(ItemRegistry.TOXIC_SOLUTION_BUCKET.get(), "Bucket of Toxic Solution");
         this.exclude(ItemRegistry.OOZE_BUCKET.get(), "Bucket of Ooze");
@@ -157,7 +160,10 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
                 "Unleash the Verdant Growth upon an unsuspecting world. There is no going back."
         );
         this.add("advancements.verdant.craft_sack.title", "Hacky Solution");
-        this.add("advancements.verdant.craft_sack.description", "Pack things into a smaller space with a sack of woven rope.");
+        this.add(
+                "advancements.verdant.craft_sack.description",
+                "Pack things into a smaller space with a sack of woven rope."
+        );
         this.add("advancements.verdant.craft_rope.title", "Not Quite Hithlain");
         this.add("advancements.verdant.craft_rope.description", "Craft a rope of twisting fibers.");
         this.add("advancements.verdant.craft_rope_coil.title", "Tossing Ideas Around");
@@ -230,6 +236,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
 
     }
 
+    @SuppressWarnings("unused")
     private void exclude(EntityType<?> key, String name) {
         this.excludedEntityTypes.add(key);
         super.add(key, name);
@@ -250,11 +257,13 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         super.add(key, name);
     }
 
+    @SuppressWarnings("unused")
     public void exclude(TagKey<?> tagKey, String name) {
         this.excludedTags.add(tagKey);
         super.add(tagKey, name);
     }
 
+    @SuppressWarnings("deprecation")
     protected void addTagTranslations() {
         VerdantTags.TAGS.forEach(tag -> {
             if (!excludedTags.contains(tag)) {
@@ -266,6 +275,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addBlockTranslations() {
         BlockRegistry.BLOCKS.getEntries().forEach(holder -> {
             if (!excludedBlocks.contains(holder.get())) {
@@ -277,6 +287,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addEffectTranslations() {
         MobEffectRegistry.MOB_EFFECTS.getEntries().forEach(holder -> {
             if (!excludedEffects.contains(holder.get())) {
@@ -288,6 +299,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addPotionTranslations() {
         PotionRegistry.POTIONS.getEntries().forEach(holder -> {
             if (!excludedPotions.contains(holder.get())) {
@@ -302,11 +314,12 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addDartTranslations() {
         this.add("item.verdant.tipped_dart.effect.empty", "Tipped Dart");
         BuiltInRegistries.POTION.entrySet().forEach(entry -> {
             if (!excludedPotions.contains(entry.getValue())) {
-                String rawId = entry.getKey().location().getPath();
+                String rawId = entry.getKey().identifier().getPath();
                 String id = rawId.replace("long_", "").replace("strong_", "").replace("_", " ");
                 String name = WordUtils.capitalize(id);
                 this.add("item.verdant.tipped_dart.effect." + rawId, "Dart of " + name);
@@ -314,6 +327,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addEntityTranslations() {
         EntityTypeRegistry.ENTITY_TYPES.getEntries().forEach(holder -> {
             if (!excludedEntityTypes.contains(holder.get())) {
@@ -325,6 +339,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addItemTranslations() {
         ItemRegistry.ITEMS.getEntries().forEach(holder -> {
 
@@ -337,6 +352,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         });
     }
 
+    @SuppressWarnings("deprecation")
     protected void addWoodSetTranslations() {
         WoodSets.WOOD_SETS.forEach(set -> {
             String name = WordUtils.capitalize(set.getName());
@@ -361,6 +377,7 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
             this.add(set.getWallHangingSign().get(), name + " Wall Hanging Sign");
             this.add(set.getWallSign().get(), name + " Wall Sign");
             this.add(set.getHangingSign().get(), name + " Hanging Sign");
+            this.add(set.getShelf().get(), name + " Shelf");
             this.add(set.getSign().get(), name + " Sign");
             this.add(set.getHangingSignItem().get(), name + " Hanging Sign");
             this.add(set.getSignItem().get(), name + " Sign");

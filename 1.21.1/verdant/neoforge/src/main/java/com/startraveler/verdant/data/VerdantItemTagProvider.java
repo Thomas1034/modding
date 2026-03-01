@@ -189,9 +189,11 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
 
 
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.EARTHMOVER.get());
+        this.tag(ItemTags.SWORDS).add(ItemRegistry.COPPER_MACHETE.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.IRON_MACHETE.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.DIAMOND_MACHETE.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.NETHERITE_MACHETE.get());
+        this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.COPPER_MACHETE.get());
         this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.IRON_MACHETE.get());
         this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.DIAMOND_MACHETE.get());
         this.tag(ItemTags.MINING_ENCHANTABLE).add(ItemRegistry.NETHERITE_MACHETE.get());
@@ -231,7 +233,8 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(ItemTags.PICKAXES).add(ItemRegistry.IMBUED_HEARTWOOD_PICKAXE.get());
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.IMBUED_HEARTWOOD_SHOVEL.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
-        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SPEARS).add(ItemRegistry.IMBUED_HEARTWOOD_SPEAR.get());
+        this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(ItemRegistry.IMBUED_HEARTWOOD_SWORD.get());
     }
 
     private void addHeartwoodSet() {
@@ -264,7 +267,8 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(ItemTags.PICKAXES).add(ItemRegistry.HEARTWOOD_PICKAXE.get());
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.HEARTWOOD_SHOVEL.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.HEARTWOOD_SWORD.get());
-        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SPEARS).add(ItemRegistry.HEARTWOOD_SPEAR.get());
+        this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(ItemRegistry.HEARTWOOD_SWORD.get());
 
     }
 
@@ -280,7 +284,7 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
                 ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get(),
                 ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get(),
                 ItemRegistry.THORNY_HEARTWOOD_SWORD.get(),
-                ItemRegistry.THORNY_HEARTWOOD_SWORD.get(),
+                ItemRegistry.THORNY_HEARTWOOD_SPEAR.get(),
                 ItemRegistry.THORNY_HEARTWOOD_HORSE_ARMOR.get()
         );
 
@@ -313,7 +317,8 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
         this.tag(ItemTags.PICKAXES).add(ItemRegistry.THORNY_HEARTWOOD_PICKAXE.get());
         this.tag(ItemTags.SHOVELS).add(ItemRegistry.THORNY_HEARTWOOD_SHOVEL.get());
         this.tag(ItemTags.SWORDS).add(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
-        this.tag(ItemTags.SWORD_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
+        this.tag(ItemTags.SPEARS).add(ItemRegistry.THORNY_HEARTWOOD_SPEAR.get());
+        this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(ItemRegistry.THORNY_HEARTWOOD_SWORD.get());
 
     }
 

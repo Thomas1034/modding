@@ -41,6 +41,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -48,7 +49,7 @@ import java.util.function.Function;
 
 public class BombFlowerCropBlock extends Block implements BonemealableBlock {
 
-    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
+    public static final EnumProperty<@NotNull Direction> FACING = BlockStateProperties.FACING;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     public static final int MAX_AGE = 3;
     public static final int MIN_AGE = 0;
@@ -157,7 +158,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, Orientation orientation, boolean movedByPiston) {
+    protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, Orientation orientation, boolean movedByPiston) {
         if (!this.canSurvive(state, level, pos)) {
             level.destroyBlock(pos, false);
         }
@@ -165,14 +166,14 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
+    protected void affectNeighborsAfterRemoval(BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, boolean movedByPiston) {
         if (state.getValue(AGE) == MAX_AGE) {
             explode(level, pos);
         }
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         int currentAge = state.getValue(AGE);
         if (currentAge == MAX_AGE) {
             state = state.setValue(AGE, MIN_AGE);
@@ -200,7 +201,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected boolean canSurvive(@Nullable BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@Nullable BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         if (null == state) {
             return false;
         }
@@ -211,7 +212,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         int age = state.getValue(AGE);
         Direction facing = state.getValue(FACING).getOpposite();
         return switch (age) {
@@ -227,22 +228,24 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return state.getValue(AGE) > MIN_AGE + 1 ? state.getShape(level, pos, context) : Shapes.empty();
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         super.randomTick(state, level, pos, random);
         Services.CROP_EVENT_HELPER.fireEvent(
-                level, pos, state, random.nextDouble() < (1.0 / TICKS_PER_STAGE), () -> {
-                    level.setBlockAndUpdate(pos, state.setValue(AGE, state.getValue(AGE) + 1));
-                }
+                level,
+                pos,
+                state,
+                random.nextDouble() < (1.0 / TICKS_PER_STAGE),
+                () -> level.setBlockAndUpdate(pos, state.setValue(AGE, state.getValue(AGE) + 1))
         );
     }
 
     @Override
-    protected void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
+    protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
         super.onProjectileHit(level, state, hit, projectile);
         BlockPos pos = hit.getBlockPos();
         if (state.getValue(AGE) > MIN_AGE) {
@@ -257,13 +260,13 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
+    public void wasExploded(@NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull Explosion explosion) {
         super.wasExploded(level, pos, explosion);
-        this.explode(level, pos);
+        explode(level, pos);
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         super.stepOn(level, pos, state, entity);
         if (!entity.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && !entity.getType()
                 .is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES) && state.getValue(AGE) == MAX_AGE) {
@@ -272,7 +275,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
         }
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
         if (state != null) {
             state = state.setValue(FACING, context.getClickedFace());
@@ -281,22 +284,22 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(FACING, AGE);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader levelReader, @NotNull BlockPos blockPos, BlockState blockState) {
         return blockState.getValue(AGE) != MAX_AGE;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return isValidBonemealTarget(level, blockPos, blockState);
     }
 
     @Override
-    public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+    public void performBonemeal(ServerLevel serverLevel, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, BlockState blockState) {
         serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(AGE, blockState.getValue(AGE) + 1));
     }
 }

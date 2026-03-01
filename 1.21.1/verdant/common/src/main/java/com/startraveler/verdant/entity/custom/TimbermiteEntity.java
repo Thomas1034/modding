@@ -118,7 +118,7 @@ public class TimbermiteEntity extends Monster {
 
     public void aiStep() {
         super.aiStep();
-        if (this.level().isClientSide) {
+        if (this.level().isClientSide()) {
             if (this.level().random.nextInt(20) == 0) {
                 for (int i = 0; i < 2; ++i) {
                     this.level().addParticle(

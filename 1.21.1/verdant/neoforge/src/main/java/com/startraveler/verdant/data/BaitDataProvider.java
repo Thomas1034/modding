@@ -5,7 +5,7 @@ import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -81,7 +81,7 @@ public class BaitDataProvider {
         );
     }
 
-    public static ResourceKey<BaitData> key(ResourceLocation location) {
+    public static ResourceKey<BaitData> key(Identifier location) {
         return ResourceKey.create(BaitData.KEY, location);
     }
 

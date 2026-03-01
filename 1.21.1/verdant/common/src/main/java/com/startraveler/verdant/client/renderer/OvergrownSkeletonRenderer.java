@@ -20,10 +20,10 @@ import com.startraveler.verdant.Constants;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class OvergrownSkeletonRenderer extends SkeletonRenderer {
-    private static final ResourceLocation SKELETON_LOCATION = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier SKELETON_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/entity/overgrown_skeleton/overgrown_skeleton.png"
     );
@@ -32,7 +32,7 @@ public class OvergrownSkeletonRenderer extends SkeletonRenderer {
         super(context);
     }
 
-    public ResourceLocation getTextureLocation(SkeletonRenderState state) {
+    public Identifier getTextureLocation(SkeletonRenderState state) {
         return SKELETON_LOCATION;
     }
 }

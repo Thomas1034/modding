@@ -17,58 +17,71 @@
 package com.startraveler.verdant.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.serialization.MapCodec;
 import com.startraveler.verdant.Constants;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
-import org.joml.Vector3f;
+import org.jetbrains.annotations.NotNull;
+import org.joml.Vector3fc;
 
-import java.util.Set;
+import java.util.function.Consumer;
 
+// TODO
 public class VerdantConduitSpecialRenderer implements NoDataSpecialModelRenderer {
+    private final MaterialSet materials;
     private final ModelPart model;
 
-    public VerdantConduitSpecialRenderer(ModelPart model) {
+    public VerdantConduitSpecialRenderer(MaterialSet materials, ModelPart model) {
+        this.materials = materials;
         this.model = model;
     }
 
-    public void render(ItemDisplayContext p_387714_, PoseStack p_386873_, MultiBufferSource p_388451_, int p_387407_, int p_387355_, boolean p_386645_) {
-        VertexConsumer vertexconsumer = VerdantConduitRenderer.SHELL_TEXTURE.buffer(p_388451_, RenderType::entitySolid);
-        p_386873_.pushPose();
-        p_386873_.translate(0.5F, 0.5F, 0.5F);
-        this.model.render(p_386873_, vertexconsumer, p_387407_, p_387355_);
-        p_386873_.popPose();
+    public void submit(@NotNull ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
+        poseStack.pushPose();
+        poseStack.translate(0.5F, 0.5F, 0.5F);
+        submitNodeCollector.submitModelPart(
+                this.model,
+                poseStack,
+                VerdantConduitRenderer.SHELL_TEXTURE.renderType(RenderTypes::entitySolid),
+                i,
+                i1,
+                this.materials.get(VerdantConduitRenderer.SHELL_TEXTURE),
+                false,
+                false,
+                -1,
+                null,
+                i2
+        );
+        poseStack.popPose();
     }
 
-    @Override
-    public void getExtents(Set<Vector3f> set) {
+    public void getExtents(@NotNull Consumer<Vector3fc> consumer) {
         PoseStack posestack = new PoseStack();
         posestack.translate(0.5F, 0.5F, 0.5F);
-        this.model.getExtentsForGui(posestack, set);
+        this.model.getExtentsForGui(posestack, consumer);
     }
 
     public record Unbaked() implements SpecialModelRenderer.Unbaked {
-        public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(
-                Constants.MOD_ID,
-                "item/verdant_conduit"
-        );
         public static final MapCodec<VerdantConduitSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(new VerdantConduitSpecialRenderer.Unbaked());
+        public static final Identifier LOCATION = Constants.id("item/verdant_conduit"
+        );
 
-        public SpecialModelRenderer<?> bake(EntityModelSet p_387917_) {
-            return new VerdantConduitSpecialRenderer(p_387917_.bakeLayer(ModelLayers.CONDUIT_SHELL));
+        public SpecialModelRenderer<?> bake(SpecialModelRenderer.BakingContext context) {
+            return new VerdantConduitSpecialRenderer(
+                    context.materials(),
+                    context.entityModelSet().bakeLayer(ModelLayers.CONDUIT_SHELL)
+            );
         }
 
-        public MapCodec<VerdantConduitSpecialRenderer.Unbaked> type() {
+        public @NotNull MapCodec<VerdantConduitSpecialRenderer.Unbaked> type() {
             return MAP_CODEC;
         }
     }
 }
-

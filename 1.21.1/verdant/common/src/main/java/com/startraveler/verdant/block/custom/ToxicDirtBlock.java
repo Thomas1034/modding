@@ -38,6 +38,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -53,7 +54,7 @@ public class ToxicDirtBlock extends Block {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         super.animateTick(state, level, pos, random);
         if (state.getValue(IS_SURFACE)) {
             // Constants.LOG.warn("Creating particle!");
@@ -72,13 +73,13 @@ public class ToxicDirtBlock extends Block {
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         super.stepOn(level, pos, state, entity);
         if (entity instanceof LivingEntity livingEntity) {
             ItemStack boots = livingEntity.getItemBySlot(EquipmentSlot.FEET);
             ItemStack body = livingEntity.getItemBySlot(EquipmentSlot.BODY);
 
-            boolean isPoisoned = (boots == null || boots.isEmpty()) && (body == null || body.isEmpty());
+            boolean isPoisoned = boots.isEmpty() && body.isEmpty();
             boolean isMoving = entity.oldPosition().subtract(entity.position()).length() > 0.01f;
 
             if (level instanceof ServerLevel) {
@@ -130,18 +131,18 @@ public class ToxicDirtBlock extends Block {
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(IS_SURFACE);
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
         tickAccess.scheduleTick(currentPos, this, 1);
         return state;
     }
 
     @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         level.setBlockAndUpdate(pos, this.updateDistance(state, level, pos));
     }
 

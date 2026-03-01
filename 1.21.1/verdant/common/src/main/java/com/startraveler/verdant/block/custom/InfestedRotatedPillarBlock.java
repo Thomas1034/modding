@@ -25,9 +25,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gamerules.GameRules;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -55,9 +56,9 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
     }
 
     @Override
-    protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean simulate) {
+    protected void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean simulate) {
         super.spawnAfterBreak(state, level, pos, stack, simulate);
-        if (level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !EnchantmentHelper.hasTag(
+        if (level.getGameRules().get(GameRules.BLOCK_DROPS) && !EnchantmentHelper.hasTag(
                 stack,
                 EnchantmentTags.PREVENTS_INFESTED_SPAWNS
         )) {

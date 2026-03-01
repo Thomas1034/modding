@@ -16,7 +16,9 @@
  */
 package com.startraveler.verdant.block.custom.extensible;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -27,12 +29,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -43,13 +46,21 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExtensibleCakeBlock extends CakeBlock {
+public class ExtensibleCakeBlock extends Block {
 
-    public static final MapCodec<ExtensibleCakeBlock> CODEC = simpleCodec(ExtensibleCakeBlock::new);
+    public static final Codec<@NotNull ExtensibleCakeBlock> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            propertiesCodec(),
+            FoodProperties.DIRECT_CODEC.fieldOf("food_properties")
+                    .forGetter((ExtensibleCakeBlock cake) -> cake.foodProperties),
+            Consumable.CODEC.fieldOf("consumable")
+                    .forGetter((ExtensibleCakeBlock cake) -> cake.consumable)
+    ).apply(instance, ExtensibleCakeBlock::new));
+    public static final MapCodec<@NotNull ExtensibleCakeBlock> MAP_CODEC = CODEC.fieldOf("extensible_cake");
     public static final int MAX_BITES = 6;
     public static final IntegerProperty BITES;
     public static final int FULL_CAKE_SIGNAL;
@@ -67,49 +78,70 @@ public class ExtensibleCakeBlock extends CakeBlock {
                 Block.box(13.0F, 0.0F, 1.0F, 15.0F, 8.0F, 15.0F)};
     }
 
-    private final int hungerPerBite;
-    private final float saturationPerBite;
-    private final Map<Block, Block> byCandle;
+    protected final FoodProperties foodProperties;
+    protected final Map<Block, Block> byCandle;
+    protected final Consumable consumable;
 
-    public ExtensibleCakeBlock(Properties properties, int hungerPerBite, float saturationPerBite) {
+    public ExtensibleCakeBlock(Properties properties, FoodProperties foodProperties, Consumable consumable) {
         super(properties);
-        this.hungerPerBite = hungerPerBite;
-        this.saturationPerBite = saturationPerBite;
+        this.foodProperties = foodProperties;
+        this.consumable = consumable;
         this.byCandle = new HashMap<>();
-    }
-
-    public ExtensibleCakeBlock(Properties properties) {
-        this(properties, 2, 0.1f);
     }
 
     public static int getOutputSignal(int eaten) {
         return (1 + MAX_BITES - eaten) * 2;
     }
 
-    protected InteractionResult eatCustom(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
-        if (!player.canEat(false)) {
-            return InteractionResult.PASS;
-        } else {
-            player.awardStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodData().eat(this.hungerPerBite, this.saturationPerBite);
-            int i = state.getValue(BITES);
-            level.gameEvent(player, GameEvent.EAT, pos);
-            if (i < MAX_BITES) {
-                level.setBlock(pos, state.setValue(BITES, i + 1), 3);
-            } else {
-                level.removeBlock(pos, false);
-                level.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+    @Override
+    public @NotNull MapCodec<@NotNull ExtensibleCakeBlock> codec() {
+        return MAP_CODEC;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
+        builder.add(BITES);
+    }
+
+    @Override
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
+        return false;
+    }
+
+    @Override
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
+        return direction == Direction.DOWN && !state.canSurvive(
+                level,
+                pos
+        ) ? Blocks.AIR.defaultBlockState() : super.updateShape(
+                state,
+                level,
+                tickAccess,
+                pos,
+                direction,
+                neighborPos,
+                neighborState,
+                random
+        );
+    }
+
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        if (level.isClientSide()) {
+            if (this.eatCustom(level, pos, state, player).consumesAction()) {
+                return InteractionResult.SUCCESS;
             }
 
-            return InteractionResult.SUCCESS;
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                return InteractionResult.CONSUME;
+            }
         }
+
+        return eatCustom(level, pos, state, player);
     }
 
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE_BY_BITE[state.getValue(BITES)];
-    }
-
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    @Override
+    protected @NotNull InteractionResult useItemOn(ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         Item item = stack.getItem();
         if (stack.is(ItemTags.CANDLES) && state.getValue(BITES) == 0) {
             Block var10 = Block.byItem(item);
@@ -126,54 +158,50 @@ public class ExtensibleCakeBlock extends CakeBlock {
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (level.isClientSide) {
-            if (this.eatCustom(level, pos, state, player).consumesAction()) {
-                return InteractionResult.SUCCESS;
-            }
-
-            if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
-                return InteractionResult.CONSUME;
-            }
-        }
-
-        return eatCustom(level, pos, state, player);
-    }
-
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
-        return direction == Direction.DOWN && !state.canSurvive(
-                level,
-                pos
-        ) ? Blocks.AIR.defaultBlockState() : super.updateShape(
-                state,
-                level,
-                tickAccess,
-                pos,
-                direction,
-                neighborPos,
-                neighborState,
-                random
-        );
-    }
-
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolid();
-    }
-
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BITES);
-    }
-
-    protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
-        return ExtensibleCakeBlock.getOutputSignal(blockState.getValue(BITES));
-    }
-
-    protected boolean hasAnalogOutputSignal(BlockState state) {
+    @Override
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
-        return false;
+    @Override
+    protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        return level.getBlockState(belowPos).isFaceSturdy(level, belowPos, Direction.UP);
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState blockState, @NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+
+        return ExtensibleCakeBlock.getOutputSignal(blockState.getValue(BITES));
+    }
+
+    @Override
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return SHAPE_BY_BITE[state.getValue(BITES)];
+    }
+
+    protected InteractionResult eatCustom(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
+
+        if (!player.canEat(this.foodProperties.canAlwaysEat())) {
+            return InteractionResult.PASS;
+        } else {
+            player.awardStat(Stats.EAT_CAKE_SLICE);
+            Level playerLevel = player.level();
+            ItemStack defaultStack = this.asItem().getDefaultInstance();
+            this.foodProperties.onConsume(playerLevel, player, defaultStack, this.consumable);
+            this.consumable.onConsume(playerLevel, player, defaultStack);
+            int i = state.getValue(BITES);
+
+            level.gameEvent(player, GameEvent.EAT, pos);
+            if (i < MAX_BITES) {
+                level.setBlock(pos, state.setValue(BITES, i + 1), 3);
+            } else {
+                level.removeBlock(pos, false);
+                level.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+            }
+
+            return InteractionResult.SUCCESS;
+        }
     }
 
     public void addCandleCake(Block candle, Block cake) {

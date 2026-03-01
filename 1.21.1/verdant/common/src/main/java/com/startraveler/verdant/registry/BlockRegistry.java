@@ -31,13 +31,15 @@ import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -562,7 +564,7 @@ public class BlockRegistry {
                 "wild_coffee", () -> new WildCoffeeBlock(
                         MobEffectRegistry.CAFFEINATED.asHolder(),
                         25,
-                        properties(Blocks.BLUE_ORCHID, "wild_coffee").noOcclusion().noCollission()
+                        properties(Blocks.BLUE_ORCHID, "wild_coffee").noOcclusion().noCollision()
                 )
         );
         POTTED_WILD_COFFEE = registerBlockWithoutItem(
@@ -615,46 +617,41 @@ public class BlockRegistry {
 
         WOODEN_SPIKES = registerBlockWithItem(
                 "wooden_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "wooden_spikes").noCollission().noOcclusion(), 2)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "wooden_spikes").noCollision().noOcclusion(), 2)
         );
         COPPER_SPIKES = registerBlockWithItem(
                 "copper_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "copper_spikes").noCollission().noOcclusion(), 3)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "copper_spikes").noCollision().noOcclusion(), 3)
         );
         IRON_SPIKES = registerBlockWithItem(
                 "iron_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes").noCollission().noOcclusion(), 4)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "iron_spikes").noCollision().noOcclusion(), 4)
         );
         GOLDEN_SPIKES = registerBlockWithItem(
                 "golden_spikes",
-                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "golden_spikes").noCollission().noOcclusion(), 5)
+                () -> new SpikesBlock(properties(Blocks.IRON_BARS, "golden_spikes").noCollision().noOcclusion(), 5)
         );
 
         WOODEN_TRAP = registerBlockWithItem(
                 "wooden_trap",
-                () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "wooden_trap").noCollission().noOcclusion(), 20, 5, 4)
+                () -> new TrapBlock(properties(Blocks.OAK_BUTTON, "wooden_trap").noCollision().noOcclusion(), 20, 5, 4)
         );
         COPPER_TRAP = registerBlockWithItem(
                 "copper_trap",
-                () -> new TrapBlock(
-                        properties(Blocks.COPPER_GRATE, "copper_trap").noCollission().noOcclusion(),
-                        4,
-                        1,
-                        4
-                )
+                () -> new TrapBlock(properties(Blocks.COPPER_GRATE, "copper_trap").noCollision().noOcclusion(), 4, 1, 4)
         );
         IRON_TRAP = registerBlockWithItem(
                 "iron_trap",
-                () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap").noCollission().noOcclusion(), 10, 2, 8)
+                () -> new TrapBlock(properties(Blocks.IRON_BARS, "iron_trap").noCollision().noOcclusion(), 10, 2, 8)
         );
         GOLDEN_TRAP = registerBlockWithItem(
                 "golden_trap",
-                () -> new TrapBlock(properties(Blocks.IRON_BARS, "golden_trap").noCollission().noOcclusion(), 40, 5, 14)
+                () -> new TrapBlock(properties(Blocks.IRON_BARS, "golden_trap").noCollision().noOcclusion(), 40, 5, 14)
         );
 
         SNAPLEAF = registerBlockWithItem(
                 "snapleaf", () -> new TrapBlock(
-                        properties(Blocks.OAK_LEAVES, "snapleaf").noCollission()
+                        properties(Blocks.OAK_LEAVES, "snapleaf").noCollision()
                                 .noOcclusion()
                                 .requiresCorrectToolForDrops(), 15, 3, 4, VerdantIFF::isEnemy, false, false, true
                 )
@@ -742,15 +739,18 @@ public class BlockRegistry {
         );
 
         UBE_CAKE = registerBlockWithoutItem(
-                "ube_cake",
-                () -> new ExtensibleCakeBlock(properties(Blocks.CAKE, "ube_cake"))
+                "ube_cake", () -> new ExtensibleCakeBlock(
+                        properties(Blocks.CAKE, "ube_cake"),
+                        new FoodProperties.Builder().nutrition(2).saturationModifier(0.1f).build(),
+                        Consumable.builder().hasConsumeParticles(true).build()
+                )
         );
 
 
         CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "candle_ube_cake",
                 () -> new ExtensibleCandleCakeBlock(
-                        Blocks.CANDLE,
+                        () -> Blocks.CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "candle_ube_cake")
                 )
@@ -758,7 +758,7 @@ public class BlockRegistry {
 
         WHITE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "white_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.WHITE_CANDLE,
+                        () -> Blocks.WHITE_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "white_candle_ube_cake")
                 )
@@ -766,7 +766,7 @@ public class BlockRegistry {
 
         ORANGE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "orange_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.ORANGE_CANDLE,
+                        () -> Blocks.ORANGE_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "orange_candle_ube_cake")
                 )
@@ -774,7 +774,7 @@ public class BlockRegistry {
 
         MAGENTA_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "magenta_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.MAGENTA_CANDLE,
+                        () -> Blocks.MAGENTA_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "magenta_candle_ube_cake")
                 )
@@ -782,7 +782,7 @@ public class BlockRegistry {
 
         LIGHT_BLUE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "light_blue_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.LIGHT_BLUE_CANDLE,
+                        () -> Blocks.LIGHT_BLUE_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "light_blue_candle_ube_cake")
                 )
@@ -790,7 +790,7 @@ public class BlockRegistry {
 
         YELLOW_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "yellow_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.YELLOW_CANDLE,
+                        () -> Blocks.YELLOW_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "yellow_candle_ube_cake")
                 )
@@ -798,7 +798,7 @@ public class BlockRegistry {
 
         LIME_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "lime_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.LIME_CANDLE,
+                        () -> Blocks.LIME_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "lime_candle_ube_cake")
                 )
@@ -806,7 +806,7 @@ public class BlockRegistry {
 
         PINK_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "pink_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.PINK_CANDLE,
+                        () -> Blocks.PINK_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "pink_candle_ube_cake")
                 )
@@ -814,7 +814,7 @@ public class BlockRegistry {
 
         GRAY_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "gray_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.GRAY_CANDLE,
+                        () -> Blocks.GRAY_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "gray_candle_ube_cake")
                 )
@@ -822,7 +822,7 @@ public class BlockRegistry {
 
         LIGHT_GRAY_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "light_gray_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.LIGHT_GRAY_CANDLE,
+                        () -> Blocks.LIGHT_GRAY_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "light_gray_candle_ube_cake")
                 )
@@ -830,7 +830,7 @@ public class BlockRegistry {
 
         CYAN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "cyan_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.CYAN_CANDLE,
+                        () -> Blocks.CYAN_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "cyan_candle_ube_cake")
                 )
@@ -838,7 +838,7 @@ public class BlockRegistry {
 
         PURPLE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "purple_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.PURPLE_CANDLE,
+                        () -> Blocks.PURPLE_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "purple_candle_ube_cake")
                 )
@@ -846,7 +846,7 @@ public class BlockRegistry {
 
         BLUE_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "blue_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.BLUE_CANDLE,
+                        () -> Blocks.BLUE_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "blue_candle_ube_cake")
                 )
@@ -854,7 +854,7 @@ public class BlockRegistry {
 
         BROWN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "brown_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.BROWN_CANDLE,
+                        () -> Blocks.BROWN_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "brown_candle_ube_cake")
                 )
@@ -862,7 +862,7 @@ public class BlockRegistry {
 
         GREEN_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "green_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.GREEN_CANDLE,
+                        () -> Blocks.GREEN_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "green_candle_ube_cake")
                 )
@@ -870,7 +870,7 @@ public class BlockRegistry {
 
         RED_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "red_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.RED_CANDLE,
+                        () -> Blocks.RED_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "red_candle_ube_cake")
                 )
@@ -878,7 +878,7 @@ public class BlockRegistry {
 
         BLACK_CANDLE_UBE_CAKE = registerBlockWithoutItem(
                 "black_candle_ube_cake", () -> new ExtensibleCandleCakeBlock(
-                        Blocks.BLACK_CANDLE,
+                        () -> Blocks.BLACK_CANDLE,
                         BlockRegistry.UBE_CAKE,
                         properties(Blocks.CANDLE_CAKE, "black_candle_ube_cake")
                 )
@@ -1156,7 +1156,7 @@ public class BlockRegistry {
                 "sap_block",
                 () -> Services.SAP_BLOCK_PROVIDER.getSapBlock(properties("sap_block").noOcclusion()
                         .lightLevel(state -> 2)
-                        .noCollission()
+                        .noCollision()
                         .mapColor(MapColor.COLOR_LIGHT_GREEN)
                         .strength(1.5F)
                         .forceSolidOn()
@@ -1259,7 +1259,7 @@ public class BlockRegistry {
                 "sap_torch", () -> new SapTorchBlock(
                         ParticleTypes.FIREFLY,
                         BlockRegistry.properties("sap_torch")
-                                .noCollission()
+                                .noCollision()
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
@@ -1272,7 +1272,7 @@ public class BlockRegistry {
                 "sap_wall_torch", () -> new SapWallTorchBlock(
                         ParticleTypes.FIREFLY,
                         BlockRegistry.properties("sap_wall_torch")
-                                .noCollission()
+                                .noCollision()
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
@@ -1336,7 +1336,7 @@ public class BlockRegistry {
     }
 
     private static ResourceKey<Block> id(String name) {
-        return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
 }

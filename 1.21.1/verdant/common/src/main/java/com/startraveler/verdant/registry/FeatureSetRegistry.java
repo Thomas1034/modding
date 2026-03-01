@@ -17,20 +17,20 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class FeatureSetRegistry {
 
-    public static final ResourceLocation ABOVE_GROUND = set("above_ground");
-    public static final ResourceLocation HANGING = set("hanging");
-    public static final ResourceLocation WATER = set("water");
-    public static final ResourceLocation ALWAYS = set("always");
-    public static final ResourceLocation BELOW_LOG = set("below_log");
-    public static final ResourceLocation MULCH = set("mulch");
-    public static final ResourceLocation LARGE_MULCH = set("large_mulch");
+    public static final Identifier ABOVE_GROUND = set("above_ground");
+    public static final Identifier HANGING = set("hanging");
+    public static final Identifier WATER = set("water");
+    public static final Identifier ALWAYS = set("always");
+    public static final Identifier BELOW_LOG = set("below_log");
+    public static final Identifier MULCH = set("mulch");
+    public static final Identifier LARGE_MULCH = set("large_mulch");
 
-    private static ResourceLocation set(String name) {
-        return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name);
+    private static Identifier set(String name) {
+        return Identifier.fromNamespaceAndPath(Constants.MOD_ID, name);
     }
 
 }

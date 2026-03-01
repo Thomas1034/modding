@@ -27,16 +27,18 @@ import com.startraveler.verdant.registration.RegistryObject;
 import com.startraveler.verdant.registry.properties.ConsumablesList;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
@@ -51,7 +53,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class ItemRegistry {
-    
+
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
 
     public static final RegistryObject<Item, Item> FRAGILE_FLASK = register(
@@ -65,10 +67,7 @@ public class ItemRegistry {
                     ConsumablesList.ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(
-                            5,
-                            Optional.of(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf"))
-                    )
+                    new UseCooldown(5, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
             ))
     );
     public static final RegistryObject<Item, Item> YOUNG_ALOE_LEAF = register(
@@ -77,10 +76,7 @@ public class ItemRegistry {
                     ConsumablesList.YOUNG_ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(
-                            10,
-                            Optional.of(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf"))
-                    )
+                    new UseCooldown(10, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
             ))
     );
     public static final RegistryObject<Item, Item> OLD_ALOE_LEAF = register(
@@ -89,10 +85,7 @@ public class ItemRegistry {
                     ConsumablesList.OLD_ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(
-                            15,
-                            Optional.of(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf"))
-                    )
+                    new UseCooldown(15, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
             ))
     );
 
@@ -197,9 +190,8 @@ public class ItemRegistry {
     );
     public static final RegistryObject<Item, Item> GOLDEN_CASSAVA = register("golden_cassava", Item::new);
     public static final RegistryObject<Item, Item> COOKED_GOLDEN_CASSAVA = register(
-            "cooked_golden_cassava",
-            (properties) -> new Item(properties.stacksTo(64).food(
-                    new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build(),
+            "cooked_golden_cassava", (properties) -> new Item(properties.stacksTo(64).food(
+                    new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).alwaysEdible().build(),
                     ConsumablesList.COOKED_GOLDEN_CASSAVA
             ))
     );
@@ -242,6 +234,16 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> LARGE_MULCH_PILE = register(
             "large_mulch_pile",
             (properties) -> new FeaturePlacingItem(properties, FeatureSetRegistry.LARGE_MULCH)
+    );
+    public static final RegistryObject<Item, Item> MULCH_BUCKET = register(
+            "mulch_bucket", (properties) -> new FeaturePlacingItem(
+                    properties.durability(8)
+                            .component(
+                                    DataComponents.USE_REMAINDER,
+                                    new UseRemainder(Items.BUCKET.getDefaultInstance())
+                            ),
+                    FeatureSetRegistry.LARGE_MULCH
+            )
     );
 
     public static final RegistryObject<Item, Item> SACK = register(
@@ -297,6 +299,13 @@ public class ItemRegistry {
                     .humanoidArmor(ArmorMaterialRegistry.HEARTWOOD, ArmorType.BOOTS)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
+    );
+
+    public static final RegistryObject<Item, Item> HEARTWOOD_SPEAR = register(
+            "heartwood_spear",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .spear(ToolMaterialRegistry.HEARTWOOD, 0.65F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
 
     public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
@@ -428,6 +437,17 @@ public class ItemRegistry {
                     )))
     );
 
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SPEAR = register(
+            "imbued_heartwood_spear",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .spear(ToolMaterialRegistry.HEARTWOOD, 0.65F, 0.7F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                    )))
+    );
+
+
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SHOVEL = register(
             "imbued_heartwood_shovel", ((properties) -> new ShovelItem(
                     ToolMaterialRegistry.IMBUED_HEARTWOOD,
@@ -515,24 +535,16 @@ public class ItemRegistry {
             properties -> new TippedDartItem(properties.component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY))
     );
 
-    public static final RegistryObject<Item, Item> ROOTED_SPAWN_EGG = register(
-            "rooted_spawn_egg",
-            properties -> new SpawnEggItem(EntityTypeRegistry.ROOTED.get(), properties)
-    );
+    public static final RegistryObject<Item, SpawnEggItem> ROOTED_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.ROOTED);
 
-    public static final RegistryObject<Item, Item> TIMBERMITE_SPAWN_EGG = register(
-            "timbermite_spawn_egg",
-            properties -> new SpawnEggItem(EntityTypeRegistry.TIMBERMITE.get(), properties)
-    );
+    public static final RegistryObject<Item, SpawnEggItem> TIMBERMITE_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.TIMBERMITE);
 
-    public static final RegistryObject<Item, Item> POISONER_SPAWN_EGG = register(
-            "poisoner_spawn_egg",
-            properties -> new SpawnEggItem(EntityTypeRegistry.POISONER.get(), properties)
-    );
+    public static final RegistryObject<Item, SpawnEggItem> SKULL_SPIDER_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.SKULL_SPIDER);
+
+    public static final RegistryObject<Item, SpawnEggItem> POISONER_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.POISONER);
 
     public static final RegistryObject<Item, Item> OOZE_BUCKET = register(
-            "ooze_bucket",
-            properties -> new MobBucketItem(
+            "ooze_bucket", properties -> new MobBucketItem(
                     EntityTypeRegistry.OOZE.get(),
                     Fluids.WATER,
                     SoundEvents.SLIME_SQUISH_SMALL,
@@ -540,10 +552,7 @@ public class ItemRegistry {
             )
     );
 
-    public static final RegistryObject<Item, Item> OOZE_SPAWN_EGG = register(
-            "ooze_spawn_egg",
-            properties -> new SpawnEggItem(EntityTypeRegistry.OOZE.get(), properties)
-    );
+    public static final RegistryObject<Item, SpawnEggItem> OOZE_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.OOZE);
 
     public static final RegistryObject<Item, Item> BLOWGUN = register(
             "blowgun",
@@ -553,54 +562,45 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> EARTHMOVER = register(
             "earthmover",
             properties -> new CubeMiningItem(properties.tool(
-                    ToolMaterial.DIAMOND,
-                    BlockTags.MINEABLE_WITH_SHOVEL,
-                    -1.0f,
-                    -1.0f,
-                    0.0f
-            ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1))
+                            ToolMaterial.DIAMOND,
+                            BlockTags.MINEABLE_WITH_SHOVEL,
+                            -1.0f,
+                            -1.0f,
+                            0.0f
+                    )
+                    .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1))
+    );
+
+    public static final RegistryObject<Item, Item> COPPER_MACHETE = register(
+            "copper_machete",
+            properties -> new CubeMiningItem(
+                    properties.tool(ToolMaterial.COPPER, VerdantTags.Blocks.MINEABLE_WITH_MACHETE, 1.0f, -1.4f, 0.0f)
+                            .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+            )
     );
 
     public static final RegistryObject<Item, Item> IRON_MACHETE = register(
             "iron_machete",
             properties -> new CubeMiningItem(
-                    properties.tool(
-                            ToolMaterial.IRON,
-                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
-                            1.0f,
-                            -1.4f,
-                            0.0f
-                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+                    properties.tool(ToolMaterial.IRON, VerdantTags.Blocks.MINEABLE_WITH_MACHETE, 1.0f, -1.4f, 0.0f)
+                            .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
 
     public static final RegistryObject<Item, Item> DIAMOND_MACHETE = register(
             "diamond_machete",
             properties -> new CubeMiningItem(
-                    properties.tool(
-                            ToolMaterial.DIAMOND,
-                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
-                            1.0f,
-                            -1.4f,
-                            0.0f
-                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+                    properties.tool(ToolMaterial.DIAMOND, VerdantTags.Blocks.MINEABLE_WITH_MACHETE, 1.0f, -1.4f, 0.0f)
+                            .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
 
     public static final RegistryObject<Item, Item> NETHERITE_MACHETE = register(
-            "netherite_machete",
-            properties -> new CubeMiningItem(
-                    properties.tool(
-                            ToolMaterial.NETHERITE,
-                            VerdantTags.Blocks.MINEABLE_WITH_MACHETE,
-                            1.0f,
-                            -1.4f,
-                            0.0f
-                    ).component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
+            "netherite_machete", properties -> new CubeMiningItem(
+                    properties.tool(ToolMaterial.NETHERITE, VerdantTags.Blocks.MINEABLE_WITH_MACHETE, 1.0f, -1.4f, 0.0f)
+                            .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
-
-
     public static final RegistryObject<Item, Item> BLASTING_BLOSSOM_SPROUT = register(
             "blasting_blossom_sprout",
             (properties) -> new BlockItem(BlockRegistry.BLASTING_BLOSSOM.get(), properties)
@@ -617,7 +617,6 @@ public class ItemRegistry {
             "terracotta_bomb",
             (properties) -> new BlockItem(BlockRegistry.TERRACOTTA_BOMB_PILE.get(), properties)
     );
-
     public static final RegistryObject<Item, ThrowableBombItem> BLASTING_BLOOM = register(
             "blasting_bloom", (properties) -> new ThrowableBombItem(
                     properties.component(
@@ -627,7 +626,6 @@ public class ItemRegistry {
                     () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
             )
     );
-
     public static final RegistryObject<Item, ThrowableBombItem> TERRACOTTA_GRENADE = register(
             "terracotta_grenade", (properties) -> new ThrowableBombItem(
                     properties.component(
@@ -646,7 +644,6 @@ public class ItemRegistry {
                     ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
             )
     );
-
     public static final RegistryObject<Item, ThrowableBombItem> METAL_GRENADE = register(
             "metal_grenade", (properties) -> new ThrowableBombItem(
                     properties.component(
@@ -657,14 +654,14 @@ public class ItemRegistry {
                             .component(
                                     DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
                                     ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
-                            ), () -> BlockRegistry.METAL_BOMB_PILE.get().defaultBlockState(),
+                            ),
+                    () -> BlockRegistry.METAL_BOMB_PILE.get().defaultBlockState(),
                     ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2.0f,
                     ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 2,
                     ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 2.00f,
                     ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
             )
     );
-
     public static final RegistryObject<Item, Item> BRAMBLE_HEAD = register(
             "bramble_head",
             (properties) -> new StandingAndWallBlockItem(
@@ -674,8 +671,6 @@ public class ItemRegistry {
                     properties
             )
     );
-
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HORSE_ARMOR = register(
             "thorny_heartwood_horse_armor",
             (properties) -> new Item(properties.stacksTo(1)
@@ -685,7 +680,6 @@ public class ItemRegistry {
                             VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
                     ))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HELMET = register(
             "thorny_heartwood_helmet",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -693,7 +687,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_CHESTPLATE = register(
             "thorny_heartwood_chestplate",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -701,7 +694,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_LEGGINGS = register(
             "thorny_heartwood_leggings",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -709,7 +701,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_BOOTS = register(
             "thorny_heartwood_boots",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -717,14 +708,28 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SPEAR = register(
+            "thorny_heartwood_spear", ((properties) -> new Item(properties.stacksTo(1)
+                    .spear(
+                            ToolMaterialRegistry.THORNY_HEARTWOOD,
+                            0.65F,
+                            0.7F,
+                            0.75F,
+                            5.0F,
+                            14.0F,
+                            10.0F,
+                            5.1F,
+                            15.0F,
+                            4.6F
+                    )
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
+    );
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SWORD = register(
             "thorny_heartwood_sword",
             ((properties) -> new Item(properties.stacksTo(1)
                     .sword(ToolMaterialRegistry.THORNY_HEARTWOOD, 3.0F, -2.4F)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SHOVEL = register(
             "thorny_heartwood_shovel", ((properties) -> new ShovelItem(
                     ToolMaterialRegistry.THORNY_HEARTWOOD,
@@ -737,14 +742,12 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_PICKAXE = register(
             "thorny_heartwood_pickaxe",
             ((properties) -> new Item(properties.stacksTo(1)
                     .pickaxe(ToolMaterialRegistry.THORNY_HEARTWOOD, 1.0F, -2.8F)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_AXE = register(
             "thorny_heartwood_axe", ((properties) -> new AxeItem(
                     ToolMaterialRegistry.THORNY_HEARTWOOD,
@@ -757,7 +760,6 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_HOE = register(
             "thorny_heartwood_hoe", ((properties) -> new HoeItem(
                     ToolMaterialRegistry.THORNY_HEARTWOOD,
@@ -770,12 +772,10 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> THORNS_UPGRADE_SMITHING_TEMPLATE = register(
             "thorns_upgrade_smithing_template",
             SmithingTemplateExtensions::createThornsUpgradeTemplate
     );
-
     public static final RegistryObject<Item, Item> MANGO = register(
             "mango",
             (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(4)
@@ -786,13 +786,12 @@ public class ItemRegistry {
             "golden_mango",
             (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(4)
                     .saturationModifier(0.3F)
+                    .alwaysEdible()
                     .build()).component(DataComponents.CONSUMABLE, ConsumablesList.GOLDEN_MANGO))
     );
-
     public static final RegistryObject<Item, Item> SAP_GLOB = register("sap_glob", Item::new);
     public static final RegistryObject<Item, Item> VERDANT_RESIN_CLUMP = register("verdant_resin_clump", Item::new);
     public static final RegistryObject<Item, Item> VERDANT_RESIN_BRICK = register("verdant_resin_brick", Item::new);
-
     public static final RegistryObject<Item, Item> JUICE_BOTTLE = register(
             "juice_bottle",
             (properties) -> new Item(properties.food((new FoodProperties.Builder()).nutrition(2)
@@ -803,7 +802,6 @@ public class ItemRegistry {
                     .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
                     .stacksTo(16))
     );
-
     public static final RegistryObject<Item, Item> NECTAR_BOTTLE = register(
             "nectar_bottle",
             (properties) -> new Item(properties.food(Foods.HONEY_BOTTLE)
@@ -811,22 +809,16 @@ public class ItemRegistry {
                     .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
                     .stacksTo(16))
     );
-
     public static final RegistryObject<Item, Item> BALSAM = register("balsam", Item::new);
-
     public static final RegistryObject<Item, Item> BALM = register(
             "balm", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.BALM
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(
-                            30,
-                            Optional.of(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "balm"))
-                    )
+                    new UseCooldown(30, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "balm")))
             ))
     );
-
     public static final RegistryObject<Item, Item> SAP_TORCH = register(
             "sap_torch",
             (properties) -> new StandingAndWallBlockItem(
@@ -836,6 +828,14 @@ public class ItemRegistry {
                     properties
             )
     );
+
+    private static <T extends Entity> RegistryObject<Item, SpawnEggItem> registerSpawnEgg(RegistryObject<EntityType<?>, EntityType<T>> type) {
+        return register(
+                type.getId().withSuffix("_spawn_egg").getPath(),
+                properties -> new SpawnEggItem(properties.spawnEgg(type.get()))
+
+        );
+    }
 
     public static void init() {
     }
@@ -847,7 +847,7 @@ public class ItemRegistry {
     public static Item.Properties properties(String name) {
         return new Item.Properties().setId(ResourceKey.create(
                 Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
         ));
     }
 
@@ -862,17 +862,17 @@ public class ItemRegistry {
         private static final Component THORNS_UPGRADE_ADDITIONS_SLOT_DESCRIPTION;
         private static final ChatFormatting DESCRIPTION_FORMAT;
 
-        private static final ResourceLocation EMPTY_SLOT_HELMET;
-        private static final ResourceLocation EMPTY_SLOT_CHESTPLATE;
-        private static final ResourceLocation EMPTY_SLOT_LEGGINGS;
-        private static final ResourceLocation EMPTY_SLOT_BOOTS;
-        private static final ResourceLocation EMPTY_SLOT_HOE;
-        private static final ResourceLocation EMPTY_SLOT_AXE;
-        private static final ResourceLocation EMPTY_SLOT_SWORD;
-        private static final ResourceLocation EMPTY_SLOT_SHOVEL;
-        private static final ResourceLocation EMPTY_SLOT_PICKAXE;
-        private static final ResourceLocation EMPTY_SLOT_HEART_FRAGMENT;
-        private static final ResourceLocation EMPTY_SLOT_SPIKES;
+        private static final Identifier EMPTY_SLOT_HELMET;
+        private static final Identifier EMPTY_SLOT_CHESTPLATE;
+        private static final Identifier EMPTY_SLOT_LEGGINGS;
+        private static final Identifier EMPTY_SLOT_BOOTS;
+        private static final Identifier EMPTY_SLOT_HOE;
+        private static final Identifier EMPTY_SLOT_AXE;
+        private static final Identifier EMPTY_SLOT_SWORD;
+        private static final Identifier EMPTY_SLOT_SHOVEL;
+        private static final Identifier EMPTY_SLOT_PICKAXE;
+        private static final Identifier EMPTY_SLOT_HEART_FRAGMENT;
+        private static final Identifier EMPTY_SLOT_SPIKES;
 
         static {
 
@@ -880,69 +880,65 @@ public class ItemRegistry {
 
             IMBUEMENT_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
                             "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
+                            Identifier.withDefaultNamespace("smithing_template.imbuement_upgrade.applies_to")
                     )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
                             "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
+                            Identifier.withDefaultNamespace("smithing_template.imbuement_upgrade.ingredients")
                     )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             IMBUEMENT_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
                     "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.imbuement_upgrade.base_slot_description")
+                    Identifier.withDefaultNamespace("smithing_template.imbuement_upgrade.base_slot_description")
             ));
             IMBUEMENT_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
                     "item",
-                    ResourceLocation.withDefaultNamespace(
-                            "smithing_template.imbuement_upgrade.additions_slot_description")
+                    Identifier.withDefaultNamespace("smithing_template.imbuement_upgrade.additions_slot_description")
             ));
 
             THORNS_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId(
                             "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
+                            Identifier.withDefaultNamespace("smithing_template.thorns_upgrade.applies_to")
                     )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             THORNS_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId(
                             "item",
-                            ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
+                            Identifier.withDefaultNamespace("smithing_template.thorns_upgrade.ingredients")
                     )).
 
                     withStyle(DESCRIPTION_FORMAT);
 
             THORNS_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
                     "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.base_slot_description")
+                    Identifier.withDefaultNamespace("smithing_template.thorns_upgrade.base_slot_description")
             ));
             THORNS_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId(
                     "item",
-                    ResourceLocation.withDefaultNamespace("smithing_template.thorns_upgrade.additions_slot_description")
+                    Identifier.withDefaultNamespace("smithing_template.thorns_upgrade.additions_slot_description")
             ));
 
-            EMPTY_SLOT_HELMET = ResourceLocation.withDefaultNamespace("container/slot/helmet");
-            EMPTY_SLOT_CHESTPLATE = ResourceLocation.withDefaultNamespace("container/slot/chestplate");
-            EMPTY_SLOT_LEGGINGS = ResourceLocation.withDefaultNamespace("container/slot/leggings");
-            EMPTY_SLOT_BOOTS = ResourceLocation.withDefaultNamespace("container/slot/boots");
-            EMPTY_SLOT_HOE = ResourceLocation.withDefaultNamespace("container/slot/hoe");
-            EMPTY_SLOT_AXE = ResourceLocation.withDefaultNamespace("container/slot/axe");
-            EMPTY_SLOT_SWORD = ResourceLocation.withDefaultNamespace("container/slot/sword");
-            EMPTY_SLOT_SHOVEL = ResourceLocation.withDefaultNamespace("container/slot/shovel");
-            EMPTY_SLOT_PICKAXE = ResourceLocation.withDefaultNamespace("container/slot/pickaxe");
+            EMPTY_SLOT_HELMET = Identifier.withDefaultNamespace("container/slot/helmet");
+            EMPTY_SLOT_CHESTPLATE = Identifier.withDefaultNamespace("container/slot/chestplate");
+            EMPTY_SLOT_LEGGINGS = Identifier.withDefaultNamespace("container/slot/leggings");
+            EMPTY_SLOT_BOOTS = Identifier.withDefaultNamespace("container/slot/boots");
+            EMPTY_SLOT_HOE = Identifier.withDefaultNamespace("container/slot/hoe");
+            EMPTY_SLOT_AXE = Identifier.withDefaultNamespace("container/slot/axe");
+            EMPTY_SLOT_SWORD = Identifier.withDefaultNamespace("container/slot/sword");
+            EMPTY_SLOT_SHOVEL = Identifier.withDefaultNamespace("container/slot/shovel");
+            EMPTY_SLOT_PICKAXE = Identifier.withDefaultNamespace("container/slot/pickaxe");
 
-            EMPTY_SLOT_HEART_FRAGMENT = ResourceLocation.fromNamespaceAndPath(
+            EMPTY_SLOT_HEART_FRAGMENT = Identifier.fromNamespaceAndPath(
                     Constants.MOD_ID,
                     "container/slot/empty_slot_heart_fragment"
             );
-            EMPTY_SLOT_SPIKES = ResourceLocation.fromNamespaceAndPath(
-                    Constants.MOD_ID,
-                    "container/slot/empty_slot_spikes"
-            );
+            EMPTY_SLOT_SPIKES = Identifier.fromNamespaceAndPath(Constants.MOD_ID, "container/slot/empty_slot_spikes");
         }
 
         public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {
@@ -969,7 +965,7 @@ public class ItemRegistry {
             );
         }
 
-        private static List<ResourceLocation> createImbuementUpgradeIconList() {
+        private static List<Identifier> createImbuementUpgradeIconList() {
             return List.of(
                     EMPTY_SLOT_HELMET,
                     EMPTY_SLOT_SWORD,
@@ -983,11 +979,11 @@ public class ItemRegistry {
             );
         }
 
-        private static List<ResourceLocation> createImbuementUpgradeMaterialList() {
+        private static List<Identifier> createImbuementUpgradeMaterialList() {
             return List.of(EMPTY_SLOT_HEART_FRAGMENT);
         }
 
-        private static List<ResourceLocation> createThornsUpgradeIconList() {
+        private static List<Identifier> createThornsUpgradeIconList() {
             return List.of(
                     EMPTY_SLOT_HELMET,
                     EMPTY_SLOT_SWORD,
@@ -1001,7 +997,7 @@ public class ItemRegistry {
             );
         }
 
-        private static List<ResourceLocation> createThornsUpgradeMaterialList() {
+        private static List<Identifier> createThornsUpgradeMaterialList() {
             return List.of(EMPTY_SLOT_SPIKES);
         }
 

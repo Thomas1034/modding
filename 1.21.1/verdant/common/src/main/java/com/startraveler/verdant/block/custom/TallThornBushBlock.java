@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.TallFlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class TallThornBushBlock extends TallFlowerBlock {
     private final float damage;
@@ -26,8 +27,8 @@ public class TallThornBushBlock extends TallFlowerBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             double slowdownFactor = 0.2d;
@@ -73,7 +74,7 @@ public class TallThornBushBlock extends TallFlowerBlock {
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
         return this.damage == 0;
     }
 }

@@ -27,7 +27,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
@@ -39,6 +42,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -56,7 +60,7 @@ public class BombPileBlock extends FallingBlock {
     public static final int MIN_BOMBS = 1;
     public static final int MAX_BOMBS = 8;
     public static final IntegerProperty BOMBS = IntegerProperty.create("bombs", MIN_BOMBS, MAX_BOMBS);
-    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<@NotNull Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final Table<Integer, Direction, VoxelShape> SHAPES = ArrayTable.create(
             BOMBS.getPossibleValues(),
             FACING.getPossibleValues()
@@ -91,7 +95,7 @@ public class BombPileBlock extends FallingBlock {
 
     private static boolean prime(BlockState state, Level level, Vec3 pos, @Nullable LivingEntity entity) {
         if (level instanceof ServerLevel serverlevel) {
-            if (serverlevel.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+            if (serverlevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
 
                 float explosionMultiplier = 2.0f;
                 boolean hasFire = false;
@@ -175,14 +179,14 @@ public class BombPileBlock extends FallingBlock {
             if (prime(state, level, pos, player)) {
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
                 if (stack.is(Items.FLINT_AND_STEEL)) {
-                    stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+                    stack.hurtAndBreak(1, player, hand);
                 } else {
                     stack.consume(1, player);
                 }
 
                 player.awardStat(Stats.ITEM_USED.get(item));
             } else if (level instanceof ServerLevel serverLevel) {
-                if (!serverLevel.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+                if (!serverLevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
                     player.displayClientMessage(Component.translatable("block.minecraft.tnt.disabled"), true);
                     return InteractionResult.PASS;
                 }
@@ -274,7 +278,7 @@ public class BombPileBlock extends FallingBlock {
 
     @Override
     public void wasExploded(ServerLevel level, @NotNull BlockPos pos, @NotNull Explosion explosion) {
-        if (level.getGameRules().getBoolean(GameRules.RULE_TNT_EXPLODES)) {
+        if (level.getGameRules().get(GameRules.TNT_EXPLODES)) {
             PrimedTnt bomb = new PrimedTnt(
                     level,
                     pos.getX() + 0.5,
@@ -307,7 +311,7 @@ public class BombPileBlock extends FallingBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(FACING, BOMBS, UNSTABLE);
     }
 

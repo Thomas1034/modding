@@ -3,12 +3,12 @@ package com.startraveler.verdant.data.definitions;
 import com.startraveler.verdant.block.custom.BombFlowerCropBlock;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
-    public static TextureMapping fruitingLeaves(ResourceLocation block) {
+    public static TextureMapping fruitingLeaves(Identifier block) {
         return TextureMapping.cube(block).put(VerdantTextureSlot.OVERLAY, block.withSuffix("_overlay"));
     }
 
@@ -26,7 +26,7 @@ public class VerdantTextureMapping {
                 .put(TextureSlot.END, TextureMapping.getBlockTexture(block, "_top"));
     }
 
-    public static TextureMapping asterisk(ResourceLocation plus, ResourceLocation cross) {
+    public static TextureMapping asterisk(Identifier plus, Identifier cross) {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
     }
 
@@ -98,13 +98,13 @@ public class VerdantTextureMapping {
     }
 
 
-    public static TextureMapping overlaidCubeBlock(Block block, Block base, ResourceLocation overlay) {
+    public static TextureMapping overlaidCubeBlock(Block block, Block base, Identifier overlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.OVERLAY, overlay);
     }
 
-    public static TextureMapping topOverlaidCubeBlock(Block block, Block base, ResourceLocation overlay, ResourceLocation topOverlay) {
+    public static TextureMapping topOverlaidCubeBlock(Block block, Block base, Identifier overlay, Identifier topOverlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.OVERLAY, overlay)
@@ -112,4 +112,29 @@ public class VerdantTextureMapping {
                 .put(TextureSlot.SIDE, topOverlay.withSuffix("_side"))
                 .put(TextureSlot.BOTTOM, topOverlay.withSuffix("_bottom"));
     }
+
+    public static TextureMapping overlaidCross(Identifier base) {
+        return new TextureMapping().put(TextureSlot.CROSS, base)
+                .put(VerdantTextureSlot.OVERLAY, base.withSuffix("_overlay"));
+    }
+
+
+    public static TextureMapping overlaidCrossEmissive(Block block) {
+        return new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(block))
+                .put(TextureSlot.CROSS_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive"))
+                .put(VerdantTextureSlot.OVERLAY, TextureMapping.getBlockTexture(block, "_overlay"));
+    }
+
+
+    public static TextureMapping overlaidPlant(Block block) {
+        return new TextureMapping().put(TextureSlot.PLANT, TextureMapping.getBlockTexture(block))
+                .put(VerdantTextureSlot.OVERLAY, TextureMapping.getBlockTexture(block, "_overlay"));
+    }
+
+    public static TextureMapping overlaidPlantEmissive(Block block) {
+        return new TextureMapping().put(TextureSlot.PLANT, TextureMapping.getBlockTexture(block))
+                .put(TextureSlot.CROSS_EMISSIVE, TextureMapping.getBlockTexture(block, "_emissive"))
+                .put(VerdantTextureSlot.OVERLAY, TextureMapping.getBlockTexture(block, "_overlay"));
+    }
+
 }

@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:item/wild_coffee"
+    "model": "verdant:item/wild_coffee",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -1
+      }
+    ]
   }
 }

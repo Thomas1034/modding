@@ -4,9 +4,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.Constants;
-import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -20,7 +20,7 @@ import java.util.Objects;
 // TODO find why this crashes on exiting. Later.
 public class PlaceBlocksTimer extends BaseTimer {
 
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier TYPE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "place_blocks_timer"
     );
@@ -32,16 +32,16 @@ public class PlaceBlocksTimer extends BaseTimer {
             .apply(instance, PlaceBlocksTimer::new));
     protected final List<BlockPlaceDirective> toPlace;
 
-    protected PlaceBlocksTimer(List<BlockPlaceDirective> toPlace, long timeRemaining, ResourceLocation type) {
+    protected PlaceBlocksTimer(List<BlockPlaceDirective> toPlace, long timeRemaining, Identifier type) {
         super(timeRemaining, type);
         this.toPlace = Objects.requireNonNullElse(toPlace, new ArrayList<>());
-        ;
     }
 
     public PlaceBlocksTimer(long timeRemaining, List<BlockPlaceDirective> toPlace) {
         this(toPlace, timeRemaining, TYPE);
     }
 
+    @SuppressWarnings("unused")
     public PlaceBlocksTimer(long timeRemaining, BlockPlaceDirective... toPlace) {
         this(timeRemaining, Arrays.asList(toPlace));
     }
@@ -55,7 +55,8 @@ public class PlaceBlocksTimer extends BaseTimer {
         super.onFinish(level);
         for (BlockPlaceDirective directive : this.toPlace) {
             @Nullable BlockInWorld block = new BlockInWorld(level, directive.pos, false);
-            if (block.getState() != null && directive.predicate.matches(block)) {
+            block.getState();
+            if (directive.predicate.matches(block)) {
                 level.setBlockAndUpdate(directive.pos, directive.state);
             }
         }

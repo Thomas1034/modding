@@ -111,7 +111,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(GRADIENT, GRADIENT_DISTANCE);
     }

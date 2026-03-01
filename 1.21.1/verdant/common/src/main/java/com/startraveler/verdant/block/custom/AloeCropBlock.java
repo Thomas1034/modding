@@ -26,7 +26,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -97,9 +100,7 @@ public class AloeCropBlock extends CropBlock {
     protected void randomTick(BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(this.getAgeProperty()) == this.getMaxAge()) {
             Services.CROP_EVENT_HELPER.fireEvent(
-                    level, pos, state, true, () -> {
-                        this.mature.accept(state, level, pos);
-                    }
+                    level, pos, state, true, () -> this.mature.accept(state, level, pos)
             );
         } else {
             super.randomTick(state, level, pos, random);
@@ -107,18 +108,17 @@ public class AloeCropBlock extends CropBlock {
     }
 
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
 
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             float slowdownFactor = slowdown.apply(state.getValue(this.getAgeProperty()));
             slowdownFactor = 1 - slowdownFactor;
-            // Handle floating point imprecision.
-            if (slowdownFactor < 0.99999f) {
+            if (slowdownFactor < 1) {
                 entity.makeStuckInBlock(state, new Vec3(slowdownFactor, 0.75, slowdownFactor));
             }
         }
-        super.entityInside(state, level, pos, entity, applier);
+        super.entityInside(state, level, pos, entity, applier, intersects);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class AloeCropBlock extends CropBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(this.getAgeProperty());
     }
 

@@ -30,6 +30,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -101,7 +102,7 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, Orientation orientation, boolean movedByPiston) {
+    protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, Orientation orientation, boolean movedByPiston) {
         if (!this.canSurvive(state, level, pos)) {
             this.destroyFullBush(level, this.getCenterPos(state, pos));
         }
@@ -109,7 +110,7 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         int currentAge = state.getValue(AGE);
         if (currentAge > 0) {
             popResource(level, pos, this.harvest.apply(level.random));
@@ -131,7 +132,7 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return this.isFullBush(level, this.getCenterPos(state, pos)) && this.isCenterSafe(
                 level,
                 this.getCenterPos(state, pos)
@@ -139,19 +140,17 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (this.getCenterPos(state, BlockPos.ZERO).equals(BlockPos.ZERO)) {
             Services.CROP_EVENT_HELPER.fireEvent(
-                    level, pos, state, true, () -> {
-                        this.placeFullBush(level, pos, state.getValue(AGE) + 1);
-                    }
+                    level, pos, state, true, () -> this.placeFullBush(level, pos, state.getValue(AGE) + 1)
             );
         }
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersect) {
+        super.entityInside(state, level, pos, entity, applier, intersect);
         if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && VerdantIFF.isEnemy(
                 livingEntity)) {
             float slowdownFactor = ((float) ((1 - Math.abs(this.getXPos(state))) + (1 - Math.abs(this.getZPos(state))) + (2 - state.getValue(
@@ -165,18 +164,18 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state) {
+    protected boolean propagatesSkylightDown(@NotNull BlockState state) {
         return true;
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    protected boolean isRandomlyTicking(@NotNull BlockState state) {
         return super.isRandomlyTicking(state) && this.getCenterPos(state, BlockPos.ZERO)
                 .equals(BlockPos.ZERO) && state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    protected ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean maybeSimulate) {
+    protected @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean maybeSimulate) {
         return new ItemStack(this.baseSeed.get());
     }
 
@@ -260,7 +259,7 @@ public class HugeAloeCropBlock extends Block {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(AGE, X_PROPERTY, Y_PROPERTY, Z_PROPERTY);
     }
 

@@ -89,8 +89,8 @@ public class ThornBushBlock extends BushBlock {
     }
 
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         entityInsideThorns(state, level, pos, entity, this.damage);
     }
 

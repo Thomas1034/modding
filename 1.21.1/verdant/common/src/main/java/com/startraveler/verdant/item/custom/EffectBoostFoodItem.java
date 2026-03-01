@@ -45,7 +45,7 @@ public class EffectBoostFoodItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity eater) {
         FoodProperties food = stack.get(DataComponents.FOOD);
 
-        if (food != null && !level.isClientSide) {
+        if (food != null && !level.isClientSide()) {
             // Find the mob effect instance that the eater has.
             MobEffectInstance instance = eater.getEffect(this.effect.get());
 

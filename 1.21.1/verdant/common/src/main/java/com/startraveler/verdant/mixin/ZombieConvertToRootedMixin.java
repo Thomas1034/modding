@@ -19,8 +19,9 @@ package com.startraveler.verdant.mixin;
 import com.startraveler.verdant.entity.custom.RootedEntity;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import com.startraveler.verdant.util.VerdantTags;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,7 +42,7 @@ public abstract class ZombieConvertToRootedMixin {
     private int verdant$onVerdantTime;
 
     @Shadow
-    protected void convertToZombieType(EntityType<? extends Zombie> entityType) {
+    protected void convertToZombieType(ServerLevel level, EntityType<? extends Zombie> entityType) {
         throw new AssertionError();
     }
 
@@ -67,7 +68,7 @@ public abstract class ZombieConvertToRootedMixin {
 
     @Inject(method = "tick", at = @At(value = "TAIL"))
     private void tick(CallbackInfo ci) {
-        if (!((Zombie) (Object) this).level().isClientSide && ((Zombie) (Object) this).isAlive() && !((Zombie) (Object) this).isNoAi()) {
+        if (!((Zombie) (Object) this).level().isClientSide() && ((Zombie) (Object) this).isAlive() && !((Zombie) (Object) this).isNoAi()) {
             if (this.verdant$isOnVerdantConverting()) {
                 --this.verdant$rootedConversionTime;
                 if (this.verdant$rootedConversionTime < 0) {
@@ -93,9 +94,11 @@ public abstract class ZombieConvertToRootedMixin {
 
     @Unique
     private void verdant$doOnRootedConversion() {
-        this.convertToZombieType(EntityTypeRegistry.ROOTED.get());
-        if (!((Zombie) (Object) this).isSilent()) {
-            ((Zombie) (Object) this).level().levelEvent(null, 1040, ((Zombie) (Object) this).blockPosition(), 0);
+        if (((Zombie) (Object) this).level() instanceof ServerLevel serverLevel) {
+            this.convertToZombieType(serverLevel, EntityTypeRegistry.ROOTED.get());
+            if (!((Zombie) (Object) this).isSilent()) {
+                ((Zombie) (Object) this).level().levelEvent(null, 1040, ((Zombie) (Object) this).blockPosition(), 0);
+            }
         }
     }
 

@@ -30,9 +30,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Portal;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
+// TODO
 public class RecallEffect extends MobEffect implements Portal {
 
     public RecallEffect(MobEffectCategory category, int color) {
@@ -40,11 +42,11 @@ public class RecallEffect extends MobEffect implements Portal {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull ServerLevel level, @NotNull LivingEntity entity, int amplifier) {
         boolean superReturned = super.applyEffectTick(level, entity, amplifier);
 
         if (entity.level().isClientSide()) {
-            // Do client effects - like particles, if desired - here.
+            // Do client effect - like particles, if desired - here.
             return superReturned;
         }
 
@@ -69,7 +71,7 @@ public class RecallEffect extends MobEffect implements Portal {
     }
 
     @Override
-    public TeleportTransition getPortalDestination(ServerLevel level, Entity entity, BlockPos start) {
+    public TeleportTransition getPortalDestination(ServerLevel level, @NotNull Entity entity, @NotNull BlockPos start) {
         ServerLevel targetLevel = level.getServer().getLevel(Level.OVERWORLD);
         if (targetLevel == null) {
             return null;
@@ -78,10 +80,10 @@ public class RecallEffect extends MobEffect implements Portal {
                 return serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING);
             }
 
-            BlockPos blockpos = targetLevel.getSharedSpawnPos();
+            BlockPos spawnPos = targetLevel.getRespawnData().pos();
             float facing = 0.0F;
             Set<Relative> set = Relative.union(Relative.DELTA, Relative.ROTATION);
-            Vec3 vec3 = entity.adjustSpawnLocation(targetLevel, blockpos).getBottomCenter();
+            Vec3 vec3 = entity.adjustSpawnLocation(targetLevel, spawnPos).getBottomCenter();
 
             return new TeleportTransition(
                     targetLevel,

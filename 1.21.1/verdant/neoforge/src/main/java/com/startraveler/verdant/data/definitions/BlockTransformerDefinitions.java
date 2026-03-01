@@ -8,7 +8,7 @@ import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.WoodSets;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -318,7 +318,7 @@ public class BlockTransformerDefinitions {
     }
 
 
-    private static ResourceLocation name(Block block) {
+    private static Identifier name(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
 
@@ -358,7 +358,7 @@ public class BlockTransformerDefinitions {
 
     private static BlockTransformerData transformer(String transformer) {
         return new BlockTransformerData(
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, transformer),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, transformer),
                 null,
                 null,
                 null,

@@ -1,46 +1,59 @@
 package com.startraveler.verdant.client.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.startraveler.verdant.client.renderer.OozeRenderState;
 import com.startraveler.verdant.client.renderer.OozeRenderer;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.monster.slime.SlimeModel;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import org.jetbrains.annotations.NotNull;
 
-public class OozeOuterLayer extends RenderLayer<OozeRenderState, SlimeModel> {
+public class OozeOuterLayer extends RenderLayer<@NotNull OozeRenderState, @NotNull SlimeModel> {
     private final SlimeModel model;
 
-    public OozeOuterLayer(RenderLayerParent<OozeRenderState, SlimeModel> renderer, EntityModelSet modelSet) {
+    public OozeOuterLayer(RenderLayerParent<@NotNull OozeRenderState, @NotNull SlimeModel> renderer, EntityModelSet modelSet) {
         super(renderer);
         this.model = new SlimeModel(modelSet.bakeLayer(ModelLayers.SLIME_OUTER));
     }
 
-    public void render(@NotNull PoseStack p_117470_, @NotNull MultiBufferSource p_117471_, int p_117472_, OozeRenderState p_360800_, float p_117474_, float p_117475_) {
-        boolean flag = p_360800_.appearsGlowing && p_360800_.isInvisible;
-        if (!p_360800_.isInvisible || flag) {
-            VertexConsumer vertexconsumer;
+    @Override
+    public void submit(@NotNull PoseStack poseStack, @NotNull SubmitNodeCollector submitNodeCollector, int i, @NotNull OozeRenderState renderState, float v, float v1) {
+        boolean flag = renderState.appearsGlowing() && renderState.isInvisible;
+        if (!renderState.isInvisible || flag) {
+            int overlayCoords = LivingEntityRenderer.getOverlayCoords(renderState, 0.0F);
             if (flag) {
-                vertexconsumer = p_117471_.getBuffer(RenderType.outline(OozeRenderer.OOZE_LOCATION));
+                submitNodeCollector.order(1).submitModel(
+                        this.model,
+                        renderState,
+                        poseStack,
+                        RenderTypes.outline(OozeRenderer.OOZE_LOCATION),
+                        i,
+                        overlayCoords,
+                        -1,
+                        null,
+                        renderState.outlineColor,
+                        null
+                );
             } else {
-                vertexconsumer = p_117471_.getBuffer(RenderType.entityTranslucent(OozeRenderer.OOZE_LOCATION));
+                submitNodeCollector.order(1).submitModel(
+                        this.model,
+                        renderState,
+                        poseStack,
+                        RenderTypes.entityTranslucent(OozeRenderer.OOZE_LOCATION),
+                        i,
+                        overlayCoords,
+                        -1,
+                        null,
+                        renderState.outlineColor,
+                        null
+                );
             }
-
-            this.model.setupAnim(p_360800_);
-            this.model.renderToBuffer(
-                    p_117470_,
-                    vertexconsumer,
-                    p_117472_,
-                    LivingEntityRenderer.getOverlayCoords(p_360800_, 0.0F)
-            );
         }
-
     }
 }
 

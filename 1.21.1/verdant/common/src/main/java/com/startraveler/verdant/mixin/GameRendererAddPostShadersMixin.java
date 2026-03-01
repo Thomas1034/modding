@@ -24,7 +24,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelTargetBundle;
 import net.minecraft.client.renderer.PostChain;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Final;
@@ -39,28 +39,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GameRendererAddPostShadersMixin {
 
     @Unique
-    private static final ResourceLocation COLORBLIND_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier COLORBLIND_POST_CHAIN_ID = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "desaturate"
     );
     @Unique
-    private static final ResourceLocation SEPIA_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier SEPIA_POST_CHAIN_ID = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "sepia"
     );
     @Unique
-    private static final ResourceLocation SHARPEN_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier SHARPEN_POST_CHAIN_ID = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "sharpen"
     );
     @Unique
-    private static final ResourceLocation RED_GREEN_POST_CHAIN_ID = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier RED_GREEN_POST_CHAIN_ID = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "red_green"
     );
     @Shadow
     @Final
-    private static ResourceLocation BLUR_POST_CHAIN_ID;
+    private static Identifier BLUR_POST_CHAIN_ID;
     @Final
     @Shadow
     private Minecraft minecraft;

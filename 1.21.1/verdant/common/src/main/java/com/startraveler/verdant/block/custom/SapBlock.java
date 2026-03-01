@@ -17,15 +17,9 @@ public class SapBlock extends HalfTransparentBlock {
         super(properties);
     }
 
-    //       @Override
-    //        protected @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-    //            return Shapes.empty();
-    //        }
-
-
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         entity.makeStuckInBlock(state, new Vec3(0.6, 0.6, 0.6));
         if (entity instanceof LivingEntity livingEntity) {
             if (livingEntity.getEyePosition() instanceof Vec3 eyePos && level.getBlockState(BlockPos.containing(

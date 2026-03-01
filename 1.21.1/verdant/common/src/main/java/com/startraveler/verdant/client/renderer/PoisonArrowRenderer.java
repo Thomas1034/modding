@@ -21,10 +21,10 @@ import com.startraveler.verdant.entity.custom.PoisonArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class PoisonArrowRenderer extends ArrowRenderer<PoisonArrowEntity, ArrowRenderState> {
-    public static final ResourceLocation POISON_ARROW_LOCATION = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier POISON_ARROW_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/entity/projectiles/poison_arrow.png"
     );
@@ -34,7 +34,7 @@ public class PoisonArrowRenderer extends ArrowRenderer<PoisonArrowEntity, ArrowR
     }
 
     @Override
-    protected ResourceLocation getTextureLocation(ArrowRenderState arrowRenderState) {
+    protected Identifier getTextureLocation(ArrowRenderState arrowRenderState) {
         return POISON_ARROW_LOCATION;
     }
 

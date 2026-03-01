@@ -18,22 +18,23 @@ package com.startraveler.verdant.client.renderer;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.entity.custom.TimbermiteEntity;
-import net.minecraft.client.model.EndermiteModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.endermite.EndermiteModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-public class TimbermiteRenderer extends MobRenderer<TimbermiteEntity, LivingEntityRenderState, EndermiteModel> {
-    private static final ResourceLocation TIMBERMITE_LOCATION = ResourceLocation.fromNamespaceAndPath(
+public class TimbermiteRenderer extends MobRenderer<@NotNull TimbermiteEntity, @NotNull LivingEntityRenderState, @NotNull EndermiteModel> {
+    private static final Identifier TIMBERMITE_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID, "textures/entity/timbermite.png");
 
     public TimbermiteRenderer(EntityRendererProvider.Context context) {
         super(context, new EndermiteModel(context.bakeLayer(ModelLayers.ENDERMITE)), 0.3F);
     }
 
-    public ResourceLocation getTextureLocation(LivingEntityRenderState p_363663_) {
+    public @NotNull Identifier getTextureLocation(LivingEntityRenderState p_363663_) {
         return TIMBERMITE_LOCATION;
     }
 

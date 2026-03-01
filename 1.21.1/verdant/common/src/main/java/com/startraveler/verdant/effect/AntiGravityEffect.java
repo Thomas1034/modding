@@ -17,7 +17,7 @@
 package com.startraveler.verdant.effect;
 
 import com.startraveler.verdant.Constants;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -28,7 +28,7 @@ public class AntiGravityEffect extends MobEffect {
         super(category, color);
         this.addAttributeModifier(
                 Attributes.GRAVITY,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "antigravity/no_gravity"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "antigravity/no_gravity"),
                 -1.0,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );

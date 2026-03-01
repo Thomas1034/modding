@@ -58,7 +58,7 @@ public class VerdantConduitBlock extends ConduitBlock implements SimpleWaterlogg
         return createTickerHelper(
                 type,
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
-                level.isClientSide ? VerdantConduitBlockEntity::clientTick : VerdantConduitBlockEntity::serverTick
+                level.isClientSide() ? VerdantConduitBlockEntity::clientTick : VerdantConduitBlockEntity::serverTick
         );
     }
 

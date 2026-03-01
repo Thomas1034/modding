@@ -28,7 +28,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -47,6 +47,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
         super(type, level);
     }
 
+    @SuppressWarnings("unused")
     public ThrownRopeEntity(Level level) {
         super(EntityTypeRegistry.THROWN_ROPE.get(), level);
     }
@@ -67,7 +68,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
         Level level = this.level();
 
         // Ensure server side.
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return;
         }
 

@@ -18,7 +18,7 @@ package com.startraveler.verdant.util;
 
 import com.startraveler.verdant.Constants;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
@@ -39,6 +39,7 @@ public class VerdantTags {
         protected static final Set<String> TAG_NAMES = new HashSet<>();
         public static final TagKey<DamageType> TOXIC_ASH = tag("toxic_ash");
 
+        @SuppressWarnings("SameParameterValue")
         private static TagKey<DamageType> tag(String name) {
             if (TAG_NAMES.contains(name)) {
                 throw new IllegalArgumentException("Duplicate damage type tag: " + name);
@@ -47,7 +48,7 @@ public class VerdantTags {
             }
             TagKey<DamageType> key = TagKey.create(
                     Registries.DAMAGE_TYPE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(key);
             return key;
@@ -71,7 +72,7 @@ public class VerdantTags {
             }
             TagKey<MobEffect> key = TagKey.create(
                     Registries.MOB_EFFECT,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(key);
             return key;
@@ -81,6 +82,9 @@ public class VerdantTags {
 
     public static class Blocks {
         protected static final Set<String> TAG_NAMES = new HashSet<>();
+        public static final TagKey<Block> RESTRAINS_FOR_SPIDERS = tag("restrains_for_spiders");
+        public static final TagKey<Block> CAN_SPAWN_BUGS_WHEN_BROKEN = tag("can_spawn_bugs_when_broken");
+        public static final TagKey<Block> BUGS_CAN_SPAWN_ABOVE = tag("bugs_can_spawn_above");
         public static final TagKey<Block> SAP_FIRE_BASE_BLOCKS = tag("sap_fire_base_blocks");
         public static final TagKey<Block> TERRAIN_ALTERING_FEATURES_AFFECT = tag("terrain_altering_features_affect");
         public static final TagKey<Block> NATURAL_HEARTWOOD_LOGS = tag("natural_heartwood_logs");
@@ -117,7 +121,7 @@ public class VerdantTags {
             }
             TagKey<Block> tag = TagKey.create(
                     Registries.BLOCK,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(tag);
             return tag;
@@ -130,7 +134,7 @@ public class VerdantTags {
 
         public static final TagKey<Structure> CONTAINS_VERDANT = tag("contains_verdant");
 
-        @SuppressWarnings("unused")
+        @SuppressWarnings({"unused", "SameParameterValue"})
         private static TagKey<Structure> tag(String name) {
             if (TAG_NAMES.contains(name)) {
                 throw new IllegalArgumentException("Duplicate structure tag: " + name);
@@ -139,7 +143,7 @@ public class VerdantTags {
             }
             TagKey<Structure> tag = TagKey.create(
                     Registries.STRUCTURE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(tag);
             return tag;
@@ -181,7 +185,7 @@ public class VerdantTags {
             }
             TagKey<Item> tag = TagKey.create(
                     Registries.ITEM,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(tag);
             return tag;
@@ -202,13 +206,14 @@ public class VerdantTags {
             }
             TagKey<EntityType<?>> tag = TagKey.create(
                     Registries.ENTITY_TYPE,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(tag);
             return tag;
         }
     }
 
+    @SuppressWarnings("unused")
     public static class Biomes {
         protected static final Set<String> TAG_NAMES = new HashSet<>();
 
@@ -221,7 +226,7 @@ public class VerdantTags {
             }
             TagKey<Biome> tag = TagKey.create(
                     Registries.BIOME,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
             );
             TAGS.add(tag);
             return tag;

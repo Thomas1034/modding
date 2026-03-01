@@ -17,10 +17,21 @@
 package com.startraveler.verdant;
 
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
+import com.startraveler.verdant.entity.custom.SkullSpiderEntity;
 import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.util.ReloadableRegistryCache;
+import com.startraveler.verdant.timer.BaseTimer;
+import com.startraveler.verdant.timer.TimerListSavedData;
+import com.startraveler.verdant.util.VerdantTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.DimensionDataStorage;
+
+import java.util.List;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
@@ -32,14 +43,11 @@ import net.minecraft.world.level.block.Blocks;
 //
 // TODO Add firefly attractor achievement! "You would not believe your eyes..."
 /*
- Make the rope coil recipe more customizable.
- Don't hard-code the items; instead, have them be defined in the JSON
- along with a list of operations they can perform on the input stack.
- For example, setting length, adding/subtracting length, adding a hook,
- removing a hook, etc., etc., all defined as JSON objects.
- Then build the result based on these as if they're tiny lambdas.
- Order of operations would be important, especially with operations
- that involve setting the length.
+
+Make toxic ash use timers, so it will DFS the region, store the number of steps it takes to get to each one, then create timers to set each of those block 10 * N/3 ticks in the future, where N is the distance (int math). Thus it will spread 6 blocks per second, in two "steps" of three blocks each.
+This should reduce lag, I hope, while also making the spread look a little less instant.
+
+
 
 Add "tangled mats" which grow in the top layer of water (underwater) and slow down entities caught in them.
 Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots filling the whole blocks.
@@ -65,8 +73,15 @@ Lingers on the ground and will not hurt the person who threw it.
 */
 // Credits: (other direct contributors only)
 /*
+// To do: add small spiders that spawn in grass.
+// Make spawner that creates green growth particles.
 
 Changes:
+- Updated to 1.21.11
+- Changed almost all heartwood equipment textures.
+- Changed the stranger vine overlay texture.
+- Verdant grass and bushes are now biome-tinted. I may revert this change later; it's experimental.
+- Poisoners now use better potions when healing illagers.
 - Stinking blossoms now produce particles over the correct volume.
 - Stinking blossoms now produce a temporary stench cloud when broken. This has its benefits!
 - Thorny strangler leaves now only deal damage when you are moving.
@@ -89,7 +104,10 @@ Changes:
 - Decreased the suspicious soup time of Bleeding Hearts and Rue.
 
 Features Added:
+- Shelves for heartwood, strangler, mango, and dead wood sets.
+- Copper machete.
 - Copper and gold spikes and traps.
+- Spears for the heartwood tool sets.
 - Juice and Nectar, alternatives to healing potions.
 - A few more advancements.
 - Oozes, darker-green slimes that can spawn holding flowers. They inflict potion effects corresponding to the flower they hold. Some Oozes can pick up flower items; use this to your advantage! Oozes drop sap globs when killed.
@@ -104,6 +122,9 @@ Features Added:
 - Machetes, a new type of tool craftable in iron, diamond, and netherite, that mines plants in a 3x3x3 cube! Excellent for hacking through the underbrush or clearing land.
 
 Bugs Fixed:
+- Cooked golden cassava and golden mangoes are now always edible.
+- Pistons pushing Verdant Resin now works correctly (i.e., resin blocks stick to each other) on Fabric, if it didn't before.
+- Leafy Strangler Vines now correctly place Leafy Strangler vines. Previously, they placed Strangler Vines (without leaves) due to hardcoding.
 - Ube cakes now restore the correct amount of food and saturation.
 - Resin brick walls were misnamed. This will cause all existing ones to disappear. Sorry.
 - Resin blocks can now be crafted directly from resin clumps.
@@ -120,8 +141,6 @@ Bugs Fixed:
 
  */
 public class CommonClass {
-
-    public static final ReloadableRegistryCache.Transformers TRANSFORMERS = new ReloadableRegistryCache.Transformers();
 
     // The loader specific projects are able to import and use any code from the common project. This allows you to
     // write the majority of your code here and load it from your loader specific projects. This example has some
@@ -180,6 +199,50 @@ public class CommonClass {
         cake.addCandleCake(Blocks.GREEN_CANDLE, BlockRegistry.GREEN_CANDLE_UBE_CAKE.get());
         cake.addCandleCake(Blocks.RED_CANDLE, BlockRegistry.RED_CANDLE_UBE_CAKE.get());
         cake.addCandleCake(Blocks.BLACK_CANDLE, BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
+    }
+
+    public static void tickTimers(ServerLevel level) {
+        DimensionDataStorage dataStorage = level.getDataStorage();
+        TimerListSavedData timerList = dataStorage.computeIfAbsent(TimerListSavedData.TYPE);
+
+        List<BaseTimer> timers = timerList.getTimers();
+
+        if (!timers.isEmpty()) {
+            for (BaseTimer timer : timers) {
+                boolean result = timer.handleTick(level);
+                if (!result) {
+                    timerList.removeTimer(timer);
+                }
+            }
+            dataStorage.set(TimerListSavedData.TYPE, timerList);
+        }
+
+    }
+
+    public static void spawnSpiderlingsOnBlockBreak(LevelAccessor level, @SuppressWarnings("unused") Player player, BlockPos blockPos, BlockState blockState) {
+
+        double bugSpawningChance = Constants.SPIDER_CHANCE;
+
+        if (blockState.is(VerdantTags.Blocks.CAN_SPAWN_BUGS_WHEN_BROKEN)) {
+
+            if (level instanceof ServerLevel serverLevel) {
+
+                BlockPos belowPos = blockPos.below();
+                BlockState belowState = serverLevel.getBlockState(belowPos);
+
+                if (belowState.is(VerdantTags.Blocks.BUGS_CAN_SPAWN_ABOVE)) {
+
+                    if (level.getRandom().nextDouble() > bugSpawningChance) {
+                        SkullSpiderEntity spider = new SkullSpiderEntity(
+                                EntityTypeRegistry.SKULL_SPIDER.get(),
+                                serverLevel
+                        );
+                        spider.setPos(blockPos.getBottomCenter());
+                        level.addFreshEntity(spider);
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -1,0 +1,39 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.startraveler.verdant.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_18",
+  "mixins": [
+    "AbstractArrowAccessors",
+    "ArrowAccessors",
+    "BoggedLikeVerdantFriendsMixin",
+    "EntityGetterInvoker",
+    "ExplosionDamageCalculatorMixin",
+    "IntangibilityPlayerTickMixin",
+    "ItemStackDurabilityChangingMixin",
+    "ItemStackUnbreakabilityMixin",
+    "LevelRendererAccessors",
+    "LivingEntityMixin",
+    "MobEffectInstanceAccessors",
+    "PrimedTntAccessors",
+    "PrimedTntMixin",
+    "SlimeMixin",
+    "ThrownTridentDataIDGetter",
+    "WitchConvertToPoisonerViaLivingEntityMixin",
+    "WitchMixin",
+    "BaseFireBlockMixin",
+    "ZombieConvertToRootedMixin"
+  ],
+  "client": [
+    "ArrowRendererModelAccessor",
+    "GameRendererAddPostShadersMixin",
+    "GuiAddShaderOverlaysMixin",
+    "NumbnessHideStatsMixin",
+    "ScreenRendererMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

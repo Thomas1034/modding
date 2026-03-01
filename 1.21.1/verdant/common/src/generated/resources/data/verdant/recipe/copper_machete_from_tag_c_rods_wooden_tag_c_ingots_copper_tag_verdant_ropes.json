@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:copper_machete",
+  "key": {
+    "I": "#c:ingots/copper",
+    "R": "#verdant:ropes",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "II ",
+    " I ",
+    "SR "
+  ],
+  "result": {
+    "count": 1,
+    "id": "verdant:copper_machete"
+  }
+}

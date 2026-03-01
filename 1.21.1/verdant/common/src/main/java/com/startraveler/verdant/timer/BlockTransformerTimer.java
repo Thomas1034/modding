@@ -6,7 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.Converter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.Objects;
 // TODO find why this crashes on exiting. Later.
 public class BlockTransformerTimer extends BaseTimer implements Converter {
 
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier TYPE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "transformer_timer"
     );
@@ -26,24 +26,24 @@ public class BlockTransformerTimer extends BaseTimer implements Converter {
     public static final MapCodec<BlockTransformerTimer> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                     Codec.list(
                             BlockPos.CODEC).fieldOf(POS_LIST_KEY).forGetter(BlockTransformerTimer::toConvert),
-                    ResourceLocation.CODEC.fieldOf(TRANSFORMER_KEY).forGetter(BlockTransformerTimer::getTransformer)
+                    Identifier.CODEC.fieldOf(TRANSFORMER_KEY).forGetter(BlockTransformerTimer::getTransformer)
             )
             .and(baseData(instance))
             .apply(instance, BlockTransformerTimer::new));
     protected final List<BlockPos> toConvert;
-    protected final ResourceLocation transformer;
+    protected final Identifier transformer;
 
-    protected BlockTransformerTimer(List<BlockPos> toConvert, ResourceLocation transformer, long timeRemaining, ResourceLocation type) {
+    protected BlockTransformerTimer(List<BlockPos> toConvert, Identifier transformer, long timeRemaining, Identifier type) {
         super(timeRemaining, type);
         this.toConvert = Objects.requireNonNullElse(toConvert, new ArrayList<>());
         this.transformer = transformer;
     }
 
-    public BlockTransformerTimer(long timeRemaining, ResourceLocation transformer, List<BlockPos> toConvert) {
+    public BlockTransformerTimer(long timeRemaining, Identifier transformer, List<BlockPos> toConvert) {
         this(toConvert, transformer, timeRemaining, TYPE);
     }
 
-    public BlockTransformerTimer(long timeRemaining, ResourceLocation transformer, BlockPos... toConvert) {
+    public BlockTransformerTimer(long timeRemaining, Identifier transformer, BlockPos... toConvert) {
         this(timeRemaining, transformer, Arrays.asList(toConvert));
     }
 
@@ -64,7 +64,7 @@ public class BlockTransformerTimer extends BaseTimer implements Converter {
     }
 
     @Override
-    public ResourceLocation getTransformer() {
+    public Identifier getTransformer() {
         return this.transformer;
     }
 }

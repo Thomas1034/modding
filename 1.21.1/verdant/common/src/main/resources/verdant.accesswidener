@@ -22,5 +22,5 @@ accessible field net/minecraft/world/item/alchemy/PotionBrewing containerMixes L
 accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix from Lnet/minecraft/core/Holder;
 accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix ingredient Lnet/minecraft/world/item/crafting/Ingredient;
 accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix to Lnet/minecraft/core/Holder;
-
-
+accessible field net/minecraft/world/entity/ai/goal/RangedAttackGoal mob Lnet/minecraft/world/entity/Mob;
+accessible field net/minecraft/world/entity/ai/goal/RangedAttackGoal target Lnet/minecraft/world/entity/LivingEntity;

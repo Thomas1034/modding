@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -47,10 +48,10 @@ public class PoisonIvyBlock extends StranglerTendrilBlock {
 
     // Inflicts poison on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
                 }
@@ -60,12 +61,12 @@ public class PoisonIvyBlock extends StranglerTendrilBlock {
     }
 
     @Override
-    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+    protected @NotNull MapCodec<? extends GrowingPlantHeadBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected Block getBodyBlock() {
+    protected @NotNull Block getBodyBlock() {
         return BlockRegistry.POISON_IVY_PLANT.get();
     }
 }

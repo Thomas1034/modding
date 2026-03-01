@@ -5,7 +5,7 @@ import com.startraveler.verdant.data.definitions.BlockTransformerDefinitions;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class VerdantBlockTransformerProvider {
 
@@ -17,7 +17,7 @@ public class VerdantBlockTransformerProvider {
         bootstrap.register(key(BlockTransformerRegistry.TOXIC_ASH), BlockTransformerDefinitions.toxicAsh());
     }
 
-    public static ResourceKey<BlockTransformer> key(ResourceLocation location) {
+    public static ResourceKey<BlockTransformer> key(Identifier location) {
         return ResourceKey.create(BlockTransformer.KEY, location);
     }
 }

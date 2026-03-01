@@ -22,12 +22,12 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/gui/fish_trap_gui.png"
     );

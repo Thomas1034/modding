@@ -62,6 +62,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -74,7 +75,7 @@ public class TrapBlock extends Block {
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", MIN_STAGE, MAX_STAGE);
     public static final BooleanProperty SHRINKING = BooleanProperty.create("shrinking");
     public static final BooleanProperty HIDDEN = BooleanProperty.create("hidden");
-    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<@NotNull Direction> FACING = HorizontalDirectionalBlock.FACING;
     protected static final VoxelShape[] SHAPE = {Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 5.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
@@ -91,13 +92,11 @@ public class TrapBlock extends Block {
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 4D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
             new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
-    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
-            MobEffectRegistry.TRAPPED.asHolder(),
+    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
             11,
             0
     );
-    protected static final Supplier<MobEffectInstance> DIG_SLOWDOWN_EFFECT_GETTER = () -> new MobEffectInstance(
-            MobEffects.MINING_FATIGUE,
+    protected static final Supplier<MobEffectInstance> DIG_SLOWDOWN_EFFECT_GETTER = () -> new MobEffectInstance(MobEffects.MINING_FATIGUE,
             11,
             1
     );
@@ -144,23 +143,23 @@ public class TrapBlock extends Block {
 
     // Respawning in a trap is bad.
     @Override
-    public boolean isPossibleToRespawnInThis(BlockState state) {
+    public boolean isPossibleToRespawnInThis(@NotNull BlockState state) {
         return false;
     }
 
     // Very important!
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
         builder.add(STAGE, SHRINKING, FACING, HIDDEN);
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean isPathfindable(BlockState state, @NotNull PathComputationType pathComputationType) {
         return state.getValue(HIDDEN);
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         return direction == Direction.DOWN && !state.canSurvive(
                 level,
                 pos
@@ -179,18 +178,18 @@ public class TrapBlock extends Block {
     // This and updateNeighbours are used to make sure that neighboring traps are
     // updated when this one is broken
     @Override
-    public void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean simulate) {
+    public void affectNeighborsAfterRemoval(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, boolean simulate) {
         if (!simulate) {
             this.updateNeighbours(level, pos);
             super.affectNeighborsAfterRemoval(state, level, pos, false);
         } else {
 
-            super.affectNeighborsAfterRemoval(state, level, pos, simulate);
+            super.affectNeighborsAfterRemoval(state, level, pos, true);
         }
     }
 
     @Override
-    public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 
         if (!this.manuallyHideable) {
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
@@ -199,20 +198,15 @@ public class TrapBlock extends Block {
         BlockState belowState = level.getBlockState(pos.below());
         Tool toolComponent = stack.get(DataComponents.TOOL);
         if (toolComponent != null) {
-            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(
-                    level,
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(level,
                     pos
             ) < 1.0f;
 
             // If it's the right tool and the trap is fully open
             if (isCorrectToolForBelow && state.getValue(STAGE) == MIN_STAGE) {
                 // Hide/unhide the trap.
-                if (level instanceof ServerLevel serverLevel) {
-                    // ModPacketHandler.sendToAllClients(new DestroyEffectsPacket(pos, belowState,
-                    // 2));
+                if (level instanceof ServerLevel) {
                     level.levelEvent(null, LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(belowState));
-                    // Utilities.addParticlesAroundPositionServer(serverLevel, pos.getCenter(), new
-                    // BlockParticleOption(ParticleTypes.BLOCK, state), 1.0, 20);
                     level.setBlockAndUpdate(pos, state.setValue(HIDDEN, !state.getValue(HIDDEN)));
                 }
                 return InteractionResult.SUCCESS;
@@ -223,24 +217,24 @@ public class TrapBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(BlockState p_49325_, LevelReader p_49326_, BlockPos p_49327_) {
+    public boolean canSurvive(@NotNull BlockState p_49325_, @NotNull LevelReader p_49326_, BlockPos p_49327_) {
         BlockPos blockpos = p_49327_.below();
         return canSupportRigidBlock(p_49326_, blockpos) || canSupportCenter(p_49326_, blockpos, Direction.UP);
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_56620_, BlockGetter p_56621_, BlockPos p_56622_, CollisionContext p_56623_) {
+    public @NotNull VoxelShape getShape(BlockState p_56620_, @NotNull BlockGetter p_56621_, @NotNull BlockPos p_56622_, @NotNull CollisionContext p_56623_) {
         return SHAPE[p_56620_.getValue(STAGE)];
     }
 
     // Schedule a tick on random ticks.
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void randomTick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         level.scheduleTick(new BlockPos(pos), this, this.getCooldownTime());
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void tick(BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         // Check if there are any entities in the block. If so, trigger the trap.
 
         // First, get the stage of the trap.
@@ -310,10 +304,10 @@ public class TrapBlock extends Block {
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersect) {
+        super.entityInside(state, level, pos, entity, applier, intersect);
         // If there is an entity inside, schedule a tick.
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             // Only schedule a tick if the block is not currently shrinking.
             if (!state.getValue(SHRINKING)) {
                 level.scheduleTick(new BlockPos(pos), this, this.getResponseTime());
@@ -326,7 +320,7 @@ public class TrapBlock extends Block {
             if (entity instanceof LivingEntity le && le.hasEffect(MobEffectRegistry.TRAPPED.asHolder())) {
                 le.makeStuckInBlock(state, new Vec3(0.01f, 0.01f, 0.01f));
                 // Only on mod-5 ticks to reduce flickering.
-                if (!level.isClientSide && 0 == entity.tickCount % 5) {
+                if (!level.isClientSide() && 0 == entity.tickCount % 5) {
                     le.addEffect(TRAPPED_EFFECT_GETTER.get());
                     le.addEffect(DIG_SLOWDOWN_EFFECT_GETTER.get());
                 }

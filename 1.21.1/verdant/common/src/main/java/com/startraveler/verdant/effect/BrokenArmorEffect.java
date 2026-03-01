@@ -17,7 +17,7 @@
 package com.startraveler.verdant.effect;
 
 import com.startraveler.verdant.Constants;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -29,7 +29,7 @@ public class BrokenArmorEffect extends MobEffect {
 
         this.addAttributeModifier(
                 Attributes.ARMOR,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "broken_armor/decrease_armor"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "broken_armor/decrease_armor"),
                 -percentage,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );

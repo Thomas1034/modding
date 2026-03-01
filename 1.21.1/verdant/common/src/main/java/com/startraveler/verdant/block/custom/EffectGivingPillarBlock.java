@@ -37,7 +37,7 @@ public class EffectGivingPillarBlock extends RotatedPillarBlock {
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 livingEntity.addEffect(this.effect.get());
             }
         }

@@ -45,7 +45,9 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
     public static final Supplier<MobEffectInstance> VERDANT_ENERGY = () -> new MobEffectInstance(
             MobEffectRegistry.VERDANT_ENERGY.asHolder(),
             205,
-            0
+            0,
+            true,
+            true
     );
     private static final int RADIUS = 16;
     private static final int ATTEMPTS_PER_TICK = 6;
@@ -64,6 +66,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
         this.animationTickCount = 0;
     }
 
+    @SuppressWarnings("unused")
     public static void clientTick(Level level, BlockPos pos, BlockState state, VerdantConduitBlockEntity blockEntity) {
 
         // Constants.LOG.warn("There are {} ticks on the client.", blockEntity.tickCount);
@@ -80,6 +83,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
 
     }
 
+    @SuppressWarnings("unused")
     public static void serverTick(Level level, BlockPos pos, BlockState state, VerdantConduitBlockEntity blockEntity) {
 
         // Constants.LOG.warn("There are {} ticks on the server.", blockEntity.tickCount);
@@ -225,6 +229,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void applyEffects(Level level, BlockPos pos, int radius) {
         applyEffectInRadius(level, pos, radius, VERDANT_ENERGY);
     }

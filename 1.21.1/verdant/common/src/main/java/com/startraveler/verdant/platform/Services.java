@@ -38,6 +38,8 @@ public class Services {
 
     // Handles the growth-event wrapped code for the cassava crop.
     public static final ICropEventHelper CROP_EVENT_HELPER = load(ICropEventHelper.class);
+    // Handles checking if entities can grief, via events.
+    public static final IEntityGriefingChecker ENTITY_GRIEFING_CHECKER = load(IEntityGriefingChecker.class);
 
     // Handles getting the growth speed of crops. Blame NeoForge changing the signature
     // unnecessarily.
@@ -48,6 +50,9 @@ public class Services {
 
     // Creates a resin block instance, since this unfortunately differs between NeoForge and Fabric.
     public static final IResinBlockProvider RESIN_BLOCK_PROVIDER = load(IResinBlockProvider.class);
+
+    // Handles platform-specific block event firing.
+    public static final IBlockEventHelper BLOCK_EVENT_HELPER = load(IBlockEventHelper.class);
 
     // This code is used to load a service for the current environment. Your implementation of the service must be defined
     // manually by including a text file in META-INF/services named with the fully qualified class name of the service.

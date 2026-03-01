@@ -12,6 +12,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -21,8 +22,9 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         super(output, lookupProvider, woodSets, Constants.MOD_ID);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         super.addTags(provider);
 
         // Mineables
@@ -252,6 +254,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.STRANGLER_TENDRIL.get(),
                 BlockRegistry.SAP_BLOCK.get()
         );
+
         this.tag(VerdantTags.Blocks.REPLACEABLE_BY_BRAMBLE).addTags(
                 BlockTags.REPLACEABLE,
                 BlockTags.REPLACEABLE_BY_TREES,
@@ -530,7 +533,14 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         this.tag(VerdantTags.Blocks.SUSTAINS_OOZE_FISSURE).addTag(WoodSets.HEARTWOOD.getLogs());
 
-
+        this.tag(VerdantTags.Blocks.CAN_SPAWN_BUGS_WHEN_BROKEN).addTags(BlockTags.EDIBLE_FOR_SHEEP).add(
+                BlockRegistry.BUSH.get(),
+                BlockRegistry.TALL_BUSH.get(),
+                BlockRegistry.THORN_BUSH.get(),
+                BlockRegistry.TALL_THORN_BUSH.get()
+        );
+        this.tag(VerdantTags.Blocks.BUGS_CAN_SPAWN_ABOVE).addTags(VerdantTags.Blocks.VERDANT_GROUND);
+        this.tag(VerdantTags.Blocks.RESTRAINS_FOR_SPIDERS).add(Blocks.SOUL_SAND, Blocks.COBWEB);
         addDirtOres();
         addGrusOres();
         setupToolTiers();

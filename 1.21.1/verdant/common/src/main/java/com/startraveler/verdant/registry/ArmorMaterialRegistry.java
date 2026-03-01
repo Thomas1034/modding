@@ -18,10 +18,10 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.util.VerdantTags;
-import net.minecraft.Util;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAsset;
@@ -33,15 +33,15 @@ public interface ArmorMaterialRegistry {
 
     ResourceKey<EquipmentAsset> HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "heartwood")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "heartwood")
     );
     ResourceKey<EquipmentAsset> THORNY_HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "thorny_heartwood")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "thorny_heartwood")
     );
     ResourceKey<EquipmentAsset> IMBUED_HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "imbued_heartwood")
+            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "imbued_heartwood")
     );
 
     ArmorMaterial HEARTWOOD = new ArmorMaterial(

@@ -5,7 +5,7 @@ import com.startraveler.verdant.data.definitions.FeatureSetDefinitions;
 import com.startraveler.verdant.registry.FeatureSetRegistry;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class VerdantFeatureSetProvider {
 
@@ -19,7 +19,7 @@ public class VerdantFeatureSetProvider {
         bootstrap.register(key(FeatureSetRegistry.LARGE_MULCH), FeatureSetDefinitions.largeMulch());
     }
 
-    private static ResourceKey<FeatureSet> key(ResourceLocation location) {
+    private static ResourceKey<FeatureSet> key(Identifier location) {
         return ResourceKey.create(FeatureSet.KEY, location);
     }
 }

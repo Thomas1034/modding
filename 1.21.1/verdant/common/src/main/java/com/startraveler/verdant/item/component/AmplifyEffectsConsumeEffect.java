@@ -64,7 +64,7 @@ public record AmplifyEffectsConsumeEffect(Optional<MobEffectCategory> category) 
     @Override
     public boolean apply(Level level, ItemStack itemStack, LivingEntity livingEntity) {
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             // Find the mob effect instance that the eater has.
             List<MobEffectInstance> effects = new ArrayList<>(livingEntity.getActiveEffects());
 

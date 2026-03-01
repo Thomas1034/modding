@@ -1,6 +1,6 @@
-// 1.21.8	2026-01-06T21:05:18.4957731	Tags for minecraft:block mod id verdant
-438666b1eab5a637e9c1314f01db28f4a3cefae0 data/c/tags/block/fences/wooden.json
-48b1126f7360fa8085881bc679fca7ba18092f87 data/c/tags/block/fence_gates/wooden.json
+// 1.21.11	2026-03-01T01:35:24.3769254	Tags for minecraft:block mod id verdant
+591196cdf0dcd0542ac1dd03c2a034a5296f2755 data/c/tags/block/fences/wooden.json
+4f18feacc7fc2f5a4d3a7baaa4bbe05a3db8ca3b data/c/tags/block/fence_gates/wooden.json
 97de960c4ffe189af18eb142e32ed3311a2e1dac data/c/tags/block/gravels.json
 a7fe49bc7b3af55491706e65a6b9bed51887c38a data/c/tags/block/ores.json
 22b483bbb541c935235aa5875b97eff1559e3246 data/c/tags/block/ores/coal.json
@@ -15,7 +15,7 @@ b0143a7dd5350995ea40d7e7ca37f2abc0cc317b data/c/tags/block/ores_in_ground/dirt.j
 0679af039d4424585619fcb67f3a865814baabd1 data/c/tags/block/ores_in_ground/grus.json
 d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/c/tags/block/ore_bearing_ground/dirt.json
 a0951c01882ac275d893a38da974930d555b0749 data/c/tags/block/ore_bearing_ground/grus.json
-d78e25bd55737f18f401c5134067c9ea7a0880a7 data/c/tags/block/stripped_logs.json
+1cf9b3a06c12372fbe06c83f61e6d54438d4a027 data/c/tags/block/stripped_logs.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/ancient_city_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/azalea_root_replaceable.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/base_stone_overworld.json
@@ -34,17 +34,17 @@ b3d31f7449d36e1e9ec8311f923696fde0f38edf data/minecraft/tags/block/dry_vegetatio
 740e31cd51e5081b238bc56df754b50d39069f77 data/minecraft/tags/block/infiniburn_nether.json
 740e31cd51e5081b238bc56df754b50d39069f77 data/minecraft/tags/block/infiniburn_overworld.json
 a12ef1d086214edc315d7f72d65ceb1df05bbd41 data/minecraft/tags/block/leaves.json
-1295b91882464687ebb347796ad32d4afa9b6549 data/minecraft/tags/block/logs.json
-7d3778c05363d8fb94107e9a793be9a46b8b871a data/minecraft/tags/block/logs_that_burn.json
+f0758d92b61793ae66a237a8db8a8305c7b33bb6 data/minecraft/tags/block/logs.json
+692c76022dbbe34a7c9afbeacea616bbcff7f722 data/minecraft/tags/block/logs_that_burn.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/lush_ground_replaceable.json
-89efa2188e9fbbbff64aed730356b4554a63873d data/minecraft/tags/block/mineable/axe.json
+4cf7c41876b1949d4adb6089a17a6c2e2015988c data/minecraft/tags/block/mineable/axe.json
 4b5a74e1dde884d3eb24d4f6f6cd4b7ab37839c4 data/minecraft/tags/block/mineable/hoe.json
 46875d0b47be1568716a5d655ec637960e49d028 data/minecraft/tags/block/mineable/pickaxe.json
 10ac474b08616ced7fed480f720ca4df85a9c8cb data/minecraft/tags/block/mineable/shovel.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/moss_replaceable.json
 4b09d24f0fe7e59fe92ecfe6e9e00afae8b351a8 data/minecraft/tags/block/mushroom_grow_block.json
 84a7b44be13ab97d4eb526d87370fbeae003f4e4 data/minecraft/tags/block/overworld_carver_replaceables.json
-c776a7a6fd7cc6b8017314be34f2f0309b960b73 data/minecraft/tags/block/planks.json
+d8f38c122c37ebc7effdcfcfb1214658d458b2f3 data/minecraft/tags/block/planks.json
 86600a569d6d2a8a5b1517649555b4d3949e0fb5 data/minecraft/tags/block/replaceable.json
 7a10bb96b392daf8991b38d47c308bbf0777a567 data/minecraft/tags/block/replaceable_by_trees.json
 161c49bf581c4c0c33f0979ffcce6604bb2cfffd data/minecraft/tags/block/saplings.json
@@ -57,13 +57,14 @@ dbc5dd39a4698d7039d3069a376c418d5a8d5093 data/minecraft/tags/block/small_flowers
 632e51d9e1da4c4a4177aad785022f0017eb7f97 data/minecraft/tags/block/stone_ore_replaceables.json
 af9ff9de0b70309a5b167b395679d6a874d14bc7 data/minecraft/tags/block/sword_efficient.json
 452af6b14afc29b850a696d3d24278522f991a50 data/minecraft/tags/block/walls.json
-9157b00964677b0c8cb94ee446907e13760b3899 data/minecraft/tags/block/wooden_buttons.json
-ca699ff231b2ead0009df2b6047c0bf9c289c0b7 data/minecraft/tags/block/wooden_doors.json
-438666b1eab5a637e9c1314f01db28f4a3cefae0 data/minecraft/tags/block/wooden_fences.json
-3aee811e130965f97456c2b7376570a4c5bcf483 data/minecraft/tags/block/wooden_pressure_plates.json
-f260bd6fc9e9089315ea344e307176c4e2906217 data/minecraft/tags/block/wooden_slabs.json
-8d0d7e9c0cfb0e3c24e9d0683977d81dc980392e data/minecraft/tags/block/wooden_stairs.json
-0b746f012f9c718f903ca1c71154aae48a5be7b6 data/minecraft/tags/block/wooden_trapdoors.json
+e8cf54d0d2a3758484d3fae632c57f6b3ebe51a1 data/minecraft/tags/block/wooden_buttons.json
+05c0a654309323f2c0b71edfa954140bd824bfe8 data/minecraft/tags/block/wooden_doors.json
+591196cdf0dcd0542ac1dd03c2a034a5296f2755 data/minecraft/tags/block/wooden_fences.json
+56ad32363da9f3f10daa89e06a99a6e4f5f154de data/minecraft/tags/block/wooden_pressure_plates.json
+8384de83f97f33b384c029a4dcfec33646db882d data/minecraft/tags/block/wooden_shelves.json
+f9dcd65701e5e670824e9ebf5c70238352c1aac4 data/minecraft/tags/block/wooden_slabs.json
+0c59f6aaeea5acb184207e415c731a1047b28d2a data/minecraft/tags/block/wooden_stairs.json
+ffd4e539102ab6d3c37c62c7fe187f084461139b data/minecraft/tags/block/wooden_trapdoors.json
 c19e9536dc0ec5d9b320884ee848d12237ae4c8f data/rootbound/tags/block/dead_logs.json
 5d8746b5b75e50bf1bba6a681ef83ff76ba94660 data/rootbound/tags/block/heartwood_logs.json
 151a8feda09fc60424b965e90ac1efd6f4696a7d data/rootbound/tags/block/mango_logs.json
@@ -71,6 +72,8 @@ b882fcc87ee1e11b353599ee660a0f508225b174 data/rootbound/tags/block/strangler_log
 b9c12ed1bf6a6d427080c24a79a38ade61b72034 data/verdant/tags/block/allows_ash_spread.json
 10854d6af524eee0cb5843a4c7ffdd30736f4cf8 data/verdant/tags/block/blocks_ash_spread.json
 0f31e47abb56f74b7354c88b1931bba3ff957249 data/verdant/tags/block/blocks_intangible.json
+085657e930df0adc8227a0b8c924118d24d5d586 data/verdant/tags/block/bugs_can_spawn_above.json
+d7abe039a9cf19062b5514386f41c38063f19882 data/verdant/tags/block/can_spawn_bugs_when_broken.json
 d1921e183bdd08a1d364eb7ddc6b741775c2ded8 data/verdant/tags/block/does_not_support_strangler_vines.json
 eb9e548c6190869e03379c2092e88a932fe2b30d data/verdant/tags/block/incorrect_for_heartwood_tool.json
 950a086f855d118e00d3fc9697663c7721c42db1 data/verdant/tags/block/incorrect_for_imbued_heartwood_tool.json
@@ -78,6 +81,7 @@ eb9e548c6190869e03379c2092e88a932fe2b30d data/verdant/tags/block/incorrect_for_h
 343eb10268c8e899e3539291b1bed0938750681a data/verdant/tags/block/mineable/machete.json
 664a1840987a2f42ec237f3dee1fb0e3870b3bfd data/verdant/tags/block/natural_heartwood_logs.json
 6ad41d0f7cea6e2c964aff51372f07ab99583a37 data/verdant/tags/block/replaceable_by_bramble.json
+021c7049be35b5ae325376a6290591f4f8a36dea data/verdant/tags/block/restrains_for_spiders.json
 4df7d3ef8661d7f543eb0931841eaf0da5f077c9 data/verdant/tags/block/ropes.json
 aced298799629179831cce1dd976fd180e0e97e5 data/verdant/tags/block/ropes_extend.json
 aa317b472bd7b2dc1eeb0a7521b3ab925fbfe898 data/verdant/tags/block/rope_hooks.json

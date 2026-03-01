@@ -31,7 +31,7 @@ public interface Hoeable {
     default BlockState hoe(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack) {
         RegistryAccess access = level.registryAccess();
         // Retrieves the registry for hoeing.
-        BlockTransformer hoeing = CommonClass.TRANSFORMERS.get(access, BlockTransformerRegistry.HOEING);
+        BlockTransformer hoeing = BlockTransformer.SAFE_CACHE.get(access, BlockTransformerRegistry.HOEING);
 
         // Transforms the state and returns it
         return hoeing.get(state, access, level.random);

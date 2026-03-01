@@ -30,10 +30,10 @@ public class EffectGivingFlowerBlock extends FlowerBlock {
     }
 
     @Override
-    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersect) {
+        super.entityInside(state, level, pos, entity, applier, intersect);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
                 }

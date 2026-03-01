@@ -70,7 +70,7 @@ public record RemoveMobEffectsConsumeEffect(MobEffectCategory category, int amou
     @Override
     public boolean apply(Level level, @NotNull ItemStack itemStack, @NotNull LivingEntity livingEntity) {
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             // Find the mob effect instance that the eater has.
             List<MobEffectInstance> effects = new ArrayList<>(livingEntity.getActiveEffects());
             Collections.shuffle(effects);

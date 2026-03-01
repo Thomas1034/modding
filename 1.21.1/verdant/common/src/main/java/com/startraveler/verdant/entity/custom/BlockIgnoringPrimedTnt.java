@@ -29,9 +29,10 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this.xo = x;
         this.yo = y;
         this.zo = z;
-        ((PrimedTntAccessors) this).setOwner(owner == null ? null : new EntityReference<>(owner));
+        ((PrimedTntAccessors) this).setOwner(owner == null ? null : EntityReference.of(owner));
     }
 
+    @SuppressWarnings("unused")
     public float getDamageMultiplier() {
         return this.damageMultiplier;
     }
@@ -54,12 +55,12 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this.setFuse(i);
         if (i <= 0) {
             this.discard();
-            if (!this.level().isClientSide) {
+            if (!this.level().isClientSide()) {
                 this.explode();
             }
         } else {
             this.updateInWaterStateAndDoFluidPushing();
-            if (this.level().isClientSide) {
+            if (this.level().isClientSide()) {
                 this.level()
                         .addParticle(
                                 ParticleTypes.SMOKE,

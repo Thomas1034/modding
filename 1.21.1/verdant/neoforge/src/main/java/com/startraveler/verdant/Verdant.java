@@ -2,15 +2,14 @@ package com.startraveler.verdant;
 
 
 import com.startraveler.rootbound.Rootbound;
-import com.startraveler.verdant.entity.custom.BrambleEntity;
-import com.startraveler.verdant.entity.custom.PoisonerEntity;
-import com.startraveler.verdant.entity.custom.RootedEntity;
-import com.startraveler.verdant.entity.custom.TimbermiteEntity;
+import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.*;
+import com.startraveler.verdant.timer.BaseTimer;
+import com.startraveler.verdant.timer.BlockTransformerTimer;
+import com.startraveler.verdant.timer.PlaceBlocksTimer;
+import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -27,7 +26,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.DimensionDataStorage;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -37,7 +35,6 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
@@ -46,9 +43,9 @@ import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
+import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
 
 import java.util.List;
 
@@ -73,6 +70,7 @@ public class Verdant {
         // Dart Tipping Ingredients
         eventBus.addListener(Verdant::modifyDefaultComponents);
 
+
         // General
         eventBus.addListener(Verdant::addBlocksToBlockEntities);
 
@@ -88,10 +86,16 @@ public class Verdant {
         // Ticking Timers
         NeoForge.EVENT_BUS.addListener(Verdant::tickTimers);
 
-        // Clearing Cache
-        NeoForge.EVENT_BUS.addListener(Verdant::addReloadListeners);
+        // For breaking blocks and spiderlings
+        NeoForge.EVENT_BUS.addListener(Verdant::onBlockBreak);
 
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
+    }
+
+    // TODO also do this on Fabric.
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+
+        CommonClass.spawnSpiderlingsOnBlockBreak(event.getLevel(), event.getPlayer(), event.getPos(), event.getState());
     }
 
     public static void addBlocksToBlockEntities(BlockEntityTypeAddBlocksEvent event) {
@@ -101,29 +105,8 @@ public class Verdant {
 
     public static void tickTimers(LevelTickEvent.Post event) {
         if (event.getLevel() instanceof ServerLevel level) {
-
-            DimensionDataStorage dataStorage = level.getDataStorage();
-            TimerListSavedData timerList = dataStorage.computeIfAbsent(TimerListSavedData.TYPE);
-
-            List<BaseTimer> timers = timerList.getTimers();
-
-            if (!timers.isEmpty()) {
-                for (BaseTimer timer : timers) {
-                    boolean result = timer.handleTick(level);
-                    if (!result) {
-                        timerList.removeTimer(timer);
-                    }
-                }
-                dataStorage.set(TimerListSavedData.TYPE, timerList);
-            }
+            CommonClass.tickTimers(level);
         }
-    }
-
-    public static void addReloadListeners(AddServerReloadListenersEvent event) {
-        event.addListener(
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "clear_cache"),
-                CommonClass.TRANSFORMERS
-        );
     }
 
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
@@ -168,13 +151,14 @@ public class Verdant {
         event.put(EntityTypeRegistry.POISONER.get(), PoisonerEntity.createAttributes().build());
         event.put(EntityTypeRegistry.BRAMBLE.get(), BrambleEntity.createAttributes().build());
         event.put(EntityTypeRegistry.OOZE.get(), Monster.createMonsterAttributes().build());
+        event.put(EntityTypeRegistry.SKULL_SPIDER.get(), SkullSpiderEntity.createSkullSpiderAttributes().build());
     }
 
     public static void registerContainerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
+                Capabilities.Item.BLOCK,
                 BlockEntityTypeRegistry.FISH_TRAP_BLOCK_ENTITY.get(),
-                (sidedContainer, side) -> side == null ? new InvWrapper(sidedContainer) : new SidedInvWrapper(
+                (sidedContainer, side) -> side == null ? VanillaContainerWrapper.of(sidedContainer) : new WorldlyContainerWrapper(
                         sidedContainer,
                         side
                 )
@@ -185,11 +169,15 @@ public class Verdant {
                 .map(woodSet -> woodSet.getChestBoat().get())
                 .toList();
         for (EntityType<? extends Container> entityType : woodSetChestBoats) {
-            event.registerEntity(Capabilities.ItemHandler.ENTITY, entityType, (entity, ctx) -> new InvWrapper(entity));
             event.registerEntity(
-                    Capabilities.ItemHandler.ENTITY_AUTOMATION,
+                    Capabilities.Item.ENTITY,
                     entityType,
-                    (entity, ctx) -> new InvWrapper(entity)
+                    (entity, ctx) -> VanillaContainerWrapper.of(entity)
+            );
+            event.registerEntity(
+                    Capabilities.Item.ENTITY_AUTOMATION,
+                    entityType,
+                    (entity, ctx) -> VanillaContainerWrapper.of(entity)
             );
         }
     }

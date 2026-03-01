@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.KelpBlock;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -50,10 +51,10 @@ public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
 
     // Inflicts asphyxiation on anything inside.
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(livingEntity)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 livingEntity.addEffect(ASPHYXIATION.get());
             }
         }
@@ -65,7 +66,7 @@ public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
     }
 
     @Override
-    protected Block getBodyBlock() {
+    protected @NotNull Block getBodyBlock() {
         return BlockRegistry.DROWNED_HEMLOCK_PLANT.get();
     }
 
@@ -75,7 +76,7 @@ public class HemlockBlock extends KelpBlock implements SuspiciousEffectHolder {
     }
 
     @Override
-    public SuspiciousStewEffects getSuspiciousEffects() {
+    public @NotNull SuspiciousStewEffects getSuspiciousEffects() {
         return new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(
                 MobEffectRegistry.ASPHYXIATING.asHolder(),
                 200

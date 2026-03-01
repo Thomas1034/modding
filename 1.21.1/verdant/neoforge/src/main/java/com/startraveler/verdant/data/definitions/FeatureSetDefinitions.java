@@ -101,7 +101,7 @@ public class FeatureSetDefinitions {
     }
 
     public static ConfiguredFeatureSetEntry configured(int weight, ResourceKey<ConfiguredFeature<?, ?>> feature) {
-        return new ConfiguredFeatureSetEntry(feature.location(), weight);
+        return new ConfiguredFeatureSetEntry(feature.identifier(), weight);
     }
 
     public static FeatureSet mulch() {

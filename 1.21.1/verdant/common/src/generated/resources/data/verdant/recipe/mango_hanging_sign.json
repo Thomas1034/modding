@@ -4,7 +4,7 @@
   "group": "hanging_sign",
   "key": {
     "#": "verdant:stripped_mango_log",
-    "X": "minecraft:chain"
+    "X": "minecraft:iron_chain"
   },
   "pattern": [
     "X X",

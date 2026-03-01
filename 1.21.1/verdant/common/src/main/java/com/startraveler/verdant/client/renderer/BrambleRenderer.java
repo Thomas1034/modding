@@ -5,26 +5,25 @@ import com.mojang.math.Axis;
 import com.startraveler.verdant.entity.custom.BrambleEntity;
 import com.startraveler.verdant.registry.BlockRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.TntMinecartRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
-public class BrambleRenderer extends EntityRenderer<BrambleEntity, BrambleEntityRenderState> {
-    private final BlockRenderDispatcher blockRenderer;
+// TODO actually make it render.
+public class BrambleRenderer extends EntityRenderer<@NotNull BrambleEntity, @NotNull BrambleEntityRenderState> {
 
 
     public BrambleRenderer(EntityRendererProvider.Context context) {
         super(context);
         this.shadowRadius = 0.0F;
-        this.blockRenderer = context.getBlockRenderDispatcher();
     }
 
-    public void render(BrambleEntityRenderState brambleRenderState, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(BrambleEntityRenderState brambleRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int packedLight) {
         poseStack.pushPose();
 
         poseStack.translate(0.0F, 0.5F, 0.0F);
@@ -52,27 +51,27 @@ public class BrambleRenderer extends EntityRenderer<BrambleEntity, BrambleEntity
                                 );
                 float yRot = (float) Mth.atan2(relative.z, relative.x);
                 float xRot = (float) Mth.atan2(relative.y, relative.length());
-                poseStack.rotateAround(Axis.YP.rotation(-yRot - (float)(Math.PI / 2)), 0.5f, 0, 0.5f);
-                poseStack.rotateAround(Axis.XP.rotation(xRot), 0.0f, 0.0f - (float)bob, 0.0f);
+                poseStack.rotateAround(Axis.YP.rotation(-yRot - (float) (Math.PI / 2)), 0.5f, 0, 0.5f);
+                poseStack.rotateAround(Axis.XP.rotation(xRot), 0.0f, 0.0f - (float) bob, 0.0f);
             }
-            TntMinecartRenderer.renderWhiteSolidBlock(
-                    this.blockRenderer,
+            TntMinecartRenderer.submitWhiteSolidBlock(
                     brambleRenderState.headBlockState,
                     poseStack,
-                    bufferSource,
-                    15728880,
-                    false
+                    submitNodeCollector,
+                    packedLight,
+                    false,
+                    -1
             );
             poseStack.popPose();
         }
         if (brambleRenderState.blockState != null) {
-            TntMinecartRenderer.renderWhiteSolidBlock(
-                    this.blockRenderer,
+            TntMinecartRenderer.submitWhiteSolidBlock(
                     brambleRenderState.blockState,
                     poseStack,
-                    bufferSource,
+                    submitNodeCollector,
                     packedLight,
-                    false
+                    false,
+                    -1
             );
         }
         if (brambleRenderState.shellBlockState != null && brambleRenderState.isInvulnerable) {
@@ -84,19 +83,19 @@ public class BrambleRenderer extends EntityRenderer<BrambleEntity, BrambleEntity
                     brambleRenderState.shellBlockScale
             );
             // Render with full sky and block light (LightTexture.pack()).
-            TntMinecartRenderer.renderWhiteSolidBlock(
-                    this.blockRenderer,
+            TntMinecartRenderer.submitWhiteSolidBlock(
                     brambleRenderState.shellBlockState,
                     poseStack,
-                    bufferSource,
-                    15728880,
-                    false
+                    submitNodeCollector,
+                    packedLight,
+                    false,
+                    -1
             );
             poseStack.popPose();
         }
 
         poseStack.popPose();
-        super.render(brambleRenderState, poseStack, bufferSource, packedLight);
+        // super.render(brambleRenderState, poseStack, bufferSource, packedLight);
     }
 
     public BrambleEntityRenderState createRenderState() {

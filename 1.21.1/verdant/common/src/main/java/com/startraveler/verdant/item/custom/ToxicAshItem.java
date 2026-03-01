@@ -16,14 +16,17 @@
  */
 package com.startraveler.verdant.item.custom;
 
+import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.Converter;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.DamageSourceRegistry;
+import com.startraveler.verdant.timer.BlockTransformerTimer;
+import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
@@ -51,6 +54,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class ToxicAshItem extends Item implements Converter {
+    public static final int STEP = 3;
+    public static final int DELAY_PER_STEP = 10;
+    public static final int BASE_DELAY = 20;
     protected final int range;
     protected final int randomRange;
 
@@ -98,36 +104,31 @@ public class ToxicAshItem extends Item implements Converter {
         @NotNull ItemStack itemStack = player.getItemInHand(hand);
 
         BlockHitResult blockHitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
-        if (blockHitResult.getType() == HitResult.Type.MISS) {
-            return InteractionResult.PASS;
-        } else {
-            if (blockHitResult.getType() == HitResult.Type.BLOCK) {
-                BlockPos blockPos = blockHitResult.getBlockPos();
-                if (!level.mayInteract(player, blockPos)) {
-                    return InteractionResult.PASS;
-                }
+        if (blockHitResult.getType() == HitResult.Type.BLOCK) {
+            BlockPos blockPos = blockHitResult.getBlockPos();
+            if (!level.mayInteract(player, blockPos)) {
+                return InteractionResult.PASS;
+            }
 
-                if (level.getFluidState(blockPos).is(FluidTags.WATER)) {
-                    if (level instanceof ServerLevel serverLevel) {
+            if (level.getFluidState(blockPos).is(FluidTags.WATER)) {
+                if (level instanceof ServerLevel serverLevel) {
 
-                        this.convertInRadius(player, serverLevel, blockPos, this.getRadius(serverLevel.random));
+                    this.convertInRadius(player, serverLevel, blockPos, this.getRadius(serverLevel.random));
 
-                        player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
-                        if (itemStack.getMaxStackSize() != 1) {
-                            itemStack.shrink(1);
-                            return InteractionResult.SUCCESS_SERVER;
-                        } else {
-                            return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(this.getEmptySuccessItem(
-                                    itemStack,
-                                    player
-                            ));
-                        }
+                    player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
+                    if (itemStack.getMaxStackSize() != 1) {
+                        itemStack.shrink(1);
+                        return InteractionResult.SUCCESS_SERVER;
+                    } else {
+                        return InteractionResult.SUCCESS_SERVER.heldItemTransformedTo(this.getEmptySuccessItem(
+                                itemStack,
+                                player
+                        ));
                     }
                 }
             }
-
-            return InteractionResult.PASS;
         }
+        return InteractionResult.PASS;
     }
 
     protected void convertInRadius(@Nullable final Player player, final ServerLevel level, final BlockPos original, final int radius) {
@@ -167,16 +168,31 @@ public class ToxicAshItem extends Item implements Converter {
             stack.push(current.south());
             stack.push(current.east());
             stack.push(current.west());
-
-            // Spawn particles for visual feedback
-            // Nope, too much lag
-            // addDeathParticles(level, current, 0);
-
         }
 
+        Map<Integer, List<BlockPos>> positionsByDelay = new HashMap<>();
         for (BlockPos pos : visited) {
-            this.convert(level, pos);
+            int dist = (int) Math.ceil(Math.sqrt(pos.distSqr(original)));
+            positionsByDelay.computeIfAbsent(dist, i -> new ArrayList<>()).add(pos);
+            // this.convert(level, pos);
         }
+
+        positionsByDelay.forEach((distance, blockPosList) -> {
+            Constants.LOG.warn(
+                    "Adding {} blocks at distance {} with delay {}.",
+                    blockPosList.size(),
+                    distance,
+                    ((long) DELAY_PER_STEP * (distance / STEP)) + BASE_DELAY
+            );
+            TimerListSavedData.addTimer(
+                    level,
+                    new BlockTransformerTimer(
+                            ((long) DELAY_PER_STEP * (distance / STEP)) + BASE_DELAY,
+                            this.getTransformer(),
+                            blockPosList
+                    )
+            );
+        });
 
         // Handle entity damage within the affected radius
         AABB bounds = new AABB(
@@ -213,7 +229,7 @@ public class ToxicAshItem extends Item implements Converter {
     }
 
     @Override
-    public ResourceLocation getTransformer() {
+    public Identifier getTransformer() {
         return BlockTransformerRegistry.TOXIC_ASH;
     }
 }

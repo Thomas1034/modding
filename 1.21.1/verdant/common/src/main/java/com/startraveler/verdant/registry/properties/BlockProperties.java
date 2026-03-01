@@ -33,10 +33,10 @@ public class BlockProperties {
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_PLANKS = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_SLAB = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_SIGN = verdantHeartwoodBase().forceSolidOn()
-            .noCollission().strength(2.0F);
+            .noCollision().strength(2.0F);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_LOGS = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_PRESSURE_PLATE = verdantHeartwoodBase()
-            .forceSolidOn().noCollission().strength(2.0F).pushReaction(PushReaction.DESTROY);
+            .forceSolidOn().noCollision().strength(2.0F).pushReaction(PushReaction.DESTROY);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_STAIRS = verdantHeartwoodBase();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_FENCE = verdantHeartwoodBase().forceSolidOn();
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_FENCE_GATE = verdantHeartwoodBase().forceSolidOn();
@@ -44,11 +44,11 @@ public class BlockProperties {
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_DOOR = verdantHeartwoodBase().strength(4.5F)
             .noOcclusion().pushReaction(PushReaction.DESTROY);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_WALL_HANGING_SIGN = verdantHeartwoodBase()
-            .forceSolidOn().noCollission().strength(1.0F);
+            .forceSolidOn().noCollision().strength(1.0F);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_WALL_SIGN = verdantHeartwoodBase().forceSolidOn()
-            .noCollission().strength(1.0F);
+            .noCollision().strength(1.0F);
     public static final BlockBehaviour.Properties VERDANT_HEARTWOOD_HANGING_SIGN = verdantHeartwoodBase().forceSolidOn()
-            .noCollission().strength(1.0F);
+            .noCollision().strength(1.0F);
 
     private static BlockBehaviour.Properties verdantHeartwoodBase() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN).instrument(NoteBlockInstrument.BASS)

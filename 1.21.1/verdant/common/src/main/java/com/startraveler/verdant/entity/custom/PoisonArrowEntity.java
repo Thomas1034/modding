@@ -23,10 +23,11 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -46,18 +47,18 @@ public class PoisonArrowEntity extends AbstractArrow {
         super(type, level);
     }
 
-    protected void onHitEntity(EntityHitResult result) {
+    protected void onHitEntity(@NotNull EntityHitResult result) {
         super.onHitEntity(result);
         Entity e = result.getEntity();
 
-        if (!e.level().isClientSide && e instanceof LivingEntity le) {
+        if (!e.level().isClientSide() && e instanceof LivingEntity le) {
             le.addEffect(this.effect.get());
         }
     }
 
 
     @Override
-    protected ItemStack getDefaultPickupItem() {
+    protected @NotNull ItemStack getDefaultPickupItem() {
         return new ItemStack(ItemRegistry.POISON_ARROW.get());
     }
 }

@@ -22,6 +22,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
 public class ColloidEffect extends MobEffect {
     public ColloidEffect(MobEffectCategory category, int color) {
@@ -29,8 +30,8 @@ public class ColloidEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-        int timeSinceHurt = entity.invulnerableDuration - entity.invulnerableTime;
+    public boolean applyEffectTick(@NotNull ServerLevel level, LivingEntity entity, int amplifier) {
+        int timeSinceHurt = entity.hurtDuration - entity.hurtTime;
         if (timeSinceHurt < 2) {
             // Inflict stacked slowness debuffs.
             int baseTime = 5;

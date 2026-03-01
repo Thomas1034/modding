@@ -71,7 +71,7 @@ public abstract class WitchConvertToPoisonerViaLivingEntityMixin {
     @Inject(method = "tick", at = @At(value = "TAIL"))
     private void tick(CallbackInfo ci) {
         if (verdant$isAWitch()) {
-            if (!((Witch) (Object) this).level().isClientSide && ((Witch) (Object) this).isAlive() && !((Witch) (Object) this).isNoAi()) {
+            if (!((Witch) (Object) this).level().isClientSide() && ((Witch) (Object) this).isAlive() && !((Witch) (Object) this).isNoAi()) {
                 if (this.verdant$isOnVerdantConverting()) {
                     --this.verdant$rootedConversionTime;
                     if (this.verdant$rootedConversionTime < 0) {

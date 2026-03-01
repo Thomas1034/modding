@@ -25,7 +25,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -42,6 +42,7 @@ import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -65,7 +66,7 @@ public class BlowdartTippingRecipe extends CustomRecipe {
     }
 
     @Override
-    public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+    public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.@NotNull Provider registries) {
         ItemStack result = ItemStack.EMPTY;
 
         boolean isValid = true;
@@ -181,7 +182,7 @@ public class BlowdartTippingRecipe extends CustomRecipe {
     }
 
     @Override
-    public RecipeSerializer<? extends CustomRecipe> getSerializer() {
+    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
         return RecipeSerializerRegistry.BLOWDART_TIPPING_SERIALIZER.get();
     }
 
@@ -197,24 +198,24 @@ public class BlowdartTippingRecipe extends CustomRecipe {
         }
 
         @Override
-        public Builder unlockedBy(String name, Criterion<?> criterion) {
+        public @NotNull Builder unlockedBy(@NotNull String name, @NotNull Criterion<?> criterion) {
             this.criteria.put(name, criterion);
             return this;
         }
 
         @Override
-        public Builder group(@Nullable String group) {
+        public @NotNull Builder group(@Nullable String group) {
             this.group = group;
             return this;
         }
 
         @Override
-        public Item getResult() {
+        public @NotNull Item getResult() {
             return ItemRegistry.TIPPED_DART.get();
         }
 
         @Override
-        public void save(RecipeOutput output, ResourceKey<Recipe<?>> key) {
+        public void save(RecipeOutput output, @NotNull ResourceKey<Recipe<?>> key) {
             Advancement.Builder advancement = output.advancement()
                     .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
                     .rewards(AdvancementRewards.Builder.recipe(key))
@@ -223,7 +224,7 @@ public class BlowdartTippingRecipe extends CustomRecipe {
             output.accept(
                     key,
                     new BlowdartTippingRecipe(this.category),
-                    advancement.build(key.location().withPrefix("recipes/"))
+                    advancement.build(key.identifier().withPrefix("recipes/"))
             );
         }
 

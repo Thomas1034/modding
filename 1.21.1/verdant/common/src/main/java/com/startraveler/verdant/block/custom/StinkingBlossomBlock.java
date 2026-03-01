@@ -35,7 +35,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SporeBlossomBlock;
@@ -43,6 +46,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -130,7 +134,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     // Very important!
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(VERTICAL_DIRECTION);
     }
@@ -139,7 +143,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
     protected void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean dropExperience) {
         super.spawnAfterBreak(state, level, pos, stack, dropExperience);
         // Create a cloud that gives nausea and stench when the flower is broken.
-        if (level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+        if (level.getGameRules().get(GameRules.BLOCK_DROPS)) {
             Vec3 center = pos.getCenter();
             AreaEffectCloud areaEffectCloud = new AreaEffectCloud(level, center.x, center.y, center.z);
             areaEffectCloud.setRadius(2.0F);
@@ -160,10 +164,10 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
 
     // Inflicts nausea on anything inside.
     @Override
-    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier) {
-        super.entityInside(state, level, pos, entity, applier);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, applier, intersects);
         if (entity instanceof LivingEntity livingEntity && VerdantIFF.isEnemy(entity)) {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 if (livingEntity instanceof ServerPlayer player) {
                     TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
                 }

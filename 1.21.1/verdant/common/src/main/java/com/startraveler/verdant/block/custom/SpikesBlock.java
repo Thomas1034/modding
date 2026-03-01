@@ -48,8 +48,8 @@ public class SpikesBlock extends AmethystClusterBlock {
     }
 
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier effectApplier) {
-        super.entityInside(state, level, pos, entity, effectApplier);
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier effectApplier, boolean intersects) {
+        super.entityInside(state, level, pos, entity, effectApplier, intersects);
         if (entity instanceof LivingEntity livingEntity) {
             double slowdownFactor = 0.2d;
             slowdownFactor = 1 - slowdownFactor;

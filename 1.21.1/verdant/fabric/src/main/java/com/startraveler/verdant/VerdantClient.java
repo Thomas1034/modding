@@ -5,26 +5,33 @@ import com.startraveler.verdant.client.item.RopeGlowProperty;
 import com.startraveler.verdant.client.item.RopeHangingBlockProperty;
 import com.startraveler.verdant.client.item.RopeHookProperty;
 import com.startraveler.verdant.client.item.RopeLengthProperty;
+import com.startraveler.verdant.client.model.SkullSpiderModel;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.TntRenderer;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
@@ -131,30 +138,76 @@ public class VerdantClient implements ClientModInitializer {
                 (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
                         blockAndTintGetter,
                         blockPos
-                ) : -12012264, BlockRegistry.MANGO_LEAVES.get()
+                ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
+        );
+        ColorProviderRegistry.BLOCK.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
+                        blockPos
+                ) : FoliageColor.FOLIAGE_DEFAULT,
+                BlockRegistry.STRANGLER_LEAVES.get(),
+                BlockRegistry.WILTED_STRANGLER_LEAVES.get(),
+                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
+                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
+                BlockRegistry.LEAFY_STRANGLER_VINE.get()
+        );
+
+        ColorProviderRegistry.BLOCK.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
+                        blockState.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER ? blockPos.below() : blockPos
+                ) : GrassColor.getDefaultColor()) : -1,
+                BlockRegistry.TALL_BUSH.get(),
+                BlockRegistry.TALL_THORN_BUSH.get()
+        );
+
+        ColorProviderRegistry.BLOCK.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
+                        blockPos
+                ) : GrassColor.getDefaultColor()) : -1,
+                BlockRegistry.VERDANT_GRASS_MUD.get(),
+                BlockRegistry.VERDANT_GRASS_CLAY.get(),
+                BlockRegistry.VERDANT_GRASS_DIRT.get(),
+                BlockRegistry.VERDANT_GRASS_GRUS.get()
+        );
+
+        ColorProviderRegistry.BLOCK.register(
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
+                        blockPos
+                ) : GrassColor.getDefaultColor()) : 0,
+                BlockRegistry.BUSH.get(),
+                BlockRegistry.POTTED_BUSH.get(),
+                BlockRegistry.THORN_BUSH.get(),
+                BlockRegistry.POTTED_THORN_BUSH.get()
         );
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
-        EntityRendererRegistry.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.THROWN_SPEAR.get(), ThrownSpearRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.OOZE.get(), OozeRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(
+                SkullSpiderModel.SKULL_SPIDER,
+                () -> SkullSpiderModel.createBodyLayer().apply(MeshTransformer.scaling(0.7F))
+        );
+
+        EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.POISON_ARROW.get(), PoisonArrowRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.ROOTED.get(), RootedRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.DART.get(), TippableDartRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), TntRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.POISONER.get(), PoisonerRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.BRAMBLE.get(), BrambleRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.OOZE.get(), OozeRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.BLOCK_PLACING_PROJECTILE.get(), ThrownItemRenderer::new);
+        EntityRenderers.register(EntityTypeRegistry.SKULL_SPIDER.get(), SkullSpiderRenderer::new);
+
 
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
                 VerdantConduitRenderer::new
         );
-        BlockEntityRenderers.register(
-                BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(),
-                OvergrownSpawnerRenderer::new
-        );
+        BlockEntityRenderers.register(BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(), OvergrownSpawnerRenderer::new);
         SpecialModelRenderers.ID_MAPPER.put(
                 VerdantConduitSpecialRenderer.Unbaked.LOCATION,
                 VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC
@@ -166,25 +219,25 @@ public class VerdantClient implements ClientModInitializer {
 
         RangeSelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
                 // The map codec
                 RopeLengthProperty.MAP_CODEC
         );
         RangeSelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
                 // The map codec
                 RopeGlowProperty.MAP_CODEC
         );
         ConditionalItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
                 // The map codec
                 RopeHookProperty.MAP_CODEC
         );
         SelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
                 // The property type
                 RopeHangingBlockProperty.TYPE
         );
@@ -223,7 +276,7 @@ public class VerdantClient implements ClientModInitializer {
         Arrays.stream(blocks)
                 .forEach(block -> BlockRenderLayerMap.putBlock(
                         ((Supplier<Block>) block).get(),
-                        ChunkSectionLayer.CUTOUT_MIPPED
+                        ChunkSectionLayer.CUTOUT
                 ));
     }
 

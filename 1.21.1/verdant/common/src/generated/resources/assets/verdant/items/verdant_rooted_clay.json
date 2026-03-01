@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:block/verdant_rooted_clay"
+    "model": "verdant:block/verdant_rooted_clay_item",
+    "tints": [
+      {
+        "type": "minecraft:custom_model_data",
+        "default": -1
+      }
+    ]
   }
 }

@@ -7,6 +7,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -14,7 +16,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ThrownSplashPotion;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownSplashPotion;
 import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -22,7 +24,10 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +41,14 @@ public class PoisonerEntity extends Witch {
         super(type, level);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.@NotNull Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0F)
                 .add(Attributes.MOVEMENT_SPEED, 0.35F);
     }
 
-    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+    @Override
+    public void performRangedAttack(@NotNull LivingEntity target, float distanceFactor) {
         if (!this.isDrinkingPotion()) {
             Vec3 motionPredictionVector = target.getDeltaMovement();
             double xDistanceToTarget = target.getX() + motionPredictionVector.x - this.getX();
@@ -54,9 +60,9 @@ public class PoisonerEntity extends Witch {
 
             if (target instanceof Raider) {
                 if (target.getHealth() <= 4.0F) {
-                    potionToInflict = Potions.HEALING;
+                    potionToInflict = Potions.STRONG_HEALING;
                 } else {
-                    potionToInflict = Potions.REGENERATION;
+                    potionToInflict = Potions.STRONG_REGENERATION;
                 }
                 extraEffectsToInflict.addAll(PotionRegistry.ADRENALINE.get().getEffects());
                 if (this.random.nextFloat() < 0.3) {
@@ -78,8 +84,8 @@ public class PoisonerEntity extends Witch {
 
             Level level = this.level();
             if (level instanceof ServerLevel serverLevel) {
-                ItemStack itemstack = new ItemStack(Items.SPLASH_POTION);
-                itemstack.set(
+                ItemStack itemStack = new ItemStack(Items.SPLASH_POTION);
+                itemStack.set(
                         DataComponents.POTION_CONTENTS,
                         new PotionContents(
                                 Optional.of(potionToInflict),
@@ -92,7 +98,7 @@ public class PoisonerEntity extends Witch {
                 Projectile.spawnProjectileUsingShoot(
                         ThrownSplashPotion::new,
                         serverLevel,
-                        itemstack,
+                        itemStack,
                         this,
                         xDistanceToTarget,
                         heightDifference + distanceToTarget * 0.2,
@@ -121,5 +127,31 @@ public class PoisonerEntity extends Witch {
     @Override
     public boolean canBeLeader() {
         return true;
+    }
+
+    public record Death(Entity entity, Vec3 location) {
+
+        public static void saveDeaths(List<Death> deaths, ValueOutput output) {
+            ValueOutput.ValueOutputList list = output.childrenList("deaths");
+            deaths.forEach(death -> death.save(list.addChild()));
+        }
+
+        public static List<Death> loadDeaths(ValueInput input, Level level, EntitySpawnReason reason) {
+            return input.childrenListOrEmpty("deaths").stream().map(listEntryInput -> Death.load(listEntryInput, level, reason)).toList();
+        }
+
+        public static Death load(ValueInput input, Level level, EntitySpawnReason reason) {
+            return new Death(
+                    EntityType.create(input.childOrEmpty("entity"), level, reason).orElse(null),
+                    input.read("location", Vec3.CODEC).orElse(Vec3.ZERO)
+            );
+        }
+
+        public void save(ValueOutput output) {
+            output.store("location", Vec3.CODEC, location);
+            ValueOutput entityOutput = output.child("entity");
+            entity.saveWithoutId(entityOutput);
+
+        }
     }
 }

@@ -41,6 +41,6 @@ public class VerdantDamageSourceProvider {
     }
 
     private static String deathMessage(ResourceKey<DamageType> key) {
-        return key.location().getNamespace() + "." + key.location().getPath();
+        return key.identifier().getNamespace() + "." + key.identifier().getPath();
     }
 }

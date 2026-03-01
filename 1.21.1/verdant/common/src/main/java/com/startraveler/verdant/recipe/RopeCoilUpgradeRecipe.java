@@ -30,7 +30,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeBuilder;
@@ -349,7 +349,7 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
             output.accept(
                     key,
                     new RopeCoilUpgradeRecipe(this.category, this.coil, this.rope),
-                    advancement.build(key.location().withPrefix("recipes/"))
+                    advancement.build(key.identifier().withPrefix("recipes/"))
             );
         }
 

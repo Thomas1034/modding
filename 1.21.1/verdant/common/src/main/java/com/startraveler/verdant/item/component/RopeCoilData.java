@@ -104,7 +104,7 @@ public record RopeCoilData(int length,
                 Blocks.SHROOMLIGHT.defaultBlockState()
         );
 
-        public static final StringRepresentableCodec<HangingBlockOptions> CODEC = StringRepresentable.fromEnum(
+        public static final StringRepresentableCodec<@NotNull HangingBlockOptions> CODEC = StringRepresentable.fromEnum(
                 HangingBlockOptions::values);
 
         public final String typeName;

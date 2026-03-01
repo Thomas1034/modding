@@ -5,7 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.util.CodecRegistry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 
 public class BaseTimer {
@@ -16,18 +16,18 @@ public class BaseTimer {
             instance,
             BaseTimer::new
     ));
-    private final ResourceLocation type;
+    private final Identifier type;
     private long timeRemaining;
 
-    protected BaseTimer(long timeRemaining, ResourceLocation type) {
+    protected BaseTimer(long timeRemaining, Identifier type) {
         this.timeRemaining = timeRemaining;
         this.type = type;
     }
 
-    protected static <T extends BaseTimer> Products.P2<RecordCodecBuilder.Mu<T>, Long, ResourceLocation> baseData(RecordCodecBuilder.Instance<T> instance) {
+    protected static <T extends BaseTimer> Products.P2<RecordCodecBuilder.Mu<T>, Long, Identifier> baseData(RecordCodecBuilder.Instance<T> instance) {
         return instance.group(
                 Codec.LONG.fieldOf(TIME_REMAINING_STRING).forGetter(BaseTimer::getTimeRemaining),
-                ResourceLocation.CODEC.fieldOf(TYPE_STRING).forGetter(BaseTimer::getType)
+                Identifier.CODEC.fieldOf(TYPE_STRING).forGetter(BaseTimer::getType)
         );
     }
 
@@ -62,7 +62,7 @@ public class BaseTimer {
 
     }
 
-    public ResourceLocation getType() {
+    public Identifier getType() {
         return type;
     }
 

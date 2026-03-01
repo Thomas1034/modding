@@ -21,6 +21,7 @@ import com.startraveler.verdant.registry.EntityTypeRegistry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -30,10 +31,15 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.monster.Blaze;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.skeleton.Bogged;
+import net.minecraft.world.entity.monster.skeleton.Skeleton;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.entity.npc.villager.AbstractVillager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -147,8 +153,8 @@ public class RootedEntity extends Zombie {
     }
 
     @Override
-    public boolean killedEntity(@NotNull ServerLevel level, @NotNull LivingEntity entity) {
-        boolean flag = super.killedEntity(level, entity);
+    public boolean killedEntity(@NotNull ServerLevel level, @NotNull LivingEntity entity, @NotNull DamageSource source) {
+        boolean flag = super.killedEntity(level, entity, source);
         boolean converted = false;
         if ((level.getDifficulty() == Difficulty.NORMAL || level.getDifficulty() == Difficulty.HARD) && entity instanceof Villager villager) {
             if (level.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
@@ -203,13 +209,13 @@ public class RootedEntity extends Zombie {
         RootedEntity newZombie = zombie.convertTo(
                 EntityTypeRegistry.ROOTED.get(),
                 ConversionParams.single(zombie, true, true),
-                oz -> oz.handleAttributes(oz.level().getCurrentDifficultyAt(oz.blockPosition()).getSpecialMultiplier())
+                oz -> oz.handleAttributes(level.getCurrentDifficultyAt(oz.blockPosition()).getSpecialMultiplier())
 
         );
         return newZombie != null;
     }
 
-    public boolean convertSkeletonToBogged(ServerLevel level, Skeleton skeleton) {
+    public boolean convertSkeletonToBogged(@SuppressWarnings("unused") ServerLevel level, Skeleton skeleton) {
         Bogged newSkeleton = skeleton.convertTo(
                 EntityType.BOGGED, ConversionParams.single(skeleton, true, true), bg -> {
                 }

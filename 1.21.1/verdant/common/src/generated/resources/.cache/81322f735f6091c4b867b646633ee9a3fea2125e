@@ -1,4 +1,4 @@
-// 1.21.8	2025-08-18T13:07:08.06095	Rootbound Loot Tables
+// 1.21.11	2026-02-18T00:43:36.2484407	Rootbound Loot Tables
 4f2bef144d3c09505e5aaa752731fddca3495fe0 data/verdant/loot_table/blocks/dead_button.json
 d12d233ce78d09daee547de64a9db6cd58cb7caa data/verdant/loot_table/blocks/dead_door.json
 5d7ae7e06a6fde6a46dbdf9d25c1742af4a9d724 data/verdant/loot_table/blocks/dead_fence.json
@@ -7,6 +7,7 @@ ff26a40751dd583bb35ca9101a894944e3de025f data/verdant/loot_table/blocks/dead_fen
 966315162dce3a54f8717cea01dc736a7f502353 data/verdant/loot_table/blocks/dead_log.json
 8f68586ec385274702c817c219aa391ca0cbd0b4 data/verdant/loot_table/blocks/dead_planks.json
 cfd05ceae3a4c62f5bd60ee602bc07b24004baf7 data/verdant/loot_table/blocks/dead_pressure_plate.json
+a119e727cc9d4f52c9bcf0b5ce92e6b157685084 data/verdant/loot_table/blocks/dead_shelf.json
 ac99bab25ddd32ef876ed7ea87b068fe6eb83c21 data/verdant/loot_table/blocks/dead_sign.json
 ebcc1c3d49e7b983d58eb3ae81d2c83d741f476d data/verdant/loot_table/blocks/dead_slab.json
 9208ff593ce27c3b356b0bbb00897502abfb1f30 data/verdant/loot_table/blocks/dead_stairs.json
@@ -22,6 +23,7 @@ b3cfd94059ae500f14951c437adc0fbdcc302cea data/verdant/loot_table/blocks/heartwoo
 3b08e00285e998870f0fb249ca5289b372696352 data/verdant/loot_table/blocks/heartwood_log.json
 ac3a03a1eaab58818a7d47b64dd2ee4f7b6cc29a data/verdant/loot_table/blocks/heartwood_planks.json
 f4e65150423cf2be995f93f87d624cdccd62ccac data/verdant/loot_table/blocks/heartwood_pressure_plate.json
+710609b9c786b7f3aa6b61e19e84a234bbc1d5f0 data/verdant/loot_table/blocks/heartwood_shelf.json
 506c243d3479a0346455b92f81785c9c2ad961e7 data/verdant/loot_table/blocks/heartwood_sign.json
 05f1209029a241292ce47cc97f5c44b3beed96d8 data/verdant/loot_table/blocks/heartwood_slab.json
 b85788f9d752fc835e31ecea6edbd08939c77e99 data/verdant/loot_table/blocks/heartwood_stairs.json
@@ -40,6 +42,7 @@ cb06bd420e42bb68b98970cc51d9d1d820abb393 data/verdant/loot_table/blocks/mango_lo
 f3740d23cda903300c6c4cc1d267be710dd4f056 data/verdant/loot_table/blocks/mango_mosaic_stairs.json
 d0426d52c4f7dc132e26b79a584bebd11eee1672 data/verdant/loot_table/blocks/mango_planks.json
 fb1013c9a59e2438f635057dd883a276158a35a9 data/verdant/loot_table/blocks/mango_pressure_plate.json
+20fd87d86a3ad918434b8c565ac4cefecaaab91c data/verdant/loot_table/blocks/mango_shelf.json
 f31a7c64e92a7cfb8aa13e2b88db7dd6f01bdb8e data/verdant/loot_table/blocks/mango_sign.json
 f4626f012ce6328310d34fead7dcb32a5ed294a0 data/verdant/loot_table/blocks/mango_slab.json
 bcd06d7286e7814231199b12f86d6e78700a4517 data/verdant/loot_table/blocks/mango_stairs.json
@@ -55,6 +58,7 @@ f80c2bc4271046e01c685ba005fd676716d8b009 data/verdant/loot_table/blocks/strangle
 6f43d06d33ec0659e5061e5d60a1d7d81404f042 data/verdant/loot_table/blocks/strangler_log.json
 516388e652686b52768f4c3c8e32f31bf19d2a6f data/verdant/loot_table/blocks/strangler_planks.json
 1441badd711269ad570bff97ad1c68e75b58101d data/verdant/loot_table/blocks/strangler_pressure_plate.json
+9915757e1a93cf84aa67a39f69d0850dcc8b777a data/verdant/loot_table/blocks/strangler_shelf.json
 5ca12989ce4a6b240056dc52dad22de9e4fd5b30 data/verdant/loot_table/blocks/strangler_sign.json
 ea87a457b43131ba4d699bf92454730a5b7fa821 data/verdant/loot_table/blocks/strangler_slab.json
 8a6e873161c2c8cce7b686fc6b8ca62504ca9690 data/verdant/loot_table/blocks/strangler_stairs.json

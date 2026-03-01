@@ -20,11 +20,11 @@ import com.startraveler.verdant.Constants;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.WitchRenderer;
 import net.minecraft.client.renderer.entity.state.WitchRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class PoisonerRenderer extends WitchRenderer {
 
-    private static final ResourceLocation POISONER_LOCATION = ResourceLocation.fromNamespaceAndPath(
+    private static final Identifier POISONER_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/entity/poisoner.png"
     );
@@ -33,7 +33,7 @@ public class PoisonerRenderer extends WitchRenderer {
         super(context);
     }
 
-    public ResourceLocation getTextureLocation(WitchRenderState state) {
+    public Identifier getTextureLocation(WitchRenderState state) {
         return POISONER_LOCATION;
     }
 

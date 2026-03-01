@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.startraveler.verdant.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "FabricPotionBrewingMixin",
+    "FabricPotionBrewingBuilderMixin",
+    "FabricServerPlayerMixin",
+    "FabricFireBlockMixin",
+    "FabricDecreaseDetectionRangeMixin",
+    "FabricPistonStructureResolverMixin"
+  ],
+  "server": [],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

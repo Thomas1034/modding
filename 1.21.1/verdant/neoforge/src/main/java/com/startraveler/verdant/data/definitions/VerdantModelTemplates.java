@@ -7,6 +7,39 @@ import net.minecraft.client.data.models.model.TextureSlot;
 
 public class VerdantModelTemplates {
 
+    public static final ModelTemplate OVERLAID_CROSS = ModelTemplates.create(
+            "verdant:overlaid_cross",
+            TextureSlot.CROSS,
+            VerdantTextureSlot.OVERLAY
+    );
+    public static final ModelTemplate OVERLAID_TINTED_CROSS = ModelTemplates.create(
+            "verdant:overlaid_tinted_cross",
+            TextureSlot.CROSS,
+            VerdantTextureSlot.OVERLAY
+    );
+    public static final ModelTemplate OVERLAID_CROSS_EMISSIVE = ModelTemplates.create(
+            "verdant:overlaid_cross_emissive",
+            TextureSlot.CROSS,
+            TextureSlot.CROSS_EMISSIVE,
+            VerdantTextureSlot.OVERLAY
+    );
+    public static final ModelTemplate OVERLAID_FLOWER_POT_CROSS = ModelTemplates.create(
+            "verdant:flower_pot_overlaid_cross",
+            TextureSlot.PLANT,
+            VerdantTextureSlot.OVERLAY
+    );
+    public static final ModelTemplate OVERLAID_TINTED_FLOWER_POT_CROSS = ModelTemplates.create(
+            "verdant:tinted_flower_pot_overlaid_cross",
+            TextureSlot.PLANT,
+            VerdantTextureSlot.OVERLAY
+    );
+    public static final ModelTemplate OVERLAID_FLOWER_POT_CROSS_EMISSIVE = ModelTemplates.create(
+            "verdant:flower_pot_overlaid_cross_emissive",
+            TextureSlot.PLANT,
+            TextureSlot.CROSS_EMISSIVE,
+            VerdantTextureSlot.OVERLAY
+    );
+
     public static final ModelTemplate WALL_SKULL = ModelTemplates.create(
             "verdant:wall_skull",
             TextureSlot.NORTH,
@@ -67,14 +100,6 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.INSET_LOW
     );
 
-    public static final ModelTemplate OOZE_FISSURE = ModelTemplates.create(
-            "verdant:fissure_base",
-            TextureSlot.FRONT,
-            TextureSlot.BACK,
-            TextureSlot.SIDE,
-            TextureSlot.PARTICLE
-    );
-
     public static final ModelTemplate ASTERISK = ModelTemplates.create(
             "verdant:asterisk",
             TextureSlot.CROSS,
@@ -87,7 +112,8 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.PLUS
     );
 
-    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create("verdant:double_sided_cube_column",
+    public static final ModelTemplate DOUBLE_SIDED_CUBE_COLUMN = ModelTemplates.create(
+            "verdant:double_sided_cube_column",
             TextureSlot.END,
             TextureSlot.SIDE
     );
