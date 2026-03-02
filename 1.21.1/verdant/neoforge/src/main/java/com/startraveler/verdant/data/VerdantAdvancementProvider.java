@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class VerdantAdvancementProvider {
 
     public static void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> writer) {

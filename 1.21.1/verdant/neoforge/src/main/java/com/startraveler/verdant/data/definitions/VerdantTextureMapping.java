@@ -30,10 +30,6 @@ public class VerdantTextureMapping {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
     }
 
-    public static TextureMapping asterisk(Block block) {
-        return new TextureMapping().put(VerdantTextureSlot.PLUS, TextureMapping.getBlockTexture(block, "_plus"))
-                .put(TextureSlot.CROSS, TextureMapping.getBlockTexture(block, "_cross"));
-    }
 
     public static TextureMapping bombFlower(Block block, int age) {
         TextureMapping mapping = new TextureMapping().put(
@@ -48,6 +44,7 @@ public class VerdantTextureMapping {
         return mapping;
     }
 
+    @SuppressWarnings("unused")
     public static TextureMapping bombPile(Block block, int bombs) {
         return new TextureMapping().put(VerdantTextureSlot.FLOWER, TextureMapping.getBlockTexture(block))
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block))
@@ -98,12 +95,14 @@ public class VerdantTextureMapping {
     }
 
 
+    @SuppressWarnings("unused")
     public static TextureMapping overlaidCubeBlock(Block block, Block base, Identifier overlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.OVERLAY, overlay);
     }
 
+    @SuppressWarnings("unused")
     public static TextureMapping topOverlaidCubeBlock(Block block, Block base, Identifier overlay, Identifier topOverlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))

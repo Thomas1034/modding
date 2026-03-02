@@ -31,6 +31,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +58,12 @@ public record AmplifyEffectsConsumeEffect(Optional<MobEffectCategory> category) 
     );
 
     @Override
-    public Type<? extends ConsumeEffect> getType() {
+    public @NotNull Type<? extends @NotNull ConsumeEffect> getType() {
         return ConsumeEffectRegistry.AMPLIFY_EFFECTS.get();
     }
 
     @Override
-    public boolean apply(Level level, ItemStack itemStack, LivingEntity livingEntity) {
+    public boolean apply(Level level, @NotNull ItemStack itemStack, @NotNull LivingEntity livingEntity) {
 
         if (!level.isClientSide()) {
             // Find the mob effect instance that the eater has.

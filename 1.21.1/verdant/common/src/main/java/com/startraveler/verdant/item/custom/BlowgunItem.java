@@ -123,6 +123,7 @@ public class BlowgunItem extends ProjectileWeaponItem {
         return MAX_BLOW_DURATION;
     }
 
+    @SuppressWarnings("unused")
     public int getAirToTake(ItemStack stack) {
         return AIR_TO_TAKE;
     }

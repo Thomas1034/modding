@@ -123,7 +123,7 @@ public class BlockTransformerDefinitions {
         // Glass to stained glass, mostly a joke
         // Maybe make a common tag?
         data.add(probabilityTag(
-                Tags.Blocks.GLASS_BLOCKS_CHEAP, Map.<Block, Integer>of(
+                Tags.Blocks.GLASS_BLOCKS_CHEAP, Map.of(
                         Blocks.LIME_STAINED_GLASS,
                         1,
                         Blocks.GREEN_STAINED_GLASS,
@@ -135,7 +135,7 @@ public class BlockTransformerDefinitions {
                 )
         ));
         data.add(probabilityTag(
-                Tags.Blocks.GLASS_PANES, Map.<Block, Integer>of(
+                Tags.Blocks.GLASS_PANES, Map.of(
                         Blocks.LIME_STAINED_GLASS_PANE,
                         1,
                         Blocks.GREEN_STAINED_GLASS_PANE,
@@ -356,6 +356,7 @@ public class BlockTransformerDefinitions {
         return new BlockTransformerData(null, name(to), null, from, null);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static BlockTransformerData transformer(String transformer) {
         return new BlockTransformerData(
                 Identifier.fromNamespaceAndPath(Constants.MOD_ID, transformer),

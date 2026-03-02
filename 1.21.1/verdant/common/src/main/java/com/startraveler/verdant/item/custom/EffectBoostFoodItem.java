@@ -25,6 +25,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -42,7 +43,7 @@ public class EffectBoostFoodItem extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity eater) {
+    public @NotNull ItemStack finishUsingItem(ItemStack stack, @NotNull Level level, @NotNull LivingEntity eater) {
         FoodProperties food = stack.get(DataComponents.FOOD);
 
         if (food != null && !level.isClientSide()) {

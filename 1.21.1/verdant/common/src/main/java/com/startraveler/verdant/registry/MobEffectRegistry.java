@@ -213,6 +213,7 @@ public class MobEffectRegistry {
             "recall",
             () -> new RecallEffect(MobEffectCategory.BENEFICIAL, 0x8021D7)
     );
+    @SuppressWarnings("unused")
     public static final RegistryObject<MobEffect, MobEffect> DESPERATION = MOB_EFFECTS.register(
             "desperation",
             () -> new AddictiveEffect(MobEffectCategory.NEUTRAL, 0x135EE5, 100, MobEffects.REGENERATION)

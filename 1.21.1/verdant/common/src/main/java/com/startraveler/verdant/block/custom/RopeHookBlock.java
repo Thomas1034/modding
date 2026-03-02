@@ -47,7 +47,7 @@ import org.jetbrains.annotations.NotNull;
  * It doesn't actually attach to strings.
  */
 public class RopeHookBlock extends Block {
-    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<@NotNull Direction> FACING = HorizontalDirectionalBlock.FACING;
     protected static final VoxelShape NORTH_AABB = Block.box(5.0, 0.0, 6.0, 11.0, 10.0, 16.0);
     protected static final VoxelShape SOUTH_AABB = Block.box(5.0, 0.0, 0.0, 11.0, 10.0, 10.0);
     protected static final VoxelShape WEST_AABB = Block.box(6.0, 0.0, 5.0, 16.0, 10.0, 11.0);

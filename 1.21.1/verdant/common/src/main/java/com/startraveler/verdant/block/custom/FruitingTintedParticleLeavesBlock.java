@@ -49,12 +49,14 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
         boolean randomRollSucceeds = random.nextDouble() < GROWTH_CHANCE;
         if (!this.decaying(state)) {
             Services.CROP_EVENT_HELPER.fireEvent(
-                    serverLevel, pos, state, (currentStage < MAX_STAGES) && randomRollSucceeds, () -> {
-                        serverLevel.setBlockAndUpdate(
-                                pos,
-                                state.setValue(STAGES, currentStage + 1)
-                        );
-                    }
+                    serverLevel,
+                    pos,
+                    state,
+                    (currentStage < MAX_STAGES) && randomRollSucceeds,
+                    () -> serverLevel.setBlockAndUpdate(
+                            pos,
+                            state.setValue(STAGES, currentStage + 1)
+                    )
             );
         }
         super.randomTick(

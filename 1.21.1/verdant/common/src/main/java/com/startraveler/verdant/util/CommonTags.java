@@ -39,7 +39,6 @@ public class CommonTags {
     public static class Items {
         public static final TagKey<Item> TOOLS_IGNITER = tag("tools/igniter");
         public static final TagKey<Item> TOOLS_SHEAR = tag("tools/shear");
-        public static final TagKey<Item> FERTILIZERS = tag("fertilizers");
 
         public static final TagKey<Item> ORES_IN_GROUND_DIRT = tag("ores_in_ground/dirt");
         public static final TagKey<Item> ORE_BEARING_GROUND_DIRT = tag("ore_bearing_ground/dirt");

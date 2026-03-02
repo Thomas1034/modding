@@ -68,6 +68,7 @@ public abstract class WitchConvertToPoisonerViaLivingEntityMixin {
         }
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Inject(method = "tick", at = @At(value = "TAIL"))
     private void tick(CallbackInfo ci) {
         if (verdant$isAWitch()) {
@@ -96,12 +97,14 @@ public abstract class WitchConvertToPoisonerViaLivingEntityMixin {
         return ((Object) this) instanceof Witch;
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Unique
     private boolean verdant$convertsOnVerdant() {
         return !(((Witch) (Object) this) instanceof PoisonerEntity);
     }
 
     @Unique
+    @SuppressWarnings("DataFlowIssue")
     private void verdant$doOnRootedConversion() {
         this.verdant$convertToWitchType(EntityTypeRegistry.POISONER.get());
         if (!((Witch) (Object) this).isSilent()) {
@@ -110,12 +113,11 @@ public abstract class WitchConvertToPoisonerViaLivingEntityMixin {
     }
 
     @Unique
+    @SuppressWarnings("DataFlowIssue")
     private void verdant$convertToWitchType(EntityType<? extends Witch> entityType) {
 
         ((Witch) (Object) this).convertTo(
-                entityType, ConversionParams.single((Witch) (Object) this, true, true), (witch) -> {
-                    witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 180, 1));
-                }
+                entityType, ConversionParams.single((Witch) (Object) this, true, true), (witch) -> witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 180, 1))
         );
 
     }

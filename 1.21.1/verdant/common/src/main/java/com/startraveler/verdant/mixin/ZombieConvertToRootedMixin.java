@@ -66,6 +66,7 @@ public abstract class ZombieConvertToRootedMixin {
         );
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Inject(method = "tick", at = @At(value = "TAIL"))
     private void tick(CallbackInfo ci) {
         if (!((Zombie) (Object) this).level().isClientSide() && ((Zombie) (Object) this).isAlive() && !((Zombie) (Object) this).isNoAi()) {
@@ -92,6 +93,7 @@ public abstract class ZombieConvertToRootedMixin {
         return !(((Zombie) (Object) this) instanceof RootedEntity);
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Unique
     private void verdant$doOnRootedConversion() {
         if (((Zombie) (Object) this).level() instanceof ServerLevel serverLevel) {

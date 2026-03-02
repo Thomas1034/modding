@@ -36,6 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import org.jetbrains.annotations.NotNull;
 
 public class TimbermiteEntity extends Monster {
     private static final int MAX_LIFE = 2400;
@@ -93,21 +94,21 @@ public class TimbermiteEntity extends Monster {
         return SoundEvents.ENDERMITE_AMBIENT;
     }
 
-    public void addAdditionalSaveData(ValueOutput compound) {
+    public void addAdditionalSaveData(@NotNull ValueOutput compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Lifetime", this.life);
     }
 
-    public void readAdditionalSaveData(ValueInput compound) {
+    public void readAdditionalSaveData(@NotNull ValueInput compound) {
         super.readAdditionalSaveData(compound);
         this.life = compound.getIntOr("Lifetime", MAX_LIFE);
     }
 
-    protected void playStepSound(BlockPos pos, BlockState block) {
+    protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {
         this.playSound(SoundEvents.ENDERMITE_STEP, 0.15F, 1.0F);
     }
 
-    protected Entity.MovementEmission getMovementEmission() {
+    protected Entity.@NotNull MovementEmission getMovementEmission() {
         return MovementEmission.EVENTS;
     }
 
@@ -144,11 +145,11 @@ public class TimbermiteEntity extends Monster {
 
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected @NotNull SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return SoundEvents.ENDERMITE_HURT;
     }
 
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return SoundEvents.ENDERMITE_DEATH;
     }
 }

@@ -19,7 +19,6 @@
     "PrimedTntAccessors",
     "PrimedTntMixin",
     "SlimeMixin",
-    "ThrownTridentDataIDGetter",
     "WitchConvertToPoisonerViaLivingEntityMixin",
     "WitchMixin",
     "BaseFireBlockMixin",

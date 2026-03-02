@@ -53,6 +53,7 @@ public class BaseTimer {
     }
 
     // Return false to cancel timer.
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     protected boolean onTick(ServerLevel level, long ticksRemaining) {
         return true;
     }

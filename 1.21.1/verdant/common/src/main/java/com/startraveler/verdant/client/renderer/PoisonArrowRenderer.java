@@ -22,8 +22,9 @@ import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
 import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-public class PoisonArrowRenderer extends ArrowRenderer<PoisonArrowEntity, ArrowRenderState> {
+public class PoisonArrowRenderer extends ArrowRenderer<@NotNull PoisonArrowEntity, @NotNull ArrowRenderState> {
     public static final Identifier POISON_ARROW_LOCATION = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/entity/projectiles/poison_arrow.png"
@@ -34,7 +35,7 @@ public class PoisonArrowRenderer extends ArrowRenderer<PoisonArrowEntity, ArrowR
     }
 
     @Override
-    protected Identifier getTextureLocation(ArrowRenderState arrowRenderState) {
+    protected @NotNull Identifier getTextureLocation(ArrowRenderState arrowRenderState) {
         return POISON_ARROW_LOCATION;
     }
 

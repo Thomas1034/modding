@@ -23,6 +23,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
 import net.minecraft.world.entity.ItemOwner;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public record RopeGlowProperty() implements RangeSelectItemModelProperty {
 
@@ -35,7 +36,7 @@ public record RopeGlowProperty() implements RangeSelectItemModelProperty {
     }
 
     @Override
-    public MapCodec<RopeGlowProperty> type() {
+    public @NotNull MapCodec<RopeGlowProperty> type() {
         return MAP_CODEC;
     }
 }

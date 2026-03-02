@@ -13,6 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +24,7 @@ public class VerdantItemTagProvider extends RootboundItemTagProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         super.addTags(provider);
         addDirtOres();
         addGrusOres();

@@ -7,8 +7,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -24,8 +22,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -129,29 +125,4 @@ public class PoisonerEntity extends Witch {
         return true;
     }
 
-    public record Death(Entity entity, Vec3 location) {
-
-        public static void saveDeaths(List<Death> deaths, ValueOutput output) {
-            ValueOutput.ValueOutputList list = output.childrenList("deaths");
-            deaths.forEach(death -> death.save(list.addChild()));
-        }
-
-        public static List<Death> loadDeaths(ValueInput input, Level level, EntitySpawnReason reason) {
-            return input.childrenListOrEmpty("deaths").stream().map(listEntryInput -> Death.load(listEntryInput, level, reason)).toList();
-        }
-
-        public static Death load(ValueInput input, Level level, EntitySpawnReason reason) {
-            return new Death(
-                    EntityType.create(input.childOrEmpty("entity"), level, reason).orElse(null),
-                    input.read("location", Vec3.CODEC).orElse(Vec3.ZERO)
-            );
-        }
-
-        public void save(ValueOutput output) {
-            output.store("location", Vec3.CODEC, location);
-            ValueOutput entityOutput = output.child("entity");
-            entity.saveWithoutId(entityOutput);
-
-        }
-    }
 }

@@ -48,6 +48,7 @@ public record RopeCoilData(int length,
             HangingBlockOptions.CODEC.fieldOf("hangingBlock").forGetter(RopeCoilData::hangingBlock),
             BuiltInRegistries.BLOCK.byNameCodec().fieldOf("rope").forGetter(RopeCoilData::ropeBlock)
     ).apply(instance, RopeCoilData::new));
+    @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
     public static final RopeCoilData DEFAULT = new RopeCoilData(
             4,
             false,
@@ -55,6 +56,7 @@ public record RopeCoilData(int length,
             HangingBlockOptions.NONE,
             () -> BlockRegistry.ROPE.get()
     );
+    @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
     public static final RopeCoilData DEFAULT_TWISTED = new RopeCoilData(
             4,
             false,
@@ -88,6 +90,7 @@ public record RopeCoilData(int length,
                 Items.SOUL_LANTERN,
                 Blocks.SOUL_LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
         ),
+        @SuppressWarnings({"Convert2MethodRef"})
         SAP_LANTERN(
                 "sap_lantern",
                 () -> BlockRegistry.SAP_LANTERN.get(),

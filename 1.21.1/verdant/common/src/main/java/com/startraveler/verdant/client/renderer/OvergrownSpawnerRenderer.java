@@ -49,7 +49,7 @@ public class OvergrownSpawnerRenderer implements BlockEntityRenderer<@NotNull Ov
         if (entity != null) {
             renderState.displayEntity = entityRenderer.extractEntity(entity, partialTick);
             renderState.displayEntity.lightCoords = renderState.lightCoords;
-            renderState.spin = (float) Mth.lerp((double) partialTick, oSpin, spin) * 10.0F;
+            renderState.spin = (float) Mth.lerp(partialTick, oSpin, spin) * 10.0F;
             renderState.scale = 0.53125F;
             float f = Math.max(entity.getBbWidth(), entity.getBbHeight());
             if ((double) f > (double) 1.0F) {

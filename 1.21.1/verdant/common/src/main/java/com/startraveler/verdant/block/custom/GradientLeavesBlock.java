@@ -46,7 +46,7 @@ import org.jetbrains.annotations.NotNull;
 public class GradientLeavesBlock extends LeavesBlock {
     public static final MapCodec<GradientLeavesBlock> CODEC = simpleCodec(GradientLeavesBlock::new);
 
-    public static final EnumProperty<OptionalDirection> GRADIENT = EnumProperty.create(
+    public static final EnumProperty<@NotNull OptionalDirection> GRADIENT = EnumProperty.create(
             "gradient",
             OptionalDirection.class
     );
@@ -64,7 +64,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public MapCodec<? extends GradientLeavesBlock> codec() {
+    public @NotNull MapCodec<? extends GradientLeavesBlock> codec() {
         return CODEC;
     }
 
@@ -86,7 +86,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     // Updates the block whenever there is a change next to it.
     @Override
     @NotNull
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess tickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
+    protected BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
             tickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
@@ -100,7 +100,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
+    protected void spawnFallingLeavesParticle(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
         ColorParticleOption colorparticleoption = ColorParticleOption.create(
                 ParticleTypes.TINTED_LEAVES,
                 0xFF306830 /*level.getClientLeafTintColor(blockPos)*/
@@ -117,7 +117,7 @@ public class GradientLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         BlockState state = this.defaultBlockState()
                 .setValue(BlockStateProperties.PERSISTENT, true)

@@ -29,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
 
+@SuppressWarnings("unused")
 public class CreativeModeTabRegistry {
 
     public static final RegistrationProvider<CreativeModeTab> CREATIVE_MODE_TABS = RegistrationProvider.get(

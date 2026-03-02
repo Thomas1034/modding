@@ -26,7 +26,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
+public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMenu> {
     public static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
             "textures/gui/fish_trap_gui.png"
@@ -52,7 +52,7 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
     }

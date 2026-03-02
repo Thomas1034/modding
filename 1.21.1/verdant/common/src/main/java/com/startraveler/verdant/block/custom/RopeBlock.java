@@ -113,7 +113,7 @@ public class RopeBlock extends Block {
         if (context instanceof EntityCollisionContext entitycollisioncontext) {
             Entity entity = entitycollisioncontext.getEntity();
 
-            if (entity instanceof ThrownRopeEntity thrownRope) {
+            if (entity instanceof ThrownRopeEntity) {
                 return LARGE_SHAPE;
             } else {
                 return super.getCollisionShape(state, level, pos, entitycollisioncontext);

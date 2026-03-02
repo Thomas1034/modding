@@ -30,12 +30,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import org.jetbrains.annotations.NotNull;
 
 public class VerdantConduitBlock extends ConduitBlock implements SimpleWaterloggedBlock {
 
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final int PARTICLES_PER_TICK = 3;
     private static final int PARTICLE_DELAY = 4;
 
@@ -44,17 +42,17 @@ public class VerdantConduitBlock extends ConduitBlock implements SimpleWaterlogg
     }
 
     @Override
-    public MapCodec<ConduitBlock> codec() {
+    public @NotNull MapCodec<ConduitBlock> codec() {
         throw new IllegalStateException("Codecs aren't implemented yet!");
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public @NotNull BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
         return createTickerHelper(
                 type,
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
@@ -63,11 +61,11 @@ public class VerdantConduitBlock extends ConduitBlock implements SimpleWaterlogg
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
         if (!(blockEntity instanceof VerdantConduitBlockEntity verdantConduitBlockEntity)) {

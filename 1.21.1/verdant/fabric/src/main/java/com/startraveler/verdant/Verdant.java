@@ -10,7 +10,6 @@ import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
@@ -19,9 +18,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.packs.resources.CloseableResourceManager;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
@@ -60,6 +57,7 @@ public class Verdant implements ModInitializer {
             builder.addContainer(Items.GLASS_BOTTLE);
         });
 
+        //noinspection DataFlowIssue
         FabricDefaultAttributeRegistry.register(
                 EntityTypeRegistry.TIMBERMITE.get(),
                 TimbermiteEntity.createAttributes()
@@ -96,7 +94,8 @@ public class Verdant implements ModInitializer {
                 HoeItem.changeIntoState(BlockRegistry.GRUS.get().defaultBlockState())
         );
 
-        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(item,
+        DefaultItemComponentEvents.MODIFY.register(context -> BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> context.modify(
+                item,
                 builder -> biConsumerConsumer.accept(builder::set)
         )));
 
@@ -104,7 +103,8 @@ public class Verdant implements ModInitializer {
         BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
         BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
 
-        PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) -> CommonClass.spawnSpiderlingsOnBlockBreak(level,
+        PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) -> CommonClass.spawnSpiderlingsOnBlockBreak(
+                level,
                 player,
                 blockPos,
                 blockState

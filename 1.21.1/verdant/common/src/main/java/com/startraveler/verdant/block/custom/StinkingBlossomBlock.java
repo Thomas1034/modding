@@ -58,7 +58,7 @@ import java.util.function.Supplier;
 
 public class StinkingBlossomBlock extends SporeBlossomBlock {
 
-    public static final EnumProperty<Direction> VERTICAL_DIRECTION = BlockStateProperties.VERTICAL_DIRECTION;
+    public static final EnumProperty<@NotNull Direction> VERTICAL_DIRECTION = BlockStateProperties.VERTICAL_DIRECTION;
     protected static final Supplier<MobEffectInstance> NAUSEA = () -> new MobEffectInstance(
             MobEffects.NAUSEA,
             100,

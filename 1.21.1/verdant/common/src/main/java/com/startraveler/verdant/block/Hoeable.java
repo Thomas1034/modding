@@ -17,7 +17,6 @@
 package com.startraveler.verdant.block;
 
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
-import com.startraveler.verdant.CommonClass;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
@@ -28,6 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public interface Hoeable {
 
+    @SuppressWarnings("unused")
     default BlockState hoe(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack) {
         RegistryAccess access = level.registryAccess();
         // Retrieves the registry for hoeing.

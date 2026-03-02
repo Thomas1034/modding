@@ -23,6 +23,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -35,7 +36,7 @@ public class EffectGivingPillarBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
             if (!level.isClientSide()) {
                 livingEntity.addEffect(this.effect.get());

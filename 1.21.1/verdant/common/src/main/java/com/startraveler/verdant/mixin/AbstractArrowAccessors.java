@@ -18,9 +18,6 @@ public interface AbstractArrowAccessors {
     @Accessor("baseDamage")
     double getBaseDamage();
 
-    @Accessor("pickupItemStack")
-    void verdant$setPickupItemStack(ItemStack stack);
-
     @Accessor("piercingIgnoreEntityIds")
     IntOpenHashSet verdant$getPiercingIgnoreEntityIds();
 

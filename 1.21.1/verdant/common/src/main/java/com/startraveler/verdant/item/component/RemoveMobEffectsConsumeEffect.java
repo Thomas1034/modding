@@ -63,7 +63,7 @@ public record RemoveMobEffectsConsumeEffect(MobEffectCategory category, int amou
     }
 
     @Override
-    public @NotNull Type<? extends ConsumeEffect> getType() {
+    public @NotNull Type<? extends @NotNull ConsumeEffect> getType() {
         return ConsumeEffectRegistry.REMOVE_EFFECTS.get();
     }
 

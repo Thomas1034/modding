@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.WitchRenderer;
 import net.minecraft.client.renderer.entity.state.WitchRenderState;
 import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 public class PoisonerRenderer extends WitchRenderer {
 
@@ -33,7 +34,7 @@ public class PoisonerRenderer extends WitchRenderer {
         super(context);
     }
 
-    public Identifier getTextureLocation(WitchRenderState state) {
+    public @NotNull Identifier getTextureLocation(@NotNull WitchRenderState state) {
         return POISONER_LOCATION;
     }
 

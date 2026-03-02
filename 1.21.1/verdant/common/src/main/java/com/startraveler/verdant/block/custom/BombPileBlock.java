@@ -93,6 +93,7 @@ public class BombPileBlock extends FallingBlock {
         return prime(state, level, new Vec3(pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5), entity);
     }
 
+    @SuppressWarnings("DataFlowIssue")
     private static boolean prime(BlockState state, Level level, Vec3 pos, @Nullable LivingEntity entity) {
         if (level instanceof ServerLevel serverlevel) {
             if (serverlevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
@@ -152,7 +153,7 @@ public class BombPileBlock extends FallingBlock {
     }
 
     // Make NeoForge happy TODO replace with mixin to FireBlock?
-    @SuppressWarnings("UnusedReturnValue")
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
     public boolean onCaughtFire(BlockState state, Level level, BlockPos pos, @Nullable Direction direction, @Nullable LivingEntity igniter) {
         return prime(state, level, pos, igniter);
     }

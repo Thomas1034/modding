@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
 import net.minecraft.client.renderer.entity.state.ZombieRenderState;
 import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 public class RootedRenderer extends ZombieRenderer {
 
@@ -36,7 +37,7 @@ public class RootedRenderer extends ZombieRenderer {
 
     }
 
-    public Identifier getTextureLocation(ZombieRenderState state) {
+    public @NotNull Identifier getTextureLocation(ZombieRenderState state) {
         return ZOMBIE_LOCATION;
     }
 

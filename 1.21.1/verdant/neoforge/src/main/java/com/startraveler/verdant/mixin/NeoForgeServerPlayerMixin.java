@@ -22,7 +22,7 @@ public abstract class NeoForgeServerPlayerMixin implements ServerPlayerMixin {
     ServerPlayer this$0;
 
     @Override
-    @Inject(method = "slotChanged", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancements/critereon/InventoryChangeTrigger;trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
+    @Inject(method = "slotChanged", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancements/criterion/InventoryChangeTrigger;trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
     public void addInventoryChangeTrigger(AbstractContainerMenu menu, int slot, ItemStack stack, CallbackInfo ci) {
         TriggerRegistry.INVENTORY_CHANGE_ITEM_COUNT_TRIGGER.get()
                 .trigger(this.this$0, this.this$0.getInventory(), stack);

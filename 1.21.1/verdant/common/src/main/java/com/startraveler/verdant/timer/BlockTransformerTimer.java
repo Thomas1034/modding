@@ -43,6 +43,7 @@ public class BlockTransformerTimer extends BaseTimer implements Converter {
         this(toConvert, transformer, timeRemaining, TYPE);
     }
 
+    @SuppressWarnings("unused")
     public BlockTransformerTimer(long timeRemaining, Identifier transformer, BlockPos... toConvert) {
         this(timeRemaining, transformer, Arrays.asList(toConvert));
     }
