@@ -1,16 +1,10 @@
 {
   "values": [
-    "verdant:verdant_rooted_dirt",
-    "verdant:verdant_grass_dirt",
-    "verdant:verdant_grass_mud",
-    "verdant:verdant_rooted_mud",
-    "verdant:verdant_grass_clay",
-    "verdant:verdant_rooted_clay",
-    "verdant:verdant_grass_grus",
-    "verdant:verdant_rooted_grus",
+    "#verdant:verdant_ground",
     "verdant:cassava_rooted_dirt",
     "verdant:bitter_cassava_rooted_dirt",
     "verdant:stony_grus",
-    "verdant:grus"
+    "verdant:grus",
+    "verdant:dead_moss_block"
   ]
 }

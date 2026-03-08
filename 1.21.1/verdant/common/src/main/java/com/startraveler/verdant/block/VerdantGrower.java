@@ -16,6 +16,7 @@
  */
 package com.startraveler.verdant.block;
 
+import com.startraveler.rootbound.blocktransformer.Converter;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;

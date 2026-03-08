@@ -29,6 +29,7 @@ import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -55,6 +56,14 @@ import java.util.function.Function;
 public class ItemRegistry {
 
     public static final RegistrationProvider<Item> ITEMS = RegistrationProvider.get(Registries.ITEM, Constants.MOD_ID);
+
+    public static final PiercingWeapon HEARTWOOD_SWORD_PIERCING = new PiercingWeapon(
+            true,
+            false,
+            Optional.of(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_ATTACK_NODAMAGE)),
+            Optional.of(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_ATTACK_STRONG))
+    );
+    private static final Identifier GRENADE_COOLDOWN_ID = Constants.id("grenade_cooldown");
 
     public static final RegistryObject<Item, Item> FRAGILE_FLASK = register(
             "fragile_flask",
@@ -307,14 +316,6 @@ public class ItemRegistry {
                     .spear(ToolMaterialRegistry.HEARTWOOD, 0.65F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
-
-    public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
-            "heartwood_sword",
-            ((properties) -> new Item(properties.stacksTo(1)
-                    .sword(ToolMaterialRegistry.HEARTWOOD, 3.0F, -2.4F)
-                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
-    );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_SHOVEL = register(
             "heartwood_shovel", ((properties) -> new ShovelItem(
                     ToolMaterialRegistry.HEARTWOOD,
@@ -327,14 +328,12 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_PICKAXE = register(
             "heartwood_pickaxe",
             ((properties) -> new Item(properties.stacksTo(1)
                     .pickaxe(ToolMaterialRegistry.HEARTWOOD, 1.0F, -2.8F)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_AXE = register(
             "heartwood_axe", ((properties) -> new AxeItem(
                     ToolMaterialRegistry.HEARTWOOD,
@@ -347,7 +346,6 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_HOE = register(
             "heartwood_hoe", ((properties) -> new HoeItem(
                     ToolMaterialRegistry.HEARTWOOD,
@@ -360,7 +358,6 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HORSE_ARMOR = register(
             "imbued_heartwood_horse_armor",
             (properties) -> new Item(properties.stacksTo(1)
@@ -370,7 +367,6 @@ public class ItemRegistry {
                             VerdantFriendliness.IMBUED_HEARTWOOD_HORSE_ARMOR
                     ))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HELMET = register(
             "imbued_heartwood_helmet",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -384,7 +380,6 @@ public class ItemRegistry {
                             VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
                     )))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_CHESTPLATE = register(
             "imbued_heartwood_chestplate",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -398,7 +393,6 @@ public class ItemRegistry {
                             VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
                     )))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_LEGGINGS = register(
             "imbued_heartwood_leggings",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -412,7 +406,6 @@ public class ItemRegistry {
                             VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
                     )))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_BOOTS = register(
             "imbued_heartwood_boots",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -426,17 +419,6 @@ public class ItemRegistry {
                             VerdantFriendliness.IMBUED_HEARTWOOD_ARMOR
                     )))
     );
-
-    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SWORD = register(
-            "imbued_heartwood_sword",
-            ((properties) -> new Item(properties.stacksTo(1)
-                    .sword(ToolMaterialRegistry.IMBUED_HEARTWOOD, 3.0F, -2.4F)
-                    .component(
-                            DataComponentRegistry.DURABILITY_CHANGING.get(),
-                            DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
-                    )))
-    );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SPEAR = register(
             "imbued_heartwood_spear",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -446,8 +428,6 @@ public class ItemRegistry {
                             DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
                     )))
     );
-
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SHOVEL = register(
             "imbued_heartwood_shovel", ((properties) -> new ShovelItem(
                     ToolMaterialRegistry.IMBUED_HEARTWOOD,
@@ -460,7 +440,6 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_PICKAXE = register(
             "imbued_heartwood_pickaxe",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -470,7 +449,6 @@ public class ItemRegistry {
                             DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
                     )))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_AXE = register(
             "imbued_heartwood_axe", ((properties) -> new AxeItem(
                     ToolMaterialRegistry.IMBUED_HEARTWOOD,
@@ -483,7 +461,6 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_HOE = register(
             "imbued_heartwood_hoe", ((properties) -> new HoeItem(
                     ToolMaterialRegistry.IMBUED_HEARTWOOD,
@@ -496,17 +473,14 @@ public class ItemRegistry {
                             )
             ))
     );
-
     public static final RegistryObject<Item, Item> IMBUEMENT_UPGRADE_SMITHING_TEMPLATE = register(
             "imbuement_upgrade_smithing_template",
             SmithingTemplateExtensions::createImbuementUpgradeTemplate
     );
-
     public static final RegistryObject<Item, Item> TOXIC_ASH = register(
             "toxic_ash",
             (properties) -> new ToxicAshItem(properties, 2, 1)
     );
-
     public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_ASH = register(
             "toxic_ash_bucket", (properties) -> new ToxicAshItem(
                     properties.stacksTo(1)
@@ -515,7 +489,6 @@ public class ItemRegistry {
                     3
             )
     );
-
     public static final RegistryObject<Item, Item> TOXIC_SOLUTION_BUCKET = register(
             "toxic_solution_bucket", (properties) -> new ToxicAshItem(
                     properties.stacksTo(1)
@@ -524,25 +497,18 @@ public class ItemRegistry {
                     8
             )
     );
-
     public static final RegistryObject<Item, Item> DART = register(
             "dart",
             properties -> new DartItem(properties.component(DataComponents.POTION_DURATION_SCALE, 1F))
     );
-
     public static final RegistryObject<Item, Item> TIPPED_DART = register(
             "tipped_dart",
             properties -> new TippedDartItem(properties.component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY))
     );
-
     public static final RegistryObject<Item, SpawnEggItem> ROOTED_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.ROOTED);
-
     public static final RegistryObject<Item, SpawnEggItem> TIMBERMITE_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.TIMBERMITE);
-
     public static final RegistryObject<Item, SpawnEggItem> SKULL_SPIDER_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.SKULL_SPIDER);
-
     public static final RegistryObject<Item, SpawnEggItem> POISONER_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.POISONER);
-
     public static final RegistryObject<Item, Item> OOZE_BUCKET = register(
             "ooze_bucket", properties -> new MobBucketItem(
                     EntityTypeRegistry.OOZE.get(),
@@ -551,14 +517,11 @@ public class ItemRegistry {
                     properties.stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)
             )
     );
-
     public static final RegistryObject<Item, SpawnEggItem> OOZE_SPAWN_EGG = registerSpawnEgg(EntityTypeRegistry.OOZE);
-
     public static final RegistryObject<Item, Item> BLOWGUN = register(
             "blowgun",
             properties -> new BlowgunItem(properties.durability(256))
     );
-
     public static final RegistryObject<Item, Item> EARTHMOVER = register(
             "earthmover",
             properties -> new CubeMiningItem(properties.tool(
@@ -570,7 +533,6 @@ public class ItemRegistry {
                     )
                     .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1))
     );
-
     public static final RegistryObject<Item, Item> COPPER_MACHETE = register(
             "copper_machete",
             properties -> new CubeMiningItem(
@@ -578,7 +540,6 @@ public class ItemRegistry {
                             .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
-
     public static final RegistryObject<Item, Item> IRON_MACHETE = register(
             "iron_machete",
             properties -> new CubeMiningItem(
@@ -586,7 +547,6 @@ public class ItemRegistry {
                             .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
-
     public static final RegistryObject<Item, Item> DIAMOND_MACHETE = register(
             "diamond_machete",
             properties -> new CubeMiningItem(
@@ -594,7 +554,6 @@ public class ItemRegistry {
                             .component(DataComponentRegistry.MINING_CUBE_RADIUS.get(), 1), true
             )
     );
-
     public static final RegistryObject<Item, Item> NETHERITE_MACHETE = register(
             "netherite_machete", properties -> new CubeMiningItem(
                     properties.tool(ToolMaterial.NETHERITE, VerdantTags.Blocks.MINEABLE_WITH_MACHETE, 1.0f, -1.4f, 0.0f)
@@ -616,51 +575,6 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> TERRACOTTA_BOMB = register(
             "terracotta_bomb",
             (properties) -> new BlockItem(BlockRegistry.TERRACOTTA_BOMB_PILE.get(), properties)
-    );
-    public static final RegistryObject<Item, ThrowableBombItem> BLASTING_BLOOM = register(
-            "blasting_bloom", (properties) -> new ThrowableBombItem(
-                    properties.component(
-                            DataComponents.BLOCK_STATE,
-                            new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
-                    ).component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f)),
-                    () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
-            )
-    );
-    public static final RegistryObject<Item, ThrowableBombItem> TERRACOTTA_GRENADE = register(
-            "terracotta_grenade", (properties) -> new ThrowableBombItem(
-                    properties.component(
-                                    DataComponents.BLOCK_STATE,
-                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
-                            )
-                            .component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f))
-                            .component(
-                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
-                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
-                            ),
-                    () -> BlockRegistry.TERRACOTTA_BOMB_PILE.get().defaultBlockState(),
-                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 1.5f,
-                    3 * (ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 4),
-                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 1.50f,
-                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
-            )
-    );
-    public static final RegistryObject<Item, ThrowableBombItem> METAL_GRENADE = register(
-            "metal_grenade", (properties) -> new ThrowableBombItem(
-                    properties.component(
-                                    DataComponents.BLOCK_STATE,
-                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
-                            )
-                            .component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f))
-                            .component(
-                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
-                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
-                            ),
-                    () -> BlockRegistry.METAL_BOMB_PILE.get().defaultBlockState(),
-                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2.0f,
-                    ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 2,
-                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 2.00f,
-                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
-            )
     );
     public static final RegistryObject<Item, Item> BRAMBLE_HEAD = register(
             "bramble_head",
@@ -722,12 +636,6 @@ public class ItemRegistry {
                             15.0F,
                             4.6F
                     )
-                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
-    );
-    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SWORD = register(
-            "thorny_heartwood_sword",
-            ((properties) -> new Item(properties.stacksTo(1)
-                    .sword(ToolMaterialRegistry.THORNY_HEARTWOOD, 3.0F, -2.4F)
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)))
     );
     public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SHOVEL = register(
@@ -826,6 +734,87 @@ public class ItemRegistry {
                     BlockRegistry.SAP_WALL_TORCH.get(),
                     Direction.DOWN,
                     properties
+            )
+    );
+    public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SWORD = register(
+            "imbued_heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.IMBUED_HEARTWOOD, 3.0F, -2.4F)
+                    .component(
+                            DataComponentRegistry.DURABILITY_CHANGING.get(),
+                            DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
+                    )
+                    .component(
+                            DataComponents.PIERCING_WEAPON, HEARTWOOD_SWORD_PIERCING
+                    )))
+    );
+    public static final RegistryObject<Item, Item> HEARTWOOD_SWORD = register(
+            "heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.HEARTWOOD, 3.0F, -2.4F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)
+                    .component(
+                            DataComponents.PIERCING_WEAPON, HEARTWOOD_SWORD_PIERCING
+                    )))
+    );
+    public static final RegistryObject<Item, Item> THORNY_HEARTWOOD_SWORD = register(
+            "thorny_heartwood_sword",
+            ((properties) -> new Item(properties.stacksTo(1)
+                    .sword(ToolMaterialRegistry.THORNY_HEARTWOOD, 3.0F, -2.4F)
+                    .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_TOOLS)
+                    .component(
+                            DataComponents.PIERCING_WEAPON, HEARTWOOD_SWORD_PIERCING
+                    )))
+    );
+    public static final RegistryObject<Item, ThrowableBombItem> BLASTING_BLOOM = register(
+            "blasting_bloom", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                            DataComponents.BLOCK_STATE,
+                            new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                    ).component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0f, Optional.of(GRENADE_COOLDOWN_ID))),
+                    () -> BlockRegistry.BLASTING_BUNCH.get().defaultBlockState()
+            )
+    );
+    public static final RegistryObject<Item, ThrowableBombItem> TERRACOTTA_GRENADE = register(
+            "terracotta_grenade", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                                    DataComponents.BLOCK_STATE,
+                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                            )
+                            .component(
+                                    DataComponents.USE_COOLDOWN,
+                                    new UseCooldown(1.0f, Optional.of(GRENADE_COOLDOWN_ID))
+                            )
+                            .component(
+                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
+                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
+                            ),
+                    () -> BlockRegistry.TERRACOTTA_BOMB_PILE.get().defaultBlockState(),
+                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 1.5f,
+                    3 * (ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 4),
+                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 1.50f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
+            )
+    );
+    public static final RegistryObject<Item, ThrowableBombItem> METAL_GRENADE = register(
+            "metal_grenade", (properties) -> new ThrowableBombItem(
+                    properties.component(
+                                    DataComponents.BLOCK_STATE,
+                                    new BlockItemStateProperties(Map.of()).with(BombPileBlock.BOMBS, BombPileBlock.MIN_BOMBS)
+                            )
+                            .component(
+                                    DataComponents.USE_COOLDOWN,
+                                    new UseCooldown(1.0f, Optional.of(GRENADE_COOLDOWN_ID))
+                            )
+                            .component(
+                                    DataComponentRegistry.BOMB_TOSS_STRENGTH.get(),
+                                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2
+                            ),
+                    () -> BlockRegistry.METAL_BOMB_PILE.get().defaultBlockState(),
+                    ThrowableBombItem.DEFAULT_PROJECTILE_SHOOT_POWER * 2.0f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_FUSE / 2,
+                    ThrowableBombItem.DEFAULT_BLAST_DAMAGE_MULTIPLIER * 2.00f,
+                    ThrowableBombItem.DEFAULT_PROJECTILE_BLAST_POWER
             )
     );
 

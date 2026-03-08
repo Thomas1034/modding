@@ -16,15 +16,15 @@
  */
 package com.startraveler.verdant.item.custom;
 
-import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.block.Converter;
+import com.startraveler.rootbound.blocktransformer.Converter;
+import com.startraveler.rootbound.timer.BlockTransformerTimer;
+import com.startraveler.rootbound.timer.TimerListSavedData;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.DamageSourceRegistry;
-import com.startraveler.verdant.timer.BlockTransformerTimer;
-import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -178,19 +178,14 @@ public class ToxicAshItem extends Item implements Converter {
         }
 
         positionsByDelay.forEach((distance, blockPosList) -> {
-            Constants.LOG.warn(
-                    "Adding {} blocks at distance {} with delay {}.",
-                    blockPosList.size(),
-                    distance,
-                    ((long) DELAY_PER_STEP * (distance / STEP)) + BASE_DELAY
-            );
+            List<BlockPos> posList = blockPosList.stream()
+                    .sorted(Comparator.comparingInt(Vec3i::getY).reversed())
+                    .toList();
             TimerListSavedData.addTimer(
                     level,
-                    new BlockTransformerTimer(
-                            ((long) DELAY_PER_STEP * (distance / STEP)) + BASE_DELAY,
-                            this.getTransformer(),
-                            blockPosList
-                    )
+                    ((long) DELAY_PER_STEP * (distance / STEP)) + BASE_DELAY,
+                    new BlockTransformerTimer(this.getTransformer(), posList)
+
             );
         });
 

@@ -73,6 +73,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         );
         this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(VerdantTags.Blocks.STRANGLER_LEAVES);
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
+                BlockRegistry.DEAD_MOSS_BLOCK.get(),
+                BlockRegistry.DEAD_MOSS_CARPET.get(),
                 BlockRegistry.POISON_IVY_BLOCK.get(),
                 BlockRegistry.THORN_BUSH.get(),
                 BlockRegistry.BUSH.get(),
@@ -134,19 +136,13 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
                 BlockRegistry.COFFEE_CROP.get()
         );
+        this.tag(BlockTags.DIRT).addTag(VerdantTags.Blocks.VERDANT_GROUND);
         this.tag(BlockTags.DIRT).add(
-                BlockRegistry.VERDANT_ROOTED_DIRT.get(),
-                BlockRegistry.VERDANT_GRASS_DIRT.get(),
-                BlockRegistry.VERDANT_GRASS_MUD.get(),
-                BlockRegistry.VERDANT_ROOTED_MUD.get(),
-                BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_ROOTED_CLAY.get(),
-                BlockRegistry.VERDANT_GRASS_GRUS.get(),
-                BlockRegistry.VERDANT_ROOTED_GRUS.get(),
                 BlockRegistry.CASSAVA_ROOTED_DIRT.get(),
                 BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT.get(),
                 BlockRegistry.STONY_GRUS.get(),
-                BlockRegistry.GRUS.get()
+                BlockRegistry.GRUS.get(),
+                BlockRegistry.DEAD_MOSS_BLOCK.get()
         );
         this.tag(BlockTags.AZALEA_ROOT_REPLACEABLE).add(
                 BlockRegistry.PACKED_GRAVEL.get(),
@@ -227,7 +223,11 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.GRUS.get()
         );
         this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON)
-                .add(BlockRegistry.TOXIC_DIRT.get(), BlockRegistry.TOXIC_GRUS.get());
+                .add(
+                        BlockRegistry.TOXIC_DIRT.get(),
+                        BlockRegistry.TOXIC_GRUS.get(),
+                        BlockRegistry.DEAD_MOSS_BLOCK.get()
+                );
         this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(
@@ -244,7 +244,10 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.SAP_BLOCK.get()
         );
 
-        this.tag(BlockTags.REPLACEABLE).add(BlockRegistry.POISON_IVY.get(), BlockRegistry.POISON_IVY_PLANT.get());
+        this.tag(BlockTags.REPLACEABLE).add(
+                BlockRegistry.POISON_IVY.get(),
+                BlockRegistry.POISON_IVY_PLANT.get()
+        );
         this.tag(BlockTags.REPLACEABLE_BY_TREES).add(
                 BlockRegistry.WILD_CASSAVA.get(),
                 BlockRegistry.WILD_UBE.get(),
@@ -482,6 +485,8 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).add(
                 Blocks.WATER,
+                BlockRegistry.DEAD_MOSS_CARPET.get(),
+                BlockRegistry.DEAD_MOSS_BLOCK.get(),
                 BlockRegistry.TOXIC_DIRT.get(),
                 BlockRegistry.TOXIC_GRUS.get(),
                 BlockRegistry.TOXIC_ASH_BLOCK.get()
@@ -533,12 +538,14 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         this.tag(VerdantTags.Blocks.SUSTAINS_OOZE_FISSURE).addTag(WoodSets.HEARTWOOD.getLogs());
 
-        this.tag(VerdantTags.Blocks.CAN_SPAWN_BUGS_WHEN_BROKEN).addTags(BlockTags.EDIBLE_FOR_SHEEP).add(
-                BlockRegistry.BUSH.get(),
-                BlockRegistry.TALL_BUSH.get(),
-                BlockRegistry.THORN_BUSH.get(),
-                BlockRegistry.TALL_THORN_BUSH.get()
-        );
+        this.tag(VerdantTags.Blocks.CAN_SPAWN_BUGS_WHEN_BROKEN)
+                .addTags(BlockTags.EDIBLE_FOR_SHEEP)
+                .add(
+                        BlockRegistry.BUSH.get(),
+                        BlockRegistry.TALL_BUSH.get(),
+                        BlockRegistry.THORN_BUSH.get(),
+                        BlockRegistry.TALL_THORN_BUSH.get()
+                );
         this.tag(VerdantTags.Blocks.BUGS_CAN_SPAWN_ABOVE).addTags(VerdantTags.Blocks.VERDANT_GROUND);
         this.tag(VerdantTags.Blocks.RESTRAINS_FOR_SPIDERS).add(Blocks.SOUL_SAND, Blocks.COBWEB);
         addDirtOres();

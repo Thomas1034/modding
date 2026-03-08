@@ -4,13 +4,8 @@ package com.startraveler.verdant;
 import com.startraveler.rootbound.Rootbound;
 import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.BaseTimer;
-import com.startraveler.verdant.timer.BlockTransformerTimer;
-import com.startraveler.verdant.timer.PlaceBlocksTimer;
-import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -42,7 +37,6 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
-import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
@@ -83,8 +77,6 @@ public class Verdant {
         // Tilling Grus
         NeoForge.EVENT_BUS.addListener(Verdant::registerTillables);
 
-        // Ticking Timers
-        NeoForge.EVENT_BUS.addListener(Verdant::tickTimers);
 
         // For breaking blocks and spiderlings
         NeoForge.EVENT_BUS.addListener(Verdant::onBlockBreak);
@@ -103,12 +95,6 @@ public class Verdant {
         // event.modify(BlockEntityType.MOB_SPAWNER, BlockRegistry.OVERGROWN_SPAWNER.get());
     }
 
-    public static void tickTimers(LevelTickEvent.Post event) {
-        if (event.getLevel() instanceof ServerLevel level) {
-            CommonClass.tickTimers(level);
-        }
-    }
-
     public static void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
         BlowdartTippingIngredientRegistry.addIngredients((item, biConsumerConsumer) -> event.modify(
                 item,
@@ -118,10 +104,6 @@ public class Verdant {
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-
-            BaseTimer.CODEC_REGISTRY.register(PrintForTestingTimer.TYPE, PrintForTestingTimer.CODEC);
-            BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
-            BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
 
             FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
 

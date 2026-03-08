@@ -1,6 +1,8 @@
 {
   "values": [
     "#verdant:strangler_leaves",
+    "verdant:dead_moss_block",
+    "verdant:dead_moss_carpet",
     "verdant:poison_ivy_block",
     "verdant:thorn_bush",
     "verdant:bush",

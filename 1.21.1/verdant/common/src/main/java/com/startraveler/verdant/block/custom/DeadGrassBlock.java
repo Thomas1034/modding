@@ -18,8 +18,8 @@ package com.startraveler.verdant.block.custom;
 
 import net.minecraft.world.level.block.DryVegetationBlock;
 
-public class DeadTallGrassBlock extends DryVegetationBlock {
-    public DeadTallGrassBlock(Properties properties) {
+public class DeadGrassBlock extends DryVegetationBlock {
+    public DeadGrassBlock(Properties properties) {
         super(properties);
     }
 }

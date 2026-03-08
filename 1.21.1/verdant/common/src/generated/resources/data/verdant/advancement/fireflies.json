@@ -1,0 +1,59 @@
+{
+  "parent": "verdant:overgrowth",
+  "criteria": {
+    "place_fireflies_lantern": {
+      "conditions": {
+        "location": [
+          {
+            "block": "verdant:sap_lantern",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "place_fireflies_torch": {
+      "conditions": {
+        "location": [
+          {
+            "block": "verdant:sap_torch",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "place_fireflies_wall_torch": {
+      "conditions": {
+        "location": [
+          {
+            "block": "verdant:sap_wall_torch",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.fireflies.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "verdant:sap_lantern"
+    },
+    "title": {
+      "translate": "advancements.verdant.fireflies.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_fireflies_torch",
+      "place_fireflies_wall_torch",
+      "place_fireflies_lantern"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

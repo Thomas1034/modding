@@ -76,14 +76,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         return getDistanceTill(level, initial, direction, checker, max);
     }
 
-    // Returns the number of blocks to move in that direction to find a non-leaf
-    // block.
-    // Negative max values are ignored.
-    public static int getDistanceTillNonLeaf(Level level, BlockPos initial, Direction direction, int max) {
-        Predicate<BlockState> checker = (state) -> !state.is(BlockTags.LEAVES);
-        return getDistanceTill(level, initial, direction, checker, max);
-    }
-
     public static int getDistanceTill(Level level, BlockPos initial, Direction direction, Predicate<BlockState> checker, int max) {
 
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos().set(initial);
@@ -107,35 +99,13 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         return getDistanceTill(level, initial, direction, checker, max);
     }
 
-    private static boolean hasAirAbove(Level level, BlockPos pos, int distanceToCheck) {
-        // Check for nearby blocks
-
-        Predicate<BlockState> checker = (stateToCheck) -> !stateToCheck.isAir();
-        int distance = getDistanceTill(level, pos, Direction.UP, checker, distanceToCheck + 1);
-
-        return distance > distanceToCheck;
-
-    }
-
-    private boolean hasTransparentOrPlantSpaceBeneath(Level level, BlockPos pos, int distanceToCheck) {
-        // Check for nearby blocks
-
-        Predicate<BlockState> checkerForSolid = (stateToCheck) -> !(stateToCheck.isAir() || stateToCheck.propagatesSkylightDown() || stateToCheck.is(
-                BlockTags.LEAVES) || stateToCheck.is(BlockTags.LOGS) || stateToCheck.is(WoodSets.STRANGLER.getLogs()) || stateToCheck.is(
-                VerdantTags.Blocks.STRANGLER_VINES) || stateToCheck.is(VerdantTags.Blocks.STRANGLER_LEAVES));
-        int distance = getDistanceTill(level, pos, Direction.DOWN, checkerForSolid, distanceToCheck + 1);
-
-        return distance > distanceToCheck;
-
-    }
-
     @Override
     public @NotNull VoxelShape getBlockSupportShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return SUPPORT_SHAPE;
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    protected boolean isRandomlyTicking(@NotNull BlockState state) {
         return true;
     }
 
@@ -169,7 +139,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         boolean canPlace = false;
         for (Direction d : Direction.allShuffled(level.random)) {
             // Place it there.
-            if (leafyVine.canGrowToFace(level, pos, d)) {
+            if (StranglerVineBlock.canGrowToFace(level, pos, d)) {
                 canPlace = true;
                 newVine = newVine.setValue(LeafyStranglerVineBlock.PROPERTY_FOR_FACE.get(d), 1);
             }
@@ -225,9 +195,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         level.setBlockAndUpdate(below, newState);
     }
 
-    // Returns the number of blocks to move in a direction till the given condition
-    // is satisfied. Negative max values are ignored.
-
+    @SuppressWarnings("SameParameterValue")
     private boolean tryToGrowShelf(Level level, BlockPos pos, int maxShelfThickness, int minAirGap) {
 
         int numberOfBlocksAbove = getDistanceTillAir(level, pos, Direction.UP, maxShelfThickness + 2);

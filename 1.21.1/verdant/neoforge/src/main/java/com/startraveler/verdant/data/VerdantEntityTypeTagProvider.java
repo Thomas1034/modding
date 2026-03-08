@@ -41,6 +41,8 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityType.SLIME
         );
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).addTag(EntityTypeTags.IMPACT_PROJECTILES);
+        this.tag(VerdantTags.EntityTypes.IMMUNE_TO_THORN_BUSHES)
+                .add(EntityType.BEE, EntityType.FOX, EntityType.ARMADILLO, EntityType.BAT, EntityType.CAT);
         this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).add(
                 EntityTypeRegistry.TIMBERMITE.get(),
                 EntityTypeRegistry.ROOTED.get(),

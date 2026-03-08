@@ -55,10 +55,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-// TODO
-// Add fruity mango leaves, with two stages (unripe, ripe)
-// Add sign, trapdoor, door, and boat textures for mango.
-
 public class BlockRegistry {
     public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(
             Registries.BLOCK,
@@ -215,6 +211,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> SAP_TORCH;
     public static final RegistryObject<Block, Block> SAP_WALL_TORCH;
     public static final RegistryObject<Block, Block> SAP_FIRE;
+    public static final RegistryObject<Block, Block> DEAD_MOSS_BLOCK;
+    public static final RegistryObject<Block, Block> DEAD_MOSS_CARPET;
     // public static final RegistryObject<Block, Block> ROPE_LADDER;
 
     static {
@@ -547,7 +545,7 @@ public class BlockRegistry {
                 "thorn_bush",
                 () -> new ThornBushBlock(
                         properties(Blocks.SWEET_BERRY_BUSH, "thorn_bush").noOcclusion()
-                                .strength(0.75F), 2.0f
+                                .strength(0.75F), 1.5f
                 )
         );
         POTTED_THORN_BUSH = registerBlockWithoutItem(
@@ -911,7 +909,7 @@ public class BlockRegistry {
 
         DEAD_GRASS = registerBlockWithItem(
                 "dead_grass",
-                () -> new DeadTallGrassBlock(properties(Blocks.SHORT_DRY_GRASS, "dead_grass"))
+                () -> new DeadGrassBlock(properties(Blocks.SHORT_DRY_GRASS, "dead_grass"))
         );
 
         POISON_IVY_BLOCK = registerBlockWithItem(
@@ -1148,7 +1146,7 @@ public class BlockRegistry {
                 "tall_thorn_bush",
                 () -> new TallThornBushBlock(
                         properties(Blocks.SWEET_BERRY_BUSH, "tall_thorn_bush").noOcclusion()
-                                .strength(0.75F), 3.0f
+                                .strength(0.75F), 2.0f
                 )
         );
 
@@ -1302,6 +1300,16 @@ public class BlockRegistry {
         OVERGROWN_SPAWNER = registerBlockWithoutItem(
                 "overgrown_spawner",
                 () -> new VerdantSpawnerBlock(properties(Blocks.SPAWNER, "overgrown_spawner"))
+        );
+
+        DEAD_MOSS_BLOCK = registerBlockWithItem(
+                "dead_moss_block",
+                () -> new Block(properties(Blocks.MOSS_BLOCK, "dead_moss_block"))
+        );
+
+        DEAD_MOSS_CARPET = registerBlockWithItem(
+                "dead_moss_carpet",
+                () -> new CarpetBlock(properties(Blocks.MOSS_CARPET, "dead_moss_carpet"))
         );
 
     }

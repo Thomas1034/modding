@@ -33,7 +33,6 @@ import java.util.List;
 
 public class MobEffectRegistry {
 
-
     public static final RegistrationProvider<MobEffect> MOB_EFFECTS = RegistrationProvider.get(
             Registries.MOB_EFFECT,
             Constants.MOD_ID
@@ -135,7 +134,12 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> BROKEN_ARMOR = MOB_EFFECTS.register(
             "broken_armor",
-            () -> new BrokenArmorEffect(MobEffectCategory.HARMFUL, 0.1f, 0x000050)
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000050).addAttributeModifier(
+                    Attributes.ARMOR,
+                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "broken_armor/decrease_armor"),
+                    -0.25f,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            )
     );
     public static final RegistryObject<MobEffect, MobEffect> NUMBNESS = MOB_EFFECTS.register(
             "numbness",

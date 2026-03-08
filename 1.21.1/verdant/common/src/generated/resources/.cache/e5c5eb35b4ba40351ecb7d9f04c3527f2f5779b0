@@ -1,15 +1,17 @@
-// 1.21.11	2026-02-05T10:07:13.7663666	Advancements
+// 1.21.11	2026-03-07T01:04:02.6830872	Advancements
 ef5ced76890d463a8bff23d1bd72393352b1196f data/verdant/advancement/aloe.json
 e85e71f606ab947aac1ed1e2aa9af587ed52195a data/verdant/advancement/craft_rope.json
 137ee76897315e6dd22148b30b0f82d648bf9dd2 data/verdant/advancement/craft_rope_coil.json
 24cf96fb775c9412f593181252f8d31e82a63b45 data/verdant/advancement/craft_sack.json
 e7bd1ab21c5ac2e2332cea98ebc811699eeea07e data/verdant/advancement/deep_roots.json
+c614b8e9daa195ae21257154d06fcdecf89f7dfc data/verdant/advancement/fireflies.json
 403ceb2f56c77a096cee73898c4b57dda9b004f1 data/verdant/advancement/golden_trap.json
 46c81925477fc1361de4a60d1ee548095a70a217 data/verdant/advancement/inedible.json
 8a578eb854dd43182bd74dbf64e9b8e7b9e0794f data/verdant/advancement/inside_tree.json
 a760ba7dc0efa06a4e7c33142f766cf995c67665 data/verdant/advancement/iron_spikes.json
 eb3a06378ec3ba3d8ea45edce5143a881ab63c7b data/verdant/advancement/iron_trap.json
 9f6d10a5c59a011fba7d06b564abe67eac89d5be data/verdant/advancement/many_sacks.json
+25bab9192c8b831510b3e625b13a910ac084d8ea data/verdant/advancement/museum.json
 0ef33eafa4c77148a4751b3b99f9f0804dfa7082 data/verdant/advancement/overgrowth.json
 1a0440b07cefde20848db241d313c873d58cd9c2 data/verdant/advancement/petrichor.json
 a86d225fdf3fafe53b9b502e5f1145fc3f8ff96f data/verdant/advancement/poison_ivy.json

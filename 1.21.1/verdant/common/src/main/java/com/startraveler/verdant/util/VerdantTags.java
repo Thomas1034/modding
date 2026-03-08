@@ -195,6 +195,7 @@ public class VerdantTags {
     public static class EntityTypes {
 
         protected static final Set<String> TAG_NAMES = new HashSet<>();
+        public static final TagKey<EntityType<?>> IMMUNE_TO_THORN_BUSHES = tag("immune_to_thorn_bushes");
         public static final TagKey<EntityType<?>> VERDANT_FRIENDLY_ENTITIES = tag("verdant_friendly_entities");
         public static final TagKey<EntityType<?>> TOXIC_ASH_DAMAGES = tag("toxic_ash_damages");
 

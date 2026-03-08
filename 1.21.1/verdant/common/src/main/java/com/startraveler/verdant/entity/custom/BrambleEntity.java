@@ -2,15 +2,15 @@ package com.startraveler.verdant.entity.custom;
 
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
+import com.startraveler.rootbound.timer.BlockTransformerTimer;
+import com.startraveler.rootbound.timer.PlaceBlocksTimer;
+import com.startraveler.rootbound.timer.PrintForTestingTimer;
+import com.startraveler.rootbound.timer.TimerListSavedData;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.VerdantGrower;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import com.startraveler.verdant.registry.WoodSets;
-import com.startraveler.verdant.timer.BlockTransformerTimer;
-import com.startraveler.verdant.timer.PlaceBlocksTimer;
-import com.startraveler.verdant.timer.PrintForTestingTimer;
-import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.core.BlockPos;
@@ -73,13 +73,6 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
         this.setInvulnerableTicks(0);
     }
 
-
-    @Override
-    protected void registerGoals() {
-        // TODO
-
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40.0);
     }
@@ -104,7 +97,9 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
             List<BlockPos> circlePositions = positions.get(i);
             TimerListSavedData.addTimer(
                     level,
-                    new BlockTransformerTimer(((long) step * i) + delay, transformer, circlePositions)
+                    ((long) step * i) + delay,
+                    new BlockTransformerTimer(transformer, circlePositions)
+
             );
         }
     }
@@ -146,7 +141,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
 
         for (Map.Entry<Integer, List<PlaceBlocksTimer.BlockPlaceDirective>> entry : grouped.entrySet()) {
             // Constants.LOG.warn("Placing {} blocks at time {}", entry.getValue().size(), entry.getKey() - min);
-            TimerListSavedData.addTimer(level, new PlaceBlocksTimer(entry.getKey() - min, entry.getValue()));
+            TimerListSavedData.addTimer(level, entry.getKey() - min, new PlaceBlocksTimer(entry.getValue()));
         }
     }
 
@@ -171,11 +166,12 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
                                                 .of(BuiltInRegistries.BLOCK, blockToReplace)
                                                 .build()
                                 )));
-                        toReplace.ifLeft(tagToReplace -> directives.get(r).add(new PlaceBlocksTimer.BlockPlaceDirective(
-                                block.defaultBlockState(),
-                                pos.offset(finalI, finalJ, finalK),
-                                BlockPredicate.Builder.block().of(BuiltInRegistries.BLOCK, tagToReplace).build()
-                        )));
+                        toReplace.ifLeft(tagToReplace -> directives.get(r)
+                                .add(new PlaceBlocksTimer.BlockPlaceDirective(
+                                        block.defaultBlockState(),
+                                        pos.offset(finalI, finalJ, finalK),
+                                        BlockPredicate.Builder.block().of(BuiltInRegistries.BLOCK, tagToReplace).build()
+                                )));
                     }
                 }
             }
@@ -183,11 +179,21 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
 
         for (int i = 0; i < maxRadius; i++) {
             List<PlaceBlocksTimer.BlockPlaceDirective> circleDirectives = directives.get(i);
-            TimerListSavedData.addTimer(level, new PlaceBlocksTimer(((long) step * i) + delay, circleDirectives));
+            TimerListSavedData.addTimer(
+                    level,
+                    ((long) step * i) + delay,
+                    new PlaceBlocksTimer(circleDirectives)
+
+            );
         }
 
     }
 
+    @Override
+    protected void registerGoals() {
+        // TODO
+
+    }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
@@ -334,12 +340,12 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
                 );
             }
 
-            @SuppressWarnings("unused")
-            int currentDelay = maxRadius * delayBetweenRings * numberOfErosions + delayBetweenRings * 3;
+            @SuppressWarnings("unused") int currentDelay = maxRadius * delayBetweenRings * numberOfErosions + delayBetweenRings * 3;
 
             TimerListSavedData.addTimer(
                     serverLevel,
-                    new PrintForTestingTimer("Finished timer for phase " + this.getHealthStage(), 200L)
+                    200L,
+                    new PrintForTestingTimer("Finished timer for phase " + this.getHealthStage())
             );
         }
     }

@@ -1,4 +1,4 @@
-// 1.21.11	2026-02-05T10:07:13.7162813	Loot Tables
+// 1.21.11	2026-03-04T16:27:51.009517	Loot Tables
 58132c6a1d0b24243adc70fff22a84bbbec426bc data/verdant/loot_table/blocks/antigorite.json
 5e8ce9316767914179c6728f5a6814f01383e309 data/verdant/loot_table/blocks/bitter_cassava_crop.json
 05028e8545ccfa5ab8a26fd56c8bd2526fb00987 data/verdant/loot_table/blocks/bitter_cassava_rooted_dirt.json
@@ -24,6 +24,8 @@ dcd6dedd2d1e523e2f2a98fee962a855d709d785 data/verdant/loot_table/blocks/copper_s
 0e036a7a5ab32f9b14a7abd044e123fa700c3227 data/verdant/loot_table/blocks/copper_trap.json
 371934f7bb7c173680c0665b0c93930d1f3f8466 data/verdant/loot_table/blocks/cyan_candle_ube_cake.json
 3c07d6794241ae05ded70b0bd6ba19455eb1b047 data/verdant/loot_table/blocks/dead_grass.json
+83eeeaeb79ebfaa2f480220dec840a3d5540e928 data/verdant/loot_table/blocks/dead_moss_block.json
+842380f84650d574be1fd57e859837e460ee0f2c data/verdant/loot_table/blocks/dead_moss_carpet.json
 541fb35e6fc3de888ce5beff301c387313ee75a3 data/verdant/loot_table/blocks/dirt_coal_ore.json
 b44be57d2aa66effa979a058172c6c9e19268df4 data/verdant/loot_table/blocks/dirt_copper_ore.json
 1088f89ba19b23616567aeb15ec41cde9665ea52 data/verdant/loot_table/blocks/dirt_diamond_ore.json

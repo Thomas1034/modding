@@ -216,16 +216,29 @@ public class BlockTransformerDefinitions {
         data.add(directTag(BlockTags.LEAVES, Blocks.AIR));
         data.add(directTag(BlockTags.FLOWERS, Blocks.AIR));
         data.add(direct(BlockRegistry.SNAPLEAF.get(), Blocks.AIR));
-        data.add(probability(Blocks.SHORT_GRASS, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
+        data.add(direct(BlockRegistry.STINKING_BLOSSOM.get(), Blocks.AIR));
+        data.add(probability(Blocks.SHORT_GRASS, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 1)));
+        data.add(direct(Blocks.TALL_GRASS, BlockRegistry.DEAD_GRASS.get()));
         data.add(probabilityTag(
                 BlockTags.LOGS_THAT_BURN,
                 Map.of(WoodSets.DEAD.getStrippedWood().get(), 2, WoodSets.DEAD.getStrippedLog().get(), 1)
         ));
         data.add(direct(Blocks.VINE, Blocks.AIR));
-        data.add(direct(Blocks.TALL_GRASS, Blocks.AIR));
-        data.add(probability(Blocks.FERN, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 2)));
+        data.add(probability(Blocks.FERN, Map.of(BlockRegistry.DEAD_GRASS.get(), 2, Blocks.AIR, 1)));
         data.add(direct(Blocks.LARGE_FERN, Blocks.AIR));
         data.add(directTag(BlockTags.UNDERWATER_BONEMEALS, Blocks.WATER));
+        data.add(direct(Blocks.MOSS_BLOCK, BlockRegistry.DEAD_MOSS_BLOCK.get()));
+        data.add(direct(Blocks.MOSS_CARPET, BlockRegistry.DEAD_MOSS_CARPET.get()));
+        data.add(direct(Blocks.PALE_MOSS_BLOCK, BlockRegistry.DEAD_MOSS_BLOCK.get()));
+        data.add(direct(Blocks.PALE_MOSS_CARPET, BlockRegistry.DEAD_MOSS_CARPET.get()));
+        data.add(probability(Blocks.BUSH, Map.of(BlockRegistry.DEAD_GRASS.get(), 1, Blocks.AIR, 1, Blocks.DEAD_BUSH, 1)));
+        data.add(direct(Blocks.AZALEA, Blocks.DEAD_BUSH));
+        data.add(direct(Blocks.FLOWERING_AZALEA, Blocks.DEAD_BUSH));
+        data.add(direct(Blocks.CAVE_VINES, Blocks.AIR));
+        data.add(direct(Blocks.CAVE_VINES_PLANT, Blocks.AIR));
+        data.add(direct(Blocks.SMALL_DRIPLEAF, Blocks.AIR));
+        data.add(direct(Blocks.BIG_DRIPLEAF, Blocks.AIR));
+        data.add(direct(Blocks.BIG_DRIPLEAF_STEM, Blocks.AIR));
 
         Map<Block, Block> corals = getCoralsBlockMap();
 
@@ -252,9 +265,6 @@ public class BlockTransformerDefinitions {
         data.add(direct(BlockRegistry.GRUS.get(), BlockRegistry.TOXIC_GRUS.get()));
         data.add(direct(BlockRegistry.STONY_GRUS.get(), BlockRegistry.TOXIC_GRUS.get()));
         data.add(direct(Blocks.LILY_PAD, Blocks.AIR));
-        data.add(direct(Blocks.MOSS_BLOCK, Blocks.DIRT));
-        data.add(direct(Blocks.PALE_MOSS_BLOCK, Blocks.DIRT));
-        data.add(direct(Blocks.PALE_HANGING_MOSS, Blocks.AIR));
         data.add(direct(Blocks.FARMLAND, BlockRegistry.TOXIC_DIRT.get()));
 
         return new BlockTransformer(data, BlockTransformerRegistry.TOXIC_ASH);

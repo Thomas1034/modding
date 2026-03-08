@@ -470,7 +470,9 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
                 // Pending leaf rework.
                 boolean clearAbove = true;
                 for (int i = 1; i < 4; i++) {
-                    if (!level.getBlockState(pos.above()).isAir()) {
+                    // Previously, was not checking how far above; no parameter i.
+                    BlockState above = level.getBlockState(pos.above(i));
+                    if (!above.isAir()) {
                         clearAbove = false;
                         break;
                     }

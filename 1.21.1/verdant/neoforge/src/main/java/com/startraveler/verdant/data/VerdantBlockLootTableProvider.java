@@ -525,8 +525,10 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(BlockRegistry.SAP_TORCH.get(), ItemRegistry.SAP_TORCH.get());
         this.dropSelf(BlockRegistry.SAP_LANTERN.get());
 
-
         this.add(BlockRegistry.SAP_FIRE.get(), noDrop());
+
+        this.dropSelf(BlockRegistry.DEAD_MOSS_BLOCK.get());
+        this.dropSelf(BlockRegistry.DEAD_MOSS_CARPET.get());
     }
 
     @Override

@@ -1,12 +1,12 @@
 package com.startraveler.verdant.block.custom;
 
 import com.startraveler.verdant.Constants;
+import com.startraveler.verdant.VerdantIFF;
 import com.startraveler.verdant.entity.custom.BlockIgnoringPrimedTnt;
 import com.startraveler.verdant.mixin.PrimedTntAccessors;
 import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.BlockRegistry;
 import com.startraveler.verdant.util.CommonTags;
-import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -268,8 +268,8 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     @Override
     public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         super.stepOn(level, pos, state, entity);
-        if (!entity.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && !entity.getType()
-                .is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES) && state.getValue(AGE) == MAX_AGE) {
+        if (!entity.getType()
+                .is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && VerdantIFF.isEnemy(entity) && state.getValue(AGE) == MAX_AGE) {
             level.setBlockAndUpdate(pos, state.setValue(AGE, MIN_AGE));
             explode(level, pos);
         }

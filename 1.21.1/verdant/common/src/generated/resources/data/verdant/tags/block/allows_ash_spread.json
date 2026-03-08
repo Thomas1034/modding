@@ -1,6 +1,8 @@
 {
   "values": [
     "minecraft:water",
+    "verdant:dead_moss_carpet",
+    "verdant:dead_moss_block",
     "verdant:toxic_dirt",
     "verdant:toxic_grus",
     "verdant:toxic_ash_block",

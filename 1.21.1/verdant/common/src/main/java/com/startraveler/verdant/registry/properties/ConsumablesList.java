@@ -38,6 +38,7 @@ public class ConsumablesList {
     public static final Consumable FRAGILE_FLASK = Consumables.defaultDrink()
             .consumeSeconds(Consumables.DEFAULT_DRINK.consumeSeconds() / 1.5f)
             .onConsume(new AmplifyEffectsConsumeEffect(Optional.empty()))
+            .hasConsumeParticles(false)
             .soundAfterConsume(Holder.direct(SoundEvents.GLASS_BREAK))
             .build();
 
@@ -55,10 +56,10 @@ public class ConsumablesList {
                     MobEffectCategory.HARMFUL,
                     RemoveMobEffectsConsumeEffect.REMOVE_ALL_IN_CATEGORY
             ))
-            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 600, 0)))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 0)))
             .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(
                     MobEffectRegistry.ANTIDOTE.asHolder(),
-                    600,
+                    1200,
                     3
             )))
             .animation(ItemUseAnimation.CROSSBOW)

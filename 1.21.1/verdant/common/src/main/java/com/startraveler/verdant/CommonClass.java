@@ -20,8 +20,6 @@ import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
 import com.startraveler.verdant.entity.custom.SkullSpiderEntity;
 import com.startraveler.verdant.platform.Services;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.BaseTimer;
-import com.startraveler.verdant.timer.TimerListSavedData;
 import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -29,9 +27,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.DimensionDataStorage;
-
-import java.util.List;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code written here can only
 // import and access the vanilla codebase, libraries used by vanilla, and optionally third party libraries that provide
@@ -39,15 +34,10 @@ import java.util.List;
 // however it will be compatible with all supported mod loaders.
 
 //
-// Ideas for new effects:
+// Todo
 //
-// TODO Add firefly attractor achievement! "You would not believe your eyes..."
+
 /*
-
-Make toxic ash use timers, so it will DFS the region, store the number of steps it takes to get to each one, then create timers to set each of those block 10 * N/3 ticks in the future, where N is the distance (int math). Thus it will spread 6 blocks per second, in two "steps" of three blocks each.
-This should reduce lag, I hope, while also making the spread look a little less instant.
-
-
 
 Add "tangled mats" which grow in the top layer of water (underwater) and slow down entities caught in them.
 Multiple growth stages - start as a thin layer of algae along the surface, and grow to dense plants with roots filling the whole blocks.
@@ -73,15 +63,19 @@ Lingers on the ground and will not hurt the person who threw it.
 */
 // Credits: (other direct contributors only)
 /*
-// To do: add small spiders that spawn in grass.
 // Make spawner that creates green growth particles.
 
 Changes:
 - Updated to 1.21.11
+- Sneaking now prevents damage from thorn bushes.
+- Reduced damage from thorn bushes.
+- Rebalanced the broken armor effect to decrease armor by 25% per level instead of 10% per level.
 - Changed almost all heartwood equipment textures.
+- Various general texture tweaks and improvements.
 - Changed the stranger vine overlay texture.
 - Verdant grass and bushes are now biome-tinted. I may revert this change later; it's experimental.
 - Poisoners now use better potions when healing illagers.
+- Stinking blossoms are now killed by toxic ash.
 - Stinking blossoms now produce particles over the correct volume.
 - Stinking blossoms now produce a temporary stench cloud when broken. This has its benefits!
 - Thorny strangler leaves now only deal damage when you are moving.
@@ -104,6 +98,8 @@ Changes:
 - Decreased the suspicious soup time of Bleeding Hearts and Rue.
 
 Features Added:
+- All heartwood swords can now attack through grass, bushes, and other non-colliding blocks.
+- Toxic ash now turns moss into dead moss.
 - Shelves for heartwood, strangler, mango, and dead wood sets.
 - Copper machete.
 - Copper and gold spikes and traps.
@@ -179,7 +175,6 @@ public class CommonClass {
         TriggerRegistry.init();
     }
 
-
     public static void addCakeCandles() {
         ExtensibleCakeBlock cake = (ExtensibleCakeBlock) BlockRegistry.UBE_CAKE.get();
         cake.addCandleCake(Blocks.CANDLE, BlockRegistry.CANDLE_UBE_CAKE.get());
@@ -201,24 +196,6 @@ public class CommonClass {
         cake.addCandleCake(Blocks.BLACK_CANDLE, BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
     }
 
-    public static void tickTimers(ServerLevel level) {
-        DimensionDataStorage dataStorage = level.getDataStorage();
-        TimerListSavedData timerList = dataStorage.computeIfAbsent(TimerListSavedData.TYPE);
-
-        List<BaseTimer> timers = timerList.getTimers();
-
-        if (!timers.isEmpty()) {
-            for (BaseTimer timer : timers) {
-                boolean result = timer.handleTick(level);
-                if (!result) {
-                    timerList.removeTimer(timer);
-                }
-            }
-            dataStorage.set(TimerListSavedData.TYPE, timerList);
-        }
-
-    }
-
     public static void spawnSpiderlingsOnBlockBreak(LevelAccessor level, @SuppressWarnings("unused") Player player, BlockPos blockPos, BlockState blockState) {
 
         double bugSpawningChance = Constants.SPIDER_CHANCE;
@@ -232,7 +209,7 @@ public class CommonClass {
 
                 if (belowState.is(VerdantTags.Blocks.BUGS_CAN_SPAWN_ABOVE)) {
 
-                    if (level.getRandom().nextDouble() > bugSpawningChance) {
+                    if (level.getRandom().nextDouble() < bugSpawningChance) {
                         SkullSpiderEntity spider = new SkullSpiderEntity(
                                 EntityTypeRegistry.SKULL_SPIDER.get(),
                                 serverLevel

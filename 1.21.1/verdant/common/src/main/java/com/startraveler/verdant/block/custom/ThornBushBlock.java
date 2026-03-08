@@ -27,7 +27,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,7 +49,8 @@ public class ThornBushBlock extends BushBlock {
 
     @SuppressWarnings("unused")
     public static void entityInsideThorns(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, float damage) {
-        if (entity instanceof LivingEntity livingEntity && livingEntity.getType() != EntityType.BEE && livingEntity.getType() != EntityType.RABBIT && entity.getType() != EntityType.FOX && VerdantIFF.isEnemy(
+        if (entity instanceof LivingEntity livingEntity && !livingEntity.getType()
+                .is(VerdantTags.EntityTypes.IMMUNE_TO_THORN_BUSHES) && VerdantIFF.isEnemy(
                 livingEntity)) {
             double slowdownFactor = 0.2d;
             if (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(VerdantTags.Items.VERDANT_FRIENDLY_ARMORS)) {
@@ -65,14 +69,14 @@ public class ThornBushBlock extends BushBlock {
                     double dy = Math.abs(vec3.z());
                     double dz = Math.abs(vec3.z());
                     float cumulativeDamage = 0;
-                    if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && !entity.isShiftKeyDown()) {
+                    if ((dx >= (double) 0.003F || dz >= (double) 0.003F)) {
                         cumulativeDamage += damage / 2;
                     }
                     if (dy >= (double) 0.003F) {
                         cumulativeDamage += damage;
                     }
 
-                    if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && cumulativeDamage > 0.5f) {
+                    if ((dx >= (double) 0.003F || dz >= (double) 0.003F) && cumulativeDamage > 0.5f && !livingEntity.isCrouching()) {
                         Holder<DamageType> type = DamageSourceRegistry.get(
                                 level.registryAccess(),
                                 DamageSourceRegistry.BRIAR

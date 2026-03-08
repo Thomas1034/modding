@@ -1,4 +1,4 @@
-// 1.21.11	2026-02-25T14:24:37.9376781	Model Definitions - verdant
+// 1.21.11	2026-03-04T16:27:51.0249757	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -58,6 +58,8 @@ d30e09061d8cf2eb3126d1cd4b0d74f2a75d4844 assets/verdant/blockstates/copper_spike
 ffaa578fa51050330a141f9efe6d83f720e81a18 assets/verdant/blockstates/copper_trap.json
 ad7e73852fc0db948474548f3f3c12ada3caacd4 assets/verdant/blockstates/cyan_candle_ube_cake.json
 d84cbcdcae0e60833499fc8e0a3980f8a1d15c70 assets/verdant/blockstates/dead_grass.json
+6364aa4e8e11ee88af134f6f7ba80e40669ef385 assets/verdant/blockstates/dead_moss_block.json
+aa96c4966ee25ca2ec59d1df65bb35acf422ac8c assets/verdant/blockstates/dead_moss_carpet.json
 a35c2410e9fe9d6f52801750d7b5d42447f17d7d assets/verdant/blockstates/dirt_coal_ore.json
 63ff8fa9894a32b30e6875106b6bb416f1bb28bb assets/verdant/blockstates/dirt_copper_ore.json
 d8289cef2c8e36a9d8a7ae645200e89f85cb76bd assets/verdant/blockstates/dirt_diamond_ore.json
@@ -203,6 +205,8 @@ abb0aec93191a2322d5eaffa2682c0d79ad55e5a assets/verdant/items/copper_machete.jso
 7e8adcc71082ac0a7583d19e779c093f6bafe060 assets/verdant/items/copper_trap.json
 1eb680b82981799a26f537caed72f105857de68d assets/verdant/items/dart.json
 cfb9f78b0b07af502eb68862b8d085a874fc9ff2 assets/verdant/items/dead_grass.json
+2c66c3834c929cb0988b136d73b27e59cb493022 assets/verdant/items/dead_moss_block.json
+d4259f76c94419a52d3e1caf5e150003f6303aba assets/verdant/items/dead_moss_carpet.json
 d993d1f2be5757ccd722dffb4a7ca4abf8da7075 assets/verdant/items/diamond_machete.json
 ce6b1d8fe74e6faab3c6b43ee7f23cb47b714563 assets/verdant/items/dirt_coal_ore.json
 fabde1f1aece208571203fa8e5be58ea221eefab assets/verdant/items/dirt_copper_ore.json
@@ -443,6 +447,8 @@ acf5550c10151f78ebf7ce338705129b7a5d29d3 assets/verdant/models/block/copper_trap
 d8dba33d7bd418b647759d3af887463773580c23 assets/verdant/models/block/cyan_candle_ube_cake.json
 d25180636d0c176deed964946a84bff1bfe549b4 assets/verdant/models/block/cyan_candle_ube_cake_lit.json
 a26fbd4ab00eef30101134c9f179e3f79b71a115 assets/verdant/models/block/dead_grass.json
+c99b1d3c4a16f16ec1ce14aee8a432805ba00b46 assets/verdant/models/block/dead_moss_block.json
+0a3498d4d53549a90270fb6c13f25733fd8609fe assets/verdant/models/block/dead_moss_carpet.json
 f275f71b3f0796382531426a7979a294521b7cff assets/verdant/models/block/dirt_coal_ore.json
 f275f71b3f0796382531426a7979a294521b7cff assets/verdant/models/block/dirt_coal_ore_item.json
 50f7878ca57959316135807e1f9c1e6cfe0ef100 assets/verdant/models/block/dirt_copper_ore.json

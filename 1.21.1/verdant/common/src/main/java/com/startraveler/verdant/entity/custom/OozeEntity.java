@@ -53,8 +53,7 @@ import java.util.function.Supplier;
 
 public class OozeEntity extends Slime implements Bucketable {
     public static final int EFFECT_SCALE = 4;
-    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(
-            ParticleTypes.ITEM,
+    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(ParticleTypes.ITEM,
             new ItemStack(ItemRegistry.SAP_GLOB.get())
     ));
     public static final int CHANCE_TO_INCREASE_SIZE = 128;
@@ -65,7 +64,7 @@ public class OozeEntity extends Slime implements Bucketable {
             EntityDataSerializers.BOOLEAN
     );
 
-    public OozeEntity(EntityType<? extends OozeEntity> type, Level level) {
+    public OozeEntity(EntityType<? extends @NotNull OozeEntity> type, Level level) {
         super(type, level);
     }
 
@@ -136,8 +135,7 @@ public class OozeEntity extends Slime implements Bucketable {
                 Holder<Item> randomFlower = BuiltInRegistries.ITEM.getRandomElementOf(
                         VerdantTags.Items.VERDANT_SMALL_FLOWERS,
                         random
-                ).orElse(
-                        Items.AIR.builtInRegistryHolder());
+                ).orElse(Items.AIR.builtInRegistryHolder());
 
                 this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(randomFlower));
                 if (!this.getMainHandItem().isEmpty()) {
@@ -184,9 +182,8 @@ public class OozeEntity extends Slime implements Bucketable {
 
     @Override
     protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
-        return this.getSize() == 1
-                ? Bucketable.bucketMobPickup(player, hand, this).orElse(super.mobInteract(player, hand))
-                : super.mobInteract(player, hand);
+        return this.getSize() == 1 ? Bucketable.bucketMobPickup(player, hand, this)
+                .orElse(super.mobInteract(player, hand)) : super.mobInteract(player, hand);
     }
 
     public void applyHitPotionEffect(@NotNull Entity entity) {
@@ -195,7 +192,7 @@ public class OozeEntity extends Slime implements Bucketable {
 
             SuspiciousStewEffects effects = seh.getSuspiciousEffects();
 
-            if (entity instanceof LivingEntity livingEntity) {
+            if (entity instanceof LivingEntity livingEntity && (!(livingEntity instanceof Player player && (player.isCreative() || player.isSpectator())))) {
                 for (SuspiciousStewEffects.Entry effect : effects.effects()) {
                     livingEntity.addEffect(effect.createEffectInstance().withScaledDuration(EFFECT_SCALE), this);
                 }
@@ -247,9 +244,10 @@ public class OozeEntity extends Slime implements Bucketable {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 Tag slotTag = tag.get(slot.getSerializedName());
                 if (slotTag != null) {
-                    ItemStack inSlot = ItemStack.CODEC.decode(NbtOps.INSTANCE, slotTag).map(Pair::getFirst).mapOrElse(
-                            Function.identity(), (error) -> ItemStack.EMPTY);
-                    if (inSlot != null && !inSlot.isEmpty()) {
+                    ItemStack inSlot = ItemStack.CODEC.decode(NbtOps.INSTANCE, slotTag)
+                            .map(Pair::getFirst)
+                            .mapOrElse(Function.identity(), (error) -> ItemStack.EMPTY);
+                    if (!inSlot.isEmpty()) {
                         this.setItemSlot(slot, inSlot);
                     }
                 }

@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 
 import java.util.List;
 import java.util.Optional;
@@ -121,6 +122,28 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
+                new ItemStack(BlockRegistry.VERDANT_CONDUIT.get()),
+                Component.translatable("advancements.verdant.museum.title"),
+                Component.translatable("advancements.verdant.museum.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(petrichor);
+        builder.addCriterion(
+                "conduit",
+                InventoryChangeTrigger.TriggerInstance.hasItems(BlockRegistry.VERDANT_CONDUIT.get())
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of("conduit")));
+        AdvancementHolder museum = builder.save(
+                writer,
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "museum")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
                 new ItemStack(ItemRegistry.ROPE.get()),
                 Component.translatable("advancements.verdant.craft_rope.title"),
                 Component.translatable("advancements.verdant.craft_rope.description"),
@@ -182,7 +205,8 @@ public class VerdantAdvancementProvider {
         );
         builder.parent(craft_rope);
         builder.addCriterion(
-                "craft_sack", RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
+                "craft_sack",
+                RecipeCraftedTrigger.TriggerInstance.craftedItem(ResourceKey.create(
                         Registries.RECIPE,
                         Identifier.fromNamespaceAndPath(Constants.MOD_ID, "sack_from_vine_rope")
                 ))
@@ -509,7 +533,8 @@ public class VerdantAdvancementProvider {
                         Optional.of(DamagePredicate.Builder.damageInstance()
                                 .type(DamageSourcePredicate.Builder.damageType()
                                         .tag(TagPredicate.is(VerdantTags.DamageSources.TOXIC_ASH))
-                                        .build()).build()),
+                                        .build())
+                                .build()),
                         Optional.of(EntityPredicate.Builder.entity()
                                 .of(registries.lookupOrThrow(Registries.ENTITY_TYPE), EntityTypeTags.AQUATIC)
                                 .build())
@@ -829,6 +854,43 @@ public class VerdantAdvancementProvider {
         AdvancementHolder golden_trap = builder.save(
                 writer,
                 Identifier.fromNamespaceAndPath(Constants.MOD_ID, "golden_trap")
+        );
+
+        builder = Advancement.Builder.advancement();
+        builder.display(
+                new ItemStack(BlockRegistry.SAP_LANTERN.get()),
+                Component.translatable("advancements.verdant.fireflies.title"),
+                Component.translatable("advancements.verdant.fireflies.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                true
+        );
+        builder.parent(overgrowth);
+        builder.addCriterion(
+                "place_fireflies_torch",
+                ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(LootItemBlockStatePropertyCondition.hasBlockStateProperties(
+                        BlockRegistry.SAP_TORCH.get()))
+        );
+        builder.addCriterion(
+                "place_fireflies_wall_torch",
+                ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(LootItemBlockStatePropertyCondition.hasBlockStateProperties(
+                        BlockRegistry.SAP_WALL_TORCH.get()))
+        );
+        builder.addCriterion(
+                "place_fireflies_lantern",
+                ItemUsedOnLocationTrigger.TriggerInstance.placedBlock(LootItemBlockStatePropertyCondition.hasBlockStateProperties(
+                        BlockRegistry.SAP_LANTERN.get()))
+        );
+        builder.requirements(AdvancementRequirements.anyOf(List.of(
+                "place_fireflies_torch",
+                "place_fireflies_wall_torch",
+                "place_fireflies_lantern"
+        )));
+        AdvancementHolder fireflies = builder.save(
+                writer,
+                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "fireflies")
         );
     }
 

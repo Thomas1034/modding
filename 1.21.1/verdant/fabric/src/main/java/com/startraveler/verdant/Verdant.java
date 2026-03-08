@@ -3,14 +3,9 @@ package com.startraveler.verdant;
 import com.startraveler.rootbound.Rootbound;
 import com.startraveler.verdant.entity.custom.*;
 import com.startraveler.verdant.registry.*;
-import com.startraveler.verdant.timer.BaseTimer;
-import com.startraveler.verdant.timer.BlockTransformerTimer;
-import com.startraveler.verdant.timer.PlaceBlocksTimer;
-import com.startraveler.verdant.timer.PrintForTestingTimer;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
@@ -99,18 +94,12 @@ public class Verdant implements ModInitializer {
                 builder -> biConsumerConsumer.accept(builder::set)
         )));
 
-        BaseTimer.CODEC_REGISTRY.register(PrintForTestingTimer.TYPE, PrintForTestingTimer.CODEC);
-        BaseTimer.CODEC_REGISTRY.register(PlaceBlocksTimer.TYPE, PlaceBlocksTimer.CODEC);
-        BaseTimer.CODEC_REGISTRY.register(BlockTransformerTimer.TYPE, BlockTransformerTimer.CODEC);
-
         PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) -> CommonClass.spawnSpiderlingsOnBlockBreak(
                 level,
                 player,
                 blockPos,
                 blockState
         ));
-
-        ServerTickEvents.END_WORLD_TICK.register(CommonClass::tickTimers);
 
 
         CommonClass.addCakeCandles();

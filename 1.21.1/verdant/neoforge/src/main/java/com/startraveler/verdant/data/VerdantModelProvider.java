@@ -874,6 +874,11 @@ public class VerdantModelProvider extends ModelProvider {
         blockModels.createLantern(BlockRegistry.SAP_LANTERN.get());
         createSoullikeFire(BlockRegistry.SAP_FIRE.get());
 
+        blockModels.createFullAndCarpetBlocks(
+                BlockRegistry.DEAD_MOSS_BLOCK.get(),
+                BlockRegistry.DEAD_MOSS_CARPET.get()
+        );
+
         basicItem(ItemRegistry.SAP_GLOB.get());
         basicItem(ItemRegistry.VERDANT_RESIN_BRICK.get());
 

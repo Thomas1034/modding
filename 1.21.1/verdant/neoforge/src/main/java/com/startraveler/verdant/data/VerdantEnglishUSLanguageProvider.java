@@ -154,6 +154,11 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("advancements.verdant.root.description", "A spreading plague of greenery is sealed in this world.");
         this.add("advancements.verdant.petrichor.title", "Petrichor");
         this.add("advancements.verdant.petrichor.description", "Discover a pyramid that smells of potential life.");
+        this.add("advancements.verdant.museum.title", "It Belongs in a Museum");
+        this.add(
+                "advancements.verdant.museum.description",
+                "Collect an unusual block for further study."
+        );
         this.add("advancements.verdant.overgrowth.title", "Overgrowth");
         this.add(
                 "advancements.verdant.overgrowth.description",
@@ -223,6 +228,8 @@ public class VerdantEnglishUSLanguageProvider extends LanguageProvider {
         this.add("creativetab.verdant.blocks", "Verdant Blocks");
         this.add("creativetab.verdant.tools", "Verdant Tools & Utilities");
         this.add("creativetab.verdant.combat", "Verdant Combat");
+        this.add("advancements.verdant.fireflies.title", "You Would Not Believe Your Eyes...");
+        this.add("advancements.verdant.fireflies.description", "Attract fireflies with the scent of burning resin.");
 
         // Now, do all the rest automagically.
         this.addBlockTranslations();

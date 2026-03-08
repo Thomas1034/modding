@@ -133,6 +133,8 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.BLUEWEED.get());
                         output.accept(BlockRegistry.DROWNED_HEMLOCK.get());
                         output.accept(BlockRegistry.DEAD_GRASS.get());
+                        output.accept(BlockRegistry.DEAD_MOSS_CARPET.get());
+                        output.accept(BlockRegistry.DEAD_MOSS_BLOCK.get());
                         output.accept(BlockRegistry.BUSH.get());
                         output.accept(BlockRegistry.THORN_BUSH.get());
                         output.accept(BlockRegistry.TALL_BUSH.get());
