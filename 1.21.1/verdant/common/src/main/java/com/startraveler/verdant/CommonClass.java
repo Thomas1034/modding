@@ -35,7 +35,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 //
 // Todo
-//
+// Retexture skull spiders.
+// Make skull spider web projectiles not drop as items.
 
 /*
 
@@ -67,6 +68,7 @@ Lingers on the ground and will not hurt the person who threw it.
 
 Changes:
 - Updated to 1.21.11
+- Tweaked thorny heartwood armor protection.
 - Sneaking now prevents damage from thorn bushes.
 - Reduced damage from thorn bushes.
 - Rebalanced the broken armor effect to decrease armor by 25% per level instead of 10% per level.

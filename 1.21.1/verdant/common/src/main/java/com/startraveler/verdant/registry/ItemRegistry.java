@@ -60,16 +60,13 @@ public class ItemRegistry {
     public static final PiercingWeapon HEARTWOOD_SWORD_PIERCING = new PiercingWeapon(
             true,
             false,
-            Optional.of(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_ATTACK_NODAMAGE)),
+            Optional.empty(),
             Optional.of(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_ATTACK_STRONG))
     );
-    private static final Identifier GRENADE_COOLDOWN_ID = Constants.id("grenade_cooldown");
-
     public static final RegistryObject<Item, Item> FRAGILE_FLASK = register(
             "fragile_flask",
             (properties -> new Item(properties.component(DataComponents.CONSUMABLE, ConsumablesList.FRAGILE_FLASK)))
     );
-
     public static final RegistryObject<Item, Item> ALOE_LEAF = register(
             "aloe_leaf", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
@@ -97,19 +94,16 @@ public class ItemRegistry {
                     new UseCooldown(15, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
             ))
     );
-
     public static final RegistryObject<Item, Item> ALOE_PUP = register(
             "aloe_pup",
             (properties) -> new BlockItem(BlockRegistry.SMALL_ALOE.get(), properties)
     );
-
     public static final RegistryObject<Item, Item> ROASTED_COFFEE = register(
             "roasted_coffee", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(1).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.ROASTED_COFFEE
             ))
     );
-
     // Feed to goats?
     public static final RegistryObject<Item, Item> COFFEE_BERRIES = register(
             "coffee_berries", (properties) -> new BlockItem(
@@ -119,7 +113,6 @@ public class ItemRegistry {
             )
             )
     );
-
     public static final RegistryObject<Item, Item> ROTTEN_COMPOST = register(
             "rotten_compost",
             (properties) -> new BoneMealItem(properties.food(
@@ -127,7 +120,6 @@ public class ItemRegistry {
                     ConsumablesList.ROTTEN_COMPOST
             ))
     );
-
     public static final RegistryObject<Item, Item> RANCID_SLIME = register(
             "rancid_slime",
             (properties) -> new BoneMealItem(properties.food(
@@ -135,7 +127,6 @@ public class ItemRegistry {
                     ConsumablesList.RANCID_SLIME
             ))
     );
-
     public static final RegistryObject<Item, Item> THORN = register("thorn", Item::new);
     public static final RegistryObject<Item, Item> ROPE_COIL = register(
             "rope_coil",
@@ -208,26 +199,22 @@ public class ItemRegistry {
             "sparkling_starch",
             (properties) -> new Item(properties.stacksTo(64))
     );
-
     public static final RegistryObject<Item, Item> BAKED_UBE = register(
             "baked_ube",
             (properties) -> new Item(properties.food((new FoodProperties.Builder()).nutrition(5)
                     .saturationModifier(0.7F)
                     .build()))
     );
-
     public static final RegistryObject<Item, Item> UBE_CAKE = register(
             "ube_cake",
             (properties) -> new BlockItem(BlockRegistry.UBE_CAKE.get(), properties.stacksTo(1))
     );
-
     public static final RegistryObject<Item, Item> UBE_COOKIE = register(
             "ube_cookie",
             (properties) -> new Item(properties.food(new FoodProperties.Builder().nutrition(3)
                     .saturationModifier(0.2F)
                     .build()))
     );
-
     public static final RegistryObject<Item, Item> UBE = register(
             "ube",
             (properties) -> new BlockItem(
@@ -235,7 +222,6 @@ public class ItemRegistry {
                     properties.food(Foods.POISONOUS_POTATO, Consumables.POISONOUS_POTATO)
             )
     );
-
     public static final RegistryObject<Item, Item> MULCH_PILE = register(
             "mulch_pile",
             (properties) -> new FeaturePlacingItem(properties, FeatureSetRegistry.MULCH)
@@ -254,13 +240,11 @@ public class ItemRegistry {
                     FeatureSetRegistry.LARGE_MULCH
             )
     );
-
     public static final RegistryObject<Item, Item> SACK = register(
             "sack",
             properties -> new BundleItem(properties.stacksTo(1)
                     .component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_HORSE_ARMOR = register(
             "heartwood_horse_armor",
             (properties) -> new Item(properties.stacksTo(1)
@@ -270,7 +254,6 @@ public class ItemRegistry {
                             VerdantFriendliness.HEARTWOOD_HORSE_ARMOR
                     ))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_HELMET = register(
             "heartwood_helmet", ((properties) -> new Item(
 
@@ -285,7 +268,6 @@ public class ItemRegistry {
                                     VerdantFriendliness.HEARTWOOD_ARMOR
                             )))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_CHESTPLATE = register(
             "heartwood_chestplate",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -293,7 +275,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_LEGGINGS = register(
             "heartwood_leggings",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -301,7 +282,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_BOOTS = register(
             "heartwood_boots",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -309,7 +289,6 @@ public class ItemRegistry {
                     .component(DataComponentRegistry.DURABILITY_CHANGING.get(), DurabilityChanging.HEARTWOOD_ARMOR)
                     .component(DataComponentRegistry.VERDANT_FRIENDLINESS.get(), VerdantFriendliness.HEARTWOOD_ARMOR)))
     );
-
     public static final RegistryObject<Item, Item> HEARTWOOD_SPEAR = register(
             "heartwood_spear",
             ((properties) -> new Item(properties.stacksTo(1)
@@ -766,6 +745,7 @@ public class ItemRegistry {
                             DataComponents.PIERCING_WEAPON, HEARTWOOD_SWORD_PIERCING
                     )))
     );
+    private static final Identifier GRENADE_COOLDOWN_ID = Constants.id("grenade_cooldown");
     public static final RegistryObject<Item, ThrowableBombItem> BLASTING_BLOOM = register(
             "blasting_bloom", (properties) -> new ThrowableBombItem(
                     properties.component(

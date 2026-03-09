@@ -59,7 +59,7 @@ public interface ArmorMaterialRegistry {
     ArmorMaterial THORNY_HEARTWOOD = new ArmorMaterial(
             27, Util.make(
             new EnumMap<>(ArmorType.class), (builder) -> {
-                builder.put(ArmorType.BOOTS, 2);
+                builder.put(ArmorType.BOOTS, 3);
                 builder.put(ArmorType.LEGGINGS, 4);
                 builder.put(ArmorType.CHESTPLATE, 5);
                 builder.put(ArmorType.HELMET, 3);
