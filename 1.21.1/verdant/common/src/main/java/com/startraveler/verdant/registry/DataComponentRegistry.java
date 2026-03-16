@@ -27,6 +27,7 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.equipment.Equippable;
 
 public class DataComponentRegistry {
 
@@ -54,8 +55,7 @@ public class DataComponentRegistry {
     );
 
 
-    public static final RegistryObject<DataComponentType<?>, DataComponentType<RopeCoilData>> ROPE_COIL = COMPONENTS.register(
-            "rope_coil",
+    public static final RegistryObject<DataComponentType<?>, DataComponentType<RopeCoilData>> ROPE_COIL = COMPONENTS.register("rope_coil",
             () -> DataComponentType.<RopeCoilData>builder().persistent(RopeCoilData.CODEC).build()
     );
 
@@ -67,6 +67,10 @@ public class DataComponentRegistry {
     public static final RegistryObject<DataComponentType<?>, DataComponentType<VerdantFriendliness>> VERDANT_FRIENDLINESS = COMPONENTS.register(
             "verdant_friendliness",
             () -> DataComponentType.<VerdantFriendliness>builder().persistent(VerdantFriendliness.CODEC).build()
+    );
+
+    public static final RegistryObject<DataComponentType<?>, DataComponentType<Equippable>> EQUIPPABLE_SPIKES = COMPONENTS.register("equippable_spikes",
+            () -> DataComponentType.<Equippable>builder().persistent(Equippable.CODEC).build()
     );
 
 

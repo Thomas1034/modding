@@ -35,7 +35,9 @@ import net.minecraft.world.entity.animal.golem.IronGolem;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
 import net.minecraft.world.entity.monster.skeleton.Bogged;
+import net.minecraft.world.entity.monster.skeleton.Parched;
 import net.minecraft.world.entity.monster.skeleton.Skeleton;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.entity.npc.villager.AbstractVillager;
@@ -96,6 +98,15 @@ public class RootedEntity extends Zombie {
                 new NearestAttackableTargetGoal<>(
                         this,
                         Skeleton.class,
+                        true,
+                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                )
+        );
+        this.targetSelector.addGoal(
+                2,
+                new NearestAttackableTargetGoal<>(
+                        this,
+                        Parched.class,
                         true,
                         (entity, level) -> VerdantIFF.isEnemy(entity)
                 )
@@ -170,7 +181,7 @@ public class RootedEntity extends Zombie {
                 flag = false;
                 converted = true;
             }
-        } else if (entity instanceof Skeleton skeleton) {
+        } else if (entity instanceof AbstractSkeleton skeleton) {
             if (this.convertSkeletonToBogged(level, skeleton)) {
                 flag = false;
                 converted = true;
@@ -215,7 +226,7 @@ public class RootedEntity extends Zombie {
         return newZombie != null;
     }
 
-    public boolean convertSkeletonToBogged(@SuppressWarnings("unused") ServerLevel level, Skeleton skeleton) {
+    public boolean convertSkeletonToBogged(@SuppressWarnings("unused") ServerLevel level, AbstractSkeleton skeleton) {
         Bogged newSkeleton = skeleton.convertTo(
                 EntityType.BOGGED, ConversionParams.single(skeleton, true, true), bg -> {
                 }

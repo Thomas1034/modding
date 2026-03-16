@@ -37,10 +37,10 @@ public abstract class AddictiveEffect extends MobEffect {
 		for (MobEffect bonus : this.effects) {
 			MobEffect malus = OPPOSITES.get(bonus);
 
-			MobEffectInstance bonusInstance = new MobEffectInstance(malus, 100, amplifier);
+			MobEffectInstance bonusInstance = new MobEffectInstance(bonus, 100, amplifier);
 			entity.addEffect(bonusInstance);
 			if (malus != null) {
-				MobEffectInstance malusInstance = new MobEffectInstance(bonus, 100, 1 + amplifier * 2);
+				MobEffectInstance malusInstance = new MobEffectInstance(malus, 100, 1 + amplifier * 2);
 				entity.addEffect(malusInstance);
 			}
 

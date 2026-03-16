@@ -43,7 +43,7 @@ public abstract class ZombieConvertToRootedMixin {
 
     @Shadow
     protected void convertToZombieType(ServerLevel level, EntityType<? extends Zombie> entityType) {
-        throw new AssertionError();
+        throw new AssertionError("Shadowed method.");
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At(value = "TAIL"))

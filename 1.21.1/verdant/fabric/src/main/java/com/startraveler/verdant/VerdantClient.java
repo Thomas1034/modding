@@ -1,32 +1,36 @@
 package com.startraveler.verdant;
 
 import com.startraveler.rootbound.RootboundClient;
+import com.startraveler.verdant.client.VerdantModelLayers;
 import com.startraveler.verdant.client.item.RopeGlowProperty;
 import com.startraveler.verdant.client.item.RopeHangingBlockProperty;
 import com.startraveler.verdant.client.item.RopeHookProperty;
 import com.startraveler.verdant.client.item.RopeLengthProperty;
+import com.startraveler.verdant.client.layer.HumanoidSpikesLayer;
+import com.startraveler.verdant.client.model.HumanoidSpikesModel;
+import com.startraveler.verdant.client.model.PoseCopyingHumanoidModel;
 import com.startraveler.verdant.client.model.SkullSpiderModel;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.registry.*;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.SpecialBlockRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.entity.TntRenderer;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
@@ -41,6 +45,8 @@ public class VerdantClient implements ClientModInitializer {
     // Handles client-only code.
     @Override
     public void onInitializeClient() {
+
+
         markCutoutMipped();
         // Mark some blocks as cutout.
         markCutout(
@@ -120,7 +126,6 @@ public class VerdantClient implements ClientModInitializer {
                 BlockRegistry.POTTED_RUE,
                 BlockRegistry.SMALL_ALOE,
                 BlockRegistry.LARGE_ALOE,
-                // TODO BlockRegistry.HUGE_ALOE,
                 BlockRegistry.BLASTING_BLOSSOM,
                 BlockRegistry.BLASTING_BUNCH,
                 BlockRegistry.BLUEWEED,
@@ -186,9 +191,34 @@ public class VerdantClient implements ClientModInitializer {
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
         EntityModelLayerRegistry.registerModelLayer(
-                SkullSpiderModel.SKULL_SPIDER,
+                VerdantModelLayers.SKULL_SPIDER,
                 () -> SkullSpiderModel.createBodyLayer().apply(MeshTransformer.scaling(0.7F))
         );
+
+        ArmorModelSet<LayerDefinition> armorSpikesModelSet = HumanoidSpikesModel.createArmorMeshSet(
+                        LayerDefinitions.INNER_ARMOR_DEFORMATION,
+                        LayerDefinitions.OUTER_ARMOR_DEFORMATION
+                )
+                .map(meshDefinition -> LayerDefinition.create(meshDefinition, 64, 32));
+
+        EntityModelLayerRegistry.registerEquipmentModelLayers(
+                VerdantModelLayers.ARMOR_SPIKES,
+                () -> armorSpikesModelSet
+        );
+
+        // TODO add spikes for armor stands.
+        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((EntityType<? extends LivingEntity> entityType, LivingEntityRenderer<?, ?, ?> livingEntityRenderer, LivingEntityFeatureRendererRegistrationCallback.RegistrationHelper registrationHelper, EntityRendererProvider.Context context) -> {
+            if (livingEntityRenderer.getModel() instanceof HumanoidModel<?> model) {
+                livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
+                        livingEntityRenderer, ArmorModelSet.bake(
+                        VerdantModelLayers.ARMOR_SPIKES,
+                        context.getModelSet(),
+                        (root) -> new PoseCopyingHumanoidModel<>(root, model)
+                ), context.getEquipmentRenderer()
+                ));
+            }
+
+        });
 
         EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);
         EntityRenderers.register(EntityTypeRegistry.TIMBERMITE.get(), TimbermiteRenderer::new);
@@ -202,12 +232,12 @@ public class VerdantClient implements ClientModInitializer {
         EntityRenderers.register(EntityTypeRegistry.BLOCK_PLACING_PROJECTILE.get(), ThrownItemRenderer::new);
         EntityRenderers.register(EntityTypeRegistry.SKULL_SPIDER.get(), SkullSpiderRenderer::new);
 
-
         BlockEntityRenderers.register(
                 BlockEntityTypeRegistry.VERDANT_CONDUIT_BLOCK_ENTITY.get(),
                 VerdantConduitRenderer::new
         );
         BlockEntityRenderers.register(BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(), OvergrownSpawnerRenderer::new);
+
         SpecialModelRenderers.ID_MAPPER.put(
                 VerdantConduitSpecialRenderer.Unbaked.LOCATION,
                 VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC

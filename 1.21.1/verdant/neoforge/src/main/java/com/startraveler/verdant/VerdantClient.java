@@ -3,23 +3,28 @@ package com.startraveler.verdant;
 import com.startraveler.rootbound.RootboundClient;
 import com.startraveler.rootbound.blocktransformer.BlockTransformer;
 import com.startraveler.rootbound.featureset.FeatureSet;
+import com.startraveler.verdant.client.VerdantModelLayers;
 import com.startraveler.verdant.client.item.RopeGlowProperty;
 import com.startraveler.verdant.client.item.RopeHangingBlockProperty;
 import com.startraveler.verdant.client.item.RopeHookProperty;
 import com.startraveler.verdant.client.item.RopeLengthProperty;
+import com.startraveler.verdant.client.layer.HumanoidSpikesLayer;
+import com.startraveler.verdant.client.model.HumanoidSpikesModel;
+import com.startraveler.verdant.client.model.PoseCopyingHumanoidModel;
 import com.startraveler.verdant.client.model.SkullSpiderModel;
 import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.data.*;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.entity.TntRenderer;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
@@ -32,6 +37,7 @@ import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.entity.player.PlayerModelType;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -53,6 +59,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Mod(value = Constants.MOD_ID, dist = Dist.CLIENT)
 public class VerdantClient {
@@ -72,18 +80,47 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerSelectProperties);
         modBus.addListener(VerdantClient::registerConditionalProperties);
         modBus.addListener(VerdantClient::registerTints);
-
+        modBus.addListener(VerdantClient::addRenderLayers);
         RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static void addRenderLayers(final EntityRenderersEvent.AddLayers event) {
+
+        Set<EntityRenderer<?, ?>> renderers = Stream.concat(
+                event.getEntityTypes().stream().map(entityType -> (EntityRenderer<?, ?>) event.getRenderer(entityType)),
+                Stream.of(PlayerModelType.values())
+                        .flatMap(type -> Stream.of(
+                                (EntityRenderer<?, ?>) event.getPlayerRenderer(type),
+                                (EntityRenderer<?, ?>) event.getMannequinRenderer(type)
+                        ))
+        ).collect(Collectors.toSet());
+        for (EntityRenderer<?, ?> renderer : renderers) {
+            if (renderer instanceof LivingEntityRenderer<?, ?, ?> livingEntityRenderer) {
+                if (livingEntityRenderer.getModel() instanceof HumanoidModel<?> model) {
+                    livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
+                            livingEntityRenderer, ArmorModelSet.bake(
+                            VerdantModelLayers.ARMOR_SPIKES,
+                            event.getEntityModels(),
+                            (root) -> new PoseCopyingHumanoidModel<>(root, model)
+                    ), event.getContext().getEquipmentRenderer()
+                    ));
+                }
+            }
+
+        }
     }
 
     public static void registerTints(final RegisterColorHandlersEvent.Block event) {
         event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
         );
         event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT,
                 BlockRegistry.STRANGLER_LEAVES.get(),
@@ -94,7 +131,8 @@ public class VerdantClient {
         );
 
         event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -112,7 +150,8 @@ public class VerdantClient {
         );
 
         event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? ((blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? ((blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor())) : -1,
                 BlockRegistry.BUSH.get(),
@@ -124,14 +163,24 @@ public class VerdantClient {
 
     public static void registerLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(
-                SkullSpiderModel.SKULL_SPIDER,
+                VerdantModelLayers.SKULL_SPIDER,
                 () -> SkullSpiderModel.createBodyLayer().apply(MeshTransformer.scaling(0.7F))
+        );
+        ArmorModelSet<LayerDefinition> armorSpikesModelSet = HumanoidSpikesModel.createArmorMeshSet(
+                        LayerDefinitions.INNER_ARMOR_DEFORMATION,
+                        LayerDefinitions.OUTER_ARMOR_DEFORMATION
+                )
+                .map(meshDefinition -> LayerDefinition.create(meshDefinition, 64, 32));
+
+        VerdantModelLayers.putArmorLayersFrom(
+                VerdantModelLayers.ARMOR_SPIKES,
+                armorSpikesModelSet,
+                event::registerLayerDefinition
         );
     }
 
     public static void gatherData(final GatherDataEvent.Client event) {
         try {
-
             // Store some frequently-used fields for later use.
             DataGenerator generator = event.getGenerator();
             PackOutput packOutput = generator.getPackOutput();

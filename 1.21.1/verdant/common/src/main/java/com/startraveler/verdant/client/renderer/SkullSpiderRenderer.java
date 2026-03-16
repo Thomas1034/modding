@@ -2,7 +2,7 @@ package com.startraveler.verdant.client.renderer;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.client.layer.GenericEyesLayer;
-import com.startraveler.verdant.client.model.SkullSpiderModel;
+import com.startraveler.verdant.client.VerdantModelLayers;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.monster.spider.SpiderModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -18,7 +18,7 @@ public class SkullSpiderRenderer<T extends Spider> extends MobRenderer<T, @NotNu
             "textures/entity/spider/skull_spider_eyes.png");
 
     public SkullSpiderRenderer(EntityRendererProvider.Context context) {
-        this(context, SkullSpiderModel.SKULL_SPIDER);
+        this(context, VerdantModelLayers.SKULL_SPIDER);
     }
 
     public SkullSpiderRenderer(EntityRendererProvider.Context context, ModelLayerLocation layer) {

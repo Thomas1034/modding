@@ -37,8 +37,6 @@ public class RootedOuterLayer extends RenderLayer<@NotNull ZombieRenderState, @N
     private final ZombieModel<@NotNull ZombieRenderState> babyModel;
 
     public RootedOuterLayer(RenderLayerParent<@NotNull ZombieRenderState, @NotNull ZombieModel<@NotNull ZombieRenderState>> renderer, EntityModelSet modelSet) {
-
-
         super(renderer);
         this.model = new ZombieModel<>(modelSet.bakeLayer(ModelLayers.DROWNED_OUTER_LAYER));
         this.babyModel = new ZombieModel<>(modelSet.bakeLayer(ModelLayers.DROWNED_BABY_OUTER_LAYER));

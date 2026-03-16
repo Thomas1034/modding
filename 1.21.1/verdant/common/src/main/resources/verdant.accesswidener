@@ -24,3 +24,13 @@ accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix ingredient L
 accessible field net/minecraft/world/item/alchemy/PotionBrewing$Mix to Lnet/minecraft/core/Holder;
 accessible field net/minecraft/world/entity/ai/goal/RangedAttackGoal mob Lnet/minecraft/world/entity/Mob;
 accessible field net/minecraft/world/entity/ai/goal/RangedAttackGoal target Lnet/minecraft/world/entity/LivingEntity;
+accessible field net/minecraft/client/model/geom/LayerDefinitions INNER_ARMOR_DEFORMATION Lnet/minecraft/client/model/geom/builders/CubeDeformation;
+accessible field net/minecraft/client/model/geom/LayerDefinitions OUTER_ARMOR_DEFORMATION Lnet/minecraft/client/model/geom/builders/CubeDeformation;
+accessible field net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer equipmentRenderer Lnet/minecraft/client/renderer/entity/layers/EquipmentLayerRenderer;
+accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer getArmorModel (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/client/model/HumanoidModel;
+accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer usesInnerModel (Lnet/minecraft/world/entity/EquipmentSlot;)Z
+accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+accessible method net/minecraft/client/model/geom/ModelPart addAllChildren (Ljava/util/function/BiConsumer;)V
+accessible field net/minecraft/client/model/geom/builders/CubeDeformation growX F
+accessible field net/minecraft/client/model/geom/builders/CubeDeformation growY F
+accessible field net/minecraft/client/model/geom/builders/CubeDeformation growZ F

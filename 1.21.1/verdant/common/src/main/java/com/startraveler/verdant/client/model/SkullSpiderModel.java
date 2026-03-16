@@ -1,12 +1,9 @@
 package com.startraveler.verdant.client.model;
 
-import com.startraveler.verdant.Constants;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class SkullSpiderModel {
-    public static final ModelLayerLocation SKULL_SPIDER = new ModelLayerLocation(Constants.id("skull_spider"), "main");
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshDefinition = new MeshDefinition();

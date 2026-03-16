@@ -34,7 +34,6 @@ public class RootedRenderer extends ZombieRenderer {
     public RootedRenderer(Context context) {
         super(context);
         this.addLayer(new RootedOuterLayer(this, context.getModelSet()));
-
     }
 
     public @NotNull Identifier getTextureLocation(ZombieRenderState state) {

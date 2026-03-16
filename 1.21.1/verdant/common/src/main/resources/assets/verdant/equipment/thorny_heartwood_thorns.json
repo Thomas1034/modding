@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "horse_body": [
+      {
+        "texture": "verdant:thorny_heartwood_thorns"
+      }
+    ],
+    "humanoid": [
+      {
+        "texture": "verdant:thorny_heartwood_thorns"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "verdant:thorny_heartwood_thorns"
+      }
+    ]
+  }
+}
