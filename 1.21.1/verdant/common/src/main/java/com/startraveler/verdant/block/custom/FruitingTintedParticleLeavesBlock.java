@@ -92,11 +92,10 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
                         0.8F + level.random.nextFloat() * 0.4F
                 );
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
+                return InteractionResult.SUCCESS;
             }
-            return InteractionResult.SUCCESS;
-        } else {
-            return super.useWithoutItem(state, level, pos, player, hitResult);
         }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
     }
 
     @Override

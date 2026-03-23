@@ -18,13 +18,18 @@ import com.startraveler.verdant.data.*;
 import com.startraveler.verdant.registry.*;
 import com.startraveler.verdant.util.baitdata.BaitData;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.WritableRegistry;
@@ -37,6 +42,9 @@ import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.Mannequin;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerModelType;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
@@ -57,8 +65,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -86,25 +96,54 @@ public class VerdantClient {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void addRenderLayers(final EntityRenderersEvent.AddLayers event) {
-
-        Set<EntityRenderer<?, ?>> renderers = Stream.concat(
-                event.getEntityTypes().stream().map(entityType -> (EntityRenderer<?, ?>) event.getRenderer(entityType)),
-                Stream.of(PlayerModelType.values())
-                        .flatMap(type -> Stream.of(
-                                (EntityRenderer<?, ?>) event.getPlayerRenderer(type),
-                                (EntityRenderer<?, ?>) event.getMannequinRenderer(type)
-                        ))
+        EntityModelSet modelSet = event.getEntityModels();
+        Set<EntityRenderer<? extends LivingEntity, ? extends LivingEntityRenderState>> renderers = Stream.concat(
+                event.getEntityTypes()
+                        .stream()
+                        .map(entityType -> (EntityRenderer<? extends LivingEntity, ? extends LivingEntityRenderState>) event.getRenderer(
+                                entityType)), Stream.of(PlayerModelType.values()).flatMap(type -> Stream.of(
+                        (EntityRenderer<? extends Player, ? extends AvatarRenderState>) event.getPlayerRenderer(type),
+                        (EntityRenderer<? extends Mannequin, ? extends AvatarRenderState>) event.getMannequinRenderer(
+                                type)
+                ))
         ).collect(Collectors.toSet());
         for (EntityRenderer<?, ?> renderer : renderers) {
             if (renderer instanceof LivingEntityRenderer<?, ?, ?> livingEntityRenderer) {
-                if (livingEntityRenderer.getModel() instanceof HumanoidModel<?> model) {
-                    livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
-                            livingEntityRenderer, ArmorModelSet.bake(
-                            VerdantModelLayers.ARMOR_SPIKES,
-                            event.getEntityModels(),
-                            (root) -> new PoseCopyingHumanoidModel<>(root, model)
-                    ), event.getContext().getEquipmentRenderer()
-                    ));
+                if (livingEntityRenderer.getModel() instanceof HumanoidModel<?>) {
+                    Optional<? extends HumanoidArmorLayer<?, ?, ?>> optionalHumanoidArmorLayer = livingEntityRenderer.layers.stream()
+                            .filter(renderLayer -> renderLayer instanceof HumanoidArmorLayer<?, ?, ?>)
+                            .map(renderLayer -> (HumanoidArmorLayer<?, ?, ?>) renderLayer)
+                            .findFirst();
+
+                    if (optionalHumanoidArmorLayer.isPresent()) {
+                        ArmorModelSet<? extends HumanoidModel<?>> baseBabyModelSet = optionalHumanoidArmorLayer.get().babyModelSet;
+                        ArmorModelSet<? extends HumanoidModel<?>> baseModelSet = optionalHumanoidArmorLayer.get().modelSet;
+                        ArmorModelSet<Function<ModelPart, PoseCopyingHumanoidModel>> babyModelSetMapper = baseBabyModelSet.map(
+                                humanoidModel -> (Function<ModelPart, PoseCopyingHumanoidModel>) ((ModelPart root) -> new PoseCopyingHumanoidModel(
+                                        root,
+                                        humanoidModel
+                                )));
+                        ArmorModelSet<Function<ModelPart, PoseCopyingHumanoidModel>> modelSetMapper = baseModelSet.map(
+                                humanoidModel -> (Function<ModelPart, PoseCopyingHumanoidModel>) ((ModelPart root) -> new PoseCopyingHumanoidModel(
+                                        root,
+                                        humanoidModel
+                                )));
+
+                        livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
+                                livingEntityRenderer,
+                                VerdantModelLayers.bakeIndividual(
+                                        VerdantModelLayers.ARMOR_SPIKES,
+                                        modelSet,
+                                        modelSetMapper
+                                ),
+                                VerdantModelLayers.bakeIndividual(
+                                        VerdantModelLayers.BABY_ARMOR_SPIKES,
+                                        modelSet,
+                                        babyModelSetMapper
+                                ),
+                                event.getContext().getEquipmentRenderer()
+                        ));
+                    }
                 }
             }
 
@@ -171,10 +210,16 @@ public class VerdantClient {
                         LayerDefinitions.OUTER_ARMOR_DEFORMATION
                 )
                 .map(meshDefinition -> LayerDefinition.create(meshDefinition, 64, 32));
-
+        ArmorModelSet<LayerDefinition> babyArmorSpikesModelSet = armorSpikesModelSet.map(meshDefinition -> meshDefinition.apply(
+                HumanoidModel.BABY_TRANSFORMER));
         VerdantModelLayers.putArmorLayersFrom(
                 VerdantModelLayers.ARMOR_SPIKES,
                 armorSpikesModelSet,
+                event::registerLayerDefinition
+        );
+        VerdantModelLayers.putArmorLayersFrom(
+                VerdantModelLayers.BABY_ARMOR_SPIKES,
+                babyArmorSpikesModelSet,
                 event::registerLayerDefinition
         );
     }

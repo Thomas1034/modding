@@ -37,7 +37,6 @@ import net.minecraft.world.level.block.state.BlockState;
 // Todo
 // Retexture skull spiders.
 // Make skull spider web projectiles not drop as items.
-// Do 3d armor model for thorny heartwood.
 
 /*
 

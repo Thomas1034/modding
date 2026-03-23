@@ -1100,7 +1100,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shaped(
                 List.of("#S#", "#L#", "###"),
                 List.of('#', 'S', 'L'),
-                List.of(WoodSets.STRANGLER.getLogItems(), Items.COPPER_INGOT, WoodSets.HEARTWOOD.getLogItems()),
+                List.of(WoodSets.HEARTWOOD.getLogItems(), Tags.Items.INGOTS_COPPER, WoodSets.STRANGLER.getLogItems()),
                 RecipeCategory.COMBAT,
                 ItemRegistry.THORNS_UPGRADE_SMITHING_TEMPLATE.get(),
                 1

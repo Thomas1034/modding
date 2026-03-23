@@ -17,13 +17,16 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
@@ -38,14 +41,16 @@ import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class VerdantClient implements ClientModInitializer {
 
     // Handles client-only code.
     @Override
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void onInitializeClient() {
-
 
         markCutoutMipped();
         // Mark some blocks as cutout.
@@ -140,14 +145,12 @@ public class VerdantClient implements ClientModInitializer {
 
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
         );
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT,
                 BlockRegistry.STRANGLER_LEAVES.get(),
@@ -167,8 +170,7 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -178,8 +180,7 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : 0,
                 BlockRegistry.BUSH.get(),
@@ -200,24 +201,56 @@ public class VerdantClient implements ClientModInitializer {
                         LayerDefinitions.OUTER_ARMOR_DEFORMATION
                 )
                 .map(meshDefinition -> LayerDefinition.create(meshDefinition, 64, 32));
+        ArmorModelSet<LayerDefinition> babyArmorSpikesModelSet = armorSpikesModelSet.map(layerDefinition -> layerDefinition.apply(
+                HumanoidModel.BABY_TRANSFORMER));
 
         EntityModelLayerRegistry.registerEquipmentModelLayers(
                 VerdantModelLayers.ARMOR_SPIKES,
                 () -> armorSpikesModelSet
         );
+        EntityModelLayerRegistry.registerEquipmentModelLayers(
+                VerdantModelLayers.BABY_ARMOR_SPIKES,
+                () -> babyArmorSpikesModelSet
+        );
 
-        // TODO add spikes for armor stands.
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((EntityType<? extends LivingEntity> entityType, LivingEntityRenderer<?, ?, ?> livingEntityRenderer, LivingEntityFeatureRendererRegistrationCallback.RegistrationHelper registrationHelper, EntityRendererProvider.Context context) -> {
-            if (livingEntityRenderer.getModel() instanceof HumanoidModel<?> model) {
-                livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
-                        livingEntityRenderer, ArmorModelSet.bake(
-                        VerdantModelLayers.ARMOR_SPIKES,
-                        context.getModelSet(),
-                        (root) -> new PoseCopyingHumanoidModel<>(root, model)
-                ), context.getEquipmentRenderer()
-                ));
-            }
+            EntityModelSet modelSet = context.getModelSet();
+            if (livingEntityRenderer.getModel() instanceof HumanoidModel<?>) {
+                Optional<? extends HumanoidArmorLayer<?, ?, ?>> optionalHumanoidArmorLayer = livingEntityRenderer.layers.stream()
+                        .filter(renderLayer -> renderLayer instanceof HumanoidArmorLayer<?, ?, ?>)
+                        .map(renderLayer -> (HumanoidArmorLayer<?, ?, ?>) renderLayer)
+                        .findFirst();
 
+                if (optionalHumanoidArmorLayer.isPresent()) {
+                    ArmorModelSet<? extends HumanoidModel<?>> baseBabyModelSet = optionalHumanoidArmorLayer.get().babyModelSet;
+                    ArmorModelSet<? extends HumanoidModel<?>> baseModelSet = optionalHumanoidArmorLayer.get().modelSet;
+                    ArmorModelSet<Function<ModelPart, PoseCopyingHumanoidModel>> babyModelSetMapper = baseBabyModelSet.map(
+                            humanoidModel -> (Function<ModelPart, PoseCopyingHumanoidModel>) ((ModelPart root) -> new PoseCopyingHumanoidModel(
+                                    root,
+                                    humanoidModel
+                            )));
+                    ArmorModelSet<Function<ModelPart, PoseCopyingHumanoidModel>> modelSetMapper = baseModelSet.map(
+                            humanoidModel -> (Function<ModelPart, PoseCopyingHumanoidModel>) ((ModelPart root) -> new PoseCopyingHumanoidModel(
+                                    root,
+                                    humanoidModel
+                            )));
+
+                    livingEntityRenderer.addLayer(new HumanoidSpikesLayer(
+                            livingEntityRenderer,
+                            VerdantModelLayers.bakeIndividual(
+                                    VerdantModelLayers.ARMOR_SPIKES,
+                                    modelSet,
+                                    modelSetMapper
+                            ),
+                            VerdantModelLayers.bakeIndividual(
+                                    VerdantModelLayers.BABY_ARMOR_SPIKES,
+                                    modelSet,
+                                    babyModelSetMapper
+                            ),
+                            context.getEquipmentRenderer()
+                    ));
+                }
+            }
         });
 
         EntityRenderers.register(EntityTypeRegistry.THROWN_ROPE.get(), ThrownItemRenderer::new);

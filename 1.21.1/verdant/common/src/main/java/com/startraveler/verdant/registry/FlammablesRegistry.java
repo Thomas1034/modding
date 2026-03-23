@@ -59,6 +59,7 @@ public class FlammablesRegistry {
         flammables.registerFlammability(BlockRegistry.CHARRED_FRAME_BLOCK, 60, 100);
         flammables.registerFlammability(BlockRegistry.PAPER_FRAME, 60, 100);
         flammables.registerFlammability(BlockRegistry.BLASTING_BUNCH, 60, 100);
+        flammables.registerFlammability(BlockRegistry.MANGO_LEAVES, 60, 100);
     }
 
     public void registerFlammability(Block block, int flammability, int spreadSpeed) {

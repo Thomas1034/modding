@@ -38,8 +38,12 @@ public class PoseCopyingHumanoidModel<T extends HumanoidRenderState> extends Hum
             to.xScale = from.xScale;
             to.yScale = from.yScale;
             to.zScale = from.zScale;
-            to.skipDraw = from.skipDraw;
-            to.visible = from.visible;
+            to.xRot = from.xRot;
+            to.yRot = from.yRot;
+            to.zRot = from.zRot;
+
+            // to.skipDraw = from.skipDraw;
+            // to.visible = from.visible;
         }
     }
 }

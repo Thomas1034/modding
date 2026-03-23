@@ -3,9 +3,9 @@
   "category": "equipment",
   "group": "verdant:thorns_upgrade_smithing_template",
   "key": {
-    "#": "#rootbound:strangler_logs",
-    "L": "#rootbound:heartwood_logs",
-    "S": "minecraft:copper_ingot"
+    "#": "#rootbound:heartwood_logs",
+    "L": "#rootbound:strangler_logs",
+    "S": "#c:ingots/copper"
   },
   "pattern": [
     "#S#",

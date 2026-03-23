@@ -403,7 +403,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SPEAR = register(
             "imbued_heartwood_spear",
             ((properties) -> new Item(properties.stacksTo(1)
-                    .spear(ToolMaterialRegistry.HEARTWOOD, 0.65F, 0.7F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
+                    .spear(ToolMaterialRegistry.IMBUED_HEARTWOOD, 0.65F, 0.7F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_TOOLS

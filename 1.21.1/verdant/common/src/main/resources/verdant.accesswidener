@@ -34,3 +34,6 @@ accessible method net/minecraft/client/model/geom/ModelPart addAllChildren (Ljav
 accessible field net/minecraft/client/model/geom/builders/CubeDeformation growX F
 accessible field net/minecraft/client/model/geom/builders/CubeDeformation growY F
 accessible field net/minecraft/client/model/geom/builders/CubeDeformation growZ F
+accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer layers Ljava/util/List;
+accessible field net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer modelSet Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+accessible field net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer babyModelSet Lnet/minecraft/client/renderer/entity/ArmorModelSet;
