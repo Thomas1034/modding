@@ -24,7 +24,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "north"
         },
         "east": {
           "texture": "#all",
@@ -33,7 +34,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "east"
         },
         "south": {
           "texture": "#all",
@@ -42,7 +44,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "south"
         },
         "west": {
           "texture": "#all",
@@ -51,7 +54,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "west"
         },
         "up": {
           "texture": "#all",
@@ -60,7 +64,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "up"
         },
         "down": {
           "texture": "#all",
@@ -69,7 +74,8 @@
             0,
             16,
             16
-          ]
+          ], 
+					"cullface": "down"
         }
       }
     },
@@ -92,7 +98,8 @@
             16,
             16,
             0
-          ]
+          ], 
+					"cullface": "north"
         },
         "east": {
           "texture": "#all",
@@ -101,7 +108,8 @@
             16,
             16,
             0
-          ]
+          ], 
+					"cullface": "east"
         },
         "south": {
           "texture": "#all",
@@ -110,7 +118,8 @@
             16,
             16,
             0
-          ]
+          ], 
+					"cullface": "south"
         },
         "west": {
           "texture": "#all",
@@ -119,7 +128,8 @@
             16,
             16,
             0
-          ]
+          ], 
+					"cullface": "west"
         },
         "up": {
           "texture": "#all",
@@ -128,7 +138,8 @@
             0,
             0,
             16
-          ]
+          ], 
+					"cullface": "up"
         },
         "down": {
           "texture": "#all",
@@ -137,7 +148,8 @@
             0,
             0,
             16
-          ]
+          ], 
+					"cullface": "down"
         }
       }
     }

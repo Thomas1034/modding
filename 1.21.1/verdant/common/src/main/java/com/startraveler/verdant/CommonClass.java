@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 // Todo
 // Retexture skull spiders.
 // Make skull spider web projectiles not drop as items.
+// Make skull spiders start spawning again
 
 /*
 
@@ -75,7 +76,7 @@ Changes:
 - Changed almost all heartwood equipment textures.
 - Various general texture tweaks and improvements.
 - Changed the stranger vine overlay texture.
-- Verdant grass and bushes are now biome-tinted. I may revert this change later; it's experimental.
+- Verdant grass and bushes are now biome-tinted.
 - Poisoners now use better potions when healing illagers.
 - Stinking blossoms are now killed by toxic ash.
 - Stinking blossoms now produce particles over the correct volume.
