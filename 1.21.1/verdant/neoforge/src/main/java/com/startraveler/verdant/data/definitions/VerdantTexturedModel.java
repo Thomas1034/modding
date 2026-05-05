@@ -86,11 +86,28 @@ public class VerdantTexturedModel {
         }
     };
 
+    public static final BiFunction<Integer, Boolean, TexturedModel.Provider> TINTED_TRAP = (stage, isHidden) -> {
+
+        if (isHidden && stage == 0) {
+            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_HIDDEN_STAGE0);
+        } else if (stage == 0) {
+            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE0);
+        } else if (stage == 1) {
+            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE1);
+        } else if (stage == 2) {
+            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE2);
+        } else if (stage == 3) {
+            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE3);
+        } else {
+            throw new IllegalArgumentException("No trap model for stage " + stage);
+        }
+    };
+
     public static final BiFunction<String, Block, TexturedModel.Provider> OVERLAID_CUBE = (overlay, base) -> TexturedModel.createDefault(
             (block) -> VerdantTextureMapping.overlaidCubeBlock(
                     block,
                     base,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/")
+                    Constants.id(overlay).withPrefix("block/")
             ),
             VerdantModelTemplates.OVERLAID_CUBE
     );
@@ -99,8 +116,8 @@ public class VerdantTexturedModel {
             (block) -> VerdantTextureMapping.topOverlaidCubeBlock(
                     block,
                     base,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, overlay).withPrefix("block/"),
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, topOverlay).withPrefix("block/")
+                    Constants.id(overlay).withPrefix("block/"),
+                    Constants.id(topOverlay).withPrefix("block/")
             ), VerdantModelTemplates.TOP_OVERLAID_CUBE
     );
 

@@ -145,12 +145,14 @@ public class VerdantClient implements ClientModInitializer {
 
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
         );
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT,
                 BlockRegistry.STRANGLER_LEAVES.get(),
@@ -170,7 +172,8 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -180,13 +183,15 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : 0,
                 BlockRegistry.BUSH.get(),
                 BlockRegistry.POTTED_BUSH.get(),
                 BlockRegistry.THORN_BUSH.get(),
-                BlockRegistry.POTTED_THORN_BUSH.get()
+                BlockRegistry.POTTED_THORN_BUSH.get(),
+                BlockRegistry.SNAPLEAF.get()
         );
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
@@ -282,25 +287,25 @@ public class VerdantClient implements ClientModInitializer {
 
         RangeSelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
+                Constants.id("rope/rope_length"),
                 // The map codec
                 RopeLengthProperty.MAP_CODEC
         );
         RangeSelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
+                Constants.id("rope/glow_level"),
                 // The map codec
                 RopeGlowProperty.MAP_CODEC
         );
         ConditionalItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
+                Constants.id("rope/has_hook"),
                 // The map codec
                 RopeHookProperty.MAP_CODEC
         );
         SelectItemModelProperties.ID_MAPPER.put(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
+                Constants.id("rope/hanging_block"),
                 // The property type
                 RopeHangingBlockProperty.TYPE
         );

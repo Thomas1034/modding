@@ -154,6 +154,57 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.SPIKES
     );
 
+    public static final ModelTemplate TINTED_TRAP_STAGE0 = ModelTemplates.create(
+            "verdant:trap_tinted_stage0",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES,
+            VerdantTextureSlot.TINTED_BASE,
+            VerdantTextureSlot.TINTED_BAR,
+            VerdantTextureSlot.TINTED_SPIKES
+    );
+    public static final ModelTemplate TINTED_TRAP_HIDDEN_STAGE0 = ModelTemplates.create(
+            "verdant:trap_tinted_hidden_stage0",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES,
+            VerdantTextureSlot.TINTED_BASE,
+            VerdantTextureSlot.TINTED_BAR,
+            VerdantTextureSlot.TINTED_SPIKES
+    );
+    public static final ModelTemplate TINTED_TRAP_STAGE1 = ModelTemplates.create(
+            "verdant:trap_tinted_stage1",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES,
+            VerdantTextureSlot.TINTED_BASE,
+            VerdantTextureSlot.TINTED_BAR,
+            VerdantTextureSlot.TINTED_SPIKES
+    );
+    public static final ModelTemplate TINTED_TRAP_STAGE2 = ModelTemplates.create(
+            "verdant:trap_tinted_stage2",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES,
+            VerdantTextureSlot.TINTED_BASE,
+            VerdantTextureSlot.TINTED_BAR,
+            VerdantTextureSlot.TINTED_SPIKES
+    );
+    public static final ModelTemplate TINTED_TRAP_STAGE3 = ModelTemplates.create(
+            "verdant:trap_tinted_stage3",
+            VerdantTextureSlot.PARTICLE_BASE,
+            VerdantTextureSlot.BASE,
+            VerdantTextureSlot.BAR,
+            VerdantTextureSlot.SPIKES,
+            VerdantTextureSlot.TINTED_BASE,
+            VerdantTextureSlot.TINTED_BAR,
+            VerdantTextureSlot.TINTED_SPIKES
+    );
+
     public static final ModelTemplate OVERLAID_CUBE = ModelTemplates.create(
             "verdant:overlaid_cube",
             TextureSlot.PARTICLE,

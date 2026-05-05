@@ -64,7 +64,7 @@ public class JSONFeatures {
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(
                 Registries.CONFIGURED_FEATURE,
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                Constants.id(name)
         );
     }
 }

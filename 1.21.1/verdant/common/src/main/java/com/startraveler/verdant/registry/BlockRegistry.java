@@ -17,7 +17,6 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.VerdantIFF;
 import com.startraveler.verdant.block.custom.*;
 import com.startraveler.verdant.block.custom.InfestedRotatedPillarBlock;
 import com.startraveler.verdant.block.custom.extensible.ExtensibleCakeBlock;
@@ -31,7 +30,6 @@ import com.startraveler.verdant.util.VerdantTags;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -648,10 +646,10 @@ public class BlockRegistry {
         );
 
         SNAPLEAF = registerBlockWithItem(
-                "snapleaf", () -> new TrapBlock(
+                "snapleaf", () -> new SnapleafBlock(
                         properties(Blocks.OAK_LEAVES, "snapleaf").noCollision()
                                 .noOcclusion()
-                                .requiresCorrectToolForDrops(), 15, 3, 4, VerdantIFF::isEnemy, false, false, true
+                                .requiresCorrectToolForDrops(), 15, 3, 4
                 )
         );
 
@@ -1344,7 +1342,7 @@ public class BlockRegistry {
     }
 
     private static ResourceKey<Block> id(String name) {
-        return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.BLOCK, Constants.id(name));
     }
 
 }

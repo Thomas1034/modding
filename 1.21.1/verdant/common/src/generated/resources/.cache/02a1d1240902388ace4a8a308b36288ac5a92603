@@ -1,4 +1,4 @@
-// 1.21.11	2026-03-04T16:27:51.0249757	Model Definitions - verdant
+// 1.21.11	2026-05-04T18:36:42.7353856	Model Definitions - verdant
 9a0f041bd6606fc32483324642edac8d81def3a0 assets/minecraft/items/black_candle.json
 65e1434c6aed17e84ce706b56f0d1a8f07e84bd3 assets/minecraft/items/blue_candle.json
 6a23ec87f9587ff30f0092e21919798f346510e1 assets/minecraft/items/brown_candle.json
@@ -607,14 +607,14 @@ fea69a03b6a17245688236b9a5eea12a8482a5be assets/verdant/models/block/scree.json
 6e8d099885a318d56c0b3191202f3b3a5419cf54 assets/verdant/models/block/small_aloe_stage0.json
 dc6934e325d93a1903e2a12d0fff84ac6d7a6e77 assets/verdant/models/block/small_aloe_stage1.json
 9f417763db07036351670057e08d2281342cb240 assets/verdant/models/block/small_aloe_stage2.json
-0a977b9dfe89671c5975b0076adb43144e5c4768 assets/verdant/models/block/snapleaf_hidden_stage0.json
-e52d4fc2ee4ec097df98ecb9e419b89e4d765895 assets/verdant/models/block/snapleaf_hidden_stage1.json
-63d56fe1fee9d08c61879164134da54c08aaf41a assets/verdant/models/block/snapleaf_hidden_stage2.json
-bc366cec29b990dc18a3d38e4e8dbcae21272bf4 assets/verdant/models/block/snapleaf_hidden_stage3.json
-1f8f02e7ad9738f395c1230f1e0bbe5b5009ec4f assets/verdant/models/block/snapleaf_stage0.json
-e52d4fc2ee4ec097df98ecb9e419b89e4d765895 assets/verdant/models/block/snapleaf_stage1.json
-63d56fe1fee9d08c61879164134da54c08aaf41a assets/verdant/models/block/snapleaf_stage2.json
-bc366cec29b990dc18a3d38e4e8dbcae21272bf4 assets/verdant/models/block/snapleaf_stage3.json
+b735ec58c5a114377cad402b8438b11e76004320 assets/verdant/models/block/snapleaf_hidden_stage0.json
+954955931f1d3314b9c9db0f963f3752ecb94cc9 assets/verdant/models/block/snapleaf_hidden_stage1.json
+49a9eb0d0a7e6357891b76e022370ae0ac448556 assets/verdant/models/block/snapleaf_hidden_stage2.json
+fb29c873f3d234bddf6a4d92fae480dbd0f5be34 assets/verdant/models/block/snapleaf_hidden_stage3.json
+a1a6e84221fad3ffed5b19409b56087525a91fa9 assets/verdant/models/block/snapleaf_stage0.json
+954955931f1d3314b9c9db0f963f3752ecb94cc9 assets/verdant/models/block/snapleaf_stage1.json
+49a9eb0d0a7e6357891b76e022370ae0ac448556 assets/verdant/models/block/snapleaf_stage2.json
+fb29c873f3d234bddf6a4d92fae480dbd0f5be34 assets/verdant/models/block/snapleaf_stage3.json
 9f17c27fc1c44a3f86277d7466eb5c7cd4610bc8 assets/verdant/models/block/stony_grus.json
 b301338263660932e110ed01942be6a8263135d9 assets/verdant/models/block/strangler_leaves.json
 b5d11203aa93cd036f4a33fbcced2619aa1dcf25 assets/verdant/models/block/strangler_tendril.json

@@ -28,7 +28,7 @@ public class BlockTransformerRegistry {
     public static final Identifier TOXIC_ASH = transformer("toxic_ash");
 
     private static Identifier transformer(String name) {
-        return Identifier.fromNamespaceAndPath(Constants.MOD_ID, name);
+        return Constants.id(name);
     }
 
 

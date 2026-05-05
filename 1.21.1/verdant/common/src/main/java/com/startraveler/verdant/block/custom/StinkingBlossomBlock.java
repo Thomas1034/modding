@@ -154,7 +154,7 @@ public class StinkingBlossomBlock extends SporeBlossomBlock {
                     Optional.of(0x798f35),
                     List.of(
                             new MobEffectInstance(MobEffects.NAUSEA, 240, 0),
-                            new MobEffectInstance(MobEffectRegistry.STENCH.asHolder(), 800, 0)
+                            new MobEffectInstance(MobEffectRegistry.STENCH.asHolder(), 1200, 4)
                     ),
                     Optional.empty()
             ));

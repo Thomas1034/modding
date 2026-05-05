@@ -37,7 +37,7 @@ public class LootLocations {
     }
 
     public static Identifier table(String location) {
-        return Identifier.fromNamespaceAndPath(Constants.MOD_ID, location);
+        return Constants.id(location);
     }
 
 }

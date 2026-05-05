@@ -30,7 +30,7 @@ public class FeatureSetRegistry {
     public static final Identifier LARGE_MULCH = set("large_mulch");
 
     private static Identifier set(String name) {
-        return Identifier.fromNamespaceAndPath(Constants.MOD_ID, name);
+        return Constants.id(name);
     }
 
 }

@@ -38,6 +38,7 @@ import net.minecraft.world.level.block.state.BlockState;
 // Retexture skull spiders.
 // Make skull spider web projectiles not drop as items.
 // Make skull spiders start spawning again
+// Give traps their own damage source.
 
 /*
 
@@ -69,6 +70,7 @@ Lingers on the ground and will not hurt the person who threw it.
 
 Changes:
 - Updated to 1.21.11
+- Slight rework to how traps work, to improve the experience.
 - Tweaked thorny heartwood armor protection.
 - Sneaking now prevents damage from thorn bushes.
 - Reduced damage from thorn bushes.
@@ -77,7 +79,9 @@ Changes:
 - Various general texture tweaks and improvements.
 - Changed the stranger vine overlay texture.
 - Verdant grass and bushes are now biome-tinted.
-- Poisoners now use better potions when healing illagers.
+- Snapleaves are now biome-tinted.
+- Snapleaves now can only generate on dirt-like blocks and logs.
+- Poisoners now use better potions when healing allies.
 - Stinking blossoms are now killed by toxic ash.
 - Stinking blossoms now produce particles over the correct volume.
 - Stinking blossoms now produce a temporary stench cloud when broken. This has its benefits!

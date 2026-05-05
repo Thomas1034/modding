@@ -95,6 +95,20 @@ public class VerdantTextureMapping {
     }
 
 
+    public static TextureMapping tintedTrap(Block block) {
+        return new TextureMapping().put(
+                        VerdantTextureSlot.PARTICLE_BASE,
+                        TextureMapping.getBlockTexture(block, "_base")
+                )
+                .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(block, "_base"))
+                .put(VerdantTextureSlot.BAR, TextureMapping.getBlockTexture(block, "_bar"))
+                .put(VerdantTextureSlot.SPIKES, TextureMapping.getBlockTexture(block, "_spikes"))
+                .put(VerdantTextureSlot.TINTED_BASE, TextureMapping.getBlockTexture(block, "_base_tinted"))
+                .put(VerdantTextureSlot.TINTED_BAR, TextureMapping.getBlockTexture(block, "_bar_tinted"))
+                .put(VerdantTextureSlot.TINTED_SPIKES, TextureMapping.getBlockTexture(block, "_spikes_tinted"));
+    }
+
+
     @SuppressWarnings("unused")
     public static TextureMapping overlaidCubeBlock(Block block, Block base, Identifier overlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))

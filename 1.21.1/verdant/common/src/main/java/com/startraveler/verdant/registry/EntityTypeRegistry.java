@@ -139,7 +139,7 @@ public class EntityTypeRegistry {
     );
 
     private static ResourceKey<EntityType<?>> key(String name) {
-        return ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return ResourceKey.create(Registries.ENTITY_TYPE, Constants.id(name));
     }
 
     public static void init() {

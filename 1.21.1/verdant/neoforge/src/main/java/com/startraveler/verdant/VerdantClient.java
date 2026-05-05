@@ -196,7 +196,8 @@ public class VerdantClient {
                 BlockRegistry.BUSH.get(),
                 BlockRegistry.POTTED_BUSH.get(),
                 BlockRegistry.THORN_BUSH.get(),
-                BlockRegistry.POTTED_THORN_BUSH.get()
+                BlockRegistry.POTTED_THORN_BUSH.get(),
+                BlockRegistry.SNAPLEAF.get()
         );
     }
 
@@ -364,7 +365,7 @@ public class VerdantClient {
     public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent event) {
         event.register(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/hanging_block"),
+                Constants.id("rope/hanging_block"),
                 // The property type
                 RopeHangingBlockProperty.TYPE
         );
@@ -373,13 +374,13 @@ public class VerdantClient {
     public static void registerRangeProperties(RegisterRangeSelectItemModelPropertyEvent event) {
         event.register(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/rope_length"),
+                Constants.id("rope/rope_length"),
                 // The map codec
                 RopeLengthProperty.MAP_CODEC
         );
         event.register(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/glow_level"),
+                Constants.id("rope/glow_level"),
                 // The map codec
                 RopeGlowProperty.MAP_CODEC
         );
@@ -389,7 +390,7 @@ public class VerdantClient {
     public static void registerConditionalProperties(RegisterConditionalItemModelPropertyEvent event) {
         event.register(
                 // The name to reference as the type
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "rope/has_hook"),
+                Constants.id("rope/has_hook"),
                 // The map codec
                 RopeHookProperty.MAP_CODEC
         );

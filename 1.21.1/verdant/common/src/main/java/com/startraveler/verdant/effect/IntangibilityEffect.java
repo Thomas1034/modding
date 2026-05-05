@@ -43,7 +43,7 @@ public class IntangibilityEffect extends MobEffect {
         // Decrease gravity by 80%
         this.addAttributeModifier(
                 Attributes.GRAVITY,
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "intangibility/less_gravity"),
+                Constants.id("intangibility/less_gravity"),
                 -0.8,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );

@@ -35,7 +35,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
@@ -80,25 +79,21 @@ public class TrapBlock extends Block {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 5.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D),
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D)};
-    protected static final double BOX_INSET = 5D;
-    protected static final AABB[] TOUCH_SHAPE = {new AABB(
-            BOX_INSET / 16D,
+    protected static final double TRIGGER_RADIUS = 3D;
+    protected static final AABB TOUCH_SHAPE = new AABB(
+            (8D - TRIGGER_RADIUS) / 16D,
             0.0D,
-            BOX_INSET / 16D,
-            (16D - BOX_INSET) / 16D,
-            1D / 16D,
-            (16D - BOX_INSET) / 16D
-    ),
-            new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 4D / 16D, (16D - BOX_INSET) / 16D),
-            new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 8D / 16D, (16D - BOX_INSET) / 16D),
-            new AABB(BOX_INSET / 16D, 0.0D, (16D - BOX_INSET) / 16D, 9D / 16D, 15D / 16D, (16D - BOX_INSET) / 16D)};
-    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(MobEffectRegistry.TRAPPED.asHolder(),
-            11,
-            0
+            (8D - TRIGGER_RADIUS) / 16D,
+            (8D + TRIGGER_RADIUS) / 16D,
+            4D / 16D,
+            (8D + TRIGGER_RADIUS) / 16D
     );
-    protected static final Supplier<MobEffectInstance> DIG_SLOWDOWN_EFFECT_GETTER = () -> new MobEffectInstance(MobEffects.MINING_FATIGUE,
-            11,
-            1
+    protected static final Supplier<MobEffectInstance> TRAPPED_EFFECT_GETTER = () -> new MobEffectInstance(
+            MobEffectRegistry.TRAPPED.asHolder(),
+            10,
+            0,
+            false,
+            false
     );
     protected final Predicate<Entity> shouldTrigger;
     protected final int cooldownTime;
@@ -198,7 +193,8 @@ public class TrapBlock extends Block {
         BlockState belowState = level.getBlockState(pos.below());
         Tool toolComponent = stack.get(DataComponents.TOOL);
         if (toolComponent != null) {
-            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(level,
+            boolean isCorrectToolForBelow = toolComponent.isCorrectForDrops(belowState) || belowState.getDestroySpeed(
+                    level,
                     pos
             ) < 1.0f;
 
@@ -217,14 +213,14 @@ public class TrapBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState p_49325_, @NotNull LevelReader p_49326_, BlockPos p_49327_) {
-        BlockPos blockpos = p_49327_.below();
-        return canSupportRigidBlock(p_49326_, blockpos) || canSupportCenter(p_49326_, blockpos, Direction.UP);
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        return (canSupportRigidBlock(level, belowPos) || canSupportCenter(level, belowPos, Direction.UP)) && super.canSurvive(state, level, pos);
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState p_56620_, @NotNull BlockGetter p_56621_, @NotNull BlockPos p_56622_, @NotNull CollisionContext p_56623_) {
-        return SHAPE[p_56620_.getValue(STAGE)];
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext collisionContext) {
+        return SHAPE[state.getValue(STAGE)];
     }
 
     // Schedule a tick on random ticks.
@@ -241,7 +237,7 @@ public class TrapBlock extends Block {
         int stage = state.getValue(STAGE);
 
         // Get the collision shape.
-        AABB shape = TOUCH_SHAPE[stage].move(pos);
+        AABB shape = TOUCH_SHAPE.move(pos);
 
         // Get all the entities inside the collision shape.
         List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, shape, this.shouldTrigger);
@@ -263,13 +259,21 @@ public class TrapBlock extends Block {
             if (!state.getValue(SHRINKING)) {
                 // If it is hidden, display burst particles.
                 if (state.getValue(HIDDEN)) {
-                    level.addDestroyBlockEffect(pos, level.getBlockState(pos.below()));
-                    level.addDestroyBlockEffect(pos, level.getBlockState(pos.below()));
+                    if (level instanceof ServerLevel) {
+                        int levelEventBlockStateId = Block.getId(level.getBlockState(pos.below()));
+                        level.levelEvent(
+                                null,
+                                LevelEvent.PARTICLES_DESTROY_BLOCK,
+                                pos,
+                                levelEventBlockStateId
+                        );
+                    }
                 }
 
                 // Play the snap sound
                 level.playSound(null, pos, SoundEvents.EVOKER_FANGS_ATTACK, SoundSource.BLOCKS);
                 state = state.setValue(SHRINKING, true);
+                Vec3 bottomCenter = pos.getBottomCenter();
                 for (Entity entity : entities) {
                     Holder<DamageType> type = DamageSourceRegistry.get(
                             level.registryAccess(),
@@ -277,13 +281,12 @@ public class TrapBlock extends Block {
                     );
                     DamageSource source = new DamageSource(type, (Entity) null);
                     if (this.isNatural && entity instanceof ServerPlayer player) {
-
                         TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
                     }
                     entity.hurtServer(level, source, this.attackDamage);
+                    entity.setPos(bottomCenter);
                     if (entity instanceof LivingEntity livingEntity) {
                         livingEntity.addEffect(TRAPPED_EFFECT_GETTER.get());
-                        livingEntity.addEffect(DIG_SLOWDOWN_EFFECT_GETTER.get());
                     }
                 }
             }
@@ -318,11 +321,9 @@ public class TrapBlock extends Block {
         // If the trap is fully closed, trap the entities.
         if (state.getValue(STAGE) == MAX_STAGE) {
             if (entity instanceof LivingEntity le && le.hasEffect(MobEffectRegistry.TRAPPED.asHolder())) {
-                le.makeStuckInBlock(state, new Vec3(0.01f, 0.01f, 0.01f));
-                // Only on mod-5 ticks to reduce flickering.
-                if (!level.isClientSide() && 0 == entity.tickCount % 5) {
+                le.makeStuckInBlock(state, new Vec3(0.00f, 0.01f, 0.00f));
+                if (!level.isClientSide()) {
                     le.addEffect(TRAPPED_EFFECT_GETTER.get());
-                    le.addEffect(DIG_SLOWDOWN_EFFECT_GETTER.get());
                 }
             }
         }

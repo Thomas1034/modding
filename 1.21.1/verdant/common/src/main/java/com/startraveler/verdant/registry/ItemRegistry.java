@@ -75,7 +75,7 @@ public class ItemRegistry {
                     ConsumablesList.ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(5, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
+                    new UseCooldown(5, Optional.of(Constants.id("aloe_leaf")))
             ))
     );
     public static final RegistryObject<Item, Item> YOUNG_ALOE_LEAF = register(
@@ -84,7 +84,7 @@ public class ItemRegistry {
                     ConsumablesList.YOUNG_ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(10, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
+                    new UseCooldown(10, Optional.of(Constants.id("aloe_leaf")))
             ))
     );
     public static final RegistryObject<Item, Item> OLD_ALOE_LEAF = register(
@@ -93,7 +93,7 @@ public class ItemRegistry {
                     ConsumablesList.OLD_ALOE_LEAF
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(15, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "aloe_leaf")))
+                    new UseCooldown(15, Optional.of(Constants.id("aloe_leaf")))
             ))
     );
     public static final RegistryObject<Item, Item> ALOE_PUP = register(
@@ -719,7 +719,7 @@ public class ItemRegistry {
                     ConsumablesList.BALM
             ).component(
                     DataComponents.USE_COOLDOWN,
-                    new UseCooldown(30, Optional.of(Identifier.fromNamespaceAndPath(Constants.MOD_ID, "balm")))
+                    new UseCooldown(30, Optional.of(Constants.id("balm")))
             ))
     );
     public static final RegistryObject<Item, Item> SAP_TORCH = register(
@@ -826,7 +826,7 @@ public class ItemRegistry {
     public static Item.Properties properties(String name) {
         return new Item.Properties().setId(ResourceKey.create(
                 Registries.ITEM,
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                Constants.id(name)
         ));
     }
 
@@ -923,7 +923,7 @@ public class ItemRegistry {
                     Constants.MOD_ID,
                     "container/slot/empty_slot_heart_fragment"
             );
-            EMPTY_SLOT_SPIKES = Identifier.fromNamespaceAndPath(Constants.MOD_ID, "container/slot/empty_slot_spikes");
+            EMPTY_SLOT_SPIKES = Constants.id("container/slot/empty_slot_spikes");
         }
 
         public static SmithingTemplateItem createImbuementUpgradeTemplate(Item.Properties properties) {

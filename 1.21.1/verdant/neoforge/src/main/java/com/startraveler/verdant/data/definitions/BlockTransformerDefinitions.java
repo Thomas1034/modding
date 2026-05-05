@@ -369,7 +369,7 @@ public class BlockTransformerDefinitions {
     @SuppressWarnings("SameParameterValue")
     private static BlockTransformerData transformer(String transformer) {
         return new BlockTransformerData(
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, transformer),
+                Constants.id(transformer),
                 null,
                 null,
                 null,

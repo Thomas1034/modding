@@ -338,6 +338,12 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
 
         this.tag(VerdantTags.Blocks.SUPPORTS_STRANGLER_VINES).addTag(BlockTags.LOGS);
 
+        this.tag(VerdantTags.Blocks.SUPPORTS_SNAPLEAVES)
+                .addTag(BlockTags.LOGS)
+                .addTag(BlockTags.DIRT)
+                .addTag(BlockTags.SMALL_DRIPLEAF_PLACEABLE)
+                .addTag(BlockTags.AZALEA_GROWS_ON);
+
         // Leafy blocks
         this.tag(VerdantTags.Blocks.STRANGLER_LEAVES).add(
                 BlockRegistry.WILTED_STRANGLER_LEAVES.get(),

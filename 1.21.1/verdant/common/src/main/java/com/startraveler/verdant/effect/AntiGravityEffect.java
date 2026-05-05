@@ -28,7 +28,7 @@ public class AntiGravityEffect extends MobEffect {
         super(category, color);
         this.addAttributeModifier(
                 Attributes.GRAVITY,
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "antigravity/no_gravity"),
+                Constants.id("antigravity/no_gravity"),
                 -1.0,
                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
         );

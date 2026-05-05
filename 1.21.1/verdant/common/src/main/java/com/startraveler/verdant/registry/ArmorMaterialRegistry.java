@@ -33,16 +33,16 @@ public interface ArmorMaterialRegistry {
 
     ResourceKey<EquipmentAsset> HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "heartwood")
+            Constants.id("heartwood")
     );
     ResourceKey<EquipmentAsset> THORNY_HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "thorny_heartwood")
+            Constants.id("thorny_heartwood")
     );
     Identifier THORNY_HEARTWOOD_THORNS = Constants.id("thorny_heartwood_thorns");
     ResourceKey<EquipmentAsset> IMBUED_HEARTWOOD_ASSET = ResourceKey.create(
             EquipmentAssets.ROOT_ID,
-            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "imbued_heartwood")
+            Constants.id("imbued_heartwood")
     );
 
     ArmorMaterial HEARTWOOD = new ArmorMaterial(

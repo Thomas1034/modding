@@ -48,7 +48,7 @@ public class VerdantTags {
             }
             TagKey<DamageType> key = TagKey.create(
                     Registries.DAMAGE_TYPE,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(key);
             return key;
@@ -72,7 +72,7 @@ public class VerdantTags {
             }
             TagKey<MobEffect> key = TagKey.create(
                     Registries.MOB_EFFECT,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(key);
             return key;
@@ -90,6 +90,8 @@ public class VerdantTags {
         public static final TagKey<Block> NATURAL_HEARTWOOD_LOGS = tag("natural_heartwood_logs");
         public static final TagKey<Block> SUSTAINS_STRANGLER_LEAVES = tag("sustains_strangler_leaves");
         public static final TagKey<Block> SUPPORTS_STRANGLER_VINES = tag("supports_strangler_vines");
+        public static final TagKey<Block> SUPPORTS_SNAPLEAVES = tag("supports_snapleaves");
+
         public static final TagKey<Block> DOES_NOT_SUPPORT_STRANGLER_VINES = tag("does_not_support_strangler_vines");
         public static final TagKey<Block> STRANGLER_VINE_REPLACEABLES = tag("strangler_vine_replaceables");
         public static final TagKey<Block> STRANGLER_LEAVES = tag("strangler_leaves");
@@ -121,7 +123,7 @@ public class VerdantTags {
             }
             TagKey<Block> tag = TagKey.create(
                     Registries.BLOCK,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(tag);
             return tag;
@@ -143,7 +145,7 @@ public class VerdantTags {
             }
             TagKey<Structure> tag = TagKey.create(
                     Registries.STRUCTURE,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(tag);
             return tag;
@@ -185,7 +187,7 @@ public class VerdantTags {
             }
             TagKey<Item> tag = TagKey.create(
                     Registries.ITEM,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(tag);
             return tag;
@@ -207,7 +209,7 @@ public class VerdantTags {
             }
             TagKey<EntityType<?>> tag = TagKey.create(
                     Registries.ENTITY_TYPE,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(tag);
             return tag;
@@ -227,7 +229,7 @@ public class VerdantTags {
             }
             TagKey<Biome> tag = TagKey.create(
                     Registries.BIOME,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, name)
+                    Constants.id(name)
             );
             TAGS.add(tag);
             return tag;

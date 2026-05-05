@@ -22,7 +22,6 @@ import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import it.unimi.dsi.fastutil.Pair;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffects;
@@ -100,7 +99,12 @@ public class MobEffectRegistry {
     );
     public static final RegistryObject<MobEffect, MobEffect> TRAPPED = MOB_EFFECTS.register(
             "trapped",
-            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000000)
+            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000000).addAttributeModifier(
+                    Attributes.BLOCK_BREAK_SPEED,
+                    Constants.id("trapped/decrease_block_break_speed"),
+                    -0.95F,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            )
     );
     public static final RegistryObject<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register(
             "antidote", () -> new ImmunityEffect(
@@ -136,7 +140,7 @@ public class MobEffectRegistry {
             "broken_armor",
             () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000050).addAttributeModifier(
                     Attributes.ARMOR,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "broken_armor/decrease_armor"),
+                    Constants.id("broken_armor/decrease_armor"),
                     -0.25f,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             )
@@ -153,22 +157,22 @@ public class MobEffectRegistry {
             "sappy",
             () -> new NoOpEffect(MobEffectCategory.NEUTRAL, 0x6dc330).addAttributeModifier(
                     Attributes.MOVEMENT_SPEED,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Constants.id("effect.sappy"),
                     -0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.KNOCKBACK_RESISTANCE,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Constants.id("effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Constants.id("effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     Attributes.ATTACK_KNOCKBACK,
-                    Identifier.fromNamespaceAndPath(Constants.MOD_ID, "effect.sappy"),
+                    Constants.id("effect.sappy"),
                     0.25F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             )

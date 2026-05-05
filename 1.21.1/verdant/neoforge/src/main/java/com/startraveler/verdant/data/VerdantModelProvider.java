@@ -748,7 +748,7 @@ public class VerdantModelProvider extends ModelProvider {
                 IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
         );
 
-        trapBlock(BlockRegistry.SNAPLEAF.get());
+        tintedTrapBlock(BlockRegistry.SNAPLEAF.get());
         trapBlock(BlockRegistry.WOODEN_TRAP.get());
         trapBlock(BlockRegistry.COPPER_TRAP.get());
         trapBlock(BlockRegistry.IRON_TRAP.get());
@@ -797,7 +797,7 @@ public class VerdantModelProvider extends ModelProvider {
         createPlantWithDefaultItemWithCustomPottedTexture(
                 BlockRegistry.RUE.get(),
                 BlockRegistry.POTTED_RUE.get(),
-                Identifier.fromNamespaceAndPath(Constants.MOD_ID, "block/rue_potted"),
+                Constants.id("block/rue_potted"),
                 BlockModelGenerators.PlantType.NOT_TINTED,
                 "cutout"
         );
@@ -1330,6 +1330,18 @@ public class VerdantModelProvider extends ModelProvider {
 
     protected void trapBlock(Block block) {
         BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TRAP;
+
+        BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(
+                stage,
+                isHidden
+        ).updateTemplate(template -> template.extend().renderType("cutout").build());
+
+        blockModels.blockStateOutput.accept(createTrapBlock(block, model));
+    }
+
+
+    protected void tintedTrapBlock(Block block) {
+        BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TINTED_TRAP;
 
         BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(
                 stage,
