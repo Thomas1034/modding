@@ -52,10 +52,12 @@ public class OvergrownSpawnerBlockEntity extends BlockEntity implements Spawner 
         this.getSpawner().spawnRange = OVERGROWN_SPAWN_RANGE;
     }
 
+    @SuppressWarnings("unused")
     public static void clientTick(Level level, BlockPos pos, BlockState state, OvergrownSpawnerBlockEntity blockEntity) {
         blockEntity.spawner.clientTick(level, pos);
     }
 
+    @SuppressWarnings("unused")
     public static void serverTick(Level level, BlockPos pos, BlockState state, OvergrownSpawnerBlockEntity blockEntity) {
         blockEntity.spawner.serverTick((ServerLevel) level, pos);
     }
@@ -81,7 +83,7 @@ public class OvergrownSpawnerBlockEntity extends BlockEntity implements Spawner 
     }
 
     public boolean triggerEvent(int id, int type) {
-        return this.spawner.onEventTriggered(this.level, id) || super.triggerEvent(id, type);
+        return (this.level == null || this.spawner.onEventTriggered(this.level, id)) || super.triggerEvent(id, type);
     }
 
     public void setEntityId(@NotNull EntityType<?> type, @NotNull RandomSource random) {

@@ -70,6 +70,7 @@ Lingers on the ground and will not hurt the person who threw it.
 
 Changes:
 - Updated to 1.21.11
+- Added uncommon moss patches as grown features in the Verdant.
 - Slight rework to how traps work, to improve the experience.
 - Tweaked thorny heartwood armor protection.
 - Sneaking now prevents damage from thorn bushes.

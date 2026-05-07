@@ -19,7 +19,6 @@ package com.startraveler.verdant.feature;
 import com.startraveler.verdant.Constants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 // Features defined in JSON, not data generated.
@@ -54,6 +53,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ROOTS = createKey("hanging_roots");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUE = createKey("rue");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEWEED = createKey("blueweed");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MOSS_CARPET_PATCH = createKey("moss_carpet_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MOSS_CARPETS = createKey("moss_carpets");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLASTING_BLOSSOMS = createKey("blasting_blossoms");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULCH = createKey("mulch");

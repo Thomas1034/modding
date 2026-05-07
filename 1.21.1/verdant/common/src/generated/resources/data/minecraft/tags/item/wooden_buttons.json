@@ -1,8 +1,8 @@
 {
   "values": [
+    "verdant:dead_button",
     "verdant:mango_button",
     "verdant:heartwood_button",
-    "verdant:strangler_button",
-    "verdant:dead_button"
+    "verdant:strangler_button"
   ]
 }

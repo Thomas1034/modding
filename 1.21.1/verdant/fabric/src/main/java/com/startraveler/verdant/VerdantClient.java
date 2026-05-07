@@ -31,13 +31,13 @@ import net.minecraft.client.renderer.item.properties.conditional.ConditionalItem
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties;
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 import java.util.Arrays;
@@ -145,14 +145,12 @@ public class VerdantClient implements ClientModInitializer {
 
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
         );
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT,
                 BlockRegistry.STRANGLER_LEAVES.get(),
@@ -172,8 +170,10 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 && !blockState.getValueOrElse(
+                        BlockStateProperties.SNOWY,
+                        false
+                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -183,8 +183,7 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : 0,
                 BlockRegistry.BUSH.get(),

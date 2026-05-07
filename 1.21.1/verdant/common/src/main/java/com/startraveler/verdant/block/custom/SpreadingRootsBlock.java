@@ -47,6 +47,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -80,6 +81,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // These are used for caching surrounding blocks, to optimize spreading mechanics.
     public static final BooleanProperty SUCCESSFULLY_SPREAD = BooleanProperty.create("successfully_spread");
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
     public static final EnumProperty<@NotNull NeighborType> ABOVE = EnumProperty.create("above", NeighborType.class);
     public static final EnumProperty<@NotNull NeighborType> BELOW = EnumProperty.create("below", NeighborType.class);
     // The list of offsets to spread to.
@@ -103,7 +105,9 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy, boolean isWet, Supplier<Supplier<Block>> alternateWet, boolean hasAlternateWetness) {
         super(properties);
         // Set the default state to be non-hydrated.
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATER_DISTANCE, MAX_DISTANCE));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(WATER_DISTANCE, MAX_DISTANCE)
+                .setValue(SNOWY, false));
         this.isGrassy = isGrassy;
         this.alternateGrassy = alternateGrassy;
         this.isWet = isWet;
@@ -172,6 +176,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return points;
     }
 
+    protected static boolean isSnowySetting(BlockState state) {
+        return state.is(BlockTags.SNOW);
+    }
+
     // This handles erosion, growth, and (eventually) placing features like
     // grass, bushes, vines, etc.
     // Returns whether any erosion or growth succeeded.
@@ -235,7 +243,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             return false;
         } else {
             // If it does not have fluid, then it can only be grass if the block above is not a full block.
-            return !aboveState.isCollisionShapeFullBlock(level, abovePos);
+            return !aboveState.isCollisionShapeFullBlock(level, abovePos) || isSnowySetting(aboveState);
         }
     }
 
@@ -309,6 +317,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             if (direction == Direction.UP) {
                 adjacent = NeighborType.get(access, neighbor);
                 state = state.setValue(ABOVE, adjacent);
+                state = state.setValue(SNOWY, isSnowySetting(neighbor));
             } else if (direction == Direction.DOWN) {
                 adjacent = NeighborType.get(access, neighbor);
                 state = state.setValue(BELOW, adjacent);
@@ -348,8 +357,16 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
         // Logic is too complicated to duplicate, most likely.
         tickAccess.scheduleTick(currentPos, this, 1);
-
-        return state;
+        return facing == Direction.UP ? state.setValue(SNOWY, isSnowySetting(facingState)) : super.updateShape(
+                state,
+                level,
+                tickAccess,
+                currentPos,
+                facing,
+                facingPos,
+                facingState,
+                random
+        );
     }
 
     // Applies custom hoeing logic; I feel like doing this should be much easier.
@@ -404,7 +421,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockState updated = this.updateState(state, level, pos);
         if (state != updated) {
-            // TODO centralize updates.
             // DO NOT update the client here; instead, mark the chunk dirty and send an update to
             // the client at the end of the tick, in a tick event.
             level.setBlockAndUpdate(pos, updated);
@@ -421,19 +437,23 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // updateShape function, which I'll try to simplify now that I've got that one working.
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.updateState(this.defaultBlockState(), context.getLevel(), context.getClickedPos());
+
+        BlockState above = context.getLevel().getBlockState(context.getClickedPos().above());
+        return this.updateState(this.defaultBlockState(), context.getLevel(), context.getClickedPos())
+                .setValue(SNOWY, isSnowySetting(above));
     }
 
     // Very important!
     // Defines the properties for the block.
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
-        builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW, SUCCESSFULLY_SPREAD);
+        builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW, SUCCESSFULLY_SPREAD, SNOWY);
     }
 
     protected float chanceToSpread(BlockState state) {
         return ACTIVE_SPREAD_RATE * (state.getValue(SUCCESSFULLY_SPREAD) ? 1 : INACTIVE_SPREAD_RATE_FACTOR);
     }
+
 
     public enum NeighborType implements StringRepresentable {
 

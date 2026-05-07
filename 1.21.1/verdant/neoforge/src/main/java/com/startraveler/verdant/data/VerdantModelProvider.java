@@ -472,20 +472,20 @@ public class VerdantModelProvider extends ModelProvider {
         return generator;
     }
 
-    protected MultiVariantGenerator createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
+    protected MultiVariant createRotatedTopOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays, String modelSuffix) {
         Variant[] variants = new Variant[4 * overlays.length];
         for (int o = 0; o < overlays.length; o++) {
             String overlay = overlays[o];
             Identifier modelLocation = model.apply(overlay).createWithSuffix(
                     block,
-                    (overlays.length == 1 || overlay.equals("default") || overlay.equals("overlay_default") ? "" : "_" + overlay),
+                    (overlays.length == 1 || overlay.equals("default") || overlay.equals("overlay_default") ? "" : "_" + overlay) + modelSuffix,
                     blockModels.modelOutput
             );
             for (int j = 0; j < 4; j++) {
                 variants[o * 4 + j] = new Variant(modelLocation).with(VariantMutator.Y_ROT.withValue(Quadrant.values()[j]));
             }
         }
-        return MultiVariantGenerator.dispatch(block, BlockModelGenerators.variants(variants));
+        return BlockModelGenerators.variants(variants);
     }
 
     protected MultiVariantGenerator createOverlaidBlock(Block block, Function<String, TexturedModel.Provider> model, String[] overlays) {
@@ -1408,7 +1408,19 @@ public class VerdantModelProvider extends ModelProvider {
                 )
                 .updateTemplate(template -> template.extend().renderType("cutout").build());
 
-        blockModels.blockStateOutput.accept(createRotatedTopOverlaidBlock(block, model, overlays));
+        MultiVariant variants = createRotatedTopOverlaidBlock(block, model, overlays, "");
+        Function<String, TexturedModel.Provider> snowyModel = (lambdaOverlay) -> baseModel.apply(
+                        lambdaOverlay,
+                        "snowy_" + topOverlay,
+                        base
+                )
+                .updateTemplate(template -> template.extend().renderType("cutout").build());
+        MultiVariant snowyVariants = createRotatedTopOverlaidBlock(block, snowyModel, overlays, "_snowy");
+
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.SNOWY)
+                        .select(true, snowyVariants)
+                        .select(false, variants)));
 
         Identifier identifier = model.apply(overlays.length > 0 ? overlays[0] : "default_overlay")
                 .createWithSuffix(block, "_item", this.blockModels.modelOutput);

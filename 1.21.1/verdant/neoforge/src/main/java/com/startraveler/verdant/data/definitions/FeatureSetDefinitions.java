@@ -33,6 +33,7 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.RUE));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_CASSAVA));
         entries.add(configured(Rarity.VERY_UNCOMMON, JSONFeatures.WILD_UBE));
+        entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.MOSS_CARPET_PATCH));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.BLEEDING_HEART));
         entries.add(configured(Rarity.EXTREMELY_UNCOMMON, JSONFeatures.MIXED_MUSHROOMS));
 

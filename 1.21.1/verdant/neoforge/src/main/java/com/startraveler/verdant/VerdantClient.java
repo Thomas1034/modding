@@ -40,7 +40,6 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
-import net.minecraft.resources.Identifier;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.Mannequin;
@@ -49,6 +48,7 @@ import net.minecraft.world.entity.player.PlayerModelType;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
@@ -146,7 +146,6 @@ public class VerdantClient {
                     }
                 }
             }
-
         }
     }
 
@@ -170,7 +169,10 @@ public class VerdantClient {
         );
 
         event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 && !blockState.getValueOrElse(
+                        BlockStateProperties.SNOWY,
+                        false
+                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
                         blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
