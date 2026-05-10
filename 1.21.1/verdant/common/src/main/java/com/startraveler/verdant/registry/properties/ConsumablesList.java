@@ -56,11 +56,11 @@ public class ConsumablesList {
                     MobEffectCategory.HARMFUL,
                     RemoveMobEffectsConsumeEffect.REMOVE_ALL_IN_CATEGORY
             ))
-            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 0)))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 1)))
             .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(
                     MobEffectRegistry.ANTIDOTE.asHolder(),
                     1200,
-                    3
+                    8
             )))
             .animation(ItemUseAnimation.CROSSBOW)
             .sound(Holder.direct(SoundEvents.EMPTY))

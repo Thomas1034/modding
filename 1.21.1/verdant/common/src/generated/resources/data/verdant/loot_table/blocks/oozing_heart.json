@@ -23,11 +23,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "verdant:ooze_fissure"
+          "name": "verdant:oozing_heart"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "verdant:blocks/ooze_fissure"
+  "random_sequence": "verdant:blocks/oozing_heart"
 }

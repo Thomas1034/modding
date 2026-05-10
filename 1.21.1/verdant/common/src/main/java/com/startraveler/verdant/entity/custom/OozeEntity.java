@@ -53,7 +53,8 @@ import java.util.function.Supplier;
 
 public class OozeEntity extends Slime implements Bucketable {
     public static final int EFFECT_SCALE = 4;
-    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(ParticleTypes.ITEM,
+    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(
+            ParticleTypes.ITEM,
             new ItemStack(ItemRegistry.SAP_GLOB.get())
     ));
     public static final int CHANCE_TO_INCREASE_SIZE = 128;
@@ -67,6 +68,7 @@ public class OozeEntity extends Slime implements Bucketable {
     public OozeEntity(EntityType<? extends @NotNull OozeEntity> type, Level level) {
         super(type, level);
     }
+
 
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
         super.defineSynchedData(builder);

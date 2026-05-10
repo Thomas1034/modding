@@ -59,7 +59,7 @@ public class JSONFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> MULCH = createKey("mulch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_MULCH = createKey("large_mulch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MANGO_SAPLING = createKey("mango_sapling");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OOZE_FISSURE_SPIKE = createKey("ooze_fissure_spike");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OOZING_HEART_POOL = createKey("oozing_heart_pool");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
         return ResourceKey.create(

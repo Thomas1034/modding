@@ -519,7 +519,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(BlockRegistry.BRAMBLE_WALL_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
         this.dropOther(BlockRegistry.BRAMBLE_HEAD.get(), ItemRegistry.BRAMBLE_HEAD.get());
 
-        this.dropWhenSilkTouch(BlockRegistry.OOZE_FISSURE_BLOCK.get());
+        this.dropWhenSilkTouch(BlockRegistry.OOZING_HEART.get());
 
         this.dropOther(BlockRegistry.SAP_WALL_TORCH.get(), ItemRegistry.SAP_TORCH.get());
         this.dropOther(BlockRegistry.SAP_TORCH.get(), ItemRegistry.SAP_TORCH.get());

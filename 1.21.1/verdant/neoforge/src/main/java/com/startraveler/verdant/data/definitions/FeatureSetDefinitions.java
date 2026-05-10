@@ -52,7 +52,7 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
         entries.add(configured(Rarity.EXTREMELY_RARE, VegetationFeatures.PATCH_BERRY_BUSH));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MANGO_SAPLING));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.OOZE_FISSURE_SPIKE));
+        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.OOZING_HEART_POOL));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
     }

@@ -18,7 +18,7 @@ package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.feature.custom.FixedSeagrassFeature;
-import com.startraveler.verdant.feature.custom.OozeFissureSpikeFeature;
+import com.startraveler.verdant.feature.custom.OozingHeartPoolFeature;
 import com.startraveler.verdant.feature.custom.StranglerVineFeature;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
@@ -34,17 +34,20 @@ public class FeatureRegistry {
             Constants.MOD_ID
     );
 
+    @SuppressWarnings("unused")
     public static final RegistryObject<Feature<?>, Feature<?>> FIXED_SEAGRASS = FEATURES.register(
             "fixed_seagrass",
             () -> new FixedSeagrassFeature(ProbabilityFeatureConfiguration.CODEC)
     );
+    @SuppressWarnings("unused")
     public static final RegistryObject<Feature<?>, Feature<?>> STRANGLER_VINES = FEATURES.register(
             "strangler_vines",
             () -> new StranglerVineFeature(NoneFeatureConfiguration.CODEC)
     );
-    public static final RegistryObject<Feature<?>, Feature<?>> OOZE_FISSURE_SPIKE = FEATURES.register(
-            "ooze_fissure_spike",
-            () -> new OozeFissureSpikeFeature(NoneFeatureConfiguration.CODEC)
+    @SuppressWarnings("unused")
+    public static final RegistryObject<Feature<?>, Feature<?>> OOZING_HEART_POOL = FEATURES.register(
+            "oozing_heart_pool",
+            () -> new OozingHeartPoolFeature(NoneFeatureConfiguration.CODEC)
     );
 
 

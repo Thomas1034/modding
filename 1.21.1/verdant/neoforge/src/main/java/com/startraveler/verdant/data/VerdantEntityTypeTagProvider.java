@@ -27,7 +27,8 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 .add(EntityTypeRegistry.TIMBERMITE.get(), EntityTypeRegistry.SKULL_SPIDER.get());
         this.tag(EntityTypeTags.UNDEAD).add(EntityTypeRegistry.ROOTED.get());
         this.tag(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES).add(
-                EntityTypeRegistry.TIMBERMITE.get(), EntityTypeRegistry.SKULL_SPIDER.get(),
+                EntityTypeRegistry.TIMBERMITE.get(),
+                EntityTypeRegistry.SKULL_SPIDER.get(),
                 EntityTypeRegistry.ROOTED.get(),
                 EntityTypeRegistry.POISONER.get(),
                 EntityTypeRegistry.BRAMBLE.get(),
@@ -51,6 +52,8 @@ public class VerdantEntityTypeTagProvider extends EntityTypeTagsProvider {
                 EntityType.CREAKING,
                 EntityType.CREEPER
         );
+        this.tag(VerdantTags.EntityTypes.SAP_IMMUNE)
+                .add(EntityType.SLIME, EntityType.MAGMA_CUBE, EntityTypeRegistry.OOZE.get());
         this.tag(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES).addTag(EntityTypeTags.AQUATIC);
 
     }

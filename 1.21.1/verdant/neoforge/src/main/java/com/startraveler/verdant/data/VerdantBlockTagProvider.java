@@ -36,7 +36,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.FISH_TRAP.get(),
                 BlockRegistry.VERDANT_CONDUIT.get(),
                 BlockRegistry.ROPE_LADDER.get(),
-                BlockRegistry.OOZE_FISSURE_BLOCK.get(),
+                BlockRegistry.OOZING_HEART.get(),
                 BlockRegistry.IMBUED_HEARTWOOD_LOG.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -254,8 +254,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.POISON_IVY_PLANT.get(),
                 BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                BlockRegistry.STRANGLER_TENDRIL.get(),
-                BlockRegistry.SAP_BLOCK.get()
+                BlockRegistry.STRANGLER_TENDRIL.get()
         );
 
         this.tag(VerdantTags.Blocks.REPLACEABLE_BY_BRAMBLE).addTags(

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "verdant:block/ooze_fissure"
+    "model": "verdant:block/oozing_heart"
   }
 }

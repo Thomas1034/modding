@@ -388,7 +388,6 @@ public class VerdantClient {
         );
     }
 
-
     public static void registerConditionalProperties(RegisterConditionalItemModelPropertyEvent event) {
         event.register(
                 // The name to reference as the type

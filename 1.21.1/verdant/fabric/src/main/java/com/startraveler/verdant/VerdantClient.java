@@ -145,12 +145,14 @@ public class VerdantClient implements ClientModInitializer {
 
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
         );
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : FoliageColor.FOLIAGE_DEFAULT,
                 BlockRegistry.STRANGLER_LEAVES.get(),
@@ -173,7 +175,8 @@ public class VerdantClient implements ClientModInitializer {
                 (blockState, blockAndTintGetter, blockPos, i) -> i == 0 && !blockState.getValueOrElse(
                         BlockStateProperties.SNOWY,
                         false
-                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
                 ) : GrassColor.getDefaultColor()) : -1,
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -183,9 +186,10 @@ public class VerdantClient implements ClientModInitializer {
         );
 
         ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(blockAndTintGetter,
+                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? ((blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
+                        blockAndTintGetter,
                         blockPos
-                ) : GrassColor.getDefaultColor()) : 0,
+                ) : GrassColor.getDefaultColor())) : -1,
                 BlockRegistry.BUSH.get(),
                 BlockRegistry.POTTED_BUSH.get(),
                 BlockRegistry.THORN_BUSH.get(),

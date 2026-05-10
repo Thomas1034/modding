@@ -1,7 +1,7 @@
 package com.startraveler.verdant.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.startraveler.verdant.block.custom.entity.OozeFissureBlockEntity;
+import com.startraveler.verdant.block.custom.entity.OozingHeartBlockEntity;
 import com.startraveler.verdant.registry.BlockEntityTypeRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import net.minecraft.core.BlockPos;
@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -32,26 +33,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 
-public class OozeFissureBlock extends BaseEntityBlock {
+public class OozingHeartBlock extends BaseEntityBlock {
     public static final EnumProperty<Direction.@NotNull Axis> AXIS = BlockStateProperties.AXIS;
     public static final EnumProperty<@NotNull CreakingHeartState> STATE = BlockStateProperties.CREAKING_HEART_STATE;
     public static final BooleanProperty NATURAL = BlockStateProperties.NATURAL;
     protected final TagKey<Block> requiredLogs;
 
-    public OozeFissureBlock(Properties properties, TagKey<Block> requiredLogs) {
+    public OozingHeartBlock(Properties properties, TagKey<Block> requiredLogs) {
         super(properties);
         this.requiredLogs = requiredLogs;
-        this.registerDefaultState(this.getStateDefinition().any()
+        this.registerDefaultState(this.getStateDefinition()
+                .any()
                 .setValue(AXIS, Direction.Axis.Y)
                 .setValue(STATE, CreakingHeartState.UPROOTED)
                 .setValue(NATURAL, false));
 
-    }
-
-    @SuppressWarnings("unused")
-    public static boolean timeAgreeing(Level level) {
-        // Confederate season else no creature seeing
-        return true; // TODO refine when they spawn?
     }
 
     @Override
@@ -83,7 +79,7 @@ public class OozeFissureBlock extends BaseEntityBlock {
     @Override
     public @NotNull BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof OozeFissureBlockEntity) {
+        if (blockEntity instanceof OozingHeartBlockEntity) {
             this.tryAwardExperience(player, state, level, pos);
         }
         return super.playerWillDestroy(level, pos, state, player);
@@ -99,16 +95,21 @@ public class OozeFissureBlock extends BaseEntityBlock {
         boolean hasRequiredLogs = this.hasRequiredLogs(state, level, pos);
         boolean isUprooted = state.getValue(STATE) == CreakingHeartState.UPROOTED;
         return hasRequiredLogs && isUprooted ? state.setValue(
-                STATE,
-                OozeFissureBlock.timeAgreeing(level) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT
+                STATE, level.environmentAttributes().getValue(
+                        EnvironmentAttributes.CREAKING_ACTIVE,
+                        pos
+                ) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT
         ) : state;
     }
 
     public boolean hasRequiredLogs(BlockState state, LevelReader level, BlockPos pos) {
         Direction.Axis axis = state.getValue(AXIS);
-        for (Direction direction : axis.getDirections()) {
-            BlockState blockstate = level.getBlockState(pos.relative(direction));
-            if (!blockstate.is(this.requiredLogs) || blockstate.getValue(AXIS) != axis) {
+        for (Direction direction : Direction.values()) {
+            if (axis.test(direction)) {
+                continue;
+            }
+            BlockState relativeState = level.getBlockState(pos.relative(direction));
+            if (!relativeState.is(this.requiredLogs) || relativeState.getValue(AXIS) != direction.getAxis()) {
                 return false;
             }
         }
@@ -116,21 +117,21 @@ public class OozeFissureBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull MapCodec<OozeFissureBlock> codec() {
+    public @NotNull MapCodec<OozingHeartBlock> codec() {
         throw new IllegalStateException("Block codecs are not yet implemented.");
     }
 
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return BlockEntityTypeRegistry.OOZE_FISSURE_BLOCK_ENTITY.get().create(pos, state);
+        return BlockEntityTypeRegistry.OOZING_HEART_BLOCK_ENTITY.get().create(pos, state);
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
         return createTickerHelper(
                 type,
-                BlockEntityTypeRegistry.OOZE_FISSURE_BLOCK_ENTITY.get(),
-                level.isClientSide() ? OozeFissureBlockEntity::clientTick : OozeFissureBlockEntity::serverTick
+                BlockEntityTypeRegistry.OOZING_HEART_BLOCK_ENTITY.get(),
+                level.isClientSide() ? OozingHeartBlockEntity::clientTick : OozingHeartBlockEntity::serverTick
         );
     }
 
@@ -148,7 +149,7 @@ public class OozeFissureBlock extends BaseEntityBlock {
     @Override
     protected void onExplosionHit(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull Explosion explosion, @NotNull BiConsumer<ItemStack, BlockPos> dropConsumer) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof OozeFissureBlockEntity) {
+        if (blockEntity instanceof OozingHeartBlockEntity) {
             if (explosion instanceof ServerExplosion) {
                 if (explosion.getBlockInteraction().shouldAffectBlocklikeEntities()) {
                     LivingEntity explosionIndirectSourceEntity = explosion.getIndirectSourceEntity();
@@ -160,7 +161,6 @@ public class OozeFissureBlock extends BaseEntityBlock {
                 }
             }
         }
-
         super.onExplosionHit(state, level, pos, explosion, dropConsumer);
     }
 
@@ -181,8 +181,8 @@ public class OozeFissureBlock extends BaseEntityBlock {
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             int signal;
-            if (blockEntity instanceof OozeFissureBlockEntity oozeFissureBlockEntity) {
-                signal = oozeFissureBlockEntity.getAnalogOutputSignal();
+            if (blockEntity instanceof OozingHeartBlockEntity oozingHeartBlockEntity) {
+                signal = oozingHeartBlockEntity.getAnalogOutputSignal();
             } else {
                 signal = 0;
             }
@@ -205,7 +205,6 @@ public class OozeFissureBlock extends BaseEntityBlock {
             this.popExperience(serverlevel, pos, level.random.nextIntBetweenInclusive(20, 24));
             Block.popResource(level, pos, new ItemStack(ItemRegistry.BALSAM.get()));
         }
-
     }
 
 }

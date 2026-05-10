@@ -29,9 +29,6 @@ import java.util.Set;
 
 public class PotionRecipeRegistry {
 
-    // MobEffects.DARKNESS
-
-
     private final TriConsumer<Holder<Potion>, Item, Holder<Potion>> potionRegistrar;
     private final TriConsumer<Item, Ingredient, Item> genericRegistrar;
 

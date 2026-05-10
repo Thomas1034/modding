@@ -18,7 +18,6 @@ package com.startraveler.verdant.util;
 
 import com.startraveler.verdant.Constants;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
@@ -198,6 +197,7 @@ public class VerdantTags {
 
         protected static final Set<String> TAG_NAMES = new HashSet<>();
         public static final TagKey<EntityType<?>> IMMUNE_TO_THORN_BUSHES = tag("immune_to_thorn_bushes");
+        public static final TagKey<EntityType<?>> SAP_IMMUNE = tag("sap_immune");
         public static final TagKey<EntityType<?>> VERDANT_FRIENDLY_ENTITIES = tag("verdant_friendly_entities");
         public static final TagKey<EntityType<?>> TOXIC_ASH_DAMAGES = tag("toxic_ash_damages");
 

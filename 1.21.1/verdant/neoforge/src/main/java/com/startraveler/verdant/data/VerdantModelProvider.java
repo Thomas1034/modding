@@ -868,7 +868,7 @@ public class VerdantModelProvider extends ModelProvider {
         wallSkullBlock(BlockRegistry.BRAMBLE_WALL_HEAD.get(), BlockRegistry.BRAMBLE_HEAD.get());
         skullBlock(BlockRegistry.BRAMBLE_HEAD.get());
 
-        blockModels.createCreakingHeart(BlockRegistry.OOZE_FISSURE_BLOCK.get());
+        blockModels.createCreakingHeart(BlockRegistry.OOZING_HEART.get());
 
         blockModels.createNormalTorch(BlockRegistry.SAP_TORCH.get(), BlockRegistry.SAP_WALL_TORCH.get());
         blockModels.createLantern(BlockRegistry.SAP_LANTERN.get());

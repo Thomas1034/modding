@@ -60,8 +60,11 @@ Advancements:
 Compatibility
 
 Ideas:
-Caltrops - eight thorns, one plank, for a consumable that deals damage and inflicts slowness when entities step on it.
+Caltrops - four thorns, four hanging roots, for a consumable that deals damage and inflicts slowness when entities step on it (crafts two).
 Lingers on the ground and will not hurt the person who threw it.
+Tilapia nests that act as tilapia spawners
+Arapaima nests that act as arapaima spawners
+Root ball weapons that create a tangled mess of roots when thrown
 
 */
 // Credits: (other direct contributors only)

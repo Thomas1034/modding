@@ -1,6 +1,6 @@
 package com.startraveler.verdant.block.custom.entity;
 
-import com.startraveler.verdant.block.custom.OozeFissureBlock;
+import com.startraveler.verdant.block.custom.OozingHeartBlock;
 import com.startraveler.verdant.registry.BlockEntityTypeRegistry;
 import com.startraveler.verdant.registry.EntityTypeRegistry;
 import net.minecraft.core.BlockPos;
@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.Level;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
+public class OozingHeartBlockEntity extends BlockEntity implements Spawner {
     protected static final int OOZE_FISSURE_MIN_SPAWN_DELAY = 80;
     protected static final int OOZE_FISSURE_MAX_SPAWN_DELAY = 160;
     protected static final int OOZE_FISSURE_SPAWN_COUNT = 2;
@@ -49,8 +50,8 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     };
     private int outputSignal = 0;
 
-    public OozeFissureBlockEntity(BlockPos pos, BlockState blockState) {
-        super(BlockEntityTypeRegistry.OOZE_FISSURE_BLOCK_ENTITY.get(), pos, blockState);
+    public OozingHeartBlockEntity(BlockPos pos, BlockState blockState) {
+        super(BlockEntityTypeRegistry.OOZING_HEART_BLOCK_ENTITY.get(), pos, blockState);
         this.spawner.minSpawnDelay = OOZE_FISSURE_MIN_SPAWN_DELAY;
         this.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY;
         this.spawner.spawnCount = OOZE_FISSURE_SPAWN_COUNT;
@@ -60,28 +61,28 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     }
 
 
-    public static void clientTick(Level level, BlockPos pos, BlockState state, OozeFissureBlockEntity blockEntity) {
-        if (state.getOptionalValue(OozeFissureBlock.STATE)
+    public static void clientTick(Level level, BlockPos pos, BlockState state, OozingHeartBlockEntity blockEntity) {
+        if (state.getOptionalValue(OozingHeartBlock.STATE)
                 .orElse(CreakingHeartState.UPROOTED) == CreakingHeartState.AWAKE) {
             blockEntity.spawner.clientTick(level, pos);
         }
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState state, OozeFissureBlockEntity blockEntity) {
+    public static void serverTick(Level level, BlockPos pos, BlockState state, OozingHeartBlockEntity blockEntity) {
         if (level instanceof ServerLevel serverLevel) {
             int outputSignal = blockEntity.computeAnalogOutputSignal();
             if (blockEntity.outputSignal != outputSignal) {
                 blockEntity.outputSignal = outputSignal;
                 level.updateNeighbourForOutputSignal(pos, Blocks.CREAKING_HEART);
             }
-            BlockState updatedFissureState = OozeFissureBlockEntity.updateFissureState(level, state, pos);
+            BlockState updatedFissureState = OozingHeartBlockEntity.updateFissureState(level, state, pos);
 
             if (updatedFissureState != state) {
                 state = updatedFissureState;
                 level.setBlockAndUpdate(pos, state);
             }
 
-            if (!state.getOptionalValue(OozeFissureBlock.NATURAL).orElse(false)) {
+            if (!state.getOptionalValue(OozingHeartBlock.NATURAL).orElse(false)) {
                 blockEntity.spawner.minSpawnDelay = OOZE_FISSURE_MIN_SPAWN_DELAY * DELAY_FACTOR_IF_NOT_NATURAL;
                 blockEntity.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY * DELAY_FACTOR_IF_NOT_NATURAL;
             } else {
@@ -89,7 +90,7 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
                 blockEntity.spawner.maxSpawnDelay = OOZE_FISSURE_MAX_SPAWN_DELAY;
             }
 
-            if (state.getOptionalValue(OozeFissureBlock.STATE)
+            if (state.getOptionalValue(OozingHeartBlock.STATE)
                     .orElse(CreakingHeartState.UPROOTED) == CreakingHeartState.AWAKE) {
                 blockEntity.spawner.serverTick(serverLevel, pos);
             }
@@ -105,18 +106,20 @@ public class OozeFissureBlockEntity extends BlockEntity implements Spawner {
     }
 
 
-    @SuppressWarnings("ConstantValue")
     public static BlockState updateFissureState(Level level, BlockState state, BlockPos pos) {
-        if (!(state.getBlock() instanceof OozeFissureBlock oozeFissureBlock)) {
+        if (!(state.getBlock() instanceof OozingHeartBlock oozingHeartBlock)) {
             return state;
         }
-        if (!oozeFissureBlock.hasRequiredLogs(state, level, pos)) {
+        if (!oozingHeartBlock.hasRequiredLogs(state, level, pos)) {
             return state.setValue(CreakingHeartBlock.STATE, CreakingHeartState.UPROOTED);
         } else {
-            boolean timeAgreeing = OozeFissureBlock.timeAgreeing(level);
             return state.setValue(
                     CreakingHeartBlock.STATE,
-                    timeAgreeing ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT
+                    level.environmentAttributes()
+                            .getValue(
+                                    EnvironmentAttributes.CREAKING_ACTIVE,
+                                    pos
+                            ) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT
             );
         }
     }

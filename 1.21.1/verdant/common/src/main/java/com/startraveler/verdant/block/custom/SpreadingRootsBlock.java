@@ -221,10 +221,8 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         } else {
             set = features.get(FeatureSetRegistry.ALWAYS).orElseThrow().value();
             placeAt = pos.above();
-
         }
         set.place(level, placeAt);
-
     }
 
     // Returns true if the block at the given position can be grassy.

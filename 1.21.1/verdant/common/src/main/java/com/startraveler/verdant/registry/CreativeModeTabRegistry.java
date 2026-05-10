@@ -80,7 +80,7 @@ public class CreativeModeTabRegistry {
                         output.accept(BlockRegistry.EARTH_BRICK_SLAB.get());
                         output.accept(BlockRegistry.EARTH_BRICK_STAIRS.get());
                         output.accept(BlockRegistry.EARTH_BRICK_WALL.get());
-                        output.accept(BlockRegistry.OOZE_FISSURE_BLOCK.get());
+                        output.accept(BlockRegistry.OOZING_HEART.get());
                         output.accept(BlockRegistry.SAP_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BLOCK.get());
                         output.accept(BlockRegistry.VERDANT_RESIN_BRICKS.get());

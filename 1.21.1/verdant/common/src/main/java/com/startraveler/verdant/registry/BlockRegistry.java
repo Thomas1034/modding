@@ -201,7 +201,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> MANGO_LEAVES;
     public static final RegistryObject<Block, Block> MANGO_SAPLING;
     public static final RegistryObject<Block, Block> POTTED_MANGO_SAPLING;
-    public static final RegistryObject<Block, Block> OOZE_FISSURE_BLOCK;
+    public static final RegistryObject<Block, Block> OOZING_HEART;
     public static final RegistryObject<Block, Block> OVERGROWN_SPAWNER;
     public static final RegistryObject<Block, Block> METAL_BOMB_PILE;
     public static final RegistryObject<Block, Block> TERRACOTTA_BOMB_PILE;
@@ -1236,10 +1236,11 @@ public class BlockRegistry {
                 )
         );
 
-        OOZE_FISSURE_BLOCK = registerBlockWithItem(
-                "ooze_fissure", () -> new OozeFissureBlock(
-                        properties(Blocks.SPAWNER, "ooze_fissure").noOcclusion()
-                                .lightLevel(state -> state.getValue(OozeFissureBlock.STATE) == CreakingHeartState.AWAKE ? 8 : 0)
+        OOZING_HEART = registerBlockWithItem(
+                "oozing_heart", () -> new OozingHeartBlock(
+                        properties("oozing_heart").requiresCorrectToolForDrops()
+                                .sound(SoundType.WOOD)
+                                .lightLevel(state -> state.getValue(OozingHeartBlock.STATE) == CreakingHeartState.AWAKE ? 8 : 0)
                                 .mapColor(MapColor.COLOR_LIGHT_GREEN)
                                 .instrument(NoteBlockInstrument.BASEDRUM)
                                 .strength(10.0F), VerdantTags.Blocks.NATURAL_HEARTWOOD_LOGS

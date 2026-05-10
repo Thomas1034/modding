@@ -98,26 +98,11 @@ public class MobEffectRegistry {
             () -> new ColloidEffect(MobEffectCategory.HARMFUL, 0xf7ebc8)
     );
     public static final RegistryObject<MobEffect, MobEffect> TRAPPED = MOB_EFFECTS.register(
-            "trapped",
-            () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000000).addAttributeModifier(
+            "trapped", () -> new NoOpEffect(MobEffectCategory.HARMFUL, 0x000000).addAttributeModifier(
                     Attributes.BLOCK_BREAK_SPEED,
                     Constants.id("trapped/decrease_block_break_speed"),
                     -0.95F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-            )
-    );
-    public static final RegistryObject<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register(
-            "antidote", () -> new ImmunityEffect(
-                    MobEffectCategory.BENEFICIAL, 0x3dffb5, List.of(
-                    Pair.of(0, MobEffects.NAUSEA),
-                    Pair.of(0, MobEffects.POISON),
-                    Pair.of(1, MobEffects.SLOWNESS),
-                    Pair.of(1, MobEffects.WITHER),
-                    Pair.of(1, MobEffects.HUNGER),
-                    Pair.of(2, MobEffects.BLINDNESS),
-                    Pair.of(2, MobEffects.INFESTED),
-                    Pair.of(2, MobEffects.OOZING)
-            )
             )
     );
     public static final RegistryObject<MobEffect, MobEffect> ASPHYXIATING = MOB_EFFECTS.register(
@@ -204,6 +189,26 @@ public class MobEffectRegistry {
     public static final RegistryObject<MobEffect, MobEffect> CLUMSINESS = MOB_EFFECTS.register(
             "clumsiness",
             () -> new ClumsinessEffect(MobEffectCategory.HARMFUL, 0x9E9502)
+    );
+    public static final RegistryObject<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register(
+            "antidote", () -> new ImmunityEffect(
+                    MobEffectCategory.BENEFICIAL, 0x3dffb5, List.of(
+                    Pair.of(0, MobEffects.NAUSEA),
+                    Pair.of(0, MobEffects.POISON),
+                    Pair.of(1, MobEffects.SLOWNESS),
+                    Pair.of(1, MobEffects.WITHER),
+                    Pair.of(1, MobEffects.HUNGER),
+                    Pair.of(1, MobEffectRegistry.CASSAVA_POISONING.asHolder()),
+                    Pair.of(1, MobEffectRegistry.FOOD_POISONING.asHolder()),
+                    Pair.of(2, MobEffectRegistry.BLURRING.asHolder()),
+                    Pair.of(2, MobEffectRegistry.ASPHYXIATING.asHolder()),
+                    Pair.of(2, MobEffectRegistry.NUMBNESS.asHolder()),
+                    Pair.of(2, MobEffectRegistry.CLUMSINESS.asHolder()),
+                    Pair.of(2, MobEffects.BLINDNESS),
+                    Pair.of(2, MobEffects.INFESTED),
+                    Pair.of(2, MobEffects.OOZING)
+            )
+            )
     );
     public static final RegistryObject<MobEffect, MobEffect> UNBREAKABLE = MOB_EFFECTS.register(
             "unbreakable",
