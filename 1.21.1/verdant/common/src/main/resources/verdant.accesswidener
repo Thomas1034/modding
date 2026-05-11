@@ -14,7 +14,6 @@ accessible field net/minecraft/world/level/BaseSpawner spawnRange I
 accessible field net/minecraft/world/level/BaseSpawner requiredPlayerRange I
 accessible field net/minecraft/world/level/BaseSpawner maxNearbyEntities I
 accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher blockColors Lnet/minecraft/client/color/block/BlockColors;
-accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher specialBlockModelRenderer Ljava/util/function/Supplier;
 accessible method net/minecraft/world/level/block/TorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/WallTorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible class net/minecraft/world/item/alchemy/PotionBrewing$Mix

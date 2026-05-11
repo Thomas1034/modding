@@ -46,13 +46,9 @@ public enum VerdantPlantType {
                 generators,
                 item,
                 block,
-                "_emissive", "_emissive_overlay"
-        ) : VerdantModelProvider.createFlatItemModelWithBlockTextureAndOverlay(
-                generators,
-                item,
-                block,
-                "", "_overlay"
-        );
+                "_emissive",
+                "_emissive_overlay"
+        ) : VerdantModelProvider.createFlatItemModelWithBlockTextureAndOverlay(generators, item, block, "", "_overlay");
     }
 
     public TextureMapping getTextureMapping(Block block) {

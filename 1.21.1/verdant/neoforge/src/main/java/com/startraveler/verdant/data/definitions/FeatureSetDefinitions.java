@@ -47,11 +47,11 @@ public class FeatureSetDefinitions {
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.BLUEWEED));
         entries.add(configured(Rarity.VERY_RARE, JSONFeatures.ALOES));
         entries.add(configured(Rarity.VERY_RARE, VegetationFeatures.PATCH_DRY_GRASS));
+        entries.add(configured(Rarity.VERY_RARE, JSONFeatures.MANGO_SAPLING));
 
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.BLASTING_BLOSSOMS));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.SNAPLEAF));
         entries.add(configured(Rarity.EXTREMELY_RARE, VegetationFeatures.PATCH_BERRY_BUSH));
-        entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.MANGO_SAPLING));
         entries.add(configured(Rarity.EXTREMELY_RARE, JSONFeatures.OOZING_HEART_POOL));
 
         return new FeatureSet(entries, FeatureSetRegistry.ABOVE_GROUND);
