@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_shelf_inventory",
-  "textures": {
-    "all": "verdant:block/heartwood_shelf",
-    "particle": "verdant:block/heartwood_planks"
-  }
-}

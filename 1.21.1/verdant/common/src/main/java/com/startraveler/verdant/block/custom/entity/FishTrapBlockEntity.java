@@ -451,7 +451,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         // System.out.println("Setting the catch percent to " + this.catchPercent);
 
         // Check if a fish should be caught.
-        double catchTarget = this.level.random.nextFloat();
+        double catchTarget = this.level.getRandom().nextFloat();
         boolean anySucceeded = catchTarget > catchChance;
         while (catchChance > catchTarget) {
             catchChance--;
@@ -479,7 +479,7 @@ public class FishTrapBlockEntity extends BaseContainerBlockEntity implements Wor
         }
 
         // Check if a bait should be consumed.
-        if (consumeChance > this.level.random.nextFloat() && null != stack && anySucceeded) {
+        if (consumeChance > this.level.getRandom().nextFloat() && null != stack && anySucceeded) {
             // System.out.println("Consuming!");
             stack.shrink(1);
         }

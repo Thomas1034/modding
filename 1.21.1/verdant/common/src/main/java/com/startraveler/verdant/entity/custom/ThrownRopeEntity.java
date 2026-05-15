@@ -96,7 +96,7 @@ public class ThrownRopeEntity extends ThrowableItemProjectile {
                 pos,
                 ropeCoilData.length(),
                 true,
-                ropeDataRopeBlock.defaultBlockState().setValue(RopeBlock.GLOW_LEVEL, ropeCoilData.lightLevel()),
+                ropeDataRopeBlock.defaultBlockState().trySetValue(RopeBlock.GLOW_LEVEL, ropeCoilData.lightLevel()),
                 ropeCoilData.hasHook() ? (ropeDataRopeBlock instanceof RopeBlock actualRopeBlock ? actualRopeBlock.getHook() : BlockRegistry.ROPE_HOOK.get()) : null,
                 ropeCoilData.hangingBlock().getState()
         );

@@ -21,7 +21,7 @@ import com.startraveler.verdant.registry.MobEffectRegistry;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
@@ -36,6 +36,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// TODO
 @Mixin(Gui.class)
 public class GuiAddShaderOverlaysMixin {
     @Unique
@@ -50,8 +51,8 @@ public class GuiAddShaderOverlaysMixin {
     @Final
     private Minecraft minecraft;
 
-    @Inject(method = "renderCameraOverlays", at = @At(value = "TAIL"))
-    private void addOverlays(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+    @Inject(method = "extractCameraOverlays", at = @At(value = "TAIL"))
+    private void addOverlays(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
         float screenEffectScale = this.minecraft.options.screenEffectScale().get().floatValue();
         Player player = this.minecraft.player;
         if (player != null) {
@@ -70,7 +71,8 @@ public class GuiAddShaderOverlaysMixin {
     }
 
     @Unique
-    private void verdant$renderSappyOverlay(GuiGraphics guiGraphics, float intensity) {
+    @SuppressWarnings("SameParameterValue")
+    private void verdant$renderSappyOverlay(GuiGraphicsExtractor guiGraphics, float intensity) {
         int guiWidth = guiGraphics.guiWidth();
         int guiHeight = guiGraphics.guiHeight();
         float r = 1 * intensity;
@@ -92,7 +94,7 @@ public class GuiAddShaderOverlaysMixin {
     }
 
     @Unique
-    private void verdant$renderBlurredOverlay(GuiGraphics guiGraphics, float intensity) {
+    private void verdant$renderBlurredOverlay(GuiGraphicsExtractor guiGraphics, float intensity) {
         int guiWidth = guiGraphics.guiWidth();
         int guiHeight = guiGraphics.guiHeight();
         float r = 0.4F * intensity;

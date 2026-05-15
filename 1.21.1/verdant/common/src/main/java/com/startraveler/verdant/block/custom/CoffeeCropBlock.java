@@ -96,7 +96,7 @@ public class CoffeeCropBlock extends CropBlock {
         int age = state.getValue(AGE);
         boolean flag = age == MAX_AGE;
         if (age > 1) {
-            int numberOfBerriesDropped = 1 + level.random.nextInt(2);
+            int numberOfBerriesDropped = 1 + level.getRandom().nextInt(2);
             popResource(
                     level,
                     pos,
@@ -108,7 +108,7 @@ public class CoffeeCropBlock extends CropBlock {
                     SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES,
                     SoundSource.BLOCKS,
                     1.0F,
-                    0.8F + level.random.nextFloat() * 0.4F
+                    0.8F + level.getRandom().nextFloat() * 0.4F
             );
             BlockState blockstate = state.setValue(AGE, 0);
             level.setBlock(pos, blockstate, 2);

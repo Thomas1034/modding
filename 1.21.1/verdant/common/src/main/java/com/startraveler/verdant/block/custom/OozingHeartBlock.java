@@ -201,8 +201,8 @@ public class OozingHeartBlock extends BaseEntityBlock {
     }
 
     private void tryAwardExperience(Player player, BlockState state, Level level, BlockPos pos) {
-        if (!player.preventsBlockDrops() && !player.isSpectator() && state.getValue(NATURAL) && level instanceof ServerLevel serverlevel) {
-            this.popExperience(serverlevel, pos, level.random.nextIntBetweenInclusive(20, 24));
+        if (!player.preventsBlockDrops() && !player.isSpectator() && state.getValue(NATURAL) && level instanceof ServerLevel serverLevel) {
+            this.popExperience(serverLevel, pos, level.getRandom().nextIntBetweenInclusive(20, 24));
             Block.popResource(level, pos, new ItemStack(ItemRegistry.BALSAM.get()));
         }
     }

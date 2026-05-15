@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -85,6 +86,6 @@ public class FeaturePlacingItem extends Item {
 
     public ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
         return (player != null && !player.hasInfiniteMaterials()) ? (stack.get(
-                DataComponents.USE_REMAINDER) instanceof UseRemainder(ItemStack convertInto)) ? convertInto : ItemStack.EMPTY : stack;
+                DataComponents.USE_REMAINDER) instanceof UseRemainder(ItemStackTemplate convertInto)) ? convertInto.create() : ItemStack.EMPTY : stack;
     }
 }

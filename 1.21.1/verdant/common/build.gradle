@@ -3,10 +3,6 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
-repositories {
-    mavenLocal()
-}
-
 neoForge {
     neoFormVersion = neo_form_version
     // Automatically enable AccessTransformers if the file exists
@@ -14,13 +10,7 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
 }
-
-sourceSets.main.resources { srcDir file('../common/src/generated/resources').getAbsolutePath() }
 
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
@@ -42,11 +32,32 @@ configurations {
 
 artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
-    for (def dir : sourceSets.main.resources.sourceDirectories.files) {
-        commonResources dir
+    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+}
+
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations.named("$variant") {
+        attributes {
+            attribute(loaderAttribute, 'common')
+        }
     }
 }
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
+        configurations.named("$variant") {
+            attributes {
+                attribute(loaderAttribute, 'common')
+            }
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+}
+
 dependencies {
     implementation "com.startraveler.rootbound:rootbound-common-${minecraft_version}:${rootbound_version}"
 }
-

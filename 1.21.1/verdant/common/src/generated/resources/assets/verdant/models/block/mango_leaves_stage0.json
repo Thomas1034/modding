@@ -1,9 +1,0 @@
-{
-  "parent": "verdant:block/fruiting_leaves",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "all": "verdant:block/mango_leaves_stage0",
-    "overlay": "verdant:block/mango_leaves_stage0_overlay",
-    "particle": "verdant:block/mango_leaves_stage0"
-  }
-}

@@ -22,10 +22,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.ConversionParams;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -81,7 +78,7 @@ public class RootedEntity extends Zombie {
                         this,
                         Player.class,
                         true,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
         this.targetSelector.addGoal(
@@ -90,7 +87,7 @@ public class RootedEntity extends Zombie {
                         this,
                         Zombie.class,
                         true,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
         this.targetSelector.addGoal(
@@ -99,7 +96,7 @@ public class RootedEntity extends Zombie {
                         this,
                         Skeleton.class,
                         true,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
         this.targetSelector.addGoal(
@@ -108,7 +105,7 @@ public class RootedEntity extends Zombie {
                         this,
                         Parched.class,
                         true,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
         this.targetSelector.addGoal(
@@ -117,7 +114,7 @@ public class RootedEntity extends Zombie {
                         this,
                         AbstractVillager.class,
                         false,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
         this.targetSelector.addGoal(
@@ -126,7 +123,7 @@ public class RootedEntity extends Zombie {
                         this,
                         IronGolem.class,
                         true,
-                        (entity, level) -> VerdantIFF.isEnemy(entity)
+                        (entity, _) -> VerdantIFF.isEnemy(entity)
                 )
         );
     }
@@ -218,9 +215,10 @@ public class RootedEntity extends Zombie {
 
     public boolean convertZombieToRooted(ServerLevel level, Zombie zombie) {
         RootedEntity newZombie = zombie.convertTo(
-                EntityTypeRegistry.ROOTED.get(),
-                ConversionParams.single(zombie, true, true),
-                oz -> oz.handleAttributes(level.getCurrentDifficultyAt(oz.blockPosition()).getSpecialMultiplier())
+                EntityTypeRegistry.ROOTED.get(), ConversionParams.single(zombie, true, true), oz -> oz.handleAttributes(
+                        level.getCurrentDifficultyAt(oz.blockPosition()).getSpecialMultiplier(),
+                        EntitySpawnReason.CONVERSION
+                )
 
         );
         return newZombie != null;
@@ -228,7 +226,7 @@ public class RootedEntity extends Zombie {
 
     public boolean convertSkeletonToBogged(@SuppressWarnings("unused") ServerLevel level, AbstractSkeleton skeleton) {
         Bogged newSkeleton = skeleton.convertTo(
-                EntityType.BOGGED, ConversionParams.single(skeleton, true, true), bg -> {
+                EntityType.BOGGED, ConversionParams.single(skeleton, true, true), _ -> {
                 }
         );
         return newSkeleton != null;

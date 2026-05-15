@@ -143,7 +143,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     }
 
     protected static void explode(Level level, BlockPos pos) {
-        if (level instanceof ServerLevel serverlevel) {
+        if (level instanceof ServerLevel serverLevel) {
             Vec3 center = pos.getCenter();
             PrimedTnt bomb = new BlockIgnoringPrimedTnt(level, center.x, center.y, center.z, null);
             bomb.setBlockState(BlockRegistry.BLASTING_BUNCH.get().defaultBlockState());
@@ -152,7 +152,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
             bomb.setFuse(20);
             bomb.setBoundingBox(bomb.getBoundingBox().deflate(0.25, 0.25, 0.25));
             bomb.refreshDimensions();
-            serverlevel.addFreshEntity(bomb);
+            serverLevel.addFreshEntity(bomb);
         }
 
     }
@@ -179,7 +179,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
             state = state.setValue(AGE, MIN_AGE);
             level.setBlockAndUpdate(pos, state);
             if (stack.is(CommonTags.Items.TOOLS_SHEAR) || player.hasEffect(MobEffects.STRENGTH)) {
-                popResource(level, pos, this.harvest.apply(level.random));
+                popResource(level, pos, this.harvest.apply(level.getRandom()));
                 stack.hurtAndBreak(1, player, hand);
                 level.playSound(
                         null,
@@ -187,7 +187,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
                         SoundEvents.SHEARS_SNIP,
                         SoundSource.BLOCKS,
                         1.0F,
-                        0.8F + level.random.nextFloat() * 0.4F
+                        0.8F + level.getRandom().nextFloat() * 0.4F
                 );
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
 
@@ -268,8 +268,7 @@ public class BombFlowerCropBlock extends Block implements BonemealableBlock {
     @Override
     public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         super.stepOn(level, pos, state, entity);
-        if (!entity.getType()
-                .is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && VerdantIFF.isEnemy(entity) && state.getValue(AGE) == MAX_AGE) {
+        if (!entity.is(EntityTypeTags.FALL_DAMAGE_IMMUNE) && VerdantIFF.isEnemy(entity) && state.getValue(AGE) == MAX_AGE) {
             level.setBlockAndUpdate(pos, state.setValue(AGE, MIN_AGE));
             explode(level, pos);
         }

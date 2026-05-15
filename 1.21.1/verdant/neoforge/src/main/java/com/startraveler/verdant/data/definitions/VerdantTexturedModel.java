@@ -4,7 +4,7 @@ import com.startraveler.verdant.Constants;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.world.level.block.Block;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -13,10 +13,6 @@ import java.util.function.Function;
 
 public class VerdantTexturedModel {
 
-    public static final Function<Integer, TexturedModel.Provider> FRUITING_LEAVES = age -> TexturedModel.createDefault(
-            block -> VerdantTextureMapping.fruitingLeaves(TextureMapping.getBlockTexture(block)),
-            VerdantModelTemplates.FRUITING_LEAVES
-    );
     public static final TexturedModel.Provider WALL_SKULL = TexturedModel.createDefault(
             VerdantTextureMapping::skull,
             VerdantModelTemplates.WALL_SKULL
@@ -53,18 +49,15 @@ public class VerdantTexturedModel {
             ModelTemplates.CROSS
     );
 
-    public static final Function<Integer, TexturedModel.Provider> BLASTING_BLOSSOM = (age) -> TexturedModel.createDefault(
-            (block) -> VerdantTextureMapping.bombFlower(block, age),
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BLOSSOM = (age) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombFlower(block, age),
             VerdantModelTemplates.bombFlower(age)
     );
 
-    public static final Function<Integer, TexturedModel.Provider> BLASTING_BUNCH = (bombs) -> TexturedModel.createDefault(
-            (block) -> VerdantTextureMapping.bombPile(block, bombs),
+    public static final Function<Integer, TexturedModel.Provider> BLASTING_BUNCH = (bombs) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.bombPile(block, bombs),
             VerdantModelTemplates.bombPile(bombs)
     );
 
-    public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault(
-            (block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),
+    public static final BiFunction<Integer, Integer, TexturedModel.Provider> HUGE_ASTERISK_FOR_ALOE = (age, height) -> TexturedModel.createDefault((block) -> VerdantTextureMapping.asteriskForAloe(age, height, block),
             VerdantModelTemplates.HUGE_ASTERISK
     );
 
@@ -89,15 +82,30 @@ public class VerdantTexturedModel {
     public static final BiFunction<Integer, Boolean, TexturedModel.Provider> TINTED_TRAP = (stage, isHidden) -> {
 
         if (isHidden && stage == 0) {
-            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_HIDDEN_STAGE0);
+            return TexturedModel.createDefault(
+                    VerdantTextureMapping::tintedTrap,
+                    VerdantModelTemplates.TINTED_TRAP_HIDDEN_STAGE0
+            );
         } else if (stage == 0) {
-            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE0);
+            return TexturedModel.createDefault(
+                    VerdantTextureMapping::tintedTrap,
+                    VerdantModelTemplates.TINTED_TRAP_STAGE0
+            );
         } else if (stage == 1) {
-            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE1);
+            return TexturedModel.createDefault(
+                    VerdantTextureMapping::tintedTrap,
+                    VerdantModelTemplates.TINTED_TRAP_STAGE1
+            );
         } else if (stage == 2) {
-            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE2);
+            return TexturedModel.createDefault(
+                    VerdantTextureMapping::tintedTrap,
+                    VerdantModelTemplates.TINTED_TRAP_STAGE2
+            );
         } else if (stage == 3) {
-            return TexturedModel.createDefault(VerdantTextureMapping::tintedTrap, VerdantModelTemplates.TINTED_TRAP_STAGE3);
+            return TexturedModel.createDefault(
+                    VerdantTextureMapping::tintedTrap,
+                    VerdantModelTemplates.TINTED_TRAP_STAGE3
+            );
         } else {
             throw new IllegalArgumentException("No trap model for stage " + stage);
         }
@@ -107,7 +115,7 @@ public class VerdantTexturedModel {
             (block) -> VerdantTextureMapping.overlaidCubeBlock(
                     block,
                     base,
-                    Constants.id(overlay).withPrefix("block/")
+                    new Material(Constants.id(overlay).withPrefix("block/"))
             ),
             VerdantModelTemplates.OVERLAID_CUBE
     );
@@ -116,8 +124,8 @@ public class VerdantTexturedModel {
             (block) -> VerdantTextureMapping.topOverlaidCubeBlock(
                     block,
                     base,
-                    Constants.id(overlay).withPrefix("block/"),
-                    Constants.id(topOverlay).withPrefix("block/")
+                    new Material(Constants.id(overlay).withPrefix("block/")),
+                    new Material(Constants.id(topOverlay).withPrefix("block/"))
             ), VerdantModelTemplates.TOP_OVERLAID_CUBE
     );
 

@@ -1,9 +1,0 @@
-{
-  "model": {
-    "type": "minecraft:special",
-    "base": "verdant:item/verdant_conduit",
-    "model": {
-      "type": "verdant:item/verdant_conduit"
-    }
-  }
-}

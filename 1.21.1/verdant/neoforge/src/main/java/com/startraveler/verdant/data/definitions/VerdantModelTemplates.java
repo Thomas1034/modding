@@ -218,8 +218,7 @@ public class VerdantModelTemplates {
             VerdantTextureSlot.BASE,
             VerdantTextureSlot.OVERLAY,
             TextureSlot.TOP,
-            TextureSlot.SIDE,
-            TextureSlot.BOTTOM
+            TextureSlot.SIDE
     );
     public static final ModelTemplate FRUITING_LEAVES = ModelTemplates.create(
             "verdant:fruiting_leaves",

@@ -59,34 +59,34 @@ public class BlockRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_DIRT;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_DIRT;
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_MUD;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_MUD;
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_CLAY;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_CLAY;
-    public static final RegistryObject<Block, Block> VERDANT_ROOTED_GRUS;
-    public static final RegistryObject<Block, Block> VERDANT_GRASS_GRUS;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_ROOTED_DIRT;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_GRASS_DIRT;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_ROOTED_MUD;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_GRASS_MUD;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_ROOTED_CLAY;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_GRASS_CLAY;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_ROOTED_GRUS;
+    public static final RegistryObject<Block, SpreadingRootsBlock> VERDANT_GRASS_GRUS;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_COAL_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_COPPER_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_IRON_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_GOLD_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_LAPIS_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_REDSTONE_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_EMERALD_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> DIRT_DIAMOND_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_COAL_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_COPPER_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_IRON_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_GOLD_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_LAPIS_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_REDSTONE_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_EMERALD_ORE;
+    public static final RegistryObject<Block, HoeRemovableItemBlock> GRUS_DIAMOND_ORE;
     public static final RegistryObject<Block, Block> PACKED_GRAVEL;
     public static final RegistryObject<Block, Block> FUSED_GRAVEL;
-    public static final RegistryObject<Block, Block> DIRT_COAL_ORE;
-    public static final RegistryObject<Block, Block> DIRT_COPPER_ORE;
-    public static final RegistryObject<Block, Block> DIRT_IRON_ORE;
-    public static final RegistryObject<Block, Block> DIRT_GOLD_ORE;
-    public static final RegistryObject<Block, Block> DIRT_LAPIS_ORE;
-    public static final RegistryObject<Block, Block> DIRT_REDSTONE_ORE;
-    public static final RegistryObject<Block, Block> DIRT_EMERALD_ORE;
-    public static final RegistryObject<Block, Block> DIRT_DIAMOND_ORE;
-    public static final RegistryObject<Block, Block> GRUS_COAL_ORE;
-    public static final RegistryObject<Block, Block> GRUS_COPPER_ORE;
-    public static final RegistryObject<Block, Block> GRUS_IRON_ORE;
-    public static final RegistryObject<Block, Block> GRUS_GOLD_ORE;
-    public static final RegistryObject<Block, Block> GRUS_LAPIS_ORE;
-    public static final RegistryObject<Block, Block> GRUS_REDSTONE_ORE;
-    public static final RegistryObject<Block, Block> GRUS_EMERALD_ORE;
-    public static final RegistryObject<Block, Block> GRUS_DIAMOND_ORE;
-    public static final RegistryObject<Block, Block> STRANGLER_VINE;
-    public static final RegistryObject<Block, Block> LEAFY_STRANGLER_VINE;
+    public static final RegistryObject<Block, StranglerVineBlock> STRANGLER_VINE;
+    public static final RegistryObject<Block, LeafyStranglerVineBlock> LEAFY_STRANGLER_VINE;
     public static final RegistryObject<Block, Block> STRANGLER_LEAVES;
     public static final RegistryObject<Block, Block> POISON_STRANGLER_LEAVES;
     public static final RegistryObject<Block, Block> THORNY_STRANGLER_LEAVES;
@@ -136,24 +136,24 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> BITTER_CASSAVA_CROP;
     public static final RegistryObject<Block, Block> WILD_CASSAVA;
     public static final RegistryObject<Block, Block> POTTED_WILD_CASSAVA;
-    public static final RegistryObject<Block, Block> UBE_CAKE;
-    public static final RegistryObject<Block, Block> CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> WHITE_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> ORANGE_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> MAGENTA_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> LIGHT_BLUE_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> YELLOW_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> LIME_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> PINK_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> GRAY_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> LIGHT_GRAY_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> CYAN_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> PURPLE_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> BLUE_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> BROWN_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> GREEN_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> RED_CANDLE_UBE_CAKE;
-    public static final RegistryObject<Block, Block> BLACK_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCakeBlock> UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> WHITE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> ORANGE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> MAGENTA_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> LIGHT_BLUE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> YELLOW_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> LIME_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> PINK_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> GRAY_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> LIGHT_GRAY_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> CYAN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> PURPLE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> BLUE_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> BROWN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> GREEN_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> RED_CANDLE_UBE_CAKE;
+    public static final RegistryObject<Block, ExtensibleCandleCakeBlock> BLACK_CANDLE_UBE_CAKE;
     public static final RegistryObject<Block, Block> UBE_CROP;
     public static final RegistryObject<Block, Block> WILD_UBE;
     public static final RegistryObject<Block, Block> POTTED_WILD_UBE;
@@ -165,12 +165,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block, Block> RUE;
     public static final RegistryObject<Block, Block> POTTED_RUE;
     public static final RegistryObject<Block, Block> PAPER_FRAME;
-    public static final RegistryObject<Block, Block> ROPE_LADDER;
-    public static final RegistryObject<Block, Block> SMALL_ALOE;
-    public static final RegistryObject<Block, Block> LARGE_ALOE;
-    /* TODO
-    public static final RegistryObject<Block, Block> HUGE_ALOE;
-     */
+    public static final RegistryObject<Block, HangingLadderBlock> ROPE_LADDER;
+    public static final RegistryObject<Block, AloeCropBlock> SMALL_ALOE;
+    public static final RegistryObject<Block, AloeCropBlock> LARGE_ALOE;
     public static final RegistryObject<Block, Block> SCREE;
     public static final RegistryObject<Block, Block> PACKED_SCREE;
     public static final RegistryObject<Block, Block> FUSED_SCREE;
@@ -298,7 +295,7 @@ public class BlockRegistry {
                 "dirt_coal_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_coal_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -306,7 +303,7 @@ public class BlockRegistry {
                 "dirt_copper_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_copper_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -314,7 +311,7 @@ public class BlockRegistry {
                 "dirt_iron_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_iron_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -322,7 +319,7 @@ public class BlockRegistry {
                 "dirt_gold_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_gold_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -330,15 +327,15 @@ public class BlockRegistry {
                 "dirt_lapis_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_lapis_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         DIRT_REDSTONE_ORE = registerBlockWithItem(
                 "dirt_redstone_ore", () -> new HoeRemovableItemBlock(
-                        properties(Blocks.COARSE_DIRT, "dirt_redstone_ore").lightLevel((state) -> 2),
+                        properties(Blocks.COARSE_DIRT, "dirt_redstone_ore").lightLevel((_) -> 2),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -346,7 +343,7 @@ public class BlockRegistry {
                 "dirt_emerald_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_emerald_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -354,7 +351,7 @@ public class BlockRegistry {
                 "dirt_diamond_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "dirt_diamond_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState(),
+                        (_) -> Blocks.DIRT.defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -362,7 +359,7 @@ public class BlockRegistry {
                 "grus_coal_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_coal_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COAL_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -370,7 +367,7 @@ public class BlockRegistry {
                 "grus_copper_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_copper_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_COPPER_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -378,7 +375,7 @@ public class BlockRegistry {
                 "grus_iron_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_iron_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_IRON_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -386,7 +383,7 @@ public class BlockRegistry {
                 "grus_gold_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_gold_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_GOLD_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -394,15 +391,15 @@ public class BlockRegistry {
                 "grus_lapis_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_lapis_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_LAPIS_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
         GRUS_REDSTONE_ORE = registerBlockWithItem(
                 "grus_redstone_ore", () -> new HoeRemovableItemBlock(
-                        properties(Blocks.COARSE_DIRT, "grus_redstone_ore").lightLevel((state) -> 2),
+                        properties(Blocks.COARSE_DIRT, "grus_redstone_ore").lightLevel((_) -> 2),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_REDSTONE_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -410,7 +407,7 @@ public class BlockRegistry {
                 "grus_emerald_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_emerald_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_EMERALD_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -418,7 +415,7 @@ public class BlockRegistry {
                 "grus_diamond_ore", () -> new HoeRemovableItemBlock(
                         properties(Blocks.COARSE_DIRT, "grus_diamond_ore"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.DIRT_DIAMOND_ORE_POP),
-                        (context) -> BlockRegistry.GRUS.get().defaultBlockState(),
+                        (_) -> BlockRegistry.GRUS.get().defaultBlockState(),
                         (r) -> r.nextIntBetweenInclusive(1, 2)
                 )
         );
@@ -466,7 +463,7 @@ public class BlockRegistry {
                 () -> new FragileBlock(properties(Blocks.DARK_OAK_PLANKS, "rotten_wood").instabreak()
                         .ignitedByLava()
                         .noOcclusion()
-                        .isRedstoneConductor((s, l, p) -> false)
+                        .isRedstoneConductor((_, _, _) -> false)
                         .mapColor(MapColor.TERRACOTTA_BROWN)
                         .strength(0, 0)
                         .randomTicks())
@@ -502,7 +499,7 @@ public class BlockRegistry {
         FISH_TRAP = registerBlockWithItem(
                 "fish_trap",
                 () -> new FishTrapBlock(properties(Blocks.OAK_PLANKS, "fish_trap").noOcclusion()
-                        .isViewBlocking((s, l, p) -> false))
+                        .isViewBlocking((_, _, _) -> false))
         );
         ANTIGORITE = registerBlockWithItem("antigorite", () -> new Block(properties(Blocks.STONE, "antigorite")));
         ROPE = registerBlockWithoutItem(
@@ -658,7 +655,7 @@ public class BlockRegistry {
                 () -> new FrameBlock(properties(
                         Blocks.OAK_FENCE,
                         "frame_block"
-                ).isViewBlocking((state, level, pos) -> false)
+                ).isViewBlocking((_, _, _) -> false)
                         .noOcclusion()
                         .instabreak())
         );
@@ -668,7 +665,7 @@ public class BlockRegistry {
                 () -> new FragileFrameBlock(properties(
                         Blocks.OAK_FENCE,
                         "charred_frame_block"
-                ).isViewBlocking((state, level, pos) -> false)
+                ).isViewBlocking((_, _, _) -> false)
                         .noOcclusion()
                         .instabreak())
         );
@@ -680,7 +677,7 @@ public class BlockRegistry {
 
         IMBUED_HEARTWOOD_LOG = registerBlockWithItem(
                 "imbued_heartwood_log", () -> new InfestedRotatedPillarBlock(
-                        properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f).lightLevel(state -> 2),
+                        properties(Blocks.OAK_LOG, "imbued_heartwood_log").strength(4.0f).lightLevel(_ -> 2),
                         EntityTypeRegistry.TIMBERMITE::get
                 )
         );
@@ -689,7 +686,7 @@ public class BlockRegistry {
                 "cassava_rooted_dirt", () -> new HoeRemovableItemBlock(
                         properties(Blocks.ROOTED_DIRT, "cassava_rooted_dirt"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.CASSAVA_ROOTED_DIRT_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (_) -> Blocks.DIRT.defaultBlockState()
                 )
         );
 
@@ -697,7 +694,7 @@ public class BlockRegistry {
                 "bitter_cassava_rooted_dirt", () -> new HoeRemovableItemBlock(
                         properties(Blocks.ROOTED_DIRT, "bitter_cassava_rooted_dirt"),
                         ResourceKey.create(Registries.LOOT_TABLE, LootLocations.BITTER_CASSAVA_ROOTED_DIRT_POP),
-                        (context) -> Blocks.DIRT.defaultBlockState()
+                        (_) -> Blocks.DIRT.defaultBlockState()
                 )
         );
 
@@ -950,7 +947,7 @@ public class BlockRegistry {
                 () -> new RotatedPillarBlock(properties(
                         Blocks.OAK_FENCE,
                         "paper_frame"
-                ).isViewBlocking((state, level, pos) -> false)
+                ).isViewBlocking((_, _, _) -> false)
                         .noOcclusion()
                         .instabreak()
                         .mapColor(MapColor.TERRACOTTA_WHITE))
@@ -963,20 +960,20 @@ public class BlockRegistry {
 
         SMALL_ALOE = registerBlockWithoutItem(
                 "small_aloe", () -> new AloeCropBlock(
-                        (state, level, pos) -> level.setBlockAndUpdate(
+                        (_, level, pos) -> level.setBlockAndUpdate(
                                 pos,
                                 BlockRegistry.LARGE_ALOE.get().defaultBlockState()
                         ),
                         (rand) -> new ItemStack(ItemRegistry.YOUNG_ALOE_LEAF.get(), rand.nextInt(0, 2)),
                         ItemRegistry.ALOE_PUP,
-                        i -> 0f,
+                        _ -> 0f,
                         properties(Blocks.SWEET_BERRY_BUSH, "small_aloe")
                 )
         );
 
         LARGE_ALOE = registerBlockWithoutItem(
                 "large_aloe", () -> new AloeCropBlock(
-                        (state, level, pos) -> {
+                        (_, _, _) -> {
                         },
                         (rand) -> new ItemStack(ItemRegistry.ALOE_LEAF.get(), rand.nextInt(0, 2)),
                         ItemRegistry.ALOE_PUP,
@@ -1042,7 +1039,7 @@ public class BlockRegistry {
                 "blasting_blossom",
                 () -> new BombFlowerCropBlock(
                         properties(Blocks.MELON, "blasting_blossom").randomTicks(),
-                        rand -> new ItemStack(ItemRegistry.BLASTING_BLOOM.get())
+                        _ -> new ItemStack(ItemRegistry.BLASTING_BLOOM.get())
                 )
         );
 
@@ -1151,7 +1148,7 @@ public class BlockRegistry {
         SAP_BLOCK = registerBlockWithItem(
                 "sap_block",
                 () -> Services.SAP_BLOCK_PROVIDER.getSapBlock(properties("sap_block").noOcclusion()
-                        .lightLevel(state -> 2)
+                        .lightLevel(_ -> 2)
                         .noCollision()
                         .mapColor(MapColor.COLOR_LIGHT_GREEN)
                         .strength(1.5F)
@@ -1164,7 +1161,7 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
                         Blocks.RESIN_BLOCK,
                         "verdant_resin_block"
-                ).lightLevel(state -> 2)
+                ).lightLevel(_ -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
@@ -1173,14 +1170,14 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
                         Blocks.RESIN_BRICKS,
                         "verdant_resin_bricks"
-                ).lightLevel(state -> 2)
+                ).lightLevel(_ -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
         VERDANT_RESIN_BRICK_STAIRS = registerBlockWithItem(
                 "verdant_resin_brick_stairs", () -> Services.RESIN_BLOCK_PROVIDER.getResinStair(
                         VERDANT_RESIN_BRICKS,
-                        properties(Blocks.RESIN_BRICK_STAIRS, "verdant_resin_brick_stairs").lightLevel(state -> 2)
+                        properties(Blocks.RESIN_BRICK_STAIRS, "verdant_resin_brick_stairs").lightLevel(_ -> 2)
                                 .mapColor(MapColor.COLOR_LIGHT_GREEN)
                 )
         );
@@ -1190,7 +1187,7 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinSlab(properties(
                         Blocks.RESIN_BRICK_SLAB,
                         "verdant_resin_brick_slab"
-                ).lightLevel(state -> 2)
+                ).lightLevel(_ -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
@@ -1199,7 +1196,7 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinWall(properties(
                         Blocks.RESIN_BRICK_WALL,
                         "verdant_resin_brick_wall"
-                ).lightLevel(state -> 2)
+                ).lightLevel(_ -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
@@ -1208,7 +1205,7 @@ public class BlockRegistry {
                 () -> Services.RESIN_BLOCK_PROVIDER.getResinBlock(properties(
                         Blocks.CHISELED_RESIN_BRICKS,
                         "chiseled_verdant_resin_bricks"
-                ).lightLevel(state -> 2)
+                ).lightLevel(_ -> 2)
                         .mapColor(MapColor.COLOR_LIGHT_GREEN))
         );
 
@@ -1249,7 +1246,7 @@ public class BlockRegistry {
 
         SAP_LANTERN = registerBlockWithItem(
                 "sap_lantern",
-                () -> new LanternBlock(properties(Blocks.LANTERN, "sap_lantern").lightLevel(state -> 15))
+                () -> new LanternBlock(properties(Blocks.LANTERN, "sap_lantern").lightLevel(_ -> 15))
         );
 
         SAP_TORCH = registerBlockWithoutItem(
@@ -1260,7 +1257,7 @@ public class BlockRegistry {
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
-                                .lightLevel(state -> 15)
+                                .lightLevel(_ -> 15)
                 )
         );
 
@@ -1273,13 +1270,13 @@ public class BlockRegistry {
                                 .instabreak()
                                 .sound(SoundType.WOOD)
                                 .pushReaction(PushReaction.DESTROY)
-                                .lightLevel(state -> 15)
+                                .lightLevel(_ -> 15)
                 )
         );
 
         SAP_FIRE = registerBlockWithoutItem(
                 "sap_fire",
-                () -> new SapFireBlock(properties(Blocks.FIRE, "sap_fire").lightLevel(state -> 15))
+                () -> new SapFireBlock(properties(Blocks.FIRE, "sap_fire").lightLevel(_ -> 15))
         );
 
 

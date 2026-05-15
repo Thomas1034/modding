@@ -85,9 +85,9 @@ public class SpreadingCropBlock extends CropBlock {
     // TODO
     protected BlockState growAndSpread(Level level, BlockPos pos, BlockState state) {
         BlockState toReturn = state;
-        int xOffset = level.random.nextIntBetweenInclusive(-1, 1);
+        int xOffset = level.getRandom().nextIntBetweenInclusive(-1, 1);
         int yOffset = 0;
-        int zOffset = level.random.nextIntBetweenInclusive(-1, 1);
+        int zOffset = level.getRandom().nextIntBetweenInclusive(-1, 1);
 
         int thisAge = this.getAge(state);
         if (!(this.getMaxAge() == thisAge)) {

@@ -113,10 +113,10 @@ public class SkullSpiderEntity extends Spider implements RangedAttackMob {
         double d2 = target.getZ() - this.getZ();
         double d3 = Math.sqrt(d0 * d0 + d2 * d2) * (double) 0.15F;
         Level var12 = this.level();
-        if (var12 instanceof ServerLevel serverlevel) {
+        if (var12 instanceof ServerLevel serverLevel) {
             Projectile.spawnProjectileUsingShoot(
                     projectile,
-                    serverlevel,
+                    serverLevel,
                     ItemStack.EMPTY,
                     d0,
                     d1 + d3,

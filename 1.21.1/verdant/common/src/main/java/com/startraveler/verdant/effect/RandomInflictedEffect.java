@@ -64,7 +64,7 @@ public class RandomInflictedEffect extends MobEffect {
         if (entity.getRandom().nextFloat() < effectChance) {
 
             // Get a random effect holder.
-            WeightedEffectHolder holder = effectGetter.apply(level.random);
+            WeightedEffectHolder holder = effectGetter.apply(level.getRandom());
             MobEffectInstance instance = holder.get(amplifier);
             if (instance != null) {
                 entity.addEffect(instance);

@@ -19,6 +19,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
@@ -43,7 +44,7 @@ public class VerdantAdvancementProvider {
         // or pass in the values directly. If values are passed in directly, a DisplayInfo object will be created for you.
         builder.display(
                 // The advancement icon. Can be an ItemStack or an ItemLike.
-                new ItemStack(BlockRegistry.VERDANT_ROOTED_DIRT.get()),
+                new ItemStackTemplate(BlockRegistry.VERDANT_ROOTED_DIRT.get().asItem()),
                 // The advancement title and description. Don't forget to add translations for these!
                 Component.translatable("advancements.verdant.root.title"),
                 Component.translatable("advancements.verdant.root.description"),
@@ -70,7 +71,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(Blocks.MOSSY_STONE_BRICKS),
+                new ItemStackTemplate(Blocks.MOSSY_STONE_BRICKS.asItem()),
                 Component.translatable("advancements.verdant.petrichor.title"),
                 Component.translatable("advancements.verdant.petrichor.description"),
                 null,
@@ -95,7 +96,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.HEART_OF_THE_FOREST.get()),
+                new ItemStackTemplate(ItemRegistry.HEART_OF_THE_FOREST.get()),
                 Component.translatable("advancements.verdant.overgrowth.title"),
                 Component.translatable("advancements.verdant.overgrowth.description"),
                 null,
@@ -122,7 +123,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.VERDANT_CONDUIT.get()),
+                new ItemStackTemplate(BlockRegistry.VERDANT_CONDUIT.get().asItem()),
                 Component.translatable("advancements.verdant.museum.title"),
                 Component.translatable("advancements.verdant.museum.description"),
                 null,
@@ -144,7 +145,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.ROPE.get()),
+                new  ItemStackTemplate(ItemRegistry.ROPE.get()),
                 Component.translatable("advancements.verdant.craft_rope.title"),
                 Component.translatable("advancements.verdant.craft_rope.description"),
                 null,
@@ -168,7 +169,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.ROPE_COIL.get()),
+                new  ItemStackTemplate(ItemRegistry.ROPE_COIL.get()),
                 Component.translatable("advancements.verdant.craft_rope_coil.title"),
                 Component.translatable("advancements.verdant.craft_rope_coil.description"),
                 null,
@@ -194,7 +195,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.SACK.get()),
+                new  ItemStackTemplate(ItemRegistry.SACK.get()),
                 Component.translatable("advancements.verdant.craft_sack.title"),
                 Component.translatable("advancements.verdant.craft_sack.description"),
                 null,
@@ -220,7 +221,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.SACK.get()),
+                new  ItemStackTemplate(ItemRegistry.SACK.get()),
                 Component.translatable("advancements.verdant.many_sacks.title"),
                 Component.translatable("advancements.verdant.many_sacks.description"),
                 null,
@@ -246,7 +247,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.SACK.get()),
+                new  ItemStackTemplate(ItemRegistry.SACK.get()),
                 Component.translatable("advancements.verdant.too_many_sacks.title"),
                 Component.translatable("advancements.verdant.too_many_sacks.description"),
                 null,
@@ -273,7 +274,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.VERDANT_GRASS_DIRT.get()),
+                new  ItemStackTemplate(BlockRegistry.VERDANT_GRASS_DIRT.get().asItem()),
                 Component.translatable("advancements.verdant.stand_on_verdant_ground.title"),
                 Component.translatable("advancements.verdant.stand_on_verdant_ground.description"),
                 null,
@@ -302,7 +303,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(WoodSets.STRANGLER.getLog().get()),
+                new  ItemStackTemplate(WoodSets.STRANGLER.getLog().get().asItem()),
                 Component.translatable("advancements.verdant.inside_tree.title"),
                 Component.translatable("advancements.verdant.inside_tree.description"),
                 null,
@@ -328,7 +329,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.STINKING_BLOSSOM.get()),
+                new  ItemStackTemplate(BlockRegistry.STINKING_BLOSSOM.get().asItem()),
                 Component.translatable("advancements.verdant.stinking_blossom.title"),
                 Component.translatable("advancements.verdant.stinking_blossom.description"),
                 null,
@@ -358,7 +359,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.THORN_BUSH.get()),
+                new  ItemStackTemplate(BlockRegistry.THORN_BUSH.get().asItem()),
                 Component.translatable("advancements.verdant.thorn_bush.title"),
                 Component.translatable("advancements.verdant.thorn_bush.description"),
                 null,
@@ -394,7 +395,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.SNAPLEAF.get()),
+                new  ItemStackTemplate(BlockRegistry.SNAPLEAF.get().asItem()),
                 Component.translatable("advancements.verdant.trap_plant.title"),
                 Component.translatable("advancements.verdant.trap_plant.description"),
                 null,
@@ -421,7 +422,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.POISON_IVY.get()),
+                new  ItemStackTemplate(BlockRegistry.POISON_IVY.get().asItem()),
                 Component.translatable("advancements.verdant.poison_ivy.title"),
                 Component.translatable("advancements.verdant.poison_ivy.description"),
                 null,
@@ -496,7 +497,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.TOXIC_ASH.get()),
+                new  ItemStackTemplate(ItemRegistry.TOXIC_ASH.get()),
                 Component.translatable("advancements.verdant.toxic_ash.title"),
                 Component.translatable("advancements.verdant.toxic_ash.description"),
                 null,
@@ -518,7 +519,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.TOXIC_ASH_BLOCK.get()),
+                new  ItemStackTemplate(BlockRegistry.TOXIC_ASH_BLOCK.get().asItem()),
                 Component.translatable("advancements.verdant.toxic_fishing.title"),
                 Component.translatable("advancements.verdant.toxic_fishing.description"),
                 null,
@@ -548,7 +549,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.TOXIC_SOLUTION_BUCKET.get()),
+                new  ItemStackTemplate(ItemRegistry.TOXIC_SOLUTION_BUCKET.get()),
                 Component.translatable("advancements.verdant.toxic_solution.title"),
                 Component.translatable("advancements.verdant.toxic_solution.description"),
                 null,
@@ -570,7 +571,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(WoodSets.HEARTWOOD.getLog().get()),
+                new  ItemStackTemplate(WoodSets.HEARTWOOD.getLog().get().asItem()),
                 Component.translatable("advancements.verdant.strong_trees.title"),
                 Component.translatable("advancements.verdant.strong_trees.description"),
                 null,
@@ -590,7 +591,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.DIRT_DIAMOND_ORE.get()),
+                new  ItemStackTemplate(BlockRegistry.DIRT_DIAMOND_ORE.get().asItem()),
                 Component.translatable("advancements.verdant.deep_roots.title"),
                 Component.translatable("advancements.verdant.deep_roots.description"),
                 null,
@@ -621,7 +622,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(Items.DIAMOND_AXE),
+                new  ItemStackTemplate(Items.DIAMOND_AXE),
                 Component.translatable("advancements.verdant.rip_them_all_down.title"),
                 Component.translatable("advancements.verdant.rip_them_all_down.description"),
                 null,
@@ -647,7 +648,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.RANCID_SLIME.get()),
+                new  ItemStackTemplate(ItemRegistry.RANCID_SLIME.get()),
                 Component.translatable("advancements.verdant.inedible.title"),
                 Component.translatable("advancements.verdant.inedible.description"),
                 null,
@@ -680,7 +681,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(ItemRegistry.ALOE_LEAF.get()),
+                new  ItemStackTemplate(ItemRegistry.ALOE_LEAF.get()),
                 Component.translatable("advancements.verdant.aloe.title"),
                 Component.translatable("advancements.verdant.aloe.description"),
                 null,
@@ -718,7 +719,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.WOODEN_SPIKES.get()),
+                new  ItemStackTemplate(BlockRegistry.WOODEN_SPIKES.get().asItem()),
                 Component.translatable("advancements.verdant.wooden_spikes.title"),
                 Component.translatable("advancements.verdant.wooden_spikes.description"),
                 null,
@@ -751,7 +752,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.IRON_SPIKES.get()),
+                new  ItemStackTemplate(BlockRegistry.IRON_SPIKES.get().asItem()),
                 Component.translatable("advancements.verdant.iron_spikes.title"),
                 Component.translatable("advancements.verdant.iron_spikes.description"),
                 null,
@@ -778,7 +779,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.WOODEN_TRAP.get()),
+                new  ItemStackTemplate(BlockRegistry.WOODEN_TRAP.get().asItem()),
                 Component.translatable("advancements.verdant.wooden_trap.title"),
                 Component.translatable("advancements.verdant.wooden_trap.description"),
                 null,
@@ -804,7 +805,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.IRON_TRAP.get()),
+                new  ItemStackTemplate(BlockRegistry.IRON_TRAP.get().asItem()),
                 Component.translatable("advancements.verdant.iron_trap.title"),
                 Component.translatable("advancements.verdant.iron_trap.description"),
                 null,
@@ -831,7 +832,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.GOLDEN_TRAP.get()),
+                new  ItemStackTemplate(BlockRegistry.GOLDEN_TRAP.get().asItem()),
                 Component.translatable("advancements.verdant.golden_trap.title"),
                 Component.translatable("advancements.verdant.golden_trap.description"),
                 null,
@@ -858,7 +859,7 @@ public class VerdantAdvancementProvider {
 
         builder = Advancement.Builder.advancement();
         builder.display(
-                new ItemStack(BlockRegistry.SAP_LANTERN.get()),
+                new  ItemStackTemplate(BlockRegistry.SAP_LANTERN.get().asItem()),
                 Component.translatable("advancements.verdant.fireflies.title"),
                 Component.translatable("advancements.verdant.fireflies.description"),
                 null,

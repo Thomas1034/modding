@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "verdant:block/strangler_planks",
-    "side": "verdant:block/strangler_planks",
-    "top": "verdant:block/strangler_planks"
-  }
-}

@@ -149,8 +149,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
                 }
             }
         }
-
-        ((FireBlock) Blocks.FIRE).setFlammable(this, 60, 20);
     }
 
     public static boolean canGrowToFace(Level level, BlockPos pos, Direction direction) {
@@ -174,7 +172,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         if (!validSites.isEmpty()) {
 
             // Pick a random location from the list.
-            BlockPos site = validSites.get(level.random.nextInt(validSites.size()));
+            BlockPos site = validSites.get(level.getRandom().nextInt(validSites.size()));
 
             placeVine(level, site);
         }
@@ -382,7 +380,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         if (canConsume && !shouldDecayToAir) {
 
             for (BlockPos toGrow : positionsToGrow) {
-                level.setBlockAndUpdate(toGrow, this.log.apply(level.random).defaultBlockState());
+                level.setBlockAndUpdate(toGrow, this.log.apply(level.getRandom()).defaultBlockState());
             }
 
             // Add particle and sound effect.
@@ -390,11 +388,11 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
             // Save the host state.
             // If the host is verdant, mature it.
             if (host.is(WoodSets.STRANGLER.getLogs())) {
-                level.setBlockAndUpdate(pos, this.heartwood.apply(level.random).defaultBlockState());
+                level.setBlockAndUpdate(pos, this.heartwood.apply(level.getRandom()).defaultBlockState());
             }
             // Otherwise rot it.
             else {
-                level.setBlockAndUpdate(pos, this.rottenWood.apply(level.random).defaultBlockState());
+                level.setBlockAndUpdate(pos, this.rottenWood.apply(level.getRandom()).defaultBlockState());
             }
         } else if (shouldDecayToAir) {
             level.destroyBlock(pos, false);
@@ -451,7 +449,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
             } else if (maturity == MAX_AGE && oppositeMaturity == MAX_AGE) {
                 // If it's fully grown on both sides, grow to a log.
-                state = this.log.apply(level.random)
+                state = this.log.apply(level.getRandom())
                         .defaultBlockState()
                         .trySetValue(RotatedPillarBlock.AXIS, d.getAxis());
                 grownIntoLog = true;
@@ -508,7 +506,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
                             */
                         if ((localState.is(BlockTags.REPLACEABLE) || localState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) && !localState.is(
                                 VerdantTags.Blocks.STRANGLER_VINES)) {
-                            Block leaves = this.leaves.apply(level.random);
+                            Block leaves = this.leaves.apply(level.getRandom());
                             level.setBlockAndUpdate(localPos, leaves.defaultBlockState());
                             level.scheduleTick(localPos, leaves, 1);
                         }

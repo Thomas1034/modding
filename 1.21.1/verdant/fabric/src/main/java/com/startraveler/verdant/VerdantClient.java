@@ -14,7 +14,9 @@ import com.startraveler.verdant.client.renderer.*;
 import com.startraveler.verdant.client.screen.FishTrapScreen;
 import com.startraveler.verdant.registry.*;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -22,9 +24,7 @@ import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
@@ -33,17 +33,9 @@ import net.minecraft.client.renderer.item.properties.select.SelectItemModelPrope
 import net.minecraft.client.renderer.special.SpecialModelRenderers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class VerdantClient implements ClientModInitializer {
 
@@ -52,154 +44,11 @@ public class VerdantClient implements ClientModInitializer {
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void onInitializeClient() {
 
-        markCutoutMipped();
-        // Mark some blocks as cutout.
-        markCutout(
-                BlockRegistry.GRUS_COAL_ORE,
-                BlockRegistry.GRUS_COPPER_ORE,
-                BlockRegistry.GRUS_DIAMOND_ORE,
-                BlockRegistry.GRUS_EMERALD_ORE,
-                BlockRegistry.GRUS_GOLD_ORE,
-                BlockRegistry.GRUS_IRON_ORE,
-                BlockRegistry.GRUS_LAPIS_ORE,
-                BlockRegistry.GRUS_REDSTONE_ORE,
-                BlockRegistry.DIRT_COAL_ORE,
-                BlockRegistry.DIRT_COPPER_ORE,
-                BlockRegistry.DIRT_DIAMOND_ORE,
-                BlockRegistry.DIRT_EMERALD_ORE,
-                BlockRegistry.DIRT_GOLD_ORE,
-                BlockRegistry.DIRT_IRON_ORE,
-                BlockRegistry.DIRT_LAPIS_ORE,
-                BlockRegistry.DIRT_REDSTONE_ORE,
-                BlockRegistry.VERDANT_ROOTED_DIRT,
-                BlockRegistry.VERDANT_GRASS_DIRT,
-                BlockRegistry.VERDANT_ROOTED_MUD,
-                BlockRegistry.VERDANT_GRASS_MUD,
-                BlockRegistry.VERDANT_ROOTED_CLAY,
-                BlockRegistry.VERDANT_GRASS_CLAY,
-                BlockRegistry.STRANGLER_VINE,
-                BlockRegistry.LEAFY_STRANGLER_VINE,
-                BlockRegistry.ROTTEN_WOOD,
-                BlockRegistry.POISON_IVY,
-                BlockRegistry.POISON_IVY_PLANT,
-                BlockRegistry.STRANGLER_TENDRIL,
-                BlockRegistry.STRANGLER_TENDRIL_PLANT,
-                BlockRegistry.FISH_TRAP,
-                BlockRegistry.ROPE,
-                BlockRegistry.ROPE_HOOK,
-                BlockRegistry.TWISTED_ROPE,
-                BlockRegistry.TWISTED_ROPE_HOOK,
-                BlockRegistry.THORN_BUSH,
-                BlockRegistry.BUSH,
-                BlockRegistry.POTTED_THORN_BUSH,
-                BlockRegistry.POTTED_BUSH,
-                BlockRegistry.TALL_THORN_BUSH,
-                BlockRegistry.TALL_BUSH,
-                BlockRegistry.STINKING_BLOSSOM,
-                BlockRegistry.WILD_COFFEE,
-                BlockRegistry.POTTED_WILD_COFFEE,
-                BlockRegistry.COFFEE_CROP,
-                BlockRegistry.POTTED_COFFEE_CROP,
-                BlockRegistry.BLEEDING_HEART,
-                BlockRegistry.POTTED_BLEEDING_HEART,
-                BlockRegistry.TIGER_LILY,
-                BlockRegistry.POTTED_TIGER_LILY,
-                BlockRegistry.DROWNED_HEMLOCK,
-                BlockRegistry.DROWNED_HEMLOCK_PLANT,
-                BlockRegistry.CHARRED_FRAME_BLOCK,
-                BlockRegistry.FRAME_BLOCK,
-                BlockRegistry.WOODEN_SPIKES,
-                BlockRegistry.COPPER_SPIKES,
-                BlockRegistry.IRON_SPIKES,
-                BlockRegistry.GOLDEN_SPIKES,
-                BlockRegistry.WOODEN_TRAP,
-                BlockRegistry.COPPER_TRAP,
-                BlockRegistry.IRON_TRAP,
-                BlockRegistry.GOLDEN_TRAP,
-                BlockRegistry.SNAPLEAF,
-                BlockRegistry.CASSAVA_CROP,
-                BlockRegistry.BITTER_CASSAVA_CROP,
-                BlockRegistry.WILD_CASSAVA,
-                BlockRegistry.POTTED_WILD_CASSAVA,
-                BlockRegistry.CASSAVA_ROOTED_DIRT,
-                BlockRegistry.BITTER_CASSAVA_ROOTED_DIRT,
-                BlockRegistry.WILD_UBE,
-                BlockRegistry.POTTED_WILD_UBE,
-                BlockRegistry.UBE_CROP,
-                BlockRegistry.DEAD_GRASS,
-                BlockRegistry.RUE,
-                BlockRegistry.POTTED_RUE,
-                BlockRegistry.SMALL_ALOE,
-                BlockRegistry.LARGE_ALOE,
-                BlockRegistry.BLASTING_BLOSSOM,
-                BlockRegistry.BLASTING_BUNCH,
-                BlockRegistry.BLUEWEED,
-                BlockRegistry.POTTED_BLUEWEED,
-                BlockRegistry.VERDANT_CONDUIT,
-                BlockRegistry.MANGO_SAPLING,
-                BlockRegistry.POTTED_MANGO_SAPLING,
-                BlockRegistry.OVERGROWN_SPAWNER,
-                BlockRegistry.SAP_LANTERN
-        );
-        markTranslucent(BlockRegistry.SAP_BLOCK, BlockRegistry.SAP_FIRE);
-
-
-        ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
-        );
-        ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : FoliageColor.FOLIAGE_DEFAULT,
-                BlockRegistry.STRANGLER_LEAVES.get(),
-                BlockRegistry.WILTED_STRANGLER_LEAVES.get(),
-                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
-                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
-                BlockRegistry.LEAFY_STRANGLER_VINE.get()
-        );
-
-        ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockState.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER ? blockPos.below() : blockPos
-                ) : GrassColor.getDefaultColor()) : -1,
-                BlockRegistry.TALL_BUSH.get(),
-                BlockRegistry.TALL_THORN_BUSH.get()
-        );
-
-        ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 && !blockState.getValueOrElse(
-                        BlockStateProperties.SNOWY,
-                        false
-                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : GrassColor.getDefaultColor()) : -1,
-                BlockRegistry.VERDANT_GRASS_MUD.get(),
-                BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_GRASS_DIRT.get(),
-                BlockRegistry.VERDANT_GRASS_GRUS.get()
-        );
-
-        ColorProviderRegistry.BLOCK.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? ((blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : GrassColor.getDefaultColor())) : -1,
-                BlockRegistry.BUSH.get(),
-                BlockRegistry.POTTED_BUSH.get(),
-                BlockRegistry.THORN_BUSH.get(),
-                BlockRegistry.POTTED_THORN_BUSH.get(),
-                BlockRegistry.SNAPLEAF.get()
-        );
+        VerdantBlockColorRegistry.init(BlockColorRegistry::register);
 
         MenuScreens.register(MenuRegistry.FISH_TRAP_MENU.get(), FishTrapScreen::new);
 
-        EntityModelLayerRegistry.registerModelLayer(
+        ModelLayerRegistry.registerModelLayer(
                 VerdantModelLayers.SKULL_SPIDER,
                 () -> SkullSpiderModel.createBodyLayer().apply(MeshTransformer.scaling(0.7F))
         );
@@ -212,16 +61,13 @@ public class VerdantClient implements ClientModInitializer {
         ArmorModelSet<LayerDefinition> babyArmorSpikesModelSet = armorSpikesModelSet.map(layerDefinition -> layerDefinition.apply(
                 HumanoidModel.BABY_TRANSFORMER));
 
-        EntityModelLayerRegistry.registerEquipmentModelLayers(
-                VerdantModelLayers.ARMOR_SPIKES,
-                () -> armorSpikesModelSet
-        );
-        EntityModelLayerRegistry.registerEquipmentModelLayers(
+        ModelLayerRegistry.registerArmorModelLayers(VerdantModelLayers.ARMOR_SPIKES, () -> armorSpikesModelSet);
+        ModelLayerRegistry.registerArmorModelLayers(
                 VerdantModelLayers.BABY_ARMOR_SPIKES,
                 () -> babyArmorSpikesModelSet
         );
 
-        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((EntityType<? extends LivingEntity> entityType, LivingEntityRenderer<?, ?, ?> livingEntityRenderer, LivingEntityFeatureRendererRegistrationCallback.RegistrationHelper registrationHelper, EntityRendererProvider.Context context) -> {
+        LivingEntityRenderLayerRegistrationCallback.EVENT.register((EntityType<? extends LivingEntity> _, LivingEntityRenderer<?, ?, ?> livingEntityRenderer, LivingEntityRenderLayerRegistrationCallback.RegistrationHelper _, EntityRendererProvider.Context context) -> {
             EntityModelSet modelSet = context.getModelSet();
             if (livingEntityRenderer.getModel() instanceof HumanoidModel<?>) {
                 Optional<? extends HumanoidArmorLayer<?, ?, ?>> optionalHumanoidArmorLayer = livingEntityRenderer.layers.stream()
@@ -280,12 +126,8 @@ public class VerdantClient implements ClientModInitializer {
         BlockEntityRenderers.register(BlockEntityTypeRegistry.OVERGROWN_SPAWNER.get(), OvergrownSpawnerRenderer::new);
 
         SpecialModelRenderers.ID_MAPPER.put(
-                VerdantConduitSpecialRenderer.Unbaked.LOCATION,
+                Constants.id("verdant_conduit"),
                 VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC
-        );
-        SpecialBlockRendererRegistry.register(
-                BlockRegistry.VERDANT_CONDUIT.get(),
-                new VerdantConduitSpecialRenderer.Unbaked()
         );
 
         RangeSelectItemModelProperties.ID_MAPPER.put(
@@ -321,34 +163,6 @@ public class VerdantClient implements ClientModInitializer {
     }
 
     protected void registerItemProperties() {
-    }
-
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public void markCutout(Supplier... blocks) {
-        Arrays.stream(blocks)
-                .forEach(block -> BlockRenderLayerMap.putBlock(
-                        ((Supplier<Block>) block).get(),
-                        ChunkSectionLayer.CUTOUT
-                ));
-    }
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public void markTranslucent(Supplier... blocks) {
-        Arrays.stream(blocks)
-                .forEach(block -> BlockRenderLayerMap.putBlock(
-                        ((Supplier<Block>) block).get(),
-                        ChunkSectionLayer.TRANSLUCENT
-                ));
-    }
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public void markCutoutMipped(Supplier... blocks) {
-        Arrays.stream(blocks)
-                .forEach(block -> BlockRenderLayerMap.putBlock(
-                        ((Supplier<Block>) block).get(),
-                        ChunkSectionLayer.CUTOUT
-                ));
     }
 
 }

@@ -39,6 +39,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
@@ -72,12 +73,11 @@ public class ToxicAshItem extends Item implements Converter {
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
 
-        if (level instanceof ServerLevel serverLevel && (state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD) || this.canConvert(
-                state,
+        if (level instanceof ServerLevel serverLevel && (state.is(VerdantTags.Blocks.ALLOWS_ASH_SPREAD) || this.canConvert(state,
                 serverLevel
         ))) {
 
-            this.convertInRadius(context.getPlayer(), serverLevel, pos, this.getRadius(serverLevel.random));
+            this.convertInRadius(context.getPlayer(), serverLevel, pos, this.getRadius(serverLevel.getRandom()));
 
             ItemStack stack = context.getItemInHand();
             Player player = context.getPlayer();
@@ -113,7 +113,7 @@ public class ToxicAshItem extends Item implements Converter {
             if (level.getFluidState(blockPos).is(FluidTags.WATER)) {
                 if (level instanceof ServerLevel serverLevel) {
 
-                    this.convertInRadius(player, serverLevel, blockPos, this.getRadius(serverLevel.random));
+                    this.convertInRadius(player, serverLevel, blockPos, this.getRadius(serverLevel.getRandom()));
 
                     player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
                     if (itemStack.getMaxStackSize() != 1) {
@@ -173,7 +173,7 @@ public class ToxicAshItem extends Item implements Converter {
         Map<Integer, List<BlockPos>> positionsByDelay = new HashMap<>();
         for (BlockPos pos : visited) {
             int dist = (int) Math.ceil(Math.sqrt(pos.distSqr(original)));
-            positionsByDelay.computeIfAbsent(dist, i -> new ArrayList<>()).add(pos);
+            positionsByDelay.computeIfAbsent(dist, _ -> new ArrayList<>()).add(pos);
             // this.convert(level, pos);
         }
 
@@ -203,7 +203,7 @@ public class ToxicAshItem extends Item implements Converter {
     }
 
     protected void damageEntity(ServerLevel level, LivingEntity entity, @Nullable ServerPlayer player) {
-        if (entity.getType().is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
+        if (entity.is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
             Holder<DamageType> type = DamageSourceRegistry.get(level.registryAccess(), DamageSourceRegistry.TOXIC_ASH);
             DamageSource source = new DamageSource(type, player);
             entity.hurtServer(level, source, 20);
@@ -216,11 +216,8 @@ public class ToxicAshItem extends Item implements Converter {
 
 
     public ItemStack getEmptySuccessItem(ItemStack stack, Player player) {
-        return (player != null && !player.hasInfiniteMaterials()) ? stack.has(DataComponents.USE_REMAINDER) ? stack.getOrDefault(
-                        DataComponents.USE_REMAINDER,
-                        new UseRemainder(ItemStack.EMPTY)
-                )
-                .convertInto() : ItemStack.EMPTY : stack;
+        return (player != null && !player.hasInfiniteMaterials()) ? stack.has(DataComponents.USE_REMAINDER) ? (stack.get(
+                DataComponents.USE_REMAINDER) instanceof UseRemainder(ItemStackTemplate convertInto) ? convertInto.create() : ItemStack.EMPTY) : ItemStack.EMPTY : stack;
     }
 
     @Override

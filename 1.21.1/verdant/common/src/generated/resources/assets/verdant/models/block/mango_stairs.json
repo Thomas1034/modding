@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "verdant:block/mango_planks",
-    "side": "verdant:block/mango_planks",
-    "top": "verdant:block/mango_planks"
-  }
-}

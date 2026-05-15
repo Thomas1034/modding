@@ -43,7 +43,7 @@ public class HeartOfTheForestItem extends Item implements VerdantGrower {
             for (int i = 0; i < stack.getCount(); i++) {
                 // System.out.println("Heart is ticking");
                 // The range to convert blocks in; radius of 3.
-                BlockPos posToTry = SpreadingRootsBlock.withinDist(holder.getOnPos(), 3, level.random);
+                BlockPos posToTry = SpreadingRootsBlock.withinDist(holder.getOnPos(), 3, level.getRandom());
 
                 // Try to erode the block, then try to convert it.
                 this.erodeOrGrow(serverLevel, posToTry, holder.isInWaterOrRain());

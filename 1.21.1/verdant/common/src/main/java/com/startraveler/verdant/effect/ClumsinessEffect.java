@@ -36,7 +36,7 @@ public class ClumsinessEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
 
-        if (level.random.nextInt(DROP_HOW_OFTEN_IN_TICKS / (amplifier + 1)) == 0) {
+        if (level.getRandom().nextInt(DROP_HOW_OFTEN_IN_TICKS / (amplifier + 1)) == 0) {
             if (entity.hasItemInSlot(EquipmentSlot.MAINHAND)) {
                 tossItemInSlot(level, entity, EquipmentSlot.MAINHAND);
             } else if (entity.hasItemInSlot(EquipmentSlot.OFFHAND)) {

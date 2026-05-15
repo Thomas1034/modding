@@ -63,13 +63,13 @@ public class DartEntity extends Arrow {
         }
 
         this.setPos(x, y, z);
-        if (firedFromWeapon != null && level instanceof ServerLevel serverlevel) {
+        if (firedFromWeapon != null && level instanceof ServerLevel serverLevel) {
             if (firedFromWeapon.isEmpty()) {
                 throw new IllegalArgumentException("Invalid weapon firing an arrow");
             }
 
             ((AbstractArrowAccessors) this).verdant$setFiredFromWeapon(firedFromWeapon.copy());
-            int pierceLevel = EnchantmentHelper.getPiercingCount(serverlevel, firedFromWeapon, this.getPickupItem());
+            int pierceLevel = EnchantmentHelper.getPiercingCount(serverLevel, firedFromWeapon, this.getPickupItem());
             if (pierceLevel > 0) {
                 ((AbstractArrowAccessors) this).verdant$setPierceLevel((byte) pierceLevel);
             }
@@ -99,9 +99,9 @@ public class DartEntity extends Arrow {
         DamageSource arrowDamageSource = this.damageSources().arrow(this, owner != null ? owner : this);
         if (this.getWeaponItem() != null) {
             Level flag = this.level();
-            if (flag instanceof ServerLevel serverlevel) {
+            if (flag instanceof ServerLevel serverLevel) {
                 baseDamage = EnchantmentHelper.modifyDamage(
-                        serverlevel,
+                        serverLevel,
                         this.getWeaponItem(),
                         hitEntity,
                         arrowDamageSource,
@@ -150,9 +150,9 @@ public class DartEntity extends Arrow {
 
                 this.doKnockback(livingentity, arrowDamageSource);
                 Level level = this.level();
-                if (level instanceof ServerLevel serverlevel) {
+                if (level instanceof ServerLevel serverLevel) {
                     EnchantmentHelper.doPostAttackEffectsWithItemSource(
-                            serverlevel,
+                            serverLevel,
                             livingentity,
                             arrowDamageSource,
                             this.getWeaponItem()

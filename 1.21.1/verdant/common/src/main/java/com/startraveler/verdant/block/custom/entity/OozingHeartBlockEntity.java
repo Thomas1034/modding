@@ -95,12 +95,9 @@ public class OozingHeartBlockEntity extends BlockEntity implements Spawner {
                 blockEntity.spawner.serverTick(serverLevel, pos);
             }
 
-
             if (blockEntity.spawner.getOrCreateDisplayEntity(level, pos) == null) {
-                blockEntity.setEntityId(EntityTypeRegistry.OOZE.get(), serverLevel.random);
+                blockEntity.setEntityId(EntityTypeRegistry.OOZE.get(), serverLevel.getRandom());
             }
-
-
         }
 
     }

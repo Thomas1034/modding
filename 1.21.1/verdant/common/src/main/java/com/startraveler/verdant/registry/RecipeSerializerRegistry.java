@@ -22,8 +22,8 @@ import com.startraveler.verdant.recipe.RopeCoilUpgradeRecipe;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import org.jetbrains.annotations.NotNull;
 
 public class RecipeSerializerRegistry {
 
@@ -32,12 +32,14 @@ public class RecipeSerializerRegistry {
             Constants.MOD_ID
     );
 
-    public static final RegistryObject<RecipeSerializer<?>, RopeCoilUpgradeRecipe.Serializer<RopeCoilUpgradeRecipe>> ROPE_COIL_SERIALIZER = SERIALIZERS.register("rope_coil_upgrade",
-            () -> new RopeCoilUpgradeRecipe.Serializer<>(RopeCoilUpgradeRecipe::new)
+    public static final RegistryObject<RecipeSerializer<?>, RecipeSerializer<@NotNull RopeCoilUpgradeRecipe>> ROPE_COIL_SERIALIZER = SERIALIZERS.register(
+            "rope_coil_upgrade",
+            () -> new RecipeSerializer<>(RopeCoilUpgradeRecipe.CODEC, RopeCoilUpgradeRecipe.STREAM_CODEC)
     );
 
-    public static final RegistryObject<RecipeSerializer<?>, CustomRecipe.Serializer<BlowdartTippingRecipe>> BLOWDART_TIPPING_SERIALIZER = SERIALIZERS.register("blowdart_tipping",
-            () -> new CustomRecipe.Serializer<>(BlowdartTippingRecipe::new)
+    public static final RegistryObject<RecipeSerializer<?>, RecipeSerializer<@NotNull BlowdartTippingRecipe>> BLOWDART_TIPPING_SERIALIZER = SERIALIZERS.register(
+            "blowdart_tipping",
+            () -> new RecipeSerializer<>(BlowdartTippingRecipe.CODEC, BlowdartTippingRecipe.STREAM_CODEC)
     );
 
     public static void init() {

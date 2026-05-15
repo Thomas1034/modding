@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "addition": "#verdant:imbued_heartwood_tool_materials",
-  "base": "verdant:heartwood_axe",
-  "result": {
-    "id": "verdant:imbued_heartwood_axe"
-  },
-  "template": "verdant:imbuement_upgrade_smithing_template"
-}

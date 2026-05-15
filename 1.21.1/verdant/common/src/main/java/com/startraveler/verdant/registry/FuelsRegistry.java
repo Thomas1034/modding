@@ -55,7 +55,7 @@ public class FuelsRegistry {
         this.registrar.accept(block, burnTime);
     }
 
-    public void registerFuel(Supplier<Block> block, int burnTime) {
+    public void registerFuel(Supplier<? extends Block> block, int burnTime) {
         this.registerFuel(block.get(), burnTime);
     }
 

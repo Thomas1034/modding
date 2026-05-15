@@ -2,7 +2,7 @@ package com.startraveler.verdant.platform;
 
 import com.startraveler.verdant.menu.FishTrapMenu;
 import com.startraveler.verdant.platform.services.IFishTrapMenuCreator;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
+import net.fabricmc.fabric.api.menu.v1.ExtendedMenuType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -21,7 +21,7 @@ public class FabricFishTrapMenuCreator implements IFishTrapMenuCreator {
             FishTrapMenu.SyncedFishTrapMenuData::new);
 
     @Override
-    public MenuType<FishTrapMenu> createMenuType() {
-        return new ExtendedScreenHandlerType<>(FishTrapMenu::new, PACKET_CODEC);
+    public MenuType<@org.jetbrains.annotations.NotNull FishTrapMenu> createMenuType() {
+        return new ExtendedMenuType<>(FishTrapMenu::new, PACKET_CODEC);
     }
 }

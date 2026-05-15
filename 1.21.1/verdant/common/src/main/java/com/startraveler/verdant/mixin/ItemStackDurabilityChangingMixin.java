@@ -50,7 +50,7 @@ public class ItemStackDurabilityChangingMixin {
             long time = level.getGameTime();
 
             if (delta.randomize()) {
-                time = level.random.nextInt(tickEvery);
+                time = level.getRandom().nextInt(tickEvery);
             }
 
             if (time % tickEvery == 0) {

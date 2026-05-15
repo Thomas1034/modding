@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:flower",
+  "type": "verdant:random_patch",
   "config": {
     "xz_spread": 5,
     "y_spread": 3,
@@ -111,7 +111,7 @@
             ]
           }
         },
-        "type": "minecraft:random_patch"
+        "type": "verdant:random_patch"
       },
       "placement": []
     }

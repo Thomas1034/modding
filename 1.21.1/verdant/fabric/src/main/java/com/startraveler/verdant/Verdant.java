@@ -41,13 +41,13 @@ public class Verdant implements ModInitializer {
         // Register Fire
         FlammablesRegistry.init(FlammableBlockRegistry.getDefaultInstance()::add);
         // Register Compost
-        CompostablesRegistry.init(CompostingChanceRegistry.INSTANCE::add);
+        CompostablesRegistry.init(CompostableRegistry.INSTANCE::add);
         // Register Dispenser Behaviors
         DispenserBehaviors.init();
         // Register fuels
-        FuelRegistryEvents.BUILD.register((builder, context) -> FuelsRegistry.init((builder::add)));
+        FuelValueEvents.BUILD.register((builder, _) -> FuelsRegistry.init((builder::add)));
         // Register potion recipes
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+        FabricPotionBrewingBuilder.BUILD.register(builder -> {
             PotionRecipeRegistry.init(builder::addMix, builder::registerItemRecipe);
             builder.addContainer(Items.GLASS_BOTTLE);
         });
@@ -70,7 +70,7 @@ public class Verdant implements ModInitializer {
         );
 
         // Block caffeine from sleeping
-        EntitySleepEvents.ALLOW_SLEEPING.register((player, pos) -> {
+        EntitySleepEvents.ALLOW_SLEEPING.register((player, _) -> {
             if (player.getActiveEffectsMap().get(MobEffectRegistry.CAFFEINATED.asHolder()) != null) {
 
                 if (player instanceof ServerPlayer sleepingPlayer) {
@@ -94,7 +94,7 @@ public class Verdant implements ModInitializer {
                 builder -> biConsumerConsumer.accept(builder::set)
         )));
 
-        PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity blockEntity) -> CommonClass.spawnSpiderlingsOnBlockBreak(
+        PlayerBlockBreakEvents.AFTER.register((Level level, Player player, BlockPos blockPos, BlockState blockState, BlockEntity _) -> CommonClass.spawnSpiderlingsOnBlockBreak(
                 level,
                 player,
                 blockPos,

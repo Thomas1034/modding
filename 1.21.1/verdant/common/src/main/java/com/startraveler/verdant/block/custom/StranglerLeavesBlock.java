@@ -137,7 +137,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         // Find every direction it can grow there.
         BlockState newVine = leafyVine.defaultBlockState();
         boolean canPlace = false;
-        for (Direction d : Direction.allShuffled(level.random)) {
+        for (Direction d : Direction.allShuffled(level.getRandom())) {
             // Place it there.
             if (StranglerVineBlock.canGrowToFace(level, pos, d)) {
                 canPlace = true;
@@ -185,7 +185,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
             return;
         }
         // Now set the block. There's a chance it places a tendril instead.
-        float chance = level.random.nextFloat();
+        float chance = level.getRandom().nextFloat();
         BlockState newState = Blocks.VINE.defaultBlockState().setValue(VineBlock.UP, true);
         if (chance < 0.1) {
             newState = BlockRegistry.STRANGLER_TENDRIL.get().defaultBlockState();
@@ -298,7 +298,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         }
 
         if (state.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) {
-            BlockState placed = this.updateDistance(this.leaves.apply(level.random).defaultBlockState(), level, pos);
+            BlockState placed = this.updateDistance(this.leaves.apply(level.getRandom()).defaultBlockState(), level, pos);
             level.setBlockAndUpdate(pos, placed);
             return true;
         }

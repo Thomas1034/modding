@@ -54,10 +54,10 @@ public class ExtensibleCandleCakeBlock extends AbstractCandleBlock {
     protected static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);
     private static final Iterable<Vec3> PARTICLE_OFFSETS = ImmutableList.of(new Vec3(0.5D, 1.0D, 0.5D));
 
-    protected final Supplier<@NotNull Block> baseCake;
-    protected final Supplier<@NotNull Block> candle;
+    protected final Supplier<? extends @NotNull Block> baseCake;
+    protected final Supplier<? extends @NotNull Block> candle;
 
-    public ExtensibleCandleCakeBlock(Supplier<@NotNull Block> candle, Supplier<@NotNull Block> baseCake, Properties properties) {
+    public ExtensibleCandleCakeBlock(Supplier<@NotNull Block> candle, Supplier<? extends @NotNull Block> baseCake, Properties properties) {
         super(properties);
         this.candle = candle;
         this.baseCake = baseCake;
@@ -68,7 +68,8 @@ public class ExtensibleCandleCakeBlock extends AbstractCandleBlock {
         return (hit.getLocation().y - hit.getBlockPos().getY()) > 0.5;
     }
 
-    public Supplier<Block> getCandle() {
+    @SuppressWarnings("unused")
+    public Supplier<? extends Block> getCandle() {
         return this.candle;
     }
 

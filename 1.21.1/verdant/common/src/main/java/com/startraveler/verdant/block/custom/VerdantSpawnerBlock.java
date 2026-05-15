@@ -45,7 +45,7 @@ public class VerdantSpawnerBlock extends BaseEntityBlock {
     protected void spawnAfterBreak(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull ItemStack stack, boolean dropExperience) {
         super.spawnAfterBreak(state, level, pos, stack, dropExperience);
         if (dropExperience) {
-            int i = 15 + level.random.nextInt(15) + level.random.nextInt(15);
+            int i = 15 + level.getRandom().nextInt(15) + level.getRandom().nextInt(15);
             this.popExperience(level, pos, i);
         }
     }

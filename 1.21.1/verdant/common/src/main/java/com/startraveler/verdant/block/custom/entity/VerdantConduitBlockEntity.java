@@ -113,7 +113,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
 
             if (level instanceof ServerLevel serverLevel) {
                 for (int j = 0; j < ATTEMPTS_PER_TICK; j++) {
-                    int[] offset = randomPointInSphere(level.random, RADIUS);
+                    int[] offset = randomPointInSphere(level.getRandom(), RADIUS);
                     BlockPos growAt = pos.offset(offset[0], offset[1], offset[2]);
                     blockEntity.erodeOrGrow(serverLevel, growAt, false);
 
@@ -124,7 +124,7 @@ public class VerdantConduitBlockEntity extends BlockEntity implements VerdantGro
                             growAt,
                             forBoneMealing
                     )) {
-                        bonemealableBlock.performBonemeal(serverLevel, level.random, growAt, forBoneMealing);
+                        bonemealableBlock.performBonemeal(serverLevel, level.getRandom(), growAt, forBoneMealing);
                     }
 
                 }

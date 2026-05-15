@@ -105,7 +105,7 @@ public class BrambleEntity extends AbstractGolem implements Enemy, VerdantGrower
     }
 
     public static List<PlaceBlocksTimer.BlockPlaceDirective> buildShell(ServerLevel level, BlockPos center) {
-        return BrambleEntityPatterns.offsetMap(BrambleEntityPatterns.shellStates(level.random), center)
+        return BrambleEntityPatterns.offsetMap(BrambleEntityPatterns.shellStates(level.getRandom()), center)
                 .entrySet()
                 .stream()
                 .map(entry -> new PlaceBlocksTimer.BlockPlaceDirective(

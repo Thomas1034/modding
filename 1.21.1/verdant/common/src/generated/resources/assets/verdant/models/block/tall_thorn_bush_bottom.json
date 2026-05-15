@@ -1,7 +1,0 @@
-{
-  "parent": "verdant:block/overlaid_tinted_cross",
-  "textures": {
-    "cross": "verdant:block/tall_thorn_bush_bottom",
-    "overlay": "verdant:block/tall_thorn_bush_bottom_overlay"
-  }
-}

@@ -61,7 +61,7 @@ public class WildCoffeeBlock extends FlowerBlock implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource rand, BlockPos pos, BlockState state) {
-        if (level.random.nextInt(10) == 1) {
+        if (level.getRandom().nextInt(10) == 1) {
             popResource(level, pos, new ItemStack(ItemRegistry.COFFEE_BERRIES.get()));
         }
     }

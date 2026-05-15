@@ -1,4 +1,4 @@
-accessWidener v2 named
+accessWidener v2 official
 accessible    method    net/minecraft/world/level/block/entity/BlockEntityType    <init>    (Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V
 accessible    class     net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
 accessible    method    net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
@@ -13,7 +13,6 @@ accessible field net/minecraft/world/level/BaseSpawner spawnCount I
 accessible field net/minecraft/world/level/BaseSpawner spawnRange I
 accessible field net/minecraft/world/level/BaseSpawner requiredPlayerRange I
 accessible field net/minecraft/world/level/BaseSpawner maxNearbyEntities I
-accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher blockColors Lnet/minecraft/client/color/block/BlockColors;
 accessible method net/minecraft/world/level/block/TorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/WallTorchBlock <init> (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible class net/minecraft/world/item/alchemy/PotionBrewing$Mix
@@ -36,3 +35,10 @@ accessible field net/minecraft/client/model/geom/builders/CubeDeformation growZ 
 accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer layers Ljava/util/List;
 accessible field net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer modelSet Lnet/minecraft/client/renderer/entity/ArmorModelSet;
 accessible field net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer babyModelSet Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+accessible field net/minecraft/client/renderer/special/ConduitSpecialRenderer model Lnet/minecraft/client/model/geom/ModelPart;
+accessible field net/minecraft/client/renderer/special/ConduitSpecialRenderer sprites Lnet/minecraft/client/resources/model/sprite/SpriteGetter;
+accessible method net/minecraft/client/gui/Gui extractCameraOverlays (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V
+accessible class net/minecraft/world/item/CreativeModeTab$Output
+accessible method net/minecraft/world/entity/monster/Slime dealDamage (Lnet/minecraft/world/entity/LivingEntity;)V
+accessible method net/minecraft/world/entity/monster/Slime remove (Lnet/minecraft/world/entity/Entity$RemovalReason;)V
+accessible method net/minecraft/world/level/block/FireBlock setFlammable (Lnet/minecraft/world/level/block/Block;II)V

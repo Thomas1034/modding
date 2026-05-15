@@ -182,25 +182,22 @@ public class VerdantRecipeProvider extends RecipeProvider {
         shapeless(List.of(Items.WATER_BUCKET, Items.DIRT), List.of(1, 8), RecipeCategory.BUILDING_BLOCKS, Items.MUD, 8);
 
         // Register rope upgrading.
-        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.ROPE.get())
-                .coil(ItemRegistry.ROPE_COIL.get())
+        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.ROPE.asHolder())
+                .coil(ItemRegistry.ROPE_COIL.asHolder())
                 .category(CraftingBookCategory.EQUIPMENT)
                 .save(output);
-        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.TWISTED_ROPE.get())
-                .coil(ItemRegistry.TWISTED_ROPE_COIL.get())
+        new RopeCoilUpgradeRecipe.Builder().rope(ItemRegistry.TWISTED_ROPE.asHolder())
+                .coil(ItemRegistry.TWISTED_ROPE_COIL.asHolder())
                 .category(CraftingBookCategory.EQUIPMENT)
                 .save(output);
         // Register dart tipping.
-        new BlowdartTippingRecipe.Builder().category(CraftingBookCategory.EQUIPMENT).save(output);
+        new BlowdartTippingRecipe.Builder().category(CraftingBookCategory.EQUIPMENT)
+                .untippedDart(ItemRegistry.DART.asHolder())
+                .tippedDart(ItemRegistry.TIPPED_DART.asHolder())
+                .save(output);
 
         // Cooking coffee
-        foodCooking(
-                List.of(ItemRegistry.COFFEE_BERRIES.get()),
-                RecipeCategory.FOOD,
-                ItemRegistry.ROASTED_COFFEE.get(),
-                0.1f,
-                400
-        );
+        foodCooking(List.of(ItemRegistry.COFFEE_BERRIES.get()), ItemRegistry.ROASTED_COFFEE.get(), 0.1f, 400);
 
         // Arrow from thorn
         shaped(
@@ -394,13 +391,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         // Roasting bitter cassava
-        foodCooking(
-                List.of(ItemRegistry.BITTER_CASSAVA.get()),
-                RecipeCategory.FOOD,
-                ItemRegistry.CASSAVA.get(),
-                0.1f,
-                200
-        );
+        foodCooking(List.of(ItemRegistry.BITTER_CASSAVA.get()), ItemRegistry.CASSAVA.get(), 0.1f, 200);
 
         // Golden Cassava
         shaped(
@@ -413,13 +404,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         // Roasting golden cassava
-        foodCooking(
-                List.of(ItemRegistry.GOLDEN_CASSAVA.get()),
-                RecipeCategory.FOOD,
-                ItemRegistry.COOKED_GOLDEN_CASSAVA.get(),
-                0.1f,
-                200
-        );
+        foodCooking(List.of(ItemRegistry.GOLDEN_CASSAVA.get()), ItemRegistry.COOKED_GOLDEN_CASSAVA.get(), 0.1f, 200);
 
         // Sparkling Starch
         shapeless(
@@ -466,17 +451,11 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
 
         // Roasting cassava
-        foodCooking(
-                List.of(ItemRegistry.CASSAVA.get()),
-                RecipeCategory.FOOD,
-                ItemRegistry.COOKED_CASSAVA.get(),
-                0.1f,
-                200
-        );
+        foodCooking(List.of(ItemRegistry.CASSAVA.get()), ItemRegistry.COOKED_CASSAVA.get(), 0.1f, 200);
 
 
         // Roasting ube
-        foodCooking(List.of(ItemRegistry.UBE.get()), RecipeCategory.FOOD, ItemRegistry.BAKED_UBE.get(), 0.1f, 200);
+        foodCooking(List.of(ItemRegistry.UBE.get()), ItemRegistry.BAKED_UBE.get(), 0.1f, 200);
 
         // Purple dye from ube
         shapeless(List.of(ItemRegistry.BAKED_UBE.get()), List.of(1), RecipeCategory.DECORATIONS, Items.PURPLE_DYE, 1);
@@ -694,6 +673,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         smelting(
                 List.of(BlockRegistry.POISON_IVY_BLOCK.get()),
                 RecipeCategory.BUILDING_BLOCKS,
+                CookingBookCategory.BLOCKS,
                 BlockRegistry.TOXIC_ASH_BLOCK.get(),
                 0.2f,
                 200,
@@ -731,6 +711,7 @@ public class VerdantRecipeProvider extends RecipeProvider {
         smelting(
                 List.of(BlockRegistry.TOXIC_DIRT.get()),
                 RecipeCategory.BUILDING_BLOCKS,
+                CookingBookCategory.BLOCKS,
                 Blocks.COARSE_DIRT,
                 0.2f,
                 200,
@@ -1391,11 +1372,19 @@ public class VerdantRecipeProvider extends RecipeProvider {
     }
 
     @SuppressWarnings("SameParameterValue")
-    protected void foodCooking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime) {
+    protected void foodCooking(List<ItemLike> ingredients, ItemLike result, float experience, int cookingTime) {
         String group = (namespace(result) + ":" + getItemName(result));
-        campfire(ingredients, category, result, experience, 2 * cookingTime, group);
-        smelting(ingredients, category, result, experience, cookingTime, group);
-        smoking(ingredients, category, result, experience, cookingTime / 2, group);
+        campfire(
+                ingredients,
+                RecipeCategory.FOOD,
+                CookingBookCategory.FOOD,
+                result,
+                experience,
+                2 * cookingTime,
+                group
+        );
+        smelting(ingredients, RecipeCategory.FOOD, CookingBookCategory.FOOD, result, experience, cookingTime, group);
+        smoking(ingredients, RecipeCategory.FOOD, CookingBookCategory.FOOD, result, experience, cookingTime / 2, group);
     }
 
     @SuppressWarnings("unused")
@@ -1430,40 +1419,42 @@ public class VerdantRecipeProvider extends RecipeProvider {
         return item.asItem().builtInRegistryHolder().key().identifier();
     }
 
-    protected void campfire(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+    @SuppressWarnings("SameParameterValue")
+    protected void campfire(List<ItemLike> ingredients, RecipeCategory category, CookingBookCategory cookingBookCategory, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
-                RecipeSerializer.CAMPFIRE_COOKING_RECIPE,
                 CampfireCookingRecipe::new,
                 ingredients,
                 category,
+                cookingBookCategory,
                 result,
                 experience,
-                cookingTime * 3,
+                cookingTime,
                 group,
                 "_from_campfire"
         );
     }
 
-    protected void smoking(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+    @SuppressWarnings("SameParameterValue")
+    protected void smoking(List<ItemLike> ingredients, RecipeCategory category, CookingBookCategory cookingBookCategory, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
-                RecipeSerializer.SMOKING_RECIPE,
                 SmokingRecipe::new,
                 ingredients,
                 category,
+                cookingBookCategory,
                 result,
                 experience,
-                cookingTime / 2,
+                cookingTime,
                 group,
                 "_from_smoking"
         );
     }
 
-    protected void smelting(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+    protected void smelting(List<ItemLike> ingredients, RecipeCategory category, CookingBookCategory cookingBookCategory, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
-                RecipeSerializer.SMELTING_RECIPE,
                 SmeltingRecipe::new,
                 ingredients,
                 category,
+                cookingBookCategory,
                 result,
                 experience,
                 cookingTime,
@@ -1473,12 +1464,12 @@ public class VerdantRecipeProvider extends RecipeProvider {
     }
 
     @SuppressWarnings("unused")
-    protected void blasting(List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group) {
+    protected void blasting(List<ItemLike> ingredients, RecipeCategory category, CookingBookCategory cookingBookCategory, ItemLike result, float experience, int cookingTime, String group) {
         cooking(
-                RecipeSerializer.BLASTING_RECIPE,
                 BlastingRecipe::new,
                 ingredients,
                 category,
+                cookingBookCategory,
                 result,
                 experience,
                 cookingTime / 2,
@@ -1487,15 +1478,15 @@ public class VerdantRecipeProvider extends RecipeProvider {
         );
     }
 
-    protected <T extends AbstractCookingRecipe> void cooking(RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> factory, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, int cookingTime, String group, String recipeName) {
+    protected <T extends AbstractCookingRecipe> void cooking(AbstractCookingRecipe.Factory<T> factory, List<ItemLike> ingredients, RecipeCategory category, CookingBookCategory cookingBookCategory, ItemLike result, float experience, int cookingTime, String group, String recipeName) {
         for (ItemLike itemlike : ingredients) {
             SimpleCookingRecipeBuilder.generic(
                             Ingredient.of(itemlike),
                             category,
+                            cookingBookCategory,
                             result,
                             experience,
                             cookingTime,
-                            cookingSerializer,
                             factory
                     )
                     .group(group)

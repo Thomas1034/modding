@@ -18,7 +18,7 @@ package com.startraveler.verdant.client.screen;
 
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.menu.FishTrapMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -26,6 +26,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
+// TODO
 public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMenu> {
     public static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(
             Constants.MOD_ID,
@@ -52,16 +53,14 @@ public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMen
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
+    public void extractContents(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.extractContents(guiGraphics, mouseX, mouseY, partialTick);
+        this.extractTooltip(guiGraphics, mouseX, mouseY);
     }
 
 
     @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        // RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
-        // RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+    public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
@@ -124,10 +123,7 @@ public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMen
 
     private @NotNull Component getCatchPercentComponent() {
         int catchPercent = this.menu.getCatchPercent();
-        Component catchPercentComponent = Component.translatable(
-                "block.verdant.fish_trap.gui.bait",
-                catchPercent
-        );
+        Component catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.bait", catchPercent);
         boolean isActive = true; //TODO this.menu.blockEntity.getBlockState().getValue(FishTrapBlock.ENABLED);
         if (!isActive) {
             catchPercentComponent = Component.translatable("block.verdant.fish_trap.gui.no_water");
@@ -137,7 +133,7 @@ public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMen
         return catchPercentComponent;
     }
 
-    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
+    private void renderProgressArrow(GuiGraphicsExtractor guiGraphics, int x, int y) {
         if (this.menu.isCrafting()) {
             // Draw the arrow
             guiGraphics.blit(
@@ -155,7 +151,7 @@ public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMen
         }
     }
 
-    private void renderSlot(GuiGraphics guiGraphics, int x, int y, int blitOffsetX, int blitOffsetY) {
+    private void renderSlot(GuiGraphicsExtractor guiGraphics, int x, int y, int blitOffsetX, int blitOffsetY) {
         // Draw the slot
         guiGraphics.blit(
                 RenderPipelines.GUI_TEXTURED,
@@ -172,15 +168,9 @@ public class FishTrapScreen extends AbstractContainerScreen<@NotNull FishTrapMen
     }
 
     @SuppressWarnings("unused")
-    private void renderText(GuiGraphics guiGraphics, int x, int y, String text) {
+    private void renderText(GuiGraphicsExtractor guiGraphics, int x, int y, Component text) {
         // Draw the slot
-        guiGraphics.drawString(this.font, text, x, y, 0x404040, false);
-    }
-
-    @SuppressWarnings("unused")
-    private void renderText(GuiGraphics guiGraphics, int x, int y, Component text) {
-        // Draw the slot
-        guiGraphics.drawString(this.font, text, x, y, 0x404040, false);
+        guiGraphics.text(this.font, text, x, y, 0x404040, false);
     }
 }
 

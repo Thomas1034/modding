@@ -85,7 +85,7 @@ public class ToxicDirtBlock extends Block {
             if (level instanceof ServerLevel) {
                 if (isPoisoned) {
                     MobEffectInstance newEffect;
-                    if (livingEntity.getType().is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
+                    if (livingEntity.is(VerdantTags.EntityTypes.TOXIC_ASH_DAMAGES)) {
                         newEffect = WITHER.get();
                     } else {
                         newEffect = POISON.get();
@@ -96,7 +96,7 @@ public class ToxicDirtBlock extends Block {
                     }
                 }
             } else {
-                RandomSource random = level.random;
+                RandomSource random = level.getRandom();
                 if (isPoisoned) {
                     level.addParticle(
                             ParticleTypes.SMOKE,

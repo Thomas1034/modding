@@ -23,7 +23,7 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
         this(EntityTypeRegistry.BLOCK_IGNORING_PRIMED_TNT.get(), level);
 
         this.setPos(x, y, z);
-        double d0 = level.random.nextDouble() * (double) ((float) Math.PI * 2F);
+        double d0 = level.getRandom().nextDouble() * (double) ((float) Math.PI * 2F);
         this.setDeltaMovement(-Math.sin(d0) * 0.02, 0.2F, -Math.cos(d0) * 0.02);
         this.setFuse(80);
         this.xo = x;
@@ -59,7 +59,7 @@ public class BlockIgnoringPrimedTnt extends PrimedTnt {
                 this.explode();
             }
         } else {
-            this.updateInWaterStateAndDoFluidPushing();
+            this.updateFluidInteraction();
             if (this.level().isClientSide()) {
                 this.level()
                         .addParticle(

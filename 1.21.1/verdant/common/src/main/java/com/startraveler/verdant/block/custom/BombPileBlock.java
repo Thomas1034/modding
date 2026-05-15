@@ -95,8 +95,8 @@ public class BombPileBlock extends FallingBlock {
 
     @SuppressWarnings("DataFlowIssue")
     private static boolean prime(BlockState state, Level level, Vec3 pos, @Nullable LivingEntity entity) {
-        if (level instanceof ServerLevel serverlevel) {
-            if (serverlevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
+        if (level instanceof ServerLevel serverLevel) {
+            if (serverLevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
 
                 float explosionMultiplier = 2.0f;
                 boolean hasFire = false;
@@ -188,7 +188,7 @@ public class BombPileBlock extends FallingBlock {
                 player.awardStat(Stats.ITEM_USED.get(item));
             } else if (level instanceof ServerLevel serverLevel) {
                 if (!serverLevel.getGameRules().get(GameRules.TNT_EXPLODES)) {
-                    player.displayClientMessage(Component.translatable("block.minecraft.tnt.disabled"), true);
+                    player.sendOverlayMessage(Component.translatable("block.minecraft.tnt.disabled"));
                     return InteractionResult.PASS;
                 }
             }
@@ -218,11 +218,11 @@ public class BombPileBlock extends FallingBlock {
 
     @Override
     protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
-        if (level instanceof ServerLevel serverlevel) {
+        if (level instanceof ServerLevel serverLevel) {
             BlockPos blockpos = hit.getBlockPos();
             Entity entity = projectile.getOwner();
             if (projectile.isOnFire()
-                    && projectile.mayInteract(serverlevel, blockpos)
+                    && projectile.mayInteract(serverLevel, blockpos)
                     && prime(state, level, blockpos, entity instanceof LivingEntity ? (LivingEntity) entity : null)) {
                 level.removeBlock(blockpos, false);
             }

@@ -48,7 +48,7 @@ public interface Eroder {
                 isWet ? BlockTransformerRegistry.EROSION_WET : BlockTransformerRegistry.EROSION
         );
         // Gets the result of erosion. This could be null.
-        BlockState newState = eroder.get(state, access, level.random);
+        BlockState newState = eroder.get(state, access, level.getRandom());
         // Check if the result is either unchanged or null.
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {

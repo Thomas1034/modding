@@ -23,9 +23,6 @@ import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshTransformer;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
@@ -45,13 +42,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.Mannequin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerModelType;
-import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.ValidationContextSource;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -91,7 +83,12 @@ public class VerdantClient {
         modBus.addListener(VerdantClient::registerConditionalProperties);
         modBus.addListener(VerdantClient::registerTints);
         modBus.addListener(VerdantClient::addRenderLayers);
+        modBus.addListener(VerdantClient::registerSpecialModelRenderers);
         RootboundClient.initializeWoodSets(modBus, WoodSets.WOOD_SETS);
+    }
+
+    public static void registerSpecialModelRenderers(final RegisterSpecialModelRendererEvent event) {
+        event.register(Constants.id("verdant_conduit"), VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -149,58 +146,8 @@ public class VerdantClient {
         }
     }
 
-    public static void registerTints(final RegisterColorHandlersEvent.Block event) {
-        event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : FoliageColor.FOLIAGE_DEFAULT, BlockRegistry.MANGO_LEAVES.get()
-        );
-        event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : FoliageColor.FOLIAGE_DEFAULT,
-                BlockRegistry.STRANGLER_LEAVES.get(),
-                BlockRegistry.WILTED_STRANGLER_LEAVES.get(),
-                BlockRegistry.THORNY_STRANGLER_LEAVES.get(),
-                BlockRegistry.POISON_STRANGLER_LEAVES.get(),
-                BlockRegistry.LEAFY_STRANGLER_VINE.get()
-        );
-
-        event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 && !blockState.getValueOrElse(
-                        BlockStateProperties.SNOWY,
-                        false
-                ) ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : GrassColor.getDefaultColor()) : -1,
-                BlockRegistry.VERDANT_GRASS_MUD.get(),
-                BlockRegistry.VERDANT_GRASS_CLAY.get(),
-                BlockRegistry.VERDANT_GRASS_DIRT.get(),
-                BlockRegistry.VERDANT_GRASS_GRUS.get()
-        );
-        event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? (blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockState.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER ? blockPos.below() : blockPos
-                ) : GrassColor.getDefaultColor()) : -1,
-                BlockRegistry.TALL_BUSH.get(),
-                BlockRegistry.TALL_THORN_BUSH.get()
-        );
-
-        event.register(
-                (blockState, blockAndTintGetter, blockPos, i) -> i == 0 ? ((blockAndTintGetter != null && blockPos != null ? BiomeColors.getAverageGrassColor(
-                        blockAndTintGetter,
-                        blockPos
-                ) : GrassColor.getDefaultColor())) : -1,
-                BlockRegistry.BUSH.get(),
-                BlockRegistry.POTTED_BUSH.get(),
-                BlockRegistry.THORN_BUSH.get(),
-                BlockRegistry.POTTED_THORN_BUSH.get(),
-                BlockRegistry.SNAPLEAF.get()
-        );
+    public static void registerTints(final RegisterColorHandlersEvent.BlockTintSources event) {
+        VerdantBlockColorRegistry.init(event::register);
     }
 
     public static void registerLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -246,7 +193,7 @@ public class VerdantClient {
                             lookupProvider
                     ) {
                         @Override
-                        protected void validate(@NotNull WritableRegistry<LootTable> writableregistry, @NotNull ValidationContext context, ProblemReporter.@NotNull Collector collector) {
+                        protected void validate(@NotNull WritableRegistry<LootTable> tables, @NotNull ValidationContextSource validationContext, ProblemReporter.@NotNull Collector problems) {
                             // Do not validate at all, per what people online said.
                         }
                     }
@@ -312,8 +259,6 @@ public class VerdantClient {
         }
     }
 
-
-    @SuppressWarnings("deprecation")
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
 
@@ -328,14 +273,6 @@ public class VerdantClient {
             EntityRenderers.register(EntityTypeRegistry.OOZE.get(), OozeRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.BLOCK_PLACING_PROJECTILE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(EntityTypeRegistry.SKULL_SPIDER.get(), SkullSpiderRenderer::new);
-
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.POTTED_MANGO_SAPLING.get(), ChunkSectionLayer.CUTOUT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_BUSH.get(), ChunkSectionLayer.CUTOUT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_THORN_BUSH.get(), ChunkSectionLayer.CUTOUT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAP_FIRE.get(), ChunkSectionLayer.TRANSLUCENT);
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAP_LANTERN.get(), ChunkSectionLayer.CUTOUT);
-
         });
     }
 
@@ -361,7 +298,6 @@ public class VerdantClient {
     }
 
     public static void registerSpecialModels(RegisterSpecialModelRendererEvent event) {
-        event.register(VerdantConduitSpecialRenderer.Unbaked.LOCATION, VerdantConduitSpecialRenderer.Unbaked.MAP_CODEC);
     }
 
     public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent event) {

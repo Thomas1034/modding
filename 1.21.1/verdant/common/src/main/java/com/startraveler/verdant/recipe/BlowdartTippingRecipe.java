@@ -16,6 +16,8 @@
  */
 package com.startraveler.verdant.recipe;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.registry.DataComponentRegistry;
 import com.startraveler.verdant.registry.ItemRegistry;
 import com.startraveler.verdant.registry.RecipeSerializerRegistry;
@@ -27,16 +29,18 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.item.crafting.*;
@@ -50,25 +54,63 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BlowdartTippingRecipe extends CustomRecipe {
+public final class BlowdartTippingRecipe extends CustomRecipe {
+
+    public static final MapCodec<BlowdartTippingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            CraftingBookCategory.CODEC.fieldOf("category").forGetter(BlowdartTippingRecipe::category),
+            Item.CODEC.fieldOf("coil").forGetter(BlowdartTippingRecipe::untippedDart),
+            Item.CODEC.fieldOf("rope").forGetter(BlowdartTippingRecipe::tippedDart)
+    ).apply(instance, BlowdartTippingRecipe::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, BlowdartTippingRecipe> STREAM_CODEC = StreamCodec.composite(
+            CraftingBookCategory.STREAM_CODEC,
+            BlowdartTippingRecipe::category,
+            Item.STREAM_CODEC,
+            BlowdartTippingRecipe::untippedDart,
+            Item.STREAM_CODEC,
+            BlowdartTippingRecipe::tippedDart,
+            BlowdartTippingRecipe::new
+    );
 
     public static final float SUSPICIOUS_STEW_BONUS = 2;
     public static final float EFFECT_DURATION_BASE_MULTIPLIER = 2;
     public static final float EFFECT_DURATION_PER_BINDER_MULTIPLIER = 1;
+    private final CraftingBookCategory category;
+    private final Holder<Item> untippedDart;
+    private final Holder<Item> tippedDart;
 
-    public BlowdartTippingRecipe(CraftingBookCategory category) {
-        super(category);
+    public BlowdartTippingRecipe(CraftingBookCategory category, Holder<Item> untippedDart, Holder<Item> tippedDart) {
+        this.category = category;
+        this.untippedDart = untippedDart;
+        this.tippedDart = tippedDart;
+    }
+
+    public Holder<Item> untippedDart() {
+        return untippedDart;
+    }
+
+    public Holder<Item> tippedDart() {
+        return tippedDart;
     }
 
     @Override
-    public boolean matches(CraftingInput input, Level level) {
-        return assemble(input, level.registryAccess()) != ItemStack.EMPTY;
+    public @NotNull CraftingBookCategory category() {
+        return this.category;
     }
 
     @Override
-    public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.@NotNull Provider registries) {
+    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
+        return RecipeSerializerRegistry.BLOWDART_TIPPING_SERIALIZER.get();
+    }
+
+    @Override
+    public boolean matches(CraftingInput input, @NotNull Level level) {
+        return assemble(input) != ItemStack.EMPTY;
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(CraftingInput input) {
         ItemStack result = ItemStack.EMPTY;
-
         boolean isValid = true;
         int dartCount = 0;
         List<SuspiciousStewEffects> suspiciousEffectsFromFlowers = new ArrayList<>();
@@ -77,41 +119,30 @@ public class BlowdartTippingRecipe extends CustomRecipe {
         int binderCount = 0;
         for (ItemStack stack : input.items()) {
             boolean anySucceeded = false;
-            // TODO: allow item to fulfil multiple conditions?
-            if (stack.is(ItemRegistry.DART.get())) {
-
+            if (stack.is(this.untippedDart)) {
                 dartCount++;
                 anySucceeded = true;
-
             }
 
             if (stack.has(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get())) {
-
                 directEffects.addAll(Objects.requireNonNull(stack.get(DataComponentRegistry.BLOWDART_TIPPING_INGREDIENT.get()))
                         .effects());
                 anySucceeded = true;
-
             }
 
             if (stack.has(DataComponents.SUSPICIOUS_STEW_EFFECTS)) {
-
                 suspiciousEffectsFromStew.add(stack.get(DataComponents.SUSPICIOUS_STEW_EFFECTS));
                 anySucceeded = true;
-
             }
 
             if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
-
                 suspiciousEffectsFromFlowers.add(seh.getSuspiciousEffects());
                 anySucceeded = true;
-
             }
 
             if (stack.is(VerdantTags.Items.DART_EFFECT_BINDERS)) {
-
                 binderCount++;
                 anySucceeded = true;
-
             }
 
             if (stack.isEmpty()) {
@@ -171,28 +202,22 @@ public class BlowdartTippingRecipe extends CustomRecipe {
             int color = OKLabBlender.blendColors(customEffects.stream()
                     .map(instance -> instance.getEffect().value().getColor())
                     .toList());
-            result = new ItemStack(ItemRegistry.TIPPED_DART.get(), dartCount);
+            result = new ItemStack(this.tippedDart.value(), dartCount);
             result.set(
                     DataComponents.POTION_CONTENTS,
                     new PotionContents(Optional.empty(), Optional.of(color), customEffects, Optional.empty())
             );
         }
-
         return result;
     }
 
-    @Override
-    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
-        return RecipeSerializerRegistry.BLOWDART_TIPPING_SERIALIZER.get();
-    }
-
-
-    // Inspired by the implementation here: https://docs.neoforged.net/docs/resources/server/recipes/custom/#data-generation
     public static class Builder implements RecipeBuilder {
         protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
         @Nullable
         protected String group;
         private CraftingBookCategory category;
+        private Holder<Item> untippedDart;
+        private Holder<Item> tippedDart;
 
         public Builder() {
         }
@@ -210,8 +235,8 @@ public class BlowdartTippingRecipe extends CustomRecipe {
         }
 
         @Override
-        public @NotNull Item getResult() {
-            return ItemRegistry.TIPPED_DART.get();
+        public @NotNull ResourceKey<Recipe<?>> defaultId() {
+            return RecipeBuilder.getDefaultRecipeId(new ItemStackTemplate(ItemRegistry.TIPPED_DART.get()));
         }
 
         @Override
@@ -223,9 +248,19 @@ public class BlowdartTippingRecipe extends CustomRecipe {
             this.criteria.forEach(advancement::addCriterion);
             output.accept(
                     key,
-                    new BlowdartTippingRecipe(this.category),
+                    new BlowdartTippingRecipe(this.category, this.tippedDart, this.untippedDart),
                     advancement.build(key.identifier().withPrefix("recipes/"))
             );
+        }
+
+        public Builder untippedDart(Holder<Item> untippedDart) {
+            this.untippedDart = untippedDart;
+            return this;
+        }
+
+        public Builder tippedDart(Holder<Item> tippedDart) {
+            this.tippedDart = tippedDart;
+            return this;
         }
 
         public Builder category(CraftingBookCategory category) {

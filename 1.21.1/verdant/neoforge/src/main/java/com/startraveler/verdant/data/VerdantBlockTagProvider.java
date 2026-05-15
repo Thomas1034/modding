@@ -208,7 +208,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.GRUS.get()
         );
         this.tag(Tags.Blocks.GRAVELS).add(BlockRegistry.SCREE.get());
-        this.tag(BlockTags.MUSHROOM_GROW_BLOCK).add(
+        this.tag(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT).add(
                 BlockRegistry.VERDANT_ROOTED_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_DIRT.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
@@ -222,13 +222,13 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockRegistry.STONY_GRUS.get(),
                 BlockRegistry.GRUS.get()
         );
-        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON)
+        this.tag(BlockTags.SUPPORTS_DRY_VEGETATION)
                 .add(
                         BlockRegistry.TOXIC_DIRT.get(),
                         BlockRegistry.TOXIC_GRUS.get(),
                         BlockRegistry.DEAD_MOSS_BLOCK.get()
                 );
-        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).addTag(VerdantTags.Blocks.VERDANT_GROUND);
+        this.tag(BlockTags.SUPPORTS_DRY_VEGETATION).addTag(VerdantTags.Blocks.VERDANT_GROUND);
 
         this.tag(BlockTags.CLIMBABLE).add(
                 BlockRegistry.STRANGLER_VINE.get(),
@@ -267,13 +267,13 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 BlockTags.SCULK_REPLACEABLE
         );
 
-        this.tag(BlockTags.BIG_DRIPLEAF_PLACEABLE).add(
+        this.tag(BlockTags.SUPPORTS_BIG_DRIPLEAF).add(
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
                 BlockRegistry.VERDANT_GRASS_CLAY.get()
         );
-        this.tag(BlockTags.SMALL_DRIPLEAF_PLACEABLE).add(
+        this.tag(BlockTags.SUPPORTS_SMALL_DRIPLEAF).add(
                 BlockRegistry.VERDANT_ROOTED_MUD.get(),
                 BlockRegistry.VERDANT_GRASS_MUD.get(),
                 BlockRegistry.VERDANT_ROOTED_CLAY.get(),
@@ -340,7 +340,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(VerdantTags.Blocks.SUPPORTS_SNAPLEAVES)
                 .addTag(BlockTags.LOGS)
                 .addTag(BlockTags.DIRT)
-                .addTag(BlockTags.SMALL_DRIPLEAF_PLACEABLE)
+                .addTag(BlockTags.SUPPORTS_SMALL_DRIPLEAF)
                 .addTag(BlockTags.AZALEA_GROWS_ON);
 
         // Leafy blocks
@@ -499,7 +499,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(WoodSets.DEAD.getLogs());
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.MOSS_REPLACEABLE);
         this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.LUSH_GROUND_REPLACEABLE);
-        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.BAMBOO_PLANTABLE_ON);
+        this.tag(VerdantTags.Blocks.ALLOWS_ASH_SPREAD).addTag(BlockTags.SUPPORTS_BAMBOO);
 
         // Logs that don't support strangler vines
         this.tag(VerdantTags.Blocks.DOES_NOT_SUPPORT_STRANGLER_VINES).addTag(WoodSets.DEAD.getLogs());
@@ -512,7 +512,7 @@ public class VerdantBlockTagProvider extends RootboundBlockTagProvider {
                 .add(BlockRegistry.EARTH_BRICK_STAIRS.get(), BlockRegistry.VERDANT_RESIN_BRICK_STAIRS.get());
         this.tag(BlockTags.SLABS)
                 .add(BlockRegistry.EARTH_BRICK_SLAB.get(), BlockRegistry.VERDANT_RESIN_BRICK_SLAB.get());
-        this.tag(BlockTags.DRY_VEGETATION_MAY_PLACE_ON).add(
+        this.tag(BlockTags.SUPPORTS_DRY_VEGETATION).add(
                 BlockRegistry.EARTH_BRICK_WALL.get(),
                 BlockRegistry.EARTH_BRICK_SLAB.get(),
                 BlockRegistry.EARTH_BRICK_STAIRS.get(),

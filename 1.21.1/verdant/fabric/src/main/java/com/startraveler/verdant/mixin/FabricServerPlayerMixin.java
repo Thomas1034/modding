@@ -19,13 +19,13 @@ public abstract class FabricServerPlayerMixin implements ServerPlayerMixin {
 
     // Because intermediary, that's why.
     @Final
-    @Shadow(aliases = "field_29183")
-    ServerPlayer field_29183;
+    @Shadow(aliases = "this$0")
+    ServerPlayer this$0;
 
     @Override
-    @Inject(method = "slotChanged", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancements/criterion/InventoryChangeTrigger;trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
+    @Inject(method = "Lnet/minecraft/server/level/ServerPlayer$2;slotChanged(Lnet/minecraft/world/inventory/AbstractContainerMenu;ILnet/minecraft/world/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancements/criterion/InventoryChangeTrigger;trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
     public void addInventoryChangeTrigger(AbstractContainerMenu menu, int slot, ItemStack stack, CallbackInfo ci) {
         TriggerRegistry.INVENTORY_CHANGE_ITEM_COUNT_TRIGGER.get()
-                .trigger(this.field_29183, this.field_29183.getInventory(), stack);
+                .trigger(this.this$0, this.this$0.getInventory(), stack);
     }
 }

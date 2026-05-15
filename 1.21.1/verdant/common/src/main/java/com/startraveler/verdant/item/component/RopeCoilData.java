@@ -65,11 +65,7 @@ public record RopeCoilData(int length,
             () -> BlockRegistry.TWISTED_ROPE.get()
     );
 
-    public RopeCoilData(int length,
-                        boolean hasHook,
-                        int lightLevel,
-                        HangingBlockOptions hangingBlock,
-                        Block ropeBlockSupplier) {
+    public RopeCoilData(int length, boolean hasHook, int lightLevel, HangingBlockOptions hangingBlock, Block ropeBlockSupplier) {
         this(length, hasHook, lightLevel, hangingBlock, () -> ropeBlockSupplier);
     }
 
@@ -79,33 +75,23 @@ public record RopeCoilData(int length,
 
     public enum HangingBlockOptions implements StringRepresentable {
 
-        NONE("none", Items.AIR, Blocks.AIR.defaultBlockState()),
-        LANTERN(
+        NONE("none", Items.AIR, Blocks.AIR.defaultBlockState()), LANTERN(
                 "lantern",
                 Items.LANTERN,
                 Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
-        ),
-        SOUL_LANTERN(
+        ), SOUL_LANTERN(
                 "soul_lantern",
                 Items.SOUL_LANTERN,
                 Blocks.SOUL_LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true)
-        ),
-        @SuppressWarnings({"Convert2MethodRef"})
-        SAP_LANTERN(
+        ), @SuppressWarnings({"Convert2MethodRef"}) SAP_LANTERN(
                 "sap_lantern",
                 () -> BlockRegistry.SAP_LANTERN.get(),
                 () -> BlockRegistry.SAP_LANTERN.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true)
-        ),
-        BELL(
+        ), BELL(
                 "bell",
                 Items.BELL,
                 Blocks.BELL.defaultBlockState().setValue(BlockStateProperties.BELL_ATTACHMENT, BellAttachType.CEILING)
-        ),
-        SHROOMLIGHT(
-                "shroomlight",
-                Items.SHROOMLIGHT,
-                Blocks.SHROOMLIGHT.defaultBlockState()
-        );
+        ), SHROOMLIGHT("shroomlight", Items.SHROOMLIGHT, Blocks.SHROOMLIGHT.defaultBlockState());
 
         public static final StringRepresentableCodec<@NotNull HangingBlockOptions> CODEC = StringRepresentable.fromEnum(
                 HangingBlockOptions::values);

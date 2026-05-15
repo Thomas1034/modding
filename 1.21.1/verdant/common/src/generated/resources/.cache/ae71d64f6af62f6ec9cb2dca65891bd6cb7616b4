@@ -1,9 +1,0 @@
-// 1.21.11	2026-05-07T16:40:49.5846721	Tags for minecraft:entity_type mod id verdant
-6f64aeb58e3eb9ceef6008175f56c1bd70abf38a data/minecraft/tags/entity_type/arrows.json
-72263ec5065350cfa79b5f2c8d94a9305ecd83ab data/minecraft/tags/entity_type/arthropod.json
-e48c41381ad78090ff658da586de1bfcf8992ce6 data/minecraft/tags/entity_type/impact_projectiles.json
-009242661fdcab76bbc8ae9da341cfbc69e0113e data/minecraft/tags/entity_type/undead.json
-04415bd3d871e1160fa82b606a261c7f14e9c3b1 data/verdant/tags/entity_type/immune_to_thorn_bushes.json
-68bc497a1467aab6811475023891d21b8d2965e5 data/verdant/tags/entity_type/sap_immune.json
-223354d89cb8e72a2db28ec924d5a820274a6cca data/verdant/tags/entity_type/toxic_ash_damages.json
-41a16721e1f8c19c0c8862e9797a0be3f2fd27a1 data/verdant/tags/entity_type/verdant_friendly_entities.json

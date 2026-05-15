@@ -16,8 +16,6 @@
  */
 package com.startraveler.verdant.recipe;
 
-import com.mojang.datafixers.Products;
-import com.mojang.datafixers.util.Function3;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.startraveler.verdant.Constants;
@@ -31,18 +29,13 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Holder;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -50,31 +43,56 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 
-public class RopeCoilUpgradeRecipe extends CustomRecipe {
+public final class RopeCoilUpgradeRecipe extends CustomRecipe {
 
-    protected final Item coil;
-    protected final BlockItem rope;
+    public static final MapCodec<RopeCoilUpgradeRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            CraftingBookCategory.CODEC.fieldOf("category").forGetter(RopeCoilUpgradeRecipe::category),
+            Item.CODEC.fieldOf("coil").forGetter(RopeCoilUpgradeRecipe::coil),
+            Item.CODEC.fieldOf("rope").forGetter(RopeCoilUpgradeRecipe::rope)
+    ).apply(instance, RopeCoilUpgradeRecipe::new));
 
-    public RopeCoilUpgradeRecipe(CraftingBookCategory category, Item coil, Item rope) {
-        super(category);
+    public static final StreamCodec<RegistryFriendlyByteBuf, RopeCoilUpgradeRecipe> STREAM_CODEC = StreamCodec.composite(
+            CraftingBookCategory.STREAM_CODEC,
+            RopeCoilUpgradeRecipe::category,
+            Item.STREAM_CODEC,
+            RopeCoilUpgradeRecipe::coil,
+            Item.STREAM_CODEC,
+            RopeCoilUpgradeRecipe::rope,
+            RopeCoilUpgradeRecipe::new
+    );
+
+    private final Holder<Item> coil;
+    private final Holder<Item> rope;
+    private final CraftingBookCategory category;
+
+    public RopeCoilUpgradeRecipe(CraftingBookCategory category, Holder<Item> coil, Holder<Item> rope) {
         this.coil = coil;
-        if (rope instanceof BlockItem ropeBlockItem) {
-            this.rope = ropeBlockItem;
+        this.category = category;
+        if (rope.value() instanceof BlockItem) {
+            this.rope = rope;
         } else {
             throw new IllegalArgumentException("Passed non-block item as rope parameter to a rope coil upgrade recipe.");
         }
     }
 
     @Override
-    public boolean matches(@NotNull CraftingInput input, Level level) {
-        return assemble(input, level.registryAccess()) != ItemStack.EMPTY;
+    public @NotNull CraftingBookCategory category() {
+        return this.category;
     }
 
     @Override
-    public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.@NotNull Provider registries) {
+    public @NotNull RecipeSerializer<@NotNull RopeCoilUpgradeRecipe> getSerializer() {
+        return RecipeSerializerRegistry.ROPE_COIL_SERIALIZER.get();
+    }
+
+    @Override
+    public boolean matches(@NotNull CraftingInput input, @NotNull Level level) {
+        return assemble(input) != ItemStack.EMPTY;
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(CraftingInput input) {
         // There must be at least two items to perform the recipe.
         if (input.ingredientCount() < 2) {
             return ItemStack.EMPTY;
@@ -97,7 +115,7 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         // If a rope coil was found, make sure that it has the right component.
         RopeCoilData component = input.getItem(ropeCoilIndex).get(DataComponentRegistry.ROPE_COIL.get());
         if (component == null) {
-            
+
             return ItemStack.EMPTY;
         }
         // The maximum allowed length that can be added to the coil.
@@ -112,9 +130,9 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         RopeCoilData.HangingBlockOptions resultHangingBlock = component.hangingBlock();
         for (int i = 0; i < input.size(); i++) {
             // Skip the rope coil, it's allowed.
-            
+
             if (i == ropeCoilIndex) {
-                
+
                 continue;
             }
             ItemStack stack = input.getItem(i);
@@ -135,7 +153,7 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     canAddHook = false;
                     resultHasHook = true;
                 } else {
-                    
+
                     return ItemStack.EMPTY;
                 }
             } else if (RopeCoilData.HangingBlockOptions.getOption(stack) instanceof RopeCoilData.HangingBlockOptions options) {
@@ -170,7 +188,7 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                 RopeCoilData data = stack.get(DataComponentRegistry.ROPE_COIL.get());
                 if (data == null) {
                     // This shouldn't happen... if it does, we have a problem.
-                    
+
                     return ItemStack.EMPTY;
                 }
                 if (data.length() <= remainingAllowedLength) {
@@ -196,7 +214,7 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
                     } else {
                         // It has a hook and a hook cannot be added.
                         // Fail.
-                        
+
                         return ItemStack.EMPTY;
                     }
                 }
@@ -228,85 +246,24 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         }
         ItemStack result = new ItemStack(this.coil);
         result.set(
-                DataComponentRegistry.ROPE_COIL.get(),
-                new RopeCoilData(
+                DataComponentRegistry.ROPE_COIL.get(), new RopeCoilData(
                         resultLength,
                         resultHasHook,
                         resultLightLevel,
                         resultHangingBlock,
-                        this.rope.getBlock()
+                        ((BlockItem) this.rope.value()).getBlock()
                 )
         );
-        
+
         return result;
     }
 
-    @Override
-    public @NotNull RecipeSerializer<? extends CustomRecipe> getSerializer() {
-        return RecipeSerializerRegistry.ROPE_COIL_SERIALIZER.get();
-    }
-
-    public Item getCoil() {
+    public Holder<Item> coil() {
         return this.coil;
     }
 
-    public BlockItem getRope() {
+    public Holder<Item> rope() {
         return this.rope;
-    }
-
-    public static class Serializer<T extends RopeCoilUpgradeRecipe> implements RecipeSerializer<T> {
-        private final MapCodec<T> codec;
-        private final StreamCodec<RegistryFriendlyByteBuf, T> streamCodec; // RegistryFriendlyByteBuf
-
-        public Serializer(Factory<T> factory) {
-            Objects.requireNonNull(factory);
-            this.codec = RecordCodecBuilder.mapCodec((instance) -> {
-                Products.P3<RecordCodecBuilder.Mu<T>, CraftingBookCategory, Item, Item> products = instance.group(
-                        CraftingBookCategory.CODEC.fieldOf("category")
-                                .orElse(CraftingBookCategory.MISC)
-                                .forGetter(CraftingRecipe::category),
-                        BuiltInRegistries.ITEM.byNameCodec()
-                                .fieldOf("coil")
-                                .orElse(Items.AIR)
-                                .forGetter(RopeCoilUpgradeRecipe::getCoil),
-                        BuiltInRegistries.ITEM.byNameCodec()
-                                .fieldOf("rope")
-                                .orElse(Items.AIR)
-                                .forGetter(RopeCoilUpgradeRecipe::getRope)
-                );
-                Objects.requireNonNull(factory);
-                return products.apply(instance, factory);
-            });
-            StreamCodec<? super RegistryFriendlyByteBuf, CraftingBookCategory> craftingBookCategoryStreamCodec = CraftingBookCategory.STREAM_CODEC;
-            Function<T, CraftingBookCategory> categoryGetter = RopeCoilUpgradeRecipe::category;
-            StreamCodec<? super RegistryFriendlyByteBuf, Item> itemStreamCodec = ByteBufCodecs.fromCodec(
-                    BuiltInRegistries.ITEM.byNameCodec());
-            Function<T, Item> coilGetter = RopeCoilUpgradeRecipe::getCoil;
-            Function<T, Item> ropeGetter = RopeCoilUpgradeRecipe::getRope;
-            this.streamCodec = StreamCodec.composite(
-                    craftingBookCategoryStreamCodec,
-                    categoryGetter,
-                    itemStreamCodec,
-                    coilGetter,
-                    itemStreamCodec,
-                    ropeGetter,
-                    factory
-            );
-        }
-
-        @Override
-        public @NotNull MapCodec<T> codec() {
-            return this.codec;
-        }
-
-        @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
-            return this.streamCodec;
-        }
-
-        @FunctionalInterface
-        public interface Factory<T extends RopeCoilUpgradeRecipe> extends Function3<CraftingBookCategory, Item, Item, T> {
-        }
     }
 
     // Inspired by the implementation here: https://docs.neoforged.net/docs/resources/server/recipes/custom/#data-generation
@@ -314,8 +271,8 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
         @Nullable
         protected String group;
-        protected Item coil;
-        protected BlockItem rope;
+        protected Holder<Item> coil;
+        protected Holder<Item> rope;
         private CraftingBookCategory category;
 
         public Builder() {
@@ -334,8 +291,8 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
         }
 
         @Override
-        public @NotNull Item getResult() {
-            return this.coil;
+        public @NotNull ResourceKey<Recipe<?>> defaultId() {
+            return RecipeBuilder.getDefaultRecipeId(new ItemStackTemplate(this.coil.value()));
         }
 
         @Override
@@ -355,19 +312,19 @@ public class RopeCoilUpgradeRecipe extends CustomRecipe {
 
         private void fillDefaults() {
             if (this.coil == null) {
-                this.coil = ItemRegistry.ROPE_COIL.get();
+                this.coil = ItemRegistry.ROPE_COIL.asHolder();
             }
             if (this.rope == null) {
-                this.rope = ItemRegistry.ROPE.get();
+                this.rope = ItemRegistry.ROPE.asHolder();
             }
         }
 
-        public Builder coil(Item coil) {
+        public Builder coil(Holder<Item> coil) {
             this.coil = coil;
             return this;
         }
 
-        public Builder rope(BlockItem rope) {
+        public Builder rope(Holder<Item> rope) {
             this.rope = rope;
             return this;
         }

@@ -94,15 +94,15 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     private final boolean isWet;
     // Using multiple indirection, gets the dry version if the block is wet and the wet version if the block is dry.
     // Multiple indirection is necessary due to registration problems.
-    private final Supplier<Supplier<Block>> alternateWet;
+    private final Supplier<Supplier<? extends Block>> alternateWet;
     // Whether this block is grassy.
     private final boolean isGrassy;
     // Gets the grassy version if the block is not grassy and the non-grassy version if the block is grassy.
-    private final Supplier<Supplier<Block>> alternateGrassy;
+    private final Supplier<Supplier<? extends Block>> alternateGrassy;
 
     // Sets all the properties.
     // The other constructors below are preferred.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy, boolean isWet, Supplier<Supplier<Block>> alternateWet, boolean hasAlternateWetness) {
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet, boolean hasAlternateWetness) {
         super(properties);
         // Set the default state to be non-hydrated.
         this.registerDefaultState(this.stateDefinition.any()
@@ -117,12 +117,12 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Specialized versions of the constructor.
     // This one is for blocks with a wet/dry state.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy, boolean isWet, Supplier<Supplier<Block>> alternateWet) {
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet) {
         this(properties, isGrassy, alternateGrassy, isWet, alternateWet, true);
     }
 
     // This one is for blocks without a wet/dry state.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<Block>> alternateGrassy) {
+    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy) {
         this(properties, isGrassy, alternateGrassy, false, null, false);
     }
 
@@ -272,7 +272,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return Type.NEIGHBOR_SPREADER;
     }
 
-    protected BlockState updateState(BlockState state, Level level, BlockPos pos) {
+    protected BlockState updateState(BlockState state, ServerLevel level, BlockPos pos) {
         // First, get the block transformer. As usual, this is a moderately involved process.
         // These registers are synced; therefore, this works on the client and server equally well.
         // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
@@ -437,8 +437,12 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
 
         BlockState above = context.getLevel().getBlockState(context.getClickedPos().above());
-        return this.updateState(this.defaultBlockState(), context.getLevel(), context.getClickedPos())
-                .setValue(SNOWY, isSnowySetting(above));
+        Level level = context.getLevel();
+        return (level instanceof ServerLevel serverLevel ? this.updateState(
+                this.defaultBlockState(),
+                serverLevel,
+                context.getClickedPos()
+        ) : this.defaultBlockState()).setValue(SNOWY, isSnowySetting(above));
     }
 
     // Very important!
@@ -452,13 +456,12 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return ACTIVE_SPREAD_RATE * (state.getValue(SUCCESSFULLY_SPREAD) ? 1 : INACTIVE_SPREAD_RATE_FACTOR);
     }
 
-
     public enum NeighborType implements StringRepresentable {
 
         OTHER("other", null),
-        AIR("air", (access, state) -> state.isAir()),
-        LOG("log", (access, state) -> state.is(BlockTags.LOGS)),
-        WATER("water", (access, state) -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
+        AIR("air", (_, state) -> state.isAir()),
+        LOG("log", (_, state) -> state.is(BlockTags.LOGS)),
+        WATER("water", (_, state) -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
 
         private final String representation;
         private final BiPredicate<RegistryAccess, BlockState> identifier;

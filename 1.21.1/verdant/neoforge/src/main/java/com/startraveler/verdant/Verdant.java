@@ -84,7 +84,6 @@ public class Verdant {
         Rootbound.initializeWoodSets(eventBus, WoodSets.WOOD_SETS);
     }
 
-    // TODO also do this on Fabric.
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
 
         CommonClass.spawnSpiderlingsOnBlockBreak(event.getLevel(), event.getPlayer(), event.getPos(), event.getState());
@@ -104,9 +103,7 @@ public class Verdant {
 
     public static void onFinishSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-
             FlammablesRegistry.init(((FireBlock) Blocks.FIRE)::setFlammable);
-
             DispenserBehaviors.init();
             CommonClass.addCakeCandles();
         });
@@ -154,12 +151,12 @@ public class Verdant {
             event.registerEntity(
                     Capabilities.Item.ENTITY,
                     entityType,
-                    (entity, ctx) -> VanillaContainerWrapper.of(entity)
+                    (entity, _) -> VanillaContainerWrapper.of(entity)
             );
             event.registerEntity(
                     Capabilities.Item.ENTITY_AUTOMATION,
                     entityType,
-                    (entity, ctx) -> VanillaContainerWrapper.of(entity)
+                    (entity, _) -> VanillaContainerWrapper.of(entity)
             );
         }
     }

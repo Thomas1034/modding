@@ -47,7 +47,7 @@ public class InfestedRotatedPillarBlock extends RotatedPillarBlock {
 
             infestor.snapTo(
                     pos.getBottomCenter(),
-                    level.random.nextFloat() * Mth.TWO_PI,
+                    level.getRandom().nextFloat() * Mth.TWO_PI,
                     0.0F
             );
             level.addFreshEntity(infestor);

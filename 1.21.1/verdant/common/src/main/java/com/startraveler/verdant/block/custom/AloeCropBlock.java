@@ -140,14 +140,14 @@ public class AloeCropBlock extends CropBlock {
     protected @NotNull InteractionResult useWithoutItem(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         int currentAge = state.getValue(this.getAgeProperty());
         if (currentAge > 0) {
-            popResource(level, pos, this.harvest.apply(level.random));
+            popResource(level, pos, this.harvest.apply(level.getRandom()));
             level.playSound(
                     null,
                     pos,
                     SoundEvents.BOGGED_SHEAR,
                     SoundSource.BLOCKS,
                     1.0F,
-                    0.8F + level.random.nextFloat() * 0.4F
+                    0.8F + level.getRandom().nextFloat() * 0.4F
             );
             BlockState blockstate = state.setValue(this.getAgeProperty(), currentAge - 1);
             level.setBlock(pos, blockstate, 2);

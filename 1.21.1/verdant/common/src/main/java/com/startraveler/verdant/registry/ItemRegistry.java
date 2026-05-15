@@ -73,28 +73,19 @@ public class ItemRegistry {
             "aloe_leaf", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.ALOE_LEAF
-            ).component(
-                    DataComponents.USE_COOLDOWN,
-                    new UseCooldown(5, Optional.of(Constants.id("aloe_leaf")))
-            ))
+            ).component(DataComponents.USE_COOLDOWN, new UseCooldown(5, Optional.of(Constants.id("aloe_leaf")))))
     );
     public static final RegistryObject<Item, Item> YOUNG_ALOE_LEAF = register(
             "young_aloe_leaf", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.YOUNG_ALOE_LEAF
-            ).component(
-                    DataComponents.USE_COOLDOWN,
-                    new UseCooldown(10, Optional.of(Constants.id("aloe_leaf")))
-            ))
+            ).component(DataComponents.USE_COOLDOWN, new UseCooldown(10, Optional.of(Constants.id("aloe_leaf")))))
     );
     public static final RegistryObject<Item, Item> OLD_ALOE_LEAF = register(
             "old_aloe_leaf", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.OLD_ALOE_LEAF
-            ).component(
-                    DataComponents.USE_COOLDOWN,
-                    new UseCooldown(15, Optional.of(Constants.id("aloe_leaf")))
-            ))
+            ).component(DataComponents.USE_COOLDOWN, new UseCooldown(15, Optional.of(Constants.id("aloe_leaf")))))
     );
     public static final RegistryObject<Item, Item> ALOE_PUP = register(
             "aloe_pup",
@@ -237,7 +228,7 @@ public class ItemRegistry {
                     properties.durability(8)
                             .component(
                                     DataComponents.USE_REMAINDER,
-                                    new UseRemainder(Items.BUCKET.getDefaultInstance())
+                                    new UseRemainder(new ItemStackTemplate(Items.BUCKET))
                             ),
                     FeatureSetRegistry.LARGE_MULCH
             )
@@ -401,9 +392,19 @@ public class ItemRegistry {
                     )))
     );
     public static final RegistryObject<Item, Item> IMBUED_HEARTWOOD_SPEAR = register(
-            "imbued_heartwood_spear",
-            ((properties) -> new Item(properties.stacksTo(1)
-                    .spear(ToolMaterialRegistry.IMBUED_HEARTWOOD, 0.65F, 0.7F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
+            "imbued_heartwood_spear", ((properties) -> new Item(properties.stacksTo(1)
+                    .spear(
+                            ToolMaterialRegistry.IMBUED_HEARTWOOD,
+                            0.65F,
+                            0.7F,
+                            0.75F,
+                            5.0F,
+                            14.0F,
+                            10.0F,
+                            5.1F,
+                            15.0F,
+                            4.6F
+                    )
                     .component(
                             DataComponentRegistry.DURABILITY_CHANGING.get(),
                             DurabilityChanging.IMBUED_HEARTWOOD_TOOLS
@@ -464,17 +465,19 @@ public class ItemRegistry {
     public static final RegistryObject<Item, Item> BUCKET_OF_TOXIC_ASH = register(
             "toxic_ash_bucket", (properties) -> new ToxicAshItem(
                     properties.stacksTo(1)
-                            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(Items.BUCKET))),
-                    8,
-                    3
+                            .component(
+                                    DataComponents.USE_REMAINDER,
+                                    new UseRemainder(new ItemStackTemplate(Items.BUCKET))
+                            ), 8, 3
             )
     );
     public static final RegistryObject<Item, Item> TOXIC_SOLUTION_BUCKET = register(
             "toxic_solution_bucket", (properties) -> new ToxicAshItem(
                     properties.stacksTo(1)
-                            .component(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(Items.BUCKET))),
-                    32,
-                    8
+                            .component(
+                                    DataComponents.USE_REMAINDER,
+                                    new UseRemainder(new ItemStackTemplate(Items.BUCKET))
+                            ), 32, 8
             )
     );
     public static final RegistryObject<Item, Item> DART = register(
@@ -702,14 +705,20 @@ public class ItemRegistry {
                             .alwaysEdible()
                             .build())
                     .component(DataComponents.CONSUMABLE, ConsumablesList.JUICE_BOTTLE)
-                    .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
+                    .component(
+                            DataComponents.USE_REMAINDER,
+                            new UseRemainder(new ItemStackTemplate(Items.GLASS_BOTTLE))
+                    )
                     .stacksTo(16))
     );
     public static final RegistryObject<Item, Item> NECTAR_BOTTLE = register(
             "nectar_bottle",
             (properties) -> new Item(properties.food(Foods.HONEY_BOTTLE)
                     .component(DataComponents.CONSUMABLE, ConsumablesList.NECTAR_BOTTLE)
-                    .component(DataComponents.USE_REMAINDER, new UseRemainder(Items.GLASS_BOTTLE.getDefaultInstance()))
+                    .component(
+                            DataComponents.USE_REMAINDER,
+                            new UseRemainder(new ItemStackTemplate(Items.GLASS_BOTTLE))
+                    )
                     .stacksTo(16))
     );
     public static final RegistryObject<Item, Item> BALSAM = register("balsam", Item::new);
@@ -717,10 +726,7 @@ public class ItemRegistry {
             "balm", (properties) -> new Item(properties.food(
                     new FoodProperties.Builder().nutrition(0).saturationModifier(0.02F).alwaysEdible().build(),
                     ConsumablesList.BALM
-            ).component(
-                    DataComponents.USE_COOLDOWN,
-                    new UseCooldown(30, Optional.of(Constants.id("balm")))
-            ))
+            ).component(DataComponents.USE_COOLDOWN, new UseCooldown(30, Optional.of(Constants.id("balm")))))
     );
     public static final RegistryObject<Item, Item> SAP_TORCH = register(
             "sap_torch",
@@ -824,10 +830,7 @@ public class ItemRegistry {
     }
 
     public static Item.Properties properties(String name) {
-        return new Item.Properties().setId(ResourceKey.create(
-                Registries.ITEM,
-                Constants.id(name)
-        ));
+        return new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Constants.id(name)));
     }
 
     public static Equippable armorSpikes(Identifier location, ArmorType type) {

@@ -81,7 +81,7 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
             if (stack.is(CommonTags.Items.TOOLS_SHEAR)) {
                 state = state.setValue(STAGES, 0);
                 level.setBlockAndUpdate(pos, state);
-                popResourceFromFace(level, pos, hitResult.getDirection(), this.harvest.apply(level.random));
+                popResourceFromFace(level, pos, hitResult.getDirection(), this.harvest.apply(level.getRandom()));
                 stack.hurtAndBreak(1, player, hand);
                 level.playSound(
                         null,
@@ -89,7 +89,7 @@ public class FruitingTintedParticleLeavesBlock extends TintedParticleLeavesBlock
                         SoundEvents.SHEARS_SNIP,
                         SoundSource.BLOCKS,
                         1.0F,
-                        0.8F + level.random.nextFloat() * 0.4F
+                        0.8F + level.getRandom().nextFloat() * 0.4F
                 );
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
                 return InteractionResult.SUCCESS;

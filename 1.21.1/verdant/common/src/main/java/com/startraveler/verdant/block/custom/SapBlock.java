@@ -21,7 +21,7 @@ public class SapBlock extends HalfTransparentBlock {
     @Override
     protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, @NotNull InsideBlockEffectApplier applier, boolean intersects) {
         super.entityInside(state, level, pos, entity, applier, intersects);
-        if (!entity.getType().is(VerdantTags.EntityTypes.SAP_IMMUNE)) {
+        if (!entity.is(VerdantTags.EntityTypes.SAP_IMMUNE)) {
             entity.makeStuckInBlock(state, new Vec3(0.6, 0.6, 0.6));
             if (entity instanceof LivingEntity livingEntity) {
                 if (livingEntity.getEyePosition() instanceof Vec3 eyePos && level.getBlockState(BlockPos.containing(

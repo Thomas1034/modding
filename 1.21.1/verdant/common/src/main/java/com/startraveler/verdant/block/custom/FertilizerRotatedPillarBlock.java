@@ -43,8 +43,8 @@ public class FertilizerRotatedPillarBlock extends RotatedPillarBlock {
         if (var5 instanceof BonemealableBlock bonemealableBlock) {
             if (bonemealableBlock.isValidBonemealTarget(level, pos, blockstate)) {
                 if (level instanceof ServerLevel) {
-                    if (bonemealableBlock.isBonemealSuccess(level, level.random, pos, blockstate)) {
-                        bonemealableBlock.performBonemeal((ServerLevel) level, level.random, pos, blockstate);
+                    if (bonemealableBlock.isBonemealSuccess(level, level.getRandom(), pos, blockstate)) {
+                        bonemealableBlock.performBonemeal((ServerLevel) level, level.getRandom(), pos, blockstate);
                     }
                 }
 
@@ -79,7 +79,7 @@ public class FertilizerRotatedPillarBlock extends RotatedPillarBlock {
                     Holder<Biome> holder = level.getBiome(blockpos);
                     if (holder.is(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
                         if (i == 0 && clickedSide != null && clickedSide.getAxis().isHorizontal()) {
-                            blockstate = BuiltInRegistries.BLOCK.getRandomElementOf(BlockTags.WALL_CORALS, level.random)
+                            blockstate = BuiltInRegistries.BLOCK.getRandomElementOf(BlockTags.WALL_CORALS, level.getRandom())
                                     .map((p_204100_) -> ((Block) p_204100_.value()).defaultBlockState())
                                     .orElse(blockstate);
                             if (blockstate.hasProperty(BaseCoralWallFanBlock.FACING)) {
@@ -88,7 +88,7 @@ public class FertilizerRotatedPillarBlock extends RotatedPillarBlock {
                         } else if (randomsource.nextInt(4) == 0) {
                             blockstate = BuiltInRegistries.BLOCK.getRandomElementOf(
                                             BlockTags.UNDERWATER_BONEMEALS,
-                                            level.random
+                                            level.getRandom()
                                     )
                                     .map((p_204095_) -> ((Block) p_204095_.value()).defaultBlockState())
                                     .orElse(blockstate);

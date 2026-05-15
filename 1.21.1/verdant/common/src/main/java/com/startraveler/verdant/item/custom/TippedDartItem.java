@@ -8,6 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.TooltipDisplay;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -17,7 +18,7 @@ public class TippedDartItem extends DartItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay components, Consumer<Component> consumer, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, @NotNull TooltipDisplay components, @NotNull Consumer<Component> consumer, @NotNull TooltipFlag flag) {
         /*PotionContents potionContents = stack.get(DataComponents.POTION_CONTENTS);
         if (potionContents != null) {
             Objects.requireNonNull(components);
@@ -26,13 +27,15 @@ public class TippedDartItem extends DartItem {
 
     }
 
-    public Component getName(ItemStack stack) {
+    @Override
+    public @NotNull Component getName(ItemStack stack) {
         PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
         return potioncontents != null ? potioncontents.getName(this.descriptionId + ".effect.") : super.getName(
                 stack);
     }
 
-    public ItemStack getDefaultInstance() {
+    @Override
+    public @NotNull ItemStack getDefaultInstance() {
         ItemStack itemstack = super.getDefaultInstance();
         itemstack.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.POISON));
         return itemstack;

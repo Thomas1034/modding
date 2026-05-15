@@ -3,13 +3,14 @@ package com.startraveler.verdant.data.definitions;
 import com.startraveler.verdant.block.custom.BombFlowerCropBlock;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.world.level.block.Block;
 
 public class VerdantTextureMapping {
 
-    public static TextureMapping fruitingLeaves(Identifier block) {
-        return TextureMapping.cube(block).put(VerdantTextureSlot.OVERLAY, block.withSuffix("_overlay"));
+    public static TextureMapping fruitingLeaves(Material block) {
+        return TextureMapping.cube(block)
+                .put(VerdantTextureSlot.OVERLAY, new Material(block.sprite().withSuffix("_overlay")));
     }
 
     public static TextureMapping skull(Block block) {
@@ -26,7 +27,7 @@ public class VerdantTextureMapping {
                 .put(TextureSlot.END, TextureMapping.getBlockTexture(block, "_top"));
     }
 
-    public static TextureMapping asterisk(Identifier plus, Identifier cross) {
+    public static TextureMapping asterisk(Material plus, Material cross) {
         return new TextureMapping().put(VerdantTextureSlot.PLUS, plus).put(TextureSlot.CROSS, cross);
     }
 
@@ -110,25 +111,24 @@ public class VerdantTextureMapping {
 
 
     @SuppressWarnings("unused")
-    public static TextureMapping overlaidCubeBlock(Block block, Block base, Identifier overlay) {
+    public static TextureMapping overlaidCubeBlock(Block block, Block base, Material overlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.OVERLAY, overlay);
     }
 
     @SuppressWarnings("unused")
-    public static TextureMapping topOverlaidCubeBlock(Block block, Block base, Identifier overlay, Identifier topOverlay) {
+    public static TextureMapping topOverlaidCubeBlock(Block block, Block base, Material overlay, Material topOverlay) {
         return new TextureMapping().put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.BASE, TextureMapping.getBlockTexture(base))
                 .put(VerdantTextureSlot.OVERLAY, overlay)
-                .put(TextureSlot.TOP, topOverlay.withSuffix("_top"))
-                .put(TextureSlot.SIDE, topOverlay.withSuffix("_side"))
-                .put(TextureSlot.BOTTOM, topOverlay.withSuffix("_bottom"));
+                .put(TextureSlot.TOP, new Material(topOverlay.sprite().withSuffix("_top")))
+                .put(TextureSlot.SIDE, new Material(topOverlay.sprite().withSuffix("_side")));
     }
 
-    public static TextureMapping overlaidCross(Identifier base) {
+    public static TextureMapping overlaidCross(Material base) {
         return new TextureMapping().put(TextureSlot.CROSS, base)
-                .put(VerdantTextureSlot.OVERLAY, base.withSuffix("_overlay"));
+                .put(VerdantTextureSlot.OVERLAY, new Material(base.sprite().withSuffix("_overlay")));
     }
 
 

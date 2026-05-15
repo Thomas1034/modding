@@ -1,9 +1,0 @@
-{
-  "parent": "verdant:block/overlaid_cube",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "base": "verdant:block/strangler_leaves",
-    "overlay": "verdant:block/thorns_overlay",
-    "particle": "verdant:block/strangler_leaves"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "verdant:block/overlaid_tinted_cross",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "cross": "verdant:block/thorn_bush",
-    "overlay": "verdant:block/thorn_bush_overlay"
-  }
-}

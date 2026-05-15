@@ -34,7 +34,7 @@ public interface Hoeable {
         BlockTransformer hoeing = BlockTransformer.SAFE_CACHE.get(access, BlockTransformerRegistry.HOEING);
 
         // Transforms the state and returns it
-        return hoeing.get(state, access, level.random);
+        return hoeing.get(state, access, level.getRandom());
     }
 
     @SuppressWarnings("unused")

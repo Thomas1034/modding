@@ -67,7 +67,7 @@ public class FlammablesRegistry {
         this.registrar.accept(block, flammability, spreadSpeed);
     }
 
-    public void registerFlammability(Supplier<Block> block, int flammability, int spreadSpeed) {
+    public void registerFlammability(Supplier<? extends Block> block, int flammability, int spreadSpeed) {
         this.registerFlammability(block.get(), flammability, spreadSpeed);
     }
 

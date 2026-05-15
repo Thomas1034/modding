@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "verdant:block/mango_wood_top",
-    "side": "verdant:block/mango_wood_side"
-  }
-}

@@ -58,8 +58,8 @@ public class RopeItem extends BlockItem {
         if (hookBlock != null) {
             // Iterate over all the possible states, in a random order.
             List<BlockState> states = new ArrayList<>(hookBlock.getStateDefinition().getPossibleStates());
-            // Constants.LOG.warn("States {} and random {} ", states, new Random(level.random.nextInt()));
-            Collections.shuffle(states, new Random(level.random.nextInt()));
+            // Constants.LOG.warn("States {} and random {} ", states, new Random(level.getRandom().nextInt()));
+            Collections.shuffle(states, new Random(level.getRandom().nextInt()));
             for (BlockState hookState : states) {
                 // Check if the hook can survive.
                 if (hookState.canSurvive(level, pos)) {

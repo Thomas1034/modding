@@ -23,13 +23,13 @@ public class WitchMixin {
         return original || ((Witch) (Object) (this)).hasEffect(MobEffectRegistry.ASPHYXIATING.asHolder());
     }
 
-    @ModifyExpressionValue(method = "aiStep", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/alchemy/Potions;HEALING:Lnet/minecraft/core/Holder;", ordinal = 0))
-    private Holder<Potion> verdant$setHealingPotion(Holder<Potion> original) {
+    @ModifyExpressionValue(method = "aiStep", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/alchemy/Potions;HEALING:Lnet/minecraft/core/Holder$Reference;", ordinal = 0))
+    private Holder.Reference<Potion> verdant$setHealingPotion(Holder.Reference<Potion> original) {
         return ((Object) this) instanceof PoisonerEntity ? Potions.STRONG_HEALING : original;
     }
 
-    @ModifyExpressionValue(method = "aiStep", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/alchemy/Potions;SWIFTNESS:Lnet/minecraft/core/Holder;", ordinal = 0))
-    private Holder<Potion> verdant$setSpeedPotion(Holder<Potion> original) {
+    @ModifyExpressionValue(method = "aiStep", at = @At(value = "FIELD", target = "Lnet/minecraft/world/item/alchemy/Potions;SWIFTNESS:Lnet/minecraft/core/Holder$Reference;", ordinal = 0))
+    private Holder.Reference<Potion> verdant$setSpeedPotion(Holder.Reference<Potion> original) {
         return ((Object) this) instanceof PoisonerEntity ? Potions.STRONG_SWIFTNESS : original;
     }
 }

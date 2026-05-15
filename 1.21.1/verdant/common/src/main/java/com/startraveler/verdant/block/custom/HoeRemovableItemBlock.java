@@ -75,7 +75,7 @@ public class HoeRemovableItemBlock extends Block {
 
             if (level instanceof ServerLevel serverLevel) {
                 List<ItemStack> loot = new ArrayList<>();
-                int rolls = this.rolls.apply(level.random);
+                int rolls = this.rolls.apply(level.getRandom());
                 for (int i = 0; i < rolls; i++) {
 
                     LootTable table = level.getServer().reloadableRegistries().getLootTable(this.itemLootTable);

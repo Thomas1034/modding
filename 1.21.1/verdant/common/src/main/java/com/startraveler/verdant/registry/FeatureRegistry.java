@@ -17,9 +17,7 @@
 package com.startraveler.verdant.registry;
 
 import com.startraveler.verdant.Constants;
-import com.startraveler.verdant.feature.custom.FixedSeagrassFeature;
-import com.startraveler.verdant.feature.custom.OozingHeartPoolFeature;
-import com.startraveler.verdant.feature.custom.StranglerVineFeature;
+import com.startraveler.verdant.feature.custom.*;
 import com.startraveler.verdant.registration.RegistrationProvider;
 import com.startraveler.verdant.registration.RegistryObject;
 import net.minecraft.core.registries.Registries;
@@ -48,6 +46,11 @@ public class FeatureRegistry {
     public static final RegistryObject<Feature<?>, Feature<?>> OOZING_HEART_POOL = FEATURES.register(
             "oozing_heart_pool",
             () -> new OozingHeartPoolFeature(NoneFeatureConfiguration.CODEC)
+    );
+    @SuppressWarnings("unused")
+    public static final RegistryObject<Feature<?>, Feature<?>> RANDOM_PATCH = FEATURES.register(
+            "random_patch", () -> new RandomPatchFeature(
+                    RandomPatchConfiguration.CODEC)
     );
 
 

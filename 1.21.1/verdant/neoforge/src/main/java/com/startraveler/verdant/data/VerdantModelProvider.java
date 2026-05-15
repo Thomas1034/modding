@@ -4,6 +4,7 @@ import com.google.common.collect.Streams;
 import com.mojang.math.Quadrant;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.client.renderer.VerdantConduitSpecialRenderer;
 import com.startraveler.verdant.data.definitions.*;
 import com.startraveler.verdant.registry.ArmorMaterialRegistry;
 import com.startraveler.verdant.registry.BlockRegistry;
@@ -24,10 +25,10 @@ import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.renderer.block.model.Variant;
-import net.minecraft.client.renderer.block.model.VariantMutator;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.client.renderer.block.dispatch.Variant;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.renderer.blockentity.ConduitRenderer;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
@@ -48,6 +49,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -294,11 +296,11 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
     public static Identifier createFlatItemModelWithBlockTextureAndOverlay(BlockModelGenerators generators, Item item, Block block, String baseSuffix, String overlaySuffix) {
-        Identifier identifier = TextureMapping.getBlockTexture(block, baseSuffix);
-        Identifier identifier1 = TextureMapping.getBlockTexture(block, overlaySuffix);
+        Material baseTexture = TextureMapping.getBlockTexture(block, baseSuffix);
+        Material overlayTexture = TextureMapping.getBlockTexture(block, overlaySuffix);
         return ModelTemplates.TWO_LAYERED_ITEM.create(
                 ModelLocationUtils.getModelLocation(item),
-                TextureMapping.layered(identifier, identifier1),
+                TextureMapping.layered(baseTexture, overlayTexture),
                 generators.modelOutput
         );
     }
@@ -561,7 +563,7 @@ public class VerdantModelProvider extends ModelProvider {
         this.blockModels = blockModels;
         this.itemModels = itemModels;
 
-        simpleBlockWithItem(BlockRegistry.OVERGROWN_SPAWNER.get(), "cutout");
+        simpleBlockWithItem(BlockRegistry.OVERGROWN_SPAWNER.get());
 
         fishTrapWithItem(BlockRegistry.FISH_TRAP.get());
         tumbledBlockWithItem(BlockRegistry.ANTIGORITE.get());
@@ -651,99 +653,78 @@ public class VerdantModelProvider extends ModelProvider {
                 "diamond_ore_overlay"
         );
 
-        createCrossBlock(BlockRegistry.POISON_IVY.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
-        createCrossBlock(BlockRegistry.POISON_IVY_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
-        createCrossBlock(BlockRegistry.STRANGLER_TENDRIL.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
-        createCrossBlock(
-                BlockRegistry.STRANGLER_TENDRIL_PLANT.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
-        );
-        createCrossBlock(BlockRegistry.DROWNED_HEMLOCK.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
-        createCrossBlock(
-                BlockRegistry.DROWNED_HEMLOCK_PLANT.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
-        );
+        createCrossBlock(BlockRegistry.POISON_IVY.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createCrossBlock(BlockRegistry.POISON_IVY_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createCrossBlock(BlockRegistry.STRANGLER_TENDRIL.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createCrossBlock(BlockRegistry.STRANGLER_TENDRIL_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createCrossBlock(BlockRegistry.DROWNED_HEMLOCK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createCrossBlock(BlockRegistry.DROWNED_HEMLOCK_PLANT.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
         createCrossBlock(
                 BlockRegistry.COFFEE_CROP.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout",
                 CoffeeCropBlock.AGE,
                 IntStream.range(0, CoffeeCropBlock.MAX_AGE + 1).toArray()
         );
         createPottedOnly(
                 BlockRegistry.COFFEE_CROP.get(),
                 BlockRegistry.POTTED_COFFEE_CROP.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.BUSH.get(),
                 BlockRegistry.POTTED_BUSH.get(),
-                BlockModelGenerators.PlantType.TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.WILD_COFFEE.get(),
                 BlockRegistry.POTTED_WILD_COFFEE.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
 
         createOverlaidPlantWithDefaultItem(
                 BlockRegistry.THORN_BUSH.get(),
                 BlockRegistry.POTTED_THORN_BUSH.get(),
-                VerdantPlantType.OVERLAID_TINTED,
-                "cutout"
+                VerdantPlantType.OVERLAID_TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.BLEEDING_HEART.get(),
                 BlockRegistry.POTTED_BLEEDING_HEART.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.BLUEWEED.get(),
                 BlockRegistry.POTTED_BLUEWEED.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.TIGER_LILY.get(),
                 BlockRegistry.POTTED_TIGER_LILY.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
         createCropBlock(
                 BlockRegistry.CASSAVA_CROP.get(),
-                "cutout",
                 CassavaCropBlock.AGE,
                 IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
         );
         createCropBlock(
                 BlockRegistry.BITTER_CASSAVA_CROP.get(),
-                "cutout",
                 CassavaCropBlock.AGE,
                 IntStream.range(0, CassavaCropBlock.MAX_AGE + 1).toArray()
         );
         createPlantWithDefaultItem(
                 BlockRegistry.WILD_CASSAVA.get(),
                 BlockRegistry.POTTED_WILD_CASSAVA.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
         createPlantWithDefaultItem(
                 BlockRegistry.WILD_UBE.get(),
                 BlockRegistry.POTTED_WILD_UBE.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
 
         createCropBlock(
                 BlockRegistry.UBE_CROP.get(),
-                "cutout",
                 SpreadingCropBlock.AGE,
                 IntStream.range(0, SpreadingCropBlock.MAX_AGE + 1).toArray()
         );
@@ -789,7 +770,7 @@ public class VerdantModelProvider extends ModelProvider {
         candleCake(Blocks.BLACK_CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.BLACK_CANDLE_UBE_CAKE.get());
         candleCake(Blocks.CANDLE, BlockRegistry.UBE_CAKE.get(), BlockRegistry.CANDLE_UBE_CAKE.get());
         tumbledBlockWithItem(BlockRegistry.TOXIC_DIRT.get());
-        createCrossBlock(BlockRegistry.DEAD_GRASS.get(), BlockModelGenerators.PlantType.NOT_TINTED, "cutout");
+        createCrossBlock(BlockRegistry.DEAD_GRASS.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.POISON_IVY_BLOCK.get(), TexturedModel.COLUMN);
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.TOXIC_ASH_BLOCK.get(), TexturedModel.COLUMN);
@@ -797,9 +778,7 @@ public class VerdantModelProvider extends ModelProvider {
         createPlantWithDefaultItemWithCustomPottedTexture(
                 BlockRegistry.RUE.get(),
                 BlockRegistry.POTTED_RUE.get(),
-                Constants.id("block/rue_potted"),
-                BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout"
+                BlockModelGenerators.PlantType.NOT_TINTED
         );
 
         blockModels.createAxisAlignedPillarBlock(BlockRegistry.PUTRID_FERTILIZER.get(), TexturedModel.COLUMN);
@@ -809,17 +788,15 @@ public class VerdantModelProvider extends ModelProvider {
         createCrossBlockWithoutItem(
                 BlockRegistry.SMALL_ALOE.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout",
-                ((AloeCropBlock) BlockRegistry.SMALL_ALOE.get()).getAgeProperty(),
-                IntStream.range(0, ((AloeCropBlock) BlockRegistry.SMALL_ALOE.get()).getMaxAge() + 1).toArray()
+                BlockRegistry.SMALL_ALOE.get().getAgeProperty(),
+                IntStream.range(0, BlockRegistry.SMALL_ALOE.get().getMaxAge() + 1).toArray()
         );
 
         createAsteriskBlockWithoutItem(
                 BlockRegistry.LARGE_ALOE.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED,
-                "cutout",
-                ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getAgeProperty(),
-                IntStream.range(0, ((AloeCropBlock) BlockRegistry.LARGE_ALOE.get()).getMaxAge() + 1).toArray()
+                BlockRegistry.LARGE_ALOE.get().getAgeProperty(),
+                IntStream.range(0, BlockRegistry.LARGE_ALOE.get().getMaxAge() + 1).toArray()
         );
 
         mirroredColumnBlock(BlockRegistry.SCREE.get());
@@ -849,12 +826,11 @@ public class VerdantModelProvider extends ModelProvider {
         tumbledBlockWithItem(BlockRegistry.TOXIC_GRUS.get());
 
         blockModels.createTintedDoublePlant(BlockRegistry.TALL_BUSH.get());
-        // TODO make this not tint the thorns.
+
         createOverlaidDoublePlantWithItem(BlockRegistry.TALL_THORN_BUSH.get(), VerdantPlantType.OVERLAID_TINTED);
 
         createFruitingTintedLeaves(
                 BlockRegistry.MANGO_LEAVES.get(),
-                VerdantTexturedModel.FRUITING_LEAVES,
                 -12012264,
                 FruitingTintedParticleLeavesBlock.STAGES
         );
@@ -1077,6 +1053,13 @@ public class VerdantModelProvider extends ModelProvider {
         handheldItem(ItemRegistry.DIAMOND_MACHETE.get());
         handheldItem(ItemRegistry.NETHERITE_MACHETE.get());
 
+        this.blockModels.createParticleOnlyBlock(BlockRegistry.VERDANT_CONDUIT.get());
+        this.blockModels.generateSimpleSpecialItemModel(
+                BlockRegistry.VERDANT_CONDUIT.get(),
+                Optional.of(ConduitRenderer.DEFAULT_TRANSFORMATION),
+                new VerdantConduitSpecialRenderer.Unbaked()
+        );
+
     }
 
     @Override
@@ -1091,7 +1074,6 @@ public class VerdantModelProvider extends ModelProvider {
         excluded.add(BlockRegistry.ROPE_HOOK.get());
         excluded.add(BlockRegistry.TWISTED_ROPE_HOOK.get());
         excluded.add(BlockRegistry.STINKING_BLOSSOM.get());
-        excluded.add(BlockRegistry.VERDANT_CONDUIT.get());
         excluded.add(BlockRegistry.OVERGROWN_SPAWNER.get());
         WoodSets.WOOD_SETS.forEach(woodSet -> woodSet.getBlockProvider()
                 .getEntries()
@@ -1128,7 +1110,7 @@ public class VerdantModelProvider extends ModelProvider {
                 .with(sideFireModels.with(BlockModelGenerators.Y_ROT_270)));
     }
 
-    public void createFruitingTintedLeaves(Block block, Function<Integer, TexturedModel.Provider> provider, int tint, IntegerProperty ageProperty) {
+    public void createFruitingTintedLeaves(Block block, int tint, IntegerProperty ageProperty) {
         int maxAge = ageProperty.getPossibleValues().stream().mapToInt(i -> i).max().orElse(0);
 
         Mutable<Identifier> itemModelLocation = new MutableObject<>();
@@ -1141,12 +1123,7 @@ public class VerdantModelProvider extends ModelProvider {
                                     Identifier modelLocation = this.blockModels.createSuffixedVariant(
                                             block,
                                             "_stage" + stage,
-                                            provider.apply(stage)
-                                                    .get(block)
-                                                    .getTemplate()
-                                                    .extend()
-                                                    .renderType(ChunkSectionLayer.CUTOUT.label())
-                                                    .build(),
+                                            VerdantModelTemplates.FRUITING_LEAVES,
                                             VerdantTextureMapping::fruitingLeaves
                                     );
                                     if (stage == maxAge) {
@@ -1169,8 +1146,8 @@ public class VerdantModelProvider extends ModelProvider {
     public void tippedArrow(Item arrowItem) {
         Identifier identifier = itemModels.generateLayeredItem(
                 arrowItem,
-                ModelLocationUtils.getModelLocation(arrowItem, "_head"),
-                ModelLocationUtils.getModelLocation(arrowItem, "_base")
+                TextureMapping.getItemTexture(arrowItem, "_head"),
+                TextureMapping.getItemTexture(arrowItem, "_base")
         );
         itemModels.addPotionTint(arrowItem, identifier);
     }
@@ -1179,13 +1156,6 @@ public class VerdantModelProvider extends ModelProvider {
         blockModels.createTrivialBlock(block, TexturedModel.CUBE);
     }
 
-    @SuppressWarnings("SameParameterValue")
-    protected void simpleBlockWithItem(Block block, String renderType) {
-        blockModels.createTrivialBlock(
-                block,
-                TexturedModel.CUBE.updateTemplate(template -> template.extend().renderType(renderType).build())
-        );
-    }
 
     protected void fishTrapWithItem(Block block) {
         blockModels.blockStateOutput.accept(createFishTrapBlock(
@@ -1228,7 +1198,7 @@ public class VerdantModelProvider extends ModelProvider {
         TexturedModel.Provider model = TexturedModel.CUBE;
 
         if (renderType != null) {
-            model = model.updateTemplate(template -> template.extend().renderType(renderType).build());
+            model = model.updateTemplate(template -> template);
         }
 
         blockModels.blockStateOutput.accept(createTumbledBlock(block, model.create(block, blockModels.modelOutput)));
@@ -1238,8 +1208,7 @@ public class VerdantModelProvider extends ModelProvider {
     protected void tumbledOverlaidBlockWithItem(Block block, Block base, int tint, String... overlays) {
         BiFunction<String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.OVERLAID_CUBE;
 
-        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base)
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
+        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base);
 
         blockModels.blockStateOutput.accept(createTumbledOverlaidBlock(block, model, overlays));
 
@@ -1252,8 +1221,7 @@ public class VerdantModelProvider extends ModelProvider {
     protected void overlaidBlockWithItem(Block block, Block base, int tint, String... overlays) {
         BiFunction<String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.OVERLAID_CUBE;
 
-        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base)
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
+        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base);
 
         this.blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
 
@@ -1266,8 +1234,7 @@ public class VerdantModelProvider extends ModelProvider {
     public void createTintedOverlaidLeaves(Block block, Block base, int tint, String... overlays) {
         BiFunction<String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.OVERLAID_CUBE;
 
-        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base)
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
+        Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(lambdaOverlay, base);
 
 
         this.blockModels.blockStateOutput.accept(createOverlaidBlock(block, model, overlays));
@@ -1329,54 +1296,34 @@ public class VerdantModelProvider extends ModelProvider {
 
 
     protected void trapBlock(Block block) {
-        BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TRAP;
 
-        BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(
-                stage,
-                isHidden
-        ).updateTemplate(template -> template.extend().renderType("cutout").build());
-
-        blockModels.blockStateOutput.accept(createTrapBlock(block, model));
+        blockModels.blockStateOutput.accept(createTrapBlock(block, VerdantTexturedModel.TRAP));
     }
 
 
     protected void tintedTrapBlock(Block block) {
-        BiFunction<Integer, Boolean, TexturedModel.Provider> baseModel = VerdantTexturedModel.TINTED_TRAP;
 
-        BiFunction<Integer, Boolean, TexturedModel.Provider> model = (stage, isHidden) -> baseModel.apply(
-                stage,
-                isHidden
-        ).updateTemplate(template -> template.extend().renderType("cutout").build());
-
-        blockModels.blockStateOutput.accept(createTrapBlock(block, model));
+        blockModels.blockStateOutput.accept(createTrapBlock(block, VerdantTexturedModel.TINTED_TRAP));
     }
 
     @SuppressWarnings("unused")
     protected void hugeAloeBlock(Block block) {
-        BiFunction<Integer, Integer, TexturedModel.Provider> baseModel = VerdantTexturedModel.HUGE_ASTERISK_FOR_ALOE;
 
-        BiFunction<Integer, Integer, TexturedModel.Provider> model = (age, height) -> baseModel.apply(age, height)
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
-
-        blockModels.blockStateOutput.accept(createHugeAloeBlock(block, model));
+        blockModels.blockStateOutput.accept(createHugeAloeBlock(block, VerdantTexturedModel.HUGE_ASTERISK_FOR_ALOE));
     }
 
     protected void blastingBlossom(Block block) {
         blockModels.blockStateOutput.accept(createBlastingBlossom(
-                block,
-                (i) -> VerdantTexturedModel.BLASTING_BLOSSOM.apply(i)
-                        .get(block)
-                        .updateTemplate(template -> template.extend().renderType("cutout").build())
+                block, (i) -> VerdantTexturedModel.BLASTING_BLOSSOM.apply(i).get(block)
+
                         .createWithSuffix(block, "_stage" + i, blockModels.modelOutput)
         ));
     }
 
     protected void blastingBunch(Block block) {
         blockModels.blockStateOutput.accept(createBlastingBunch(
-                block,
-                (i) -> VerdantTexturedModel.BLASTING_BUNCH.apply(i)
-                        .get(block)
-                        .updateTemplate(template -> template.extend().renderType("cutout").build())
+                block, (i) -> VerdantTexturedModel.BLASTING_BUNCH.apply(i).get(block)
+
                         .createWithSuffix(block, "_stack" + i, blockModels.modelOutput)
         ));
     }
@@ -1385,8 +1332,7 @@ public class VerdantModelProvider extends ModelProvider {
     protected void spikesBlockWithItem(Block block) {
         blockModels.blockStateOutput.accept(createSpikesBlock(
                 block,
-                VerdantTexturedModel.SPIKES.updateTemplate(template -> template.extend().renderType("cutout").build())
-                        .create(block, blockModels.modelOutput)
+                VerdantTexturedModel.SPIKES.create(block, blockModels.modelOutput)
         ));
     }
 
@@ -1402,19 +1348,17 @@ public class VerdantModelProvider extends ModelProvider {
         TriFunction<String, String, Block, TexturedModel.Provider> baseModel = VerdantTexturedModel.TOP_OVERLAID_CUBE;
 
         Function<String, TexturedModel.Provider> model = (lambdaOverlay) -> baseModel.apply(
-                        lambdaOverlay,
-                        topOverlay,
-                        base
-                )
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
+                lambdaOverlay,
+                topOverlay,
+                base
+        );
 
         MultiVariant variants = createRotatedTopOverlaidBlock(block, model, overlays, "");
         Function<String, TexturedModel.Provider> snowyModel = (lambdaOverlay) -> baseModel.apply(
-                        lambdaOverlay,
-                        "snowy_" + topOverlay,
-                        base
-                )
-                .updateTemplate(template -> template.extend().renderType("cutout").build());
+                lambdaOverlay,
+                "snowy_" + topOverlay,
+                base
+        );
         MultiVariant snowyVariants = createRotatedTopOverlaidBlock(block, snowyModel, overlays, "_snowy");
 
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
@@ -1428,38 +1372,34 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
 
-    public void createPlantWithDefaultItem(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType, String renderType) {
+    public void createPlantWithDefaultItem(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
         blockModels.registerSimpleTintedItemModel(
                 block,
                 plantType.createItemModel(blockModels, block),
                 plantType == BlockModelGenerators.PlantType.TINTED ? new GrassColorSource() : new Constant(-1)
         );
-        createPlant(block, pottedBlock, plantType, renderType);
+        createPlant(block, pottedBlock, plantType);
     }
 
-    public void createOverlaidPlantWithDefaultItem(Block block, Block pottedBlock, VerdantPlantType plantType, String renderType) {
+    public void createOverlaidPlantWithDefaultItem(Block block, Block pottedBlock, VerdantPlantType plantType) {
 
         blockModels.registerSimpleTintedItemModel(
                 block,
                 plantType.createItemModel(blockModels, block),
                 plantType == VerdantPlantType.OVERLAID_TINTED ? new GrassColorSource() : new Constant(-1)
         );
-        createOverlaidPlant(block, pottedBlock, plantType, renderType);
+        createOverlaidPlant(block, pottedBlock, plantType);
     }
 
-    public void createPlantWithDefaultItemWithCustomPottedTexture(Block block, Block pottedBlock, Identifier customTexture, BlockModelGenerators.PlantType plantType, String renderType) {
+    public void createPlantWithDefaultItemWithCustomPottedTexture(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
         blockModels.registerSimpleItemModel(block.asItem(), plantType.createItemModel(blockModels, block));
-        createPlantWithCustomPottedTexture(block, pottedBlock, customTexture, plantType, renderType);
+        createPlantWithCustomPottedTexture(block, pottedBlock, plantType);
     }
 
-    public void createPlant(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType, String renderType) {
-        createCrossBlock(block, plantType, renderType);
+    public void createPlant(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
+        createCrossBlock(block, plantType);
         TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
-        Identifier identifier = plantType.getCrossPot()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(pottedBlock, texturemapping, blockModels.modelOutput);
+        Identifier identifier = plantType.getCrossPot().create(pottedBlock, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 pottedBlock,
                 BlockModelGenerators.plainVariant(identifier)
@@ -1467,84 +1407,66 @@ public class VerdantModelProvider extends ModelProvider {
     }
 
 
-    public void createOverlaidPlant(Block block, Block pottedBlock, VerdantPlantType plantType, String renderType) {
-        createOverlaidCrossBlock(block, plantType, renderType);
+    public void createOverlaidPlant(Block block, Block pottedBlock, VerdantPlantType plantType) {
+        createOverlaidCrossBlock(block, plantType);
         TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
-        Identifier identifier = plantType.getCrossPot()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(pottedBlock, texturemapping, blockModels.modelOutput);
+        Identifier identifier = plantType.getCrossPot().create(pottedBlock, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 pottedBlock,
                 BlockModelGenerators.plainVariant(identifier)
         ));
     }
 
-    public void createPlantWithCustomPottedTexture(Block block, Block pottedBlock, Identifier customPottedTexture, BlockModelGenerators.PlantType plantType, String renderType) {
-        createCrossBlock(block, plantType, renderType);
-        TextureMapping texturemapping = TextureMapping.singleSlot(TextureSlot.PLANT, customPottedTexture);
+    public void createPlantWithCustomPottedTexture(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
+        createCrossBlock(block, plantType);
+        TextureMapping texturemapping = TextureMapping.singleSlot(
+                TextureSlot.PLANT,
+                TextureMapping.getBlockTexture(block, "_potted")
+        );
 
-        Identifier identifier = plantType.getCrossPot()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(pottedBlock, texturemapping, blockModels.modelOutput);
+        Identifier identifier = plantType.getCrossPot().create(pottedBlock, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 pottedBlock,
                 BlockModelGenerators.plainVariant(identifier)
         ));
     }
 
-    public void createPottedOnly(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType, String renderType) {
+    public void createPottedOnly(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
         TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
-        Identifier identifier = plantType.getCrossPot()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(pottedBlock, texturemapping, blockModels.modelOutput);
+        Identifier identifier = plantType.getCrossPot().create(pottedBlock, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 pottedBlock,
                 BlockModelGenerators.plainVariant(identifier)
         ));
     }
 
-    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
+    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType) {
         TextureMapping texturemapping = plantType.getTextureMapping(block);
-        createCrossBlock(block, plantType, texturemapping, renderType);
+        createCrossBlock(block, plantType, texturemapping);
     }
 
-    public void createOverlaidCrossBlock(Block block, VerdantPlantType plantType, String renderType) {
+    public void createOverlaidCrossBlock(Block block, VerdantPlantType plantType) {
         TextureMapping texturemapping = plantType.getTextureMapping(block);
-        createOverlaidCrossBlock(block, plantType, texturemapping, renderType);
+        createOverlaidCrossBlock(block, plantType, texturemapping);
     }
 
-    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, TextureMapping textureMapping, String renderType) {
-        Identifier identifier = plantType.getCross()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(block, textureMapping, blockModels.modelOutput);
+    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, TextureMapping textureMapping) {
+        Identifier identifier = plantType.getCross().create(block, textureMapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 block,
                 BlockModelGenerators.plainVariant(identifier)
         ));
     }
 
-
-    public void createOverlaidCrossBlock(Block block, VerdantPlantType plantType, TextureMapping textureMapping, String renderType) {
-        Identifier identifier = plantType.getCross()
-                .extend()
-                .renderType(renderType)
-                .build()
-                .create(block, textureMapping, blockModels.modelOutput);
+    public void createOverlaidCrossBlock(Block block, VerdantPlantType plantType, TextureMapping textureMapping) {
+        Identifier identifier = plantType.getCross().create(block, textureMapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(
                 block,
                 BlockModelGenerators.plainVariant(identifier)
         ));
     }
 
-    public void createCrossBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
+    public void createCrossBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
         if (ageProperty.getPossibleValues().size() != possibleValues.length) {
             throw new IllegalArgumentException("missing values for property: " + ageProperty);
         } else {
@@ -1553,9 +1475,6 @@ public class VerdantModelProvider extends ModelProvider {
                         String s = "_stage" + possibleValues[p_388685_];
                         TextureMapping texturemapping = TextureMapping.cross(TextureMapping.getBlockTexture(block, s));
                         Identifier identifier = plantType.getCross()
-                                .extend()
-                                .renderType(renderType)
-                                .build()
                                 .createWithSuffix(block, s, texturemapping, blockModels.modelOutput);
                         return BlockModelGenerators.plainVariant(identifier);
                     });
@@ -1563,12 +1482,12 @@ public class VerdantModelProvider extends ModelProvider {
         }
     }
 
-    public void createCropBlock(Block cropBlock, String renderType, Property<@NotNull Integer> ageProperty, int... ageToVisualStageMapping) {
+    public void createCropBlock(Block cropBlock, Property<@NotNull Integer> ageProperty, int... ageToVisualStageMapping) {
         this.blockModels.registerSimpleFlatItemModel(cropBlock.asItem());
-        createCropBlockWithoutItem(cropBlock, renderType, ageProperty, ageToVisualStageMapping);
+        createCropBlockWithoutItem(cropBlock, ageProperty, ageToVisualStageMapping);
     }
 
-    public void createCropBlockWithoutItem(Block cropBlock, String renderType, Property<@NotNull Integer> ageProperty, int... ageToVisualStageMapping) {
+    public void createCropBlockWithoutItem(Block cropBlock, Property<@NotNull Integer> ageProperty, int... ageToVisualStageMapping) {
         if (ageProperty.getPossibleValues().size() != ageToVisualStageMapping.length) {
             throw new IllegalArgumentException();
         } else {
@@ -1577,10 +1496,11 @@ public class VerdantModelProvider extends ModelProvider {
                     .with(PropertyDispatch.initial(ageProperty).generate((p_408977_) -> {
                         int i = ageToVisualStageMapping[p_408977_];
                         return BlockModelGenerators.plainVariant(int2objectmap.computeIfAbsent(
-                                i, (stage) -> this.blockModels.createSuffixedVariant(
+                                i,
+                                (stage) -> this.blockModels.createSuffixedVariant(
                                         cropBlock,
                                         "_stage" + stage,
-                                        ModelTemplates.CROP.extend().renderType(renderType).build(),
+                                        ModelTemplates.CROP,
                                         TextureMapping::crop
                                 )
                         ));
@@ -1588,14 +1508,14 @@ public class VerdantModelProvider extends ModelProvider {
         }
     }
 
-    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
-        createCrossBlockWithoutItem(block, plantType, renderType, ageProperty, possibleValues);
+    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
+        createCrossBlockWithoutItem(block, plantType, ageProperty, possibleValues);
         blockModels.registerSimpleFlatItemModel(block.asItem());
 
     }
 
     @SuppressWarnings("unused")
-    public void createAsteriskBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
+    public void createAsteriskBlockWithoutItem(Block block, BlockModelGenerators.PlantType plantType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
         if (ageProperty.getPossibleValues().size() != possibleValues.length) {
             throw new IllegalArgumentException("missing values for property: " + ageProperty);
         } else {
@@ -1606,27 +1526,16 @@ public class VerdantModelProvider extends ModelProvider {
                         TextureMapping.getBlockTexture(block, s)
                 );
 
-                Identifier identifier = VerdantModelTemplates.ASTERISK.extend()
-                        .renderType(renderType)
-                        .build()
-                        .createWithSuffix(block, s, texture, blockModels.modelOutput);
+                Identifier identifier = VerdantModelTemplates.ASTERISK.createWithSuffix(
+                        block,
+                        s,
+                        texture,
+                        blockModels.modelOutput
+                );
                 return BlockModelGenerators.plainVariant(identifier);
             });
             blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(propertydispatch));
         }
     }
 
-    @SuppressWarnings("unused")
-    public void createAsteriskBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType, Property<@NotNull Integer> ageProperty, int... possibleValues) {
-        createAsteriskBlockWithoutItem(block, plantType, renderType, ageProperty, possibleValues);
-        blockModels.registerSimpleFlatItemModel(block.asItem());
-
-    }
-
-    @SuppressWarnings("unused")
-    public void generateSimpleSpecialItemModel(Block block, SpecialModelRenderer.Unbaked specialModel) {
-        Item item = block.asItem();
-        Identifier identifier = ModelLocationUtils.getModelLocation(item);
-        itemModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(identifier, specialModel));
-    }
 }

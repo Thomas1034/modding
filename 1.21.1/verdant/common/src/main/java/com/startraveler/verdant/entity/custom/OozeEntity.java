@@ -53,9 +53,8 @@ import java.util.function.Supplier;
 
 public class OozeEntity extends Slime implements Bucketable {
     public static final int EFFECT_SCALE = 4;
-    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(
-            ParticleTypes.ITEM,
-            new ItemStack(ItemRegistry.SAP_GLOB.get())
+    public static final Supplier<ParticleOptions> PARTICLE_OPTIONS = Suppliers.memoize(() -> new ItemParticleOption(ParticleTypes.ITEM,
+            ItemRegistry.SAP_GLOB.get()
     ));
     public static final int CHANCE_TO_INCREASE_SIZE = 128;
     public static final int CHANCE_TO_HOLD_FLOWER = 4;
@@ -188,15 +187,15 @@ public class OozeEntity extends Slime implements Bucketable {
                 .orElse(super.mobInteract(player, hand)) : super.mobInteract(player, hand);
     }
 
-    public void applyHitPotionEffect(@NotNull Entity entity) {
-        ItemStack stack = this.getMainHandItem();
+    public static void applyHitPotionEffect(@NotNull LivingEntity source, @NotNull Entity target) {
+        ItemStack stack = source.getMainHandItem();
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof SuspiciousEffectHolder seh) {
 
             SuspiciousStewEffects effects = seh.getSuspiciousEffects();
 
-            if (entity instanceof LivingEntity livingEntity && (!(livingEntity instanceof Player player && (player.isCreative() || player.isSpectator())))) {
+            if (target instanceof LivingEntity livingEntity && (!(livingEntity instanceof Player player && (player.isCreative() || player.isSpectator())))) {
                 for (SuspiciousStewEffects.Entry effect : effects.effects()) {
-                    livingEntity.addEffect(effect.createEffectInstance().withScaledDuration(EFFECT_SCALE), this);
+                    livingEntity.addEffect(effect.createEffectInstance().withScaledDuration(EFFECT_SCALE), source);
                 }
             }
 
@@ -248,7 +247,7 @@ public class OozeEntity extends Slime implements Bucketable {
                 if (slotTag != null) {
                     ItemStack inSlot = ItemStack.CODEC.decode(NbtOps.INSTANCE, slotTag)
                             .map(Pair::getFirst)
-                            .mapOrElse(Function.identity(), (error) -> ItemStack.EMPTY);
+                            .mapOrElse(Function.identity(), (_) -> ItemStack.EMPTY);
                     if (!inSlot.isEmpty()) {
                         this.setItemSlot(slot, inSlot);
                     }

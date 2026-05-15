@@ -60,10 +60,10 @@ public class RopeCoilItem extends Item implements ProjectileItem {
                 0.5F,
                 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
         );
-        if (level instanceof ServerLevel serverlevel) {
+        if (level instanceof ServerLevel serverLevel) {
             Projectile.spawnProjectileFromRotation(
                     ThrownRopeEntity::new,
-                    serverlevel,
+                    serverLevel,
                     itemstack,
                     player,
                     0.0F,

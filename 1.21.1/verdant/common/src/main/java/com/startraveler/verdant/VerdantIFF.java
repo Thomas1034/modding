@@ -40,7 +40,7 @@ public class VerdantIFF {
 
     public static float getFriendliness(Entity entity) {
         float friendliness = 0;
-        if (entity.getType().is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)) {
+        if (entity.is(VerdantTags.EntityTypes.VERDANT_FRIENDLY_ENTITIES)) {
             friendliness += 1;
         }
         friendliness += getArmorFriendliness(entity);

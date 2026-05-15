@@ -47,10 +47,8 @@ public class ThornBushBlock extends BushBlock {
         this.damage = damage;
     }
 
-    @SuppressWarnings("unused")
-    public static void entityInsideThorns(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity, float damage) {
-        if (entity instanceof LivingEntity livingEntity && !livingEntity.getType()
-                .is(VerdantTags.EntityTypes.IMMUNE_TO_THORN_BUSHES) && VerdantIFF.isEnemy(
+    public static void entityInsideThorns(@NotNull BlockState state, @NotNull Level level, @NotNull @SuppressWarnings("unused") BlockPos pos, @NotNull Entity entity, float damage) {
+        if (entity instanceof LivingEntity livingEntity && !livingEntity.is(VerdantTags.EntityTypes.IMMUNE_TO_THORN_BUSHES) && VerdantIFF.isEnemy(
                 livingEntity)) {
             double slowdownFactor = 0.2d;
             if (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(VerdantTags.Items.VERDANT_FRIENDLY_ARMORS)) {
