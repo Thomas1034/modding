@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "verdant:earth_bricks",
+  "result": {
+    "id": "verdant:chiseled_earth_bricks"
+  }
+}

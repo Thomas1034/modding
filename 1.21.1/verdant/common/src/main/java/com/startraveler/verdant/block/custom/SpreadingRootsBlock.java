@@ -26,6 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -44,7 +45,6 @@ import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -76,7 +76,6 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             MAX_DISTANCE
     );
 
-
     // Properties that aren't reflected in what the user sees.
     // These are used for caching surrounding blocks, to optimize spreading mechanics.
     public static final BooleanProperty SUCCESSFULLY_SPREAD = BooleanProperty.create("successfully_spread");
@@ -85,7 +84,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     public static final EnumProperty<@NotNull NeighborType> ABOVE = EnumProperty.create("above", NeighborType.class);
     public static final EnumProperty<@NotNull NeighborType> BELOW = EnumProperty.create("below", NeighborType.class);
     // The list of offsets to spread to.
-    protected final List<int[]> offsetsToSpreadTo = generateOffsetsInRadius(SPREAD_DISTANCE);
+    protected static final List<int[]> OFFSETS_TO_SPREAD_TO = generateOffsetsInRadius(SPREAD_DISTANCE);
     // These store properties of the block internally; this allows me to reuse this class
     // for six blocks (at the moment) and possibly more in the future.
     // Whether this block can swap to a "wet" version; for instance, dirt to mud.
@@ -102,7 +101,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Sets all the properties.
     // The other constructors below are preferred.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet, boolean hasAlternateWetness) {
+    public SpreadingRootsBlock(Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet, boolean hasAlternateWetness) {
         super(properties);
         // Set the default state to be non-hydrated.
         this.registerDefaultState(this.stateDefinition.any()
@@ -117,50 +116,16 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Specialized versions of the constructor.
     // This one is for blocks with a wet/dry state.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet) {
+    public SpreadingRootsBlock(Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy, boolean isWet, Supplier<Supplier<? extends Block>> alternateWet) {
         this(properties, isGrassy, alternateGrassy, isWet, alternateWet, true);
     }
 
     // This one is for blocks without a wet/dry state.
-    public SpreadingRootsBlock(BlockBehaviour.Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy) {
+    public SpreadingRootsBlock(Properties properties, boolean isGrassy, Supplier<Supplier<? extends Block>> alternateGrassy) {
         this(properties, isGrassy, alternateGrassy, false, null, false);
     }
 
-    // Returns the distance to the nearest available water, as stored in the given state.
-    // Very similar to how leaf blocks work; just changed to check for water instead of logs.
-    // Also doesn't bother redirecting through an optional, to save on computational resources.
-    // There's no need to make that many extra objects.
-    protected static int getDistanceAt(BlockState state) {
-        if (state.is(Blocks.WATER) || state.getFluidState().is(FluidTags.WATER)) {
-            return 0;
-        } else {
-            return state.getValueOrElse(WATER_DISTANCE, MAX_DISTANCE);
-        }
-    }
-
-    // Generates a random position within the given distance of the block.
-    // dist is the maximum Chebyshev distance, bounded between 0 and 128.
-    // To avoid expensive random calls, this uses bit shifting to
-    // extract the data from only one integer.
-    // I probably don't need to do this, but I'm keeping it around. It can't hurt.
-    public static BlockPos withinDist(BlockPos pos, int dist, RandomSource rand) {
-        // Throw an error if it's outside the bounds.
-        if (dist < 0 || dist > 127) {
-            throw new IllegalArgumentException("Chebyshev must be in range 0 to 127.");
-        }
-
-        int range = 2 * dist + 1;
-        // Generate a single random 32-bit number
-        int num = rand.nextInt();
-        // Extract offsets from different parts of the number
-        int offsetX = (num & 0x7F) % range - dist;       // Lowest 7 bits
-        int offsetY = ((num >> 7) & 0x7F) % range - dist; // Next 7 bits
-        int offsetZ = ((num >> 14) & 0x7F) % range - dist; // Following 7 bits
-
-        return pos.offset(offsetX, offsetY, offsetZ);
-    }
-
-    public static List<int[]> generateOffsetsInRadius(int radius) {
+    public static @NotNull List<int[]> generateOffsetsInRadius(int radius) {
         List<int[]> points = new ArrayList<>();
         int r2 = radius * radius;
         for (int i = -radius; i <= radius; i++) {
@@ -176,58 +141,70 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return points;
     }
 
-    protected static boolean isSnowySetting(BlockState state) {
+
+    // Returns the distance to the nearest available water, as stored in the given state.
+    // Very similar to how leaf blocks work; just changed to check for water instead of logs.
+    // Also doesn't bother redirecting through an optional, to save on computational resources.
+    // There's no need to make that many extra objects.
+    protected static int getDistanceAt(@NotNull BlockState state) {
+        if (state.is(Blocks.WATER) || state.getFluidState().is(FluidTags.WATER)) {
+            return 0;
+        } else {
+            return state.getValueOrElse(WATER_DISTANCE, MAX_DISTANCE);
+        }
+    }
+
+    protected static boolean isSnowySetting(@NotNull BlockState state) {
         return state.is(BlockTags.SNOW);
     }
 
     // This handles erosion, growth, and (eventually) placing features like
     // grass, bushes, vines, etc.
     // Returns whether any erosion or growth succeeded.
-    public boolean grow(BlockState state, ServerLevel level, BlockPos pos) {
+    public boolean grow(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos) {
         boolean anySucceeded = false;
         // First, check if the state is wet.
         // This is important for erosion; some things can only be
         // eroded with access to water.
         boolean isWet = state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
         // Spread everywhere in the radius.
-        for (int[] offset : this.offsetsToSpreadTo) {
-            BlockPos posToTry = pos.offset(offset[0], offset[1], offset[2]);
-            anySucceeded |= this.erodeOrGrow(level, posToTry, isWet);
+        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        int posX = pos.getX();
+        int posY = pos.getY();
+        int posZ = pos.getZ();
+        for (int[] offset : OFFSETS_TO_SPREAD_TO) {
+            mutableBlockPos.set(posX + offset[0], posY + offset[1], posZ + offset[2]);
+            anySucceeded |= this.erodeOrGrow(level, mutableBlockPos, isWet);
         }
         this.placeFeature(state, level, pos);
         return anySucceeded;
     }
 
-    public void placeFeature(BlockState state, ServerLevel level, BlockPos pos) {
-        Registry<FeatureSet> features = level.registryAccess().lookupOrThrow(FeatureSet.KEY);
+    public void placeFeature(@NotNull BlockState state, @NotNull ServerLevel level, BlockPos pos) {
+        Registry<FeatureSet> featureSetRegistry = level.registryAccess().lookupOrThrow(FeatureSet.KEY);
         BlockPos placeAt;
-        FeatureSet set;
-        if (state.getValue(ABOVE) == NeighborType.AIR) {
-            set = features.get(FeatureSetRegistry.ABOVE_GROUND).orElseThrow().value();
-            placeAt = pos.above();
-
-        } else if (state.getValue(BELOW) == NeighborType.AIR) {
-            set = features.get(FeatureSetRegistry.HANGING).orElseThrow().value();
+        FeatureSet featureSet;
+        NeighborType above = state.getValue(ABOVE);
+        NeighborType below = state.getValue(BELOW);
+        if (below == NeighborType.AIR) {
             placeAt = pos.below();
-
-        } else if (state.getValue(ABOVE) == NeighborType.WATER) {
-            set = features.get(FeatureSetRegistry.WATER).orElseThrow().value();
-            placeAt = pos.above();
-
-        } else if (state.getValue(ABOVE) == NeighborType.LOG) {
-            set = features.get(FeatureSetRegistry.BELOW_LOG).orElseThrow().value();
-            placeAt = pos.above();
-
+            featureSet = featureSetRegistry.get(FeatureSetRegistry.HANGING).orElseThrow().value();
         } else {
-            set = features.get(FeatureSetRegistry.ALWAYS).orElseThrow().value();
             placeAt = pos.above();
+            Identifier featureSetId = switch (above) {
+                case AIR -> FeatureSetRegistry.ABOVE_GROUND;
+                case LOG -> FeatureSetRegistry.BELOW_LOG;
+                case WATER -> FeatureSetRegistry.WATER;
+                default -> FeatureSetRegistry.ALWAYS;
+            };
+            featureSet = featureSetRegistry.get(featureSetId).orElseThrow().value();
         }
-        set.place(level, placeAt);
+        featureSet.place(level, placeAt);
     }
 
     // Returns true if the block at the given position can be grassy.
     // For now, just checks if it has a non-liquid, non-full block above it.
-    protected boolean canBeGrassy(BlockState state, LevelAccessor level, BlockPos pos) {
+    protected boolean canBeGrassy(@NotNull BlockState state, LevelAccessor level, BlockPos pos) {
         // Take the shortcut!
         if (state.getValue(ABOVE) == NeighborType.AIR) {
             return true;
@@ -247,13 +224,13 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
 
     // Returns true if the block at the given position can be switched to a wet state.
     // I.E., if it is anywhere near water.
-    protected boolean canBeWet(BlockState state, @SuppressWarnings("unused") LevelAccessor level, @SuppressWarnings("unused") BlockPos pos) {
+    protected boolean canBeWet(@NotNull BlockState state) {
         return state.getValue(WATER_DISTANCE) < MAX_DISTANCE;
     }
 
     // Handles bone mealing. Fairly straightforward.
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         return state.getValue(ACTIVE);
     }
 
@@ -272,7 +249,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         return Type.NEIGHBOR_SPREADER;
     }
 
-    protected BlockState updateState(BlockState state, ServerLevel level, BlockPos pos) {
+    protected BlockState updateState(BlockState state, @NotNull LevelReader level, BlockPos pos) {
         // First, get the block transformer. As usual, this is a moderately involved process.
         // These registers are synced; therefore, this works on the client and server equally well.
         // Unfortunately I haven't been able to test that in a multiplayer server, but I'll
@@ -293,18 +270,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         BlockState neighbor;
         // Calculates whether this block should be able to be active.
         // If it's grassy, or should be able to switch its wetness, it can stay active until that is done.
-        boolean canBeActive = this.isGrassy || (this.hasAlternateWetness && (this.isWet != this.canBeWet(
-                state,
-                level,
-                pos
-        )));
+        boolean canBeActive = this.isGrassy || (this.hasAlternateWetness && (this.isWet != this.canBeWet(state)));
 
         // Checking every neighbor:
         Direction[] directions = Direction.values();
-        Direction direction;
-        for (Direction value : directions) {
-            direction = value;
-
+        for (Direction direction : directions) {
             // If we don't know what's in that direction, check it.
             neighborPos.setWithOffset(pos, direction);
             neighbor = level.getBlockState(neighborPos);
@@ -314,8 +284,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             NeighborType adjacent = NeighborType.OTHER;
             if (direction == Direction.UP) {
                 adjacent = NeighborType.get(access, neighbor);
-                state = state.setValue(ABOVE, adjacent);
-                state = state.setValue(SNOWY, isSnowySetting(neighbor));
+                state = state.setValue(ABOVE, adjacent).setValue(SNOWY, isSnowySetting(neighbor));
             } else if (direction == Direction.DOWN) {
                 adjacent = NeighborType.get(access, neighbor);
                 state = state.setValue(BELOW, adjacent);
@@ -351,10 +320,10 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess tickAccess, @NotNull BlockPos currentPos, @NotNull Direction facing, @NotNull BlockPos facingPos, @NotNull BlockState facingState, @NotNull RandomSource random) {
 
         // Logic is too complicated to duplicate, most likely.
-        tickAccess.scheduleTick(currentPos, this, 1);
+        state = this.updateState(state, level, currentPos);
         return facing == Direction.UP ? state.setValue(SNOWY, isSnowySetting(facingState)) : super.updateShape(
                 state,
                 level,
@@ -384,7 +353,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // Handles spreading and updating wetness/grassiness.
     // This is anticipated to cause the most lag.
     @Override
-    public void randomTick(BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         // If it is ticking while inactive, there is a problem.
         if (!state.getValue(ACTIVE)) {
             return;
@@ -398,7 +367,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
         // If it is wet and should not be, or it is not wet but should be, swap.
         // Not-equal is being used as XOR here, to report a mismatch.
-        else if (this.hasAlternateWetness && (this.isWet != this.canBeWet(state, level, pos))) {
+        else if (this.hasAlternateWetness && (this.isWet != this.canBeWet(state))) {
             // Update the state, copying all applicable properties.
             state = BlockTransformer.copyProperties(state, this.alternateWet.get().get());
         }
@@ -416,25 +385,16 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         }
     }
 
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        BlockState updated = this.updateState(state, level, pos);
-        if (state != updated) {
-            // DO NOT update the client here; instead, mark the chunk dirty and send an update to
-            // the client at the end of the tick, in a tick event.
-            level.setBlockAndUpdate(pos, updated);
-        }
-    }
-
     // Checks if it can random tick. This significantly decreases lag!
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(@NotNull BlockState state) {
         return state.getValue(ACTIVE);
     }
 
     // Handles getting the placement state. This unfortunately copies a lot of logic from the
     // updateShape function, which I'll try to simplify now that I've got that one working.
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
 
         BlockState above = context.getLevel().getBlockState(context.getClickedPos().above());
         Level level = context.getLevel();
@@ -442,17 +402,20 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 this.defaultBlockState(),
                 serverLevel,
                 context.getClickedPos()
-        ) : this.defaultBlockState()).setValue(SNOWY, isSnowySetting(above));
+        ) : this.defaultBlockState()).setValue(
+                SNOWY,
+                isSnowySetting(above)
+        );
     }
 
     // Very important!
     // Defines the properties for the block.
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, @NotNull BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, @NotNull BlockState> builder) {
         builder.add(WATER_DISTANCE, ACTIVE, ABOVE, BELOW, SUCCESSFULLY_SPREAD, SNOWY);
     }
 
-    protected float chanceToSpread(BlockState state) {
+    protected float chanceToSpread(@NotNull BlockState state) {
         return ACTIVE_SPREAD_RATE * (state.getValue(SUCCESSFULLY_SPREAD) ? 1 : INACTIVE_SPREAD_RATE_FACTOR);
     }
 
@@ -463,18 +426,18 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         LOG("log", (_, state) -> state.is(BlockTags.LOGS)),
         WATER("water", (_, state) -> state.is(Blocks.WATER) && state.getFluidState().isSourceOfType(Fluids.WATER));
 
+        private static final NeighborType[] VALUES = NeighborType.values();
         private final String representation;
-        private final BiPredicate<RegistryAccess, BlockState> identifier;
+        private final BiPredicate<RegistryAccess, BlockState> criterion;
 
-
-        NeighborType(String representation, BiPredicate<RegistryAccess, BlockState> identifier) {
+        NeighborType(@NotNull String representation, BiPredicate<RegistryAccess, BlockState> criterion) {
             this.representation = representation;
-            this.identifier = identifier;
+            this.criterion = criterion;
         }
 
-        public static NeighborType get(RegistryAccess access, BlockState state) {
-            for (NeighborType type : NeighborType.values()) {
-                if (type.identifier != null && type.identifier.test(access, state)) {
+        public static NeighborType get(@NotNull RegistryAccess access, @NotNull BlockState state) {
+            for (NeighborType type : VALUES) {
+                if (type.criterion != null && type.criterion.test(access, state)) {
                     return type;
                 }
             }

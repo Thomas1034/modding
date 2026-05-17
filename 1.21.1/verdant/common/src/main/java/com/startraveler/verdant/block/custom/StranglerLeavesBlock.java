@@ -88,15 +88,20 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         return distance;
     }
 
-
-    // Check if the leaf is part of a valid shelf.
-
     // Returns the number of blocks to move in that direction to find a non-air
     // block.
     // Negative max values are ignored.
     public static int getDistanceTillBlock(Level level, BlockPos initial, Direction direction, int max) {
         Predicate<BlockState> checker = (state) -> !state.isAir();
         return getDistanceTill(level, initial, direction, checker, max);
+    }
+
+    protected boolean skipRendering(@NotNull BlockState state, BlockState neighborState, @NotNull Direction direction) {
+        return neighborState.is(VerdantTags.Blocks.STRANGLER_LEAVES) || super.skipRendering(
+                state,
+                neighborState,
+                direction
+        );
     }
 
     @Override
@@ -133,7 +138,7 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         if (distance >= GRADIENT_MAX_DISTANCE - 1) {
             return;
         }
-        LeafyStranglerVineBlock leafyVine = (LeafyStranglerVineBlock) BlockRegistry.LEAFY_STRANGLER_VINE.get();
+        LeafyStranglerVineBlock leafyVine = BlockRegistry.LEAFY_STRANGLER_VINE.get();
         // Find every direction it can grow there.
         BlockState newVine = leafyVine.defaultBlockState();
         boolean canPlace = false;
@@ -298,7 +303,11 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         }
 
         if (state.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) {
-            BlockState placed = this.updateDistance(this.leaves.apply(level.getRandom()).defaultBlockState(), level, pos);
+            BlockState placed = this.updateDistance(
+                    this.leaves.apply(level.getRandom()).defaultBlockState(),
+                    level,
+                    pos
+            );
             level.setBlockAndUpdate(pos, placed);
             return true;
         }
