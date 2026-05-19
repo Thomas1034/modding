@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/fruiting_leaves",
+  "textures": {
+    "all": "verdant:block/mango_leaves_stage2",
+    "overlay": "verdant:block/mango_leaves_stage2_overlay",
+    "particle": "verdant:block/mango_leaves_stage2"
+  }
+}

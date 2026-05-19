@@ -65,6 +65,7 @@ Lingers on the ground and will not hurt the person who threw it.
 Tilapia nests that act as tilapia spawners
 Arapaima nests that act as arapaima spawners
 Root ball weapons that create a tangled mess of roots when thrown
+Incense; crafted out of balsam and blaze rod, right click to light/extinguish, slowly burns while lit in inventory and grants plant immunity
 
 */
 // Credits: (other direct contributors only)

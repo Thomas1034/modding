@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "verdant:block/ube_crop_stage0"
+  }
+}

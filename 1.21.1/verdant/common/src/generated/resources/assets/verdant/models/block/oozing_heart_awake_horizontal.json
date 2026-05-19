@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "verdant:block/oozing_heart_top_awake",
+    "side": "verdant:block/oozing_heart_awake"
+  }
+}

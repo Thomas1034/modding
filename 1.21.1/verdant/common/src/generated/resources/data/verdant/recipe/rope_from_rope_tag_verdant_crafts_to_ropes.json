@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:rope",
+  "key": {
+    "v": "verdant:rope",
+    "w": "#verdant:crafts_to_ropes"
+  },
+  "pattern": [
+    "v",
+    "v",
+    "w"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:rope"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:diamond_machete",
+  "key": {
+    "I": "#c:gems/diamond",
+    "R": "#verdant:ropes",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "II ",
+    " I ",
+    "SR "
+  ],
+  "result": {
+    "id": "verdant:diamond_machete"
+  }
+}

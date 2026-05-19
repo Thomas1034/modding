@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:rope",
+  "key": {
+    "v": "verdant:strangler_tendril"
+  },
+  "pattern": [
+    "v",
+    "v"
+  ],
+  "result": {
+    "count": 2,
+    "id": "verdant:rope"
+  }
+}

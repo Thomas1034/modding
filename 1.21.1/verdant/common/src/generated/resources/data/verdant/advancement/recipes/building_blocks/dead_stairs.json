@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dead__planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:dead_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:dead_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dead__planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:dead_stairs"
+    ]
+  }
+}

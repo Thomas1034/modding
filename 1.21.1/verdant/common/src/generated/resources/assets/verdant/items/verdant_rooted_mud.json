@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "verdant:block/verdant_rooted_mud_item",
+    "tints": [
+      {
+        "type": "minecraft:custom_model_data",
+        "default": -1
+      }
+    ]
+  }
+}

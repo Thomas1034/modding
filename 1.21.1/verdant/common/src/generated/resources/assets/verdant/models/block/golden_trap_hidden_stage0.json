@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/trap_hidden_stage0",
+  "textures": {
+    "bar": "verdant:block/golden_trap_bar",
+    "base": "verdant:block/golden_trap_base",
+    "particle": "verdant:block/golden_trap_base",
+    "spikes": "verdant:block/golden_trap_spikes"
+  }
+}

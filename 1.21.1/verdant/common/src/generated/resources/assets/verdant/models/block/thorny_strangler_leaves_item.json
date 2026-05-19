@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/overlaid_cube",
+  "textures": {
+    "base": "verdant:block/strangler_leaves",
+    "overlay": "verdant:block/thorns_overlay",
+    "particle": "verdant:block/strangler_leaves"
+  }
+}

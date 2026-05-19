@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ores_in_ground/dirt",
+      "required": false
+    },
+    {
+      "id": "#c:ores_in_ground/grus",
+      "required": false
+    }
+  ]
+}

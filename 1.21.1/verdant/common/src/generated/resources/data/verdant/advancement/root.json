@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "always": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {}
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "verdant:gui/advancements/backgrounds/verdant",
+    "description": {
+      "translate": "advancements.verdant.root.description"
+    },
+    "icon": {
+      "id": "verdant:verdant_rooted_dirt"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.verdant.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "always"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

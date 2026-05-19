@@ -1,0 +1,40 @@
+{
+  "parent": "verdant:many_sacks",
+  "criteria": {
+    "carry_sacks": {
+      "conditions": {
+        "counts": [
+          28
+        ],
+        "items": [
+          {
+            "items": "verdant:sack"
+          }
+        ]
+      },
+      "trigger": "verdant:inventory_change_item_count_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.too_many_sacks.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "id": "verdant:sack"
+    },
+    "title": {
+      "translate": "advancements.verdant.too_many_sacks.title"
+    }
+  },
+  "requirements": [
+    [
+      "carry_sacks"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

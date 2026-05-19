@@ -1,0 +1,19 @@
+{
+  "remove": [
+    "#verdant:strangler_vines"
+  ],
+  "values": [
+    "verdant:wild_cassava",
+    "verdant:wild_ube",
+    "verdant:wild_coffee",
+    "verdant:poison_ivy_plant",
+    "verdant:strangler_tendril_plant",
+    "verdant:strangler_tendril",
+    "verdant:stinking_blossom",
+    "verdant:blasting_blossom",
+    "verdant:tall_bush",
+    "verdant:tall_thorn_bush",
+    "verdant:bush",
+    "verdant:thorn_bush"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fish_trap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:fish_trap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_frame_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:frame_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:fish_trap_from_frame_block_tag_minecraft_planks_rope"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_frame_block",
+      "has_minecraft_root",
+      "has_rope",
+      "has_fish_trap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:fish_trap_from_frame_block_tag_minecraft_planks_rope"
+    ]
+  }
+}

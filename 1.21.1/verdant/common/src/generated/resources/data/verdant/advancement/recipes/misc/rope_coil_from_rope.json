@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rope_coil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:rope_coil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:rope_coil_from_rope"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rope",
+      "has_rope_coil"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:rope_coil_from_rope"
+    ]
+  }
+}

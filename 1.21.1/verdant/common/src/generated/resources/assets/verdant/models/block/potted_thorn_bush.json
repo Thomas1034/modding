@@ -1,0 +1,7 @@
+{
+  "parent": "verdant:block/tinted_flower_pot_overlaid_cross",
+  "textures": {
+    "overlay": "verdant:block/thorn_bush_overlay",
+    "plant": "verdant:block/thorn_bush"
+  }
+}

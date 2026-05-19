@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cassava": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:cassava"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:cooked_cassava_from_smelting_cassava"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cassava"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:cooked_cassava_from_smelting_cassava"
+    ]
+  }
+}

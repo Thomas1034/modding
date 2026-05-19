@@ -1,0 +1,36 @@
+{
+  "parent": "verdant:craft_sack",
+  "criteria": {
+    "carry_sacks": {
+      "conditions": {
+        "counts": [
+          10
+        ],
+        "items": [
+          {
+            "items": "verdant:sack"
+          }
+        ]
+      },
+      "trigger": "verdant:inventory_change_item_count_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.many_sacks.description"
+    },
+    "hidden": true,
+    "icon": {
+      "id": "verdant:sack"
+    },
+    "title": {
+      "translate": "advancements.verdant.many_sacks.title"
+    }
+  },
+  "requirements": [
+    [
+      "carry_sacks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

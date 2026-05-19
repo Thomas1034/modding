@@ -1,0 +1,144 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot0"
+      },
+      "when": {
+        "rotation": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot1"
+      },
+      "when": {
+        "rotation": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot2"
+      },
+      "when": {
+        "rotation": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot3",
+        "y": 90
+      },
+      "when": {
+        "rotation": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot0",
+        "y": 90
+      },
+      "when": {
+        "rotation": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot1",
+        "y": 90
+      },
+      "when": {
+        "rotation": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot2",
+        "y": 90
+      },
+      "when": {
+        "rotation": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot3",
+        "y": 180
+      },
+      "when": {
+        "rotation": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot0",
+        "y": 180
+      },
+      "when": {
+        "rotation": "8"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot1",
+        "y": 180
+      },
+      "when": {
+        "rotation": "9"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot2",
+        "y": 180
+      },
+      "when": {
+        "rotation": "10"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot3",
+        "y": 270
+      },
+      "when": {
+        "rotation": "11"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot0",
+        "y": 270
+      },
+      "when": {
+        "rotation": "12"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot1",
+        "y": 270
+      },
+      "when": {
+        "rotation": "13"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot2",
+        "y": 270
+      },
+      "when": {
+        "rotation": "14"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/bramble_head_rot3"
+      },
+      "when": {
+        "rotation": "15"
+      }
+    }
+  ]
+}

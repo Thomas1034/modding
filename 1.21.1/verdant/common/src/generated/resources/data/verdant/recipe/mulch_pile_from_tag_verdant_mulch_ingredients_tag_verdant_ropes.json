@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:mulch_pile",
+  "key": {
+    "r": "#verdant:ropes",
+    "t": "#verdant:mulch_ingredients"
+  },
+  "pattern": [
+    "ttt",
+    "trt",
+    "t t"
+  ],
+  "result": {
+    "id": "verdant:mulch_pile"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "verdant:block/trap_tinted_stage3",
+  "textures": {
+    "bar": "verdant:block/snapleaf_bar",
+    "bar_tinted": "verdant:block/snapleaf_bar_tinted",
+    "base": "verdant:block/snapleaf_base",
+    "base_tinted": "verdant:block/snapleaf_base_tinted",
+    "particle": "verdant:block/snapleaf_base",
+    "spikes": "verdant:block/snapleaf_spikes",
+    "spikes_tinted": "verdant:block/snapleaf_spikes_tinted"
+  }
+}

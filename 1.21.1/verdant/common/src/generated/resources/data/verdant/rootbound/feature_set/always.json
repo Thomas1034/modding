@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "type": "rootbound:configured_feature",
+      "configured_feature": "verdant:no_op",
+      "weight": 5
+    }
+  ],
+  "name": "verdant:always"
+}

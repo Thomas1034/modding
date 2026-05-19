@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_mirrored",
+  "textures": {
+    "end": "verdant:block/fused_scree_top",
+    "side": "verdant:block/fused_scree_side_alt"
+  }
+}

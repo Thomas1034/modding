@@ -1,0 +1,9 @@
+{
+  "parent": "verdant:block/trap_stage0",
+  "textures": {
+    "bar": "verdant:block/copper_trap_bar",
+    "base": "verdant:block/copper_trap_base",
+    "particle": "verdant:block/copper_trap_base",
+    "spikes": "verdant:block/copper_trap_spikes"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "wooden_fence_gate",
+  "key": {
+    "#": "minecraft:stick",
+    "W": "verdant:strangler_planks"
+  },
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "result": {
+    "id": "verdant:strangler_fence_gate"
+  }
+}

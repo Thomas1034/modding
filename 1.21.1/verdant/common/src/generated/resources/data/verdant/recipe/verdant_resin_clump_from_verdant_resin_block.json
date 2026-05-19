@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:verdant_resin_clump",
+  "ingredients": [
+    "verdant:verdant_resin_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "verdant:verdant_resin_clump"
+  }
+}

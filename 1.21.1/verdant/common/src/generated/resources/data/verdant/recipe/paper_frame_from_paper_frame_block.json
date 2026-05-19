@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:paper_frame",
+  "key": {
+    "F": "verdant:frame_block",
+    "P": "minecraft:paper"
+  },
+  "pattern": [
+    " P ",
+    "PFP",
+    " P "
+  ],
+  "result": {
+    "id": "verdant:paper_frame"
+  }
+}

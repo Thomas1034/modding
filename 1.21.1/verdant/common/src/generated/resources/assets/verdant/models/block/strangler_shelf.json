@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_body",
+  "textures": {
+    "all": "verdant:block/strangler_shelf",
+    "particle": "verdant:block/strangler_planks"
+  }
+}

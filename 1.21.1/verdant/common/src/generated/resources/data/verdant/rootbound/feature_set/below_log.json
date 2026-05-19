@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "type": "rootbound:configured_feature",
+      "configured_feature": "verdant:strangler_vines",
+      "weight": 1
+    }
+  ],
+  "name": "verdant:below_log"
+}

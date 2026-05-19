@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/top_overlaid_cube",
+  "textures": {
+    "base": "minecraft:block/clay",
+    "overlay": "verdant:block/overlay_thick",
+    "particle": "minecraft:block/clay",
+    "side": "verdant:block/snowy_verdant_grass_side",
+    "top": "verdant:block/snowy_verdant_grass_top"
+  }
+}

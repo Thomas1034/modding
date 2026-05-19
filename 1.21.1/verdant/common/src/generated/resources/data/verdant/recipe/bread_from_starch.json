@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "minecraft:bread",
+  "key": {
+    "B": "verdant:starch"
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "result": {
+    "id": "minecraft:bread"
+  }
+}

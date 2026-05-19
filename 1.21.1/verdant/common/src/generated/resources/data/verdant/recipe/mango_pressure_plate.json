@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "verdant:mango_planks"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "id": "verdant:mango_pressure_plate"
+  }
+}

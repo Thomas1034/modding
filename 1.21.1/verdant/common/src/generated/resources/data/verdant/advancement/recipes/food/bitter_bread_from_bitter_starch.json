@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bitter_bread": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:bitter_bread"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_bitter_starch": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:bitter_starch"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:bitter_bread_from_bitter_starch"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bitter_starch",
+      "has_bitter_bread"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:bitter_bread_from_bitter_starch"
+    ]
+  }
+}

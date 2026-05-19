@@ -1,0 +1,7 @@
+{
+  "data": {
+    "catch_chance": 0.025,
+    "consume_chance": 0.005
+  },
+  "item": "minecraft:chorus_fruit"
+}

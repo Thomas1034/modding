@@ -1,0 +1,11 @@
+{
+  "parent": "verdant:block/skull_rot3",
+  "textures": {
+    "down": "verdant:block/bramble_head_down",
+    "east": "verdant:block/bramble_head_east",
+    "north": "verdant:block/bramble_head_north",
+    "south": "verdant:block/bramble_head_south",
+    "up": "verdant:block/bramble_head_up",
+    "west": "verdant:block/bramble_head_west"
+  }
+}

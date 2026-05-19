@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_heartwood_boat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_boat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_heartwood_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:heartwood_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rootbound:heartwood_boat_from_heartwood_planks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_heartwood_planks",
+      "has_heartwood_boat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rootbound:heartwood_boat_from_heartwood_planks"
+    ]
+  }
+}

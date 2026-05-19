@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft:orange_dye",
+  "ingredients": [
+    "verdant:tiger_lily"
+  ],
+  "result": {
+    "id": "minecraft:orange_dye"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "verdant:mango_planks"
+  ],
+  "result": {
+    "id": "verdant:mango_button"
+  }
+}

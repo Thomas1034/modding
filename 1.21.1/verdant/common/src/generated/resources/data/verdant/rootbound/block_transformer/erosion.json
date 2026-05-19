@@ -1,0 +1,387 @@
+{
+  "name": "verdant:erosion",
+  "values": [
+    {
+      "block": "minecraft:stone",
+      "result": "minecraft:cobblestone"
+    },
+    {
+      "block": "minecraft:stone_slab",
+      "result": "minecraft:cobblestone_slab"
+    },
+    {
+      "block": "minecraft:stone_stairs",
+      "result": "minecraft:cobblestone_stairs"
+    },
+    {
+      "block": "minecraft:infested_stone",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:cobblestone",
+      "result": "verdant:packed_gravel"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone",
+      "result": "verdant:packed_gravel"
+    },
+    {
+      "block": "minecraft:deepslate",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate",
+      "result": "verdant:packed_scree"
+    },
+    {
+      "block": "verdant:packed_gravel",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "verdant:packed_scree",
+      "result": "verdant:stony_grus"
+    },
+    {
+      "block": "verdant:scree",
+      "result": "verdant:stony_grus"
+    },
+    {
+      "block": "verdant:fused_gravel",
+      "result": "verdant:packed_gravel"
+    },
+    {
+      "block": "verdant:fused_scree",
+      "result": "verdant:packed_scree"
+    },
+    {
+      "block": "minecraft:gravel",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "verdant:stony_grus",
+      "results": [
+        {
+          "name": "verdant:grus_emerald_ore"
+        },
+        {
+          "name": "verdant:grus",
+          "weight": 8191
+        }
+      ]
+    },
+    {
+      "block": "minecraft:coarse_dirt",
+      "results": [
+        {
+          "name": "verdant:dirt_emerald_ore"
+        },
+        {
+          "name": "minecraft:dirt",
+          "weight": 16383
+        }
+      ]
+    },
+    {
+      "block": "minecraft:dirt_path",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:mycelium",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:moss_block",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:grass_block",
+      "result": "minecraft:dirt"
+    },
+    {
+      "block": "minecraft:cobblestone_stairs",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:cobblestone_slab",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:cobblestone_wall",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:infested_cobblestone",
+      "result": "minecraft:air"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_stairs",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_slab",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:mossy_cobblestone_wall",
+      "result": "minecraft:gravel"
+    },
+    {
+      "block": "minecraft:stone_bricks",
+      "result": "minecraft:mossy_stone_bricks"
+    },
+    {
+      "block": "minecraft:stone_brick_stairs",
+      "result": "minecraft:cobblestone_stairs"
+    },
+    {
+      "block": "minecraft:stone_brick_slab",
+      "result": "minecraft:cobblestone_slab"
+    },
+    {
+      "block": "minecraft:stone_brick_wall",
+      "result": "minecraft:cobblestone_wall"
+    },
+    {
+      "block": "minecraft:chiseled_stone_bricks",
+      "result": "minecraft:cobblestone"
+    },
+    {
+      "block": "minecraft:cracked_stone_bricks",
+      "result": "minecraft:cobblestone"
+    },
+    {
+      "block": "minecraft:mossy_stone_bricks",
+      "result": "minecraft:cracked_stone_bricks"
+    },
+    {
+      "block": "minecraft:mossy_stone_brick_stairs",
+      "result": "minecraft:cobblestone_stairs"
+    },
+    {
+      "block": "minecraft:mossy_stone_brick_slab",
+      "result": "minecraft:cobblestone_slab"
+    },
+    {
+      "block": "minecraft:mossy_stone_brick_wall",
+      "result": "minecraft:cobblestone_wall"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate_stairs",
+      "result": "verdant:scree"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate_slab",
+      "result": "verdant:scree"
+    },
+    {
+      "block": "minecraft:cobbled_deepslate_wall",
+      "result": "verdant:scree"
+    },
+    {
+      "block": "minecraft:deepslate_bricks",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_brick_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:deepslate_brick_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:deepslate_brick_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    },
+    {
+      "block": "minecraft:deepslate_bricks",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_tiles",
+      "result": "minecraft:cobbled_deepslate"
+    },
+    {
+      "block": "minecraft:deepslate_tile_slab",
+      "result": "minecraft:cobbled_deepslate_slab"
+    },
+    {
+      "block": "minecraft:deepslate_tile_stairs",
+      "result": "minecraft:cobbled_deepslate_stairs"
+    },
+    {
+      "block": "minecraft:deepslate_tile_wall",
+      "result": "minecraft:cobbled_deepslate_wall"
+    },
+    {
+      "block": "minecraft:smooth_sandstone",
+      "result": "minecraft:sandstone"
+    },
+    {
+      "block": "minecraft:smooth_sandstone_stairs",
+      "result": "minecraft:sandstone_stairs"
+    },
+    {
+      "block": "minecraft:smooth_sandstone_slab",
+      "result": "minecraft:sandstone_slab"
+    },
+    {
+      "block": "minecraft:chiseled_sandstone",
+      "result": "minecraft:sandstone"
+    },
+    {
+      "block": "minecraft:cut_sandstone",
+      "result": "minecraft:sandstone"
+    },
+    {
+      "block": "minecraft:cut_sandstone_slab",
+      "result": "minecraft:sandstone_slab"
+    },
+    {
+      "block": "minecraft:sandstone",
+      "result": "minecraft:sand"
+    },
+    {
+      "block": "minecraft:sandstone_stairs",
+      "result": "minecraft:sand"
+    },
+    {
+      "block": "minecraft:sandstone_slab",
+      "result": "minecraft:sand"
+    },
+    {
+      "block": "minecraft:sandstone_wall",
+      "result": "minecraft:sand"
+    },
+    {
+      "block": "minecraft:sand",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:packed_mud",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:mud_bricks",
+      "result": "minecraft:packed_mud"
+    },
+    {
+      "block": "minecraft:mud_brick_slab",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:mud_brick_stairs",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:mud_brick_wall",
+      "result": "minecraft:coarse_dirt"
+    },
+    {
+      "block": "minecraft:deepslate_coal_ore",
+      "result": "verdant:grus_coal_ore"
+    },
+    {
+      "block": "minecraft:deepslate_copper_ore",
+      "result": "verdant:grus_copper_ore"
+    },
+    {
+      "block": "minecraft:deepslate_iron_ore",
+      "result": "verdant:grus_iron_ore"
+    },
+    {
+      "block": "minecraft:deepslate_gold_ore",
+      "result": "verdant:grus_gold_ore"
+    },
+    {
+      "block": "minecraft:deepslate_redstone_ore",
+      "result": "verdant:grus_redstone_ore"
+    },
+    {
+      "block": "minecraft:deepslate_lapis_ore",
+      "result": "verdant:grus_lapis_ore"
+    },
+    {
+      "block": "minecraft:deepslate_emerald_ore",
+      "result": "verdant:grus_emerald_ore"
+    },
+    {
+      "block": "minecraft:deepslate_diamond_ore",
+      "result": "verdant:grus_diamond_ore"
+    },
+    {
+      "block": "minecraft:coal_ore",
+      "result": "verdant:dirt_coal_ore"
+    },
+    {
+      "block": "minecraft:copper_ore",
+      "result": "verdant:dirt_copper_ore"
+    },
+    {
+      "block": "minecraft:iron_ore",
+      "result": "verdant:dirt_iron_ore"
+    },
+    {
+      "block": "minecraft:gold_ore",
+      "result": "verdant:dirt_gold_ore"
+    },
+    {
+      "block": "minecraft:redstone_ore",
+      "result": "verdant:dirt_redstone_ore"
+    },
+    {
+      "block": "minecraft:lapis_ore",
+      "result": "verdant:dirt_lapis_ore"
+    },
+    {
+      "block": "minecraft:emerald_ore",
+      "result": "verdant:dirt_emerald_ore"
+    },
+    {
+      "block": "minecraft:diamond_ore",
+      "result": "verdant:dirt_diamond_ore"
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:brown_stained_glass",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:green_stained_glass",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:lime_stained_glass"
+        }
+      ],
+      "tag": {
+        "id": "c:glass_blocks/cheap"
+      }
+    },
+    {
+      "results": [
+        {
+          "name": "minecraft:air"
+        },
+        {
+          "name": "minecraft:green_stained_glass_pane",
+          "weight": 7
+        },
+        {
+          "name": "minecraft:lime_stained_glass_pane"
+        },
+        {
+          "name": "minecraft:brown_stained_glass_pane",
+          "weight": 7
+        }
+      ],
+      "tag": {
+        "id": "c:glass_panes"
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "verdant:toxic_ash",
+  "criteria": {
+    "toxic_fishing": {
+      "conditions": {
+        "damage": {
+          "type": {
+            "tags": [
+              {
+                "expected": true,
+                "id": "verdant:toxic_ash"
+              }
+            ]
+          }
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "#minecraft:aquatic"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_hurt_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.toxic_fishing.description"
+    },
+    "hidden": true,
+    "icon": {
+      "id": "verdant:toxic_ash_block"
+    },
+    "title": {
+      "translate": "advancements.verdant.toxic_fishing.title"
+    }
+  },
+  "requirements": [
+    [
+      "toxic_fishing"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

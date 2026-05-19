@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "verdant:cooked_cassava",
+  "ingredient": "verdant:cassava",
+  "result": {
+    "id": "verdant:cooked_cassava"
+  }
+}

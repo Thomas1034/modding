@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft:brown_dye",
+  "ingredients": [
+    "verdant:roasted_coffee"
+  ],
+  "result": {
+    "id": "minecraft:brown_dye"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "verdant:block/top_overlaid_cube",
+  "textures": {
+    "base": "verdant:block/grus",
+    "overlay": "verdant:block/overlay_wilted_thin",
+    "particle": "verdant:block/grus",
+    "side": "verdant:block/snowy_verdant_grass_side",
+    "top": "verdant:block/snowy_verdant_grass_top"
+  }
+}

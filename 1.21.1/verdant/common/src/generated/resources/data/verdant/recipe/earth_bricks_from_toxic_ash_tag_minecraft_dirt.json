@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:earth_bricks",
+  "key": {
+    "A": "verdant:toxic_ash",
+    "D": "#minecraft:dirt"
+  },
+  "pattern": [
+    "DDD",
+    "DAD",
+    "DDD"
+  ],
+  "result": {
+    "count": 4,
+    "id": "verdant:earth_bricks"
+  }
+}

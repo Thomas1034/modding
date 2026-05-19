@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft:blue_dye",
+  "ingredients": [
+    "verdant:blueweed"
+  ],
+  "result": {
+    "id": "minecraft:blue_dye"
+  }
+}

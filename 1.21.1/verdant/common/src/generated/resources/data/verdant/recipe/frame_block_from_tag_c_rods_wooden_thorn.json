@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:frame_block",
+  "key": {
+    "H": "verdant:thorn",
+    "T": "#c:rods/wooden"
+  },
+  "pattern": [
+    " T ",
+    "THT",
+    " T "
+  ],
+  "result": {
+    "id": "verdant:frame_block"
+  }
+}

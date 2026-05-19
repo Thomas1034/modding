@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:mango_mosaic",
+  "key": {
+    "s": "verdant:mango_slab"
+  },
+  "pattern": [
+    "s",
+    "s"
+  ],
+  "result": {
+    "id": "verdant:mango_mosaic"
+  }
+}

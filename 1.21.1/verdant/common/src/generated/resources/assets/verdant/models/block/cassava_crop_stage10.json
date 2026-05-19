@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "verdant:block/cassava_crop_stage10"
+  }
+}

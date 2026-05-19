@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "minecraft:packed_mud",
+  "ingredients": [
+    "#verdant:ropes",
+    "#verdant:ropes",
+    "minecraft:mud"
+  ],
+  "result": {
+    "id": "minecraft:packed_mud"
+  }
+}

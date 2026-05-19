@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_glass_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glass_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glistering_melon_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glistering_melon_slice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_apple": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:golden_apple"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_mango": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:golden_mango"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_nectar_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:nectar_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:nectar_bottle_from_golden_mango_golden_apple_glistering_melon_slice_glass_bottle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_golden_mango",
+      "has_golden_apple",
+      "has_glistering_melon_slice",
+      "has_glass_bottle",
+      "has_nectar_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:nectar_bottle_from_golden_mango_golden_apple_glistering_melon_slice_glass_bottle"
+    ]
+  }
+}

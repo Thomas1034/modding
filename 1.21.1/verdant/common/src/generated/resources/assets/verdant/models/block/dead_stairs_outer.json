@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "verdant:block/dead_planks",
+    "side": "verdant:block/dead_planks",
+    "top": "verdant:block/dead_planks"
+  }
+}

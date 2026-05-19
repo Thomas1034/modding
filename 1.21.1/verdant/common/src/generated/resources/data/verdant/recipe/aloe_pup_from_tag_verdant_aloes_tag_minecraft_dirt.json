@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "verdant:aloe_pup",
+  "key": {
+    "d": "#minecraft:dirt",
+    "f": "#verdant:aloes"
+  },
+  "pattern": [
+    "fff",
+    "fdf"
+  ],
+  "result": {
+    "id": "verdant:aloe_pup"
+  }
+}

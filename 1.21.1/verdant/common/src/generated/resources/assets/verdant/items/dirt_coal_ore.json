@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "verdant:block/dirt_coal_ore_item",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -1
+      }
+    ]
+  }
+}

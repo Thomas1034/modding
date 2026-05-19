@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blasting_bloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:blasting_bloom"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stable_blasting_bloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:stable_blasting_bloom"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:blasting_bloom_from_tag_minecraft_brewing_fuel_stable_blasting_bloom"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "hasminecraft_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:brewing_fuel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "hasminecraft_root",
+      "has_stable_blasting_bloom",
+      "has_blasting_bloom"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:blasting_bloom_from_tag_minecraft_brewing_fuel_stable_blasting_bloom"
+    ]
+  }
+}

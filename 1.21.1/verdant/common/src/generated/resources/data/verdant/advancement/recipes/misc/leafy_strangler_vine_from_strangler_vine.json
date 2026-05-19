@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_leafy_strangler_vine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:leafy_strangler_vine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_strangler_vine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:strangler_vine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:leafy_strangler_vine_from_strangler_vine"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_strangler_vine",
+      "has_leafy_strangler_vine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:leafy_strangler_vine_from_strangler_vine"
+    ]
+  }
+}

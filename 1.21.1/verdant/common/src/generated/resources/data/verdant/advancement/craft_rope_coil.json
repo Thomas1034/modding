@@ -1,0 +1,28 @@
+{
+  "parent": "verdant:craft_rope",
+  "criteria": {
+    "craft_rope_coil": {
+      "conditions": {
+        "recipe_id": "verdant:rope_coil_from_rope"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.craft_rope_coil.description"
+    },
+    "icon": {
+      "id": "verdant:rope_coil"
+    },
+    "title": {
+      "translate": "advancements.verdant.craft_rope_coil.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_rope_coil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

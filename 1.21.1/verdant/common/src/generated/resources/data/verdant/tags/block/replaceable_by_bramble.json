@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:replaceable",
+    "#minecraft:replaceable_by_trees",
+    "#minecraft:replaceable_by_mushrooms",
+    "#minecraft:moss_replaceable",
+    "#minecraft:lush_ground_replaceable",
+    "#minecraft:azalea_root_replaceable",
+    "#minecraft:sculk_replaceable"
+  ]
+}

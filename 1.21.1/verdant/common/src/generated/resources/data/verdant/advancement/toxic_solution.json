@@ -1,0 +1,33 @@
+{
+  "parent": "verdant:toxic_ash",
+  "criteria": {
+    "toxic_solution": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:toxic_solution_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.toxic_solution.description"
+    },
+    "hidden": true,
+    "icon": {
+      "id": "verdant:toxic_solution_bucket"
+    },
+    "title": {
+      "translate": "advancements.verdant.toxic_solution.title"
+    }
+  },
+  "requirements": [
+    [
+      "toxic_solution"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

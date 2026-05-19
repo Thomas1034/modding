@@ -1,0 +1,7 @@
+{
+  "data": {
+    "catch_chance": 0.55,
+    "consume_chance": 0.3
+  },
+  "item": "minecraft:chicken"
+}

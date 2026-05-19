@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "verdant:terracotta_grenade",
+  "ingredients": [
+    "minecraft:string",
+    "verdant:terracotta_bomb"
+  ],
+  "result": {
+    "id": "verdant:terracotta_grenade"
+  }
+}

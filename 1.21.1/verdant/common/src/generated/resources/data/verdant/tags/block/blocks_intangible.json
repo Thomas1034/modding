@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:bedrock",
+    "minecraft:nether_portal",
+    "minecraft:barrier",
+    "minecraft:obsidian",
+    "minecraft:crying_obsidian"
+  ]
+}

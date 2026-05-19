@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#verdant:thorny_heartwood_tool_materials",
+  "base": "verdant:heartwood_axe",
+  "result": {
+    "id": "verdant:thorny_heartwood_axe"
+  },
+  "template": "verdant:thorns_upgrade_smithing_template"
+}

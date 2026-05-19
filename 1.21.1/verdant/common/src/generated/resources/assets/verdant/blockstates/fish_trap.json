@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "verdant:block/fish_trap"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/fish_trap",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/fish_trap",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "verdant:block/fish_trap",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    }
+  ]
+}

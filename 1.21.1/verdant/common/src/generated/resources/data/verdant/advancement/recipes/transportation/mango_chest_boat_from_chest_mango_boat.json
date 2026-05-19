@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chest": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:chest"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mango_boat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:mango_boat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mango_chest_boat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:mango_chest_boat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:mango_chest_boat_from_chest_mango_boat"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_chest",
+      "has_mango_boat",
+      "has_mango_chest_boat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:mango_chest_boat_from_chest_mango_boat"
+    ]
+  }
+}

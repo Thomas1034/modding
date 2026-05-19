@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:bush"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_tall_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:tall_bush"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:tall_bush_from_bush"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bush",
+      "has_tall_bush"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:tall_bush_from_bush"
+    ]
+  }
+}

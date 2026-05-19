@@ -1,0 +1,7 @@
+{
+  "parent": "verdant:block/asterisk",
+  "textures": {
+    "cross": "verdant:block/large_aloe_stage4",
+    "plus": "verdant:block/large_aloe"
+  }
+}

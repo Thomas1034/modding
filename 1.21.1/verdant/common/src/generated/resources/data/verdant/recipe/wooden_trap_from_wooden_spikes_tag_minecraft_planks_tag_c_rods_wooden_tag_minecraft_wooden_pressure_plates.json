@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:wooden_trap",
+  "key": {
+    "C": "#minecraft:planks",
+    "P": "#minecraft:wooden_pressure_plates",
+    "S": "verdant:wooden_spikes",
+    "T": "#c:rods/wooden"
+  },
+  "pattern": [
+    "S S",
+    "SCS",
+    "TPT"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:wooden_trap"
+  }
+}

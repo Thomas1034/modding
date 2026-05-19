@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/bomb_flower_stage2",
+  "textures": {
+    "base": "verdant:block/blasting_blossom_base",
+    "flower": "verdant:block/blasting_blossom_stage2",
+    "particle": "verdant:block/blasting_blossom_stage2"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:metal_bomb",
+  "key": {
+    "B": "verdant:blasting_bloom",
+    "C": "#c:ingots/copper",
+    "I": "#c:ingots/iron"
+  },
+  "pattern": [
+    "CCC",
+    "BBB",
+    "III"
+  ],
+  "result": {
+    "count": 3,
+    "id": "verdant:metal_bomb"
+  }
+}

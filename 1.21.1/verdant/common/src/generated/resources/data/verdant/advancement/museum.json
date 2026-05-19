@@ -1,0 +1,33 @@
+{
+  "parent": "verdant:petrichor",
+  "criteria": {
+    "conduit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:verdant_conduit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.museum.description"
+    },
+    "hidden": true,
+    "icon": {
+      "id": "verdant:verdant_conduit"
+    },
+    "title": {
+      "translate": "advancements.verdant.museum.title"
+    }
+  },
+  "requirements": [
+    [
+      "conduit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

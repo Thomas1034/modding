@@ -21,6 +21,7 @@ import com.startraveler.verdant.registry.BlockTransformerRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 // Represents something capable of performing erosion.
@@ -53,7 +54,7 @@ public interface Eroder {
         // Block states are cached, allowing slight efficiency to avoid setting a redundant state.
         if (state != newState && newState != null) {
             // Set the block iff it changed and is not null.
-            level.setBlockAndUpdate(pos, newState);
+            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
             // Return true since erosion succeeded.
             return true;
         }

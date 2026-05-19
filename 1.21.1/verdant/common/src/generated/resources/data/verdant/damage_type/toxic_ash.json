@@ -1,0 +1,7 @@
+{
+  "death_message_type": "intentional_game_design",
+  "effects": "burning",
+  "exhaustion": 0.1,
+  "message_id": "verdant.toxic_ash",
+  "scaling": "when_caused_by_living_non_player"
+}

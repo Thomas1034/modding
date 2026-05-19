@@ -1,0 +1,28 @@
+{
+  "parent": "verdant:overgrowth",
+  "criteria": {
+    "craft_rope": {
+      "conditions": {
+        "recipe_id": "verdant:rope_from_strangler_tendril"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.verdant.craft_rope.description"
+    },
+    "icon": {
+      "id": "verdant:rope"
+    },
+    "title": {
+      "translate": "advancements.verdant.craft_rope.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_rope"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

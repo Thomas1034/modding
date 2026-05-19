@@ -1,0 +1,7 @@
+{
+  "data": {
+    "catch_chance": 0.9,
+    "consume_chance": 0.2
+  },
+  "item": "minecraft:cooked_porkchop"
+}

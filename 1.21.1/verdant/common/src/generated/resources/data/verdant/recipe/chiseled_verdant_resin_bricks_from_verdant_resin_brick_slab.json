@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "verdant:chiseled_verdant_resin_bricks",
+  "key": {
+    "E": "verdant:verdant_resin_brick_slab"
+  },
+  "pattern": [
+    "E",
+    "E"
+  ],
+  "result": {
+    "id": "verdant:chiseled_verdant_resin_bricks"
+  }
+}

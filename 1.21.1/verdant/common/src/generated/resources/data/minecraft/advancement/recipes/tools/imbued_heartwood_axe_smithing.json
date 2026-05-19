@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_imbuement_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#verdant:imbued_heartwood_tool_materials"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:imbued_heartwood_axe_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_imbuement_item"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:imbued_heartwood_axe_smithing"
+    ]
+  }
+}

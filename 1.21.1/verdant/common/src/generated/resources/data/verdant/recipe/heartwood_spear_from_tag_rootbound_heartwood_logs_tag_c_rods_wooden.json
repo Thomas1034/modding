@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "verdant:heartwood_spear",
+  "key": {
+    "P": "#rootbound:heartwood_logs",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "  P",
+    " S ",
+    "S  "
+  ],
+  "result": {
+    "id": "verdant:heartwood_spear"
+  }
+}

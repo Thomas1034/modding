@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:grus"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_scree": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:scree"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stony_grus": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:stony_grus"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "verdant:stony_grus_from_grus_scree"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grus",
+      "has_scree",
+      "has_stony_grus"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "verdant:stony_grus_from_grus_scree"
+    ]
+  }
+}

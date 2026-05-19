@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "verdant:tall_thorn_bush",
+  "ingredients": [
+    "verdant:thorn_bush",
+    "verdant:thorn_bush"
+  ],
+  "result": {
+    "id": "verdant:tall_thorn_bush"
+  }
+}

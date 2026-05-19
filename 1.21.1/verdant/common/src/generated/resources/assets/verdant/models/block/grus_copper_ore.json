@@ -1,0 +1,8 @@
+{
+  "parent": "verdant:block/overlaid_cube",
+  "textures": {
+    "base": "verdant:block/grus",
+    "overlay": "verdant:block/copper_ore_overlay",
+    "particle": "verdant:block/grus"
+  }
+}

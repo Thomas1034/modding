@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blasting_bloom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "verdant:blasting_bloom"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_charcoal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:charcoal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gunpowder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:gunpowder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:gunpowder_from_charcoal_blasting_bloom"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_charcoal",
+      "has_blasting_bloom",
+      "has_gunpowder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:gunpowder_from_charcoal_blasting_bloom"
+    ]
+  }
+}
