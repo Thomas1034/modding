@@ -106,7 +106,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
         // Set the default state to be non-hydrated.
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(WATER_DISTANCE, MAX_DISTANCE)
-                .setValue(SNOWY, false));
+                .setValue(SNOWY, false)
+                .setValue(ACTIVE, true)
+                .setValue(SUCCESSFULLY_SPREAD, false)
+                .setValue(ABOVE, NeighborType.OTHER)
+                .setValue(BELOW, NeighborType.OTHER));
         this.isGrassy = isGrassy;
         this.alternateGrassy = alternateGrassy;
         this.isWet = isWet;
@@ -162,6 +166,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
     // grass, bushes, vines, etc.
     // Returns whether any erosion or growth succeeded.
     public boolean grow(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos) {
+
         boolean anySucceeded = false;
         // First, check if the state is wet.
         // This is important for erosion; some things can only be
@@ -176,11 +181,11 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             mutableBlockPos.set(posX + offset[0], posY + offset[1], posZ + offset[2]);
             anySucceeded |= this.erodeOrGrow(level, mutableBlockPos, isWet);
         }
-        this.placeFeature(state, level, pos);
+        anySucceeded |= this.placeFeature(state, level, pos);
         return anySucceeded;
     }
 
-    public void placeFeature(@NotNull BlockState state, @NotNull ServerLevel level, BlockPos pos) {
+    public boolean placeFeature(@NotNull BlockState state, @NotNull ServerLevel level, BlockPos pos) {
         Registry<FeatureSet> featureSetRegistry = level.registryAccess().lookupOrThrow(FeatureSet.KEY);
         BlockPos placeAt;
         FeatureSet featureSet;
@@ -199,7 +204,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
             };
             featureSet = featureSetRegistry.get(featureSetId).orElseThrow().value();
         }
-        featureSet.place(level, placeAt);
+        return featureSet.place(level, placeAt);
     }
 
     // Returns true if the block at the given position can be grassy.
@@ -289,7 +294,7 @@ public class SpreadingRootsBlock extends Block implements VerdantGrower, Hoeable
                 adjacent = NeighborType.get(access, neighbor);
                 state = state.setValue(BELOW, adjacent);
             }
-            canBeActive |= adjacent != NeighborType.OTHER;
+            canBeActive |= (adjacent != NeighborType.OTHER);
 
             // If the block has not been marked as able to be active, check its neighbor
             // for the criteria.

@@ -73,6 +73,9 @@ Incense; crafted out of balsam and blaze rod, right click to light/extinguish, s
 // Make spawner that creates green growth particles.
 
 Changes:
+- Updated to 26.1
+- Imbued Verdant Heartwood now cycles its texture three times as fast.
+- Verdant Conduits have an updated texture.
 
 Features Added:
 

@@ -4,6 +4,7 @@ import com.google.common.collect.Streams;
 import com.mojang.math.Quadrant;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.*;
+import com.startraveler.verdant.client.renderer.VerdantConduitRenderer;
 import com.startraveler.verdant.client.renderer.VerdantConduitSpecialRenderer;
 import com.startraveler.verdant.data.definitions.*;
 import com.startraveler.verdant.registry.ArmorMaterialRegistry;
@@ -27,7 +28,6 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
-import net.minecraft.client.renderer.blockentity.ConduitRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -1056,10 +1056,9 @@ public class VerdantModelProvider extends ModelProvider {
         this.blockModels.createParticleOnlyBlock(BlockRegistry.VERDANT_CONDUIT.get());
         this.blockModels.generateSimpleSpecialItemModel(
                 BlockRegistry.VERDANT_CONDUIT.get(),
-                Optional.of(ConduitRenderer.DEFAULT_TRANSFORMATION),
+                Optional.of(VerdantConduitRenderer.DEFAULT_TRANSFORMATION),
                 new VerdantConduitSpecialRenderer.Unbaked()
         );
-
     }
 
     @Override

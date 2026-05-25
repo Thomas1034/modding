@@ -18,6 +18,7 @@ package com.startraveler.verdant.client.renderer;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Transformation;
 import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.block.custom.entity.VerdantConduitBlockEntity;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -44,6 +45,12 @@ import org.joml.Vector3f;
 import org.jspecify.annotations.Nullable;
 
 public class VerdantConduitRenderer implements BlockEntityRenderer<@NotNull VerdantConduitBlockEntity, @NotNull ConduitRenderState> {
+    public static final Transformation DEFAULT_TRANSFORMATION = new Transformation(
+            new Vector3f(0.5F, 0.5F, 0.5F),
+            null,
+            null,
+            null
+    );
 
     @SuppressWarnings("deprecation")
     public static final SpriteMapper MAPPER = new SpriteMapper(TextureAtlas.LOCATION_BLOCKS, "entity/conduit");

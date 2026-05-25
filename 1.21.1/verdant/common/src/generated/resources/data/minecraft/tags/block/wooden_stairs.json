@@ -1,9 +1,9 @@
 {
   "values": [
-    "verdant:heartwood_stairs",
-    "verdant:strangler_stairs",
     "verdant:mango_stairs",
     "verdant:mango_mosaic_stairs",
+    "verdant:heartwood_stairs",
+    "verdant:strangler_stairs",
     "verdant:dead_stairs"
   ]
 }

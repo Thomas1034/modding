@@ -2,13 +2,13 @@
   "entries": [
     {
       "type": "rootbound:configured_feature",
-      "configured_feature": "verdant:large_mulch",
-      "weight": 1
+      "configured_feature": "verdant:mulch",
+      "weight": 63
     },
     {
       "type": "rootbound:configured_feature",
-      "configured_feature": "verdant:mulch",
-      "weight": 63
+      "configured_feature": "verdant:large_mulch",
+      "weight": 1
     }
   ],
   "name": "verdant:mulch"
