@@ -113,9 +113,9 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
     private static final Map<BlockState, VoxelShape> CACHED_SHAPES = new HashMap<>();
     protected final double leafGrowthRadius = 2.9;
     protected final boolean[][][] leafPattern;
-    private final Function<RandomSource, Block> log = (rand) -> WoodSets.STRANGLER.getLog().get();
+    private final Function<RandomSource, Block> log = (_) -> WoodSets.STRANGLER.getLog().get();
 
-    private final Function<RandomSource, Block> rottenWood = (rand) -> BlockRegistry.ROTTEN_WOOD.get();
+    private final Function<RandomSource, Block> rottenWood = (_) -> BlockRegistry.ROTTEN_WOOD.get();
 
     private final Function<RandomSource, Block> heartwood = (rand) -> rand.nextInt(IMBUED_HEARTWOOD_CHANCE) == 0 ? BlockRegistry.IMBUED_HEARTWOOD_LOG.get() : WoodSets.HEARTWOOD.getLog()
             .get();
@@ -227,7 +227,8 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
         IntegerProperty propertyForDirection = PROPERTY_FOR_FACE.get(facing);
 
-        if (state.getValue(propertyForDirection) > MIN_AGE && !canSupportStranglerVine(state)) {
+        int ageForDirection = state.getValue(propertyForDirection);
+        if (ageForDirection > MIN_AGE && ageForDirection < MAX_AGE && !canSupportStranglerVine(state)) {
             state = state.setValue(propertyForDirection, MIN_AGE);
         }
 
@@ -459,25 +460,25 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         if (!isMature || grownIntoLog) {
             level.setBlockAndUpdate(pos, state);
         } else if (state.getValue(DOWN) == MAX_AGE) {
-            if (!(state.getBlock() instanceof LeafyStranglerVineBlock)) {
+            if (!state.is(BlockRegistry.LEAFY_STRANGLER_VINE.get())) {
                 level.setBlockAndUpdate(
                         pos,
                         BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get())
                 );
-                // TODO Temporary I hope hope hope
-                // Pending leaf rework.
-                boolean clearAbove = true;
-                for (int i = 1; i < 4; i++) {
-                    // Previously, was not checking how far above; no parameter i.
-                    BlockState above = level.getBlockState(pos.above(i));
-                    if (!above.isAir()) {
-                        clearAbove = false;
-                        break;
-                    }
+            }
+            // TODO Temporary I hope hope hope
+            // Pending leaf rework.
+            boolean clearAbove = true;
+            for (int i = 1; i < 4; i++) {
+                // Previously, was not checking how far above; no parameter i.
+                BlockState above = level.getBlockState(pos.above(i));
+                if (!above.isAir()) {
+                    clearAbove = false;
+                    break;
                 }
-                if (clearAbove) {
-                    this.growLeafCluster(level, pos);
-                }
+            }
+            if (clearAbove) {
+                this.growLeafCluster(level, pos);
             }
         }
 
@@ -499,11 +500,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
 
                         BlockState localState = level.getBlockState(localPos);
 
-                        /*
-                        if (state.getBlock() instanceof StranglerVineBlock && !this.canGrowToFace(level, localPos, Direction.DOWN)) {
-                            level.setBlockAndUpdate(localPos, BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get()));
-                        } else
-                            */
                         if ((localState.is(BlockTags.REPLACEABLE) || localState.is(VerdantTags.Blocks.STRANGLER_VINE_REPLACEABLES)) && !localState.is(
                                 VerdantTags.Blocks.STRANGLER_VINES)) {
                             Block leaves = this.leaves.apply(level.getRandom());

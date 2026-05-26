@@ -96,14 +96,6 @@ public class StranglerLeavesBlock extends GradientLeavesBlock {
         return getDistanceTill(level, initial, direction, checker, max);
     }
 
-    protected boolean skipRendering(@NotNull BlockState state, BlockState neighborState, @NotNull Direction direction) {
-        return neighborState.is(VerdantTags.Blocks.STRANGLER_LEAVES) || super.skipRendering(
-                state,
-                neighborState,
-                direction
-        );
-    }
-
     @Override
     public @NotNull VoxelShape getBlockSupportShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return SUPPORT_SHAPE;

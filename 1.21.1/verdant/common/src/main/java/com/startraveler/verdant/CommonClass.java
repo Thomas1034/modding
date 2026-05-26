@@ -76,10 +76,13 @@ Changes:
 - Updated to 26.1
 - Imbued Verdant Heartwood now cycles its texture three times as fast.
 - Verdant Conduits have an updated texture.
+- Max age strangler vine sides can now stand unsupported, acting as a sort of vertical slab.
+- Leafy strangler vines now drop ordinary strangler vine loot.
 
 Features Added:
 
 Bugs Fixed:
+- Fixed a long-standing glitch where leafy strangler vines wouldn't grow leaves around them when they mature.
 
  */
 public class CommonClass {

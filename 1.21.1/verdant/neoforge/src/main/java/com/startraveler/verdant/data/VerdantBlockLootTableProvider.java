@@ -199,7 +199,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
                 BlockRegistry.LEAFY_STRANGLER_VINE.get(),
                 stranglerVineLoot.apply(
                         BlockRegistry.LEAFY_STRANGLER_VINE.get(),
-                        BlockRegistry.LEAFY_STRANGLER_VINE.get().asItem()
+                        BlockRegistry.STRANGLER_VINE.get().asItem()
                 )
         );
 
@@ -589,7 +589,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected void requireSilkTouch(Block base, ItemLike withoutSilk) {
-        this.add(base, block -> createSilkTouchDrop(base, withoutSilk.asItem()));
+        this.add(base, _ -> createSilkTouchDrop(base, withoutSilk.asItem()));
     }
 
     @SuppressWarnings("unused")
@@ -599,11 +599,11 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
 
     @SuppressWarnings("SameParameterValue")
     protected void requireSilkTouchOrShears(Block base, ItemLike withoutSilk, List<Integer> range) {
-        this.add(base, block -> createSilkTouchOrShearsDrop(base, withoutSilk.asItem(), range));
+        this.add(base, _ -> createSilkTouchOrShearsDrop(base, withoutSilk.asItem(), range));
     }
 
     protected void requireSilkTouch(Block base, ItemLike withoutSilk, List<Integer> range) {
-        this.add(base, block -> createOreDrops(base, withoutSilk.asItem(), range));
+        this.add(base, _ -> createOreDrops(base, withoutSilk.asItem(), range));
     }
 
     protected void requireSilkTouchDropsOther(Block base, Block source) {
@@ -612,7 +612,7 @@ public class VerdantBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     protected void oreDrop(Block base, ItemLike drop, List<Integer> range) {
-        this.add(base, block -> createOreDrops(base, drop, range));
+        this.add(base, _ -> createOreDrops(base, drop, range));
     }
 
     protected LootTable.Builder createSilkTouchOrOtherDrop(Block block, Identifier source) {
