@@ -1,6 +1,6 @@
 {
   "type": "verdant:blowdart_tipping",
   "category": "equipment",
-  "coil": "verdant:tipped_dart",
-  "rope": "verdant:dart"
+  "tipped_dart": "verdant:tipped_dart",
+  "untipped_dart": "verdant:dart"
 }

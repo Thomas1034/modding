@@ -1,8 +1,8 @@
 {
   "values": [
-    "verdant:mango_planks",
     "verdant:heartwood_planks",
     "verdant:strangler_planks",
+    "verdant:mango_planks",
     "verdant:dead_planks"
   ]
 }

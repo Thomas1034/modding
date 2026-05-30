@@ -2,28 +2,13 @@
   "entries": [
     {
       "type": "rootbound:configured_feature",
-      "configured_feature": "verdant:strangler_tendril_ceiling",
-      "weight": 5
-    },
-    {
-      "type": "rootbound:configured_feature",
-      "configured_feature": "verdant:poison_ivy_ceiling",
-      "weight": 2
-    },
-    {
-      "type": "rootbound:configured_feature",
-      "configured_feature": "minecraft:spore_blossom",
-      "weight": 1
-    },
-    {
-      "type": "rootbound:configured_feature",
       "configured_feature": "verdant:glow_lichen_ceiling",
       "weight": 25
     },
     {
       "type": "rootbound:configured_feature",
-      "configured_feature": "verdant:hanging_roots",
-      "weight": 100
+      "configured_feature": "verdant:strangler_tendril_ceiling",
+      "weight": 5
     },
     {
       "type": "rootbound:configured_feature",
@@ -38,6 +23,21 @@
     {
       "type": "rootbound:configured_feature",
       "configured_feature": "verdant:vines_ceiling",
+      "weight": 100
+    },
+    {
+      "type": "rootbound:configured_feature",
+      "configured_feature": "verdant:poison_ivy_ceiling",
+      "weight": 2
+    },
+    {
+      "type": "rootbound:configured_feature",
+      "configured_feature": "minecraft:spore_blossom",
+      "weight": 1
+    },
+    {
+      "type": "rootbound:configured_feature",
+      "configured_feature": "verdant:hanging_roots",
       "weight": 100
     }
   ],

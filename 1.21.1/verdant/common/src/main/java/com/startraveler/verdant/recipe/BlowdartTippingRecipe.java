@@ -58,8 +58,8 @@ public final class BlowdartTippingRecipe extends CustomRecipe {
 
     public static final MapCodec<BlowdartTippingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             CraftingBookCategory.CODEC.fieldOf("category").forGetter(BlowdartTippingRecipe::category),
-            Item.CODEC.fieldOf("coil").forGetter(BlowdartTippingRecipe::untippedDart),
-            Item.CODEC.fieldOf("rope").forGetter(BlowdartTippingRecipe::tippedDart)
+            Item.CODEC.fieldOf("untipped_dart").forGetter(BlowdartTippingRecipe::untippedDart),
+            Item.CODEC.fieldOf("tipped_dart").forGetter(BlowdartTippingRecipe::tippedDart)
     ).apply(instance, BlowdartTippingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BlowdartTippingRecipe> STREAM_CODEC = StreamCodec.composite(
@@ -151,7 +151,6 @@ public final class BlowdartTippingRecipe extends CustomRecipe {
 
             isValid &= anySucceeded;
         }
-
 
         isValid &= dartCount > 0;
 
@@ -248,7 +247,7 @@ public final class BlowdartTippingRecipe extends CustomRecipe {
             this.criteria.forEach(advancement::addCriterion);
             output.accept(
                     key,
-                    new BlowdartTippingRecipe(this.category, this.tippedDart, this.untippedDart),
+                    new BlowdartTippingRecipe(this.category, this.untippedDart, this.tippedDart),
                     advancement.build(key.identifier().withPrefix("recipes/"))
             );
         }

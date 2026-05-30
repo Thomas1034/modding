@@ -228,7 +228,7 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         IntegerProperty propertyForDirection = PROPERTY_FOR_FACE.get(facing);
 
         int ageForDirection = state.getValue(propertyForDirection);
-        if (ageForDirection > MIN_AGE && ageForDirection < MAX_AGE && !canSupportStranglerVine(state)) {
+        if (ageForDirection > MIN_AGE && !canSupportStranglerVine(state)) {
             state = state.setValue(propertyForDirection, MIN_AGE);
         }
 
@@ -460,12 +460,6 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
         if (!isMature || grownIntoLog) {
             level.setBlockAndUpdate(pos, state);
         } else if (state.getValue(DOWN) == MAX_AGE) {
-            if (!state.is(BlockRegistry.LEAFY_STRANGLER_VINE.get())) {
-                level.setBlockAndUpdate(
-                        pos,
-                        BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get())
-                );
-            }
             // TODO Temporary I hope hope hope
             // Pending leaf rework.
             boolean clearAbove = true;
@@ -478,7 +472,16 @@ public class StranglerVineBlock extends Block implements SimpleWaterloggedBlock,
                 }
             }
             if (clearAbove) {
+                level.setBlockAndUpdate(
+                        pos,
+                        BlockTransformer.copyProperties(state, BlockRegistry.LEAFY_STRANGLER_VINE.get())
+                );
                 this.growLeafCluster(level, pos);
+            } else {
+                level.setBlockAndUpdate(
+                        pos,
+                        state
+                );
             }
         }
 
