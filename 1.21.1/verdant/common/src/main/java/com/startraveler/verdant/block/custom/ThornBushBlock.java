@@ -17,7 +17,6 @@
 package com.startraveler.verdant.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.startraveler.verdant.Constants;
 import com.startraveler.verdant.VerdantIFF;
 import com.startraveler.verdant.registry.DamageSourceRegistry;
 import com.startraveler.verdant.registry.TriggerRegistry;
@@ -84,7 +83,6 @@ public class ThornBushBlock extends BushBlock {
                         if (livingEntity instanceof ServerPlayer player) {
                             TriggerRegistry.VERDANT_PLANT_ATTACK_TRIGGER.get().trigger(player);
                         }
-                        Constants.LOG.warn("Damaging with thorns: {}, {}", source, cumulativeDamage);
                         entity.hurtServer(serverLevel, source, cumulativeDamage);
                     }
                 }
